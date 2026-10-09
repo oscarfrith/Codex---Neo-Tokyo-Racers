@@ -1,0 +1,2620 @@
+{
+ "script": "ReplicatedStorage.Modules.Game.UI.FullMapUI",
+ "class": "ModuleScript",
+ "source_file": "classic/sources/ReplicatedStorage.Modules.Game.UI.FullMapUI.lua",
+ "source_lines": 857,
+ "included_because": [
+  "ClientBase entry 'FullMapUI'",
+  "under ReplicatedStorage.Modules.Game.UI"
+ ],
+ "requires": [
+  {
+   "expr": "uiModules:WaitForChild(\"RacingUIComponents\")",
+   "as": "UI",
+   "line": 33,
+   "in_function": "FullMap.start",
+   "target": "ReplicatedStorage.Modules.Game.UI.RacingUIComponents"
+  },
+  {
+   "expr": "uiModules:WaitForChild(\"RouteGuide\")",
+   "as": "RouteGuide",
+   "line": 34,
+   "in_function": "FullMap.start",
+   "target": "ReplicatedStorage.Modules.Game.UI.RouteGuide"
+  },
+  {
+   "expr": "uiModules:WaitForChild(\"MapMarkers\")",
+   "as": "MapMarkers",
+   "line": 35,
+   "in_function": "FullMap.start",
+   "target": "ReplicatedStorage.Modules.Game.UI.MapMarkers"
+  },
+  {
+   "expr": "uiModules:WaitForChild(\"MapIconLayer\")",
+   "as": "MapIconLayer",
+   "line": 36,
+   "in_function": "FullMap.start",
+   "target": "ReplicatedStorage.Modules.Game.UI.MapIconLayer"
+  },
+  {
+   "expr": "uiModules:WaitForChild(\"MapMath\")",
+   "as": "MapMath",
+   "line": 37,
+   "in_function": "FullMap.start",
+   "target": "ReplicatedStorage.Modules.Game.UI.MapMath"
+  },
+  {
+   "expr": "uiModules:WaitForChild(\"MapTileSet\")",
+   "as": "MapTileSet",
+   "line": 38,
+   "in_function": "FullMap.start",
+   "target": "ReplicatedStorage.Modules.Game.UI.MapTileSet"
+  },
+  {
+   "expr": "uiModules:WaitForChild(\"FreeRoamMapPlayerMarkers\")",
+   "as": "PlayerMarkers",
+   "line": 39,
+   "in_function": "FullMap.start",
+   "target": "ReplicatedStorage.Modules.Game.UI.FreeRoamMapPlayerMarkers"
+  },
+  {
+   "expr": "modules.Game:WaitForChild(\"Vehicles\"):WaitForChild(\"GameplayInputGate\")",
+   "as": "InputGate",
+   "line": 40,
+   "in_function": "FullMap.start",
+   "target": "ReplicatedStorage.Modules.Game.Vehicles.GameplayInputGate"
+  }
+ ],
+ "remotes": {
+  "calls": [],
+  "listens": []
+ },
+ "bindables": {
+  "fires": [
+   {
+    "receiver": "notify",
+    "created_here": false,
+    "lookup": "Players.LocalPlayer.PlayerScripts.Runtime.UI",
+    "arg_count": 2,
+    "args": [
+     "tostring(text)",
+     "2.2"
+    ],
+    "line": 93,
+    "in_function": "toast",
+    "name": "ShowTopNotification",
+    "payload": null,
+    "payload_expr": "tostring(text)"
+   }
+  ],
+  "connects": [
+   {
+    "signal": "Event",
+    "receiver": "presentation",
+    "method": "Connect",
+    "handler": "inline",
+    "handler_line": 753,
+    "handler_params": [
+     "payload"
+    ],
+    "payload_fields_read": [
+     "Owner",
+     "Active"
+    ],
+    "lookup": "Players.LocalPlayer.PlayerScripts.Runtime.UI",
+    "line": 753,
+    "in_function": "FullMap.start",
+    "name": "FreeRoamHudPresentationMode"
+   }
+  ],
+  "invokes": [],
+  "handlers": [],
+  "created": [],
+  "module_signal_fires": []
+ },
+ "attributes": {
+  "reads": [
+   {
+    "receiver": "folder",
+    "receiver_kind": "config",
+    "wrapper_defined": "FullMapUI:66",
+    "line": 98,
+    "in_function": "calibration",
+    "via": "wrapper readValue()",
+    "name": "MapPixels",
+    "receiver_path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud.Layout"
+   },
+   {
+    "receiver": "folder",
+    "receiver_kind": "config",
+    "wrapper_defined": "FullMapUI:66",
+    "line": 99,
+    "in_function": "calibration",
+    "via": "wrapper readValue()",
+    "name": "MapCalibrationPixels",
+    "receiver_path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud.Layout"
+   },
+   {
+    "receiver": "folder",
+    "receiver_kind": "config",
+    "wrapper_defined": "FullMapUI:66",
+    "line": 100,
+    "in_function": "calibration",
+    "via": "wrapper readValue()",
+    "name": "MapCalibrationStuds",
+    "receiver_path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud.Layout"
+   },
+   {
+    "receiver": "folder",
+    "receiver_kind": "config",
+    "wrapper_defined": "FullMapUI:66",
+    "line": 101,
+    "in_function": "calibration",
+    "via": "wrapper readValue()",
+    "name": "MapWorldCenterX",
+    "receiver_path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud.Layout"
+   },
+   {
+    "receiver": "folder",
+    "receiver_kind": "config",
+    "wrapper_defined": "FullMapUI:66",
+    "line": 102,
+    "in_function": "calibration",
+    "via": "wrapper readValue()",
+    "name": "MapWorldCenterZ",
+    "receiver_path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud.Layout"
+   },
+   {
+    "receiver": "folder",
+    "receiver_kind": "config",
+    "wrapper_defined": "FullMapUI:66",
+    "line": 103,
+    "in_function": "calibration",
+    "via": "wrapper readValue()",
+    "name": "MapCoordinateRotationDegrees",
+    "receiver_path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud.Layout"
+   },
+   {
+    "receiver": "folder",
+    "receiver_kind": "config",
+    "wrapper_defined": "FullMapUI:66",
+    "line": 104,
+    "in_function": "calibration",
+    "via": "wrapper readValue()",
+    "name": "MapFlipX",
+    "receiver_path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud.Defaults"
+   },
+   {
+    "receiver": "folder",
+    "receiver_kind": "config",
+    "wrapper_defined": "FullMapUI:66",
+    "line": 105,
+    "in_function": "calibration",
+    "via": "wrapper readValue()",
+    "name": "MapFlipZ",
+    "receiver_path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud.Defaults"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.FullMap",
+    "receiver_kind": "config",
+    "wrapper_defined": "FullMapUI:71",
+    "line": 113,
+    "in_function": "FullMap.start",
+    "via": "wrapper cfg()",
+    "name": "DisplayOrder"
+   },
+   {
+    "receiver": "folder",
+    "receiver_kind": "config",
+    "wrapper_defined": "FullMapUI:80",
+    "line": 144,
+    "in_function": "FullMap.start",
+    "via": "wrapper asset()",
+    "name": "MapPlayerIcon",
+    "receiver_path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud.Assets"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.FullMap",
+    "receiver_kind": "config",
+    "wrapper_defined": "FullMapUI:71",
+    "line": 183,
+    "in_function": "readBounds",
+    "via": "wrapper cfg()",
+    "name": "BoundsMarginStuds"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.FullMap",
+    "receiver_kind": "config",
+    "wrapper_defined": "FullMapUI:71",
+    "line": 184,
+    "in_function": "readBounds",
+    "via": "wrapper cfg()",
+    "name": "PanMinX"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.FullMap",
+    "receiver_kind": "config",
+    "wrapper_defined": "FullMapUI:71",
+    "line": 184,
+    "in_function": "readBounds",
+    "via": "wrapper cfg()",
+    "name": "PanMaxX"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.FullMap",
+    "receiver_kind": "config",
+    "wrapper_defined": "FullMapUI:71",
+    "line": 185,
+    "in_function": "readBounds",
+    "via": "wrapper cfg()",
+    "name": "PanMinZ"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.FullMap",
+    "receiver_kind": "config",
+    "wrapper_defined": "FullMapUI:71",
+    "line": 185,
+    "in_function": "readBounds",
+    "via": "wrapper cfg()",
+    "name": "PanMaxZ"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.FullMap",
+    "receiver_kind": "config",
+    "wrapper_defined": "FullMapUI:71",
+    "line": 190,
+    "in_function": "FullMap.start",
+    "via": "wrapper cfg()",
+    "name": "OpenVisibleStuds"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.FullMap",
+    "receiver_kind": "config",
+    "wrapper_defined": "FullMapUI:71",
+    "line": 209,
+    "in_function": "studLimits",
+    "via": "wrapper cfg()",
+    "name": "MinVisibleStuds"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.FullMap",
+    "receiver_kind": "config",
+    "wrapper_defined": "FullMapUI:71",
+    "line": 210,
+    "in_function": "studLimits",
+    "via": "wrapper cfg()",
+    "name": "MaxVisibleStuds"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.FullMap",
+    "receiver_kind": "config",
+    "wrapper_defined": "FullMapUI:71",
+    "line": 233,
+    "in_function": "zoomStep",
+    "via": "wrapper cfg()",
+    "name": "ZoomStep"
+   },
+   {
+    "receiver": "current",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "line": 249,
+    "in_function": "subject",
+    "name": "OwnerUserId"
+   },
+   {
+    "receiver": "folder",
+    "receiver_kind": "config",
+    "wrapper_defined": "FullMapUI:80",
+    "line": 305,
+    "in_function": "keyEntries",
+    "via": "wrapper asset()",
+    "name": "MapPlayerIcon",
+    "receiver_path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud.Assets"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.FullMap",
+    "receiver_kind": "config",
+    "line": 388,
+    "in_function": "layout",
+    "name": "DistrictName"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.FullMap",
+    "receiver_kind": "config",
+    "wrapper_defined": "FullMapUI:71",
+    "line": 397,
+    "in_function": "layout",
+    "via": "wrapper cfg()",
+    "name": "MobileLegendWidth"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.FullMap",
+    "receiver_kind": "config",
+    "wrapper_defined": "FullMapUI:71",
+    "line": 397,
+    "in_function": "layout",
+    "via": "wrapper cfg()",
+    "name": "LegendWidth"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.FullMap",
+    "receiver_kind": "config",
+    "wrapper_defined": "FullMapUI:75",
+    "line": 452,
+    "in_function": "blocked",
+    "via": "wrapper flag()",
+    "name": "Enabled"
+   },
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "line": 454,
+    "in_function": "blocked",
+    "name": "GarageSessionActive",
+    "via": "literal list"
+   },
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "line": 454,
+    "in_function": "blocked",
+    "name": "OwnedGarageInside",
+    "via": "literal list"
+   },
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "line": 454,
+    "in_function": "blocked",
+    "name": "RaceSessionActive",
+    "via": "literal list"
+   },
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "line": 454,
+    "in_function": "blocked",
+    "name": "RaceQueueActive",
+    "via": "literal list"
+   },
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "line": 454,
+    "in_function": "blocked",
+    "name": "DrivingControlsOpen",
+    "via": "literal list"
+   },
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "line": 454,
+    "in_function": "blocked",
+    "name": "FirstDrivePresentationPending",
+    "via": "literal list"
+   },
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "line": 454,
+    "in_function": "blocked",
+    "name": "MobileMajorMenuOpen",
+    "via": "literal list"
+   },
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "line": 454,
+    "in_function": "blocked",
+    "name": "MobileFreeRoamCarMenuOpen",
+    "via": "literal list"
+   },
+   {
+    "receiver": "playerGui",
+    "receiver_path": "Players.LocalPlayer.PlayerGui",
+    "receiver_kind": "playerGui",
+    "line": 456,
+    "in_function": "blocked",
+    "name": "OwnedGarageManagementOpen"
+   },
+   {
+    "receiver": "vehicle",
+    "receiver_path": null,
+    "receiver_kind": "vehicle?",
+    "line": 459,
+    "in_function": "blocked",
+    "name": "RaceParticipant"
+   },
+   {
+    "receiver": "vehicle",
+    "receiver_path": null,
+    "receiver_kind": "vehicle?",
+    "line": 459,
+    "in_function": "blocked",
+    "name": "RaceRunId"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.FullMap",
+    "receiver_kind": "config",
+    "wrapper_defined": "FullMapUI:75",
+    "line": 490,
+    "in_function": "close",
+    "via": "wrapper flag()",
+    "name": "RememberZoom"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.FullMap",
+    "receiver_kind": "config",
+    "wrapper_defined": "FullMapUI:71",
+    "line": 497,
+    "in_function": "close",
+    "via": "wrapper cfg()",
+    "name": "CloseTweenSeconds"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.FullMap",
+    "receiver_kind": "config",
+    "wrapper_defined": "FullMapUI:75",
+    "line": 513,
+    "in_function": "open",
+    "via": "wrapper flag()",
+    "name": "RememberZoom"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.FullMap",
+    "receiver_kind": "config",
+    "wrapper_defined": "FullMapUI:71",
+    "line": 513,
+    "in_function": "open",
+    "via": "wrapper cfg()",
+    "name": "OpenVisibleStuds"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.FullMap",
+    "receiver_kind": "config",
+    "wrapper_defined": "FullMapUI:75",
+    "line": 515,
+    "in_function": "open",
+    "via": "wrapper flag()",
+    "name": "LegendOpen"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.FullMap",
+    "receiver_kind": "config",
+    "wrapper_defined": "FullMapUI:71",
+    "line": 515,
+    "in_function": "open",
+    "via": "wrapper cfg()",
+    "name": "MobileLegendMinViewport"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.FullMap",
+    "receiver_kind": "config",
+    "wrapper_defined": "FullMapUI:75",
+    "line": 521,
+    "in_function": "open",
+    "via": "wrapper flag()",
+    "name": "LockGameplayInput"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.FullMap",
+    "receiver_kind": "config",
+    "wrapper_defined": "FullMapUI:71",
+    "line": 527,
+    "in_function": "open",
+    "via": "wrapper cfg()",
+    "name": "OpenTweenSeconds"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.FullMap",
+    "receiver_kind": "config",
+    "wrapper_defined": "FullMapUI:71",
+    "line": 528,
+    "in_function": "open",
+    "via": "wrapper cfg()",
+    "name": "BackdropTransparency"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.FullMap",
+    "receiver_kind": "config",
+    "wrapper_defined": "FullMapUI:71",
+    "line": 562,
+    "in_function": "tap",
+    "via": "wrapper cfg()",
+    "name": "TouchTapRadiusPixels"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.FullMap",
+    "receiver_kind": "config",
+    "wrapper_defined": "FullMapUI:71",
+    "line": 562,
+    "in_function": "tap",
+    "via": "wrapper cfg()",
+    "name": "TapRadiusPixels"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.FullMap",
+    "receiver_kind": "config",
+    "wrapper_defined": "FullMapUI:71",
+    "line": 569,
+    "in_function": "tap",
+    "via": "wrapper cfg()",
+    "name": "WaypointY"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.FullMap",
+    "receiver_kind": "config",
+    "wrapper_defined": "FullMapUI:71",
+    "line": 597,
+    "in_function": "movePointer",
+    "via": "wrapper cfg()",
+    "name": "DragThresholdPixels"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.FullMap",
+    "receiver_kind": "config",
+    "wrapper_defined": "FullMapUI:71",
+    "line": 782,
+    "in_function": "renderStep",
+    "via": "wrapper cfg()",
+    "name": "KeyboardPanSpeed"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.FullMap",
+    "receiver_kind": "config",
+    "wrapper_defined": "FullMapUI:71",
+    "line": 784,
+    "in_function": "renderStep",
+    "via": "wrapper cfg()",
+    "name": "GamepadPanSpeed"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.FullMap",
+    "receiver_kind": "config",
+    "wrapper_defined": "FullMapUI:71",
+    "line": 789,
+    "in_function": "renderStep",
+    "via": "wrapper cfg()",
+    "name": "CentreResponse"
+   },
+   {
+    "receiver": "folder",
+    "receiver_kind": "config",
+    "wrapper_defined": "FullMapUI:66",
+    "line": 814,
+    "in_function": "renderStep",
+    "via": "wrapper readValue()",
+    "name": "MapRotationOffsetDegrees",
+    "receiver_path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud.Layout"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.FullMap",
+    "receiver_kind": "config",
+    "wrapper_defined": "FullMapUI:71",
+    "line": 819,
+    "in_function": "renderStep",
+    "via": "wrapper cfg()",
+    "name": "RouteLineScale"
+   }
+  ],
+  "writes": [
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "value": false,
+    "line": 496,
+    "in_function": "close",
+    "name": "FullMapOpen"
+   },
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "value": true,
+    "line": 520,
+    "in_function": "open",
+    "name": "FullMapOpen"
+   },
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "value": false,
+    "line": 848,
+    "in_function": "FullMap.start",
+    "name": "FullMapOpen"
+   }
+  ],
+  "listens": []
+ },
+ "player_attribute_writes": [
+  {
+   "receiver": "player",
+   "receiver_path": "Players.LocalPlayer",
+   "receiver_kind": "player",
+   "value": false,
+   "line": 496,
+   "in_function": "close",
+   "name": "FullMapOpen"
+  },
+  {
+   "receiver": "player",
+   "receiver_path": "Players.LocalPlayer",
+   "receiver_kind": "player",
+   "value": true,
+   "line": 520,
+   "in_function": "open",
+   "name": "FullMapOpen"
+  },
+  {
+   "receiver": "player",
+   "receiver_path": "Players.LocalPlayer",
+   "receiver_kind": "player",
+   "value": false,
+   "line": 848,
+   "in_function": "FullMap.start",
+   "name": "FullMapOpen"
+  }
+ ],
+ "screenguis": {
+  "created": [
+   {
+    "variable": "gui",
+    "class": "ScreenGui",
+    "line": 112,
+    "factory": "new",
+    "adopts_existing": false,
+    "Name": "FullMap",
+    "DisplayOrder": {
+     "expr": "math.floor(cfg(\"DisplayOrder\", 90, 1, 1000))"
+    },
+    "ResetOnSpawn": false,
+    "IgnoreGuiInset": true,
+    "ZIndexBehavior": {
+     "expr": "Enum.ZIndexBehavior.Sibling"
+    },
+    "Enabled": false,
+    "Parent": {
+     "expr": "playerGui"
+    },
+    "enabled_writes": [
+     {
+      "property": "Enabled",
+      "value": false,
+      "line": 501
+     },
+     {
+      "property": "Enabled",
+      "value": false,
+      "line": 504
+     },
+     {
+      "property": "Enabled",
+      "value": true,
+      "line": 525
+     }
+    ],
+    "property_lines": {
+     "Name": 112,
+     "IgnoreGuiInset": 112,
+     "ResetOnSpawn": 112,
+     "Enabled": 112,
+     "DisplayOrder": 113,
+     "ZIndexBehavior": 113
+    }
+   }
+  ],
+  "enabled_writes": [
+   {
+    "receiver": "gui",
+    "receiver_path": null,
+    "value": false,
+    "screengui_like": "yes",
+    "reason": "created here as ScreenGui",
+    "line": 501,
+    "in_function": "close",
+    "screengui_name": "FullMap"
+   },
+   {
+    "receiver": "gui",
+    "receiver_path": null,
+    "value": false,
+    "screengui_like": "yes",
+    "reason": "created here as ScreenGui",
+    "line": 504,
+    "in_function": "close",
+    "screengui_name": "FullMap"
+   },
+   {
+    "receiver": "gui",
+    "receiver_path": null,
+    "value": true,
+    "screengui_like": "yes",
+    "reason": "created here as ScreenGui",
+    "line": 525,
+    "in_function": "open",
+    "screengui_name": "FullMap"
+   }
+  ]
+ },
+ "names": {
+  "assigned": [
+   {
+    "via": "table_field",
+    "callee": "new",
+    "class": "ScreenGui",
+    "line": 112,
+    "in_function": "FullMap.start",
+    "name": "FullMap"
+   },
+   {
+    "via": "table_field",
+    "callee": "new",
+    "class": "TextButton",
+    "line": 114,
+    "in_function": "FullMap.start",
+    "name": "Backdrop"
+   },
+   {
+    "via": "table_field",
+    "callee": "Panel",
+    "class": null,
+    "line": 116,
+    "in_function": "FullMap.start",
+    "name": "Panel"
+   },
+   {
+    "via": "table_field",
+    "callee": "new",
+    "class": "UIScale",
+    "line": 121,
+    "in_function": "FullMap.start",
+    "name": "OpenScale"
+   },
+   {
+    "via": "table_field",
+    "callee": "Label",
+    "class": null,
+    "line": 123,
+    "in_function": "FullMap.start",
+    "name": "Title"
+   },
+   {
+    "via": "table_field",
+    "callee": "Label",
+    "class": null,
+    "line": 124,
+    "in_function": "FullMap.start",
+    "name": "District"
+   },
+   {
+    "via": "table_field",
+    "callee": "Button",
+    "class": null,
+    "line": 125,
+    "in_function": "FullMap.start",
+    "name": "LegendToggle"
+   },
+   {
+    "via": "table_field",
+    "callee": "Button",
+    "class": null,
+    "line": 126,
+    "in_function": "FullMap.start",
+    "name": "Close"
+   },
+   {
+    "via": "table_field",
+    "callee": "new",
+    "class": "Frame",
+    "line": 128,
+    "in_function": "FullMap.start",
+    "name": "MapView"
+   },
+   {
+    "via": "table_field",
+    "callee": "new",
+    "class": "Frame",
+    "line": 131,
+    "in_function": "FullMap.start",
+    "name": "MapCanvas"
+   },
+   {
+    "via": "table_field",
+    "callee": "Label",
+    "class": null,
+    "line": 134,
+    "in_function": "FullMap.start",
+    "name": "MapMissing"
+   },
+   {
+    "via": "table_field",
+    "callee": "new",
+    "class": "Frame",
+    "line": 141,
+    "in_function": "FullMap.start",
+    "name": "PlayersHost"
+   },
+   {
+    "via": "table_field",
+    "callee": "new",
+    "class": "ImageLabel",
+    "line": 147,
+    "in_function": "FullMap.start",
+    "name": "PlayerArrow"
+   },
+   {
+    "via": "table_field",
+    "callee": "Label",
+    "class": null,
+    "line": 150,
+    "in_function": "FullMap.start",
+    "name": "PlayerArrow"
+   },
+   {
+    "via": "table_field",
+    "callee": "new",
+    "class": "Frame",
+    "line": 154,
+    "in_function": "FullMap.start",
+    "name": "Crosshair"
+   },
+   {
+    "via": "table_field",
+    "callee": "new",
+    "class": "Frame",
+    "line": 158,
+    "in_function": "FullMap.start",
+    "name": "Controls"
+   },
+   {
+    "via": "table_field",
+    "callee": "Button",
+    "class": null,
+    "line": 159,
+    "in_function": "FullMap.start",
+    "name": "ZoomIn"
+   },
+   {
+    "via": "table_field",
+    "callee": "Button",
+    "class": null,
+    "line": 160,
+    "in_function": "FullMap.start",
+    "name": "ZoomOut"
+   },
+   {
+    "via": "table_field",
+    "callee": "Button",
+    "class": null,
+    "line": 161,
+    "in_function": "FullMap.start",
+    "name": "Centre"
+   },
+   {
+    "via": "table_field",
+    "callee": "Button",
+    "class": null,
+    "line": 162,
+    "in_function": "FullMap.start",
+    "name": "ShowAll"
+   },
+   {
+    "via": "table_field",
+    "callee": "Label",
+    "class": null,
+    "line": 163,
+    "in_function": "FullMap.start",
+    "name": "Hint"
+   },
+   {
+    "via": "table_field",
+    "callee": "Panel",
+    "class": null,
+    "line": 169,
+    "in_function": "FullMap.start",
+    "name": "Legend"
+   },
+   {
+    "via": "table_field",
+    "callee": "Label",
+    "class": null,
+    "line": 171,
+    "in_function": "FullMap.start",
+    "name": "Title"
+   },
+   {
+    "via": "table_field",
+    "callee": "new",
+    "class": "ScrollingFrame",
+    "line": 172,
+    "in_function": "FullMap.start",
+    "name": "List"
+   },
+   {
+    "via": "table_field",
+    "callee": "Button",
+    "class": null,
+    "line": 176,
+    "in_function": "FullMap.start",
+    "name": "ClearWaypoint"
+   },
+   {
+    "via": "table_field",
+    "callee": "new",
+    "class": "Frame",
+    "line": 343,
+    "in_function": "rebuildLegend",
+    "name": null,
+    "name_pattern": "Key_*",
+    "name_expr": "\"Key_\" .. entry.Icon"
+   },
+   {
+    "via": "table_field",
+    "callee": "Label",
+    "class": null,
+    "line": 347,
+    "in_function": "rebuildLegend",
+    "name": "Label"
+   }
+  ],
+  "looked_up": [
+   {
+    "method": "WaitForChild",
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 30,
+    "in_function": "FullMap.start",
+    "name": "PlayerGui"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "ReplicatedStorage",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 31,
+    "in_function": "FullMap.start",
+    "name": "Modules"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "modules",
+    "receiver_path": "ReplicatedStorage.Modules",
+    "root": "ReplicatedStorage",
+    "line": 32,
+    "in_function": "FullMap.start",
+    "name": "Game"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "modules:WaitForChild(\"Game\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game",
+    "root": "ReplicatedStorage",
+    "line": 32,
+    "in_function": "FullMap.start",
+    "name": "UI"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "uiModules",
+    "receiver_path": "ReplicatedStorage.Modules.Game.UI",
+    "root": "ReplicatedStorage",
+    "line": 33,
+    "in_function": "FullMap.start",
+    "name": "RacingUIComponents"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "uiModules",
+    "receiver_path": "ReplicatedStorage.Modules.Game.UI",
+    "root": "ReplicatedStorage",
+    "line": 34,
+    "in_function": "FullMap.start",
+    "name": "RouteGuide"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "uiModules",
+    "receiver_path": "ReplicatedStorage.Modules.Game.UI",
+    "root": "ReplicatedStorage",
+    "line": 35,
+    "in_function": "FullMap.start",
+    "name": "MapMarkers"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "uiModules",
+    "receiver_path": "ReplicatedStorage.Modules.Game.UI",
+    "root": "ReplicatedStorage",
+    "line": 36,
+    "in_function": "FullMap.start",
+    "name": "MapIconLayer"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "uiModules",
+    "receiver_path": "ReplicatedStorage.Modules.Game.UI",
+    "root": "ReplicatedStorage",
+    "line": 37,
+    "in_function": "FullMap.start",
+    "name": "MapMath"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "uiModules",
+    "receiver_path": "ReplicatedStorage.Modules.Game.UI",
+    "root": "ReplicatedStorage",
+    "line": 38,
+    "in_function": "FullMap.start",
+    "name": "MapTileSet"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "uiModules",
+    "receiver_path": "ReplicatedStorage.Modules.Game.UI",
+    "root": "ReplicatedStorage",
+    "line": 39,
+    "in_function": "FullMap.start",
+    "name": "FreeRoamMapPlayerMarkers"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "modules.Game",
+    "receiver_path": "ReplicatedStorage.Modules.Game",
+    "root": "ReplicatedStorage",
+    "line": 40,
+    "in_function": "FullMap.start",
+    "name": "Vehicles"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "modules.Game:WaitForChild(\"Vehicles\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game.Vehicles",
+    "root": "ReplicatedStorage",
+    "line": 40,
+    "in_function": "FullMap.start",
+    "name": "GameplayInputGate"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "ReplicatedStorage",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 41,
+    "in_function": "FullMap.start",
+    "name": "Config"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "ReplicatedStorage:WaitForChild(\"Config\")",
+    "receiver_path": "ReplicatedStorage.Config",
+    "root": "ReplicatedStorage",
+    "line": 41,
+    "in_function": "FullMap.start",
+    "name": "UI"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "uiConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI",
+    "root": "ReplicatedStorage",
+    "line": 42,
+    "in_function": "FullMap.start",
+    "name": "DesktopFreeRoamHud"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "hudConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud",
+    "root": "ReplicatedStorage",
+    "line": 43,
+    "in_function": "FullMap.start",
+    "name": "Layout"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "hudConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud",
+    "root": "ReplicatedStorage",
+    "line": 44,
+    "in_function": "FullMap.start",
+    "name": "Defaults"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "hudConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud",
+    "root": "ReplicatedStorage",
+    "line": 45,
+    "in_function": "FullMap.start",
+    "name": "Assets"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "uiConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI",
+    "root": "ReplicatedStorage",
+    "line": 46,
+    "in_function": "FullMap.start",
+    "name": "FreeRoamMapPlayerMarkers"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "uiConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI",
+    "root": "ReplicatedStorage",
+    "line": 47,
+    "in_function": "FullMap.start",
+    "name": "FullMap"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 48,
+    "in_function": "FullMap.start",
+    "name": "PlayerScripts"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "player:WaitForChild(\"PlayerScripts\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts",
+    "root": "Players",
+    "line": 48,
+    "in_function": "FullMap.start",
+    "name": "Runtime"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "player:WaitForChild(\"PlayerScripts\"):WaitForChild(\"Runtime\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime",
+    "root": "Players",
+    "line": 48,
+    "in_function": "FullMap.start",
+    "name": "UI"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 59,
+    "in_function": "FullMap.start",
+    "via": "wrapper Components.Colour()",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours",
+    "name": "Panel"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 59,
+    "in_function": "FullMap.start",
+    "via": "wrapper Components.Colour()",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours",
+    "name": "PanelDeep"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 59,
+    "in_function": "FullMap.start",
+    "via": "wrapper Components.Colour()",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours",
+    "name": "PanelSoft"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 59,
+    "in_function": "FullMap.start",
+    "via": "wrapper Components.Colour()",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours",
+    "name": "PanelBlue"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 59,
+    "in_function": "FullMap.start",
+    "via": "wrapper Components.Colour()",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours",
+    "name": "Outline"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 59,
+    "in_function": "FullMap.start",
+    "via": "wrapper Components.Colour()",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours",
+    "name": "OutlineSoft"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 59,
+    "in_function": "FullMap.start",
+    "via": "wrapper Components.Colour()",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours",
+    "name": "Telemetry"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 59,
+    "in_function": "FullMap.start",
+    "via": "wrapper Components.Colour()",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours",
+    "name": "ElectricBlue"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 59,
+    "in_function": "FullMap.start",
+    "via": "wrapper Components.Colour()",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours",
+    "name": "HighSpeed"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 59,
+    "in_function": "FullMap.start",
+    "via": "wrapper Components.Colour()",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours",
+    "name": "Danger"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 59,
+    "in_function": "FullMap.start",
+    "via": "wrapper Components.Colour()",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours",
+    "name": "Text"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 59,
+    "in_function": "FullMap.start",
+    "via": "wrapper Components.Colour()",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours",
+    "name": "Muted"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 59,
+    "in_function": "FullMap.start",
+    "via": "wrapper Components.Colour()",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours",
+    "name": "Disabled"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "uiFolder",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime.UI",
+    "root": "Players",
+    "line": 92,
+    "in_function": "toast",
+    "name": "ShowTopNotification"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "FullMapUI:64",
+    "receiver_kind": "config",
+    "line": 98,
+    "in_function": "calibration",
+    "via": "wrapper readValue()",
+    "name": "MapPixels",
+    "receiver_path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud.Layout"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "FullMapUI:64",
+    "receiver_kind": "config",
+    "line": 99,
+    "in_function": "calibration",
+    "via": "wrapper readValue()",
+    "name": "MapCalibrationPixels",
+    "receiver_path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud.Layout"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "FullMapUI:64",
+    "receiver_kind": "config",
+    "line": 100,
+    "in_function": "calibration",
+    "via": "wrapper readValue()",
+    "name": "MapCalibrationStuds",
+    "receiver_path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud.Layout"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "FullMapUI:64",
+    "receiver_kind": "config",
+    "line": 101,
+    "in_function": "calibration",
+    "via": "wrapper readValue()",
+    "name": "MapWorldCenterX",
+    "receiver_path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud.Layout"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "FullMapUI:64",
+    "receiver_kind": "config",
+    "line": 102,
+    "in_function": "calibration",
+    "via": "wrapper readValue()",
+    "name": "MapWorldCenterZ",
+    "receiver_path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud.Layout"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "FullMapUI:64",
+    "receiver_kind": "config",
+    "line": 103,
+    "in_function": "calibration",
+    "via": "wrapper readValue()",
+    "name": "MapCoordinateRotationDegrees",
+    "receiver_path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud.Layout"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "FullMapUI:64",
+    "receiver_kind": "config",
+    "line": 104,
+    "in_function": "calibration",
+    "via": "wrapper readValue()",
+    "name": "MapFlipX",
+    "receiver_path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud.Defaults"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "FullMapUI:64",
+    "receiver_kind": "config",
+    "line": 105,
+    "in_function": "calibration",
+    "via": "wrapper readValue()",
+    "name": "MapFlipZ",
+    "receiver_path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud.Defaults"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "playerGui",
+    "receiver_path": "Players.LocalPlayer.PlayerGui",
+    "root": "Players",
+    "line": 110,
+    "in_function": "FullMap.start",
+    "name": "FullMap"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "FullMapUI:80",
+    "receiver_kind": "config",
+    "line": 144,
+    "in_function": "FullMap.start",
+    "via": "wrapper asset()",
+    "name": "MapPlayerIcon",
+    "receiver_path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud.Assets"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "current",
+    "receiver_path": null,
+    "root": null,
+    "recursive": true,
+    "line": 250,
+    "in_function": "subject",
+    "name": "CockpitRoot_DoNotRename"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "character",
+    "receiver_path": "Players.LocalPlayer.Character",
+    "root": "Players",
+    "line": 255,
+    "in_function": "subject",
+    "name": "HumanoidRootPart"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "FullMapUI:80",
+    "receiver_kind": "config",
+    "line": 305,
+    "in_function": "keyEntries",
+    "via": "wrapper asset()",
+    "name": "MapPlayerIcon",
+    "receiver_path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud.Assets"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "playerGui",
+    "receiver_path": "Players.LocalPlayer.PlayerGui",
+    "root": "Players",
+    "line": 466,
+    "in_function": "minimapShowing",
+    "name": "DesktopFreeRoamHud",
+    "via": "literal list"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "playerGui",
+    "receiver_path": "Players.LocalPlayer.PlayerGui",
+    "root": "Players",
+    "line": 466,
+    "in_function": "minimapShowing",
+    "name": "MobileFreeRoamHud_Phase1",
+    "via": "literal list"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "hud",
+    "receiver_path": "Players.LocalPlayer.PlayerGui.<name>",
+    "root": "Players",
+    "recursive": true,
+    "line": 467,
+    "in_function": "minimapShowing",
+    "name": "Minimap"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "uiFolder",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime.UI",
+    "root": "Players",
+    "line": 751,
+    "in_function": "FullMap.start",
+    "name": "FreeRoamHudPresentationMode"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "FullMapUI:64",
+    "receiver_kind": "config",
+    "line": 814,
+    "in_function": "renderStep",
+    "via": "wrapper readValue()",
+    "name": "MapRotationOffsetDegrees",
+    "receiver_path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud.Layout"
+   }
+  ],
+  "text_compared": []
+ },
+ "run_service": {
+  "render_steps": [
+   {
+    "method": "UnbindFromRenderStep",
+    "line": 486,
+    "in_function": "close",
+    "name": "FullMapUI"
+   },
+   {
+    "method": "BindToRenderStep",
+    "priority_expr": "Enum.RenderPriority.Last.Value + 10",
+    "priority": 2010,
+    "callback": "renderStep",
+    "line": 533,
+    "in_function": "open",
+    "name": "FullMapUI"
+   }
+  ],
+  "connects": []
+ },
+ "context_actions": [
+  {
+   "method": "UnbindAction",
+   "line": 487,
+   "in_function": "close",
+   "name": "FullMapPad"
+  },
+  {
+   "method": "BindActionAtPriority",
+   "create_touch_button": false,
+   "priority_expr": "Enum.ContextActionPriority.High.Value + 50",
+   "priority": 3050,
+   "inputs": [
+    "Enum.KeyCode.ButtonA",
+    "Enum.KeyCode.ButtonB",
+    "Enum.KeyCode.ButtonX",
+    "Enum.KeyCode.ButtonY",
+    "Enum.KeyCode.ButtonL1",
+    "Enum.KeyCode.ButtonR1",
+    "Enum.KeyCode.Thumbstick1"
+   ],
+   "line": 530,
+   "in_function": "open",
+   "name": "FullMapPad"
+  },
+  {
+   "method": "BindActionAtPriority",
+   "create_touch_button": false,
+   "priority_expr": "Enum.ContextActionPriority.High.Value",
+   "priority": 3000,
+   "inputs": [
+    "Enum.KeyCode.ButtonSelect"
+   ],
+   "line": 718,
+   "in_function": "FullMap.start",
+   "name": "FullMapToggle"
+  }
+ ],
+ "user_input_service": {
+  "connects": [
+   {
+    "signal": "InputChanged",
+    "method": "Connect",
+    "line": 639,
+    "in_function": "FullMap.start"
+   },
+   {
+    "signal": "InputEnded",
+    "method": "Connect",
+    "line": 654,
+    "in_function": "FullMap.start"
+   },
+   {
+    "signal": "InputBegan",
+    "method": "Connect",
+    "line": 668,
+    "in_function": "FullMap.start"
+   },
+   {
+    "signal": "LastInputTypeChanged",
+    "method": "Connect",
+    "line": 732,
+    "in_function": "FullMap.start"
+   }
+  ],
+  "members_used": [
+   {
+    "member": "TouchEnabled",
+    "kind": "read",
+    "line": 50,
+    "in_function": "FullMap.start"
+   },
+   {
+    "member": "KeyboardEnabled",
+    "kind": "read",
+    "line": 50,
+    "in_function": "FullMap.start"
+   },
+   {
+    "member": "InputChanged",
+    "kind": "connect",
+    "line": 639,
+    "in_function": "FullMap.start"
+   },
+   {
+    "member": "InputEnded",
+    "kind": "connect",
+    "line": 654,
+    "in_function": "FullMap.start"
+   },
+   {
+    "member": "InputBegan",
+    "kind": "connect",
+    "line": 668,
+    "in_function": "FullMap.start"
+   },
+   {
+    "member": "GetFocusedTextBox",
+    "kind": "call",
+    "line": 674,
+    "in_function": "FullMap.start"
+   },
+   {
+    "member": "LastInputTypeChanged",
+    "kind": "connect",
+    "line": 732,
+    "in_function": "FullMap.start"
+   },
+   {
+    "member": "GetLastInputType",
+    "kind": "call",
+    "line": 733,
+    "in_function": "FullMap.start"
+   },
+   {
+    "member": "GetFocusedTextBox",
+    "kind": "call",
+    "line": 776,
+    "in_function": "renderStep"
+   },
+   {
+    "member": "IsKeyDown",
+    "kind": "call",
+    "line": 777,
+    "in_function": "down"
+   }
+  ]
+ },
+ "audio": {
+  "bridge_calls": [],
+  "ui_audio_attributes": []
+ },
+ "config": {
+  "paths": [
+   {
+    "path": "ReplicatedStorage.Config",
+    "line": 41
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI",
+    "line": 41
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud",
+    "line": 42
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud.Assets",
+    "line": 45
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud.Defaults",
+    "line": 44
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud.Layout",
+    "line": 43
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI.FreeRoamMapPlayerMarkers",
+    "line": 46
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI.FullMap",
+    "line": 47
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI.Racing.Colours",
+    "line": 59
+   }
+  ],
+  "attribute_reads": [
+   {
+    "receiver": "folder",
+    "receiver_kind": "config",
+    "wrapper_defined": "FullMapUI:66",
+    "line": 98,
+    "in_function": "calibration",
+    "via": "wrapper readValue()",
+    "name": "MapPixels",
+    "receiver_path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud.Layout",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_kind": "config",
+    "wrapper_defined": "FullMapUI:66",
+    "line": 99,
+    "in_function": "calibration",
+    "via": "wrapper readValue()",
+    "name": "MapCalibrationPixels",
+    "receiver_path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud.Layout",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_kind": "config",
+    "wrapper_defined": "FullMapUI:66",
+    "line": 100,
+    "in_function": "calibration",
+    "via": "wrapper readValue()",
+    "name": "MapCalibrationStuds",
+    "receiver_path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud.Layout",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_kind": "config",
+    "wrapper_defined": "FullMapUI:66",
+    "line": 101,
+    "in_function": "calibration",
+    "via": "wrapper readValue()",
+    "name": "MapWorldCenterX",
+    "receiver_path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud.Layout",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_kind": "config",
+    "wrapper_defined": "FullMapUI:66",
+    "line": 102,
+    "in_function": "calibration",
+    "via": "wrapper readValue()",
+    "name": "MapWorldCenterZ",
+    "receiver_path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud.Layout",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_kind": "config",
+    "wrapper_defined": "FullMapUI:66",
+    "line": 103,
+    "in_function": "calibration",
+    "via": "wrapper readValue()",
+    "name": "MapCoordinateRotationDegrees",
+    "receiver_path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud.Layout",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_kind": "config",
+    "wrapper_defined": "FullMapUI:66",
+    "line": 104,
+    "in_function": "calibration",
+    "via": "wrapper readValue()",
+    "name": "MapFlipX",
+    "receiver_path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud.Defaults",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_kind": "config",
+    "wrapper_defined": "FullMapUI:66",
+    "line": 105,
+    "in_function": "calibration",
+    "via": "wrapper readValue()",
+    "name": "MapFlipZ",
+    "receiver_path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud.Defaults",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.FullMap",
+    "receiver_kind": "config",
+    "wrapper_defined": "FullMapUI:71",
+    "line": 113,
+    "in_function": "FullMap.start",
+    "via": "wrapper cfg()",
+    "name": "DisplayOrder",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_kind": "config",
+    "wrapper_defined": "FullMapUI:80",
+    "line": 144,
+    "in_function": "FullMap.start",
+    "via": "wrapper asset()",
+    "name": "MapPlayerIcon",
+    "receiver_path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud.Assets",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.FullMap",
+    "receiver_kind": "config",
+    "wrapper_defined": "FullMapUI:71",
+    "line": 183,
+    "in_function": "readBounds",
+    "via": "wrapper cfg()",
+    "name": "BoundsMarginStuds",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.FullMap",
+    "receiver_kind": "config",
+    "wrapper_defined": "FullMapUI:71",
+    "line": 184,
+    "in_function": "readBounds",
+    "via": "wrapper cfg()",
+    "name": "PanMinX",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.FullMap",
+    "receiver_kind": "config",
+    "wrapper_defined": "FullMapUI:71",
+    "line": 184,
+    "in_function": "readBounds",
+    "via": "wrapper cfg()",
+    "name": "PanMaxX",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.FullMap",
+    "receiver_kind": "config",
+    "wrapper_defined": "FullMapUI:71",
+    "line": 185,
+    "in_function": "readBounds",
+    "via": "wrapper cfg()",
+    "name": "PanMinZ",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.FullMap",
+    "receiver_kind": "config",
+    "wrapper_defined": "FullMapUI:71",
+    "line": 185,
+    "in_function": "readBounds",
+    "via": "wrapper cfg()",
+    "name": "PanMaxZ",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.FullMap",
+    "receiver_kind": "config",
+    "wrapper_defined": "FullMapUI:71",
+    "line": 190,
+    "in_function": "FullMap.start",
+    "via": "wrapper cfg()",
+    "name": "OpenVisibleStuds",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.FullMap",
+    "receiver_kind": "config",
+    "wrapper_defined": "FullMapUI:71",
+    "line": 209,
+    "in_function": "studLimits",
+    "via": "wrapper cfg()",
+    "name": "MinVisibleStuds",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.FullMap",
+    "receiver_kind": "config",
+    "wrapper_defined": "FullMapUI:71",
+    "line": 210,
+    "in_function": "studLimits",
+    "via": "wrapper cfg()",
+    "name": "MaxVisibleStuds",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.FullMap",
+    "receiver_kind": "config",
+    "wrapper_defined": "FullMapUI:71",
+    "line": 233,
+    "in_function": "zoomStep",
+    "via": "wrapper cfg()",
+    "name": "ZoomStep",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_kind": "config",
+    "wrapper_defined": "FullMapUI:80",
+    "line": 305,
+    "in_function": "keyEntries",
+    "via": "wrapper asset()",
+    "name": "MapPlayerIcon",
+    "receiver_path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud.Assets",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.FullMap",
+    "receiver_kind": "config",
+    "line": 388,
+    "in_function": "layout",
+    "name": "DistrictName",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.FullMap",
+    "receiver_kind": "config",
+    "wrapper_defined": "FullMapUI:71",
+    "line": 397,
+    "in_function": "layout",
+    "via": "wrapper cfg()",
+    "name": "MobileLegendWidth",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.FullMap",
+    "receiver_kind": "config",
+    "wrapper_defined": "FullMapUI:71",
+    "line": 397,
+    "in_function": "layout",
+    "via": "wrapper cfg()",
+    "name": "LegendWidth",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.FullMap",
+    "receiver_kind": "config",
+    "wrapper_defined": "FullMapUI:75",
+    "line": 452,
+    "in_function": "blocked",
+    "via": "wrapper flag()",
+    "name": "Enabled",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.FullMap",
+    "receiver_kind": "config",
+    "wrapper_defined": "FullMapUI:75",
+    "line": 490,
+    "in_function": "close",
+    "via": "wrapper flag()",
+    "name": "RememberZoom",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.FullMap",
+    "receiver_kind": "config",
+    "wrapper_defined": "FullMapUI:71",
+    "line": 497,
+    "in_function": "close",
+    "via": "wrapper cfg()",
+    "name": "CloseTweenSeconds",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.FullMap",
+    "receiver_kind": "config",
+    "wrapper_defined": "FullMapUI:75",
+    "line": 513,
+    "in_function": "open",
+    "via": "wrapper flag()",
+    "name": "RememberZoom",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.FullMap",
+    "receiver_kind": "config",
+    "wrapper_defined": "FullMapUI:71",
+    "line": 513,
+    "in_function": "open",
+    "via": "wrapper cfg()",
+    "name": "OpenVisibleStuds",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.FullMap",
+    "receiver_kind": "config",
+    "wrapper_defined": "FullMapUI:75",
+    "line": 515,
+    "in_function": "open",
+    "via": "wrapper flag()",
+    "name": "LegendOpen",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.FullMap",
+    "receiver_kind": "config",
+    "wrapper_defined": "FullMapUI:71",
+    "line": 515,
+    "in_function": "open",
+    "via": "wrapper cfg()",
+    "name": "MobileLegendMinViewport",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.FullMap",
+    "receiver_kind": "config",
+    "wrapper_defined": "FullMapUI:75",
+    "line": 521,
+    "in_function": "open",
+    "via": "wrapper flag()",
+    "name": "LockGameplayInput",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.FullMap",
+    "receiver_kind": "config",
+    "wrapper_defined": "FullMapUI:71",
+    "line": 527,
+    "in_function": "open",
+    "via": "wrapper cfg()",
+    "name": "OpenTweenSeconds",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.FullMap",
+    "receiver_kind": "config",
+    "wrapper_defined": "FullMapUI:71",
+    "line": 528,
+    "in_function": "open",
+    "via": "wrapper cfg()",
+    "name": "BackdropTransparency",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.FullMap",
+    "receiver_kind": "config",
+    "wrapper_defined": "FullMapUI:71",
+    "line": 562,
+    "in_function": "tap",
+    "via": "wrapper cfg()",
+    "name": "TouchTapRadiusPixels",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.FullMap",
+    "receiver_kind": "config",
+    "wrapper_defined": "FullMapUI:71",
+    "line": 562,
+    "in_function": "tap",
+    "via": "wrapper cfg()",
+    "name": "TapRadiusPixels",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.FullMap",
+    "receiver_kind": "config",
+    "wrapper_defined": "FullMapUI:71",
+    "line": 569,
+    "in_function": "tap",
+    "via": "wrapper cfg()",
+    "name": "WaypointY",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.FullMap",
+    "receiver_kind": "config",
+    "wrapper_defined": "FullMapUI:71",
+    "line": 597,
+    "in_function": "movePointer",
+    "via": "wrapper cfg()",
+    "name": "DragThresholdPixels",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.FullMap",
+    "receiver_kind": "config",
+    "wrapper_defined": "FullMapUI:71",
+    "line": 782,
+    "in_function": "renderStep",
+    "via": "wrapper cfg()",
+    "name": "KeyboardPanSpeed",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.FullMap",
+    "receiver_kind": "config",
+    "wrapper_defined": "FullMapUI:71",
+    "line": 784,
+    "in_function": "renderStep",
+    "via": "wrapper cfg()",
+    "name": "GamepadPanSpeed",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.FullMap",
+    "receiver_kind": "config",
+    "wrapper_defined": "FullMapUI:71",
+    "line": 789,
+    "in_function": "renderStep",
+    "via": "wrapper cfg()",
+    "name": "CentreResponse",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_kind": "config",
+    "wrapper_defined": "FullMapUI:66",
+    "line": 814,
+    "in_function": "renderStep",
+    "via": "wrapper readValue()",
+    "name": "MapRotationOffsetDegrees",
+    "receiver_path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud.Layout",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.FullMap",
+    "receiver_kind": "config",
+    "wrapper_defined": "FullMapUI:71",
+    "line": 819,
+    "in_function": "renderStep",
+    "via": "wrapper cfg()",
+    "name": "RouteLineScale",
+    "access": "read"
+   }
+  ],
+  "child_lookups": [
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 59,
+    "in_function": "FullMap.start",
+    "via": "wrapper Components.Colour()",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours",
+    "name": "Panel"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 59,
+    "in_function": "FullMap.start",
+    "via": "wrapper Components.Colour()",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours",
+    "name": "PanelDeep"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 59,
+    "in_function": "FullMap.start",
+    "via": "wrapper Components.Colour()",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours",
+    "name": "PanelSoft"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 59,
+    "in_function": "FullMap.start",
+    "via": "wrapper Components.Colour()",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours",
+    "name": "PanelBlue"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 59,
+    "in_function": "FullMap.start",
+    "via": "wrapper Components.Colour()",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours",
+    "name": "Outline"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 59,
+    "in_function": "FullMap.start",
+    "via": "wrapper Components.Colour()",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours",
+    "name": "OutlineSoft"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 59,
+    "in_function": "FullMap.start",
+    "via": "wrapper Components.Colour()",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours",
+    "name": "Telemetry"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 59,
+    "in_function": "FullMap.start",
+    "via": "wrapper Components.Colour()",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours",
+    "name": "ElectricBlue"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 59,
+    "in_function": "FullMap.start",
+    "via": "wrapper Components.Colour()",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours",
+    "name": "HighSpeed"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 59,
+    "in_function": "FullMap.start",
+    "via": "wrapper Components.Colour()",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours",
+    "name": "Danger"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 59,
+    "in_function": "FullMap.start",
+    "via": "wrapper Components.Colour()",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours",
+    "name": "Text"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 59,
+    "in_function": "FullMap.start",
+    "via": "wrapper Components.Colour()",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours",
+    "name": "Muted"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 59,
+    "in_function": "FullMap.start",
+    "via": "wrapper Components.Colour()",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours",
+    "name": "Disabled"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "FullMapUI:64",
+    "receiver_kind": "config",
+    "line": 98,
+    "in_function": "calibration",
+    "via": "wrapper readValue()",
+    "name": "MapPixels",
+    "receiver_path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud.Layout"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "FullMapUI:64",
+    "receiver_kind": "config",
+    "line": 99,
+    "in_function": "calibration",
+    "via": "wrapper readValue()",
+    "name": "MapCalibrationPixels",
+    "receiver_path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud.Layout"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "FullMapUI:64",
+    "receiver_kind": "config",
+    "line": 100,
+    "in_function": "calibration",
+    "via": "wrapper readValue()",
+    "name": "MapCalibrationStuds",
+    "receiver_path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud.Layout"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "FullMapUI:64",
+    "receiver_kind": "config",
+    "line": 101,
+    "in_function": "calibration",
+    "via": "wrapper readValue()",
+    "name": "MapWorldCenterX",
+    "receiver_path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud.Layout"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "FullMapUI:64",
+    "receiver_kind": "config",
+    "line": 102,
+    "in_function": "calibration",
+    "via": "wrapper readValue()",
+    "name": "MapWorldCenterZ",
+    "receiver_path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud.Layout"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "FullMapUI:64",
+    "receiver_kind": "config",
+    "line": 103,
+    "in_function": "calibration",
+    "via": "wrapper readValue()",
+    "name": "MapCoordinateRotationDegrees",
+    "receiver_path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud.Layout"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "FullMapUI:64",
+    "receiver_kind": "config",
+    "line": 104,
+    "in_function": "calibration",
+    "via": "wrapper readValue()",
+    "name": "MapFlipX",
+    "receiver_path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud.Defaults"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "FullMapUI:64",
+    "receiver_kind": "config",
+    "line": 105,
+    "in_function": "calibration",
+    "via": "wrapper readValue()",
+    "name": "MapFlipZ",
+    "receiver_path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud.Defaults"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "FullMapUI:80",
+    "receiver_kind": "config",
+    "line": 144,
+    "in_function": "FullMap.start",
+    "via": "wrapper asset()",
+    "name": "MapPlayerIcon",
+    "receiver_path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud.Assets"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "FullMapUI:80",
+    "receiver_kind": "config",
+    "line": 305,
+    "in_function": "keyEntries",
+    "via": "wrapper asset()",
+    "name": "MapPlayerIcon",
+    "receiver_path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud.Assets"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "FullMapUI:64",
+    "receiver_kind": "config",
+    "line": 814,
+    "in_function": "renderStep",
+    "via": "wrapper readValue()",
+    "name": "MapRotationOffsetDegrees",
+    "receiver_path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud.Layout"
+   }
+  ]
+ },
+ "startergui_core": [],
+ "gui_service": [
+  {
+   "member": "MenuOpened",
+   "kind": "connect",
+   "line": 693,
+   "in_function": "FullMap.start"
+  }
+ ],
+ "other_services": {
+  "ContextActionService": [
+   {
+    "member": "UnbindAction",
+    "kind": "call",
+    "line": 487,
+    "in_function": "close"
+   },
+   {
+    "member": "BindActionAtPriority",
+    "kind": "call",
+    "line": 530,
+    "in_function": "open"
+   },
+   {
+    "member": "BindActionAtPriority",
+    "kind": "call",
+    "line": 718,
+    "in_function": "FullMap.start"
+   }
+  ]
+ },
+ "service_connects": [
+  {
+   "service": "GuiService",
+   "signal": "MenuOpened",
+   "line": 693,
+   "in_function": "FullMap.start"
+  }
+ ],
+ "proximity_prompts": [],
+ "instances_created_by_class": {
+  "Frame": 6,
+  "ImageLabel": 1,
+  "ScreenGui": 1,
+  "ScrollingFrame": 1,
+  "TextButton": 1,
+  "UIListLayout": 1,
+  "UIScale": 1
+ },
+ "public_api": [
+  {
+   "name": "Open",
+   "kind": "function",
+   "params": [],
+   "line": 20
+  },
+  {
+   "name": "Close",
+   "kind": "function",
+   "params": [],
+   "line": 21
+  },
+  {
+   "name": "Toggle",
+   "kind": "function",
+   "params": [],
+   "line": 22
+  },
+  {
+   "name": "IsOpen",
+   "kind": "function",
+   "params": [],
+   "line": 23
+  },
+  {
+   "name": "start",
+   "kind": "function",
+   "params": [],
+   "line": 25
+  }
+ ],
+ "unresolved": [
+  {
+   "category": "names_assigned",
+   "field": "name",
+   "line": 343,
+   "detail": "name built at run time: \"Key_\" .. entry.Icon"
+  }
+ ],
+ "contract_file": "FullMapUI.json"
+}

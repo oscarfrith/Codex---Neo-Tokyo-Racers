@@ -1,0 +1,3474 @@
+{
+ "generated_by": "scripts/ui_restyle/tools/extract_contracts.py",
+ "rule": "The onboarding client is the script named OnboardingClient. Its tables copy, pages, resolvers, pageSignals, placement, actionSteps and pageOrder are read by name. A target is a call inside a resolver or page signal that passes a string literal to a local helper; `match_on` is what that helper (and the helpers it calls) compares: instance Name, Text, a child of PlayerGui, or attributes.",
+ "script": "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+ "pages": {
+  "Dealership": {
+   "cards": [
+    "G1",
+    "G4",
+    "A2",
+    "G2"
+   ],
+   "signal_line": 203,
+   "signal_targets": [],
+   "signal_source": "function() return canonicalBrowser() end"
+  },
+  "CustomisationHome": {
+   "cards": [
+    "J1",
+    "J2",
+    "J3"
+   ],
+   "signal_line": 204,
+   "signal_targets": [
+    {
+     "helper": "workspacePage",
+     "literals": [
+      "CustomisationHome"
+     ],
+     "match_on": [
+      "attribute:TutorialWorkspace",
+      "attribute:TutorialPageId"
+     ],
+     "line": 204
+    }
+   ],
+   "signal_source": "function() return workspacePage(\"CustomisationHome\") end"
+  },
+  "AddModules": {
+   "cards": [
+    "K1"
+   ],
+   "signal_line": 205,
+   "signal_targets": [
+    {
+     "helper": "workspacePage",
+     "literals": [
+      "AddModules"
+     ],
+     "match_on": [
+      "attribute:TutorialWorkspace",
+      "attribute:TutorialPageId"
+     ],
+     "line": 205
+    }
+   ],
+   "signal_source": "function() return workspacePage(\"AddModules\") end"
+  },
+  "UpgradeModules": {
+   "cards": [
+    "L1",
+    "L2"
+   ],
+   "signal_line": 206,
+   "signal_targets": [
+    {
+     "helper": "workspacePage",
+     "literals": [
+      "UpgradeModules"
+     ],
+     "match_on": [
+      "attribute:TutorialWorkspace",
+      "attribute:TutorialPageId"
+     ],
+     "line": 206
+    }
+   ],
+   "signal_source": "function() return workspacePage(\"UpgradeModules\") end"
+  },
+  "PaintShop": {
+   "cards": [
+    "M1"
+   ],
+   "signal_line": 207,
+   "signal_targets": [
+    {
+     "helper": "workspacePage",
+     "literals": [
+      "PaintShop"
+     ],
+     "match_on": [
+      "attribute:TutorialWorkspace",
+      "attribute:TutorialPageId"
+     ],
+     "line": 207
+    }
+   ],
+   "signal_source": "function() return workspacePage(\"PaintShop\") end"
+  },
+  "MobileDriving": {
+   "cards": [
+    "D7",
+    "D8"
+   ],
+   "signal_line": 208,
+   "signal_targets": [
+    {
+     "helper": "named",
+     "literals": [
+      "DriftLeft"
+     ],
+     "match_on": [
+      "name"
+     ],
+     "line": 208
+    },
+    {
+     "helper": "named",
+     "literals": [
+      "DriftLeftButton"
+     ],
+     "match_on": [
+      "name"
+     ],
+     "line": 208
+    }
+   ],
+   "signal_source": "function() local object=UserInputService.TouchEnabled and (named(\"DriftLeft\") or named(\"DriftLeftButton\")); return object and scopeRoot(object) end"
+  },
+  "VehicleShortcut": {
+   "cards": [
+    "B2"
+   ],
+   "signal_line": 209,
+   "signal_targets": [
+    {
+     "helper": "named",
+     "literals": [
+      "Car"
+     ],
+     "match_on": [
+      "name"
+     ],
+     "line": 209
+    }
+   ],
+   "signal_source": "function() local object=state.Stage>=2 and named(\"Car\"); return object and scopeRoot(object) end"
+  },
+  "RaceShortcut": {
+   "cards": [
+    "B4"
+   ],
+   "signal_line": 210,
+   "signal_targets": [
+    {
+     "helper": "named",
+     "literals": [
+      "Race"
+     ],
+     "match_on": [
+      "name"
+     ],
+     "line": 210
+    }
+   ],
+   "signal_source": "function() local object=state.SeenPages.GarageShortcut==true and named(\"Race\"); return object and scopeRoot(object) end"
+  },
+  "RaceBrowser": {
+   "cards": [
+    "N1",
+    "N6"
+   ],
+   "signal_line": 211,
+   "signal_targets": [
+    {
+     "helper": "screenRoot",
+     "literals": [
+      "RaceBrowser"
+     ],
+     "match_on": [
+      "child-of-PlayerGui"
+     ],
+     "line": 211
+    }
+   ],
+   "signal_source": "function() return screenRoot(\"RaceBrowser\") end"
+  },
+  "EventMode": {
+   "cards": [
+    "O1"
+   ],
+   "signal_line": 212,
+   "signal_targets": [
+    {
+     "helper": "screenRoot",
+     "literals": [
+      "RaceEntryPresentation"
+     ],
+     "match_on": [
+      "child-of-PlayerGui"
+     ],
+     "line": 212
+    },
+    {
+     "helper": "buttonWithText",
+     "literals": [
+      "TIME TRIAL"
+     ],
+     "match_on": [
+      "text"
+     ],
+     "line": 212
+    },
+    {
+     "helper": "buttonWithText",
+     "literals": [
+      "RACE"
+     ],
+     "match_on": [
+      "text"
+     ],
+     "line": 212
+    }
+   ],
+   "signal_source": "function() local root=screenRoot(\"RaceEntryPresentation\"); return root and buttonWithText(\"TIME TRIAL\",root) and buttonWithText(\"RACE\",root) and root end"
+  },
+  "TimeTrialSetup": {
+   "cards": [
+    "Q1",
+    "Q5",
+    "Q8",
+    "Q4"
+   ],
+   "signal_line": 213,
+   "signal_targets": [
+    {
+     "helper": "named",
+     "literals": [
+      "TierE"
+     ],
+     "match_on": [
+      "name"
+     ],
+     "line": 213
+    },
+    {
+     "helper": "named",
+     "literals": [
+      "LapSelector"
+     ],
+     "match_on": [
+      "name"
+     ],
+     "line": 213
+    }
+   ],
+   "signal_source": "function() local object=named(\"TierE\"); local root=scopeRoot(object); return root and named(\"LapSelector\",root) and root end"
+  },
+  "RaceSetup": {
+   "cards": [
+    "P1"
+   ],
+   "signal_line": 214,
+   "signal_targets": [
+    {
+     "helper": "named",
+     "literals": [
+      "RaceFormat"
+     ],
+     "match_on": [
+      "name"
+     ],
+     "line": 214
+    }
+   ],
+   "signal_source": "function() local object=named(\"RaceFormat\"); return object and scopeRoot(object) end"
+  },
+  "GarageShortcut": {
+   "cards": [
+    "B3"
+   ],
+   "signal_line": 215,
+   "signal_targets": [
+    {
+     "helper": "named",
+     "literals": [
+      "Garage"
+     ],
+     "match_on": [
+      "name"
+     ],
+     "line": 215
+    }
+   ],
+   "signal_source": "function() local object=state.SeenPages.VehicleShortcut==true and named(\"Garage\"); return object and scopeRoot(object) end"
+  },
+  "GarageBrowser": {
+   "cards": [
+    "X1",
+    "X3"
+   ],
+   "signal_line": 216,
+   "signal_targets": [
+    {
+     "helper": "screenRoot",
+     "literals": [
+      "OwnedGarageBrowser"
+     ],
+     "match_on": [
+      "child-of-PlayerGui"
+     ],
+     "line": 216
+    }
+   ],
+   "signal_source": "function() return screenRoot(\"OwnedGarageBrowser\") end"
+  },
+  "GarageHome": {
+   "cards": [
+    "Z1",
+    "Z2",
+    "Z3"
+   ],
+   "signal_line": 217,
+   "signal_targets": [
+    {
+     "helper": "workspacePage",
+     "literals": [
+      "GarageHome"
+     ],
+     "match_on": [
+      "attribute:TutorialWorkspace",
+      "attribute:TutorialPageId"
+     ],
+     "line": 217
+    }
+   ],
+   "signal_source": "function() return workspacePage(\"GarageHome\") end"
+  },
+  "DisplayCars": {
+   "cards": [
+    "AA1"
+   ],
+   "signal_line": 218,
+   "signal_targets": [
+    {
+     "helper": "workspacePage",
+     "literals": [
+      "DisplayCars"
+     ],
+     "match_on": [
+      "attribute:TutorialWorkspace",
+      "attribute:TutorialPageId"
+     ],
+     "line": 218
+    }
+   ],
+   "signal_source": "function() return workspacePage(\"DisplayCars\") end"
+  },
+  "GarageAssetFamilies": {
+   "cards": [
+    "AB1"
+   ],
+   "signal_line": 219,
+   "signal_targets": [
+    {
+     "helper": "workspacePage",
+     "literals": [
+      "GarageAssetFamilies"
+     ],
+     "match_on": [
+      "attribute:TutorialWorkspace",
+      "attribute:TutorialPageId"
+     ],
+     "line": 219
+    }
+   ],
+   "signal_source": "function() return workspacePage(\"GarageAssetFamilies\") end"
+  },
+  "BuildStructure": {
+   "cards": [
+    "AC1"
+   ],
+   "signal_line": 220,
+   "signal_targets": [
+    {
+     "helper": "workspacePage",
+     "literals": [
+      "BuildStructure"
+     ],
+     "match_on": [
+      "attribute:TutorialWorkspace",
+      "attribute:TutorialPageId"
+     ],
+     "line": 220
+    }
+   ],
+   "signal_source": "function() return workspacePage(\"BuildStructure\") end"
+  },
+  "BuildDecorations": {
+   "cards": [
+    "AD1"
+   ],
+   "signal_line": 221,
+   "signal_targets": [
+    {
+     "helper": "workspacePage",
+     "literals": [
+      "BuildDecorations"
+     ],
+     "match_on": [
+      "attribute:TutorialWorkspace",
+      "attribute:TutorialPageId"
+     ],
+     "line": 221
+    }
+   ],
+   "signal_source": "function() return workspacePage(\"BuildDecorations\") end"
+  }
+ },
+ "cards": {
+  "G1": {
+   "page": "Dealership",
+   "copy": "Vehicle categories group cars into families. Cars in the same category can share compatible modules.",
+   "placement": null,
+   "action_step": false,
+   "resolver_line": 190,
+   "targets": [
+    {
+     "helper": "group",
+     "literals": [
+      "Categories"
+     ],
+     "match_on": [
+      "name"
+     ],
+     "line": 190
+    }
+   ],
+   "resolver_source": "function(root) return group(root,\"Categories\") end"
+  },
+  "G4": {
+   "page": "Dealership",
+   "copy": "Tier shows the vehicle's performance class. Overall rating gives a quick summary of its total performance.",
+   "placement": "Left",
+   "action_step": false,
+   "resolver_line": 190,
+   "targets": [
+    {
+     "helper": "group",
+     "literals": [
+      "Stats"
+     ],
+     "match_on": [
+      "name"
+     ],
+     "line": 190
+    }
+   ],
+   "resolver_source": "function(root) return group(root,\"Stats\") end"
+  },
+  "A2": {
+   "page": "Dealership",
+   "copy": "You have limited vehicle space. Buy more garages to increase your capacity.",
+   "placement": null,
+   "action_step": false,
+   "resolver_line": 190,
+   "targets": [
+    {
+     "helper": "group",
+     "literals": [
+      "Capacity"
+     ],
+     "match_on": [
+      "name"
+     ],
+     "line": 190
+    }
+   ],
+   "resolver_source": "function(root) return group(root,\"Capacity\") end"
+  },
+  "G2": {
+   "page": "Dealership",
+   "copy": "Select a vehicle to preview it. Buy it to add it to your collection.",
+   "placement": null,
+   "action_step": false,
+   "resolver_line": 190,
+   "targets": [
+    {
+     "helper": "visibleScrollerCards",
+     "literals": [
+      "VehicleScroller"
+     ],
+     "match_on": [
+      "attribute:CanonicalGarageCard",
+      "name"
+     ],
+     "line": 190
+    }
+   ],
+   "resolver_source": "function(root) return visibleScrollerCards(root,\"VehicleScroller\") end"
+  },
+  "J1": {
+   "page": "CustomisationHome",
+   "copy": "Buy and equip modules in each vehicle slot. Modules can be swapped between vehicles in the same category.",
+   "placement": null,
+   "action_step": false,
+   "resolver_line": 191,
+   "targets": [
+    {
+     "helper": "cardGroup",
+     "literals": [
+      "AddModules"
+     ],
+     "match_on": [
+      "attribute:CanonicalGarageCard",
+      "attribute:CanonicalGarageCardId"
+     ],
+     "line": 191
+    }
+   ],
+   "resolver_source": "function(root) return cardGroup(root,\"AddModules\") end"
+  },
+  "J2": {
+   "page": "CustomisationHome",
+   "copy": "Upgrade the modules fitted to your vehicle. Each module has several upgrade paths and a limited point budget.",
+   "placement": null,
+   "action_step": false,
+   "resolver_line": 191,
+   "targets": [
+    {
+     "helper": "cardGroup",
+     "literals": [
+      "UpgradeModules"
+     ],
+     "match_on": [
+      "attribute:CanonicalGarageCard",
+      "attribute:CanonicalGarageCardId"
+     ],
+     "line": 191
+    }
+   ],
+   "resolver_source": "function(root) return cardGroup(root,\"UpgradeModules\") end"
+  },
+  "J3": {
+   "page": "CustomisationHome",
+   "copy": "Change your vehicle's paint and lighting per module. You can also customise thrust, neon and underglow.",
+   "placement": null,
+   "action_step": false,
+   "resolver_line": 191,
+   "targets": [
+    {
+     "helper": "cardGroup",
+     "literals": [
+      "PaintShop"
+     ],
+     "match_on": [
+      "attribute:CanonicalGarageCard",
+      "attribute:CanonicalGarageCardId"
+     ],
+     "line": 191
+    }
+   ],
+   "resolver_source": "function(root) return cardGroup(root,\"PaintShop\") end"
+  },
+  "K1": {
+   "page": "AddModules",
+   "copy": "Choose a module location. Buy and swap modules from your different owned vehicles.",
+   "placement": null,
+   "action_step": false,
+   "resolver_line": 192,
+   "targets": [
+    {
+     "helper": "visibleScrollerCards",
+     "literals": [
+      "TutorialCardScroller"
+     ],
+     "match_on": [
+      "attribute:CanonicalGarageCard",
+      "name"
+     ],
+     "line": 192
+    }
+   ],
+   "resolver_source": "function(root) return visibleScrollerCards(root,\"TutorialCardScroller\") end"
+  },
+  "L1": {
+   "page": "UpgradeModules",
+   "copy": "Choose an equipped module to see its upgrades. Different modules offer different upgrade paths.",
+   "placement": null,
+   "action_step": false,
+   "resolver_line": 192,
+   "targets": [
+    {
+     "helper": "group",
+     "literals": [
+      "Categories"
+     ],
+     "match_on": [
+      "name"
+     ],
+     "line": 192
+    }
+   ],
+   "resolver_source": "function(root) return group(root,\"Categories\") end"
+  },
+  "L2": {
+   "page": "UpgradeModules",
+   "copy": "Each module has a limited upgrade-point budget. Spending points on one upgrade leaves fewer for the others.",
+   "placement": "Above",
+   "action_step": false,
+   "resolver_line": 192,
+   "targets": [
+    {
+     "helper": "group",
+     "literals": [
+      "UpgradeBudget"
+     ],
+     "match_on": [
+      "name"
+     ],
+     "line": 192
+    }
+   ],
+   "resolver_source": "function(root) return group(root,\"UpgradeBudget\") end"
+  },
+  "M1": {
+   "page": "PaintShop",
+   "copy": "Choose which part of the vehicle you want to customise. You can edit the whole vehicle, cockpit, effects or individual modules.",
+   "placement": null,
+   "action_step": false,
+   "resolver_line": 192,
+   "targets": [
+    {
+     "helper": "group",
+     "literals": [
+      "Categories"
+     ],
+     "match_on": [
+      "name"
+     ],
+     "line": 192
+    }
+   ],
+   "resolver_source": "function(root) return group(root,\"Categories\") end"
+  },
+  "D7": {
+   "page": "MobileDriving",
+   "copy": "Use the drift arrows while turning to slide around corners. Drifting helps with tighter turns.",
+   "placement": null,
+   "action_step": false,
+   "resolver_line": 193,
+   "targets": [
+    {
+     "helper": "group",
+     "literals": [
+      "DriftLeft",
+      "DriftRight",
+      "DriftLeftButton",
+      "DriftRightButton"
+     ],
+     "match_on": [
+      "name"
+     ],
+     "line": 193
+    }
+   ],
+   "resolver_source": "function(root) return group(root,\"DriftLeft\",\"DriftRight\",\"DriftLeftButton\",\"DriftRightButton\") end"
+  },
+  "D8": {
+   "page": "MobileDriving",
+   "copy": "Hold Boost for a burst of speed. The boost meter shows how much energy remains.",
+   "placement": null,
+   "action_step": false,
+   "resolver_line": 193,
+   "targets": [
+    {
+     "helper": "group",
+     "literals": [
+      "Boost",
+      "BoostButton"
+     ],
+     "match_on": [
+      "name"
+     ],
+     "line": 193
+    }
+   ],
+   "resolver_source": "function(root) return group(root,\"Boost\",\"BoostButton\") end"
+  },
+  "B2": {
+   "page": "VehicleShortcut",
+   "copy": "Open My Vehicles to spawn, switch or despawn your cars. New vehicles appear here after you buy them.",
+   "placement": "Below",
+   "action_step": false,
+   "resolver_line": 194,
+   "targets": [
+    {
+     "helper": "group",
+     "literals": [
+      "Car"
+     ],
+     "match_on": [
+      "name"
+     ],
+     "line": 194
+    }
+   ],
+   "resolver_source": "function(root) return group(root,\"Car\") end"
+  },
+  "B4": {
+   "page": "RaceShortcut",
+   "copy": "Open the Race Browser to find events around the city. Events can support races, time trials or both.",
+   "placement": "Below",
+   "action_step": false,
+   "resolver_line": 194,
+   "targets": [
+    {
+     "helper": "group",
+     "literals": [
+      "Race"
+     ],
+     "match_on": [
+      "name"
+     ],
+     "line": 194
+    }
+   ],
+   "resolver_source": "function(root) return group(root,\"Race\") end"
+  },
+  "N1": {
+   "page": "RaceBrowser",
+   "copy": "Select an event to view its route and details.",
+   "placement": null,
+   "action_step": false,
+   "resolver_line": 195,
+   "targets": [
+    {
+     "helper": "group",
+     "literals": [
+      "CardContent"
+     ],
+     "match_on": [
+      "name"
+     ],
+     "line": 195
+    }
+   ],
+   "resolver_source": "function(root) return group(root,\"CardContent\") end"
+  },
+  "N6": {
+   "page": "RaceBrowser",
+   "copy": "Teleport to the selected event's starting area.",
+   "placement": null,
+   "action_step": true,
+   "resolver_line": 195,
+   "targets": [
+    {
+     "helper": "group",
+     "literals": [
+      "TeleportToStart"
+     ],
+     "match_on": [
+      "name"
+     ],
+     "line": 195
+    }
+   ],
+   "resolver_source": "function(root) return group(root,\"TeleportToStart\") end"
+  },
+  "O1": {
+   "page": "EventMode",
+   "copy": "Choose Race to compete against other players. Choose Time Trial to race against target times.",
+   "placement": "Below",
+   "action_step": false,
+   "resolver_line": 196,
+   "targets": [
+    {
+     "helper": "textGroup",
+     "literals": [
+      "TIME TRIAL",
+      "RACE"
+     ],
+     "match_on": [
+      "text"
+     ],
+     "line": 196
+    }
+   ],
+   "resolver_source": "function(root) return textGroup(root,\"TIME TRIAL\",\"RACE\") end"
+  },
+  "Q1": {
+   "page": "TimeTrialSetup",
+   "copy": "Choose a vehicle class for the time trial. Each class has separate target times, records and eligible vehicles.",
+   "placement": null,
+   "action_step": false,
+   "resolver_line": 196,
+   "targets": [
+    {
+     "helper": "group",
+     "literals": [
+      "TierE",
+      "TierD",
+      "TierC",
+      "TierB",
+      "TierA",
+      "TierS"
+     ],
+     "match_on": [
+      "name"
+     ],
+     "line": 196
+    }
+   ],
+   "resolver_source": "function(root) return group(root,\"TierE\",\"TierD\",\"TierC\",\"TierB\",\"TierA\",\"TierS\") end"
+  },
+  "Q5": {
+   "page": "TimeTrialSetup",
+   "copy": "This shows your selected class and the best available reward. Higher tiers have greater rewards.",
+   "placement": null,
+   "action_step": false,
+   "resolver_line": 196,
+   "targets": [
+    {
+     "helper": "group",
+     "literals": [
+      "PrizeSummary"
+     ],
+     "match_on": [
+      "name"
+     ],
+     "line": 196
+    }
+   ],
+   "resolver_source": "function(root) return group(root,\"PrizeSummary\") end"
+  },
+  "Q8": {
+   "page": "TimeTrialSetup",
+   "copy": "Beat these target times to earn medals and cash. Faster times award higher medals.",
+   "placement": null,
+   "action_step": false,
+   "resolver_line": 196,
+   "targets": [
+    {
+     "helper": "group",
+     "literals": [
+      "MedalTargets"
+     ],
+     "match_on": [
+      "name"
+     ],
+     "line": 196
+    }
+   ],
+   "resolver_source": "function(root) return group(root,\"MedalTargets\") end"
+  },
+  "Q4": {
+   "page": "TimeTrialSetup",
+   "copy": "Choose how many timed laps you want to run. Your best completed lap is used for the result.",
+   "placement": null,
+   "action_step": false,
+   "resolver_line": 196,
+   "targets": [
+    {
+     "helper": "group",
+     "literals": [
+      "LapSelector"
+     ],
+     "match_on": [
+      "name"
+     ],
+     "line": 196
+    }
+   ],
+   "resolver_source": "function(root) return group(root,\"LapSelector\") end"
+  },
+  "P1": {
+   "page": "RaceSetup",
+   "copy": "This shows the route, lap count and player limit. Multiplayer races use an open vehicle category.",
+   "placement": null,
+   "action_step": false,
+   "resolver_line": 197,
+   "targets": [
+    {
+     "helper": "group",
+     "literals": [
+      "RaceFormat"
+     ],
+     "match_on": [
+      "name"
+     ],
+     "line": 197
+    },
+    {
+     "helper": "group",
+     "literals": [
+      "DetailColumn"
+     ],
+     "match_on": [
+      "name"
+     ],
+     "line": 197
+    }
+   ],
+   "resolver_source": "function(root) return group(root,\"RaceFormat\") or group(root,\"DetailColumn\") end"
+  },
+  "B3": {
+   "page": "GarageShortcut",
+   "copy": "Open My Garages to view your owned properties. Each garage can display vehicles and has its own customisation.",
+   "placement": "Below",
+   "action_step": false,
+   "resolver_line": 194,
+   "targets": [
+    {
+     "helper": "group",
+     "literals": [
+      "Garage"
+     ],
+     "match_on": [
+      "name"
+     ],
+     "line": 194
+    }
+   ],
+   "resolver_source": "function(root) return group(root,\"Garage\") end"
+  },
+  "X1": {
+   "page": "GarageBrowser",
+   "copy": "Choose one of your owned garage properties. Each card shows how many display spaces it contains.",
+   "placement": null,
+   "action_step": false,
+   "resolver_line": 198,
+   "targets": [
+    {
+     "helper": "group",
+     "literals": [
+      "GarageList"
+     ],
+     "match_on": [
+      "name"
+     ],
+     "line": 198
+    }
+   ],
+   "resolver_source": "function(root) return group(root,\"GarageList\") end"
+  },
+  "X3": {
+   "page": "GarageBrowser",
+   "copy": "Enter the selected garage. You can manage its vehicles, assets and appearance from inside.",
+   "placement": null,
+   "action_step": true,
+   "resolver_line": 198,
+   "targets": [
+    {
+     "helper": "group",
+     "literals": [
+      "Enter"
+     ],
+     "match_on": [
+      "name"
+     ],
+     "line": 198
+    }
+   ],
+   "resolver_source": "function(root) return group(root,\"Enter\") end"
+  },
+  "Z1": {
+   "page": "GarageHome",
+   "copy": "Choose which owned vehicles are displayed in your garage. Each vehicle is assigned to a physical display space.",
+   "placement": "Above",
+   "action_step": false,
+   "resolver_line": 199,
+   "targets": [
+    {
+     "helper": "cardGroup",
+     "literals": [
+      "DisplayCars"
+     ],
+     "match_on": [
+      "attribute:CanonicalGarageCard",
+      "attribute:CanonicalGarageCardId"
+     ],
+     "line": 199
+    }
+   ],
+   "resolver_source": "function(root) return cardGroup(root,\"DisplayCars\") end"
+  },
+  "Z2": {
+   "page": "GarageHome",
+   "copy": "Buy and equip different walls, floors, ceilings, decorations and lighting.",
+   "placement": "Above",
+   "action_step": false,
+   "resolver_line": 199,
+   "targets": [
+    {
+     "helper": "cardGroup",
+     "literals": [
+      "BuildGarage"
+     ],
+     "match_on": [
+      "attribute:CanonicalGarageCard",
+      "attribute:CanonicalGarageCardId"
+     ],
+     "line": 199
+    }
+   ],
+   "resolver_source": "function(root) return cardGroup(root,\"BuildGarage\") end"
+  },
+  "Z3": {
+   "page": "GarageHome",
+   "copy": "Customise the assets already equipped in your garage. Change their colours, materials and lighting.",
+   "placement": "Above",
+   "action_step": false,
+   "resolver_line": 199,
+   "targets": [
+    {
+     "helper": "cardGroup",
+     "literals": [
+      "StyleGarage"
+     ],
+     "match_on": [
+      "attribute:CanonicalGarageCard",
+      "attribute:CanonicalGarageCardId"
+     ],
+     "line": 199
+    }
+   ],
+   "resolver_source": "function(root) return cardGroup(root,\"StyleGarage\") end"
+  },
+  "AA1": {
+   "page": "DisplayCars",
+   "copy": "Choose a display space to manage. Empty spaces can receive a vehicle, while occupied spaces can be changed.",
+   "placement": "Above",
+   "action_step": false,
+   "resolver_line": 200,
+   "targets": [
+    {
+     "helper": "visibleScrollerCards",
+     "literals": [
+      "TutorialCardScroller"
+     ],
+     "match_on": [
+      "attribute:CanonicalGarageCard",
+      "name"
+     ],
+     "line": 200
+    }
+   ],
+   "resolver_source": "function(root) return visibleScrollerCards(root,\"TutorialCardScroller\") end"
+  },
+  "AB1": {
+   "page": "GarageAssetFamilies",
+   "copy": "Choose Structure, Decorations or Lighting. Build adds new assets; Style changes the look of equipped assets.",
+   "placement": "Above",
+   "action_step": false,
+   "resolver_line": 200,
+   "targets": [
+    {
+     "helper": "cardGroup",
+     "literals": [
+      "Structure",
+      "Decorations",
+      "Lighting"
+     ],
+     "match_on": [
+      "attribute:CanonicalGarageCard",
+      "attribute:CanonicalGarageCardId"
+     ],
+     "line": 200
+    }
+   ],
+   "resolver_source": "function(root) return cardGroup(root,\"Structure\",\"Decorations\",\"Lighting\") end"
+  },
+  "AC1": {
+   "page": "BuildStructure",
+   "copy": "Choose which section of the garage you want to rebuild. The selected style is previewed in that location.",
+   "placement": null,
+   "action_step": false,
+   "resolver_line": 200,
+   "targets": [
+    {
+     "helper": "group",
+     "literals": [
+      "Categories"
+     ],
+     "match_on": [
+      "name"
+     ],
+     "line": 200
+    }
+   ],
+   "resolver_source": "function(root) return group(root,\"Categories\") end"
+  },
+  "AD1": {
+   "page": "BuildDecorations",
+   "copy": "Choose where you want to place a decoration. Each location has its own compatible asset options.",
+   "placement": null,
+   "action_step": false,
+   "resolver_line": 200,
+   "targets": [
+    {
+     "helper": "group",
+     "literals": [
+      "Categories"
+     ],
+     "match_on": [
+      "name"
+     ],
+     "line": 200
+    }
+   ],
+   "resolver_source": "function(root) return group(root,\"Categories\") end"
+  }
+ },
+ "helper_kinds": {
+  "group": [
+   "name",
+   "isa:GuiObject",
+   "isa:LayerCollector"
+  ],
+  "visibleScrollerCards": [
+   "isa:GuiButton",
+   "attribute:CanonicalGarageCard",
+   "name",
+   "isa:GuiObject",
+   "isa:LayerCollector"
+  ],
+  "cardGroup": [
+   "isa:GuiButton",
+   "attribute:CanonicalGarageCard",
+   "attribute:CanonicalGarageCardId",
+   "isa:GuiObject",
+   "isa:LayerCollector"
+  ],
+  "textGroup": [
+   "isa:TextLabel",
+   "isa:TextButton",
+   "text",
+   "isa:GuiButton",
+   "isa:GuiObject",
+   "isa:LayerCollector"
+  ],
+  "workspacePage": [
+   "isa:GuiObject",
+   "attribute:TutorialWorkspace",
+   "attribute:TutorialPageId",
+   "isa:LayerCollector"
+  ],
+  "named": [
+   "name",
+   "isa:GuiObject",
+   "isa:LayerCollector"
+  ],
+  "screenRoot": [
+   "child-of-PlayerGui",
+   "isa:ScreenGui",
+   "isa:GuiObject",
+   "isa:LayerCollector"
+  ],
+  "buttonWithText": [
+   "isa:TextLabel",
+   "isa:TextButton",
+   "text",
+   "isa:GuiButton",
+   "isa:GuiObject",
+   "isa:LayerCollector"
+  ]
+ },
+ "missing_tables": [],
+ "page_order": [
+  "Dealership",
+  "CustomisationHome",
+  "AddModules",
+  "UpgradeModules",
+  "PaintShop",
+  "MobileDriving",
+  "VehicleShortcut",
+  "GarageShortcut",
+  "GarageBrowser",
+  "GarageHome",
+  "DisplayCars",
+  "GarageAssetFamilies",
+  "BuildStructure",
+  "BuildDecorations",
+  "RaceShortcut",
+  "RaceBrowser",
+  "EventMode",
+  "TimeTrialSetup",
+  "RaceSetup"
+ ],
+ "names_used": {
+  "AccessControls": [
+   {
+    "line": 613,
+    "method": "NameCompare",
+    "via": "wrapper named()",
+    "scope": "gui",
+    "in_function": "refreshObjective",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 613,
+    "method": "NameCompare",
+    "via": "wrapper named()",
+    "scope": "gui",
+    "in_function": "refreshObjective",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 613,
+    "method": "NameCompare",
+    "via": "wrapper named()",
+    "scope": "gui",
+    "in_function": "refreshObjective",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   }
+  ],
+  "Boost": [
+   {
+    "line": 193,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "D8",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 193,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "D8",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 193,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "D8",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 624,
+    "method": "NameCompare",
+    "via": "wrapper named()",
+    "scope": "gui",
+    "in_function": "refreshObjective",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 624,
+    "method": "NameCompare",
+    "via": "wrapper named()",
+    "scope": "gui",
+    "in_function": "refreshObjective",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 624,
+    "method": "NameCompare",
+    "via": "wrapper named()",
+    "scope": "gui",
+    "in_function": "refreshObjective",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   }
+  ],
+  "BoostButton": [
+   {
+    "line": 193,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "D8",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 193,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "D8",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 193,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "D8",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 624,
+    "method": "NameCompare",
+    "via": "wrapper named()",
+    "scope": "gui",
+    "in_function": "refreshObjective",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 624,
+    "method": "NameCompare",
+    "via": "wrapper named()",
+    "scope": "gui",
+    "in_function": "refreshObjective",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 624,
+    "method": "NameCompare",
+    "via": "wrapper named()",
+    "scope": "gui",
+    "in_function": "refreshObjective",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   }
+  ],
+  "CanonicalCanvas": [
+   {
+    "line": 110,
+    "method": "NameCompare",
+    "via": null,
+    "scope": "gui",
+    "in_function": "scopeRoot",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 143,
+    "method": "FindFirstChild",
+    "via": null,
+    "scope": "gui",
+    "in_function": "canonicalBrowser",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   }
+  ],
+  "CanonicalGarageBrowser": [
+   {
+    "line": 143,
+    "method": "FindFirstChild",
+    "via": null,
+    "scope": "gui",
+    "in_function": "canonicalBrowser",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   }
+  ],
+  "CanonicalGarageGui": [
+   {
+    "line": 143,
+    "method": "FindFirstChild",
+    "via": null,
+    "scope": "gui",
+    "in_function": "canonicalBrowser",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   }
+  ],
+  "Capacity": [
+   {
+    "line": 190,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "A2",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 190,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "A2",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 190,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "A2",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   }
+  ],
+  "Car": [
+   {
+    "line": 194,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "B2",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 194,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "B2",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 194,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "B2",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 209,
+    "method": "NameCompare",
+    "via": "wrapper named()",
+    "scope": "gui",
+    "in_function": "VehicleShortcut",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 209,
+    "method": "NameCompare",
+    "via": "wrapper named()",
+    "scope": "gui",
+    "in_function": "VehicleShortcut",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 209,
+    "method": "NameCompare",
+    "via": "wrapper named()",
+    "scope": "gui",
+    "in_function": "VehicleShortcut",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 614,
+    "method": "NameCompare",
+    "via": "wrapper named()",
+    "scope": "gui",
+    "in_function": "refreshObjective",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 614,
+    "method": "NameCompare",
+    "via": "wrapper named()",
+    "scope": "gui",
+    "in_function": "refreshObjective",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 614,
+    "method": "NameCompare",
+    "via": "wrapper named()",
+    "scope": "gui",
+    "in_function": "refreshObjective",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 669,
+    "method": "NameCompare",
+    "via": "literal list",
+    "scope": "gui",
+    "in_function": "applyLocks",
+    "receiver_isa": [
+     "GuiButton"
+    ],
+    "receiver_property_writes": [
+     "Active",
+     "Selectable",
+     "AutoButtonColor"
+    ]
+   }
+  ],
+  "CarPanel": [
+   {
+    "line": 475,
+    "method": "NameCompare",
+    "via": "wrapper visibleRoot()",
+    "scope": "gui",
+    "in_function": "majorMenuOpen",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 475,
+    "method": "NameCompare",
+    "via": "wrapper visibleRoot()",
+    "scope": "gui",
+    "in_function": "majorMenuOpen",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 475,
+    "method": "NameCompare",
+    "via": "wrapper visibleRoot()",
+    "scope": "gui",
+    "in_function": "majorMenuOpen",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   }
+  ],
+  "CardContent": [
+   {
+    "line": 195,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "N1",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 195,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "N1",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 195,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "N1",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   }
+  ],
+  "Categories": [
+   {
+    "line": 190,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "G1",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 190,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "G1",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 190,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "G1",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 192,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "L1",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 192,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "M1",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 192,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "L1",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 192,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "M1",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 192,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "L1",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 192,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "M1",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 200,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "AC1",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 200,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "AD1",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 200,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "AC1",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 200,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "AD1",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 200,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "AC1",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 200,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "AD1",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   }
+  ],
+  "Controls": [
+   {
+    "line": 462,
+    "method": "FindFirstChild",
+    "via": null,
+    "scope": "gui",
+    "in_function": "controlsOpen",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   }
+  ],
+  "Dealership": [
+   {
+    "line": 660,
+    "method": "FindFirstChild",
+    "via": null,
+    "scope": "world",
+    "in_function": "updateGuideTrail",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 660,
+    "method": "WaitForChild",
+    "via": null,
+    "scope": "world",
+    "in_function": "updateGuideTrail",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 660,
+    "method": "WaitForChild",
+    "via": null,
+    "scope": "world",
+    "in_function": "updateGuideTrail",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   }
+  ],
+  "DesignRoot": [
+   {
+    "line": 460,
+    "method": "FindFirstChild",
+    "via": null,
+    "scope": "gui",
+    "in_function": "controlsOpen",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   }
+  ],
+  "Desk": [
+   {
+    "line": 660,
+    "method": "FindFirstChild",
+    "via": null,
+    "scope": "world",
+    "in_function": "updateGuideTrail",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 660,
+    "method": "WaitForChild",
+    "via": null,
+    "scope": "world",
+    "in_function": "updateGuideTrail",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   }
+  ],
+  "DeskPromptAnchor": [
+   {
+    "line": 650,
+    "method": "NameCompare",
+    "via": null,
+    "scope": "gui",
+    "in_function": "nearestGarageDesk",
+    "receiver_isa": [
+     "BasePart"
+    ],
+    "receiver_property_writes": null
+   }
+  ],
+  "DesktopFreeRoamHud": [
+   {
+    "line": 459,
+    "method": "FindFirstChild",
+    "via": null,
+    "scope": "gui",
+    "in_function": "controlsOpen",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   }
+  ],
+  "DetailColumn": [
+   {
+    "line": 197,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "P1",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 197,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "P1",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 197,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "P1",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   }
+  ],
+  "DriftLeft": [
+   {
+    "line": 193,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "D7",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 193,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "D7",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 193,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "D7",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 208,
+    "method": "NameCompare",
+    "via": "wrapper named()",
+    "scope": "gui",
+    "in_function": "MobileDriving",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 208,
+    "method": "NameCompare",
+    "via": "wrapper named()",
+    "scope": "gui",
+    "in_function": "MobileDriving",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 208,
+    "method": "NameCompare",
+    "via": "wrapper named()",
+    "scope": "gui",
+    "in_function": "MobileDriving",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   }
+  ],
+  "DriftLeftButton": [
+   {
+    "line": 193,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "D7",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 193,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "D7",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 193,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "D7",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 208,
+    "method": "NameCompare",
+    "via": "wrapper named()",
+    "scope": "gui",
+    "in_function": "MobileDriving",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 208,
+    "method": "NameCompare",
+    "via": "wrapper named()",
+    "scope": "gui",
+    "in_function": "MobileDriving",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 208,
+    "method": "NameCompare",
+    "via": "wrapper named()",
+    "scope": "gui",
+    "in_function": "MobileDriving",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   }
+  ],
+  "DriftRight": [
+   {
+    "line": 193,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "D7",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 193,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "D7",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 193,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "D7",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   }
+  ],
+  "DriftRightButton": [
+   {
+    "line": 193,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "D7",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 193,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "D7",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 193,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "D7",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   }
+  ],
+  "DriverSeat": [
+   {
+    "line": 674,
+    "method": "FindFirstChild",
+    "via": null,
+    "scope": "gui",
+    "in_function": "activelyDriving",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   }
+  ],
+  "Enter": [
+   {
+    "line": 198,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "X3",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 198,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "X3",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 198,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "X3",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   }
+  ],
+  "Garage": [
+   {
+    "line": 194,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "B3",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 194,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "B3",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 194,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "B3",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 215,
+    "method": "NameCompare",
+    "via": "wrapper named()",
+    "scope": "gui",
+    "in_function": "GarageShortcut",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 215,
+    "method": "NameCompare",
+    "via": "wrapper named()",
+    "scope": "gui",
+    "in_function": "GarageShortcut",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 215,
+    "method": "NameCompare",
+    "via": "wrapper named()",
+    "scope": "gui",
+    "in_function": "GarageShortcut",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 614,
+    "method": "NameCompare",
+    "via": "wrapper named()",
+    "scope": "gui",
+    "in_function": "refreshObjective",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 614,
+    "method": "NameCompare",
+    "via": "wrapper named()",
+    "scope": "gui",
+    "in_function": "refreshObjective",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 614,
+    "method": "NameCompare",
+    "via": "wrapper named()",
+    "scope": "gui",
+    "in_function": "refreshObjective",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 669,
+    "method": "NameCompare",
+    "via": "literal list",
+    "scope": "gui",
+    "in_function": "applyLocks",
+    "receiver_isa": [
+     "GuiButton"
+    ],
+    "receiver_property_writes": [
+     "Active",
+     "Selectable",
+     "AutoButtonColor"
+    ]
+   }
+  ],
+  "GarageDeskTrigger": [
+   {
+    "line": 660,
+    "method": "FindFirstChild",
+    "via": null,
+    "scope": "world",
+    "in_function": "updateGuideTrail",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   }
+  ],
+  "GarageList": [
+   {
+    "line": 198,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "X1",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 198,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "X1",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 198,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "X1",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   }
+  ],
+  "GlowStroke": [
+   {
+    "line": 365,
+    "method": "FindFirstChild",
+    "via": null,
+    "scope": "gui",
+    "in_function": "renderPinned",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 366,
+    "method": "FindFirstChild",
+    "via": null,
+    "scope": "gui",
+    "in_function": "renderPinned",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 541,
+    "method": "FindFirstChild",
+    "via": null,
+    "scope": "gui",
+    "in_function": "styleObjectiveCard",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   }
+  ],
+  "GradientOverlay": [
+   {
+    "line": 94,
+    "method": "FindFirstChild",
+    "via": null,
+    "scope": "gui",
+    "in_function": "Client.start",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   }
+  ],
+  "Intro": [
+   {
+    "line": 660,
+    "method": "FindFirstChild",
+    "via": null,
+    "scope": "world",
+    "in_function": "updateGuideTrail",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 660,
+    "method": "WaitForChild",
+    "via": null,
+    "scope": "world",
+    "in_function": "updateGuideTrail",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 660,
+    "method": "WaitForChild",
+    "via": null,
+    "scope": "world",
+    "in_function": "updateGuideTrail",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   }
+  ],
+  "LapSelector": [
+   {
+    "line": 196,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "Q4",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 196,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "Q4",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 196,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "Q4",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 213,
+    "method": "NameCompare",
+    "via": "wrapper named()",
+    "scope": "gui",
+    "in_function": "TimeTrialSetup",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 213,
+    "method": "NameCompare",
+    "via": "wrapper named()",
+    "scope": "gui",
+    "in_function": "TimeTrialSetup",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 213,
+    "method": "NameCompare",
+    "via": "wrapper named()",
+    "scope": "gui",
+    "in_function": "TimeTrialSetup",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   }
+  ],
+  "ManagementDesk": [
+   {
+    "line": 650,
+    "method": "FindFirstAncestor",
+    "via": null,
+    "scope": "gui",
+    "in_function": "nearestGarageDesk",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   }
+  ],
+  "MedalTargets": [
+   {
+    "line": 196,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "Q8",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 196,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "Q8",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 196,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "Q8",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   }
+  ],
+  "ModalLayer": [
+   {
+    "line": 461,
+    "method": "FindFirstChild",
+    "via": null,
+    "scope": "gui",
+    "in_function": "controlsOpen",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 476,
+    "method": "NameCompare",
+    "via": "wrapper visibleRoot()",
+    "scope": "gui",
+    "in_function": "majorMenuOpen",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 476,
+    "method": "NameCompare",
+    "via": "wrapper visibleRoot()",
+    "scope": "gui",
+    "in_function": "majorMenuOpen",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 476,
+    "method": "NameCompare",
+    "via": "wrapper visibleRoot()",
+    "scope": "gui",
+    "in_function": "majorMenuOpen",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   }
+  ],
+  "OwnedGarageBrowser": [
+   {
+    "line": 216,
+    "method": "FindFirstChild",
+    "via": "wrapper screenRoot()",
+    "scope": "gui",
+    "in_function": "GarageBrowser",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 469,
+    "method": "FindFirstChild",
+    "via": "wrapper screenRoot()",
+    "scope": "gui",
+    "in_function": "majorMenuOpen",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   }
+  ],
+  "PlayerVehicles": [
+   {
+    "line": 673,
+    "method": "FindFirstChild",
+    "via": null,
+    "scope": "world",
+    "in_function": "activelyDriving",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   }
+  ],
+  "PrizeSummary": [
+   {
+    "line": 196,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "Q5",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 196,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "Q5",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 196,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "Q5",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   }
+  ],
+  "Race": [
+   {
+    "line": 194,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "B4",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 194,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "B4",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 194,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "B4",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 210,
+    "method": "NameCompare",
+    "via": "wrapper named()",
+    "scope": "gui",
+    "in_function": "RaceShortcut",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 210,
+    "method": "NameCompare",
+    "via": "wrapper named()",
+    "scope": "gui",
+    "in_function": "RaceShortcut",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 210,
+    "method": "NameCompare",
+    "via": "wrapper named()",
+    "scope": "gui",
+    "in_function": "RaceShortcut",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 614,
+    "method": "NameCompare",
+    "via": "wrapper named()",
+    "scope": "gui",
+    "in_function": "refreshObjective",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 614,
+    "method": "NameCompare",
+    "via": "wrapper named()",
+    "scope": "gui",
+    "in_function": "refreshObjective",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 614,
+    "method": "NameCompare",
+    "via": "wrapper named()",
+    "scope": "gui",
+    "in_function": "refreshObjective",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 669,
+    "method": "NameCompare",
+    "via": "literal list",
+    "scope": "gui",
+    "in_function": "applyLocks",
+    "receiver_isa": [
+     "GuiButton"
+    ],
+    "receiver_property_writes": [
+     "Active",
+     "Selectable",
+     "AutoButtonColor"
+    ]
+   }
+  ],
+  "RaceBrowser": [
+   {
+    "line": 211,
+    "method": "FindFirstChild",
+    "via": "wrapper screenRoot()",
+    "scope": "gui",
+    "in_function": "RaceBrowser",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 469,
+    "method": "FindFirstChild",
+    "via": "wrapper screenRoot()",
+    "scope": "gui",
+    "in_function": "majorMenuOpen",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   }
+  ],
+  "RaceEntryPresentation": [
+   {
+    "line": 212,
+    "method": "FindFirstChild",
+    "via": "wrapper screenRoot()",
+    "scope": "gui",
+    "in_function": "EventMode",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 469,
+    "method": "FindFirstChild",
+    "via": "wrapper screenRoot()",
+    "scope": "gui",
+    "in_function": "majorMenuOpen",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   }
+  ],
+  "RaceFormat": [
+   {
+    "line": 197,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "P1",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 197,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "P1",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 197,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "P1",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 214,
+    "method": "NameCompare",
+    "via": "wrapper named()",
+    "scope": "gui",
+    "in_function": "RaceSetup",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 214,
+    "method": "NameCompare",
+    "via": "wrapper named()",
+    "scope": "gui",
+    "in_function": "RaceSetup",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 214,
+    "method": "NameCompare",
+    "via": "wrapper named()",
+    "scope": "gui",
+    "in_function": "RaceSetup",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   }
+  ],
+  "Runtime": [
+   {
+    "line": 673,
+    "method": "FindFirstChild",
+    "via": null,
+    "scope": "world",
+    "in_function": "activelyDriving",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 673,
+    "method": "WaitForChild",
+    "via": null,
+    "scope": "world",
+    "in_function": "activelyDriving",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   }
+  ],
+  "Stats": [
+   {
+    "line": 190,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "G4",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 190,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "G4",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 190,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "G4",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   }
+  ],
+  "Stroke": [
+   {
+    "line": 365,
+    "method": "FindFirstChild",
+    "via": null,
+    "scope": "gui",
+    "in_function": "renderPinned",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 366,
+    "method": "FindFirstChild",
+    "via": null,
+    "scope": "gui",
+    "in_function": "renderPinned",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 541,
+    "method": "FindFirstChild",
+    "via": null,
+    "scope": "gui",
+    "in_function": "styleObjectiveCard",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   }
+  ],
+  "TeleportToStart": [
+   {
+    "line": 195,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "N6",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 195,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "N6",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 195,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "N6",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   }
+  ],
+  "TierA": [
+   {
+    "line": 196,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "Q1",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 196,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "Q1",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 196,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "Q1",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   }
+  ],
+  "TierB": [
+   {
+    "line": 196,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "Q1",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 196,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "Q1",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 196,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "Q1",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   }
+  ],
+  "TierC": [
+   {
+    "line": 196,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "Q1",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 196,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "Q1",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 196,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "Q1",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   }
+  ],
+  "TierD": [
+   {
+    "line": 196,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "Q1",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 196,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "Q1",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 196,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "Q1",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   }
+  ],
+  "TierE": [
+   {
+    "line": 196,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "Q1",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 196,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "Q1",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 196,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "Q1",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 213,
+    "method": "NameCompare",
+    "via": "wrapper named()",
+    "scope": "gui",
+    "in_function": "TimeTrialSetup",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 213,
+    "method": "NameCompare",
+    "via": "wrapper named()",
+    "scope": "gui",
+    "in_function": "TimeTrialSetup",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 213,
+    "method": "NameCompare",
+    "via": "wrapper named()",
+    "scope": "gui",
+    "in_function": "TimeTrialSetup",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   }
+  ],
+  "TierS": [
+   {
+    "line": 196,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "Q1",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 196,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "Q1",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 196,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "Q1",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   }
+  ],
+  "TutorialCardScroller": [
+   {
+    "line": 192,
+    "method": "NameCompare",
+    "via": "wrapper visibleScrollerCards()",
+    "scope": "gui",
+    "in_function": "K1",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 192,
+    "method": "NameCompare",
+    "via": "wrapper visibleScrollerCards()",
+    "scope": "gui",
+    "in_function": "K1",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 192,
+    "method": "NameCompare",
+    "via": "wrapper visibleScrollerCards()",
+    "scope": "gui",
+    "in_function": "K1",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 200,
+    "method": "NameCompare",
+    "via": "wrapper visibleScrollerCards()",
+    "scope": "gui",
+    "in_function": "AA1",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 200,
+    "method": "NameCompare",
+    "via": "wrapper visibleScrollerCards()",
+    "scope": "gui",
+    "in_function": "AA1",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 200,
+    "method": "NameCompare",
+    "via": "wrapper visibleScrollerCards()",
+    "scope": "gui",
+    "in_function": "AA1",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   }
+  ],
+  "UpgradeBudget": [
+   {
+    "line": 192,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "L2",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 192,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "L2",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 192,
+    "method": "NameCompare",
+    "via": "wrapper group()",
+    "scope": "gui",
+    "in_function": "L2",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   }
+  ],
+  "VehicleScroller": [
+   {
+    "line": 190,
+    "method": "NameCompare",
+    "via": "wrapper visibleScrollerCards()",
+    "scope": "gui",
+    "in_function": "G2",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 190,
+    "method": "NameCompare",
+    "via": "wrapper visibleScrollerCards()",
+    "scope": "gui",
+    "in_function": "G2",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 190,
+    "method": "NameCompare",
+    "via": "wrapper visibleScrollerCards()",
+    "scope": "gui",
+    "in_function": "G2",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   }
+  ],
+  "World": [
+   {
+    "line": 660,
+    "method": "FindFirstChild",
+    "via": null,
+    "scope": "world",
+    "in_function": "updateGuideTrail",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 660,
+    "method": "WaitForChild",
+    "via": null,
+    "scope": "world",
+    "in_function": "updateGuideTrail",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 660,
+    "method": "WaitForChild",
+    "via": null,
+    "scope": "world",
+    "in_function": "updateGuideTrail",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 660,
+    "method": "WaitForChild",
+    "via": null,
+    "scope": "world",
+    "in_function": "updateGuideTrail",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 660,
+    "method": "WaitForChild",
+    "via": null,
+    "scope": "world",
+    "in_function": "updateGuideTrail",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 673,
+    "method": "FindFirstChild",
+    "via": null,
+    "scope": "world",
+    "in_function": "activelyDriving",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 673,
+    "method": "WaitForChild",
+    "via": null,
+    "scope": "world",
+    "in_function": "activelyDriving",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   },
+   {
+    "line": 673,
+    "method": "WaitForChild",
+    "via": null,
+    "scope": "world",
+    "in_function": "activelyDriving",
+    "receiver_isa": null,
+    "receiver_property_writes": null
+   }
+  ]
+ },
+ "texts_used": {
+  "DEALERSHIP": [
+   {
+    "line": 144,
+    "method": "TextCompare",
+    "via": "wrapper buttonWithText()",
+    "transform": "string.upper",
+    "in_function": "canonicalBrowser"
+   },
+   {
+    "line": 145,
+    "method": "TextCompare",
+    "via": null,
+    "transform": "string.upper",
+    "in_function": "canonicalBrowser"
+   }
+  ],
+  "RACE": [
+   {
+    "line": 196,
+    "method": "TextCompare",
+    "via": "wrapper textGroup()",
+    "transform": "string.upper",
+    "in_function": "O1"
+   },
+   {
+    "line": 212,
+    "method": "TextCompare",
+    "via": "wrapper buttonWithText()",
+    "transform": "string.upper",
+    "in_function": "EventMode"
+   }
+  ],
+  "TIME TRIAL": [
+   {
+    "line": 196,
+    "method": "TextCompare",
+    "via": "wrapper textGroup()",
+    "transform": "string.upper",
+    "in_function": "O1"
+   },
+   {
+    "line": 212,
+    "method": "TextCompare",
+    "via": "wrapper buttonWithText()",
+    "transform": "string.upper",
+    "in_function": "EventMode"
+   }
+  ]
+ },
+ "attributes_used": {
+  "Active": [
+   {
+    "line": 330,
+    "access": "reads",
+    "receiver": "loadingState",
+    "receiver_kind": "playerScripts",
+    "in_function": "loadingActive"
+   },
+   {
+    "line": 743,
+    "access": "listens",
+    "receiver": "loadingState",
+    "receiver_kind": "playerScripts",
+    "in_function": "Client.start"
+   }
+  ],
+  "CanonicalGarageCard": [
+   {
+    "line": 157,
+    "access": "reads",
+    "receiver": "object",
+    "receiver_kind": "other",
+    "in_function": "cardGroup"
+   },
+   {
+    "line": 170,
+    "access": "reads",
+    "receiver": "object",
+    "receiver_kind": "other",
+    "in_function": "visibleScrollerCards"
+   }
+  ],
+  "CanonicalGarageCardId": [
+   {
+    "line": 158,
+    "access": "reads",
+    "receiver": "object",
+    "receiver_kind": "other",
+    "in_function": "cardGroup"
+   }
+  ],
+  "Destination": [
+   {
+    "line": 717,
+    "access": "reads",
+    "receiver": "loadingState",
+    "receiver_kind": "playerScripts",
+    "in_function": "Client.start"
+   }
+  ],
+  "DriverUserId": [
+   {
+    "line": 674,
+    "access": "reads",
+    "receiver": "vehicle",
+    "receiver_kind": "vehicle?",
+    "in_function": "activelyDriving"
+   }
+  ],
+  "DrivingControlsOpen": [
+   {
+    "line": 340,
+    "access": "reads",
+    "receiver": "player",
+    "receiver_kind": "player",
+    "in_function": "onboardingPresentationBlocked"
+   },
+   {
+    "line": 458,
+    "access": "reads",
+    "receiver": "player",
+    "receiver_kind": "player",
+    "in_function": "controlsOpen"
+   },
+   {
+    "line": 741,
+    "access": "listens",
+    "receiver": "player",
+    "receiver_kind": "player",
+    "in_function": "Client.start"
+   }
+  ],
+  "FirstDrivePresentationPending": [
+   {
+    "line": 339,
+    "access": "reads",
+    "receiver": "player",
+    "receiver_kind": "player",
+    "in_function": "onboardingPresentationBlocked"
+   },
+   {
+    "line": 740,
+    "access": "listens",
+    "receiver": "player",
+    "receiver_kind": "player",
+    "in_function": "Client.start"
+   }
+  ],
+  "FullMapOpen": [
+   {
+    "line": 334,
+    "access": "reads",
+    "receiver": "player",
+    "receiver_kind": "player",
+    "in_function": "fullMapOpen"
+   },
+   {
+    "line": 742,
+    "access": "listens",
+    "receiver": "player",
+    "receiver_kind": "player",
+    "in_function": "Client.start"
+   }
+  ],
+  "GarageSessionActive": [
+   {
+    "line": 471,
+    "access": "reads",
+    "receiver": "player",
+    "receiver_kind": "player",
+    "in_function": "majorMenuOpen"
+   }
+  ],
+  "GarageSessionMode": [
+   {
+    "line": 471,
+    "access": "reads",
+    "receiver": "player",
+    "receiver_kind": "player",
+    "in_function": "majorMenuOpen"
+   }
+  ],
+  "MobileFreeRoamCarMenuOpen": [
+   {
+    "line": 473,
+    "access": "reads",
+    "receiver": "player",
+    "receiver_kind": "player",
+    "in_function": "majorMenuOpen"
+   }
+  ],
+  "MobileMajorMenuOpen": [
+   {
+    "line": 474,
+    "access": "reads",
+    "receiver": "player",
+    "receiver_kind": "player",
+    "in_function": "majorMenuOpen"
+   }
+  ],
+  "OwnedGarageInside": [
+   {
+    "line": 613,
+    "access": "reads",
+    "receiver": "player",
+    "receiver_kind": "player",
+    "in_function": "refreshObjective"
+   },
+   {
+    "line": 662,
+    "access": "reads",
+    "receiver": "player",
+    "receiver_kind": "player",
+    "in_function": "updateGuideTrail"
+   }
+  ],
+  "OwnedGarageManagementOpen": [
+   {
+    "line": 470,
+    "access": "reads",
+    "receiver": "playerGui",
+    "receiver_kind": "playerGui",
+    "in_function": "majorMenuOpen"
+   },
+   {
+    "line": 662,
+    "access": "reads",
+    "receiver": "playerGui",
+    "receiver_kind": "playerGui",
+    "in_function": "updateGuideTrail"
+   }
+  ],
+  "OwnerUserId": [
+   {
+    "line": 674,
+    "access": "reads",
+    "receiver": "vehicle",
+    "receiver_kind": "vehicle?",
+    "in_function": "activelyDriving"
+   }
+  ],
+  "RaceParticipant": [
+   {
+    "line": 684,
+    "access": "reads",
+    "receiver": "drivenVehicle",
+    "receiver_kind": "vehicle?",
+    "in_function": "tryBeginFirstDriveControls"
+   }
+  ],
+  "RaceRunId": [
+   {
+    "line": 684,
+    "access": "reads",
+    "receiver": "drivenVehicle",
+    "receiver_kind": "vehicle?",
+    "in_function": "tryBeginFirstDriveControls"
+   }
+  ],
+  "RaceSessionActive": [
+   {
+    "line": 472,
+    "access": "reads",
+    "receiver": "player",
+    "receiver_kind": "player",
+    "in_function": "majorMenuOpen"
+   }
+  ],
+  "StartScreenActive": [
+   {
+    "line": 330,
+    "access": "reads",
+    "receiver": "player",
+    "receiver_kind": "player",
+    "in_function": "loadingActive"
+   },
+   {
+    "line": 739,
+    "access": "listens",
+    "receiver": "player",
+    "receiver_kind": "player",
+    "in_function": "Client.start"
+   }
+  ],
+  "TutorialPageId": [
+   {
+    "line": 186,
+    "access": "reads",
+    "receiver": "root",
+    "receiver_kind": "other",
+    "in_function": "workspacePage"
+   }
+  ],
+  "TutorialWorkspace": [
+   {
+    "line": 186,
+    "access": "reads",
+    "receiver": "root",
+    "receiver_kind": "other",
+    "in_function": "workspacePage"
+   },
+   {
+    "line": 468,
+    "access": "reads",
+    "receiver": "root",
+    "receiver_kind": "other",
+    "in_function": "majorMenuOpen"
+   }
+  ]
+ },
+ "name_locks": [
+  {
+   "name": "Car",
+   "line": 669,
+   "in_function": "applyLocks",
+   "receiver_isa": [
+    "GuiButton"
+   ],
+   "properties_written": [
+    "Active",
+    "Selectable",
+    "AutoButtonColor"
+   ]
+  },
+  {
+   "name": "Race",
+   "line": 669,
+   "in_function": "applyLocks",
+   "receiver_isa": [
+    "GuiButton"
+   ],
+   "properties_written": [
+    "Active",
+    "Selectable",
+    "AutoButtonColor"
+   ]
+  },
+  {
+   "name": "Garage",
+   "line": 669,
+   "in_function": "applyLocks",
+   "receiver_isa": [
+    "GuiButton"
+   ],
+   "properties_written": [
+    "Active",
+    "Selectable",
+    "AutoButtonColor"
+   ]
+  }
+ ]
+}

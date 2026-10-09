@@ -1,0 +1,410 @@
+{
+ "script": "ReplicatedStorage.Modules.Game.UI.MapMarkers",
+ "class": "ModuleScript",
+ "source_file": "classic/sources/ReplicatedStorage.Modules.Game.UI.MapMarkers.lua",
+ "source_lines": 131,
+ "included_because": [
+  "under ReplicatedStorage.Modules.Game.UI"
+ ],
+ "requires": [
+  {
+   "expr": "ReplicatedStorage:WaitForChild(\"Modules\"):WaitForChild(\"Core\"):WaitForChild(\"Signal\")",
+   "as": "Signal",
+   "line": 8,
+   "target": "ReplicatedStorage.Modules.Core.Signal"
+  }
+ ],
+ "remotes": {
+  "calls": [],
+  "listens": []
+ },
+ "bindables": {
+  "fires": [],
+  "connects": [],
+  "invokes": [],
+  "handlers": [],
+  "created": [],
+  "module_signal_fires": [
+   {
+    "receiver": "MapMarkers.Changed",
+    "line": 50,
+    "in_function": "MapMarkers.Set"
+   },
+   {
+    "receiver": "MapMarkers.Changed",
+    "line": 57,
+    "in_function": "MapMarkers.Remove"
+   },
+   {
+    "receiver": "MapMarkers.IconsChanged",
+    "line": 108,
+    "in_function": null
+   },
+   {
+    "receiver": "MapMarkers.IconsChanged",
+    "line": 109,
+    "in_function": null
+   }
+  ]
+ },
+ "attributes": {
+  "reads": [
+   {
+    "receiver": "folder",
+    "receiver_kind": "config?",
+    "wrapper_defined": "MapMarkers:119",
+    "line": 125,
+    "via": "wrapper watch()",
+    "name": "DestinationId",
+    "receiver_path": null
+   },
+   {
+    "receiver": "folder",
+    "receiver_kind": "config?",
+    "wrapper_defined": "MapMarkers:119",
+    "line": 125,
+    "via": "wrapper watch()",
+    "name": "RouteId",
+    "receiver_path": null
+   },
+   {
+    "receiver": "folder",
+    "receiver_kind": "config?",
+    "wrapper_defined": "MapMarkers:119",
+    "line": 125,
+    "via": "wrapper watch()",
+    "name": "Order",
+    "receiver_path": null
+   },
+   {
+    "receiver": "folder",
+    "receiver_kind": "config?",
+    "wrapper_defined": "MapMarkers:119",
+    "line": 125,
+    "via": "wrapper watch()",
+    "name": "EdgeClamp",
+    "receiver_path": null
+   },
+   {
+    "receiver": "folder",
+    "receiver_kind": "config?",
+    "wrapper_defined": "MapMarkers:119",
+    "line": 125,
+    "via": "wrapper watch()",
+    "name": "Priority",
+    "receiver_path": null
+   },
+   {
+    "receiver": "folder",
+    "receiver_kind": "config?",
+    "wrapper_defined": "MapMarkers:119",
+    "line": 125,
+    "via": "wrapper watch()",
+    "name": "Label",
+    "receiver_path": null
+   },
+   {
+    "receiver": "folder",
+    "receiver_kind": "config?",
+    "wrapper_defined": "MapMarkers:119",
+    "line": 125,
+    "via": "wrapper watch()",
+    "name": "Icon",
+    "receiver_path": null
+   },
+   {
+    "receiver": "folder",
+    "receiver_kind": "config?",
+    "wrapper_defined": "MapMarkers:119",
+    "line": 125,
+    "via": "wrapper watch()",
+    "name": "Kind",
+    "receiver_path": null
+   },
+   {
+    "receiver": "folder",
+    "receiver_kind": "config?",
+    "wrapper_defined": "MapMarkers:119",
+    "line": 125,
+    "via": "wrapper watch()",
+    "name": "Hidden",
+    "receiver_path": null
+   },
+   {
+    "receiver": "folder",
+    "receiver_kind": "config?",
+    "wrapper_defined": "MapMarkers:119",
+    "line": 125,
+    "via": "wrapper watch()",
+    "name": "Position",
+    "receiver_path": null
+   }
+  ],
+  "writes": [],
+  "listens": []
+ },
+ "player_attribute_writes": [],
+ "screenguis": {
+  "created": [],
+  "enabled_writes": []
+ },
+ "names": {
+  "assigned": [],
+  "looked_up": [
+   {
+    "method": "WaitForChild",
+    "receiver": "ReplicatedStorage",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 8,
+    "name": "Modules"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "ReplicatedStorage:WaitForChild(\"Modules\")",
+    "receiver_path": "ReplicatedStorage.Modules",
+    "root": "ReplicatedStorage",
+    "line": 8,
+    "name": "Core"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "ReplicatedStorage:WaitForChild(\"Modules\"):WaitForChild(\"Core\")",
+    "receiver_path": "ReplicatedStorage.Modules.Core",
+    "root": "ReplicatedStorage",
+    "line": 8,
+    "name": "Signal"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "ReplicatedStorage",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 103,
+    "name": "Config"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config",
+    "root": "ReplicatedStorage",
+    "line": 104,
+    "name": "UI"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "ui",
+    "receiver_path": "ReplicatedStorage.Config.UI",
+    "root": "ReplicatedStorage",
+    "line": 106,
+    "name": "MapIcons"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "ui",
+    "receiver_path": "ReplicatedStorage.Config.UI",
+    "root": "ReplicatedStorage",
+    "line": 113,
+    "name": "MapPois"
+   }
+  ],
+  "text_compared": []
+ },
+ "run_service": {
+  "render_steps": [],
+  "connects": []
+ },
+ "context_actions": [],
+ "user_input_service": {
+  "connects": [],
+  "members_used": []
+ },
+ "audio": {
+  "bridge_calls": [],
+  "ui_audio_attributes": []
+ },
+ "config": {
+  "paths": [
+   {
+    "path": "ReplicatedStorage.Config",
+    "line": 103
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI",
+    "line": 104
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI.MapIcons",
+    "line": 106
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI.MapPois",
+    "line": 113
+   }
+  ],
+  "attribute_reads": [
+   {
+    "receiver": "folder",
+    "receiver_kind": "config?",
+    "wrapper_defined": "MapMarkers:119",
+    "line": 125,
+    "via": "wrapper watch()",
+    "name": "DestinationId",
+    "receiver_path": null,
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_kind": "config?",
+    "wrapper_defined": "MapMarkers:119",
+    "line": 125,
+    "via": "wrapper watch()",
+    "name": "RouteId",
+    "receiver_path": null,
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_kind": "config?",
+    "wrapper_defined": "MapMarkers:119",
+    "line": 125,
+    "via": "wrapper watch()",
+    "name": "Order",
+    "receiver_path": null,
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_kind": "config?",
+    "wrapper_defined": "MapMarkers:119",
+    "line": 125,
+    "via": "wrapper watch()",
+    "name": "EdgeClamp",
+    "receiver_path": null,
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_kind": "config?",
+    "wrapper_defined": "MapMarkers:119",
+    "line": 125,
+    "via": "wrapper watch()",
+    "name": "Priority",
+    "receiver_path": null,
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_kind": "config?",
+    "wrapper_defined": "MapMarkers:119",
+    "line": 125,
+    "via": "wrapper watch()",
+    "name": "Label",
+    "receiver_path": null,
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_kind": "config?",
+    "wrapper_defined": "MapMarkers:119",
+    "line": 125,
+    "via": "wrapper watch()",
+    "name": "Icon",
+    "receiver_path": null,
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_kind": "config?",
+    "wrapper_defined": "MapMarkers:119",
+    "line": 125,
+    "via": "wrapper watch()",
+    "name": "Kind",
+    "receiver_path": null,
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_kind": "config?",
+    "wrapper_defined": "MapMarkers:119",
+    "line": 125,
+    "via": "wrapper watch()",
+    "name": "Hidden",
+    "receiver_path": null,
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_kind": "config?",
+    "wrapper_defined": "MapMarkers:119",
+    "line": 125,
+    "via": "wrapper watch()",
+    "name": "Position",
+    "receiver_path": null,
+    "access": "read"
+   }
+  ],
+  "child_lookups": []
+ },
+ "startergui_core": [],
+ "gui_service": [],
+ "other_services": {},
+ "service_connects": [],
+ "proximity_prompts": [],
+ "instances_created_by_class": {},
+ "public_api": [
+  {
+   "name": "Changed",
+   "kind": "field",
+   "line": 11,
+   "value": "Signal.new()"
+  },
+  {
+   "name": "IconsChanged",
+   "kind": "field",
+   "line": 12,
+   "value": "Signal.new()"
+  },
+  {
+   "name": "Set",
+   "kind": "function",
+   "params": [
+    "id",
+    "marker"
+   ],
+   "line": 47
+  },
+  {
+   "name": "Remove",
+   "kind": "function",
+   "params": [
+    "id"
+   ],
+   "line": 54
+  },
+  {
+   "name": "Get",
+   "kind": "function",
+   "params": [
+    "id"
+   ],
+   "line": 60
+  },
+  {
+   "name": "All",
+   "kind": "function",
+   "params": [],
+   "line": 64
+  },
+  {
+   "name": "IconAsset",
+   "kind": "function",
+   "params": [
+    "key"
+   ],
+   "line": 72
+  }
+ ],
+ "unresolved": [],
+ "contract_file": "MapMarkers.json"
+}

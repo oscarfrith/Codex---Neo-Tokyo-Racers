@@ -1,0 +1,148 @@
+{
+ "script": "ReplicatedStorage.Modules.Game.Vehicles.DriveSessionClient",
+ "class": "ModuleScript",
+ "source_file": "classic/sources/ReplicatedStorage.Modules.Game.Vehicles.DriveSessionClient.lua",
+ "source_lines": 51,
+ "included_because": [
+  "ClientBase entry 'DriveSessionClient'"
+ ],
+ "requires": [
+  {
+   "expr": "modules.Game.Vehicles.DrivingClient",
+   "as": "driving",
+   "line": 11,
+   "in_function": "Client.start",
+   "target": "ReplicatedStorage.Modules.Game.Vehicles.DrivingClient"
+  },
+  {
+   "expr": "modules.Game.Vehicles.MobileDriveInputState",
+   "as": "mobile",
+   "line": 12,
+   "in_function": "Client.start",
+   "target": "ReplicatedStorage.Modules.Game.Vehicles.MobileDriveInputState"
+  },
+  {
+   "expr": "modules.Core.ConnectionScope",
+   "as": "scope",
+   "line": 13,
+   "in_function": "Client.start",
+   "target": "ReplicatedStorage.Modules.Core.ConnectionScope"
+  }
+ ],
+ "remotes": {
+  "calls": [],
+  "listens": []
+ },
+ "bindables": {
+  "fires": [],
+  "connects": [],
+  "invokes": [],
+  "handlers": [],
+  "created": [],
+  "module_signal_fires": []
+ },
+ "attributes": {
+  "reads": [],
+  "writes": [],
+  "listens": []
+ },
+ "player_attribute_writes": [],
+ "screenguis": {
+  "created": [],
+  "enabled_writes": []
+ },
+ "names": {
+  "assigned": [],
+  "looked_up": [
+   {
+    "method": "WaitForChild",
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 9,
+    "in_function": "Client.start",
+    "name": "PlayerScripts"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 10,
+    "in_function": "Client.start",
+    "name": "Modules"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "playerScripts",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts",
+    "root": "Players",
+    "line": 14,
+    "in_function": "Client.start",
+    "name": "Runtime"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "playerScripts:WaitForChild(\"Runtime\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime",
+    "root": "Players",
+    "line": 14,
+    "in_function": "Client.start",
+    "name": "UI"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "events",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime.UI",
+    "root": "Players",
+    "line": 30,
+    "in_function": "Client.start",
+    "name": "FreeRoamVehicleSpawned"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "events",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime.UI",
+    "root": "Players",
+    "line": 33,
+    "in_function": "Client.start",
+    "name": "FreeRoamVehicleExited"
+   }
+  ],
+  "text_compared": []
+ },
+ "run_service": {
+  "render_steps": [],
+  "connects": []
+ },
+ "context_actions": [],
+ "user_input_service": {
+  "connects": [],
+  "members_used": []
+ },
+ "audio": {
+  "bridge_calls": [],
+  "ui_audio_attributes": []
+ },
+ "config": {
+  "paths": [],
+  "attribute_reads": [],
+  "child_lookups": []
+ },
+ "startergui_core": [],
+ "gui_service": [],
+ "other_services": {},
+ "service_connects": [],
+ "proximity_prompts": [],
+ "instances_created_by_class": {},
+ "public_api": [
+  {
+   "name": "start",
+   "kind": "function",
+   "params": [],
+   "line": 5
+  }
+ ],
+ "unresolved": [],
+ "contract_file": "DriveSessionClient.json"
+}

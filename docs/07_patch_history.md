@@ -2,6 +2,15 @@
 
 Recent deliveries, newest first. Entries before September 2026 live in [the archive](history/patch-history-2026-05-to-2026-08.md).
 
+## 2026-10-09 - UI restyle Phase 0: contract, Classic record, spikes, previews, asset batch (v3, nothing installed)
+
+Read-only in the place apart from the sandbox test window, which was opened and restored. Contract and results: `scripts/ui_restyle/CONTRACT.md`, `scripts/ui_restyle/phase0/RESULTS.md`.
+
+- **Produced:** programme contract; style sheet v2; Classic source record (221 scripts) and `out_verify_classic.lua`; generated contract tables; installer engine; probes; spike harness; 62 preview images; 18 generated assets (not uploaded).
+- **Checked:** Classic verify before and after the Play session (221 scripts and 1,124 config values the same); engine self-test 30 of 30 in Edit on detached instances; one sandbox Play session for the spikes and Classic baselines. Not user-confirmed.
+- **Reusable:** in Play the server datamodel can fetch from the local bridge; the client can run fetched text as the source of an unparented ModuleScript, and `shared` persists between `execute_luau` calls. `user_mouse_input` coordinates are `AbsolutePosition` values.
+- **Recovery:** none; nothing installed.
+
 ## 2026-10-06 - Driving tune: tier nerf, speed readout, settle, bank lift, parked sway, steering direction (v3)
 
 Standard lane, driving owner, client only. Four scripts (`DrivingClient`, `VehicleDynamics`, `FreeRoamParkedHoverClient`, `DesktopFreeRoamHudUI`), three new config folders, 12 attributes. Contract, review and evidence: `scripts/driving_tune/`.

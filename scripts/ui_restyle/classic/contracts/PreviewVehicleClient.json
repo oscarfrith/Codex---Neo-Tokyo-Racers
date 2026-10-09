@@ -1,0 +1,821 @@
+{
+ "script": "ReplicatedStorage.Modules.Game.Garage.PreviewVehicleClient",
+ "class": "ModuleScript",
+ "source_file": "classic/sources/ReplicatedStorage.Modules.Game.Garage.PreviewVehicleClient.lua",
+ "source_lines": 90,
+ "included_because": [
+  "client script that is UI-coupled: references PlayerScripts"
+ ],
+ "requires": [
+  {
+   "expr": "game:GetService(\"ReplicatedStorage\").Modules.Game.Vehicles.VehicleTemplateIndex",
+   "as": "TemplateIndex",
+   "line": 1,
+   "target": "ReplicatedStorage.Modules.Game.Vehicles.VehicleTemplateIndex"
+  },
+  {
+   "expr": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Garage\"):WaitForChild(\"PaintClient\")",
+   "as": "PaintClient",
+   "line": 6,
+   "target": "ReplicatedStorage.Modules.Game.Garage.PaintClient"
+  },
+  {
+   "expr": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Garage\"):WaitForChild(\"GarageModuleInstancePreviewAdapter\")",
+   "as": "InstancePreview",
+   "line": 7,
+   "target": "ReplicatedStorage.Modules.Game.Garage.GarageModuleInstancePreviewAdapter"
+  },
+  {
+   "expr": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Vehicles\"):WaitForChild(\"VehicleCosmeticCatalog\")",
+   "as": "VehicleCosmetics",
+   "line": 9,
+   "target": "ReplicatedStorage.Modules.Game.Vehicles.VehicleCosmeticCatalog"
+  },
+  {
+   "expr": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Core\"):WaitForChild(\"PathResolver\")",
+   "as": "PathResolver",
+   "line": 10,
+   "target": "ReplicatedStorage.Modules.Core.PathResolver"
+  }
+ ],
+ "remotes": {
+  "calls": [],
+  "listens": []
+ },
+ "bindables": {
+  "fires": [],
+  "connects": [],
+  "invokes": [],
+  "handlers": [],
+  "created": [],
+  "module_signal_fires": []
+ },
+ "attributes": {
+  "reads": [
+   {
+    "receiver": "cfg",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "receiver_kind": "config",
+    "wrapper_defined": "PreviewVehicleClient:14",
+    "line": 34,
+    "in_function": "previewCFrame",
+    "via": "wrapper number()",
+    "name": "PreviewPadYOffset"
+   },
+   {
+    "receiver": "template",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "line": 47,
+    "in_function": "PreviewVehicleController.Build",
+    "name": "StandardAudioProfileId"
+   }
+  ],
+  "writes": [
+   {
+    "receiver": "vehicle",
+    "receiver_kind": "vehicle?",
+    "value": {
+     "expr": "colour"
+    },
+    "wrapper_defined": "VehicleCosmeticCatalog:121",
+    "line": 46,
+    "in_function": "PreviewVehicleController.Build",
+    "via": "wrapper Catalog.ApplyPresentation()",
+    "name": "UnderglowColour",
+    "receiver_path": null
+   },
+   {
+    "receiver": "vehicle",
+    "receiver_kind": "vehicle?",
+    "value": {
+     "expr": "unlocked"
+    },
+    "wrapper_defined": "VehicleCosmeticCatalog:120",
+    "line": 46,
+    "in_function": "PreviewVehicleController.Build",
+    "via": "wrapper Catalog.ApplyPresentation()",
+    "name": "UnderglowUnlocked",
+    "receiver_path": null
+   },
+   {
+    "receiver": "vehicle",
+    "receiver_kind": "vehicle?",
+    "value": {
+     "expr": "enabledCount"
+    },
+    "wrapper_defined": "VehicleCosmeticCatalog:119",
+    "line": 46,
+    "in_function": "PreviewVehicleController.Build",
+    "via": "wrapper Catalog.ApplyPresentation()",
+    "name": "UnderglowEnabled",
+    "receiver_path": null
+   },
+   {
+    "receiver": "vehicle",
+    "receiver_kind": "vehicle?",
+    "value": {
+     "expr": "detected"
+    },
+    "wrapper_defined": "VehicleCosmeticCatalog:118",
+    "line": 46,
+    "in_function": "PreviewVehicleController.Build",
+    "via": "wrapper Catalog.ApplyPresentation()",
+    "name": "UnderglowDetected",
+    "receiver_path": null
+   },
+   {
+    "receiver": "root",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "value": {
+     "expr": "tostring(previewAudioProfileId)"
+    },
+    "line": 47,
+    "in_function": "PreviewVehicleController.Build",
+    "name": "PreviewAudioProfileId"
+   },
+   {
+    "receiver": "root",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "value": {
+     "expr": "thrustColor"
+    },
+    "line": 48,
+    "in_function": "PreviewVehicleController.Build",
+    "name": "ThrustColor"
+   },
+   {
+    "receiver": "root",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "value": {
+     "expr": "state.ThrustPreviewActive==true"
+    },
+    "line": 48,
+    "in_function": "PreviewVehicleController.Build",
+    "name": "ForceThrustPreview"
+   },
+   {
+    "receiver": "vehicle",
+    "receiver_path": null,
+    "receiver_kind": "vehicle?",
+    "value": {
+     "expr": "thrustColor"
+    },
+    "line": 48,
+    "in_function": "PreviewVehicleController.Build",
+    "name": "ThrustColor"
+   },
+   {
+    "receiver": "clone",
+    "receiver_kind": "other",
+    "value": {
+     "expr": "resolved and resolved.Instance~=nil"
+    },
+    "wrapper_defined": "GarageModuleInstancePreviewAdapter:73",
+    "line": 55,
+    "in_function": "PreviewVehicleController.Build",
+    "via": "wrapper Adapter.ApplyClone()",
+    "name": "PreviewUsesSavedCustomisation",
+    "receiver_path": null
+   },
+   {
+    "receiver": "clone",
+    "receiver_kind": "other",
+    "value": {
+     "expr": "resolved and resolved.InstanceId or \"\""
+    },
+    "wrapper_defined": "GarageModuleInstancePreviewAdapter:72",
+    "line": 55,
+    "in_function": "PreviewVehicleController.Build",
+    "via": "wrapper Adapter.ApplyClone()",
+    "name": "PreviewModuleInstanceId",
+    "receiver_path": null
+   },
+   {
+    "receiver": "clone",
+    "receiver_kind": "other",
+    "value": {
+     "expr": "value"
+    },
+    "wrapper_defined": "GarageModuleInstancePreviewAdapter:71",
+    "line": 55,
+    "in_function": "PreviewVehicleController.Build",
+    "via": "wrapper Adapter.ApplyClone()",
+    "name": null,
+    "name_expr": "name",
+    "receiver_path": null
+   },
+   {
+    "receiver": "root",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "value": {
+     "expr": "color"
+    },
+    "line": 70,
+    "in_function": "PreviewVehicleController.ApplyPaint",
+    "name": "ThrustColor"
+   },
+   {
+    "receiver": "root",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "value": true,
+    "line": 70,
+    "in_function": "PreviewVehicleController.ApplyPaint",
+    "name": "ForceThrustPreview"
+   },
+   {
+    "receiver": "vehicle",
+    "receiver_path": null,
+    "receiver_kind": "vehicle?",
+    "value": {
+     "expr": "color"
+    },
+    "line": 70,
+    "in_function": "PreviewVehicleController.ApplyPaint",
+    "name": "ThrustColor"
+   },
+   {
+    "receiver": "vehicle",
+    "receiver_kind": "vehicle?",
+    "value": {
+     "expr": "colour"
+    },
+    "wrapper_defined": "VehicleCosmeticCatalog:121",
+    "line": 84,
+    "in_function": "PreviewVehicleController.ApplyPaint",
+    "via": "wrapper Catalog.ApplyPresentation()",
+    "name": "UnderglowColour",
+    "receiver_path": null
+   },
+   {
+    "receiver": "vehicle",
+    "receiver_kind": "vehicle?",
+    "value": {
+     "expr": "unlocked"
+    },
+    "wrapper_defined": "VehicleCosmeticCatalog:120",
+    "line": 84,
+    "in_function": "PreviewVehicleController.ApplyPaint",
+    "via": "wrapper Catalog.ApplyPresentation()",
+    "name": "UnderglowUnlocked",
+    "receiver_path": null
+   },
+   {
+    "receiver": "vehicle",
+    "receiver_kind": "vehicle?",
+    "value": {
+     "expr": "enabledCount"
+    },
+    "wrapper_defined": "VehicleCosmeticCatalog:119",
+    "line": 84,
+    "in_function": "PreviewVehicleController.ApplyPaint",
+    "via": "wrapper Catalog.ApplyPresentation()",
+    "name": "UnderglowEnabled",
+    "receiver_path": null
+   },
+   {
+    "receiver": "vehicle",
+    "receiver_kind": "vehicle?",
+    "value": {
+     "expr": "detected"
+    },
+    "wrapper_defined": "VehicleCosmeticCatalog:118",
+    "line": 84,
+    "in_function": "PreviewVehicleController.ApplyPaint",
+    "via": "wrapper Catalog.ApplyPresentation()",
+    "name": "UnderglowDetected",
+    "receiver_path": null
+   }
+  ],
+  "listens": []
+ },
+ "player_attribute_writes": [],
+ "screenguis": {
+  "created": [],
+  "enabled_writes": []
+ },
+ "names": {
+  "assigned": [
+   {
+    "via": "property",
+    "receiver": "root",
+    "class": "Folder",
+    "line": 19,
+    "in_function": "PreviewVehicleController.GetPreviewRoot",
+    "name": null,
+    "name_expr": "PreviewVehicleController.PreviewFolderName"
+   },
+   {
+    "via": "property",
+    "receiver": "vehicle",
+    "class": null,
+    "line": 43,
+    "in_function": "PreviewVehicleController.Build",
+    "name": null,
+    "name_pattern": "LOCAL_PREVIEW_*",
+    "name_expr": "\"LOCAL_PREVIEW_\"..tostring(cockpitId)"
+   },
+   {
+    "via": "property",
+    "receiver": "installedRoot",
+    "class": "Folder",
+    "line": 49,
+    "in_function": "PreviewVehicleController.Build",
+    "name": "INSTALLED_MODULES_Runtime"
+   },
+   {
+    "via": "property",
+    "receiver": "clone",
+    "class": null,
+    "line": 54,
+    "in_function": "PreviewVehicleController.Build",
+    "name": null,
+    "name_pattern": "PREVIEW_*",
+    "name_expr": "\"PREVIEW_\"..tostring(slotId)..\"_\"..moduleTemplate.Name"
+   }
+  ],
+  "looked_up": [
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 5,
+    "name": "PlayerScripts"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts",
+    "root": "Players",
+    "line": 5,
+    "name": "Runtime"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 6,
+    "name": "Modules"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\")",
+    "receiver_path": "ReplicatedStorage.Modules",
+    "root": "ReplicatedStorage",
+    "line": 6,
+    "name": "Game"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game",
+    "root": "ReplicatedStorage",
+    "line": 6,
+    "name": "Garage"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Garage\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game.Garage",
+    "root": "ReplicatedStorage",
+    "line": 6,
+    "name": "PaintClient"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 7,
+    "name": "Modules"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\")",
+    "receiver_path": "ReplicatedStorage.Modules",
+    "root": "ReplicatedStorage",
+    "line": 7,
+    "name": "Game"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game",
+    "root": "ReplicatedStorage",
+    "line": 7,
+    "name": "Garage"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Garage\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game.Garage",
+    "root": "ReplicatedStorage",
+    "line": 7,
+    "name": "GarageModuleInstancePreviewAdapter"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 9,
+    "name": "Modules"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\")",
+    "receiver_path": "ReplicatedStorage.Modules",
+    "root": "ReplicatedStorage",
+    "line": 9,
+    "name": "Game"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game",
+    "root": "ReplicatedStorage",
+    "line": 9,
+    "name": "Vehicles"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Vehicles\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game.Vehicles",
+    "root": "ReplicatedStorage",
+    "line": 9,
+    "name": "VehicleCosmeticCatalog"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 10,
+    "name": "Modules"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\")",
+    "receiver_path": "ReplicatedStorage.Modules",
+    "root": "ReplicatedStorage",
+    "line": 10,
+    "name": "Core"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Core\")",
+    "receiver_path": "ReplicatedStorage.Modules.Core",
+    "root": "ReplicatedStorage",
+    "line": 10,
+    "name": "PathResolver"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 11,
+    "name": "Config"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\")",
+    "receiver_path": "ReplicatedStorage.Config",
+    "root": "ReplicatedStorage",
+    "line": 11,
+    "name": "UI"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\"):WaitForChild(\"UI\")",
+    "receiver_path": "ReplicatedStorage.Config.UI",
+    "root": "ReplicatedStorage",
+    "line": 11,
+    "name": "GarageReplacement"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "root",
+    "receiver_path": null,
+    "root": null,
+    "line": 22,
+    "in_function": "PreviewVehicleController.GetSlotMount",
+    "name": null,
+    "name_pattern": "SLOT_*",
+    "name_expr": "\"SLOT_\"..tostring(slotId)"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "slot",
+    "receiver_path": null,
+    "root": null,
+    "line": 22,
+    "in_function": "PreviewVehicleController.GetSlotMount",
+    "name": "Mount_DoNotRename"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "cfg",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "PreviewVehicleClient:14",
+    "line": 34,
+    "in_function": "previewCFrame",
+    "via": "wrapper number()",
+    "name": "PreviewPadYOffset"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "context.Workspace",
+    "root": null,
+    "wrapper_defined": "PreviewVehicleClient:18",
+    "line": 41,
+    "in_function": "PreviewVehicleController.Build",
+    "via": "wrapper PreviewVehicleController.GetPreviewRoot()",
+    "name": null,
+    "name_expr": "PreviewVehicleController.PreviewFolderName",
+    "receiver_path": null,
+    "receiver_kind": "other"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "vehicle",
+    "receiver_path": null,
+    "root": null,
+    "recursive": true,
+    "line": 43,
+    "in_function": "PreviewVehicleController.Build",
+    "name": "CockpitRoot_DoNotRename"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "vehicle",
+    "receiver_path": null,
+    "root": null,
+    "line": 49,
+    "in_function": "PreviewVehicleController.Build",
+    "name": "INSTALLED_MODULES_Runtime"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "vehicle",
+    "root": null,
+    "recursive": true,
+    "wrapper_defined": "PreviewVehicleClient:22",
+    "line": 52,
+    "in_function": "PreviewVehicleController.Build",
+    "via": "wrapper PreviewVehicleController.GetSlotMount()",
+    "name": "ModuleSlots",
+    "receiver_path": null,
+    "receiver_kind": "vehicle?"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "mount",
+    "root": null,
+    "wrapper_defined": "PreviewVehicleClient:25",
+    "line": 54,
+    "in_function": "PreviewVehicleController.Build",
+    "via": "wrapper PreviewVehicleController.PivotModuleToSlot()",
+    "name": "MountAttachment",
+    "receiver_path": null,
+    "receiver_kind": "other"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "clone",
+    "root": null,
+    "recursive": true,
+    "wrapper_defined": "PreviewVehicleClient:25",
+    "line": 54,
+    "in_function": "PreviewVehicleController.Build",
+    "via": "wrapper PreviewVehicleController.PivotModuleToSlot()",
+    "name": "MountAttachment",
+    "receiver_path": null,
+    "receiver_kind": "other"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "clone",
+    "root": null,
+    "recursive": true,
+    "wrapper_defined": "PreviewVehicleClient:24",
+    "line": 54,
+    "in_function": "PreviewVehicleController.Build",
+    "via": "wrapper PreviewVehicleController.PivotModuleToSlot()",
+    "name": "ModuleRoot_DoNotRename",
+    "receiver_path": null,
+    "receiver_kind": "other"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "vehicle",
+    "receiver_path": null,
+    "root": null,
+    "line": 85,
+    "in_function": "PreviewVehicleController.ApplyPaint",
+    "name": "INSTALLED_MODULES_Runtime"
+   }
+  ],
+  "text_compared": []
+ },
+ "run_service": {
+  "render_steps": [],
+  "connects": []
+ },
+ "context_actions": [],
+ "user_input_service": {
+  "connects": [],
+  "members_used": []
+ },
+ "audio": {
+  "bridge_calls": [],
+  "ui_audio_attributes": []
+ },
+ "config": {
+  "paths": [
+   {
+    "path": "ReplicatedStorage.Config",
+    "line": 11
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI",
+    "line": 11
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "line": 11
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI.GarageReplacement.<name>",
+    "line": 14
+   }
+  ],
+  "attribute_reads": [
+   {
+    "receiver": "cfg",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "receiver_kind": "config",
+    "wrapper_defined": "PreviewVehicleClient:14",
+    "line": 34,
+    "in_function": "previewCFrame",
+    "via": "wrapper number()",
+    "name": "PreviewPadYOffset",
+    "access": "read"
+   }
+  ],
+  "child_lookups": [
+   {
+    "method": "FindFirstChild",
+    "receiver": "cfg",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "PreviewVehicleClient:14",
+    "line": 34,
+    "in_function": "previewCFrame",
+    "via": "wrapper number()",
+    "name": "PreviewPadYOffset"
+   }
+  ]
+ },
+ "startergui_core": [],
+ "gui_service": [],
+ "other_services": {},
+ "service_connects": [],
+ "proximity_prompts": [],
+ "instances_created_by_class": {
+  "Folder": 2
+ },
+ "public_api": [
+  {
+   "name": "PreviewFolderName",
+   "kind": "field",
+   "line": 12,
+   "value": "\"LocalVehiclePreview\""
+  },
+  {
+   "name": "FindTemplateByAttribute",
+   "kind": "function",
+   "params": [
+    "root",
+    "attr",
+    "value"
+   ],
+   "line": 15
+  },
+  {
+   "name": "GetPreviewRoot",
+   "kind": "function",
+   "params": [
+    "workspaceRef",
+    "previewState"
+   ],
+   "line": 16
+  },
+  {
+   "name": "ClearRoot",
+   "kind": "function",
+   "params": [
+    "root"
+   ],
+   "line": 21
+  },
+  {
+   "name": "GetSlotMount",
+   "kind": "function",
+   "params": [
+    "vehicle",
+    "slotId"
+   ],
+   "line": 22
+  },
+  {
+   "name": "PivotModuleToSlot",
+   "kind": "function",
+   "params": [
+    "moduleClone",
+    "mount"
+   ],
+   "line": 23
+  },
+  {
+   "name": "ModuleColors",
+   "kind": "function",
+   "params": [
+    "profile",
+    "slotId"
+   ],
+   "line": 28
+  },
+  {
+   "name": "ClearPreviewModules",
+   "kind": "function",
+   "params": [
+    "state"
+   ],
+   "line": 29
+  },
+  {
+   "name": "Build",
+   "kind": "function",
+   "params": [
+    "context"
+   ],
+   "line": 39
+  },
+  {
+   "name": "ApplyPaint",
+   "kind": "function",
+   "params": [
+    "context"
+   ],
+   "line": 61
+  }
+ ],
+ "unresolved": [
+  {
+   "category": "names_assigned",
+   "field": "name",
+   "line": 19,
+   "detail": "not a literal: PreviewVehicleController.PreviewFolderName"
+  },
+  {
+   "category": "lookups",
+   "field": "name",
+   "line": 22,
+   "detail": "name built at run time: \"SLOT_\"..tostring(slotId)"
+  },
+  {
+   "category": "lookups",
+   "field": "name",
+   "line": 41,
+   "detail": "not a literal: PreviewVehicleController.PreviewFolderName"
+  },
+  {
+   "category": "names_assigned",
+   "field": "name",
+   "line": 43,
+   "detail": "name built at run time: \"LOCAL_PREVIEW_\"..tostring(cockpitId)"
+  },
+  {
+   "category": "names_assigned",
+   "field": "name",
+   "line": 54,
+   "detail": "name built at run time: \"PREVIEW_\"..tostring(slotId)..\"_\"..moduleTemplate.Name"
+  },
+  {
+   "category": "attribute_writes",
+   "field": "name",
+   "line": 55,
+   "detail": "not a literal: name"
+  }
+ ],
+ "contract_file": "PreviewVehicleClient.json"
+}

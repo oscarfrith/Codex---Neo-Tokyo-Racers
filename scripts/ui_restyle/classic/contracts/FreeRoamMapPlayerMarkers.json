@@ -1,0 +1,1134 @@
+{
+ "script": "ReplicatedStorage.Modules.Game.UI.FreeRoamMapPlayerMarkers",
+ "class": "ModuleScript",
+ "source_file": "classic/sources/ReplicatedStorage.Modules.Game.UI.FreeRoamMapPlayerMarkers.lua",
+ "source_lines": 458,
+ "included_because": [
+  "under ReplicatedStorage.Modules.Game.UI"
+ ],
+ "requires": [],
+ "remotes": {
+  "calls": [],
+  "listens": []
+ },
+ "bindables": {
+  "fires": [],
+  "connects": [],
+  "invokes": [],
+  "handlers": [],
+  "created": [],
+  "module_signal_fires": []
+ },
+ "attributes": {
+  "reads": [
+   {
+    "receiver": "current",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "line": 80,
+    "in_function": "ownedVehicleFromSeat",
+    "name": "OwnerUserId"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "line": 192,
+    "in_function": "Module:_readConfig",
+    "name": "Enabled"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "FreeRoamMapPlayerMarkers:29",
+    "line": 193,
+    "in_function": "Module:_readConfig",
+    "via": "wrapper numberAttribute()",
+    "name": "OtherPlayerMarkerScale",
+    "receiver_path": null
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "FreeRoamMapPlayerMarkers:29",
+    "line": 194,
+    "in_function": "Module:_readConfig",
+    "via": "wrapper numberAttribute()",
+    "name": "MinimumMarkerSizePixels",
+    "receiver_path": null
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "FreeRoamMapPlayerMarkers:29",
+    "line": 195,
+    "in_function": "Module:_readConfig",
+    "via": "wrapper numberAttribute()",
+    "name": "MaximumMarkerSizePixels",
+    "receiver_path": null
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "FreeRoamMapPlayerMarkers:29",
+    "line": 196,
+    "in_function": "Module:_readConfig",
+    "via": "wrapper numberAttribute()",
+    "name": "MaximumOtherPlayers",
+    "receiver_path": null
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "FreeRoamMapPlayerMarkers:29",
+    "line": 197,
+    "in_function": "Module:_readConfig",
+    "via": "wrapper numberAttribute()",
+    "name": "MarkerResponse",
+    "receiver_path": null
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "FreeRoamMapPlayerMarkers:29",
+    "line": 198,
+    "in_function": "Module:_readConfig",
+    "via": "wrapper numberAttribute()",
+    "name": "EdgeOverscanPixels",
+    "receiver_path": null
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "FreeRoamMapPlayerMarkers:29",
+    "line": 199,
+    "in_function": "Module:_readConfig",
+    "via": "wrapper numberAttribute()",
+    "name": "PositionEpsilonPixels",
+    "receiver_path": null
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "line": 200,
+    "in_function": "Module:_readConfig",
+    "name": "OtherPlayerIcon"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "FreeRoamMapPlayerMarkers:35",
+    "line": 201,
+    "in_function": "Module:_readConfig",
+    "via": "wrapper colorAttribute()",
+    "name": "MarkerColor",
+    "receiver_path": null
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "FreeRoamMapPlayerMarkers:35",
+    "line": 202,
+    "in_function": "Module:_readConfig",
+    "via": "wrapper colorAttribute()",
+    "name": "MarkerStrokeColor",
+    "receiver_path": null
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "FreeRoamMapPlayerMarkers:29",
+    "line": 203,
+    "in_function": "Module:_readConfig",
+    "via": "wrapper numberAttribute()",
+    "name": "MarkerBackgroundTransparency",
+    "receiver_path": null
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "FreeRoamMapPlayerMarkers:29",
+    "line": 204,
+    "in_function": "Module:_readConfig",
+    "via": "wrapper numberAttribute()",
+    "name": "MarkerStrokeTransparency",
+    "receiver_path": null
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "FreeRoamMapPlayerMarkers:29",
+    "line": 205,
+    "in_function": "Module:_readConfig",
+    "via": "wrapper numberAttribute()",
+    "name": "MarkerStrokeThickness",
+    "receiver_path": null
+   },
+   {
+    "receiver": "record.Vehicle",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "FreeRoamMapPlayerMarkers:72",
+    "line": 230,
+    "in_function": "Module:_updateEligibility",
+    "via": "wrapper vehicleIsInRace()",
+    "name": "RaceMode",
+    "receiver_path": null
+   },
+   {
+    "receiver": "record.Vehicle",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "FreeRoamMapPlayerMarkers:71",
+    "line": 230,
+    "in_function": "Module:_updateEligibility",
+    "via": "wrapper vehicleIsInRace()",
+    "name": "RaceFinishedPendingExit",
+    "receiver_path": null
+   },
+   {
+    "receiver": "record.Vehicle",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "FreeRoamMapPlayerMarkers:70",
+    "line": 230,
+    "in_function": "Module:_updateEligibility",
+    "via": "wrapper vehicleIsInRace()",
+    "name": "RaceRunId",
+    "receiver_path": null
+   },
+   {
+    "receiver": "record.Vehicle",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "FreeRoamMapPlayerMarkers:69",
+    "line": 230,
+    "in_function": "Module:_updateEligibility",
+    "via": "wrapper vehicleIsInRace()",
+    "name": "RaceParticipant",
+    "receiver_path": null
+   },
+   {
+    "receiver": "record.Player",
+    "receiver_kind": "player?",
+    "wrapper_defined": "FreeRoamMapPlayerMarkers:64",
+    "line": 230,
+    "in_function": "Module:_updateEligibility",
+    "via": "wrapper playerAllowsMarker()",
+    "name": "RaceSessionActive",
+    "receiver_path": null
+   },
+   {
+    "receiver": "record.Player",
+    "receiver_kind": "player?",
+    "wrapper_defined": "FreeRoamMapPlayerMarkers:63",
+    "line": 230,
+    "in_function": "Module:_updateEligibility",
+    "via": "wrapper playerAllowsMarker()",
+    "name": "OwnedGarageInside",
+    "receiver_path": null
+   },
+   {
+    "receiver": "record.Player",
+    "receiver_kind": "player?",
+    "wrapper_defined": "FreeRoamMapPlayerMarkers:62",
+    "line": 230,
+    "in_function": "Module:_updateEligibility",
+    "via": "wrapper playerAllowsMarker()",
+    "name": "GarageSessionActive",
+    "receiver_path": null
+   }
+  ],
+  "writes": [],
+  "listens": [
+   {
+    "receiver": "self.Config",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "line": 176,
+    "in_function": "Module.new",
+    "name": "Enabled",
+    "via": "literal list"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "line": 176,
+    "in_function": "Module.new",
+    "name": "OtherPlayerMarkerScale",
+    "via": "literal list"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "line": 176,
+    "in_function": "Module.new",
+    "name": "MinimumMarkerSizePixels",
+    "via": "literal list"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "line": 176,
+    "in_function": "Module.new",
+    "name": "MaximumMarkerSizePixels",
+    "via": "literal list"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "line": 176,
+    "in_function": "Module.new",
+    "name": "MaximumOtherPlayers",
+    "via": "literal list"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "line": 176,
+    "in_function": "Module.new",
+    "name": "MarkerResponse",
+    "via": "literal list"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "line": 176,
+    "in_function": "Module.new",
+    "name": "EdgeOverscanPixels",
+    "via": "literal list"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "line": 176,
+    "in_function": "Module.new",
+    "name": "PositionEpsilonPixels",
+    "via": "literal list"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "line": 176,
+    "in_function": "Module.new",
+    "name": "OtherPlayerIcon",
+    "via": "literal list"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "line": 176,
+    "in_function": "Module.new",
+    "name": "MarkerColor",
+    "via": "literal list"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "line": 176,
+    "in_function": "Module.new",
+    "name": "MarkerStrokeColor",
+    "via": "literal list"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "line": 176,
+    "in_function": "Module.new",
+    "name": "MarkerBackgroundTransparency",
+    "via": "literal list"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "line": 176,
+    "in_function": "Module.new",
+    "name": "MarkerStrokeTransparency",
+    "via": "literal list"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "line": 176,
+    "in_function": "Module.new",
+    "name": "MarkerStrokeThickness",
+    "via": "literal list"
+   },
+   {
+    "receiver": "nil",
+    "receiver_kind": "other",
+    "wrapper_defined": "FreeRoamMapPlayerMarkers:246",
+    "line": 252,
+    "in_function": "Module:_bindVehicle",
+    "via": "wrapper Module:_bindVehicle()",
+    "receiver_path": null,
+    "name": "RaceParticipant"
+   },
+   {
+    "receiver": "nil",
+    "receiver_kind": "other",
+    "wrapper_defined": "FreeRoamMapPlayerMarkers:246",
+    "line": 252,
+    "in_function": "Module:_bindVehicle",
+    "via": "wrapper Module:_bindVehicle()",
+    "receiver_path": null,
+    "name": "RaceRunId"
+   },
+   {
+    "receiver": "nil",
+    "receiver_kind": "other",
+    "wrapper_defined": "FreeRoamMapPlayerMarkers:246",
+    "line": 252,
+    "in_function": "Module:_bindVehicle",
+    "via": "wrapper Module:_bindVehicle()",
+    "receiver_path": null,
+    "name": "RaceMode"
+   },
+   {
+    "receiver": "nil",
+    "receiver_kind": "other",
+    "wrapper_defined": "FreeRoamMapPlayerMarkers:246",
+    "line": 252,
+    "in_function": "Module:_bindVehicle",
+    "via": "wrapper Module:_bindVehicle()",
+    "receiver_path": null,
+    "name": "RaceFinishedPendingExit"
+   },
+   {
+    "receiver": "ownedVehicleFromSeat(record.Player, seatPart)",
+    "receiver_kind": "other",
+    "wrapper_defined": "FreeRoamMapPlayerMarkers:246",
+    "line": 261,
+    "in_function": "Module:_refreshSeatedVehicle",
+    "via": "wrapper Module:_bindVehicle()",
+    "receiver_path": null,
+    "name": "RaceParticipant"
+   },
+   {
+    "receiver": "ownedVehicleFromSeat(record.Player, seatPart)",
+    "receiver_kind": "other",
+    "wrapper_defined": "FreeRoamMapPlayerMarkers:246",
+    "line": 261,
+    "in_function": "Module:_refreshSeatedVehicle",
+    "via": "wrapper Module:_bindVehicle()",
+    "receiver_path": null,
+    "name": "RaceRunId"
+   },
+   {
+    "receiver": "ownedVehicleFromSeat(record.Player, seatPart)",
+    "receiver_kind": "other",
+    "wrapper_defined": "FreeRoamMapPlayerMarkers:246",
+    "line": 261,
+    "in_function": "Module:_refreshSeatedVehicle",
+    "via": "wrapper Module:_bindVehicle()",
+    "receiver_path": null,
+    "name": "RaceMode"
+   },
+   {
+    "receiver": "ownedVehicleFromSeat(record.Player, seatPart)",
+    "receiver_kind": "other",
+    "wrapper_defined": "FreeRoamMapPlayerMarkers:246",
+    "line": 261,
+    "in_function": "Module:_refreshSeatedVehicle",
+    "via": "wrapper Module:_bindVehicle()",
+    "receiver_path": null,
+    "name": "RaceFinishedPendingExit"
+   },
+   {
+    "receiver": "nil",
+    "receiver_kind": "other",
+    "wrapper_defined": "FreeRoamMapPlayerMarkers:246",
+    "line": 266,
+    "in_function": "Module:_bindCharacter",
+    "via": "wrapper Module:_bindVehicle()",
+    "receiver_path": null,
+    "name": "RaceParticipant"
+   },
+   {
+    "receiver": "nil",
+    "receiver_kind": "other",
+    "wrapper_defined": "FreeRoamMapPlayerMarkers:246",
+    "line": 266,
+    "in_function": "Module:_bindCharacter",
+    "via": "wrapper Module:_bindVehicle()",
+    "receiver_path": null,
+    "name": "RaceRunId"
+   },
+   {
+    "receiver": "nil",
+    "receiver_kind": "other",
+    "wrapper_defined": "FreeRoamMapPlayerMarkers:246",
+    "line": 266,
+    "in_function": "Module:_bindCharacter",
+    "via": "wrapper Module:_bindVehicle()",
+    "receiver_path": null,
+    "name": "RaceMode"
+   },
+   {
+    "receiver": "nil",
+    "receiver_kind": "other",
+    "wrapper_defined": "FreeRoamMapPlayerMarkers:246",
+    "line": 266,
+    "in_function": "Module:_bindCharacter",
+    "via": "wrapper Module:_bindVehicle()",
+    "receiver_path": null,
+    "name": "RaceFinishedPendingExit"
+   },
+   {
+    "receiver": "nil",
+    "receiver_kind": "other",
+    "wrapper_defined": "FreeRoamMapPlayerMarkers:246",
+    "line": 299,
+    "in_function": "Module:_bindCharacter",
+    "via": "wrapper Module:_bindVehicle()",
+    "receiver_path": null,
+    "name": "RaceParticipant"
+   },
+   {
+    "receiver": "nil",
+    "receiver_kind": "other",
+    "wrapper_defined": "FreeRoamMapPlayerMarkers:246",
+    "line": 299,
+    "in_function": "Module:_bindCharacter",
+    "via": "wrapper Module:_bindVehicle()",
+    "receiver_path": null,
+    "name": "RaceRunId"
+   },
+   {
+    "receiver": "nil",
+    "receiver_kind": "other",
+    "wrapper_defined": "FreeRoamMapPlayerMarkers:246",
+    "line": 299,
+    "in_function": "Module:_bindCharacter",
+    "via": "wrapper Module:_bindVehicle()",
+    "receiver_path": null,
+    "name": "RaceMode"
+   },
+   {
+    "receiver": "nil",
+    "receiver_kind": "other",
+    "wrapper_defined": "FreeRoamMapPlayerMarkers:246",
+    "line": 299,
+    "in_function": "Module:_bindCharacter",
+    "via": "wrapper Module:_bindVehicle()",
+    "receiver_path": null,
+    "name": "RaceFinishedPendingExit"
+   },
+   {
+    "receiver": "otherPlayer",
+    "receiver_kind": "player?",
+    "wrapper_defined": "FreeRoamMapPlayerMarkers:342",
+    "line": 367,
+    "in_function": "Module:_fillCapacity",
+    "via": "wrapper Module:_addPlayer()",
+    "receiver_path": null,
+    "name": "GarageSessionActive"
+   },
+   {
+    "receiver": "otherPlayer",
+    "receiver_kind": "player?",
+    "wrapper_defined": "FreeRoamMapPlayerMarkers:342",
+    "line": 367,
+    "in_function": "Module:_fillCapacity",
+    "via": "wrapper Module:_addPlayer()",
+    "receiver_path": null,
+    "name": "OwnedGarageInside"
+   },
+   {
+    "receiver": "otherPlayer",
+    "receiver_kind": "player?",
+    "wrapper_defined": "FreeRoamMapPlayerMarkers:342",
+    "line": 367,
+    "in_function": "Module:_fillCapacity",
+    "via": "wrapper Module:_addPlayer()",
+    "receiver_path": null,
+    "name": "RaceSessionActive"
+   }
+  ]
+ },
+ "player_attribute_writes": [],
+ "screenguis": {
+  "created": [],
+  "enabled_writes": [
+   {
+    "receiver": "self",
+    "receiver_path": null,
+    "value": {
+     "expr": "self.Config:GetAttribute(\"Enabled\") ~= false"
+    },
+    "screengui_like": "unknown",
+    "reason": "",
+    "line": 192,
+    "in_function": "Module:_readConfig"
+   }
+  ]
+ },
+ "names": {
+  "assigned": [
+   {
+    "via": "property",
+    "receiver": "overlay",
+    "class": "Frame",
+    "line": 164,
+    "in_function": "Module.new",
+    "name": "OtherPlayerMarkers"
+   },
+   {
+    "via": "property",
+    "receiver": "marker",
+    "class": "ImageLabel",
+    "line": 309,
+    "in_function": "Module:_addPlayer",
+    "name": null,
+    "name_pattern": "Player_*",
+    "name_expr": "\"Player_\" .. tostring(otherPlayer.UserId)"
+   }
+  ],
+  "looked_up": [
+   {
+    "method": "FindFirstChild",
+    "receiver": "self.Container",
+    "receiver_path": null,
+    "root": null,
+    "line": 161,
+    "in_function": "Module.new",
+    "name": "OtherPlayerMarkers"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "child",
+    "receiver_path": null,
+    "root": null,
+    "receiver_isa": [
+     "BasePart",
+     "Humanoid"
+    ],
+    "line": 283,
+    "in_function": "Module:_bindCharacter",
+    "name": "HumanoidRootPart"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "otherPlayer.Character",
+    "root": null,
+    "wrapper_defined": "FreeRoamMapPlayerMarkers:268",
+    "line": 350,
+    "in_function": "Module:_addPlayer",
+    "via": "wrapper Module:_bindCharacter()",
+    "name": "HumanoidRootPart",
+    "receiver_path": null,
+    "receiver_kind": "character?"
+   }
+  ],
+  "text_compared": []
+ },
+ "run_service": {
+  "render_steps": [],
+  "connects": []
+ },
+ "context_actions": [],
+ "user_input_service": {
+  "connects": [],
+  "members_used": []
+ },
+ "audio": {
+  "bridge_calls": [],
+  "ui_audio_attributes": []
+ },
+ "config": {
+  "paths": [],
+  "attribute_reads": [
+   {
+    "receiver": "self.Config",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "line": 192,
+    "in_function": "Module:_readConfig",
+    "name": "Enabled",
+    "access": "read"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "FreeRoamMapPlayerMarkers:29",
+    "line": 193,
+    "in_function": "Module:_readConfig",
+    "via": "wrapper numberAttribute()",
+    "name": "OtherPlayerMarkerScale",
+    "receiver_path": null,
+    "access": "read"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "FreeRoamMapPlayerMarkers:29",
+    "line": 194,
+    "in_function": "Module:_readConfig",
+    "via": "wrapper numberAttribute()",
+    "name": "MinimumMarkerSizePixels",
+    "receiver_path": null,
+    "access": "read"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "FreeRoamMapPlayerMarkers:29",
+    "line": 195,
+    "in_function": "Module:_readConfig",
+    "via": "wrapper numberAttribute()",
+    "name": "MaximumMarkerSizePixels",
+    "receiver_path": null,
+    "access": "read"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "FreeRoamMapPlayerMarkers:29",
+    "line": 196,
+    "in_function": "Module:_readConfig",
+    "via": "wrapper numberAttribute()",
+    "name": "MaximumOtherPlayers",
+    "receiver_path": null,
+    "access": "read"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "FreeRoamMapPlayerMarkers:29",
+    "line": 197,
+    "in_function": "Module:_readConfig",
+    "via": "wrapper numberAttribute()",
+    "name": "MarkerResponse",
+    "receiver_path": null,
+    "access": "read"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "FreeRoamMapPlayerMarkers:29",
+    "line": 198,
+    "in_function": "Module:_readConfig",
+    "via": "wrapper numberAttribute()",
+    "name": "EdgeOverscanPixels",
+    "receiver_path": null,
+    "access": "read"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "FreeRoamMapPlayerMarkers:29",
+    "line": 199,
+    "in_function": "Module:_readConfig",
+    "via": "wrapper numberAttribute()",
+    "name": "PositionEpsilonPixels",
+    "receiver_path": null,
+    "access": "read"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "line": 200,
+    "in_function": "Module:_readConfig",
+    "name": "OtherPlayerIcon",
+    "access": "read"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "FreeRoamMapPlayerMarkers:35",
+    "line": 201,
+    "in_function": "Module:_readConfig",
+    "via": "wrapper colorAttribute()",
+    "name": "MarkerColor",
+    "receiver_path": null,
+    "access": "read"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "FreeRoamMapPlayerMarkers:35",
+    "line": 202,
+    "in_function": "Module:_readConfig",
+    "via": "wrapper colorAttribute()",
+    "name": "MarkerStrokeColor",
+    "receiver_path": null,
+    "access": "read"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "FreeRoamMapPlayerMarkers:29",
+    "line": 203,
+    "in_function": "Module:_readConfig",
+    "via": "wrapper numberAttribute()",
+    "name": "MarkerBackgroundTransparency",
+    "receiver_path": null,
+    "access": "read"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "FreeRoamMapPlayerMarkers:29",
+    "line": 204,
+    "in_function": "Module:_readConfig",
+    "via": "wrapper numberAttribute()",
+    "name": "MarkerStrokeTransparency",
+    "receiver_path": null,
+    "access": "read"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "FreeRoamMapPlayerMarkers:29",
+    "line": 205,
+    "in_function": "Module:_readConfig",
+    "via": "wrapper numberAttribute()",
+    "name": "MarkerStrokeThickness",
+    "receiver_path": null,
+    "access": "read"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "line": 176,
+    "in_function": "Module.new",
+    "name": "Enabled",
+    "via": "literal list",
+    "access": "listen"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "line": 176,
+    "in_function": "Module.new",
+    "name": "OtherPlayerMarkerScale",
+    "via": "literal list",
+    "access": "listen"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "line": 176,
+    "in_function": "Module.new",
+    "name": "MinimumMarkerSizePixels",
+    "via": "literal list",
+    "access": "listen"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "line": 176,
+    "in_function": "Module.new",
+    "name": "MaximumMarkerSizePixels",
+    "via": "literal list",
+    "access": "listen"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "line": 176,
+    "in_function": "Module.new",
+    "name": "MaximumOtherPlayers",
+    "via": "literal list",
+    "access": "listen"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "line": 176,
+    "in_function": "Module.new",
+    "name": "MarkerResponse",
+    "via": "literal list",
+    "access": "listen"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "line": 176,
+    "in_function": "Module.new",
+    "name": "EdgeOverscanPixels",
+    "via": "literal list",
+    "access": "listen"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "line": 176,
+    "in_function": "Module.new",
+    "name": "PositionEpsilonPixels",
+    "via": "literal list",
+    "access": "listen"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "line": 176,
+    "in_function": "Module.new",
+    "name": "OtherPlayerIcon",
+    "via": "literal list",
+    "access": "listen"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "line": 176,
+    "in_function": "Module.new",
+    "name": "MarkerColor",
+    "via": "literal list",
+    "access": "listen"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "line": 176,
+    "in_function": "Module.new",
+    "name": "MarkerStrokeColor",
+    "via": "literal list",
+    "access": "listen"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "line": 176,
+    "in_function": "Module.new",
+    "name": "MarkerBackgroundTransparency",
+    "via": "literal list",
+    "access": "listen"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "line": 176,
+    "in_function": "Module.new",
+    "name": "MarkerStrokeTransparency",
+    "via": "literal list",
+    "access": "listen"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "line": 176,
+    "in_function": "Module.new",
+    "name": "MarkerStrokeThickness",
+    "via": "literal list",
+    "access": "listen"
+   }
+  ],
+  "child_lookups": []
+ },
+ "startergui_core": [],
+ "gui_service": [],
+ "other_services": {},
+ "service_connects": [],
+ "proximity_prompts": [],
+ "instances_created_by_class": {
+  "Frame": 1,
+  "ImageLabel": 1,
+  "UICorner": 1,
+  "UIStroke": 1
+ },
+ "public_api": [
+  {
+   "name": "__index",
+   "kind": "field",
+   "line": 9,
+   "value": "Module"
+  },
+  {
+   "name": "ResolveRotation",
+   "kind": "function",
+   "params": [
+    "config",
+    "localPlayer"
+   ],
+   "line": 92
+  },
+  {
+   "name": "MapHeading",
+   "kind": "function",
+   "params": [
+    "lookVector",
+    "cosine",
+    "sine",
+    "flipX",
+    "flipZ"
+   ],
+   "line": 111
+  },
+  {
+   "name": "StepHeading",
+   "kind": "function",
+   "params": [
+    "displayed",
+    "target",
+    "response",
+    "dt"
+   ],
+   "line": 121
+  },
+  {
+   "name": "PlaceNorth",
+   "kind": "function",
+   "params": [
+    "arrow",
+    "rotation",
+    "mapRotation",
+    "mapSize",
+    "cornerAnchor",
+    "cornerPosition"
+   ],
+   "line": 130
+  },
+  {
+   "name": "new",
+   "kind": "function",
+   "params": [
+    "options"
+   ],
+   "line": 148
+  },
+  {
+   "name": "_readConfig",
+   "kind": "function",
+   "params": [],
+   "line": 191
+  },
+  {
+   "name": "_styleMarker",
+   "kind": "function",
+   "params": [
+    "record"
+   ],
+   "line": 211
+  },
+  {
+   "name": "_recordCount",
+   "kind": "function",
+   "params": [],
+   "line": 223
+  },
+  {
+   "name": "_updateEligibility",
+   "kind": "function",
+   "params": [
+    "record"
+   ],
+   "line": 229
+  },
+  {
+   "name": "_bindVehicle",
+   "kind": "function",
+   "params": [
+    "record",
+    "vehicle"
+   ],
+   "line": 237
+  },
+  {
+   "name": "_refreshSeatedVehicle",
+   "kind": "function",
+   "params": [
+    "record"
+   ],
+   "line": 259
+  },
+  {
+   "name": "_bindCharacter",
+   "kind": "function",
+   "params": [
+    "record",
+    "character"
+   ],
+   "line": 264
+  },
+  {
+   "name": "_addPlayer",
+   "kind": "function",
+   "params": [
+    "otherPlayer"
+   ],
+   "line": 304
+  },
+  {
+   "name": "_removePlayer",
+   "kind": "function",
+   "params": [
+    "otherPlayer"
+   ],
+   "line": 353
+  },
+  {
+   "name": "_fillCapacity",
+   "kind": "function",
+   "params": [],
+   "line": 363
+  },
+  {
+   "name": "SetVisible",
+   "kind": "function",
+   "params": [
+    "visible"
+   ],
+   "line": 371
+  },
+  {
+   "name": "Step",
+   "kind": "function",
+   "params": [
+    "dt",
+    "state"
+   ],
+   "line": 381
+  },
+  {
+   "name": "Destroy",
+   "kind": "function",
+   "params": [],
+   "line": 447
+  }
+ ],
+ "unresolved": [
+  {
+   "category": "attribute_listens",
+   "line": 181,
+   "detail": "name comes from parameter of anonymous function(); no call site found statically"
+  },
+  {
+   "category": "names_assigned",
+   "field": "name",
+   "line": 309,
+   "detail": "name built at run time: \"Player_\" .. tostring(otherPlayer.UserId)"
+  },
+  {
+   "category": "lookups",
+   "line": 347,
+   "detail": "name comes from parameter of anonymous function(); no call site found statically"
+  }
+ ],
+ "contract_file": "FreeRoamMapPlayerMarkers.json"
+}

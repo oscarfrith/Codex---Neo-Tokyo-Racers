@@ -1,0 +1,434 @@
+{
+ "script": "ReplicatedStorage.Modules.Game.Development.LightingPreviewClient",
+ "class": "ModuleScript",
+ "source_file": "classic/sources/ReplicatedStorage.Modules.Game.Development.LightingPreviewClient.lua",
+ "source_lines": 79,
+ "included_because": [
+  "ClientBase entry 'LightingPreviewClient'"
+ ],
+ "requires": [
+  {
+   "expr": "game:GetService(\"ReplicatedStorage\").Modules.Core.ClientLifecycle",
+   "line": 7,
+   "in_function": "Client.start",
+   "target": "ReplicatedStorage.Modules.Core.ClientLifecycle"
+  },
+  {
+   "expr": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"World\"):WaitForChild(\"LightingPresets\")",
+   "as": "presets",
+   "line": 16,
+   "in_function": "Client.start",
+   "target": "ReplicatedStorage.Modules.Game.World.LightingPresets"
+  },
+  {
+   "expr": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"World\"):WaitForChild(\"LightingSchedule\")",
+   "as": "schedule",
+   "line": 18,
+   "in_function": "Client.start",
+   "target": "ReplicatedStorage.Modules.Game.World.LightingSchedule"
+  },
+  {
+   "expr": "ReplicatedStorage.Modules.Game.World.LightingClient",
+   "as": "renderer",
+   "line": 19,
+   "in_function": "Client.start",
+   "target": "ReplicatedStorage.Modules.Game.World.LightingClient"
+  },
+  {
+   "expr": "ReplicatedStorage.Modules.Game.World.LightingCycle",
+   "as": "Cycle",
+   "line": 22,
+   "in_function": "Client.start",
+   "target": "ReplicatedStorage.Modules.Game.World.LightingCycle"
+  }
+ ],
+ "remotes": {
+  "calls": [],
+  "listens": []
+ },
+ "bindables": {
+  "fires": [],
+  "connects": [],
+  "invokes": [],
+  "handlers": [],
+  "created": [],
+  "module_signal_fires": []
+ },
+ "attributes": {
+  "reads": [
+   {
+    "receiver": "runtime",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime.World",
+    "receiver_kind": "playerScripts",
+    "line": 28,
+    "in_function": "Client.start",
+    "name": "LightingPreviewClockTime"
+   },
+   {
+    "receiver": "Lighting",
+    "receiver_path": "Lighting",
+    "receiver_kind": "other",
+    "line": 33,
+    "in_function": "Client.start",
+    "name": "LightingCycleState"
+   }
+  ],
+  "writes": [
+   {
+    "receiver": "runtime",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime.World",
+    "receiver_kind": "playerScripts",
+    "value": null,
+    "line": 26,
+    "in_function": "Client.start",
+    "name": "LightingPreviewClockTime"
+   },
+   {
+    "receiver": "runtime",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime.World",
+    "receiver_kind": "playerScripts",
+    "value": {
+     "expr": "(current+(input.KeyCode==Enum.KeyCode.RightBracket and .25 or -.25))%24"
+    },
+    "line": 29,
+    "in_function": "Client.start",
+    "name": "LightingPreviewClockTime"
+   },
+   {
+    "receiver": "runtime",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime.World",
+    "receiver_kind": "playerScripts",
+    "value": {
+     "expr": "Cycle.previewClock(cycle,preset)"
+    },
+    "line": 35,
+    "in_function": "Client.start",
+    "name": "LightingPreviewClockTime"
+   },
+   {
+    "receiver": "runtime",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime.World",
+    "receiver_kind": "playerScripts",
+    "value": null,
+    "line": 37,
+    "in_function": "Client.start",
+    "name": "LightingPreviewClockTime"
+   },
+   {
+    "receiver": "Lighting",
+    "receiver_path": "Lighting",
+    "receiver_kind": "other",
+    "value": {
+     "expr": "stage.Preset"
+    },
+    "line": 58,
+    "in_function": "apply",
+    "name": "LightingPreset"
+   },
+   {
+    "receiver": "Lighting",
+    "receiver_path": "Lighting",
+    "receiver_kind": "other",
+    "value": {
+     "expr": "stage.StreetLightsOn==true"
+    },
+    "line": 59,
+    "in_function": "apply",
+    "name": "StreetLightsOn"
+   },
+   {
+    "receiver": "Lighting",
+    "receiver_path": "Lighting",
+    "receiver_kind": "other",
+    "value": {
+     "expr": "stage.WindowMode or \"Day\""
+    },
+    "line": 60,
+    "in_function": "apply",
+    "name": "WindowMode"
+   }
+  ],
+  "listens": []
+ },
+ "player_attribute_writes": [],
+ "screenguis": {
+  "created": [],
+  "enabled_writes": []
+ },
+ "names": {
+  "assigned": [
+   {
+    "via": "property",
+    "receiver": "effect",
+    "class": null,
+    "line": 45,
+    "in_function": "Client.start",
+    "name": null,
+    "name_expr": "spec[2]"
+   },
+   {
+    "via": "property",
+    "receiver": "sky",
+    "class": null,
+    "line": 56,
+    "in_function": "apply",
+    "name": "ActiveSky"
+   }
+  ],
+  "looked_up": [
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 6,
+    "in_function": "Client.start",
+    "name": "Config"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\")",
+    "receiver_path": "ReplicatedStorage.Config",
+    "root": "ReplicatedStorage",
+    "line": 6,
+    "in_function": "Client.start",
+    "name": "Development"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 16,
+    "in_function": "Client.start",
+    "name": "Modules"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\")",
+    "receiver_path": "ReplicatedStorage.Modules",
+    "root": "ReplicatedStorage",
+    "line": 16,
+    "in_function": "Client.start",
+    "name": "Game"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game",
+    "root": "ReplicatedStorage",
+    "line": 16,
+    "in_function": "Client.start",
+    "name": "World"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"World\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game.World",
+    "root": "ReplicatedStorage",
+    "line": 16,
+    "in_function": "Client.start",
+    "name": "LightingPresets"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 17,
+    "in_function": "Client.start",
+    "name": "Assets"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Assets\")",
+    "receiver_path": "ReplicatedStorage.Assets",
+    "root": "ReplicatedStorage",
+    "line": 17,
+    "in_function": "Client.start",
+    "name": "World"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Assets\"):WaitForChild(\"World\")",
+    "receiver_path": "ReplicatedStorage.Assets.World",
+    "root": "ReplicatedStorage",
+    "line": 17,
+    "in_function": "Client.start",
+    "name": "Skies"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 18,
+    "in_function": "Client.start",
+    "name": "Modules"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\")",
+    "receiver_path": "ReplicatedStorage.Modules",
+    "root": "ReplicatedStorage",
+    "line": 18,
+    "in_function": "Client.start",
+    "name": "Game"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game",
+    "root": "ReplicatedStorage",
+    "line": 18,
+    "in_function": "Client.start",
+    "name": "World"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"World\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game.World",
+    "root": "ReplicatedStorage",
+    "line": 18,
+    "in_function": "Client.start",
+    "name": "LightingSchedule"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game.Players.LocalPlayer",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 21,
+    "in_function": "Client.start",
+    "name": "PlayerScripts"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game.Players.LocalPlayer:WaitForChild(\"PlayerScripts\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts",
+    "root": "Players",
+    "line": 21,
+    "in_function": "Client.start",
+    "name": "Runtime"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game.Players.LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"Runtime\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime",
+    "root": "Players",
+    "line": 21,
+    "in_function": "Client.start",
+    "name": "World"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "Lighting",
+    "receiver_path": "Lighting",
+    "root": "Lighting",
+    "line": 45,
+    "in_function": "Client.start",
+    "name": null,
+    "name_expr": "spec[2]"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "skies",
+    "receiver_path": "ReplicatedStorage.Assets.World.Skies",
+    "root": "ReplicatedStorage",
+    "line": 55,
+    "in_function": "apply",
+    "name": null,
+    "name_expr": "preset.SkyName"
+   }
+  ],
+  "text_compared": []
+ },
+ "run_service": {
+  "render_steps": [],
+  "connects": []
+ },
+ "context_actions": [],
+ "user_input_service": {
+  "connects": [
+   {
+    "signal": "InputBegan",
+    "method": "Connect",
+    "line": 24,
+    "in_function": "Client.start"
+   },
+   {
+    "signal": "InputBegan",
+    "method": "Connect",
+    "line": 65,
+    "in_function": "Client.start"
+   }
+  ],
+  "members_used": [
+   {
+    "member": "InputBegan",
+    "kind": "connect",
+    "line": 24,
+    "in_function": "Client.start"
+   },
+   {
+    "member": "InputBegan",
+    "kind": "connect",
+    "line": 65,
+    "in_function": "Client.start"
+   }
+  ]
+ },
+ "audio": {
+  "bridge_calls": [],
+  "ui_audio_attributes": []
+ },
+ "config": {
+  "paths": [
+   {
+    "path": "ReplicatedStorage.Config",
+    "line": 6
+   },
+   {
+    "path": "ReplicatedStorage.Config.Development.ClientTools",
+    "line": 6
+   }
+  ],
+  "attribute_reads": [],
+  "child_lookups": []
+ },
+ "startergui_core": [],
+ "gui_service": [],
+ "other_services": {},
+ "service_connects": [],
+ "proximity_prompts": [],
+ "instances_created_by_class": {},
+ "public_api": [
+  {
+   "name": "start",
+   "kind": "function",
+   "params": [],
+   "line": 4
+  }
+ ],
+ "unresolved": [
+  {
+   "category": "lookups",
+   "field": "name",
+   "line": 45,
+   "detail": "not a literal: spec[2]"
+  },
+  {
+   "category": "names_assigned",
+   "field": "name",
+   "line": 45,
+   "detail": "not a literal: spec[2]"
+  },
+  {
+   "category": "lookups",
+   "field": "name",
+   "line": 55,
+   "detail": "not a literal: preset.SkyName"
+  }
+ ],
+ "contract_file": "LightingPreviewClient.json"
+}

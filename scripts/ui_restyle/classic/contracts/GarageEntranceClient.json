@@ -1,0 +1,1057 @@
+{
+ "script": "ReplicatedStorage.Modules.Game.Dealership.GarageEntranceClient",
+ "class": "ModuleScript",
+ "source_file": "classic/sources/ReplicatedStorage.Modules.Game.Dealership.GarageEntranceClient.lua",
+ "source_lines": 227,
+ "included_because": [
+  "ClientBase entry 'GarageEntranceClient'"
+ ],
+ "requires": [
+  {
+   "expr": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Audio\"):WaitForChild(\"PresentationAudioBridge\")",
+   "as": "AudioBridge",
+   "line": 18,
+   "in_function": "Client.start",
+   "target": "ReplicatedStorage.Modules.Game.Audio.PresentationAudioBridge"
+  }
+ ],
+ "remotes": {
+  "calls": [
+   {
+    "method": "InvokeServer",
+    "receiver": "request",
+    "arg_count": 2,
+    "line": 178,
+    "in_function": "Client.start",
+    "remote": "ReplicatedStorage.Remotes.UI.GarageSessionRequest",
+    "action": "Begin",
+    "payload_keys": [
+     "Mode"
+    ]
+   },
+   {
+    "method": "InvokeServer",
+    "receiver": "request",
+    "arg_count": 2,
+    "line": 196,
+    "in_function": "Client.start",
+    "remote": "ReplicatedStorage.Remotes.UI.GarageSessionRequest",
+    "action": "End",
+    "payload_keys": [
+     "ReturnToEntry"
+    ]
+   }
+  ],
+  "listens": []
+ },
+ "bindables": {
+  "fires": [
+   {
+    "receiver": "notification",
+    "created_here": false,
+    "lookup": "Players.LocalPlayer.PlayerScripts.Runtime.UI",
+    "arg_count": 1,
+    "wrapper_defined": "GarageEntranceClient:97",
+    "line": 170,
+    "in_function": "Client.start",
+    "via": "wrapper flash()",
+    "name": "ShowTopNotification",
+    "payload": null,
+    "payload_expr": "\"Drive your owned vehicle into the bay first.\""
+   },
+   {
+    "receiver": "notification",
+    "created_here": false,
+    "lookup": "Players.LocalPlayer.PlayerScripts.Runtime.UI",
+    "arg_count": 1,
+    "wrapper_defined": "GarageEntranceClient:97",
+    "line": 184,
+    "in_function": "Client.start",
+    "via": "wrapper flash()",
+    "name": "ShowTopNotification",
+    "payload": null,
+    "payload_expr": "message"
+   },
+   {
+    "receiver": "event",
+    "created_here": false,
+    "lookup": "Players.LocalPlayer.PlayerScripts.Runtime.Dealership",
+    "arg_count": 1,
+    "line": 194,
+    "in_function": "Client.start",
+    "name": null,
+    "name_expr": "definition.Event",
+    "payload_keys": [
+     "LoadingGeneration",
+     "LoadingDestination"
+    ]
+   },
+   {
+    "receiver": "notification",
+    "created_here": false,
+    "lookup": "Players.LocalPlayer.PlayerScripts.Runtime.UI",
+    "arg_count": 1,
+    "wrapper_defined": "GarageEntranceClient:97",
+    "line": 199,
+    "in_function": "Client.start",
+    "via": "wrapper flash()",
+    "name": "ShowTopNotification",
+    "payload": null,
+    "payload_expr": "\"Garage UI handoff is unavailable.\""
+   }
+  ],
+  "connects": [],
+  "invokes": [
+   {
+    "receiver": "loadingInvoke",
+    "created_here": false,
+    "lookup": "Players.LocalPlayer.PlayerScripts.Runtime.UI",
+    "wrapper_defined": "GarageEntranceClient:113",
+    "line": 189,
+    "in_function": "Client.start",
+    "via": "wrapper loadingAction()",
+    "name": "LoadingTransitionInvoke",
+    "action": "Begin",
+    "payload_keys": [
+     "Destination",
+     "Status"
+    ]
+   },
+   {
+    "receiver": "loadingInvoke",
+    "created_here": false,
+    "lookup": "Players.LocalPlayer.PlayerScripts.Runtime.UI",
+    "wrapper_defined": "GarageEntranceClient:113",
+    "line": 198,
+    "in_function": "Client.start",
+    "via": "wrapper loadingAction()",
+    "name": "LoadingTransitionInvoke",
+    "action": "Fail",
+    "payload_keys": [
+     "Generation",
+     "Status",
+     "Reason"
+    ],
+    "payload_literals": {
+     "Status": "RETURNING",
+     "Reason": "Garage UI handoff unavailable"
+    }
+   }
+  ],
+  "handlers": [],
+  "created": [],
+  "module_signal_fires": []
+ },
+ "attributes": {
+  "reads": [
+   {
+    "receiver": "vehicle",
+    "receiver_path": null,
+    "receiver_kind": "vehicle?",
+    "line": 62,
+    "in_function": "drivingOwnVehicle",
+    "name": "OwnerUserId"
+   },
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "line": 130,
+    "in_function": "garageIsActive",
+    "name": "GarageEntryMode"
+   }
+  ],
+  "writes": [
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "value": {
+     "expr": "definition.Mode"
+    },
+    "line": 190,
+    "in_function": "Client.start",
+    "name": "GarageEntryMode"
+   },
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "value": null,
+    "line": 197,
+    "in_function": "Client.start",
+    "name": "GarageEntryMode"
+   }
+  ],
+  "listens": [
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "line": 206,
+    "in_function": "Client.start",
+    "name": "GarageEntryMode"
+   }
+  ]
+ },
+ "player_attribute_writes": [
+  {
+   "receiver": "player",
+   "receiver_path": "Players.LocalPlayer",
+   "receiver_kind": "player",
+   "value": {
+    "expr": "definition.Mode"
+   },
+   "line": 190,
+   "in_function": "Client.start",
+   "name": "GarageEntryMode"
+  },
+  {
+   "receiver": "player",
+   "receiver_path": "Players.LocalPlayer",
+   "receiver_kind": "player",
+   "value": null,
+   "line": 197,
+   "in_function": "Client.start",
+   "name": "GarageEntryMode"
+  }
+ ],
+ "screenguis": {
+  "created": [
+   {
+    "variable": "statusGui",
+    "class": "ScreenGui",
+    "line": 70,
+    "factory": null,
+    "adopts_existing": false,
+    "Name": "GarageEntranceStatus",
+    "DisplayOrder": 90,
+    "ResetOnSpawn": false,
+    "IgnoreGuiInset": true,
+    "Parent": {
+     "expr": "player.PlayerGui"
+    },
+    "enabled_writes": [],
+    "property_lines": {
+     "Name": 71,
+     "ResetOnSpawn": 72,
+     "IgnoreGuiInset": 73,
+     "DisplayOrder": 74,
+     "Parent": 75
+    }
+   }
+  ],
+  "enabled_writes": [
+   {
+    "receiver": "entry.Prompt",
+    "receiver_path": null,
+    "value": {
+     "expr": "enabled"
+    },
+    "screengui_like": "unknown",
+    "reason": "",
+    "line": 140,
+    "in_function": "refreshPromptAvailability"
+   }
+  ]
+ },
+ "names": {
+  "assigned": [
+   {
+    "via": "property",
+    "receiver": "statusGui",
+    "class": "ScreenGui",
+    "line": 71,
+    "in_function": "Client.start",
+    "name": "GarageEntranceStatus"
+   },
+   {
+    "via": "property",
+    "receiver": "prompt",
+    "class": "ProximityPrompt",
+    "line": 153,
+    "in_function": "Client.start",
+    "name": null,
+    "name_pattern": "Canonical*",
+    "name_expr": "\"Canonical\" .. definition.Mode"
+   }
+  ],
+  "looked_up": [
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 15,
+    "in_function": "Client.start",
+    "name": "Remotes"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Remotes\")",
+    "receiver_path": "ReplicatedStorage.Remotes",
+    "root": "ReplicatedStorage",
+    "line": 15,
+    "in_function": "Client.start",
+    "name": "UI"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Remotes\"):WaitForChild(\"UI\")",
+    "receiver_path": "ReplicatedStorage.Remotes.UI",
+    "root": "ReplicatedStorage",
+    "line": 15,
+    "in_function": "Client.start",
+    "name": "GarageSessionRequest"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 16,
+    "in_function": "Client.start",
+    "name": "Config"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\")",
+    "receiver_path": "ReplicatedStorage.Config",
+    "root": "ReplicatedStorage",
+    "line": 16,
+    "in_function": "Client.start",
+    "name": "UI"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\"):WaitForChild(\"UI\")",
+    "receiver_path": "ReplicatedStorage.Config.UI",
+    "root": "ReplicatedStorage",
+    "line": 16,
+    "in_function": "Client.start",
+    "name": "GarageExperience"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 17,
+    "in_function": "Client.start",
+    "name": "PlayerScripts"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts",
+    "root": "Players",
+    "line": 17,
+    "in_function": "Client.start",
+    "name": "Runtime"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"Runtime\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime",
+    "root": "Players",
+    "line": 17,
+    "in_function": "Client.start",
+    "name": "UI"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"Runtime\"):WaitForChild(\"UI\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime.UI",
+    "root": "Players",
+    "line": 17,
+    "in_function": "Client.start",
+    "name": "LoadingTransitionInvoke"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 18,
+    "in_function": "Client.start",
+    "name": "Modules"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\")",
+    "receiver_path": "ReplicatedStorage.Modules",
+    "root": "ReplicatedStorage",
+    "line": 18,
+    "in_function": "Client.start",
+    "name": "Game"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game",
+    "root": "ReplicatedStorage",
+    "line": 18,
+    "in_function": "Client.start",
+    "name": "Audio"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Audio\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game.Audio",
+    "root": "ReplicatedStorage",
+    "line": 18,
+    "in_function": "Client.start",
+    "name": "PresentationAudioBridge"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Workspace\")",
+    "receiver_path": "Workspace",
+    "root": "Workspace",
+    "line": 31,
+    "in_function": "entranceDefinitions",
+    "name": "World"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Workspace\"):WaitForChild(\"World\")",
+    "receiver_path": "Workspace.World",
+    "root": "Workspace",
+    "line": 31,
+    "in_function": "entranceDefinitions",
+    "name": "Dealership"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Workspace\")",
+    "receiver_path": "Workspace",
+    "root": "Workspace",
+    "line": 32,
+    "in_function": "entranceDefinitions",
+    "name": "World"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Workspace\"):WaitForChild(\"World\")",
+    "receiver_path": "Workspace.World",
+    "root": "Workspace",
+    "line": 32,
+    "in_function": "entranceDefinitions",
+    "name": "Dealership"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Workspace\"):WaitForChild(\"World\"):WaitForChild(\"Dealership\")",
+    "receiver_path": "Workspace.World.Dealership",
+    "root": "Workspace",
+    "line": 32,
+    "in_function": "entranceDefinitions",
+    "name": "Intro"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Workspace\")",
+    "receiver_path": "Workspace",
+    "root": "Workspace",
+    "line": 33,
+    "in_function": "entranceDefinitions",
+    "name": "World"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Workspace\"):WaitForChild(\"World\")",
+    "receiver_path": "Workspace.World",
+    "root": "Workspace",
+    "line": 33,
+    "in_function": "entranceDefinitions",
+    "name": "Dealership"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Workspace\"):WaitForChild(\"World\"):WaitForChild(\"Dealership\")",
+    "receiver_path": "Workspace.World.Dealership",
+    "root": "Workspace",
+    "line": 33,
+    "in_function": "entranceDefinitions",
+    "name": "Customisation"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Workspace\")",
+    "receiver_path": "Workspace",
+    "root": "Workspace",
+    "line": 37,
+    "in_function": "entranceDefinitions",
+    "name": "World"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Workspace\"):WaitForChild(\"World\")",
+    "receiver_path": "Workspace.World",
+    "root": "Workspace",
+    "line": 37,
+    "in_function": "entranceDefinitions",
+    "name": "Dealership"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Workspace\"):WaitForChild(\"World\"):WaitForChild(\"Dealership\")",
+    "receiver_path": "Workspace.World.Dealership",
+    "root": "Workspace",
+    "line": 37,
+    "in_function": "entranceDefinitions",
+    "name": "Intro"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Workspace\"):WaitForChild(\"World\"):WaitForChild(\"Dealership\"):WaitForChild(\"Intro\")",
+    "receiver_path": "Workspace.World.Dealership.Intro",
+    "root": "Workspace",
+    "line": 37,
+    "in_function": "entranceDefinitions",
+    "name": "Desk"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Workspace\"):WaitForChild(\"World\"):WaitForChild(\"Dealership\"):WaitForChild(\"Intro\"):WaitForChild(\"Desk\")",
+    "receiver_path": "Workspace.World.Dealership.Intro.Desk",
+    "root": "Workspace",
+    "line": 37,
+    "in_function": "entranceDefinitions",
+    "name": "GarageDeskTrigger"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Workspace\")",
+    "receiver_path": "Workspace",
+    "root": "Workspace",
+    "line": 43,
+    "in_function": "entranceDefinitions",
+    "name": "World"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Workspace\"):WaitForChild(\"World\")",
+    "receiver_path": "Workspace.World",
+    "root": "Workspace",
+    "line": 43,
+    "in_function": "entranceDefinitions",
+    "name": "Dealership"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Workspace\"):WaitForChild(\"World\"):WaitForChild(\"Dealership\")",
+    "receiver_path": "Workspace.World.Dealership",
+    "root": "Workspace",
+    "line": 43,
+    "in_function": "entranceDefinitions",
+    "name": "Customisation"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Workspace\"):WaitForChild(\"World\"):WaitForChild(\"Dealership\"):WaitForChild(\"Customisation\")",
+    "receiver_path": "Workspace.World.Dealership.Customisation",
+    "root": "Workspace",
+    "line": 43,
+    "in_function": "entranceDefinitions",
+    "name": "CustomisationDeskTrigger"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Workspace\")",
+    "receiver_path": "Workspace",
+    "root": "Workspace",
+    "line": 49,
+    "in_function": "entranceDefinitions",
+    "name": "World"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Workspace\"):WaitForChild(\"World\")",
+    "receiver_path": "Workspace.World",
+    "root": "Workspace",
+    "line": 49,
+    "in_function": "entranceDefinitions",
+    "name": "Dealership"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Workspace\"):WaitForChild(\"World\"):WaitForChild(\"Dealership\")",
+    "receiver_path": "Workspace.World.Dealership",
+    "root": "Workspace",
+    "line": 49,
+    "in_function": "entranceDefinitions",
+    "name": "Customisation"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Workspace\"):WaitForChild(\"World\"):WaitForChild(\"Dealership\"):WaitForChild(\"Customisation\")",
+    "receiver_path": "Workspace.World.Dealership.Customisation",
+    "root": "Workspace",
+    "line": 49,
+    "in_function": "entranceDefinitions",
+    "name": "DriveInCustomisationTrigger"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 65,
+    "in_function": "Client.start",
+    "name": "PlayerGui"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "player:WaitForChild(\"PlayerGui\")",
+    "receiver_path": "Players.LocalPlayer.PlayerGui",
+    "root": "Players",
+    "line": 65,
+    "in_function": "Client.start",
+    "name": "GarageEntranceStatus"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageExperience",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "GarageEntranceClient:21",
+    "line": 81,
+    "in_function": "Client.start",
+    "via": "wrapper colour()",
+    "name": "PanelDeep"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageExperience",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "GarageEntranceClient:21",
+    "line": 83,
+    "in_function": "Client.start",
+    "via": "wrapper colour()",
+    "name": "Text"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageExperience",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "GarageEntranceClient:21",
+    "line": 90,
+    "in_function": "Client.start",
+    "via": "wrapper colour()",
+    "name": "Structure"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 96,
+    "in_function": "flash",
+    "name": "PlayerScripts"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts",
+    "root": "Players",
+    "line": 96,
+    "in_function": "flash",
+    "name": "Runtime"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"Runtime\").UI",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime.UI",
+    "root": "Players",
+    "line": 96,
+    "in_function": "flash",
+    "name": "ShowTopNotification"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "definition.Part",
+    "receiver_path": null,
+    "root": null,
+    "line": 149,
+    "in_function": "Client.start",
+    "name": null,
+    "name_pattern": "Canonical*",
+    "name_expr": "\"Canonical\" .. definition.Mode"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageExperience",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "GarageEntranceClient:26",
+    "line": 161,
+    "in_function": "Client.start",
+    "via": "wrapper number()",
+    "name": "PromptDistance"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 192,
+    "in_function": "Client.start",
+    "name": "PlayerScripts"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts",
+    "root": "Players",
+    "line": 192,
+    "in_function": "Client.start",
+    "name": "Runtime"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"Runtime\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime",
+    "root": "Players",
+    "line": 192,
+    "in_function": "Client.start",
+    "name": "Dealership"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"Runtime\"):WaitForChild(\"Dealership\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime.Dealership",
+    "root": "Players",
+    "line": 192,
+    "in_function": "Client.start",
+    "name": null,
+    "name_expr": "definition.Event"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 192,
+    "in_function": "Client.start",
+    "name": "PlayerScripts"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts",
+    "root": "Players",
+    "line": 192,
+    "in_function": "Client.start",
+    "name": "Runtime"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"Runtime\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime",
+    "root": "Players",
+    "line": 192,
+    "in_function": "Client.start",
+    "name": "Dealership"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"Runtime\"):WaitForChild(\"Dealership\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime.Dealership",
+    "root": "Players",
+    "line": 192,
+    "in_function": "Client.start",
+    "name": null,
+    "name_expr": "definition.Event"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 216,
+    "in_function": "Client.start",
+    "name": "PlayerScripts"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts",
+    "root": "Players",
+    "line": 216,
+    "in_function": "Client.start",
+    "name": "Runtime"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"Runtime\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime",
+    "root": "Players",
+    "line": 216,
+    "in_function": "Client.start",
+    "name": "Dealership"
+   }
+  ],
+  "text_compared": []
+ },
+ "run_service": {
+  "render_steps": [],
+  "connects": []
+ },
+ "context_actions": [],
+ "user_input_service": {
+  "connects": [],
+  "members_used": []
+ },
+ "audio": {
+  "bridge_calls": [
+   {
+    "method": "Emit",
+    "receiver": "AudioBridge",
+    "args": [
+     "\"UI.PurchaseRejected\"",
+     "{Reason=\"VehicleRequired\",Route=definition.Mode}"
+    ],
+    "line": 182,
+    "in_function": "Client.start",
+    "cue": "UI.PurchaseRejected",
+    "payload_keys": [
+     "Reason",
+     "Route"
+    ],
+    "payload_literals": {
+     "Reason": "VehicleRequired"
+    }
+   }
+  ],
+  "ui_audio_attributes": []
+ },
+ "config": {
+  "paths": [
+   {
+    "path": "ReplicatedStorage.Config",
+    "line": 16
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI",
+    "line": 16
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI.GarageExperience",
+    "line": 16
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI.GarageExperience.<name>",
+    "line": 21
+   }
+  ],
+  "attribute_reads": [],
+  "child_lookups": [
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageExperience",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "GarageEntranceClient:21",
+    "line": 81,
+    "in_function": "Client.start",
+    "via": "wrapper colour()",
+    "name": "PanelDeep"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageExperience",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "GarageEntranceClient:21",
+    "line": 83,
+    "in_function": "Client.start",
+    "via": "wrapper colour()",
+    "name": "Text"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageExperience",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "GarageEntranceClient:21",
+    "line": 90,
+    "in_function": "Client.start",
+    "via": "wrapper colour()",
+    "name": "Structure"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageExperience",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "GarageEntranceClient:26",
+    "line": 161,
+    "in_function": "Client.start",
+    "via": "wrapper number()",
+    "name": "PromptDistance"
+   }
+  ]
+ },
+ "startergui_core": [],
+ "gui_service": [],
+ "other_services": {},
+ "service_connects": [],
+ "proximity_prompts": [
+  {
+   "variable": "prompt",
+   "class": "ProximityPrompt",
+   "line": 152,
+   "factory": null,
+   "adopts_existing": false,
+   "properties": {
+    "Name": {
+     "expr": "\"Canonical\" .. definition.Mode"
+    },
+    "Style": {
+     "expr": "Enum.ProximityPromptStyle.Default"
+    },
+    "ActionText": "Enter",
+    "ObjectText": {
+     "expr": "definition.ObjectText"
+    },
+    "KeyboardKeyCode": {
+     "expr": "Enum.KeyCode.E"
+    },
+    "GamepadKeyCode": {
+     "expr": "Enum.KeyCode.ButtonX"
+    },
+    "ClickablePrompt": true,
+    "HoldDuration": 0,
+    "MaxActivationDistance": {
+     "expr": "number(\"PromptDistance\", 14)"
+    },
+    "RequiresLineOfSight": false,
+    "Parent": {
+     "expr": "definition.Part"
+    }
+   },
+   "writes": [
+    {
+     "property": "Name",
+     "value": {
+      "expr": "\"Canonical\" .. definition.Mode"
+     },
+     "line": 153
+    },
+    {
+     "property": "Style",
+     "value": {
+      "expr": "Enum.ProximityPromptStyle.Default"
+     },
+     "line": 154
+    },
+    {
+     "property": "ActionText",
+     "value": "Enter",
+     "line": 155
+    },
+    {
+     "property": "ObjectText",
+     "value": {
+      "expr": "definition.ObjectText"
+     },
+     "line": 156
+    },
+    {
+     "property": "KeyboardKeyCode",
+     "value": {
+      "expr": "Enum.KeyCode.E"
+     },
+     "line": 157
+    },
+    {
+     "property": "GamepadKeyCode",
+     "value": {
+      "expr": "Enum.KeyCode.ButtonX"
+     },
+     "line": 158
+    },
+    {
+     "property": "ClickablePrompt",
+     "value": true,
+     "line": 159
+    },
+    {
+     "property": "HoldDuration",
+     "value": 0,
+     "line": 160
+    },
+    {
+     "property": "MaxActivationDistance",
+     "value": {
+      "expr": "number(\"PromptDistance\", 14)"
+     },
+     "line": 161
+    },
+    {
+     "property": "RequiresLineOfSight",
+     "value": false,
+     "line": 162
+    },
+    {
+     "property": "Parent",
+     "value": {
+      "expr": "definition.Part"
+     },
+     "line": 163
+    }
+   ]
+  }
+ ],
+ "instances_created_by_class": {
+  "ProximityPrompt": 1,
+  "ScreenGui": 1,
+  "TextLabel": 1,
+  "UICorner": 1,
+  "UIStroke": 1
+ },
+ "public_api": [
+  {
+   "name": "start",
+   "kind": "function",
+   "params": [],
+   "line": 4
+  }
+ ],
+ "unresolved": [
+  {
+   "category": "lookups",
+   "field": "name",
+   "line": 149,
+   "detail": "name built at run time: \"Canonical\" .. definition.Mode"
+  },
+  {
+   "category": "names_assigned",
+   "field": "name",
+   "line": 153,
+   "detail": "name built at run time: \"Canonical\" .. definition.Mode"
+  },
+  {
+   "category": "lookups",
+   "field": "name",
+   "line": 192,
+   "detail": "not a literal: definition.Event"
+  },
+  {
+   "category": "lookups",
+   "field": "name",
+   "line": 192,
+   "detail": "not a literal: definition.Event"
+  },
+  {
+   "category": "bindable_fires",
+   "field": "name",
+   "line": 194,
+   "detail": "not a literal: definition.Event"
+  }
+ ],
+ "contract_file": "GarageEntranceClient.json"
+}

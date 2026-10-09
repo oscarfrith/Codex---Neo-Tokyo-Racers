@@ -1,0 +1,729 @@
+{
+ "script": "ReplicatedFirst.Loading.LoadingTransitionRuntime",
+ "class": "ModuleScript",
+ "source_file": "classic/sources/ReplicatedFirst.Loading.LoadingTransitionRuntime.lua",
+ "source_lines": 177,
+ "included_because": [
+  "under ReplicatedFirst.Loading"
+ ],
+ "requires": [
+  {
+   "expr": "game:GetService(\"ReplicatedFirst\"):WaitForChild(\"Loading\"):WaitForChild(\"LoadingArtworkCatalog\")",
+   "as": "Catalog",
+   "line": 7,
+   "target": "ReplicatedFirst.Loading.LoadingArtworkCatalog"
+  },
+  {
+   "expr": "game:GetService(\"ReplicatedFirst\"):WaitForChild(\"Loading\"):WaitForChild(\"LoadingScreenView\")",
+   "as": "View",
+   "line": 8,
+   "target": "ReplicatedFirst.Loading.LoadingScreenView"
+  },
+  {
+   "expr": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Vehicles\"):WaitForChild(\"GameplayInputGate\")",
+   "as": "inputGate",
+   "line": 41,
+   "in_function": "Runtime.Start",
+   "target": "ReplicatedStorage.Modules.Game.Vehicles.GameplayInputGate"
+  },
+  {
+   "expr": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Audio\"):WaitForChild(\"AudioMixClient\")",
+   "as": "audioMixer",
+   "line": 42,
+   "in_function": "Runtime.Start",
+   "target": "ReplicatedStorage.Modules.Game.Audio.AudioMixClient"
+  }
+ ],
+ "remotes": {
+  "calls": [],
+  "listens": []
+ },
+ "bindables": {
+  "fires": [
+   {
+    "receiver": "presentationChanged",
+    "created_here": false,
+    "lookup": "<uiFolder>",
+    "lookup_unresolved": true,
+    "arg_count": 1,
+    "line": 62,
+    "in_function": "publish",
+    "name": "LoadingPresentationChanged",
+    "payload_keys": [
+     "Active",
+     "FadeStarted",
+     "Generation",
+     "Destination",
+     "Reason"
+    ]
+   },
+   {
+    "receiver": "presentationEvent",
+    "created_here": false,
+    "lookup": "<uiFolder>",
+    "lookup_unresolved": true,
+    "arg_count": 1,
+    "line": 66,
+    "in_function": "suppress",
+    "name": "FreeRoamHudPresentationMode",
+    "payload_keys": [
+     "Owner",
+     "Active",
+     "KeepTelemetry"
+    ],
+    "payload_literals": {
+     "Owner": "LoadingTransition"
+    }
+   }
+  ],
+  "connects": [],
+  "invokes": [],
+  "handlers": [],
+  "created": [],
+  "module_signal_fires": []
+ },
+ "attributes": {
+  "reads": [
+   {
+    "receiver": "config",
+    "receiver_kind": "config",
+    "wrapper_defined": "LoadingScreenView:30",
+    "line": 47,
+    "in_function": "Runtime.Start",
+    "via": "wrapper View.Create()",
+    "name": "DisplayOrder",
+    "receiver_path": "ReplicatedStorage.Config.UI.LoadingSystem"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.LoadingSystem",
+    "receiver_kind": "config",
+    "line": 54,
+    "in_function": "Runtime.Start",
+    "name": "WarmPoolSize"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.LoadingSystem",
+    "receiver_kind": "config",
+    "line": 95,
+    "in_function": "begin",
+    "name": "MotionEnabled"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.LoadingSystem",
+    "receiver_kind": "config",
+    "line": 109,
+    "in_function": "begin",
+    "name": "MinimumVisibleSeconds"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.LoadingSystem",
+    "receiver_kind": "config",
+    "line": 120,
+    "in_function": "begin",
+    "name": "TimeoutSeconds"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.LoadingSystem",
+    "receiver_kind": "config",
+    "line": 133,
+    "in_function": "finish",
+    "name": "ReadyHoldSeconds"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.LoadingSystem",
+    "receiver_kind": "config",
+    "line": 134,
+    "in_function": "finish",
+    "name": "MinimumVisibleSeconds"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.LoadingSystem",
+    "receiver_kind": "config",
+    "line": 135,
+    "in_function": "finish",
+    "name": "CompletionFillSeconds"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.LoadingSystem",
+    "receiver_kind": "config",
+    "line": 146,
+    "in_function": "finish",
+    "name": "FadeOutSeconds"
+   }
+  ],
+  "writes": [
+   {
+    "receiver": "presentationState",
+    "receiver_path": "<uiFolder>.LoadingPresentationState",
+    "receiver_kind": "other",
+    "value": {
+     "expr": "active == true"
+    },
+    "line": 57,
+    "in_function": "publish",
+    "name": "Active"
+   },
+   {
+    "receiver": "presentationState",
+    "receiver_path": "<uiFolder>.LoadingPresentationState",
+    "receiver_kind": "other",
+    "value": {
+     "expr": "current and current.Generation or generation"
+    },
+    "line": 58,
+    "in_function": "publish",
+    "name": "Generation"
+   },
+   {
+    "receiver": "presentationState",
+    "receiver_path": "<uiFolder>.LoadingPresentationState",
+    "receiver_kind": "other",
+    "value": {
+     "expr": "tostring(destination or (current and current.Destination) or \"\")"
+    },
+    "line": 59,
+    "in_function": "publish",
+    "name": "Destination"
+   },
+   {
+    "receiver": "presentationState",
+    "receiver_path": "<uiFolder>.LoadingPresentationState",
+    "receiver_kind": "other",
+    "value": {
+     "expr": "fadeStarted == true"
+    },
+    "line": 60,
+    "in_function": "publish",
+    "name": "FadeStarted"
+   },
+   {
+    "receiver": "presentationState",
+    "receiver_path": "<uiFolder>.LoadingPresentationState",
+    "receiver_kind": "other",
+    "value": {
+     "expr": "tostring(reason or \"\")"
+    },
+    "line": 61,
+    "in_function": "publish",
+    "name": "Reason"
+   }
+  ],
+  "listens": []
+ },
+ "player_attribute_writes": [],
+ "screenguis": {
+  "created": [],
+  "enabled_writes": []
+ },
+ "names": {
+  "assigned": [],
+  "looked_up": [
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedFirst\")",
+    "receiver_path": "ReplicatedFirst",
+    "root": "ReplicatedFirst",
+    "line": 6,
+    "name": "Loading"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedFirst\")",
+    "receiver_path": "ReplicatedFirst",
+    "root": "ReplicatedFirst",
+    "line": 7,
+    "name": "Loading"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedFirst\"):WaitForChild(\"Loading\")",
+    "receiver_path": "ReplicatedFirst.Loading",
+    "root": "ReplicatedFirst",
+    "line": 7,
+    "name": "LoadingArtworkCatalog"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedFirst\")",
+    "receiver_path": "ReplicatedFirst",
+    "root": "ReplicatedFirst",
+    "line": 8,
+    "name": "Loading"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedFirst\"):WaitForChild(\"Loading\")",
+    "receiver_path": "ReplicatedFirst.Loading",
+    "root": "ReplicatedFirst",
+    "line": 8,
+    "name": "LoadingScreenView"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 37,
+    "in_function": "Runtime.Start",
+    "name": "PlayerGui"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 39,
+    "in_function": "Runtime.Start",
+    "name": "Config"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\")",
+    "receiver_path": "ReplicatedStorage.Config",
+    "root": "ReplicatedStorage",
+    "line": 39,
+    "in_function": "Runtime.Start",
+    "name": "UI"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\"):WaitForChild(\"UI\")",
+    "receiver_path": "ReplicatedStorage.Config.UI",
+    "root": "ReplicatedStorage",
+    "line": 39,
+    "in_function": "Runtime.Start",
+    "name": "LoadingSystem"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 40,
+    "in_function": "Runtime.Start",
+    "name": "Config"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\")",
+    "receiver_path": "ReplicatedStorage.Config",
+    "root": "ReplicatedStorage",
+    "line": 40,
+    "in_function": "Runtime.Start",
+    "name": "UI"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\"):WaitForChild(\"UI\")",
+    "receiver_path": "ReplicatedStorage.Config.UI",
+    "root": "ReplicatedStorage",
+    "line": 40,
+    "in_function": "Runtime.Start",
+    "name": "DesktopFreeRoamHud"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\"):WaitForChild(\"UI\"):WaitForChild(\"DesktopFreeRoamHud\")",
+    "receiver_path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud",
+    "root": "ReplicatedStorage",
+    "line": 40,
+    "in_function": "Runtime.Start",
+    "name": "Colours"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 41,
+    "in_function": "Runtime.Start",
+    "name": "Modules"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\")",
+    "receiver_path": "ReplicatedStorage.Modules",
+    "root": "ReplicatedStorage",
+    "line": 41,
+    "in_function": "Runtime.Start",
+    "name": "Game"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game",
+    "root": "ReplicatedStorage",
+    "line": 41,
+    "in_function": "Runtime.Start",
+    "name": "Vehicles"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Vehicles\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game.Vehicles",
+    "root": "ReplicatedStorage",
+    "line": 41,
+    "in_function": "Runtime.Start",
+    "name": "GameplayInputGate"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 42,
+    "in_function": "Runtime.Start",
+    "name": "Modules"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\")",
+    "receiver_path": "ReplicatedStorage.Modules",
+    "root": "ReplicatedStorage",
+    "line": 42,
+    "in_function": "Runtime.Start",
+    "name": "Game"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game",
+    "root": "ReplicatedStorage",
+    "line": 42,
+    "in_function": "Runtime.Start",
+    "name": "Audio"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Audio\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game.Audio",
+    "root": "ReplicatedStorage",
+    "line": 42,
+    "in_function": "Runtime.Start",
+    "name": "AudioMixClient"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "uiFolder",
+    "receiver_path": null,
+    "root": null,
+    "line": 44,
+    "in_function": "Runtime.Start",
+    "name": "FreeRoamHudPresentationMode"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "uiFolder",
+    "receiver_path": null,
+    "root": null,
+    "line": 45,
+    "in_function": "Runtime.Start",
+    "name": "LoadingPresentationState"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "uiFolder",
+    "receiver_path": null,
+    "root": null,
+    "line": 46,
+    "in_function": "Runtime.Start",
+    "name": "LoadingPresentationChanged"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "LoadingScreenView:51",
+    "receiver_kind": "config",
+    "line": 47,
+    "in_function": "Runtime.Start",
+    "via": "wrapper View.Create()",
+    "name": "ElectricBlue",
+    "receiver_path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "LoadingScreenView:49",
+    "receiver_kind": "config",
+    "line": 47,
+    "in_function": "Runtime.Start",
+    "via": "wrapper View.Create()",
+    "name": "Telemetry",
+    "receiver_path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "LoadingScreenView:46",
+    "receiver_kind": "config",
+    "line": 47,
+    "in_function": "Runtime.Start",
+    "via": "wrapper View.Create()",
+    "name": "PanelSoft",
+    "receiver_path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "LoadingScreenView:43",
+    "receiver_kind": "config",
+    "line": 47,
+    "in_function": "Runtime.Start",
+    "via": "wrapper View.Create()",
+    "name": "Text",
+    "receiver_path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "LoadingArtworkCatalog:105",
+    "receiver_kind": "config",
+    "line": 54,
+    "in_function": "Runtime.Start",
+    "via": "wrapper Catalog.List()",
+    "name": "Artworks",
+    "receiver_path": "ReplicatedStorage.Config.UI.LoadingSystem"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "LoadingArtworkCatalog:95",
+    "receiver_kind": "config",
+    "line": 81,
+    "in_function": "begin",
+    "via": "wrapper Catalog.Choose()",
+    "name": "Artworks",
+    "receiver_path": "ReplicatedStorage.Config.UI.LoadingSystem"
+   }
+  ],
+  "text_compared": []
+ },
+ "run_service": {
+  "render_steps": [],
+  "connects": []
+ },
+ "context_actions": [],
+ "user_input_service": {
+  "connects": [],
+  "members_used": []
+ },
+ "audio": {
+  "bridge_calls": [],
+  "ui_audio_attributes": []
+ },
+ "config": {
+  "paths": [
+   {
+    "path": "ReplicatedStorage.Config",
+    "line": 39
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI",
+    "line": 39
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud",
+    "line": 40
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud.Colours",
+    "line": 40
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI.LoadingSystem",
+    "line": 39
+   }
+  ],
+  "attribute_reads": [
+   {
+    "receiver": "config",
+    "receiver_kind": "config",
+    "wrapper_defined": "LoadingScreenView:30",
+    "line": 47,
+    "in_function": "Runtime.Start",
+    "via": "wrapper View.Create()",
+    "name": "DisplayOrder",
+    "receiver_path": "ReplicatedStorage.Config.UI.LoadingSystem",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.LoadingSystem",
+    "receiver_kind": "config",
+    "line": 54,
+    "in_function": "Runtime.Start",
+    "name": "WarmPoolSize",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.LoadingSystem",
+    "receiver_kind": "config",
+    "line": 95,
+    "in_function": "begin",
+    "name": "MotionEnabled",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.LoadingSystem",
+    "receiver_kind": "config",
+    "line": 109,
+    "in_function": "begin",
+    "name": "MinimumVisibleSeconds",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.LoadingSystem",
+    "receiver_kind": "config",
+    "line": 120,
+    "in_function": "begin",
+    "name": "TimeoutSeconds",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.LoadingSystem",
+    "receiver_kind": "config",
+    "line": 133,
+    "in_function": "finish",
+    "name": "ReadyHoldSeconds",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.LoadingSystem",
+    "receiver_kind": "config",
+    "line": 134,
+    "in_function": "finish",
+    "name": "MinimumVisibleSeconds",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.LoadingSystem",
+    "receiver_kind": "config",
+    "line": 135,
+    "in_function": "finish",
+    "name": "CompletionFillSeconds",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.LoadingSystem",
+    "receiver_kind": "config",
+    "line": 146,
+    "in_function": "finish",
+    "name": "FadeOutSeconds",
+    "access": "read"
+   }
+  ],
+  "child_lookups": [
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "LoadingScreenView:51",
+    "receiver_kind": "config",
+    "line": 47,
+    "in_function": "Runtime.Start",
+    "via": "wrapper View.Create()",
+    "name": "ElectricBlue",
+    "receiver_path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "LoadingScreenView:49",
+    "receiver_kind": "config",
+    "line": 47,
+    "in_function": "Runtime.Start",
+    "via": "wrapper View.Create()",
+    "name": "Telemetry",
+    "receiver_path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "LoadingScreenView:46",
+    "receiver_kind": "config",
+    "line": 47,
+    "in_function": "Runtime.Start",
+    "via": "wrapper View.Create()",
+    "name": "PanelSoft",
+    "receiver_path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "LoadingScreenView:43",
+    "receiver_kind": "config",
+    "line": 47,
+    "in_function": "Runtime.Start",
+    "via": "wrapper View.Create()",
+    "name": "Text",
+    "receiver_path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "LoadingArtworkCatalog:105",
+    "receiver_kind": "config",
+    "line": 54,
+    "in_function": "Runtime.Start",
+    "via": "wrapper Catalog.List()",
+    "name": "Artworks",
+    "receiver_path": "ReplicatedStorage.Config.UI.LoadingSystem"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "LoadingArtworkCatalog:95",
+    "receiver_kind": "config",
+    "line": 81,
+    "in_function": "begin",
+    "via": "wrapper Catalog.Choose()",
+    "name": "Artworks",
+    "receiver_path": "ReplicatedStorage.Config.UI.LoadingSystem"
+   }
+  ]
+ },
+ "startergui_core": [],
+ "gui_service": [],
+ "other_services": {},
+ "service_connects": [],
+ "proximity_prompts": [],
+ "instances_created_by_class": {},
+ "public_api": [
+  {
+   "name": "Start",
+   "kind": "function",
+   "params": [
+    "options"
+   ],
+   "line": 33
+  }
+ ],
+ "unresolved": [],
+ "contract_file": "LoadingTransitionRuntime.json"
+}

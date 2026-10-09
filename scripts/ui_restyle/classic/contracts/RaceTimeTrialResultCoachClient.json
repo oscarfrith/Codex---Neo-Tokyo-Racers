@@ -1,0 +1,935 @@
+{
+ "script": "ReplicatedStorage.Modules.Game.Racing.RaceTimeTrialResultCoachClient",
+ "class": "ModuleScript",
+ "source_file": "classic/sources/ReplicatedStorage.Modules.Game.Racing.RaceTimeTrialResultCoachClient.lua",
+ "source_lines": 231,
+ "included_because": [
+  "ClientBase entry 'RaceTimeTrialResultCoachClient'"
+ ],
+ "requires": [
+  {
+   "expr": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"UI\"):WaitForChild(\"RacingUIComponents\")",
+   "as": "UI",
+   "line": 25,
+   "in_function": "Client.start",
+   "target": "ReplicatedStorage.Modules.Game.UI.RacingUIComponents"
+  },
+  {
+   "expr": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"UI\"):WaitForChild(\"RacingMobileScaledDesktopLayout\")",
+   "as": "MobileScaledDesktop",
+   "line": 26,
+   "in_function": "Client.start",
+   "target": "ReplicatedStorage.Modules.Game.UI.RacingMobileScaledDesktopLayout"
+  }
+ ],
+ "remotes": {
+  "calls": [
+   {
+    "method": "InvokeServer",
+    "receiver": "remote",
+    "arg_count": 2,
+    "wrapper_defined": "RaceTimeTrialResultCoachClient:37",
+    "line": 140,
+    "in_function": "renderTimeTrial",
+    "via": "wrapper invoke()",
+    "remote": "ReplicatedStorage.Remotes.Racing.RaceRequest",
+    "action": "GetTimeTrialLeaderboard",
+    "payload_keys": [
+     "EventId",
+     "VehicleTier",
+     "Limit"
+    ]
+   },
+   {
+    "method": "InvokeServer",
+    "receiver": "remote",
+    "arg_count": 2,
+    "wrapper_defined": "RaceTimeTrialResultCoachClient:37",
+    "line": 145,
+    "in_function": "renderTimeTrial",
+    "via": "wrapper invoke()",
+    "remote": "ReplicatedStorage.Remotes.Racing.RaceRequest",
+    "action": "ExitFinishedTimeTrial",
+    "payload_keys": []
+   },
+   {
+    "method": "InvokeServer",
+    "receiver": "remote",
+    "arg_count": 2,
+    "wrapper_defined": "RaceTimeTrialResultCoachClient:37",
+    "line": 147,
+    "in_function": "renderTimeTrial",
+    "via": "wrapper invoke()",
+    "remote": "ReplicatedStorage.Remotes.Racing.RaceRequest",
+    "action": "StartStagedTimeTrial",
+    "payload_keys": [
+     "EventId",
+     "VehicleId",
+     "LapCount"
+    ]
+   },
+   {
+    "method": "InvokeServer",
+    "receiver": "remote",
+    "arg_count": 2,
+    "wrapper_defined": "RaceTimeTrialResultCoachClient:37",
+    "line": 191,
+    "in_function": "renderRace",
+    "via": "wrapper invoke()",
+    "remote": "ReplicatedStorage.Remotes.Racing.RaceQueueRequest",
+    "action": "ExitRaceToStart",
+    "payload_keys": []
+   }
+  ],
+  "listens": [
+   {
+    "signal": "OnClientEvent",
+    "receiver": "raceEvent",
+    "method": "Connect",
+    "handler": "inline",
+    "handler_line": 214,
+    "handler_params": [
+     "payload"
+    ],
+    "payload_fields_read": [
+     "Type",
+     "Positions"
+    ],
+    "literal_comparisons": {
+     "Type": [
+      "RacePositionUpdate",
+      "RaceFinished",
+      "TimeTrialFinished",
+      "TimeTrialEnded",
+      "RaceStaged",
+      "RaceStarted",
+      "TimeTrialStaged",
+      "TimeTrialStarted",
+      "RaceExitedToStart"
+     ]
+    },
+    "line": 214,
+    "in_function": "Client.start",
+    "remote": "ReplicatedStorage.Remotes.Racing.RaceEvent"
+   }
+  ]
+ },
+ "bindables": {
+  "fires": [
+   {
+    "receiver": "event",
+    "created_here": false,
+    "lookup": "Players.LocalPlayer.PlayerScripts.Runtime.UI",
+    "arg_count": 1,
+    "line": 95,
+    "in_function": "publishPresentation",
+    "name": "FreeRoamHudPresentationMode",
+    "payload_keys": [
+     "Owner",
+     "Active",
+     "KeepTelemetry"
+    ],
+    "payload_literals": {
+     "Owner": "RaceResults"
+    }
+   },
+   {
+    "receiver": "event",
+    "created_here": false,
+    "lookup": "Players.LocalPlayer.PlayerScripts.Runtime.UI",
+    "arg_count": 0,
+    "line": 103,
+    "in_function": "fireDrivingExit",
+    "name": "FreeRoamVehicleExited"
+   },
+   {
+    "receiver": "transitionRequest",
+    "created_here": false,
+    "lookup": "Players.LocalPlayer.PlayerScripts.Runtime.Racing",
+    "arg_count": 1,
+    "wrapper_defined": "RaceTimeTrialResultCoachClient:23",
+    "line": 144,
+    "in_function": "renderTimeTrial",
+    "via": "wrapper transition()",
+    "name": "RaceTransitionRequest",
+    "payload_keys": [
+     "Destination",
+     "Status"
+    ],
+    "payload_literals": {
+     "Destination": "RaceStart",
+     "Status": "RETURNING TO START"
+    }
+   },
+   {
+    "receiver": "transitionRequest",
+    "created_here": false,
+    "lookup": "Players.LocalPlayer.PlayerScripts.Runtime.Racing",
+    "arg_count": 1,
+    "wrapper_defined": "RaceTimeTrialResultCoachClient:23",
+    "line": 146,
+    "in_function": "renderTimeTrial",
+    "via": "wrapper transition()",
+    "name": "RaceTransitionRequest",
+    "payload_keys": [
+     "Status"
+    ],
+    "payload_literals": {
+     "Status": "READY"
+    }
+   },
+   {
+    "receiver": "transitionRequest",
+    "created_here": false,
+    "lookup": "Players.LocalPlayer.PlayerScripts.Runtime.Racing",
+    "arg_count": 1,
+    "wrapper_defined": "RaceTimeTrialResultCoachClient:23",
+    "line": 146,
+    "in_function": "renderTimeTrial",
+    "via": "wrapper transition()",
+    "name": "RaceTransitionRequest",
+    "payload_keys": [
+     "Status",
+     "Reason"
+    ],
+    "payload_literals": {
+     "Status": "RETURNING"
+    }
+   },
+   {
+    "receiver": "transitionRequest",
+    "created_here": false,
+    "lookup": "Players.LocalPlayer.PlayerScripts.Runtime.Racing",
+    "arg_count": 1,
+    "wrapper_defined": "RaceTimeTrialResultCoachClient:23",
+    "line": 190,
+    "in_function": "renderRace",
+    "via": "wrapper transition()",
+    "name": "RaceTransitionRequest",
+    "payload_keys": [
+     "Destination",
+     "Status"
+    ],
+    "payload_literals": {
+     "Destination": "RaceStart",
+     "Status": "RETURNING TO START"
+    }
+   },
+   {
+    "receiver": "transitionRequest",
+    "created_here": false,
+    "lookup": "Players.LocalPlayer.PlayerScripts.Runtime.Racing",
+    "arg_count": 1,
+    "wrapper_defined": "RaceTimeTrialResultCoachClient:23",
+    "line": 192,
+    "in_function": "renderRace",
+    "via": "wrapper transition()",
+    "name": "RaceTransitionRequest",
+    "payload_keys": [
+     "Status"
+    ],
+    "payload_literals": {
+     "Status": "READY"
+    }
+   },
+   {
+    "receiver": "transitionRequest",
+    "created_here": false,
+    "lookup": "Players.LocalPlayer.PlayerScripts.Runtime.Racing",
+    "arg_count": 1,
+    "wrapper_defined": "RaceTimeTrialResultCoachClient:23",
+    "line": 192,
+    "in_function": "renderRace",
+    "via": "wrapper transition()",
+    "name": "RaceTransitionRequest",
+    "payload_keys": [
+     "Status",
+     "Reason"
+    ],
+    "payload_literals": {
+     "Status": "RETURNING"
+    }
+   },
+   {
+    "receiver": "start",
+    "created_here": false,
+    "lookup": "Players.LocalPlayer.PlayerScripts.Runtime.Racing",
+    "arg_count": 1,
+    "line": 193,
+    "in_function": "renderRace",
+    "name": "StartRaceQueueRequest",
+    "payload_keys": [
+     "EventId",
+     "VehicleId",
+     "DisplayName"
+    ]
+   }
+  ],
+  "connects": [],
+  "invokes": [],
+  "handlers": [],
+  "created": [],
+  "module_signal_fires": []
+ },
+ "attributes": {
+  "reads": [
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "line": 193,
+    "in_function": "renderRace",
+    "name": "LastRacingEventId"
+   },
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "line": 193,
+    "in_function": "renderRace",
+    "name": "LastRacingVehicleId"
+   }
+  ],
+  "writes": [],
+  "listens": []
+ },
+ "player_attribute_writes": [],
+ "screenguis": {
+  "created": [
+   {
+    "variable": "gui",
+    "class": "ScreenGui",
+    "line": 202,
+    "factory": null,
+    "adopts_existing": false,
+    "Name": "UnifiedRaceResults",
+    "DisplayOrder": 220,
+    "ResetOnSpawn": false,
+    "IgnoreGuiInset": true,
+    "Parent": {
+     "expr": "playerGui"
+    },
+    "enabled_writes": [],
+    "property_lines": {
+     "Name": 202,
+     "IgnoreGuiInset": 202,
+     "ResetOnSpawn": 202,
+     "DisplayOrder": 202,
+     "Parent": 202
+    }
+   }
+  ],
+  "enabled_writes": [
+   {
+    "receiver": "other",
+    "receiver_path": "Players.LocalPlayer.PlayerGui.RaceQueue_Phase8",
+    "value": false,
+    "screengui_like": "yes",
+    "reason": "child of PlayerGui",
+    "line": 99,
+    "in_function": "setSuppressed",
+    "screengui_name": "RaceQueue_Phase8"
+   },
+   {
+    "receiver": "other",
+    "receiver_path": "Players.LocalPlayer.PlayerGui.RaceQueue_Phase8",
+    "value": {
+     "expr": "suppressed[other]"
+    },
+    "screengui_like": "yes",
+    "reason": "child of PlayerGui",
+    "line": 99,
+    "in_function": "setSuppressed",
+    "screengui_name": "RaceQueue_Phase8"
+   }
+  ]
+ },
+ "names": {
+  "assigned": [
+   {
+    "via": "property",
+    "receiver": "image",
+    "class": "ImageLabel",
+    "line": 68,
+    "in_function": "avatar",
+    "name": "PlayerHeadshot"
+   },
+   {
+    "via": "wrapper panel()",
+    "callee": "Panel",
+    "class": null,
+    "wrapper_defined": "RaceTimeTrialResultCoachClient:53",
+    "line": 128,
+    "in_function": "renderTimeTrial",
+    "name": "GlobalTop20"
+   },
+   {
+    "via": "wrapper panel()",
+    "callee": "Panel",
+    "class": null,
+    "wrapper_defined": "RaceTimeTrialResultCoachClient:53",
+    "line": 129,
+    "in_function": "renderTimeTrial",
+    "name": "YourResult"
+   },
+   {
+    "via": "wrapper panel()",
+    "callee": "Panel",
+    "class": null,
+    "wrapper_defined": "RaceTimeTrialResultCoachClient:53",
+    "line": 135,
+    "in_function": "renderTimeTrial",
+    "name": "SessionLaps"
+   },
+   {
+    "via": "wrapper panel()",
+    "callee": "Panel",
+    "class": null,
+    "wrapper_defined": "RaceTimeTrialResultCoachClient:53",
+    "line": 154,
+    "in_function": "renderRace",
+    "name": "RaceResults"
+   },
+   {
+    "via": "wrapper panel()",
+    "callee": "Panel",
+    "class": null,
+    "wrapper_defined": "RaceTimeTrialResultCoachClient:53",
+    "line": 156,
+    "in_function": "renderRace",
+    "name": "YourResult"
+   },
+   {
+    "via": "wrapper panel()",
+    "callee": "Panel",
+    "class": null,
+    "wrapper_defined": "RaceTimeTrialResultCoachClient:53",
+    "line": 166,
+    "in_function": "renderRace",
+    "name": "RaceHighlights"
+   },
+   {
+    "via": "property",
+    "receiver": "gui",
+    "class": "ScreenGui",
+    "line": 202,
+    "in_function": "build",
+    "name": "UnifiedRaceResults"
+   }
+  ],
+  "looked_up": [
+   {
+    "method": "WaitForChild",
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 14,
+    "in_function": "Client.start",
+    "name": "PlayerGui"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 18,
+    "in_function": "Client.start",
+    "name": "Remotes"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Remotes\")",
+    "receiver_path": "ReplicatedStorage.Remotes",
+    "root": "ReplicatedStorage",
+    "line": 18,
+    "in_function": "Client.start",
+    "name": "Racing"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 19,
+    "in_function": "Client.start",
+    "name": "Remotes"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Remotes\")",
+    "receiver_path": "ReplicatedStorage.Remotes",
+    "root": "ReplicatedStorage",
+    "line": 19,
+    "in_function": "Client.start",
+    "name": "Racing"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Remotes\"):WaitForChild(\"Racing\")",
+    "receiver_path": "ReplicatedStorage.Remotes.Racing",
+    "root": "ReplicatedStorage",
+    "line": 19,
+    "in_function": "Client.start",
+    "name": "RaceEvent"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 20,
+    "in_function": "Client.start",
+    "name": "Remotes"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Remotes\")",
+    "receiver_path": "ReplicatedStorage.Remotes",
+    "root": "ReplicatedStorage",
+    "line": 20,
+    "in_function": "Client.start",
+    "name": "Racing"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Remotes\"):WaitForChild(\"Racing\")",
+    "receiver_path": "ReplicatedStorage.Remotes.Racing",
+    "root": "ReplicatedStorage",
+    "line": 20,
+    "in_function": "Client.start",
+    "name": "RaceRequest"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 21,
+    "in_function": "Client.start",
+    "name": "Remotes"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Remotes\")",
+    "receiver_path": "ReplicatedStorage.Remotes",
+    "root": "ReplicatedStorage",
+    "line": 21,
+    "in_function": "Client.start",
+    "name": "Racing"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Remotes\"):WaitForChild(\"Racing\")",
+    "receiver_path": "ReplicatedStorage.Remotes.Racing",
+    "root": "ReplicatedStorage",
+    "line": 21,
+    "in_function": "Client.start",
+    "name": "RaceQueueRequest"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 22,
+    "in_function": "Client.start",
+    "name": "PlayerScripts"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts",
+    "root": "Players",
+    "line": 22,
+    "in_function": "Client.start",
+    "name": "Runtime"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"Runtime\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime",
+    "root": "Players",
+    "line": 22,
+    "in_function": "Client.start",
+    "name": "Racing"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"Runtime\"):WaitForChild(\"Racing\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime.Racing",
+    "root": "Players",
+    "line": 22,
+    "in_function": "Client.start",
+    "name": "RaceTransitionRequest"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 24,
+    "in_function": "Client.start",
+    "name": "Modules"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\")",
+    "receiver_path": "ReplicatedStorage.Modules",
+    "root": "ReplicatedStorage",
+    "line": 24,
+    "in_function": "Client.start",
+    "name": "Game"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game",
+    "root": "ReplicatedStorage",
+    "line": 24,
+    "in_function": "Client.start",
+    "name": "UI"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 25,
+    "in_function": "Client.start",
+    "name": "Modules"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\")",
+    "receiver_path": "ReplicatedStorage.Modules",
+    "root": "ReplicatedStorage",
+    "line": 25,
+    "in_function": "Client.start",
+    "name": "Game"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game",
+    "root": "ReplicatedStorage",
+    "line": 25,
+    "in_function": "Client.start",
+    "name": "UI"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"UI\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game.UI",
+    "root": "ReplicatedStorage",
+    "line": 25,
+    "in_function": "Client.start",
+    "name": "RacingUIComponents"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 26,
+    "in_function": "Client.start",
+    "name": "Modules"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\")",
+    "receiver_path": "ReplicatedStorage.Modules",
+    "root": "ReplicatedStorage",
+    "line": 26,
+    "in_function": "Client.start",
+    "name": "Game"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game",
+    "root": "ReplicatedStorage",
+    "line": 26,
+    "in_function": "Client.start",
+    "name": "UI"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"UI\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game.UI",
+    "root": "ReplicatedStorage",
+    "line": 26,
+    "in_function": "Client.start",
+    "name": "RacingMobileScaledDesktopLayout"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:33",
+    "receiver_kind": "config",
+    "line": 59,
+    "in_function": "medalIcon",
+    "via": "wrapper Components.AssetValue()",
+    "name": "MedalAtlas",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Assets"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:33",
+    "receiver_kind": "config",
+    "line": 62,
+    "in_function": "medalIcon",
+    "via": "wrapper Components.AssetValue()",
+    "name": "MedalAtlasCellSize",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Assets"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 93,
+    "in_function": "publishPresentation",
+    "name": "PlayerScripts"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts",
+    "root": "Players",
+    "line": 93,
+    "in_function": "publishPresentation",
+    "name": "Runtime"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"Runtime\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime",
+    "root": "Players",
+    "line": 93,
+    "in_function": "publishPresentation",
+    "name": "UI"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 94,
+    "in_function": "publishPresentation",
+    "name": "PlayerScripts"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts",
+    "root": "Players",
+    "line": 94,
+    "in_function": "publishPresentation",
+    "name": "Runtime"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"Runtime\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime",
+    "root": "Players",
+    "line": 94,
+    "in_function": "publishPresentation",
+    "name": "UI"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"Runtime\"):WaitForChild(\"UI\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime.UI",
+    "root": "Players",
+    "line": 94,
+    "in_function": "publishPresentation",
+    "name": "FreeRoamHudPresentationMode"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "playerGui",
+    "receiver_path": "Players.LocalPlayer.PlayerGui",
+    "root": "Players",
+    "line": 99,
+    "in_function": "setSuppressed",
+    "name": "RaceQueue_Phase8"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 102,
+    "in_function": "fireDrivingExit",
+    "name": "PlayerScripts"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts",
+    "root": "Players",
+    "line": 102,
+    "in_function": "fireDrivingExit",
+    "name": "Runtime"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "root",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime",
+    "root": "Players",
+    "line": 102,
+    "in_function": "fireDrivingExit",
+    "name": "UI"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "uiFolder",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime.UI",
+    "root": "Players",
+    "line": 102,
+    "in_function": "fireDrivingExit",
+    "name": "FreeRoamVehicleExited"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 193,
+    "in_function": "renderRace",
+    "name": "PlayerScripts"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts",
+    "root": "Players",
+    "line": 193,
+    "in_function": "renderRace",
+    "name": "Runtime"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"Runtime\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime",
+    "root": "Players",
+    "line": 193,
+    "in_function": "renderRace",
+    "name": "Racing"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "root",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime.Racing",
+    "root": "Players",
+    "line": 193,
+    "in_function": "renderRace",
+    "name": "StartRaceQueueRequest"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "shell",
+    "root": null,
+    "wrapper_defined": "RacingMobileScaledDesktopLayout:25",
+    "line": 205,
+    "in_function": "build",
+    "via": "wrapper Layout.Attach()",
+    "name": "MobileScaledDesktopScale",
+    "receiver_path": null,
+    "receiver_kind": "other"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "shell",
+    "root": null,
+    "wrapper_defined": "RacingUIComponents:156",
+    "line": 205,
+    "in_function": "build",
+    "via": "wrapper Components.AttachResponsiveScale()",
+    "name": "ResponsiveScale",
+    "receiver_path": null,
+    "receiver_kind": "other"
+   }
+  ],
+  "text_compared": []
+ },
+ "run_service": {
+  "render_steps": [],
+  "connects": []
+ },
+ "context_actions": [],
+ "user_input_service": {
+  "connects": [],
+  "members_used": [
+   {
+    "member": "TouchEnabled",
+    "kind": "read",
+    "line": 15,
+    "in_function": "Client.start"
+   }
+  ]
+ },
+ "audio": {
+  "bridge_calls": [],
+  "ui_audio_attributes": []
+ },
+ "config": {
+  "paths": [
+   {
+    "path": "ReplicatedStorage.Config.UI.Racing.Assets",
+    "line": 59
+   }
+  ],
+  "attribute_reads": [],
+  "child_lookups": [
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:33",
+    "receiver_kind": "config",
+    "line": 59,
+    "in_function": "medalIcon",
+    "via": "wrapper Components.AssetValue()",
+    "name": "MedalAtlas",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Assets"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:33",
+    "receiver_kind": "config",
+    "line": 62,
+    "in_function": "medalIcon",
+    "via": "wrapper Components.AssetValue()",
+    "name": "MedalAtlasCellSize",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Assets"
+   }
+  ]
+ },
+ "startergui_core": [],
+ "gui_service": [],
+ "other_services": {},
+ "service_connects": [],
+ "proximity_prompts": [],
+ "instances_created_by_class": {
+  "Frame": 12,
+  "ImageLabel": 2,
+  "ScreenGui": 1,
+  "ScrollingFrame": 1
+ },
+ "public_api": [
+  {
+   "name": "start",
+   "kind": "function",
+   "params": [],
+   "line": 4
+  }
+ ],
+ "unresolved": [],
+ "contract_file": "RaceTimeTrialResultCoachClient.json"
+}

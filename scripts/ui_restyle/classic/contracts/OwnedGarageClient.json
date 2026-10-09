@@ -1,0 +1,183 @@
+{
+ "script": "ReplicatedStorage.Modules.Game.UI.OwnedGarageClient",
+ "class": "ModuleScript",
+ "source_file": "classic/sources/ReplicatedStorage.Modules.Game.UI.OwnedGarageClient.lua",
+ "source_lines": 18,
+ "included_because": [
+  "ClientBase entry 'OwnedGarageClient'",
+  "under ReplicatedStorage.Modules.Game.UI"
+ ],
+ "requires": [
+  {
+   "expr": "game:GetService(\"ReplicatedStorage\").Modules.Game.UI:WaitForChild(name)",
+   "as": "controller",
+   "line": 9,
+   "in_function": "Client.start",
+   "target": "ReplicatedStorage.Modules.Game.UI.OwnedGarageBrowserUI",
+   "via": "literal list"
+  },
+  {
+   "expr": "game:GetService(\"ReplicatedStorage\").Modules.Game.UI:WaitForChild(name)",
+   "as": "controller",
+   "line": 9,
+   "in_function": "Client.start",
+   "target": "ReplicatedStorage.Modules.Game.UI.OwnedGarageWorkspaceUI",
+   "via": "literal list"
+  },
+  {
+   "expr": "game:GetService(\"ReplicatedStorage\").Modules.Game.UI:WaitForChild(name)",
+   "as": "controller",
+   "line": 9,
+   "in_function": "Client.start",
+   "target": "ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI",
+   "via": "literal list"
+  },
+  {
+   "expr": "game:GetService(\"ReplicatedStorage\").Modules.Game.UI:WaitForChild(name)",
+   "as": "controller",
+   "line": 9,
+   "in_function": "Client.start",
+   "target": "ReplicatedStorage.Modules.Game.UI.GarageInteriorTransitionUI",
+   "via": "literal list"
+  }
+ ],
+ "remotes": {
+  "calls": [],
+  "listens": []
+ },
+ "bindables": {
+  "fires": [],
+  "connects": [],
+  "invokes": [],
+  "handlers": [],
+  "created": [],
+  "module_signal_fires": []
+ },
+ "attributes": {
+  "reads": [],
+  "writes": [
+   {
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"Runtime\"):WaitForChild(\"UI\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime.UI",
+    "receiver_kind": "playerScripts",
+    "value": true,
+    "line": 10,
+    "in_function": "Client.start",
+    "name": "OwnedGarageClientStarted"
+   }
+  ],
+  "listens": []
+ },
+ "player_attribute_writes": [],
+ "screenguis": {
+  "created": [],
+  "enabled_writes": []
+ },
+ "names": {
+  "assigned": [],
+  "looked_up": [
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\").Modules.Game.UI",
+    "receiver_path": "ReplicatedStorage.Modules.Game.UI",
+    "root": "ReplicatedStorage",
+    "line": 9,
+    "in_function": "Client.start",
+    "name": "OwnedGarageBrowserUI",
+    "via": "literal list"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\").Modules.Game.UI",
+    "receiver_path": "ReplicatedStorage.Modules.Game.UI",
+    "root": "ReplicatedStorage",
+    "line": 9,
+    "in_function": "Client.start",
+    "name": "OwnedGarageWorkspaceUI",
+    "via": "literal list"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\").Modules.Game.UI",
+    "receiver_path": "ReplicatedStorage.Modules.Game.UI",
+    "root": "ReplicatedStorage",
+    "line": 9,
+    "in_function": "Client.start",
+    "name": "GarageInteriorModeUI",
+    "via": "literal list"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\").Modules.Game.UI",
+    "receiver_path": "ReplicatedStorage.Modules.Game.UI",
+    "root": "ReplicatedStorage",
+    "line": 9,
+    "in_function": "Client.start",
+    "name": "GarageInteriorTransitionUI",
+    "via": "literal list"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 10,
+    "in_function": "Client.start",
+    "name": "PlayerScripts"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts",
+    "root": "Players",
+    "line": 10,
+    "in_function": "Client.start",
+    "name": "Runtime"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"Runtime\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime",
+    "root": "Players",
+    "line": 10,
+    "in_function": "Client.start",
+    "name": "UI"
+   }
+  ],
+  "text_compared": []
+ },
+ "run_service": {
+  "render_steps": [],
+  "connects": []
+ },
+ "context_actions": [],
+ "user_input_service": {
+  "connects": [],
+  "members_used": []
+ },
+ "audio": {
+  "bridge_calls": [],
+  "ui_audio_attributes": []
+ },
+ "config": {
+  "paths": [],
+  "attribute_reads": [],
+  "child_lookups": []
+ },
+ "startergui_core": [],
+ "gui_service": [],
+ "other_services": {},
+ "service_connects": [],
+ "proximity_prompts": [],
+ "instances_created_by_class": {},
+ "public_api": [
+  {
+   "name": "start",
+   "kind": "function",
+   "params": [],
+   "line": 4
+  }
+ ],
+ "unresolved": [],
+ "contract_file": "OwnedGarageClient.json"
+}

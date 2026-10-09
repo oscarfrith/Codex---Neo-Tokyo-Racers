@@ -1,0 +1,2734 @@
+{
+ "generated_by": "scripts/ui_restyle/tools/extract_contracts.py",
+ "meaning": "Per remote: every action name a client passes (first argument of InvokeServer / FireServer, also through local wrapper functions), the callers, and the payload keys where the payload is a table literal. `server_specs` are Net.invoke / Net.event declarations whose name equals the remote's instance name (matched by name only).",
+ "remotes": {
+  "<unresolved> chosen at run time, one of: ReplicatedStorage.Remotes.Racing.RaceQueueRequest | ReplicatedStorage.Remotes.Racing.RaceRequest": {
+   "remote": "<unresolved> chosen at run time, one of: ReplicatedStorage.Remotes.Racing.RaceQueueRequest | ReplicatedStorage.Remotes.Racing.RaceRequest",
+   "name": "RaceRequest",
+   "actions": {
+    "ResetToLastCheckpoint": {
+     "callers": [
+      {
+       "script": "ReplicatedStorage.Modules.Game.Racing.RaceSessionPresentationClient",
+       "line": 193,
+       "method": "InvokeServer",
+       "via": "literal list",
+       "payload_keys": [
+        "RunId",
+        "EventId"
+       ],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      }
+     ],
+     "payload_keys": [
+      "RunId",
+      "EventId"
+     ]
+    },
+    "ExitRaceToStart": {
+     "callers": [
+      {
+       "script": "ReplicatedStorage.Modules.Game.Racing.RaceSessionPresentationClient",
+       "line": 193,
+       "method": "InvokeServer",
+       "via": "literal list",
+       "payload_keys": [
+        "RunId",
+        "EventId"
+       ],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      }
+     ],
+     "payload_keys": [
+      "RunId",
+      "EventId"
+     ]
+    },
+    "ResetActiveTimeTrial": {
+     "callers": [
+      {
+       "script": "ReplicatedStorage.Modules.Game.Racing.RaceSessionPresentationClient",
+       "line": 193,
+       "method": "InvokeServer",
+       "via": "literal list",
+       "payload_keys": [
+        "RunId",
+        "EventId"
+       ],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      }
+     ],
+     "payload_keys": [
+      "RunId",
+      "EventId"
+     ]
+    },
+    "ExitActiveTimeTrial": {
+     "callers": [
+      {
+       "script": "ReplicatedStorage.Modules.Game.Racing.RaceSessionPresentationClient",
+       "line": 193,
+       "method": "InvokeServer",
+       "via": "literal list",
+       "payload_keys": [
+        "RunId",
+        "EventId"
+       ],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      }
+     ],
+     "payload_keys": [
+      "RunId",
+      "EventId"
+     ]
+    }
+   },
+   "listeners": [],
+   "server_specs": []
+  },
+  "<unresolved> chosen at run time, one of: ReplicatedStorage.Remotes.Racing.RaceRequest | ReplicatedStorage.Remotes.Racing.RaceQueueRequest": {
+   "remote": "<unresolved> chosen at run time, one of: ReplicatedStorage.Remotes.Racing.RaceRequest | ReplicatedStorage.Remotes.Racing.RaceQueueRequest",
+   "name": "RaceQueueRequest",
+   "actions": {
+    "AcknowledgeStagingReady": {
+     "callers": [
+      {
+       "script": "ReplicatedStorage.Modules.Game.Racing.RaceTransitionClient",
+       "line": 227,
+       "method": "InvokeServer",
+       "via": null,
+       "payload_keys": [
+        "RunId",
+        "Phase",
+        "Degraded",
+        "Detail"
+       ],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      }
+     ],
+     "payload_keys": [
+      "RunId",
+      "Phase",
+      "Degraded",
+      "Detail"
+     ]
+    }
+   },
+   "listeners": [],
+   "server_specs": []
+  },
+  "<unresolved> completeRemote": {
+   "remote": "<unresolved> completeRemote",
+   "name": "<unresolved> completeRemote",
+   "actions": {
+    "<no action argument>": {
+     "callers": [
+      {
+       "script": "ReplicatedStorage.Modules.Game.Dealership.DealershipIntroClient",
+       "line": 595,
+       "method": "FireServer",
+       "via": null,
+       "payload_keys": null,
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      }
+     ],
+     "payload_keys": []
+    }
+   },
+   "listeners": [],
+   "server_specs": []
+  },
+  "<unresolved> getComplete": {
+   "remote": "<unresolved> getComplete",
+   "name": "<unresolved> getComplete",
+   "actions": {
+    "<no action argument>": {
+     "callers": [
+      {
+       "script": "ReplicatedStorage.Modules.Game.Dealership.DealershipIntroClient",
+       "line": 569,
+       "method": "InvokeServer",
+       "via": null,
+       "payload_keys": null,
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      }
+     ],
+     "payload_keys": []
+    }
+   },
+   "listeners": [],
+   "server_specs": []
+  },
+  "ReplicatedStorage.Remotes.Activities.ActivityEvent": {
+   "remote": "ReplicatedStorage.Remotes.Activities.ActivityEvent",
+   "name": "ActivityEvent",
+   "actions": {},
+   "listeners": [
+    {
+     "script": "ReplicatedStorage.Modules.Game.Activities.ActivityClient",
+     "line": 305,
+     "handler": "inline",
+     "payload_fields_read": [
+      "Type"
+     ],
+     "literal_comparisons": {
+      "Type": [
+       "Rank:Up"
+      ]
+     }
+    }
+   ],
+   "server_specs": []
+  },
+  "ReplicatedStorage.Remotes.Activities.ActivityInvoke": {
+   "remote": "ReplicatedStorage.Remotes.Activities.ActivityInvoke",
+   "name": "ActivityInvoke",
+   "actions": {
+    "SetPassengerAccess": {
+     "callers": [
+      {
+       "script": "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+       "line": 612,
+       "method": "InvokeServer",
+       "via": null,
+       "payload_keys": [
+        "Access"
+       ],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      },
+      {
+       "script": "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI",
+       "line": 210,
+       "method": "InvokeServer",
+       "via": null,
+       "payload_keys": [
+        "Access"
+       ],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      }
+     ],
+     "payload_keys": [
+      "Access"
+     ]
+    },
+    "Cancel": {
+     "callers": [
+      {
+       "script": "ReplicatedStorage.Modules.Game.Activities.ActivityClient",
+       "line": 109,
+       "method": "InvokeServer",
+       "via": "wrapper invoke()",
+       "payload_keys": null,
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      }
+     ],
+     "payload_keys": []
+    }
+   },
+   "listeners": [],
+   "server_specs": [
+    {
+     "script": "ServerStorage.Modules.Game.Activities.ActivityService",
+     "line": 290,
+     "kind": "Net.invoke",
+     "name": "ActivityInvoke",
+     "actions": null,
+     "actions_expr": "ACTIONS",
+     "withAction": null
+    }
+   ]
+  },
+  "ReplicatedStorage.Remotes.Audio.VehicleAudioState": {
+   "remote": "ReplicatedStorage.Remotes.Audio.VehicleAudioState",
+   "name": "VehicleAudioState",
+   "actions": {
+    "<first argument is not an action literal: state.Vehicle>": {
+     "callers": [
+      {
+       "script": "ReplicatedStorage.Modules.Game.Audio.VehicleAudioClient",
+       "line": 1068,
+       "method": "FireServer",
+       "via": null,
+       "payload_keys": [
+        "Ignition",
+        "Drive",
+        "Drift",
+        "Boost",
+        "Cue",
+        "Revision"
+       ],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": "state.Vehicle"
+      }
+     ],
+     "payload_keys": [
+      "Ignition",
+      "Drive",
+      "Drift",
+      "Boost",
+      "Cue",
+      "Revision"
+     ]
+    }
+   },
+   "listeners": [],
+   "server_specs": [
+    {
+     "script": "ServerStorage.Modules.Game.Audio.VehicleAudioServer",
+     "line": 116,
+     "kind": "Net.event",
+     "name": "VehicleAudioState",
+     "actions": null,
+     "actions_expr": null,
+     "withAction": null
+    }
+   ]
+  },
+  "ReplicatedStorage.Remotes.Debug.StudioCashGrantRequest": {
+   "remote": "ReplicatedStorage.Remotes.Debug.StudioCashGrantRequest",
+   "name": "StudioCashGrantRequest",
+   "actions": {
+    "<no action argument>": {
+     "callers": [
+      {
+       "script": "ReplicatedStorage.Modules.Game.Development.StudioCashGrantClient",
+       "line": 39,
+       "method": "FireServer",
+       "via": null,
+       "payload_keys": null,
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      }
+     ],
+     "payload_keys": []
+    }
+   },
+   "listeners": [
+    {
+     "script": "ReplicatedStorage.Modules.Game.Development.StudioCashGrantClient",
+     "line": 45,
+     "handler": "inline",
+     "payload_fields_read": [
+      "Success",
+      "Message"
+     ],
+     "literal_comparisons": null
+    }
+   ],
+   "server_specs": [
+    {
+     "script": "ServerStorage.Modules.Game.Development.StudioCashGrantServer",
+     "line": 21,
+     "kind": "Net.event",
+     "name": "StudioCashGrantRequest",
+     "actions": null,
+     "actions_expr": null,
+     "withAction": null
+    }
+   ]
+  },
+  "ReplicatedStorage.Remotes.Garage.GarageInvoke": {
+   "remote": "ReplicatedStorage.Remotes.Garage.GarageInvoke",
+   "name": "GarageInvoke",
+   "actions": {
+    "SpawnOwnedVehicleFromFreeRoam": {
+     "callers": [
+      {
+       "script": "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+       "line": 748,
+       "method": "InvokeServer",
+       "via": "wrapper callGarage()",
+       "payload_keys": [
+        "VehicleId",
+        "CockpitId"
+       ],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      },
+      {
+       "script": "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI",
+       "line": 294,
+       "method": "InvokeServer",
+       "via": "wrapper call()",
+       "payload_keys": [
+        "VehicleId",
+        "CockpitId"
+       ],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      },
+      {
+       "script": "ReplicatedStorage.Modules.Game.Racing.RaceEntryMenuClient",
+       "line": 52,
+       "method": "InvokeServer",
+       "via": "wrapper call()",
+       "payload_keys": [
+        "VehicleId",
+        "CockpitId"
+       ],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      }
+     ],
+     "payload_keys": [
+      "VehicleId",
+      "CockpitId"
+     ]
+    },
+    "DespawnVehicle": {
+     "callers": [
+      {
+       "script": "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+       "line": 829,
+       "method": "InvokeServer",
+       "via": "wrapper callGarage()",
+       "payload_keys": [],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      },
+      {
+       "script": "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI",
+       "line": 310,
+       "method": "InvokeServer",
+       "via": "wrapper call()",
+       "payload_keys": [],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      },
+      {
+       "script": "ReplicatedStorage.Modules.Game.Garage.GarageUI",
+       "line": 691,
+       "method": "InvokeServer",
+       "via": "wrapper Adapter:Call()",
+       "payload_keys": [],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      }
+     ],
+     "payload_keys": []
+    },
+    "ExitVehicle": {
+     "callers": [
+      {
+       "script": "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+       "line": 1002,
+       "method": "InvokeServer",
+       "via": "wrapper callGarage()",
+       "payload_keys": [],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      },
+      {
+       "script": "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI",
+       "line": 316,
+       "method": "InvokeServer",
+       "via": "wrapper call()",
+       "payload_keys": [],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      }
+     ],
+     "payload_keys": []
+    },
+    "GetInitial": {
+     "callers": [
+      {
+       "script": "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI",
+       "line": 270,
+       "method": "InvokeServer",
+       "via": "wrapper call()",
+       "payload_keys": [],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      },
+      {
+       "script": "ReplicatedStorage.Modules.Game.Garage.GarageUI",
+       "line": 35,
+       "method": "InvokeServer",
+       "via": "wrapper Adapter:Call()",
+       "payload_keys": [],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      },
+      {
+       "script": "ReplicatedStorage.Modules.Game.Racing.RaceEntryMenuClient",
+       "line": 40,
+       "method": "InvokeServer",
+       "via": "wrapper call()",
+       "payload_keys": [],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      },
+      {
+       "script": "ReplicatedStorage.Modules.Game.Racing.RaceEntryPresentationClient",
+       "line": 213,
+       "method": "InvokeServer",
+       "via": "wrapper call()",
+       "payload_keys": [],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      }
+     ],
+     "payload_keys": []
+    },
+    "SetVehicleCosmeticColor": {
+     "callers": [
+      {
+       "script": "ReplicatedStorage.Modules.Game.Garage.GarageUI",
+       "line": 115,
+       "method": "InvokeServer",
+       "via": "wrapper Adapter:Call()",
+       "payload_keys": [
+        "CosmeticId",
+        "Color",
+        "ReturnProfile"
+       ],
+       "payload_expr": null,
+       "payload_literals": {
+        "CosmeticId": "ThrustColour"
+       },
+       "first_arg_expr": null
+      },
+      {
+       "script": "ReplicatedStorage.Modules.Game.Garage.GarageUI",
+       "line": 116,
+       "method": "InvokeServer",
+       "via": "wrapper Adapter:Call()",
+       "payload_keys": [
+        "CosmeticId",
+        "Color",
+        "ReturnProfile"
+       ],
+       "payload_expr": null,
+       "payload_literals": {
+        "CosmeticId": "Underglow"
+       },
+       "first_arg_expr": null
+      }
+     ],
+     "payload_keys": [
+      "CosmeticId",
+      "Color",
+      "ReturnProfile"
+     ]
+    },
+    "SetCockpitColor": {
+     "callers": [
+      {
+       "script": "ReplicatedStorage.Modules.Game.Garage.GarageUI",
+       "line": 117,
+       "method": "InvokeServer",
+       "via": "wrapper Adapter:Call()",
+       "payload_keys": [
+        "Channel",
+        "Color",
+        "Scope",
+        "ReturnProfile"
+       ],
+       "payload_expr": null,
+       "payload_literals": {
+        "Scope": "WholeVehicle"
+       },
+       "first_arg_expr": null
+      },
+      {
+       "script": "ReplicatedStorage.Modules.Game.Garage.GarageUI",
+       "line": 120,
+       "method": "InvokeServer",
+       "via": "wrapper Adapter:Call()",
+       "payload_keys": [
+        "Channel",
+        "Color",
+        "Scope",
+        "ReturnProfile"
+       ],
+       "payload_expr": null,
+       "payload_literals": {
+        "Scope": "WholeVehicle"
+       },
+       "first_arg_expr": null
+      },
+      {
+       "script": "ReplicatedStorage.Modules.Game.Garage.GarageUI",
+       "line": 121,
+       "method": "InvokeServer",
+       "via": "wrapper Adapter:Call()",
+       "payload_keys": [
+        "Channel",
+        "Color",
+        "Scope",
+        "ReturnProfile"
+       ],
+       "payload_expr": null,
+       "payload_literals": {
+        "Scope": "CockpitOnly"
+       },
+       "first_arg_expr": null
+      }
+     ],
+     "payload_keys": [
+      "Channel",
+      "Color",
+      "Scope",
+      "ReturnProfile"
+     ]
+    },
+    "SetAllNeonColor": {
+     "callers": [
+      {
+       "script": "ReplicatedStorage.Modules.Game.Garage.GarageUI",
+       "line": 119,
+       "method": "InvokeServer",
+       "via": "wrapper Adapter:Call()",
+       "payload_keys": [
+        "Color",
+        "ReturnProfile"
+       ],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      }
+     ],
+     "payload_keys": [
+      "Color",
+      "ReturnProfile"
+     ]
+    },
+    "SetModuleColor": {
+     "callers": [
+      {
+       "script": "ReplicatedStorage.Modules.Game.Garage.GarageUI",
+       "line": 122,
+       "method": "InvokeServer",
+       "via": "wrapper Adapter:Call()",
+       "payload_keys": [
+        "SlotId",
+        "Channel",
+        "Color",
+        "ReturnProfile"
+       ],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      }
+     ],
+     "payload_keys": [
+      "SlotId",
+      "Channel",
+      "Color",
+      "ReturnProfile"
+     ]
+    },
+    "BuyGarageProperty": {
+     "callers": [
+      {
+       "script": "ReplicatedStorage.Modules.Game.Garage.GarageUI",
+       "line": 174,
+       "method": "InvokeServer",
+       "via": "wrapper Adapter:Call()",
+       "payload_keys": [
+        "PropertyId"
+       ],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      }
+     ],
+     "payload_keys": [
+      "PropertyId"
+     ]
+    },
+    "SpawnVehicle": {
+     "callers": [
+      {
+       "script": "ReplicatedStorage.Modules.Game.Garage.GarageUI",
+       "line": 185,
+       "method": "InvokeServer",
+       "via": "wrapper Adapter:Call()",
+       "payload_keys": [],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      },
+      {
+       "script": "ReplicatedStorage.Modules.Game.Racing.RaceEntryMenuClient",
+       "line": 56,
+       "method": "InvokeServer",
+       "via": "wrapper call()",
+       "payload_keys": [],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      }
+     ],
+     "payload_keys": []
+    },
+    "SelectVehicleInstance": {
+     "callers": [
+      {
+       "script": "ReplicatedStorage.Modules.Game.Garage.GarageUI",
+       "line": 194,
+       "method": "InvokeServer",
+       "via": "wrapper Adapter:Call()",
+       "payload_keys": [
+        "VehicleId",
+        "CockpitId"
+       ],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      },
+      {
+       "script": "ReplicatedStorage.Modules.Game.Garage.GarageUI",
+       "line": 691,
+       "method": "InvokeServer",
+       "via": "wrapper Adapter:Call()",
+       "payload_keys": [
+        "VehicleId"
+       ],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      },
+      {
+       "script": "ReplicatedStorage.Modules.Game.Racing.RaceEntryMenuClient",
+       "line": 54,
+       "method": "InvokeServer",
+       "via": "wrapper call()",
+       "payload_keys": [
+        "VehicleId",
+        "CockpitId"
+       ],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      }
+     ],
+     "payload_keys": [
+      "VehicleId",
+      "CockpitId"
+     ]
+    },
+    "BuyCockpitInstance": {
+     "callers": [
+      {
+       "script": "ReplicatedStorage.Modules.Game.Garage.GarageUI",
+       "line": 194,
+       "method": "InvokeServer",
+       "via": "wrapper Adapter:Call()",
+       "payload_keys": [
+        "CockpitId",
+        "CategoryId"
+       ],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      }
+     ],
+     "payload_keys": [
+      "CockpitId",
+      "CategoryId"
+     ]
+    },
+    "EquipModuleInstance": {
+     "callers": [
+      {
+       "script": "ReplicatedStorage.Modules.Game.Garage.GarageUI",
+       "line": 288,
+       "method": "InvokeServer",
+       "via": "wrapper Adapter:Call()",
+       "payload_keys": [
+        "ModuleInstanceId",
+        "VehicleId",
+        "SlotId",
+        "AllowReassign"
+       ],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      }
+     ],
+     "payload_keys": [
+      "ModuleInstanceId",
+      "VehicleId",
+      "SlotId",
+      "AllowReassign"
+     ]
+    },
+    "BuyModuleInstance": {
+     "callers": [
+      {
+       "script": "ReplicatedStorage.Modules.Game.Garage.GarageUI",
+       "line": 358,
+       "method": "InvokeServer",
+       "via": "wrapper Adapter:Call()",
+       "payload_keys": [
+        "ModuleId",
+        "VehicleId",
+        "SlotId"
+       ],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      }
+     ],
+     "payload_keys": [
+      "ModuleId",
+      "VehicleId",
+      "SlotId"
+     ]
+    },
+    "UpgradeModule": {
+     "callers": [
+      {
+       "script": "ReplicatedStorage.Modules.Game.Garage.GarageUI",
+       "line": 437,
+       "method": "InvokeServer",
+       "via": "wrapper Adapter:Call()",
+       "payload_keys": [
+        "SlotId",
+        "ModuleId",
+        "UpgradeId"
+       ],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      }
+     ],
+     "payload_keys": [
+      "SlotId",
+      "ModuleId",
+      "UpgradeId"
+     ]
+    },
+    "BuyVehicleCosmetic": {
+     "callers": [
+      {
+       "script": "ReplicatedStorage.Modules.Game.Garage.GarageUI",
+       "line": 558,
+       "method": "InvokeServer",
+       "via": "wrapper Adapter:Call()",
+       "payload_keys": [
+        "CosmeticId"
+       ],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      }
+     ],
+     "payload_keys": [
+      "CosmeticId"
+     ]
+    },
+    "BuyNeon": {
+     "callers": [
+      {
+       "script": "ReplicatedStorage.Modules.Game.Garage.GarageUI",
+       "line": 604,
+       "method": "InvokeServer",
+       "via": "wrapper Adapter:Call()",
+       "payload_keys": [
+        "SlotId"
+       ],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      }
+     ],
+     "payload_keys": [
+      "SlotId"
+     ]
+    },
+    "EnsureCustomisationAccess": {
+     "callers": [
+      {
+       "script": "ReplicatedStorage.Modules.Game.Garage.GarageUI",
+       "line": 678,
+       "method": "InvokeServer",
+       "via": "wrapper Adapter:Call()",
+       "payload_keys": [],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      }
+     ],
+     "payload_keys": []
+    }
+   },
+   "listeners": [],
+   "server_specs": []
+  },
+  "ReplicatedStorage.Remotes.Garage.OwnedGarageEvent": {
+   "remote": "ReplicatedStorage.Remotes.Garage.OwnedGarageEvent",
+   "name": "OwnedGarageEvent",
+   "actions": {
+    "<no action argument>": {
+     "callers": [
+      {
+       "script": "ReplicatedStorage.Modules.Game.UI.OwnedGarageBrowserUI",
+       "line": 138,
+       "method": "FireServer",
+       "via": null,
+       "payload_keys": [
+        "Type",
+        "Token",
+        "Success",
+        "Message"
+       ],
+       "payload_expr": null,
+       "payload_literals": {
+        "Type": "OwnedGarageStreamReady"
+       },
+       "first_arg_expr": null
+      }
+     ],
+     "payload_keys": [
+      "Type",
+      "Token",
+      "Success",
+      "Message"
+     ]
+    }
+   },
+   "listeners": [
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.OwnedGarageBrowserUI",
+     "line": 135,
+     "handler": "inline",
+     "payload_fields_read": [
+      "Type",
+      "Position",
+      "TimeoutSeconds",
+      "Token",
+      "Success",
+      "Message",
+      "Reason"
+     ],
+     "literal_comparisons": {
+      "Type": [
+       "OwnedGarageStreamRequest",
+       "DriveOut",
+       "DriveOutResult",
+       "FootExitResult",
+       "VisitEnded"
+      ]
+     }
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.OwnedGarageWorkspaceUI",
+     "line": 176,
+     "handler": "inline",
+     "payload_fields_read": [
+      "Type",
+      "Revision",
+      "Success",
+      "Message"
+     ],
+     "literal_comparisons": {
+      "Type": [
+       "OpenManagement",
+       "DriveOut",
+       "ManagementUpdated",
+       "DriveOutResult"
+      ]
+     }
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI",
+     "line": 277,
+     "handler": "inline",
+     "payload_fields_read": [
+      "Type",
+      "Message",
+      "Success"
+     ],
+     "literal_comparisons": {
+      "Type": [
+       "DriveOutResult",
+       "ManagementUpdated"
+      ]
+     }
+    }
+   ],
+   "server_specs": [
+    {
+     "script": "ServerStorage.Modules.Game.Garage.OwnedGarageManagement",
+     "line": 38,
+     "kind": "Net.event",
+     "name": "OwnedGarageEvent",
+     "actions": null,
+     "actions_expr": null,
+     "withAction": null
+    }
+   ]
+  },
+  "ReplicatedStorage.Remotes.Garage.OwnedGarageInvoke": {
+   "remote": "ReplicatedStorage.Remotes.Garage.OwnedGarageInvoke",
+   "name": "OwnedGarageInvoke",
+   "actions": {
+    "GetVisitableGarages": {
+     "callers": [
+      {
+       "script": "ReplicatedStorage.Modules.Game.UI.OwnedGarageBrowserUI",
+       "line": 87,
+       "method": "InvokeServer",
+       "via": "wrapper request()",
+       "payload_keys": [],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      }
+     ],
+     "payload_keys": []
+    },
+    "LeaveVisit": {
+     "callers": [
+      {
+       "script": "ReplicatedStorage.Modules.Game.UI.OwnedGarageBrowserUI",
+       "line": 91,
+       "method": "InvokeServer",
+       "via": "wrapper request()",
+       "payload_keys": [],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      }
+     ],
+     "payload_keys": []
+    },
+    "VisitGarage": {
+     "callers": [
+      {
+       "script": "ReplicatedStorage.Modules.Game.UI.OwnedGarageBrowserUI",
+       "line": 91,
+       "method": "InvokeServer",
+       "via": "wrapper request()",
+       "payload_keys": [
+        "OwnerUserId"
+       ],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      }
+     ],
+     "payload_keys": [
+      "OwnerUserId"
+     ]
+    },
+    "EnterSelectedGarage": {
+     "callers": [
+      {
+       "script": "ReplicatedStorage.Modules.Game.UI.OwnedGarageBrowserUI",
+       "line": 101,
+       "method": "InvokeServer",
+       "via": "wrapper request()",
+       "payload_keys": [
+        "PropertyId",
+        "ReplacementSlotId"
+       ],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      },
+      {
+       "script": "ReplicatedStorage.Modules.Game.UI.OwnedGarageBrowserUI",
+       "line": 116,
+       "method": "InvokeServer",
+       "via": "wrapper request()",
+       "payload_keys": [
+        "PropertyId"
+       ],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      }
+     ],
+     "payload_keys": [
+      "PropertyId",
+      "ReplacementSlotId"
+     ]
+    },
+    "GetState": {
+     "callers": [
+      {
+       "script": "ReplicatedStorage.Modules.Game.UI.OwnedGarageBrowserUI",
+       "line": 108,
+       "method": "InvokeServer",
+       "via": "wrapper request()",
+       "payload_keys": [],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      }
+     ],
+     "payload_keys": []
+    },
+    "ExitOnFoot": {
+     "callers": [
+      {
+       "script": "ReplicatedStorage.Modules.Game.UI.OwnedGarageBrowserUI",
+       "line": 116,
+       "method": "InvokeServer",
+       "via": "wrapper request()",
+       "payload_keys": [],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      }
+     ],
+     "payload_keys": []
+    },
+    "CancelAllPreviews": {
+     "callers": [
+      {
+       "script": "ReplicatedStorage.Modules.Game.UI.OwnedGarageWorkspaceUI",
+       "line": 36,
+       "method": "InvokeServer",
+       "via": "wrapper request()",
+       "payload_keys": [],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      },
+      {
+       "script": "ReplicatedStorage.Modules.Game.UI.OwnedGarageWorkspaceUI",
+       "line": 37,
+       "method": "InvokeServer",
+       "via": "wrapper request()",
+       "payload_keys": [],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      }
+     ],
+     "payload_keys": []
+    },
+    "SetManagementOpen": {
+     "callers": [
+      {
+       "script": "ReplicatedStorage.Modules.Game.UI.OwnedGarageWorkspaceUI",
+       "line": 37,
+       "method": "InvokeServer",
+       "via": "wrapper request()",
+       "payload_keys": [
+        "Open"
+       ],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      },
+      {
+       "script": "ReplicatedStorage.Modules.Game.UI.OwnedGarageWorkspaceUI",
+       "line": 173,
+       "method": "InvokeServer",
+       "via": "wrapper request()",
+       "payload_keys": [
+        "Open"
+       ],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      }
+     ],
+     "payload_keys": [
+      "Open"
+     ]
+    },
+    "GetManagementState": {
+     "callers": [
+      {
+       "script": "ReplicatedStorage.Modules.Game.UI.OwnedGarageWorkspaceUI",
+       "line": 41,
+       "method": "InvokeServer",
+       "via": "wrapper request()",
+       "payload_keys": [],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      },
+      {
+       "script": "ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI",
+       "line": 27,
+       "method": "InvokeServer",
+       "via": "wrapper call()",
+       "payload_keys": [],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      }
+     ],
+     "payload_keys": []
+    },
+    "PreviewDisplay": {
+     "callers": [
+      {
+       "script": "ReplicatedStorage.Modules.Game.UI.OwnedGarageWorkspaceUI",
+       "line": 72,
+       "method": "InvokeServer",
+       "via": "wrapper request()",
+       "payload_keys": [
+        "SlotId",
+        "VehicleId"
+       ],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      }
+     ],
+     "payload_keys": [
+      "SlotId",
+      "VehicleId"
+     ]
+    },
+    "CancelStructurePreview": {
+     "callers": [
+      {
+       "script": "ReplicatedStorage.Modules.Game.UI.OwnedGarageWorkspaceUI",
+       "line": 113,
+       "method": "InvokeServer",
+       "via": "wrapper request()",
+       "payload_keys": [],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      },
+      {
+       "script": "ReplicatedStorage.Modules.Game.UI.OwnedGarageWorkspaceUI",
+       "line": 113,
+       "method": "InvokeServer",
+       "via": "wrapper request()",
+       "payload_keys": [],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      },
+      {
+       "script": "ReplicatedStorage.Modules.Game.UI.OwnedGarageWorkspaceUI",
+       "line": 143,
+       "method": "InvokeServer",
+       "via": "wrapper request()",
+       "payload_keys": [],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      },
+      {
+       "script": "ReplicatedStorage.Modules.Game.UI.OwnedGarageWorkspaceUI",
+       "line": 153,
+       "method": "InvokeServer",
+       "via": "wrapper request()",
+       "payload_keys": [],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      }
+     ],
+     "payload_keys": []
+    },
+    "CancelDecorationPreview": {
+     "callers": [
+      {
+       "script": "ReplicatedStorage.Modules.Game.UI.OwnedGarageWorkspaceUI",
+       "line": 115,
+       "method": "InvokeServer",
+       "via": "wrapper request()",
+       "payload_keys": [],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      },
+      {
+       "script": "ReplicatedStorage.Modules.Game.UI.OwnedGarageWorkspaceUI",
+       "line": 115,
+       "method": "InvokeServer",
+       "via": "wrapper request()",
+       "payload_keys": [],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      },
+      {
+       "script": "ReplicatedStorage.Modules.Game.UI.OwnedGarageWorkspaceUI",
+       "line": 145,
+       "method": "InvokeServer",
+       "via": "wrapper request()",
+       "payload_keys": [],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      },
+      {
+       "script": "ReplicatedStorage.Modules.Game.UI.OwnedGarageWorkspaceUI",
+       "line": 157,
+       "method": "InvokeServer",
+       "via": "wrapper request()",
+       "payload_keys": [],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      }
+     ],
+     "payload_keys": []
+    },
+    "AssignDisplay": {
+     "callers": [
+      {
+       "script": "ReplicatedStorage.Modules.Game.UI.OwnedGarageWorkspaceUI",
+       "line": 139,
+       "method": "InvokeServer",
+       "via": "wrapper operate()",
+       "payload_keys": [
+        "SlotId",
+        "VehicleId"
+       ],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      }
+     ],
+     "payload_keys": [
+      "SlotId",
+      "VehicleId"
+     ]
+    },
+    "PreviewStructure": {
+     "callers": [
+      {
+       "script": "ReplicatedStorage.Modules.Game.UI.OwnedGarageWorkspaceUI",
+       "line": 143,
+       "method": "InvokeServer",
+       "via": "wrapper request()",
+       "payload_keys": [
+        "SectionId",
+        "StyleId"
+       ],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      }
+     ],
+     "payload_keys": [
+      "SectionId",
+      "StyleId"
+     ]
+    },
+    "ConfigureStructure": {
+     "callers": [
+      {
+       "script": "ReplicatedStorage.Modules.Game.UI.OwnedGarageWorkspaceUI",
+       "line": 143,
+       "method": "InvokeServer",
+       "via": "wrapper operate()",
+       "payload_keys": [
+        "SectionId",
+        "Action",
+        "StyleId"
+       ],
+       "payload_expr": null,
+       "payload_literals": {
+        "Action": "Equip"
+       },
+       "first_arg_expr": null
+      },
+      {
+       "script": "ReplicatedStorage.Modules.Game.UI.OwnedGarageWorkspaceUI",
+       "line": 143,
+       "method": "InvokeServer",
+       "via": "wrapper operate()",
+       "payload_keys": [
+        "SectionId",
+        "Action",
+        "StyleId"
+       ],
+       "payload_expr": null,
+       "payload_literals": {
+        "Action": "Purchase"
+       },
+       "first_arg_expr": null
+      },
+      {
+       "script": "ReplicatedStorage.Modules.Game.UI.OwnedGarageWorkspaceUI",
+       "line": 151,
+       "method": "InvokeServer",
+       "via": "wrapper operate()",
+       "payload_keys": [
+        "SectionId",
+        "Action",
+        "Colors",
+        "Materials"
+       ],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      },
+      {
+       "script": "ReplicatedStorage.Modules.Game.UI.OwnedGarageWorkspaceUI",
+       "line": 152,
+       "method": "InvokeServer",
+       "via": "wrapper operate()",
+       "payload_keys": [
+        "SectionId",
+        "Action",
+        "Colors",
+        "Materials"
+       ],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      }
+     ],
+     "payload_keys": [
+      "SectionId",
+      "Action",
+      "StyleId",
+      "Colors",
+      "Materials"
+     ]
+    },
+    "PreviewDecoration": {
+     "callers": [
+      {
+       "script": "ReplicatedStorage.Modules.Game.UI.OwnedGarageWorkspaceUI",
+       "line": 145,
+       "method": "InvokeServer",
+       "via": "wrapper request()",
+       "payload_keys": [
+        "SlotId",
+        "ItemId"
+       ],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      }
+     ],
+     "payload_keys": [
+      "SlotId",
+      "ItemId"
+     ]
+    },
+    "ConfigureDecoration": {
+     "callers": [
+      {
+       "script": "ReplicatedStorage.Modules.Game.UI.OwnedGarageWorkspaceUI",
+       "line": 145,
+       "method": "InvokeServer",
+       "via": "wrapper operate()",
+       "payload_keys": [
+        "SlotId",
+        "Action"
+       ],
+       "payload_expr": null,
+       "payload_literals": {
+        "Action": "Clear"
+       },
+       "first_arg_expr": null
+      },
+      {
+       "script": "ReplicatedStorage.Modules.Game.UI.OwnedGarageWorkspaceUI",
+       "line": 145,
+       "method": "InvokeServer",
+       "via": "wrapper operate()",
+       "payload_keys": [
+        "SlotId",
+        "ItemId",
+        "Action"
+       ],
+       "payload_expr": null,
+       "payload_literals": {
+        "Action": "Place"
+       },
+       "first_arg_expr": null
+      },
+      {
+       "script": "ReplicatedStorage.Modules.Game.UI.OwnedGarageWorkspaceUI",
+       "line": 145,
+       "method": "InvokeServer",
+       "via": "wrapper operate()",
+       "payload_keys": [
+        "SlotId",
+        "ItemId",
+        "Action"
+       ],
+       "payload_expr": null,
+       "payload_literals": {
+        "Action": "Purchase"
+       },
+       "first_arg_expr": null
+      },
+      {
+       "script": "ReplicatedStorage.Modules.Game.UI.OwnedGarageWorkspaceUI",
+       "line": 156,
+       "method": "InvokeServer",
+       "via": "wrapper operate()",
+       "payload_keys": [
+        "SlotId",
+        "Action",
+        "Colors"
+       ],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      }
+     ],
+     "payload_keys": [
+      "SlotId",
+      "Action",
+      "ItemId",
+      "Colors"
+     ]
+    },
+    "PreviewLighting": {
+     "callers": [
+      {
+       "script": "ReplicatedStorage.Modules.Game.UI.OwnedGarageWorkspaceUI",
+       "line": 147,
+       "method": "InvokeServer",
+       "via": "wrapper request()",
+       "payload_keys": [
+        "PresetId"
+       ],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      },
+      {
+       "script": "ReplicatedStorage.Modules.Game.UI.OwnedGarageWorkspaceUI",
+       "line": 159,
+       "method": "InvokeServer",
+       "via": "wrapper request()",
+       "payload_keys": [
+        "PresetId",
+        "Colors"
+       ],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      }
+     ],
+     "payload_keys": [
+      "PresetId",
+      "Colors"
+     ]
+    },
+    "CancelLightingPreview": {
+     "callers": [
+      {
+       "script": "ReplicatedStorage.Modules.Game.UI.OwnedGarageWorkspaceUI",
+       "line": 147,
+       "method": "InvokeServer",
+       "via": "wrapper request()",
+       "payload_keys": [],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      },
+      {
+       "script": "ReplicatedStorage.Modules.Game.UI.OwnedGarageWorkspaceUI",
+       "line": 159,
+       "method": "InvokeServer",
+       "via": "wrapper request()",
+       "payload_keys": [],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      }
+     ],
+     "payload_keys": []
+    },
+    "ConfigureLighting": {
+     "callers": [
+      {
+       "script": "ReplicatedStorage.Modules.Game.UI.OwnedGarageWorkspaceUI",
+       "line": 147,
+       "method": "InvokeServer",
+       "via": "wrapper operate()",
+       "payload_keys": [
+        "Action",
+        "PresetId"
+       ],
+       "payload_expr": null,
+       "payload_literals": {
+        "Action": "Equip"
+       },
+       "first_arg_expr": null
+      },
+      {
+       "script": "ReplicatedStorage.Modules.Game.UI.OwnedGarageWorkspaceUI",
+       "line": 147,
+       "method": "InvokeServer",
+       "via": "wrapper operate()",
+       "payload_keys": [
+        "Action",
+        "PresetId"
+       ],
+       "payload_expr": null,
+       "payload_literals": {
+        "Action": "Purchase"
+       },
+       "first_arg_expr": null
+      },
+      {
+       "script": "ReplicatedStorage.Modules.Game.UI.OwnedGarageWorkspaceUI",
+       "line": 159,
+       "method": "InvokeServer",
+       "via": "wrapper operate()",
+       "payload_keys": [
+        "Action",
+        "PresetId",
+        "Colors"
+       ],
+       "payload_expr": null,
+       "payload_literals": {
+        "Action": "SetFinish"
+       },
+       "first_arg_expr": null
+      }
+     ],
+     "payload_keys": [
+      "Action",
+      "PresetId",
+      "Colors"
+     ]
+    },
+    "PreviewStructureFinishAll": {
+     "callers": [
+      {
+       "script": "ReplicatedStorage.Modules.Game.UI.OwnedGarageWorkspaceUI",
+       "line": 151,
+       "method": "InvokeServer",
+       "via": "wrapper request()",
+       "payload_keys": [
+        "SectionId",
+        "Colors"
+       ],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      },
+      {
+       "script": "ReplicatedStorage.Modules.Game.UI.OwnedGarageWorkspaceUI",
+       "line": 152,
+       "method": "InvokeServer",
+       "via": "wrapper request()",
+       "payload_keys": [
+        "SectionId",
+        "Materials"
+       ],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      }
+     ],
+     "payload_keys": [
+      "SectionId",
+      "Colors",
+      "Materials"
+     ]
+    },
+    "PreviewStructureFinish": {
+     "callers": [
+      {
+       "script": "ReplicatedStorage.Modules.Game.UI.OwnedGarageWorkspaceUI",
+       "line": 151,
+       "method": "InvokeServer",
+       "via": "wrapper request()",
+       "payload_keys": [
+        "SectionId",
+        "Colors"
+       ],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      },
+      {
+       "script": "ReplicatedStorage.Modules.Game.UI.OwnedGarageWorkspaceUI",
+       "line": 152,
+       "method": "InvokeServer",
+       "via": "wrapper request()",
+       "payload_keys": [
+        "SectionId",
+        "Materials"
+       ],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      }
+     ],
+     "payload_keys": [
+      "SectionId",
+      "Colors",
+      "Materials"
+     ]
+    },
+    "PreviewDecorationFinishAll": {
+     "callers": [
+      {
+       "script": "ReplicatedStorage.Modules.Game.UI.OwnedGarageWorkspaceUI",
+       "line": 156,
+       "method": "InvokeServer",
+       "via": "wrapper request()",
+       "payload_keys": [
+        "SlotId",
+        "Colors"
+       ],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      }
+     ],
+     "payload_keys": [
+      "SlotId",
+      "Colors"
+     ]
+    },
+    "PreviewDecorationFinish": {
+     "callers": [
+      {
+       "script": "ReplicatedStorage.Modules.Game.UI.OwnedGarageWorkspaceUI",
+       "line": 156,
+       "method": "InvokeServer",
+       "via": "wrapper request()",
+       "payload_keys": [
+        "SlotId",
+        "Colors"
+       ],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      }
+     ],
+     "payload_keys": [
+      "SlotId",
+      "Colors"
+     ]
+    },
+    "SetAccessMode": {
+     "callers": [
+      {
+       "script": "ReplicatedStorage.Modules.Game.UI.OwnedGarageWorkspaceUI",
+       "line": 161,
+       "method": "InvokeServer",
+       "via": "wrapper operate()",
+       "payload_keys": [
+        "AccessMode"
+       ],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      },
+      {
+       "script": "ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI",
+       "line": 38,
+       "method": "InvokeServer",
+       "via": "wrapper mutate()",
+       "payload_keys": [
+        "AccessMode"
+       ],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      }
+     ],
+     "payload_keys": [
+      "AccessMode"
+     ]
+    },
+    "SetInvitation": {
+     "callers": [
+      {
+       "script": "ReplicatedStorage.Modules.Game.UI.OwnedGarageWorkspaceUI",
+       "line": 162,
+       "method": "InvokeServer",
+       "via": "wrapper operate()",
+       "payload_keys": [
+        "Action",
+        "TargetUserId"
+       ],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      },
+      {
+       "script": "ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI",
+       "line": 42,
+       "method": "InvokeServer",
+       "via": "wrapper mutate()",
+       "payload_keys": [
+        "Action",
+        "TargetUserId"
+       ],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      }
+     ],
+     "payload_keys": [
+      "Action",
+      "TargetUserId"
+     ]
+    }
+   },
+   "listeners": [],
+   "server_specs": [
+    {
+     "script": "ServerStorage.Modules.Game.Garage.OwnedGarageManagement",
+     "line": 369,
+     "kind": "Net.invoke",
+     "name": "OwnedGarageInvoke",
+     "actions": [
+      "AssignDisplay",
+      "CancelAllPreviews",
+      "CancelDecorationPreview",
+      "CancelDisplayPreview",
+      "CancelLightingPreview",
+      "CancelStructurePreview",
+      "ClearDisplay",
+      "ConfigureDecoration",
+      "ConfigureLighting",
+      "ConfigureStructure",
+      "DriveOut",
+      "EnterOnFoot",
+      "EnterSelectedGarage",
+      "EnterWithVehicle",
+      "ExitOnFoot",
+      "GetManagementState",
+      "GetState",
+      "GetVisitableGarages",
+      "LeaveVisit",
+      "PreviewDecoration",
+      "PreviewDecorationFinish",
+      "PreviewDecorationFinishAll",
+      "PreviewDisplay",
+      "PreviewLighting",
+      "PreviewStructure",
+      "PreviewStructureFinish",
+      "PreviewStructureFinishAll",
+      "SetAccessMode",
+      "SetInteriorStyle",
+      "SetInvitation",
+      "SetManagementOpen",
+      "VisitGarage"
+     ],
+     "actions_expr": null,
+     "withAction": null
+    }
+   ],
+   "client_actions_not_declared_by_server": [],
+   "server_actions_without_client_caller": [
+    "CancelDisplayPreview",
+    "ClearDisplay",
+    "DriveOut",
+    "EnterOnFoot",
+    "EnterWithVehicle",
+    "SetInteriorStyle"
+   ]
+  },
+  "ReplicatedStorage.Remotes.Onboarding.OnboardingInvoke": {
+   "remote": "ReplicatedStorage.Remotes.Onboarding.OnboardingInvoke",
+   "name": "OnboardingInvoke",
+   "actions": {
+    "MarkSeen": {
+     "callers": [
+      {
+       "script": "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+       "line": 437,
+       "method": "InvokeServer",
+       "via": null,
+       "payload_keys": [
+        "PageId"
+       ],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      }
+     ],
+     "payload_keys": [
+      "PageId"
+     ]
+    },
+    "GetState": {
+     "callers": [
+      {
+       "script": "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+       "line": 750,
+       "method": "InvokeServer",
+       "via": null,
+       "payload_keys": [],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      }
+     ],
+     "payload_keys": []
+    }
+   },
+   "listeners": [],
+   "server_specs": [
+    {
+     "script": "ServerStorage.Modules.Game.Player.OnboardingServer",
+     "line": 61,
+     "kind": "Net.invoke",
+     "name": "OnboardingInvoke",
+     "actions": [
+      "GetState",
+      "MarkSeen"
+     ],
+     "actions_expr": null,
+     "withAction": null
+    }
+   ],
+   "client_actions_not_declared_by_server": [],
+   "server_actions_without_client_caller": []
+  },
+  "ReplicatedStorage.Remotes.Onboarding.OnboardingStateChanged": {
+   "remote": "ReplicatedStorage.Remotes.Onboarding.OnboardingStateChanged",
+   "name": "OnboardingStateChanged",
+   "actions": {},
+   "listeners": [
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+     "line": 725,
+     "handler": "accept",
+     "payload_fields_read": [
+      "Success"
+     ],
+     "literal_comparisons": null
+    }
+   ],
+   "server_specs": []
+  },
+  "ReplicatedStorage.Remotes.Racing.RaceBrowserTeleportInvoke": {
+   "remote": "ReplicatedStorage.Remotes.Racing.RaceBrowserTeleportInvoke",
+   "name": "RaceBrowserTeleportInvoke",
+   "actions": {
+    "TeleportToRaceStart": {
+     "callers": [
+      {
+       "script": "ReplicatedStorage.Modules.Game.Racing.RaceBrowserClient",
+       "line": 427,
+       "method": "InvokeServer",
+       "via": null,
+       "payload_keys": [
+        "EventId",
+        "Mode"
+       ],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      }
+     ],
+     "payload_keys": [
+      "EventId",
+      "Mode"
+     ]
+    }
+   },
+   "listeners": [],
+   "server_specs": [
+    {
+     "script": "ServerStorage.Modules.Game.Racing.RaceTeleportServer",
+     "line": 211,
+     "kind": "Net.invoke",
+     "name": "RaceBrowserTeleportInvoke",
+     "actions": [
+      "TeleportToRaceStart"
+     ],
+     "actions_expr": null,
+     "withAction": null
+    }
+   ],
+   "client_actions_not_declared_by_server": [],
+   "server_actions_without_client_caller": []
+  },
+  "ReplicatedStorage.Remotes.Racing.RaceEvent": {
+   "remote": "ReplicatedStorage.Remotes.Racing.RaceEvent",
+   "name": "RaceEvent",
+   "actions": {},
+   "listeners": [
+    {
+     "script": "ReplicatedStorage.Modules.Game.Audio.PresentationAudioClient",
+     "line": 379,
+     "handler": "onRaceEvent",
+     "payload_fields_read": [
+      "Type",
+      "RunId",
+      "EventId",
+      "Countdown",
+      "CurrentLap",
+      "Lap",
+      "CheckpointIndex",
+      "NextGateIndex"
+     ],
+     "literal_comparisons": {
+      "Type": [
+       "TimeTrialCountdownScheduled",
+       "RaceCountdownScheduled",
+       "TimeTrialCountdown",
+       "RaceCountdown",
+       "TimeTrialStarted",
+       "RaceStarted",
+       "TimeTrialCheckpoint",
+       "RaceCheckpoint",
+       "TimeTrialLapCompleted",
+       "RaceLapCompleted",
+       "TimeTrialFinished",
+       "RaceFinished",
+       "RaceDNF",
+       "RaceStaged",
+       "TimeTrialEnded",
+       "TimeTrialError",
+       "RaceEnded",
+       "RaceExitedToStart",
+       "RaceQueueError"
+      ]
+     }
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.Vehicles.VehicleVFXClient",
+     "line": 1104,
+     "handler": "inline",
+     "payload_fields_read": [
+      "Type",
+      "Active",
+      "Participants"
+     ],
+     "literal_comparisons": {
+      "Type": [
+       "RaceVisibilityUpdate",
+       "RaceExitedToStart",
+       "RaceEnded",
+       "RaceDNF",
+       "TimeTrialEnded",
+       "TimeTrialFinished"
+      ]
+     }
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.Racing.RaceCountdownPresentationClient",
+     "line": 53,
+     "handler": "inline",
+     "payload_fields_read": [
+      "Type",
+      "Countdown"
+     ],
+     "literal_comparisons": {
+      "Type": [
+       "TimeTrialStaged",
+       "RaceStaged",
+       "TimeTrialCountdownReveal",
+       "RaceCountdownReveal",
+       "TimeTrialCountdownScheduled",
+       "RaceCountdownScheduled",
+       "TimeTrialCountdown",
+       "RaceCountdown",
+       "TimeTrialStarted",
+       "RaceStarted",
+       "TimeTrialFinished",
+       "TimeTrialEnded",
+       "TimeTrialError",
+       "RaceFinished",
+       "RaceDNF",
+       "RaceEnded",
+       "RaceExitedToStart",
+       "RaceQueueError"
+      ]
+     }
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.Racing.RaceEntryMenuClient",
+     "line": 87,
+     "handler": "inline",
+     "payload_fields_read": [
+      "Type",
+      "EventId",
+      "RaceEventId",
+      "TimeTrialEventId",
+      "Summary",
+      "RouteId"
+     ],
+     "literal_comparisons": {
+      "Type": [
+       "OpenRaceEntry",
+       "TimeTrialStarted",
+       "TimeTrialFinished",
+       "TimeTrialEnded",
+       "TimeTrialError",
+       "RaceExitedToStart"
+      ]
+     }
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.Racing.RaceParticipantVisibilityClient",
+     "line": 66,
+     "handler": "inline",
+     "payload_fields_read": [
+      "Type",
+      "RunId",
+      "Participants",
+      "Active"
+     ],
+     "literal_comparisons": {
+      "Type": [
+       "RaceVisibilityUpdate",
+       "RaceFinished",
+       "RaceDNF",
+       "RaceExitedToStart",
+       "RaceEnded",
+       "TimeTrialFinished",
+       "TimeTrialEnded",
+       "TimeTrialError"
+      ],
+      "RunId": [
+       ""
+      ]
+     }
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.Racing.RaceRouteGuideClient",
+     "line": 418,
+     "handler": "inline",
+     "payload_fields_read": [
+      "Type"
+     ],
+     "literal_comparisons": {
+      "Type": [
+       "TimeTrialStaged",
+       "TimeTrialCountdown",
+       "RaceStaged",
+       "RaceCountdown",
+       "TimeTrialStarted",
+       "RaceStarted",
+       "TimeTrialCheckpoint",
+       "RaceCheckpoint",
+       "TimeTrialLapCompleted",
+       "RaceLapCompleted",
+       "TimeTrialFinished",
+       "TimeTrialEnded",
+       "TimeTrialError",
+       "RaceFinished",
+       "RaceEnded"
+      ]
+     }
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.Racing.RaceSessionAssetsClient",
+     "line": 233,
+     "handler": "inline",
+     "payload_fields_read": [
+      "Type",
+      "RunId"
+     ],
+     "literal_comparisons": {
+      "Type": [
+       "RaceVisibilityUpdate",
+       "TimeTrialStaged",
+       "TimeTrialStarted",
+       "TimeTrialCheckpoint",
+       "TimeTrialLapCompleted",
+       "TimeTrialReset",
+       "RaceStaged",
+       "RaceStarted",
+       "RaceCheckpoint",
+       "RaceReset",
+       "TimeTrialEnded",
+       "TimeTrialFinished",
+       "RaceFinished",
+       "RaceEnded",
+       "RaceDNF",
+       "RaceExitedToStart"
+      ]
+     }
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.Racing.RaceSessionPresentationClient",
+     "line": 303,
+     "handler": "inline",
+     "payload_fields_read": [
+      "Type",
+      "LapTimes",
+      "Lap",
+      "Elapsed",
+      "NextLap",
+      "CurrentLap",
+      "Place",
+      "ParticipantCount",
+      "LapTarget",
+      "Positions"
+     ],
+     "literal_comparisons": {
+      "Type": [
+       "TimeTrialStaged",
+       "TimeTrialCountdown",
+       "TimeTrialStarted",
+       "TimeTrialCheckpoint",
+       "TimeTrialLapCompleted",
+       "TimeTrialReset",
+       "RaceStaged",
+       "RaceCountdown",
+       "RaceStarted",
+       "RaceCheckpoint",
+       "RaceLapCompleted",
+       "RacePositionUpdate",
+       "TimeTrialFinished",
+       "RaceFinished",
+       "RaceEnded",
+       "TimeTrialEnded",
+       "TimeTrialError",
+       "RaceExitedToStart"
+      ]
+     }
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.Racing.RaceTimeTrialResultCoachClient",
+     "line": 214,
+     "handler": "inline",
+     "payload_fields_read": [
+      "Type",
+      "Positions"
+     ],
+     "literal_comparisons": {
+      "Type": [
+       "RacePositionUpdate",
+       "RaceFinished",
+       "TimeTrialFinished",
+       "TimeTrialEnded",
+       "RaceStaged",
+       "RaceStarted",
+       "TimeTrialStaged",
+       "TimeTrialStarted",
+       "RaceExitedToStart"
+      ]
+     }
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.Racing.RaceTransitionClient",
+     "line": 385,
+     "handler": "inline",
+     "payload_fields_read": null,
+     "literal_comparisons": null
+    }
+   ],
+   "server_specs": []
+  },
+  "ReplicatedStorage.Remotes.Racing.RaceQueueEvent": {
+   "remote": "ReplicatedStorage.Remotes.Racing.RaceQueueEvent",
+   "name": "RaceQueueEvent",
+   "actions": {},
+   "listeners": [
+    {
+     "script": "ReplicatedStorage.Modules.Game.Racing.RaceQueueClient",
+     "line": 46,
+     "handler": "inline",
+     "payload_fields_read": [
+      "Type",
+      "RouteId",
+      "NextGateIndex"
+     ],
+     "literal_comparisons": {
+      "Type": [
+       "QueueJoined",
+       "QueueUpdate",
+       "QueueLeft",
+       "RaceQueueError",
+       "RaceStaged",
+       "RaceStarted",
+       "RaceFinished",
+       "RaceDNF",
+       "RaceEnded",
+       "RaceExitedToStart"
+      ]
+     }
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.Racing.RaceTransitionClient",
+     "line": 389,
+     "handler": "inline",
+     "payload_fields_read": null,
+     "literal_comparisons": null
+    }
+   ],
+   "server_specs": []
+  },
+  "ReplicatedStorage.Remotes.Racing.RaceQueueRequest": {
+   "remote": "ReplicatedStorage.Remotes.Racing.RaceQueueRequest",
+   "name": "RaceQueueRequest",
+   "actions": {
+    "JoinQueue": {
+     "callers": [
+      {
+       "script": "ReplicatedStorage.Modules.Game.Racing.RaceQueueClient",
+       "line": 44,
+       "method": "InvokeServer",
+       "via": "wrapper call()",
+       "payload_keys": [
+        "EventId",
+        "VehicleId"
+       ],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      }
+     ],
+     "payload_keys": [
+      "EventId",
+      "VehicleId"
+     ]
+    },
+    "LeaveQueue": {
+     "callers": [
+      {
+       "script": "ReplicatedStorage.Modules.Game.Racing.RaceQueueClient",
+       "line": 45,
+       "method": "InvokeServer",
+       "via": "wrapper call()",
+       "payload_keys": [],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      }
+     ],
+     "payload_keys": []
+    },
+    "ExitRaceToStart": {
+     "callers": [
+      {
+       "script": "ReplicatedStorage.Modules.Game.Racing.RaceTimeTrialResultCoachClient",
+       "line": 191,
+       "method": "InvokeServer",
+       "via": "wrapper invoke()",
+       "payload_keys": [],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      }
+     ],
+     "payload_keys": []
+    }
+   },
+   "listeners": [],
+   "server_specs": [
+    {
+     "script": "ServerStorage.Modules.Game.Racing.MatchmakingServer",
+     "line": 1191,
+     "kind": "Net.invoke",
+     "name": "RaceQueueRequest",
+     "actions": [
+      "AcknowledgeStagingReady",
+      "ExitRaceToStart",
+      "GetQueueStatus",
+      "JoinQueue",
+      "LeaveQueue",
+      "ResetToLastCheckpoint"
+     ],
+     "actions_expr": null,
+     "withAction": null
+    }
+   ],
+   "client_actions_not_declared_by_server": [],
+   "server_actions_without_client_caller": [
+    "AcknowledgeStagingReady",
+    "GetQueueStatus",
+    "ResetToLastCheckpoint"
+   ]
+  },
+  "ReplicatedStorage.Remotes.Racing.RaceRequest": {
+   "remote": "ReplicatedStorage.Remotes.Racing.RaceRequest",
+   "name": "RaceRequest",
+   "actions": {
+    "StartStagedTimeTrial": {
+     "callers": [
+      {
+       "script": "ReplicatedStorage.Modules.Game.Racing.RaceEntryMenuClient",
+       "line": 79,
+       "method": "InvokeServer",
+       "via": "wrapper call()",
+       "payload_keys": [
+        "EventId",
+        "VehicleId",
+        "LapCount"
+       ],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      },
+      {
+       "script": "ReplicatedStorage.Modules.Game.Racing.RaceTimeTrialResultCoachClient",
+       "line": 147,
+       "method": "InvokeServer",
+       "via": "wrapper invoke()",
+       "payload_keys": [
+        "EventId",
+        "VehicleId",
+        "LapCount"
+       ],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      }
+     ],
+     "payload_keys": [
+      "EventId",
+      "VehicleId",
+      "LapCount"
+     ]
+    },
+    "GetTimeTrialPersonalBest": {
+     "callers": [
+      {
+       "script": "ReplicatedStorage.Modules.Game.Racing.RaceEntryPresentationClient",
+       "line": 516,
+       "method": "InvokeServer",
+       "via": "wrapper call()",
+       "payload_keys": [
+        "EventId",
+        "VehicleTier"
+       ],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      },
+      {
+       "script": "ReplicatedStorage.Modules.Game.Racing.RaceEntryPresentationClient",
+       "line": 763,
+       "method": "InvokeServer",
+       "via": "wrapper call()",
+       "payload_keys": [
+        "EventId",
+        "VehicleTier"
+       ],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      },
+      {
+       "script": "ReplicatedStorage.Modules.Game.Racing.RaceSessionPresentationClient",
+       "line": 271,
+       "method": "InvokeServer",
+       "via": "wrapper call()",
+       "payload_keys": [
+        "EventId",
+        "VehicleTier"
+       ],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      }
+     ],
+     "payload_keys": [
+      "EventId",
+      "VehicleTier"
+     ]
+    },
+    "GetTimeTrialLeaderboard": {
+     "callers": [
+      {
+       "script": "ReplicatedStorage.Modules.Game.Racing.RaceEntryPresentationClient",
+       "line": 521,
+       "method": "InvokeServer",
+       "via": "wrapper call()",
+       "payload_keys": [
+        "EventId",
+        "VehicleTier",
+        "Limit"
+       ],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      },
+      {
+       "script": "ReplicatedStorage.Modules.Game.Racing.RaceTimeTrialResultCoachClient",
+       "line": 140,
+       "method": "InvokeServer",
+       "via": "wrapper invoke()",
+       "payload_keys": [
+        "EventId",
+        "VehicleTier",
+        "Limit"
+       ],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      }
+     ],
+     "payload_keys": [
+      "EventId",
+      "VehicleTier",
+      "Limit"
+     ]
+    },
+    "ExitFinishedTimeTrial": {
+     "callers": [
+      {
+       "script": "ReplicatedStorage.Modules.Game.Racing.RaceTimeTrialResultCoachClient",
+       "line": 145,
+       "method": "InvokeServer",
+       "via": "wrapper invoke()",
+       "payload_keys": [],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      }
+     ],
+     "payload_keys": []
+    }
+   },
+   "listeners": [],
+   "server_specs": [
+    {
+     "script": "ServerStorage.Modules.Game.Racing.TimeTrialServer",
+     "line": 1330,
+     "kind": "Net.invoke",
+     "name": "RaceRequest",
+     "actions": [
+      "AcknowledgeStagingReady",
+      "CancelTimeTrial",
+      "ExitActiveTimeTrial",
+      "ExitFinishedTimeTrial",
+      "GetEntryDetails",
+      "GetRouteSummary",
+      "GetTimeTrialLeaderboard",
+      "GetTimeTrialPersonalBest",
+      "ResetActiveTimeTrial",
+      "StartStagedTimeTrial",
+      "StartTimeTrial"
+     ],
+     "actions_expr": null,
+     "withAction": null
+    }
+   ],
+   "client_actions_not_declared_by_server": [],
+   "server_actions_without_client_caller": [
+    "AcknowledgeStagingReady",
+    "CancelTimeTrial",
+    "ExitActiveTimeTrial",
+    "GetEntryDetails",
+    "GetRouteSummary",
+    "ResetActiveTimeTrial",
+    "StartTimeTrial"
+   ]
+  },
+  "ReplicatedStorage.Remotes.UI.FreeRoamHudTeleportInvoke": {
+   "remote": "ReplicatedStorage.Remotes.UI.FreeRoamHudTeleportInvoke",
+   "name": "FreeRoamHudTeleportInvoke",
+   "actions": {
+    "TeleportToDealership": {
+     "callers": [
+      {
+       "script": "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+       "line": 519,
+       "method": "InvokeServer",
+       "via": null,
+       "payload_keys": null,
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      },
+      {
+       "script": "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI",
+       "line": 243,
+       "method": "InvokeServer",
+       "via": null,
+       "payload_keys": null,
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      },
+      {
+       "script": "ReplicatedFirst.Loading.InitialLoadingAndStartScreenClient",
+       "line": 316,
+       "method": "InvokeServer",
+       "via": null,
+       "payload_keys": null,
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      }
+     ],
+     "payload_keys": []
+    }
+   },
+   "listeners": [],
+   "server_specs": [
+    {
+     "script": "ServerStorage.Modules.Game.World.FreeRoamTeleportServer",
+     "line": 116,
+     "kind": "Net.invoke",
+     "name": "FreeRoamHudTeleportInvoke",
+     "actions": [
+      "TeleportToDealership"
+     ],
+     "actions_expr": null,
+     "withAction": null
+    }
+   ],
+   "client_actions_not_declared_by_server": [],
+   "server_actions_without_client_caller": []
+  },
+  "ReplicatedStorage.Remotes.UI.GarageSessionRequest": {
+   "remote": "ReplicatedStorage.Remotes.UI.GarageSessionRequest",
+   "name": "GarageSessionRequest",
+   "actions": {
+    "End": {
+     "callers": [
+      {
+       "script": "ReplicatedStorage.Modules.Game.Garage.GarageUI",
+       "line": 183,
+       "method": "InvokeServer",
+       "via": "wrapper Adapter:Session()",
+       "payload_keys": [
+        "ReturnToEntry"
+       ],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      },
+      {
+       "script": "ReplicatedStorage.Modules.Game.Garage.GarageUI",
+       "line": 195,
+       "method": "InvokeServer",
+       "via": "wrapper Adapter:Session()",
+       "payload_keys": [
+        "ReturnToEntry"
+       ],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      },
+      {
+       "script": "ReplicatedStorage.Modules.Game.Garage.GarageUI",
+       "line": 684,
+       "method": "InvokeServer",
+       "via": "wrapper Adapter:Session()",
+       "payload_keys": [
+        "ReturnToEntry"
+       ],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      },
+      {
+       "script": "ReplicatedStorage.Modules.Game.Garage.GarageUI",
+       "line": 689,
+       "method": "InvokeServer",
+       "via": "wrapper Adapter:Session()",
+       "payload_keys": [
+        "ReturnToEntry"
+       ],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      },
+      {
+       "script": "ReplicatedStorage.Modules.Game.Dealership.GarageEntranceClient",
+       "line": 196,
+       "method": "InvokeServer",
+       "via": null,
+       "payload_keys": [
+        "ReturnToEntry"
+       ],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      }
+     ],
+     "payload_keys": [
+      "ReturnToEntry"
+     ]
+    },
+    "Begin": {
+     "callers": [
+      {
+       "script": "ReplicatedStorage.Modules.Game.Dealership.GarageEntranceClient",
+       "line": 178,
+       "method": "InvokeServer",
+       "via": null,
+       "payload_keys": [
+        "Mode"
+       ],
+       "payload_expr": null,
+       "payload_literals": null,
+       "first_arg_expr": null
+      }
+     ],
+     "payload_keys": [
+      "Mode"
+     ]
+    }
+   },
+   "listeners": [],
+   "server_specs": [
+    {
+     "script": "ServerStorage.Modules.Game.Garage.GarageSessionServer",
+     "line": 105,
+     "kind": "Net.invoke",
+     "name": "GarageSessionRequest",
+     "actions": [
+      "Begin",
+      "End",
+      "State"
+     ],
+     "actions_expr": null,
+     "withAction": null
+    }
+   ],
+   "client_actions_not_declared_by_server": [],
+   "server_actions_without_client_caller": [
+    "State"
+   ]
+  }
+ },
+ "server_specs_unmatched": [
+  {
+   "script": "ServerStorage.Modules.Game.Dealership.IntroProgressServer",
+   "line": 196,
+   "kind": "Net.invoke",
+   "name": "GetDealershipIntroObjective",
+   "actions": null,
+   "actions_expr": null,
+   "withAction": false
+  },
+  {
+   "script": "ServerStorage.Modules.Game.Dealership.IntroProgressServer",
+   "line": 200,
+   "kind": "Net.event",
+   "name": "CompleteDealershipIntroObjective",
+   "actions": null,
+   "actions_expr": null,
+   "withAction": null
+  }
+ ]
+}

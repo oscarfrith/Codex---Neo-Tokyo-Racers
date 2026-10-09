@@ -1,0 +1,902 @@
+{
+ "script": "ReplicatedStorage.Modules.Game.Garage.PreviewCameraClient",
+ "class": "ModuleScript",
+ "source_file": "classic/sources/ReplicatedStorage.Modules.Game.Garage.PreviewCameraClient.lua",
+ "source_lines": 57,
+ "included_because": [
+  "client script that is UI-coupled: references PlayerGui"
+ ],
+ "requires": [],
+ "remotes": {
+  "calls": [],
+  "listens": []
+ },
+ "bindables": {
+  "fires": [],
+  "connects": [],
+  "invokes": [],
+  "handlers": [],
+  "created": [],
+  "module_signal_fires": []
+ },
+ "attributes": {
+  "reads": [
+   {
+    "receiver": "cfg",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "receiver_kind": "config",
+    "wrapper_defined": "PreviewCameraClient:14",
+    "line": 27,
+    "in_function": "sectionYaw",
+    "via": "wrapper number()",
+    "name": null,
+    "name_expr": "attribute"
+   },
+   {
+    "receiver": "cfg",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "receiver_kind": "config",
+    "wrapper_defined": "PreviewCameraClient:14",
+    "line": 27,
+    "in_function": "sectionYaw",
+    "via": "wrapper number()",
+    "name": "PreviewCameraYawOffsetDegrees"
+   },
+   {
+    "receiver": "localPlayer",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "line": 40,
+    "in_function": "ownedGarageWalking",
+    "name": "OwnedGarageInside"
+   },
+   {
+    "receiver": "playerGui",
+    "receiver_path": "Players.LocalPlayer.PlayerGui",
+    "receiver_kind": "playerGui",
+    "line": 41,
+    "in_function": "ownedGarageWalking",
+    "name": "OwnedGarageManagementOpen"
+   },
+   {
+    "receiver": "cfg",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "receiver_kind": "config",
+    "wrapper_defined": "PreviewCameraClient:14",
+    "line": 47,
+    "in_function": "PreviewCameraController.BindInput",
+    "via": "wrapper number()",
+    "name": "PreviewCameraWheelZoom"
+   },
+   {
+    "receiver": "cfg",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "receiver_kind": "config",
+    "wrapper_defined": "PreviewCameraClient:14",
+    "line": 47,
+    "in_function": "PreviewCameraController.BindInput",
+    "via": "wrapper number()",
+    "name": "PreviewCameraMinDistance"
+   },
+   {
+    "receiver": "cfg",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "receiver_kind": "config",
+    "wrapper_defined": "PreviewCameraClient:14",
+    "line": 47,
+    "in_function": "PreviewCameraController.BindInput",
+    "via": "wrapper number()",
+    "name": "PreviewCameraMaxDistance"
+   },
+   {
+    "receiver": "cfg",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "receiver_kind": "config",
+    "wrapper_defined": "PreviewCameraClient:14",
+    "line": 48,
+    "in_function": "PreviewCameraController.BindInput",
+    "via": "wrapper number()",
+    "name": "PreviewCameraYawSensitivity"
+   },
+   {
+    "receiver": "cfg",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "receiver_kind": "config",
+    "wrapper_defined": "PreviewCameraClient:14",
+    "line": 48,
+    "in_function": "PreviewCameraController.BindInput",
+    "via": "wrapper number()",
+    "name": "PreviewCameraPitchSensitivity"
+   },
+   {
+    "receiver": "cfg",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "receiver_kind": "config",
+    "wrapper_defined": "PreviewCameraClient:14",
+    "line": 48,
+    "in_function": "PreviewCameraController.BindInput",
+    "via": "wrapper number()",
+    "name": "PreviewCameraMinPitchDegrees"
+   },
+   {
+    "receiver": "cfg",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "receiver_kind": "config",
+    "wrapper_defined": "PreviewCameraClient:14",
+    "line": 48,
+    "in_function": "PreviewCameraController.BindInput",
+    "via": "wrapper number()",
+    "name": "PreviewCameraMaxPitchDegrees"
+   },
+   {
+    "receiver": "cfg",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "receiver_kind": "config",
+    "wrapper_defined": "PreviewCameraClient:14",
+    "line": 50,
+    "in_function": "PreviewCameraController.BindInput",
+    "via": "wrapper number()",
+    "name": "PreviewCameraPinchZoom"
+   },
+   {
+    "receiver": "cfg",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "receiver_kind": "config",
+    "wrapper_defined": "PreviewCameraClient:14",
+    "line": 50,
+    "in_function": "PreviewCameraController.BindInput",
+    "via": "wrapper number()",
+    "name": "PreviewCameraMinDistance"
+   },
+   {
+    "receiver": "cfg",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "receiver_kind": "config",
+    "wrapper_defined": "PreviewCameraClient:14",
+    "line": 50,
+    "in_function": "PreviewCameraController.BindInput",
+    "via": "wrapper number()",
+    "name": "PreviewCameraMaxDistance"
+   },
+   {
+    "receiver": "cfg",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "receiver_kind": "config",
+    "wrapper_defined": "PreviewCameraClient:14",
+    "line": 54,
+    "in_function": "PreviewCameraController.Update",
+    "via": "wrapper number()",
+    "name": "PreviewCameraLerpSpeed"
+   }
+  ],
+  "writes": [],
+  "listens": []
+ },
+ "player_attribute_writes": [],
+ "screenguis": {
+  "created": [],
+  "enabled_writes": []
+ },
+ "names": {
+  "assigned": [],
+  "looked_up": [
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 6,
+    "name": "Config"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\")",
+    "receiver_path": "ReplicatedStorage.Config",
+    "root": "ReplicatedStorage",
+    "line": 6,
+    "name": "UI"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\"):WaitForChild(\"UI\")",
+    "receiver_path": "ReplicatedStorage.Config.UI",
+    "root": "ReplicatedStorage",
+    "line": 6,
+    "name": "GarageReplacement"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "localPlayer",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 8,
+    "name": "PlayerGui"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "cfg",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "PreviewCameraClient:14",
+    "line": 27,
+    "in_function": "sectionYaw",
+    "via": "wrapper number()",
+    "name": null,
+    "name_expr": "attribute"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "cfg",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "PreviewCameraClient:14",
+    "line": 27,
+    "in_function": "sectionYaw",
+    "via": "wrapper number()",
+    "name": "PreviewCameraYawOffsetDegrees"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "cfg",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "PreviewCameraClient:14",
+    "line": 47,
+    "in_function": "PreviewCameraController.BindInput",
+    "via": "wrapper number()",
+    "name": "PreviewCameraWheelZoom"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "cfg",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "PreviewCameraClient:14",
+    "line": 47,
+    "in_function": "PreviewCameraController.BindInput",
+    "via": "wrapper number()",
+    "name": "PreviewCameraMinDistance"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "cfg",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "PreviewCameraClient:14",
+    "line": 47,
+    "in_function": "PreviewCameraController.BindInput",
+    "via": "wrapper number()",
+    "name": "PreviewCameraMaxDistance"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "cfg",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "PreviewCameraClient:14",
+    "line": 48,
+    "in_function": "PreviewCameraController.BindInput",
+    "via": "wrapper number()",
+    "name": "PreviewCameraYawSensitivity"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "cfg",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "PreviewCameraClient:14",
+    "line": 48,
+    "in_function": "PreviewCameraController.BindInput",
+    "via": "wrapper number()",
+    "name": "PreviewCameraPitchSensitivity"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "cfg",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "PreviewCameraClient:14",
+    "line": 48,
+    "in_function": "PreviewCameraController.BindInput",
+    "via": "wrapper number()",
+    "name": "PreviewCameraMinPitchDegrees"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "cfg",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "PreviewCameraClient:14",
+    "line": 48,
+    "in_function": "PreviewCameraController.BindInput",
+    "via": "wrapper number()",
+    "name": "PreviewCameraMaxPitchDegrees"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "cfg",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "PreviewCameraClient:14",
+    "line": 50,
+    "in_function": "PreviewCameraController.BindInput",
+    "via": "wrapper number()",
+    "name": "PreviewCameraPinchZoom"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "cfg",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "PreviewCameraClient:14",
+    "line": 50,
+    "in_function": "PreviewCameraController.BindInput",
+    "via": "wrapper number()",
+    "name": "PreviewCameraMinDistance"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "cfg",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "PreviewCameraClient:14",
+    "line": 50,
+    "in_function": "PreviewCameraController.BindInput",
+    "via": "wrapper number()",
+    "name": "PreviewCameraMaxDistance"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "cfg",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "PreviewCameraClient:14",
+    "line": 54,
+    "in_function": "PreviewCameraController.Update",
+    "via": "wrapper number()",
+    "name": "PreviewCameraLerpSpeed"
+   }
+  ],
+  "text_compared": []
+ },
+ "run_service": {
+  "render_steps": [],
+  "connects": []
+ },
+ "context_actions": [],
+ "user_input_service": {
+  "connects": [
+   {
+    "signal": "InputBegan",
+    "method": "Connect",
+    "line": 44,
+    "in_function": "PreviewCameraController.BindInput"
+   },
+   {
+    "signal": "InputEnded",
+    "method": "Connect",
+    "line": 45,
+    "in_function": "PreviewCameraController.BindInput"
+   },
+   {
+    "signal": "InputChanged",
+    "method": "Connect",
+    "line": 46,
+    "in_function": "PreviewCameraController.BindInput"
+   },
+   {
+    "signal": "TouchPinch",
+    "method": "Connect",
+    "line": 50,
+    "in_function": "PreviewCameraController.BindInput"
+   }
+  ],
+  "members_used": [
+   {
+    "member": "TouchEnabled",
+    "kind": "read",
+    "line": 39,
+    "in_function": "ownedGarageWalking"
+   },
+   {
+    "member": "InputBegan",
+    "kind": "connect",
+    "line": 44,
+    "in_function": "PreviewCameraController.BindInput"
+   },
+   {
+    "member": "InputEnded",
+    "kind": "connect",
+    "line": 45,
+    "in_function": "PreviewCameraController.BindInput"
+   },
+   {
+    "member": "InputChanged",
+    "kind": "connect",
+    "line": 46,
+    "in_function": "PreviewCameraController.BindInput"
+   },
+   {
+    "member": "TouchPinch",
+    "kind": "connect",
+    "line": 50,
+    "in_function": "PreviewCameraController.BindInput"
+   }
+  ]
+ },
+ "audio": {
+  "bridge_calls": [],
+  "ui_audio_attributes": []
+ },
+ "config": {
+  "paths": [
+   {
+    "path": "ReplicatedStorage.Config",
+    "line": 6
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI",
+    "line": 6
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "line": 6
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI.GarageReplacement.<name>",
+    "line": 14
+   }
+  ],
+  "attribute_reads": [
+   {
+    "receiver": "cfg",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "receiver_kind": "config",
+    "wrapper_defined": "PreviewCameraClient:14",
+    "line": 27,
+    "in_function": "sectionYaw",
+    "via": "wrapper number()",
+    "name": null,
+    "name_expr": "attribute",
+    "access": "read"
+   },
+   {
+    "receiver": "cfg",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "receiver_kind": "config",
+    "wrapper_defined": "PreviewCameraClient:14",
+    "line": 27,
+    "in_function": "sectionYaw",
+    "via": "wrapper number()",
+    "name": "PreviewCameraYawOffsetDegrees",
+    "access": "read"
+   },
+   {
+    "receiver": "cfg",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "receiver_kind": "config",
+    "wrapper_defined": "PreviewCameraClient:14",
+    "line": 47,
+    "in_function": "PreviewCameraController.BindInput",
+    "via": "wrapper number()",
+    "name": "PreviewCameraWheelZoom",
+    "access": "read"
+   },
+   {
+    "receiver": "cfg",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "receiver_kind": "config",
+    "wrapper_defined": "PreviewCameraClient:14",
+    "line": 47,
+    "in_function": "PreviewCameraController.BindInput",
+    "via": "wrapper number()",
+    "name": "PreviewCameraMinDistance",
+    "access": "read"
+   },
+   {
+    "receiver": "cfg",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "receiver_kind": "config",
+    "wrapper_defined": "PreviewCameraClient:14",
+    "line": 47,
+    "in_function": "PreviewCameraController.BindInput",
+    "via": "wrapper number()",
+    "name": "PreviewCameraMaxDistance",
+    "access": "read"
+   },
+   {
+    "receiver": "cfg",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "receiver_kind": "config",
+    "wrapper_defined": "PreviewCameraClient:14",
+    "line": 48,
+    "in_function": "PreviewCameraController.BindInput",
+    "via": "wrapper number()",
+    "name": "PreviewCameraYawSensitivity",
+    "access": "read"
+   },
+   {
+    "receiver": "cfg",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "receiver_kind": "config",
+    "wrapper_defined": "PreviewCameraClient:14",
+    "line": 48,
+    "in_function": "PreviewCameraController.BindInput",
+    "via": "wrapper number()",
+    "name": "PreviewCameraPitchSensitivity",
+    "access": "read"
+   },
+   {
+    "receiver": "cfg",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "receiver_kind": "config",
+    "wrapper_defined": "PreviewCameraClient:14",
+    "line": 48,
+    "in_function": "PreviewCameraController.BindInput",
+    "via": "wrapper number()",
+    "name": "PreviewCameraMinPitchDegrees",
+    "access": "read"
+   },
+   {
+    "receiver": "cfg",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "receiver_kind": "config",
+    "wrapper_defined": "PreviewCameraClient:14",
+    "line": 48,
+    "in_function": "PreviewCameraController.BindInput",
+    "via": "wrapper number()",
+    "name": "PreviewCameraMaxPitchDegrees",
+    "access": "read"
+   },
+   {
+    "receiver": "cfg",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "receiver_kind": "config",
+    "wrapper_defined": "PreviewCameraClient:14",
+    "line": 50,
+    "in_function": "PreviewCameraController.BindInput",
+    "via": "wrapper number()",
+    "name": "PreviewCameraPinchZoom",
+    "access": "read"
+   },
+   {
+    "receiver": "cfg",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "receiver_kind": "config",
+    "wrapper_defined": "PreviewCameraClient:14",
+    "line": 50,
+    "in_function": "PreviewCameraController.BindInput",
+    "via": "wrapper number()",
+    "name": "PreviewCameraMinDistance",
+    "access": "read"
+   },
+   {
+    "receiver": "cfg",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "receiver_kind": "config",
+    "wrapper_defined": "PreviewCameraClient:14",
+    "line": 50,
+    "in_function": "PreviewCameraController.BindInput",
+    "via": "wrapper number()",
+    "name": "PreviewCameraMaxDistance",
+    "access": "read"
+   },
+   {
+    "receiver": "cfg",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "receiver_kind": "config",
+    "wrapper_defined": "PreviewCameraClient:14",
+    "line": 54,
+    "in_function": "PreviewCameraController.Update",
+    "via": "wrapper number()",
+    "name": "PreviewCameraLerpSpeed",
+    "access": "read"
+   }
+  ],
+  "child_lookups": [
+   {
+    "method": "FindFirstChild",
+    "receiver": "cfg",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "PreviewCameraClient:14",
+    "line": 27,
+    "in_function": "sectionYaw",
+    "via": "wrapper number()",
+    "name": null,
+    "name_expr": "attribute"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "cfg",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "PreviewCameraClient:14",
+    "line": 27,
+    "in_function": "sectionYaw",
+    "via": "wrapper number()",
+    "name": "PreviewCameraYawOffsetDegrees"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "cfg",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "PreviewCameraClient:14",
+    "line": 47,
+    "in_function": "PreviewCameraController.BindInput",
+    "via": "wrapper number()",
+    "name": "PreviewCameraWheelZoom"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "cfg",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "PreviewCameraClient:14",
+    "line": 47,
+    "in_function": "PreviewCameraController.BindInput",
+    "via": "wrapper number()",
+    "name": "PreviewCameraMinDistance"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "cfg",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "PreviewCameraClient:14",
+    "line": 47,
+    "in_function": "PreviewCameraController.BindInput",
+    "via": "wrapper number()",
+    "name": "PreviewCameraMaxDistance"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "cfg",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "PreviewCameraClient:14",
+    "line": 48,
+    "in_function": "PreviewCameraController.BindInput",
+    "via": "wrapper number()",
+    "name": "PreviewCameraYawSensitivity"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "cfg",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "PreviewCameraClient:14",
+    "line": 48,
+    "in_function": "PreviewCameraController.BindInput",
+    "via": "wrapper number()",
+    "name": "PreviewCameraPitchSensitivity"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "cfg",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "PreviewCameraClient:14",
+    "line": 48,
+    "in_function": "PreviewCameraController.BindInput",
+    "via": "wrapper number()",
+    "name": "PreviewCameraMinPitchDegrees"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "cfg",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "PreviewCameraClient:14",
+    "line": 48,
+    "in_function": "PreviewCameraController.BindInput",
+    "via": "wrapper number()",
+    "name": "PreviewCameraMaxPitchDegrees"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "cfg",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "PreviewCameraClient:14",
+    "line": 50,
+    "in_function": "PreviewCameraController.BindInput",
+    "via": "wrapper number()",
+    "name": "PreviewCameraPinchZoom"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "cfg",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "PreviewCameraClient:14",
+    "line": 50,
+    "in_function": "PreviewCameraController.BindInput",
+    "via": "wrapper number()",
+    "name": "PreviewCameraMinDistance"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "cfg",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "PreviewCameraClient:14",
+    "line": 50,
+    "in_function": "PreviewCameraController.BindInput",
+    "via": "wrapper number()",
+    "name": "PreviewCameraMaxDistance"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "cfg",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "PreviewCameraClient:14",
+    "line": 54,
+    "in_function": "PreviewCameraController.Update",
+    "via": "wrapper number()",
+    "name": "PreviewCameraLerpSpeed"
+   }
+  ]
+ },
+ "startergui_core": [],
+ "gui_service": [],
+ "other_services": {},
+ "service_connects": [],
+ "proximity_prompts": [],
+ "instances_created_by_class": {},
+ "public_api": [
+  {
+   "name": "DefaultFocus",
+   "kind": "field",
+   "line": 9,
+   "value": "Vector3.new(860,104,-1749)"
+  },
+  {
+   "name": "DefaultYaw",
+   "kind": "field",
+   "line": 9,
+   "value": "math.rad(135)"
+  },
+  {
+   "name": "DefaultPitch",
+   "kind": "field",
+   "line": 9,
+   "value": "math.rad(-12)"
+  },
+  {
+   "name": "DefaultDistance",
+   "kind": "field",
+   "line": 9,
+   "value": "24.3"
+  },
+  {
+   "name": "SectionDistance",
+   "kind": "field",
+   "line": 9,
+   "value": "33"
+  },
+  {
+   "name": "ViewBySection",
+   "kind": "field",
+   "line": 10,
+   "value": "{ALL=\"Front45\",Cockpit=\"Front45\",THRUST_COLOR=\"Front45\",E..."
+  },
+  {
+   "name": "YawAttributeByView",
+   "kind": "field",
+   "line": 11,
+   "value": "{Front45=\"PreviewCameraFront45YawDegrees\",Side=\"PreviewCa..."
+  },
+  {
+   "name": "YawFallbackByView",
+   "kind": "field",
+   "line": 12,
+   "value": "{Front45=135,Side=90,Rear45=45,Rear=0,Front=180}"
+  },
+  {
+   "name": "WrapAngle",
+   "kind": "function",
+   "params": [
+    "angle"
+   ],
+   "line": 15
+  },
+  {
+   "name": "LerpAngle",
+   "kind": "function",
+   "params": [
+    "a",
+    "b",
+    "t"
+   ],
+   "line": 16
+  },
+  {
+   "name": "EnsureState",
+   "kind": "function",
+   "params": [
+    "state"
+   ],
+   "line": 17
+  },
+  {
+   "name": "CancelTransition",
+   "kind": "function",
+   "params": [],
+   "line": 20
+  },
+  {
+   "name": "SetPreviewFocus",
+   "kind": "function",
+   "params": [
+    "state",
+    "focus"
+   ],
+   "line": 24
+  },
+  {
+   "name": "SetCameraSection",
+   "kind": "function",
+   "params": [
+    "state",
+    "slotId"
+   ],
+   "line": 29
+  },
+  {
+   "name": "Reset",
+   "kind": "function",
+   "params": [
+    "state",
+    "focus"
+   ],
+   "line": 30
+  },
+  {
+   "name": "UnbindInput",
+   "kind": "function",
+   "params": [],
+   "line": 34
+  },
+  {
+   "name": "Release",
+   "kind": "function",
+   "params": [],
+   "line": 35
+  },
+  {
+   "name": "BindInput",
+   "kind": "function",
+   "params": [
+    "context"
+   ],
+   "line": 36
+  },
+  {
+   "name": "Update",
+   "kind": "function",
+   "params": [
+    "context",
+    "dt"
+   ],
+   "line": 52
+  }
+ ],
+ "unresolved": [
+  {
+   "category": "lookups",
+   "field": "name",
+   "line": 27,
+   "detail": "not a literal: attribute"
+  },
+  {
+   "category": "attribute_reads",
+   "field": "name",
+   "line": 27,
+   "detail": "not a literal: attribute"
+  }
+ ],
+ "contract_file": "PreviewCameraClient.json"
+}

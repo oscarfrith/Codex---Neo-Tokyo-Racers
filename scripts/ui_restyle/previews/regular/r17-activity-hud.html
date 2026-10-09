@@ -1,0 +1,32 @@
+<!doctype html><html><head><meta charset="utf-8"><title>r17 Activity HUD: job strip, offer card, countdown, rank-up</title><script src="../shared/boot.js"></script></head><body><script>
+const quad = (i, label, note, html) => `<div class="abs" style="left:${(i % 2) * 962}px;top:${Math.floor(i / 2) * 542}px;width:958px;height:538px;overflow:hidden">
+  <div class="scene" style="background-image:url(../shared/bg/city.jpg);background-position:${i % 2 ? 80 : 20}% ${i > 1 ? 80 : 20}%"></div><div class="abs" style="inset:0;background:rgba(7,6,13,.3)"></div>
+  <div class="abs" style="left:40px;top:26px;width:860px"><div class="sheetlabel">${label}</div><div class="note" style="margin-top:6px">${note}</div></div>${html}</div>`;
+const strip = (top, a, b, c, icon) => `<div class="panel flush abs flex ac" style="left:50%;transform:translateX(-50%);top:${top}px;height:60px;padding:0 0 0 20px;gap:14px;border-left:6px solid var(--cyan)">
+   <i class="ic ${icon}" style="font-size:28px"></i><span class="t-value c-cyan">${a}</span><span class="t-value">${b}</span>${c ? `<span class="t-value c-2">&middot;&nbsp; ${c}</span>` : ""}
+   <div class="btn icon" style="width:60px;height:56px;background:transparent;border-left:2px solid var(--hair-bot)">${P.ic("close")}</div></div>`;
+P.page(`
+  ${quad(0,"JOB STRIP &middot; TOP-CENTRE","One strip for Taxi, Courier, Duel and Passenger. Cyan edge = live activity. Cancel is the only control.",
+     strip(150,"TAXI FARE","NEONRIDER","1.2 MI","players") + strip(232,"COURIER","AKANE DEPOT","0.6 MI","box") +
+     `<div class="panel flush abs flex ac" style="left:50%;transform:translateX(-50%);top:314px;height:60px;padding:0 24px 0 20px;gap:14px;border-left:6px solid var(--cyan)"><i class="ic person" style="font-size:28px"></i><span class="t-value">RIDING WITH NEONRIDER</span><span class="t-value c-2">&middot;&nbsp; JUMP TO EXIT</span></div>`)}
+  ${quad(1,"OFFER CARD &middot; BOTTOM-CENTRE","Title, body, option buttons, 15 s timer line. Decline on the left, accept on the right.",
+     `<div class="panel abs" style="left:50%;transform:translateX(-50%);top:150px;width:640px;padding:22px 26px 0">
+        <div class="t-tile">DUEL CHALLENGE</div>
+        <div class="t-body" style="margin:10px 0 20px;font-size:24px">NEONRIDER wants to race you to the next marker. Stake $5,000.</div>
+        <div class="flex g8" style="justify-content:flex-end">${P.btn("CANCEL","","md")}${P.btn("ACCEPT","tick","md main nochev")}</div>
+        <div class="progress" style="margin:20px -26px 0;height:4px"><i style="width:62%"></i></div>
+      </div>
+      <div class="abs" style="left:50%;transform:translateX(-50%);top:430px">${P.btn("CHALLENGE NEONRIDER","swap","sm")}</div>
+      <div class="abs note" style="left:40px;top:444px;width:240px">Duel button, shown near another driver</div>`)}
+  ${quad(2,"ACTIVITY COUNTDOWN &middot; CENTRE","Same BigNumber look as the race countdown, smaller. Number, then GO!",
+     `<div class="abs" style="left:250px;top:150px;width:200px;text-align:center"><div class="t-status shadow">DUEL STARTS</div><div class="num shadow" style="font-size:230px;line-height:.82;margin-top:14px">3</div></div>
+      <div class="abs" style="left:500px;top:150px;width:300px;text-align:center"><div class="t-status shadow">&nbsp;</div><div class="num shadow c-cyan" style="font-size:190px;line-height:.82;margin-top:34px">GO!</div></div>`)}
+  ${quad(3,"RANK-UP CARD &middot; CENTRE","Kicker, rank, reward. The reward is Cash, so it is the only yellow.",
+     `<div class="panel abs" style="left:50%;transform:translateX(-50%);top:150px;width:520px;padding:26px 30px 0;text-align:center">
+        <div class="t-status c-pink">RANK UP</div>
+        <div class="flex ac" style="justify-content:center;gap:22px;margin:14px 0 18px"><span class="t-sect c-muted">6</span><i class="ic right" style="font-size:40px;color:var(--text2)"></i><span class="num" style="font-size:150px">7</span></div>
+        <div class="flex ac jb" style="margin:0 -30px;height:68px;padding-left:30px;border-top:2px solid var(--hair-bot)"><span class="t-value">REWARD</span><span class="t-status c-ink" style="background:var(--yellow);height:66px;display:flex;align-items:center;padding:0 26px">$5,000</span></div>
+      </div>`)}
+  <div class="divider" style="left:958px"></div><div class="divider" style="left:0;right:0;top:538px;height:4px;width:auto;bottom:auto"></div>
+`);
+</script></body></html>

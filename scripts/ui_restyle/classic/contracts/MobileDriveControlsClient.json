@@ -1,0 +1,1707 @@
+{
+ "script": "ReplicatedStorage.Modules.Game.Vehicles.MobileDriveControlsClient",
+ "class": "ModuleScript",
+ "source_file": "classic/sources/ReplicatedStorage.Modules.Game.Vehicles.MobileDriveControlsClient.lua",
+ "source_lines": 209,
+ "included_because": [
+  "ClientBase entry 'MobileDriveControlsClient'"
+ ],
+ "requires": [
+  {
+   "expr": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Vehicles\"):WaitForChild(\"MobileDriveInputState\")",
+   "as": "M",
+   "line": 20,
+   "in_function": "Client.start",
+   "target": "ReplicatedStorage.Modules.Game.Vehicles.MobileDriveInputState"
+  }
+ ],
+ "remotes": {
+  "calls": [],
+  "listens": []
+ },
+ "bindables": {
+  "fires": [],
+  "connects": [],
+  "invokes": [],
+  "handlers": [],
+  "created": [],
+  "module_signal_fires": []
+ },
+ "attributes": {
+  "reads": [
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.MobileFreeRoamHud",
+    "receiver_kind": "config",
+    "wrapper_defined": "MobileDriveControlsClient:51",
+    "line": 53,
+    "in_function": "controlButton",
+    "via": "wrapper opacity()",
+    "name": "ArrowCardOpacity"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.MobileFreeRoamHud",
+    "receiver_kind": "config",
+    "wrapper_defined": "MobileDriveControlsClient:51",
+    "line": 53,
+    "in_function": "controlButton",
+    "via": "wrapper opacity()",
+    "name": "PedalCardOpacity"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.MobileFreeRoamHud",
+    "receiver_kind": "config",
+    "wrapper_defined": "MobileDriveControlsClient:31",
+    "line": 57,
+    "in_function": "controlButton",
+    "via": "wrapper A()",
+    "name": "ArrowCardGradientRotation"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.MobileFreeRoamHud",
+    "receiver_kind": "config",
+    "wrapper_defined": "MobileDriveControlsClient:51",
+    "line": 58,
+    "in_function": "controlButton",
+    "via": "wrapper opacity()",
+    "name": "ArrowImageOpacity"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.MobileFreeRoamHud",
+    "receiver_kind": "config",
+    "wrapper_defined": "MobileDriveControlsClient:51",
+    "line": 58,
+    "in_function": "controlButton",
+    "via": "wrapper opacity()",
+    "name": "PedalImageOpacity"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.MobileFreeRoamHud",
+    "receiver_kind": "config",
+    "wrapper_defined": "MobileDriveControlsClient:51",
+    "line": 69,
+    "in_function": "pressed",
+    "via": "wrapper opacity()",
+    "name": "ArrowCardOpacity"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.MobileFreeRoamHud",
+    "receiver_kind": "config",
+    "wrapper_defined": "MobileDriveControlsClient:51",
+    "line": 69,
+    "in_function": "pressed",
+    "via": "wrapper opacity()",
+    "name": "ArrowPressedOpacityBoost"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.MobileFreeRoamHud",
+    "receiver_kind": "config",
+    "wrapper_defined": "MobileDriveControlsClient:51",
+    "line": 71,
+    "in_function": "pressed",
+    "via": "wrapper opacity()",
+    "name": "PedalCardOpacity"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.MobileFreeRoamHud",
+    "receiver_kind": "config",
+    "wrapper_defined": "MobileDriveControlsClient:51",
+    "line": 75,
+    "in_function": "pressed",
+    "via": "wrapper opacity()",
+    "name": "ArrowImageOpacity"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.MobileFreeRoamHud",
+    "receiver_kind": "config",
+    "wrapper_defined": "MobileDriveControlsClient:51",
+    "line": 75,
+    "in_function": "pressed",
+    "via": "wrapper opacity()",
+    "name": "PedalImageOpacity"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.MobileFreeRoamHud",
+    "receiver_kind": "config",
+    "wrapper_defined": "MobileDriveControlsClient:51",
+    "line": 76,
+    "in_function": "pressed",
+    "via": "wrapper opacity()",
+    "name": "ControlPressedImageOpacityBoost"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.MobileFreeRoamHud",
+    "receiver_kind": "config",
+    "wrapper_defined": "MobileDriveControlsClient:31",
+    "line": 89,
+    "in_function": "Client.start",
+    "via": "wrapper A()",
+    "name": "BoostPlateScale"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.MobileFreeRoamHud",
+    "receiver_kind": "config",
+    "wrapper_defined": "MobileDriveControlsClient:31",
+    "line": 90,
+    "in_function": "Client.start",
+    "via": "wrapper A()",
+    "name": "BoostPlateGradientRotation"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.MobileFreeRoamHud",
+    "receiver_kind": "config",
+    "wrapper_defined": "MobileDriveControlsClient:31",
+    "line": 91,
+    "in_function": "Client.start",
+    "via": "wrapper A()",
+    "name": "BoostIconScale"
+   },
+   {
+    "receiver": "b",
+    "receiver_kind": "other",
+    "wrapper_defined": "MobileDriveControlsClient:115",
+    "line": 118,
+    "in_function": "Client.start",
+    "via": "wrapper setButton()",
+    "name": "ControlVisual",
+    "receiver_path": null
+   },
+   {
+    "receiver": "b",
+    "receiver_kind": "other",
+    "wrapper_defined": "MobileDriveControlsClient:115",
+    "line": 119,
+    "in_function": "Client.start",
+    "via": "wrapper setButton()",
+    "name": "ControlVisual",
+    "receiver_path": null
+   },
+   {
+    "receiver": "b",
+    "receiver_kind": "other",
+    "wrapper_defined": "MobileDriveControlsClient:115",
+    "line": 121,
+    "in_function": "Client.start",
+    "via": "wrapper setButton()",
+    "name": "ControlVisual",
+    "receiver_path": null
+   },
+   {
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\"):WaitForChild(\"Vehicles\"):WaitForChild(\"MobileControls\")",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.MobileControls",
+    "receiver_kind": "config",
+    "line": 132,
+    "in_function": "updateThumb",
+    "name": "DriftEnterThreshold"
+   },
+   {
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\"):WaitForChild(\"Vehicles\"):WaitForChild(\"MobileControls\")",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.MobileControls",
+    "receiver_kind": "config",
+    "line": 133,
+    "in_function": "updateThumb",
+    "name": "DriftExitThreshold"
+   },
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "line": 153,
+    "in_function": "Client.start",
+    "name": "MobileControlMode"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.MobileFreeRoamHud",
+    "receiver_kind": "config",
+    "wrapper_defined": "MobileDriveControlsClient:31",
+    "line": 154,
+    "in_function": "Client.start",
+    "via": "wrapper A()",
+    "name": "TiltDeadzoneDegrees"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.MobileFreeRoamHud",
+    "receiver_kind": "config",
+    "wrapper_defined": "MobileDriveControlsClient:31",
+    "line": 154,
+    "in_function": "Client.start",
+    "via": "wrapper A()",
+    "name": "TiltMaxDegrees"
+   },
+   {
+    "receiver": "b",
+    "receiver_kind": "other",
+    "wrapper_defined": "MobileDriveControlsClient:67",
+    "line": 160,
+    "in_function": "clearInputs",
+    "via": "wrapper pressed()",
+    "name": "ControlVisual",
+    "receiver_path": null
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.MobileFreeRoamHud",
+    "receiver_kind": "config",
+    "wrapper_defined": "MobileDriveControlsClient:31",
+    "line": 165,
+    "in_function": "setMode",
+    "via": "wrapper A()",
+    "name": "DefaultControlMode"
+   },
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "line": 172,
+    "in_function": "Client.start",
+    "name": "MobileControlMode"
+   },
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "line": 173,
+    "in_function": "Client.start",
+    "name": "MobileControlMode"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.MobileFreeRoamHud",
+    "receiver_kind": "config",
+    "wrapper_defined": "MobileDriveControlsClient:31",
+    "line": 173,
+    "in_function": "Client.start",
+    "via": "wrapper A()",
+    "name": "DefaultControlMode"
+   },
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "line": 174,
+    "in_function": "Client.start",
+    "name": "MobileControlMode"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.MobileFreeRoamHud",
+    "receiver_kind": "config",
+    "wrapper_defined": "MobileDriveControlsClient:31",
+    "line": 179,
+    "in_function": "layout",
+    "via": "wrapper A()",
+    "name": "ArrowWidthMultiplier"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.MobileFreeRoamHud",
+    "receiver_kind": "config",
+    "wrapper_defined": "MobileDriveControlsClient:31",
+    "line": 189,
+    "in_function": "layout",
+    "via": "wrapper A()",
+    "name": "PedalSize"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.MobileFreeRoamHud",
+    "receiver_kind": "config",
+    "wrapper_defined": "MobileDriveControlsClient:31",
+    "line": 189,
+    "in_function": "layout",
+    "via": "wrapper A()",
+    "name": "PedalBottomOffset"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.MobileFreeRoamHud",
+    "receiver_kind": "config",
+    "wrapper_defined": "MobileDriveControlsClient:31",
+    "line": 189,
+    "in_function": "layout",
+    "via": "wrapper A()",
+    "name": "PedalRightOffset"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.MobileFreeRoamHud",
+    "receiver_kind": "config",
+    "wrapper_defined": "MobileDriveControlsClient:31",
+    "line": 189,
+    "in_function": "layout",
+    "via": "wrapper A()",
+    "name": "PedalGap"
+   },
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "line": 197,
+    "in_function": "Client.start",
+    "name": "MobileFreeRoamCarMenuOpen"
+   },
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "line": 197,
+    "in_function": "Client.start",
+    "name": "MobileMajorMenuOpen"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.MobileFreeRoamHud",
+    "receiver_kind": "config",
+    "wrapper_defined": "MobileDriveControlsClient:31",
+    "line": 200,
+    "in_function": "Client.start",
+    "via": "wrapper A()",
+    "name": "TiltSmoothing"
+   }
+  ],
+  "writes": [
+   {
+    "receiver": "b",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "value": {
+     "expr": "kind"
+    },
+    "line": 54,
+    "in_function": "controlButton",
+    "name": "ControlVisual"
+   },
+   {
+    "receiver": "b",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "value": true,
+    "line": 54,
+    "in_function": "controlButton",
+    "name": "UIAudioSuppressClick"
+   },
+   {
+    "receiver": "thumbHit",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "value": true,
+    "line": 95,
+    "in_function": "Client.start",
+    "name": "UIAudioSuppressClick"
+   },
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "value": "Arrows",
+    "line": 166,
+    "in_function": "setMode",
+    "name": "MobileControlMode"
+   },
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "value": {
+     "expr": "A(\"DefaultControlMode\",\"Arrows\")"
+    },
+    "line": 173,
+    "in_function": "Client.start",
+    "name": "MobileControlMode"
+   }
+  ],
+  "listens": [
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "line": 172,
+    "in_function": "Client.start",
+    "name": "MobileControlMode"
+   }
+  ]
+ },
+ "player_attribute_writes": [
+  {
+   "receiver": "player",
+   "receiver_path": "Players.LocalPlayer",
+   "receiver_kind": "player",
+   "value": "Arrows",
+   "line": 166,
+   "in_function": "setMode",
+   "name": "MobileControlMode"
+  },
+  {
+   "receiver": "player",
+   "receiver_path": "Players.LocalPlayer",
+   "receiver_kind": "player",
+   "value": {
+    "expr": "A(\"DefaultControlMode\",\"Arrows\")"
+   },
+   "line": 173,
+   "in_function": "Client.start",
+   "name": "MobileControlMode"
+  }
+ ],
+ "screenguis": {
+  "created": [
+   {
+    "variable": "gui",
+    "class": "ScreenGui",
+    "line": 42,
+    "factory": "new",
+    "adopts_existing": false,
+    "Name": "MobileDriveControls_Phase1",
+    "DisplayOrder": 96,
+    "ResetOnSpawn": false,
+    "IgnoreGuiInset": true,
+    "ZIndexBehavior": {
+     "expr": "Enum.ZIndexBehavior.Sibling"
+    },
+    "Parent": {
+     "expr": "playerGui"
+    },
+    "enabled_writes": [],
+    "property_lines": {
+     "Name": 42,
+     "IgnoreGuiInset": 42,
+     "ResetOnSpawn": 42,
+     "DisplayOrder": 42,
+     "ZIndexBehavior": 42
+    }
+   }
+  ],
+  "enabled_writes": []
+ },
+ "names": {
+  "assigned": [
+   {
+    "via": "table_field",
+    "callee": "new",
+    "class": "ScreenGui",
+    "line": 42,
+    "in_function": "Client.start",
+    "name": "MobileDriveControls_Phase1"
+   },
+   {
+    "via": "table_field",
+    "callee": "new",
+    "class": "Frame",
+    "line": 43,
+    "in_function": "Client.start",
+    "name": "Root"
+   },
+   {
+    "via": "table_field",
+    "callee": "new",
+    "class": "UIGradient",
+    "line": 57,
+    "in_function": "controlButton",
+    "name": "CardGradient"
+   },
+   {
+    "via": "table_field",
+    "callee": "new",
+    "class": "ImageLabel",
+    "line": 59,
+    "in_function": "controlButton",
+    "name": "Art"
+   },
+   {
+    "via": "wrapper label()",
+    "callee": "new",
+    "class": "TextLabel",
+    "wrapper_defined": "MobileDriveControlsClient:38",
+    "line": 60,
+    "in_function": "controlButton",
+    "name": "Fallback"
+   },
+   {
+    "via": "wrapper controlButton()",
+    "callee": "new",
+    "class": "TextButton",
+    "wrapper_defined": "MobileDriveControlsClient:54",
+    "line": 82,
+    "in_function": "Client.start",
+    "name": "TurnLeft"
+   },
+   {
+    "via": "wrapper controlButton()",
+    "callee": "new",
+    "class": "TextButton",
+    "wrapper_defined": "MobileDriveControlsClient:54",
+    "line": 83,
+    "in_function": "Client.start",
+    "name": "TurnRight"
+   },
+   {
+    "via": "wrapper controlButton()",
+    "callee": "new",
+    "class": "TextButton",
+    "wrapper_defined": "MobileDriveControlsClient:54",
+    "line": 84,
+    "in_function": "Client.start",
+    "name": "DriftLeft"
+   },
+   {
+    "via": "wrapper controlButton()",
+    "callee": "new",
+    "class": "TextButton",
+    "wrapper_defined": "MobileDriveControlsClient:54",
+    "line": 85,
+    "in_function": "Client.start",
+    "name": "DriftRight"
+   },
+   {
+    "via": "wrapper controlButton()",
+    "callee": "new",
+    "class": "TextButton",
+    "wrapper_defined": "MobileDriveControlsClient:54",
+    "line": 86,
+    "in_function": "Client.start",
+    "name": "Accelerator"
+   },
+   {
+    "via": "wrapper controlButton()",
+    "callee": "new",
+    "class": "TextButton",
+    "wrapper_defined": "MobileDriveControlsClient:54",
+    "line": 87,
+    "in_function": "Client.start",
+    "name": "Brake"
+   },
+   {
+    "via": "wrapper controlButton()",
+    "callee": "new",
+    "class": "TextButton",
+    "wrapper_defined": "MobileDriveControlsClient:54",
+    "line": 88,
+    "in_function": "Client.start",
+    "name": "Boost"
+   },
+   {
+    "via": "table_field",
+    "callee": "new",
+    "class": "Frame",
+    "line": 90,
+    "in_function": "Client.start",
+    "name": "BoostPlate"
+   },
+   {
+    "via": "table_field",
+    "callee": "new",
+    "class": "ImageLabel",
+    "line": 92,
+    "in_function": "Client.start",
+    "name": "BoostIcon"
+   },
+   {
+    "via": "table_field",
+    "callee": "new",
+    "class": "TextButton",
+    "line": 95,
+    "in_function": "Client.start",
+    "name": "ThumbstickHit"
+   },
+   {
+    "via": "table_field",
+    "callee": "new",
+    "class": "Frame",
+    "line": 96,
+    "in_function": "Client.start",
+    "name": "OuterDriftRing"
+   },
+   {
+    "via": "table_field",
+    "callee": "new",
+    "class": "Frame",
+    "line": 97,
+    "in_function": "Client.start",
+    "name": "InnerTurnRing"
+   },
+   {
+    "via": "table_field",
+    "callee": "new",
+    "class": "Frame",
+    "line": 98,
+    "in_function": "Client.start",
+    "name": "Knob"
+   },
+   {
+    "via": "wrapper label()",
+    "callee": "new",
+    "class": "TextLabel",
+    "wrapper_defined": "MobileDriveControlsClient:38",
+    "line": 99,
+    "in_function": "Client.start",
+    "name": "DriftLabel"
+   },
+   {
+    "via": "wrapper controlButton()",
+    "callee": "new",
+    "class": "TextButton",
+    "wrapper_defined": "MobileDriveControlsClient:54",
+    "line": 101,
+    "in_function": "Client.start",
+    "name": "TiltDrift"
+   },
+   {
+    "via": "wrapper controlButton()",
+    "callee": "new",
+    "class": "TextButton",
+    "wrapper_defined": "MobileDriveControlsClient:54",
+    "line": 102,
+    "in_function": "Client.start",
+    "name": "TiltRecenter"
+   },
+   {
+    "via": "wrapper label()",
+    "callee": "new",
+    "class": "TextLabel",
+    "wrapper_defined": "MobileDriveControlsClient:38",
+    "line": 103,
+    "in_function": "Client.start",
+    "name": "TiltStatus"
+   }
+  ],
+  "looked_up": [
+   {
+    "method": "WaitForChild",
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 15,
+    "in_function": "Client.start",
+    "name": "PlayerGui"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 17,
+    "in_function": "Client.start",
+    "name": "Config"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\")",
+    "receiver_path": "ReplicatedStorage.Config",
+    "root": "ReplicatedStorage",
+    "line": 17,
+    "in_function": "Client.start",
+    "name": "UI"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\"):WaitForChild(\"UI\")",
+    "receiver_path": "ReplicatedStorage.Config.UI",
+    "root": "ReplicatedStorage",
+    "line": 17,
+    "in_function": "Client.start",
+    "name": "MobileFreeRoamHud"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 18,
+    "in_function": "Client.start",
+    "name": "Config"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\")",
+    "receiver_path": "ReplicatedStorage.Config",
+    "root": "ReplicatedStorage",
+    "line": 18,
+    "in_function": "Client.start",
+    "name": "UI"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\"):WaitForChild(\"UI\")",
+    "receiver_path": "ReplicatedStorage.Config.UI",
+    "root": "ReplicatedStorage",
+    "line": 18,
+    "in_function": "Client.start",
+    "name": "MobileFreeRoamHud"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\"):WaitForChild(\"UI\"):WaitForChild(\"MobileFreeRoamHud\")",
+    "receiver_path": "ReplicatedStorage.Config.UI.MobileFreeRoamHud",
+    "root": "ReplicatedStorage",
+    "line": 18,
+    "in_function": "Client.start",
+    "name": "Assets"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 19,
+    "in_function": "Client.start",
+    "name": "Config"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\")",
+    "receiver_path": "ReplicatedStorage.Config",
+    "root": "ReplicatedStorage",
+    "line": 19,
+    "in_function": "Client.start",
+    "name": "UI"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\"):WaitForChild(\"UI\")",
+    "receiver_path": "ReplicatedStorage.Config.UI",
+    "root": "ReplicatedStorage",
+    "line": 19,
+    "in_function": "Client.start",
+    "name": "DesktopFreeRoamHud"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\"):WaitForChild(\"UI\"):WaitForChild(\"DesktopFreeRoamHud\")",
+    "receiver_path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud",
+    "root": "ReplicatedStorage",
+    "line": 19,
+    "in_function": "Client.start",
+    "name": "Assets"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 20,
+    "in_function": "Client.start",
+    "name": "Modules"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\")",
+    "receiver_path": "ReplicatedStorage.Modules",
+    "root": "ReplicatedStorage",
+    "line": 20,
+    "in_function": "Client.start",
+    "name": "Game"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game",
+    "root": "ReplicatedStorage",
+    "line": 20,
+    "in_function": "Client.start",
+    "name": "Vehicles"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Vehicles\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game.Vehicles",
+    "root": "ReplicatedStorage",
+    "line": 20,
+    "in_function": "Client.start",
+    "name": "MobileDriveInputState"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "playerGui",
+    "receiver_path": "Players.LocalPlayer.PlayerGui",
+    "root": "Players",
+    "line": 41,
+    "in_function": "Client.start",
+    "name": "MobileDriveControls_Phase1"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "b",
+    "receiver_path": null,
+    "root": null,
+    "receiver_property_writes": [
+     "BackgroundTransparency"
+    ],
+    "line": 66,
+    "in_function": "pressed",
+    "name": "Boost"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "MobileDriveControlsClient:58",
+    "receiver_kind": "config",
+    "line": 82,
+    "in_function": "Client.start",
+    "via": "wrapper controlButton()",
+    "name": "TurnArrowImage",
+    "receiver_path": "ReplicatedStorage.Config.UI.MobileFreeRoamHud.Assets"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "MobileDriveControlsClient:58",
+    "receiver_kind": "config",
+    "line": 83,
+    "in_function": "Client.start",
+    "via": "wrapper controlButton()",
+    "name": "TurnArrowImage",
+    "receiver_path": "ReplicatedStorage.Config.UI.MobileFreeRoamHud.Assets"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "MobileDriveControlsClient:58",
+    "receiver_kind": "config",
+    "line": 84,
+    "in_function": "Client.start",
+    "via": "wrapper controlButton()",
+    "name": "DriftArrowImage",
+    "receiver_path": "ReplicatedStorage.Config.UI.MobileFreeRoamHud.Assets"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "MobileDriveControlsClient:58",
+    "receiver_kind": "config",
+    "line": 85,
+    "in_function": "Client.start",
+    "via": "wrapper controlButton()",
+    "name": "DriftArrowImage",
+    "receiver_path": "ReplicatedStorage.Config.UI.MobileFreeRoamHud.Assets"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "MobileDriveControlsClient:58",
+    "receiver_kind": "config",
+    "line": 86,
+    "in_function": "Client.start",
+    "via": "wrapper controlButton()",
+    "name": "AcceleratorImage",
+    "receiver_path": "ReplicatedStorage.Config.UI.MobileFreeRoamHud.Assets"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "MobileDriveControlsClient:58",
+    "receiver_kind": "config",
+    "line": 87,
+    "in_function": "Client.start",
+    "via": "wrapper controlButton()",
+    "name": "BrakeImage",
+    "receiver_path": "ReplicatedStorage.Config.UI.MobileFreeRoamHud.Assets"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "MobileDriveControlsClient:58",
+    "receiver_kind": "config",
+    "line": 88,
+    "in_function": "Client.start",
+    "via": "wrapper controlButton()",
+    "name": "",
+    "receiver_path": "ReplicatedStorage.Config.UI.MobileFreeRoamHud.Assets"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "MobileDriveControlsClient:32",
+    "receiver_kind": "config",
+    "line": 92,
+    "in_function": "Client.start",
+    "via": "wrapper sourceAsset()",
+    "name": "BoostIcon",
+    "receiver_path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud.Assets"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "boost",
+    "receiver_path": null,
+    "root": null,
+    "line": 93,
+    "in_function": "Client.start",
+    "name": "Fallback"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "MobileDriveControlsClient:58",
+    "receiver_kind": "config",
+    "line": 101,
+    "in_function": "Client.start",
+    "via": "wrapper controlButton()",
+    "name": "",
+    "receiver_path": "ReplicatedStorage.Config.UI.MobileFreeRoamHud.Assets"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "MobileDriveControlsClient:58",
+    "receiver_kind": "config",
+    "line": 102,
+    "in_function": "Client.start",
+    "via": "wrapper controlButton()",
+    "name": "",
+    "receiver_path": "ReplicatedStorage.Config.UI.MobileFreeRoamHud.Assets"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "b",
+    "root": null,
+    "wrapper_defined": "MobileDriveControlsClient:115",
+    "line": 118,
+    "in_function": "Client.start",
+    "via": "wrapper setButton()",
+    "name": "Fallback",
+    "receiver_path": null,
+    "receiver_kind": "other"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "b",
+    "root": null,
+    "wrapper_defined": "MobileDriveControlsClient:115",
+    "line": 118,
+    "in_function": "Client.start",
+    "via": "wrapper setButton()",
+    "name": "Art",
+    "receiver_path": null,
+    "receiver_kind": "other"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "b",
+    "root": null,
+    "wrapper_defined": "MobileDriveControlsClient:115",
+    "line": 119,
+    "in_function": "Client.start",
+    "via": "wrapper setButton()",
+    "name": "Fallback",
+    "receiver_path": null,
+    "receiver_kind": "other"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "b",
+    "root": null,
+    "wrapper_defined": "MobileDriveControlsClient:115",
+    "line": 119,
+    "in_function": "Client.start",
+    "via": "wrapper setButton()",
+    "name": "Art",
+    "receiver_path": null,
+    "receiver_kind": "other"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "b",
+    "root": null,
+    "wrapper_defined": "MobileDriveControlsClient:115",
+    "line": 121,
+    "in_function": "Client.start",
+    "via": "wrapper setButton()",
+    "name": "Fallback",
+    "receiver_path": null,
+    "receiver_kind": "other"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "b",
+    "root": null,
+    "wrapper_defined": "MobileDriveControlsClient:115",
+    "line": 121,
+    "in_function": "Client.start",
+    "via": "wrapper setButton()",
+    "name": "Art",
+    "receiver_path": null,
+    "receiver_kind": "other"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 132,
+    "in_function": "updateThumb",
+    "name": "Config"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\")",
+    "receiver_path": "ReplicatedStorage.Config",
+    "root": "ReplicatedStorage",
+    "line": 132,
+    "in_function": "updateThumb",
+    "name": "Vehicles"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\"):WaitForChild(\"Vehicles\")",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles",
+    "root": "ReplicatedStorage",
+    "line": 132,
+    "in_function": "updateThumb",
+    "name": "MobileControls"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 133,
+    "in_function": "updateThumb",
+    "name": "Config"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\")",
+    "receiver_path": "ReplicatedStorage.Config",
+    "root": "ReplicatedStorage",
+    "line": 133,
+    "in_function": "updateThumb",
+    "name": "Vehicles"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\"):WaitForChild(\"Vehicles\")",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles",
+    "root": "ReplicatedStorage",
+    "line": 133,
+    "in_function": "updateThumb",
+    "name": "MobileControls"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "b",
+    "root": null,
+    "wrapper_defined": "MobileDriveControlsClient:78",
+    "line": 160,
+    "in_function": "clearInputs",
+    "via": "wrapper pressed()",
+    "name": "Fallback",
+    "receiver_path": null,
+    "receiver_kind": "other"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "b",
+    "root": null,
+    "wrapper_defined": "MobileDriveControlsClient:77",
+    "line": 160,
+    "in_function": "clearInputs",
+    "via": "wrapper pressed()",
+    "name": "Art",
+    "receiver_path": null,
+    "receiver_kind": "other"
+   }
+  ],
+  "text_compared": []
+ },
+ "run_service": {
+  "render_steps": [],
+  "connects": [
+   {
+    "signal": "RenderStepped",
+    "method": "Connect",
+    "line": 196,
+    "in_function": "Client.start",
+    "callback": "function(dt) layout(); local driving=M.IsDrivin..."
+   }
+  ]
+ },
+ "context_actions": [],
+ "user_input_service": {
+  "connects": [
+   {
+    "signal": "InputEnded",
+    "method": "Connect",
+    "line": 121,
+    "in_function": "Client.start"
+   },
+   {
+    "signal": "InputChanged",
+    "method": "Connect",
+    "line": 141,
+    "in_function": "Client.start"
+   },
+   {
+    "signal": "InputEnded",
+    "method": "Connect",
+    "line": 142,
+    "in_function": "Client.start"
+   },
+   {
+    "signal": "DeviceRotationChanged",
+    "method": "Connect",
+    "line": 151,
+    "in_function": "Client.start"
+   }
+  ],
+  "members_used": [
+   {
+    "member": "TouchEnabled",
+    "kind": "read",
+    "line": 12,
+    "in_function": "Client.start"
+   },
+   {
+    "member": "InputEnded",
+    "kind": "connect",
+    "line": 121,
+    "in_function": "Client.start"
+   },
+   {
+    "member": "InputChanged",
+    "kind": "connect",
+    "line": 141,
+    "in_function": "Client.start"
+   },
+   {
+    "member": "InputEnded",
+    "kind": "connect",
+    "line": 142,
+    "in_function": "Client.start"
+   },
+   {
+    "member": "DeviceRotationChanged",
+    "kind": "connect",
+    "line": 151,
+    "in_function": "Client.start"
+   },
+   {
+    "member": "GyroscopeEnabled",
+    "kind": "read",
+    "line": 166,
+    "in_function": "setMode"
+   },
+   {
+    "member": "GetDeviceRotation",
+    "kind": "call",
+    "line": 170,
+    "in_function": "setMode"
+   }
+  ]
+ },
+ "audio": {
+  "bridge_calls": [],
+  "ui_audio_attributes": [
+   {
+    "receiver": "b",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "value": true,
+    "line": 54,
+    "in_function": "controlButton",
+    "name": "UIAudioSuppressClick",
+    "access": "write"
+   },
+   {
+    "receiver": "thumbHit",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "value": true,
+    "line": 95,
+    "in_function": "Client.start",
+    "name": "UIAudioSuppressClick",
+    "access": "write"
+   }
+  ]
+ },
+ "config": {
+  "paths": [
+   {
+    "path": "ReplicatedStorage.Config",
+    "line": 17
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI",
+    "line": 17
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud",
+    "line": 19
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud.Assets",
+    "line": 19
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI.MobileFreeRoamHud",
+    "line": 17
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI.MobileFreeRoamHud.Assets",
+    "line": 18
+   },
+   {
+    "path": "ReplicatedStorage.Config.Vehicles",
+    "line": 132
+   },
+   {
+    "path": "ReplicatedStorage.Config.Vehicles.MobileControls",
+    "line": 132
+   }
+  ],
+  "attribute_reads": [
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.MobileFreeRoamHud",
+    "receiver_kind": "config",
+    "wrapper_defined": "MobileDriveControlsClient:51",
+    "line": 53,
+    "in_function": "controlButton",
+    "via": "wrapper opacity()",
+    "name": "ArrowCardOpacity",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.MobileFreeRoamHud",
+    "receiver_kind": "config",
+    "wrapper_defined": "MobileDriveControlsClient:51",
+    "line": 53,
+    "in_function": "controlButton",
+    "via": "wrapper opacity()",
+    "name": "PedalCardOpacity",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.MobileFreeRoamHud",
+    "receiver_kind": "config",
+    "wrapper_defined": "MobileDriveControlsClient:31",
+    "line": 57,
+    "in_function": "controlButton",
+    "via": "wrapper A()",
+    "name": "ArrowCardGradientRotation",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.MobileFreeRoamHud",
+    "receiver_kind": "config",
+    "wrapper_defined": "MobileDriveControlsClient:51",
+    "line": 58,
+    "in_function": "controlButton",
+    "via": "wrapper opacity()",
+    "name": "ArrowImageOpacity",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.MobileFreeRoamHud",
+    "receiver_kind": "config",
+    "wrapper_defined": "MobileDriveControlsClient:51",
+    "line": 58,
+    "in_function": "controlButton",
+    "via": "wrapper opacity()",
+    "name": "PedalImageOpacity",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.MobileFreeRoamHud",
+    "receiver_kind": "config",
+    "wrapper_defined": "MobileDriveControlsClient:51",
+    "line": 69,
+    "in_function": "pressed",
+    "via": "wrapper opacity()",
+    "name": "ArrowCardOpacity",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.MobileFreeRoamHud",
+    "receiver_kind": "config",
+    "wrapper_defined": "MobileDriveControlsClient:51",
+    "line": 69,
+    "in_function": "pressed",
+    "via": "wrapper opacity()",
+    "name": "ArrowPressedOpacityBoost",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.MobileFreeRoamHud",
+    "receiver_kind": "config",
+    "wrapper_defined": "MobileDriveControlsClient:51",
+    "line": 71,
+    "in_function": "pressed",
+    "via": "wrapper opacity()",
+    "name": "PedalCardOpacity",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.MobileFreeRoamHud",
+    "receiver_kind": "config",
+    "wrapper_defined": "MobileDriveControlsClient:51",
+    "line": 75,
+    "in_function": "pressed",
+    "via": "wrapper opacity()",
+    "name": "ArrowImageOpacity",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.MobileFreeRoamHud",
+    "receiver_kind": "config",
+    "wrapper_defined": "MobileDriveControlsClient:51",
+    "line": 75,
+    "in_function": "pressed",
+    "via": "wrapper opacity()",
+    "name": "PedalImageOpacity",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.MobileFreeRoamHud",
+    "receiver_kind": "config",
+    "wrapper_defined": "MobileDriveControlsClient:51",
+    "line": 76,
+    "in_function": "pressed",
+    "via": "wrapper opacity()",
+    "name": "ControlPressedImageOpacityBoost",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.MobileFreeRoamHud",
+    "receiver_kind": "config",
+    "wrapper_defined": "MobileDriveControlsClient:31",
+    "line": 89,
+    "in_function": "Client.start",
+    "via": "wrapper A()",
+    "name": "BoostPlateScale",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.MobileFreeRoamHud",
+    "receiver_kind": "config",
+    "wrapper_defined": "MobileDriveControlsClient:31",
+    "line": 90,
+    "in_function": "Client.start",
+    "via": "wrapper A()",
+    "name": "BoostPlateGradientRotation",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.MobileFreeRoamHud",
+    "receiver_kind": "config",
+    "wrapper_defined": "MobileDriveControlsClient:31",
+    "line": 91,
+    "in_function": "Client.start",
+    "via": "wrapper A()",
+    "name": "BoostIconScale",
+    "access": "read"
+   },
+   {
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\"):WaitForChild(\"Vehicles\"):WaitForChild(\"MobileControls\")",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.MobileControls",
+    "receiver_kind": "config",
+    "line": 132,
+    "in_function": "updateThumb",
+    "name": "DriftEnterThreshold",
+    "access": "read"
+   },
+   {
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\"):WaitForChild(\"Vehicles\"):WaitForChild(\"MobileControls\")",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.MobileControls",
+    "receiver_kind": "config",
+    "line": 133,
+    "in_function": "updateThumb",
+    "name": "DriftExitThreshold",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.MobileFreeRoamHud",
+    "receiver_kind": "config",
+    "wrapper_defined": "MobileDriveControlsClient:31",
+    "line": 154,
+    "in_function": "Client.start",
+    "via": "wrapper A()",
+    "name": "TiltDeadzoneDegrees",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.MobileFreeRoamHud",
+    "receiver_kind": "config",
+    "wrapper_defined": "MobileDriveControlsClient:31",
+    "line": 154,
+    "in_function": "Client.start",
+    "via": "wrapper A()",
+    "name": "TiltMaxDegrees",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.MobileFreeRoamHud",
+    "receiver_kind": "config",
+    "wrapper_defined": "MobileDriveControlsClient:31",
+    "line": 165,
+    "in_function": "setMode",
+    "via": "wrapper A()",
+    "name": "DefaultControlMode",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.MobileFreeRoamHud",
+    "receiver_kind": "config",
+    "wrapper_defined": "MobileDriveControlsClient:31",
+    "line": 173,
+    "in_function": "Client.start",
+    "via": "wrapper A()",
+    "name": "DefaultControlMode",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.MobileFreeRoamHud",
+    "receiver_kind": "config",
+    "wrapper_defined": "MobileDriveControlsClient:31",
+    "line": 179,
+    "in_function": "layout",
+    "via": "wrapper A()",
+    "name": "ArrowWidthMultiplier",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.MobileFreeRoamHud",
+    "receiver_kind": "config",
+    "wrapper_defined": "MobileDriveControlsClient:31",
+    "line": 189,
+    "in_function": "layout",
+    "via": "wrapper A()",
+    "name": "PedalSize",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.MobileFreeRoamHud",
+    "receiver_kind": "config",
+    "wrapper_defined": "MobileDriveControlsClient:31",
+    "line": 189,
+    "in_function": "layout",
+    "via": "wrapper A()",
+    "name": "PedalBottomOffset",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.MobileFreeRoamHud",
+    "receiver_kind": "config",
+    "wrapper_defined": "MobileDriveControlsClient:31",
+    "line": 189,
+    "in_function": "layout",
+    "via": "wrapper A()",
+    "name": "PedalRightOffset",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.MobileFreeRoamHud",
+    "receiver_kind": "config",
+    "wrapper_defined": "MobileDriveControlsClient:31",
+    "line": 189,
+    "in_function": "layout",
+    "via": "wrapper A()",
+    "name": "PedalGap",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.MobileFreeRoamHud",
+    "receiver_kind": "config",
+    "wrapper_defined": "MobileDriveControlsClient:31",
+    "line": 200,
+    "in_function": "Client.start",
+    "via": "wrapper A()",
+    "name": "TiltSmoothing",
+    "access": "read"
+   }
+  ],
+  "child_lookups": [
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "MobileDriveControlsClient:58",
+    "receiver_kind": "config",
+    "line": 82,
+    "in_function": "Client.start",
+    "via": "wrapper controlButton()",
+    "name": "TurnArrowImage",
+    "receiver_path": "ReplicatedStorage.Config.UI.MobileFreeRoamHud.Assets"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "MobileDriveControlsClient:58",
+    "receiver_kind": "config",
+    "line": 83,
+    "in_function": "Client.start",
+    "via": "wrapper controlButton()",
+    "name": "TurnArrowImage",
+    "receiver_path": "ReplicatedStorage.Config.UI.MobileFreeRoamHud.Assets"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "MobileDriveControlsClient:58",
+    "receiver_kind": "config",
+    "line": 84,
+    "in_function": "Client.start",
+    "via": "wrapper controlButton()",
+    "name": "DriftArrowImage",
+    "receiver_path": "ReplicatedStorage.Config.UI.MobileFreeRoamHud.Assets"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "MobileDriveControlsClient:58",
+    "receiver_kind": "config",
+    "line": 85,
+    "in_function": "Client.start",
+    "via": "wrapper controlButton()",
+    "name": "DriftArrowImage",
+    "receiver_path": "ReplicatedStorage.Config.UI.MobileFreeRoamHud.Assets"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "MobileDriveControlsClient:58",
+    "receiver_kind": "config",
+    "line": 86,
+    "in_function": "Client.start",
+    "via": "wrapper controlButton()",
+    "name": "AcceleratorImage",
+    "receiver_path": "ReplicatedStorage.Config.UI.MobileFreeRoamHud.Assets"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "MobileDriveControlsClient:58",
+    "receiver_kind": "config",
+    "line": 87,
+    "in_function": "Client.start",
+    "via": "wrapper controlButton()",
+    "name": "BrakeImage",
+    "receiver_path": "ReplicatedStorage.Config.UI.MobileFreeRoamHud.Assets"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "MobileDriveControlsClient:58",
+    "receiver_kind": "config",
+    "line": 88,
+    "in_function": "Client.start",
+    "via": "wrapper controlButton()",
+    "name": "",
+    "receiver_path": "ReplicatedStorage.Config.UI.MobileFreeRoamHud.Assets"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "MobileDriveControlsClient:32",
+    "receiver_kind": "config",
+    "line": 92,
+    "in_function": "Client.start",
+    "via": "wrapper sourceAsset()",
+    "name": "BoostIcon",
+    "receiver_path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud.Assets"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "MobileDriveControlsClient:58",
+    "receiver_kind": "config",
+    "line": 101,
+    "in_function": "Client.start",
+    "via": "wrapper controlButton()",
+    "name": "",
+    "receiver_path": "ReplicatedStorage.Config.UI.MobileFreeRoamHud.Assets"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "MobileDriveControlsClient:58",
+    "receiver_kind": "config",
+    "line": 102,
+    "in_function": "Client.start",
+    "via": "wrapper controlButton()",
+    "name": "",
+    "receiver_path": "ReplicatedStorage.Config.UI.MobileFreeRoamHud.Assets"
+   }
+  ]
+ },
+ "startergui_core": [],
+ "gui_service": [],
+ "other_services": {},
+ "service_connects": [],
+ "proximity_prompts": [],
+ "instances_created_by_class": {
+  "Frame": 5,
+  "ImageLabel": 2,
+  "ScreenGui": 1,
+  "TextButton": 2,
+  "TextLabel": 1,
+  "UICorner": 1,
+  "UIGradient": 2,
+  "UIStroke": 1
+ },
+ "public_api": [
+  {
+   "name": "start",
+   "kind": "function",
+   "params": [],
+   "line": 4
+  }
+ ],
+ "unresolved": [],
+ "contract_file": "MobileDriveControlsClient.json"
+}

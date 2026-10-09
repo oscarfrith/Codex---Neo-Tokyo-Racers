@@ -1,0 +1,242 @@
+/* ==========================================================================
+   Pulse Racers preview kit, Compact class (phones, landscape only). Phase 0.
+   Loaded AFTER ../shared/pulse.css (read-only import: tokens, icons, base
+   component classes). This file re-points the type-role variables to the
+   Compact table and re-sizes the shared components inside the .cx stage.
+   Units inside .cx are Compact design units: 1 unit = 1 dp at scale 1
+   (844x390). The stage is zoomed by scale = clamp(height/390, 0.85, 1.10).
+   --t  touch target  = max(48, 48/scale) units  -> never under 48 dp
+   --g  target gap    = max(8, 8/scale) units    -> never under 8 dp
+   --tbw / --tbh      = Roblox top bar reserve (120 x 52 dp) in units
+   Roblox subset only: rectangles, hairlines, images, text, sparing glow.
+   ========================================================================== */
+html,body{width:100%;height:100%;background:#000}
+.device{position:relative;overflow:hidden;background:#15131f}
+.device .scene{background-position:center;background-size:cover}
+.device .scrim-menu::after{width:320px;height:230px}
+.safe{position:absolute;top:0}
+.cx{position:absolute;left:0;top:0;transform-origin:0 0;
+  --m:8px; --t:48px; --g:8px; --tbw:120px; --tbh:52px;
+  /* Compact type roles: cap height (dp at scale 1) / 0.70 */
+  --fs-title:31.4px;   /* cap 22 */
+  --fs-sect:24.3px;    /* cap 17 */
+  --fs-btnmain:20px;   /* cap 14 */
+  --fs-btn:18.6px;     /* cap 13 */
+  --fs-tile:18.6px;    /* cap 13 */
+  --fs-tile7:17.1px;   /* cap 12  rail tiles */
+  --fs-status:18.6px;  /* cap 13 */
+  --fs-tab:17.1px;     /* cap 12 */
+  --fs-value:17.1px;   /* cap 12 */
+  --fs-label:14.3px;   /* cap 10  floor: TextSize 15 at scale 0.85 */
+  --fs-speed:50px;     /* cap 35  image digits */
+  --fs-pos:57px;       /* cap 40  image digits */
+  --fs-hero:66px;      /* cap 46  image digits */
+  --fs-count:126px;    /* cap 88  image digits */
+  --fs-timer:30px;     /* cap 21  image digits */
+  --hair:1px; --pad:10px; --gap:8px;
+  --glow-tile:0 0 18px rgba(255,45,149,.55);
+  --glow-btn:0 0 16px rgba(255,45,149,.60);
+  --glow-ring:0 0 5px rgba(34,228,255,.45);
+}
+.cx .shadow{text-shadow:0 1px 0 rgba(7,6,13,.6),0 2px 6px rgba(7,6,13,.55)}
+.cx .t-body{line-height:1.25}
+.fill{position:absolute;inset:0}
+
+/* ---- guides (not UI): safe area, Roblox top bar, Roblox touch controls, hit boxes */
+.guide-safe{position:absolute;inset:0;pointer-events:none}
+.guide-safe .edge{position:absolute;background:rgba(34,228,255,.10)}
+.guide-safe .line{position:absolute;border:0 dashed rgba(34,228,255,.55)}
+.guide-safe .bezel{position:absolute;inset:0;border:1px solid rgba(243,240,255,.25);border-radius:38px}
+.guide-safe .notch{position:absolute;left:0;top:50%;width:30px;height:150px;margin-top:-75px;background:#000;border-radius:0 18px 18px 0;opacity:.85}
+.guide-safe .home{position:absolute;left:50%;bottom:7px;width:150px;height:5px;margin-left:-75px;border-radius:3px;background:rgba(243,240,255,.45)}
+.guide-safe .tag{position:absolute;font:500 8px/1 Barlow;color:rgba(34,228,255,.8);white-space:nowrap}
+.guide-top{position:absolute;top:4px;height:44px;width:104px;border:1px dashed rgba(243,240,255,.45);display:flex;gap:12px;align-items:center;justify-content:center;pointer-events:none}
+.guide-top i{width:40px;height:40px;border-radius:50%;border:1px solid rgba(243,240,255,.5);background:rgba(7,6,13,.35)}
+.guide-top b{position:absolute;left:0;top:46px;font:500 8px/1 Barlow;color:rgba(243,240,255,.6);white-space:nowrap}
+.guide-rbx{position:absolute;border-radius:50%;border:1px dashed rgba(243,240,255,.5);background:rgba(243,240,255,.10);display:flex;align-items:center;justify-content:center;font:500 9px/1.1 Barlow;color:rgba(243,240,255,.7);text-align:center}
+.guide-rbx.inner{border-style:solid;background:rgba(243,240,255,.22)}
+.cx .hit{outline:1px dashed rgba(243,240,255,.30);outline-offset:-1px}
+
+/* ---- shared components re-sized for Compact ----------------------------- */
+.cx .panel{padding:var(--pad)}
+.cx .panel.flush{padding:0}
+.cx .hairline{height:1px}
+.cx .rule-pink{height:2px}
+.cx .titlemark{width:13px;height:24px;background:repeating-linear-gradient(135deg,var(--pink) 0 3px,transparent 3px 6px)}
+.cx .c-title{position:absolute;left:var(--tbw);top:0;height:var(--tbh);display:flex;align-items:center;gap:8px}
+.cx .c-title .sub{align-self:center;margin-left:4px;padding-top:8px}
+/* tabs: visible text + pink underline; the hit box is a full --t tall button */
+.cx .tabs{left:var(--m);top:var(--tbh);gap:var(--g)}
+.cx .tab{position:relative;height:var(--t);padding:0 8px 0 6px;gap:5px;border-bottom:0}
+.cx .tab .ic{font-size:17px}
+.cx .tab.on::after{content:"";position:absolute;left:6px;right:8px;top:calc(50% + 12px);height:2px;background:var(--pink)}
+.cx .switch{gap:var(--g)}
+.cx .switch .opt{position:relative;height:var(--t);padding:0 8px;border-bottom:0;align-items:flex-end;padding-bottom:7px}
+.cx .switch .opt.on::after{content:"";position:absolute;left:8px;right:8px;bottom:2px;height:2px;background:var(--pink)}
+.cx .segswitch{gap:var(--g)}
+.cx .segswitch .opt{height:var(--t);padding:0 6px}
+
+/* status cluster */
+.cx .status{right:var(--m);top:calc((var(--tbh) - 32px) / 2);height:32px;padding:3px 3px 3px 9px}
+.cx .status.static{position:relative;right:auto;top:auto}
+.cx .status .seg{gap:6px;padding:0 9px 0 0}
+.cx .status .seg + .seg{border-left:1px solid var(--hair-bot);padding-left:9px}
+.cx .status .seg .ic{font-size:17px}
+.cx .status .plus{width:18px;height:18px;font-size:12px}
+.cx .rankring{width:24px;height:24px;border-width:2px;font:italic 800 14.3px/1 Barlow;padding-right:1px}
+.cx .cash{height:26px;gap:5px;padding:0 7px 0 6px}
+.cx .cash .ic{font-size:17px}
+.cx .cash.fixed{min-width:0;margin-left:auto}
+
+/* chips, tier */
+.cx .chip{height:18px;gap:3px;padding:0 6px 0 5px}
+.cx .chip.price{height:20px}
+.cx .chip.lg{height:24px;padding:0 8px 0 7px}
+.cx .tier{width:20px;height:24px;padding-right:2px}
+.cx .tier.sm{width:17px;height:20px;font-size:15.7px}
+.cx .tierrating{height:24px;gap:5px;padding:0 6px}
+
+/* buttons */
+.cx .btn{height:var(--t);padding:0 13px 0 11px;gap:6px}
+.cx .btn .ic{font-size:19px}
+.cx .btn.main{padding:0 14px 0 12px;min-width:0}
+.cx .btn.main .ic{font-size:21px}
+.cx .btn.buy{padding:0 14px 0 12px}
+.cx .btn.icon{width:var(--t);height:var(--t)}
+.cx .btn.icon .ic{font-size:22px}
+.cx .btn.focus,.cx .btn.main.focus{outline-width:2px}
+.cx .btn.sec{font-size:var(--fs-tab)}
+/* action block: the Compact form of the button row. Bottom-right, two rows:
+   back/exit and secondary on the top row, the main action on the bottom row. */
+.cx .c-actions{position:absolute;right:var(--m);bottom:var(--m);display:flex;flex-direction:column;gap:var(--g);align-items:stretch}
+.cx .c-actions .r{display:flex;gap:var(--g)}
+.cx .c-actions .r .btn{flex:1 1 auto}
+
+/* tile (rail tile on Compact) */
+.cx .tile{width:128px;height:100px;border-bottom-width:1px}
+.cx .tile .idx{left:7px;top:6px}
+.cx .tile .var{left:6px;top:6px}
+.cx .tile .vis{top:22px;height:24px}
+.cx .tile .sub{left:7px;right:5px;bottom:27px}
+.cx .tile .name{left:7px;right:4px;bottom:7px;line-height:.95}
+.cx .tile.two .sub{bottom:42px}
+.cx .tile.sel{height:106px;margin-top:-6px;border-bottom:3px solid var(--pink)}
+.cx .tile.sel .vis{top:25px}
+.cx .tile.sel .name{bottom:6px}.cx .tile.sel .sub{bottom:26px}.cx .tile.sel.two .sub{bottom:41px}
+.cx .tile .lockicon{top:22px;font-size:22px}
+.cx .sil{width:66px;height:22px}
+.cx .sil.car{width:84px;height:26px}
+.cx .tile.car .vis{top:30px}
+.cx .c-rail{position:absolute;left:var(--m);bottom:var(--m);height:106px;display:flex;gap:var(--g);align-items:flex-end;overflow:hidden;padding-top:6px}
+.cx .c-railhead{position:absolute;left:var(--m);bottom:calc(var(--m) + 106px);display:flex;align-items:flex-end;gap:10px}
+.cx .c-railhead .t-label{padding-bottom:6px}
+
+/* list rows */
+.cx .row{min-height:var(--t);gap:9px;padding:0 9px;border-bottom-width:1px}
+.cx .row.sel{border-bottom-width:3px}
+
+/* stat panel */
+.cx .statpanel{right:var(--m);top:var(--tbh);width:212px;padding:8px 8px 7px 10px}
+.cx .statpanel .subline{margin-top:4px;gap:5px}
+.cx .stat{height:19px;gap:5px}
+.cx .stat .lab{flex:none;width:68px}
+.cx .stat .val{width:24px;height:18px;background:none;justify-content:flex-end;margin-left:auto}
+.cx .stat .chip.gain{flex:none;width:26px;height:17px;padding:0;justify-content:center}
+.cx .segbar{height:6px;background:repeating-linear-gradient(90deg,rgba(243,240,255,.2) 0 5px,transparent 5px 7px)}
+.cx .segbar > i{background:repeating-linear-gradient(90deg,var(--white) 0 5px,transparent 5px 7px)}
+.cx .segbar > i.gain{background:repeating-linear-gradient(90deg,var(--cyan) 0 5px,transparent 5px 7px)}
+.cx .segbar > i.loss{background:repeating-linear-gradient(90deg,var(--pink) 0 5px,transparent 5px 7px)}
+.cx .fact{height:27px;gap:7px;border-bottom-width:1px}
+.cx .fact .ic{font-size:16px}
+
+/* modal */
+.cx .modal{padding:12px 14px 14px;width:auto}
+.cx .modal .mhead{gap:8px;margin-bottom:8px}
+.cx .modal .mhead .titlemark{width:11px;height:20px;background:repeating-linear-gradient(135deg,var(--pink) 0 3px,transparent 3px 6px)}
+.cx .modal .mbody{margin-bottom:var(--g)}
+.cx .modal .mbtns{gap:var(--g)}
+.cx .modal .ic.close{position:static}
+.cx .setrow{display:flex;align-items:center;gap:10px;margin-bottom:var(--g)}
+.cx .setrow .lab{width:118px;white-space:normal;line-height:1.05}
+.cx .setrow .segswitch{flex:1}
+
+/* toast, prompt */
+.cx .toast{min-height:34px;gap:8px;padding:0 13px 0 10px;border-left-width:3px}
+.cx .toast .ic{font-size:17px}
+.cx .toastslot{top:calc(var(--m) + var(--t) + var(--g) + 32px + 8px);gap:6px}
+.cx .toastslot.menu{top:calc(var(--tbh) + 4px)}
+.cx .prompt{height:var(--t);gap:9px;padding:0 16px;min-width:210px}
+.cx .promptstack{bottom:calc(var(--m) + 124px + var(--g));gap:var(--g)}
+
+/* medals, pips, progress, slider */
+.cx .medal{width:10px;height:10px}
+.cx .pip{width:13px;height:5px}
+.cx .pips{gap:3px}
+.cx .progress{height:3px}
+.cx .slider{height:6px}
+.cx .slider > b{top:-8px;width:8px;height:22px;margin-left:-4px}
+
+/* ---- HUD (free roam and race) ------------------------------------------- */
+.cx .minimap{left:auto;bottom:auto;right:var(--m);top:var(--m);width:104px;height:104px;border-width:3px}
+.cx .c-north{position:absolute;right:calc(var(--m) + 43px);top:calc(var(--m) + 95px);width:18px;height:18px;border-radius:50%;background:var(--ink);border:1px solid var(--hair-bot);display:flex;align-items:center;justify-content:center;font:italic 800 11px/1 Barlow}
+.cx .c-district{position:absolute;right:var(--m);top:calc(var(--m) + 116px);width:104px;text-align:center}
+.cx .actionbar{right:calc(var(--m) + 104px + var(--g));top:var(--m);gap:var(--g)}
+.cx .c-hudstatus{position:absolute;right:calc(var(--m) + 104px + var(--g));top:calc(var(--m) + var(--t) + var(--g));width:calc(var(--t) * 5 + var(--g) * 4)}
+.cx .c-hudstatus .status{width:100%}
+.cx .c-cashhit{position:absolute;right:0;top:0;height:var(--t);width:128px}
+.cx .c-rightcol{position:absolute;right:var(--m);top:calc(var(--m) + 104px + 22px + var(--g));width:104px;display:flex;flex-direction:column;gap:var(--g)}
+.cx .c-leftzone{position:absolute;left:var(--m);top:calc(var(--tbh) + 4px)}
+.cx .c-gauge{position:absolute;left:50%;bottom:var(--m);width:124px;height:124px;margin-left:-62px}
+.cx .num{line-height:.8}
+
+/* touch drive controls (restyled MobileDriveControls_Phase1; names kept) */
+.cx .tc{position:absolute;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;background:rgba(14,13,26,.62);border-top:1px solid var(--hair-top);border-bottom:1px solid var(--hair-bot);color:var(--white)}
+.cx .tc .ic{font-size:26px}
+.cx .tc.on{background:var(--white);color:var(--ink)}
+.cx .tc.off{opacity:.4}
+.cx .tc-left{position:absolute;left:var(--m);bottom:var(--m);width:calc(88px * 2 + var(--g));height:calc(64px + var(--g) + max(52px,var(--t)) + var(--g) + var(--t))}
+.cx .tc-left .turn{width:88px;height:64px;bottom:0}
+.cx .tc-left .drift{width:88px;height:max(52px,var(--t));bottom:calc(64px + var(--g));flex-direction:row;gap:5px}
+.cx .tc-left .drift .ic{font-size:18px}
+.cx .tc-left .boost{left:0;right:0;top:0;height:var(--t);flex-direction:row;gap:6px;color:var(--cyan);border-top-color:var(--cyan)}
+.cx .tc-left .boost .ic{font-size:20px}
+.cx .tc-left .boost .lvl{position:absolute;left:0;bottom:-1px;height:3px;background:var(--cyan)}
+.cx .tc-right{position:absolute;right:var(--m);bottom:var(--m);width:calc(92px + var(--g) + 104px);height:116px}
+.cx .tc-right .brake{left:0;bottom:0;width:92px;height:96px}
+.cx .tc-right .accel{right:0;bottom:0;width:104px;height:116px}
+.cx .tc-right .accel .ic{font-size:34px}
+
+/* in-race */
+.cx .c-board{position:absolute;right:var(--m);top:var(--m);width:196px;display:flex;flex-direction:column;gap:2px}
+.cx .c-board .row{min-height:23px;height:23px;padding:0 7px 0 0;gap:7px;border-bottom:0}
+.cx .c-board .row .p{width:22px;height:100%;display:flex;align-items:center;justify-content:center;background:rgba(243,240,255,.14)}
+.cx .c-board .row.you .p{background:var(--pink);color:var(--white)}
+.cx .c-timer{position:absolute;left:50%;top:var(--m);transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:4px}
+.cx .c-timer .box{background:var(--slate);padding:6px 12px 5px;border-bottom:2px solid var(--pink)}
+
+/* map */
+.cx .legendrow{display:flex;align-items:center;gap:7px;height:24px}
+.cx .mapicon{width:20px;height:20px;border-radius:50%;background:var(--ink);border:1px solid var(--hair-top);display:flex;align-items:center;justify-content:center;flex:none}
+.cx .mapicon .ic{font-size:12px}
+
+/* onboarding */
+.cx .c-highlight{position:absolute;border:2px solid var(--white);box-shadow:0 0 0 2000px rgba(7,6,13,.62)} /* dimmer = four frames in Roblox */
+.cx .c-connector{position:absolute;background:var(--pink)}
+.cx .c-objective{display:flex;align-items:center;gap:8px;height:48px;padding:0 12px 0 8px;background:var(--slate);border-top:1px solid var(--hair-top);border-bottom:1px solid var(--hair-bot);border-left:3px solid var(--pink)}
+
+/* small tile (car panel grid) */
+.cx .tile.mini{width:120px;height:84px}
+.cx .tile.mini .vis{top:30px}
+.cx .tile.mini.sel{height:84px;margin-top:0}
+.cx .tile.mini.sel .vis{top:30px}
+/* tier rail buttons (race entry) */
+.cx .tierbtn{width:var(--t);height:var(--t);display:flex;align-items:center;justify-content:center;background:var(--slate);border-bottom:2px solid transparent;font:italic 900 var(--fs-sect)/1 Barlow;padding-right:2px}
+.cx .tierbtn.done{border-bottom-color:var(--white)}
+.cx .tierbtn.on{background:var(--white);color:var(--ink)}
+.cx .tierbtn.locked{opacity:.45}
+.cx .swatch{flex:none;width:var(--t);height:var(--t)}
+.cx .swatch.on{outline:2px solid var(--white);outline-offset:-2px;box-shadow:inset 0 0 0 4px var(--ink)}
+.cx .slider.hue{background:linear-gradient(90deg,#f00,#ff0,#0f0,#0ff,#00f,#f0f,#f00)}
+.cx .slider.sat{background:linear-gradient(90deg,#fff,#3a38ff)}
+.cx .slider.bri{background:linear-gradient(90deg,#000,#fff)}
+.cx .chk{flex:none;width:30px;height:20px;background:conic-gradient(var(--white) 25%,var(--ink) 0 50%,var(--white) 0 75%,var(--ink) 0) 0 0/10px 10px}

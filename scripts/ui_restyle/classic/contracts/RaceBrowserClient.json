@@ -1,0 +1,2532 @@
+{
+ "script": "ReplicatedStorage.Modules.Game.Racing.RaceBrowserClient",
+ "class": "ModuleScript",
+ "source_file": "classic/sources/ReplicatedStorage.Modules.Game.Racing.RaceBrowserClient.lua",
+ "source_lines": 618,
+ "included_because": [
+  "ClientBase entry 'RaceBrowserClient'"
+ ],
+ "requires": [
+  {
+   "expr": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Racing\"):WaitForChild(\"RaceConfigReader\")",
+   "as": "RaceConfigReader",
+   "line": 22,
+   "in_function": "Client.start",
+   "target": "ReplicatedStorage.Modules.Game.Racing.RaceConfigReader"
+  },
+  {
+   "expr": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"UI\"):WaitForChild(\"RacingUIComponents\")",
+   "as": "UI",
+   "line": 23,
+   "in_function": "Client.start",
+   "target": "ReplicatedStorage.Modules.Game.UI.RacingUIComponents"
+  },
+  {
+   "expr": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"UI\"):WaitForChild(\"RouteGuide\")",
+   "as": "RouteGuide",
+   "line": 24,
+   "in_function": "Client.start",
+   "target": "ReplicatedStorage.Modules.Game.UI.RouteGuide"
+  },
+  {
+   "expr": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"UI\"):WaitForChild(\"RacingMobileScaledDesktopLayout\")",
+   "as": "MobileScaledDesktop",
+   "line": 25,
+   "in_function": "Client.start",
+   "target": "ReplicatedStorage.Modules.Game.UI.RacingMobileScaledDesktopLayout"
+  }
+ ],
+ "remotes": {
+  "calls": [
+   {
+    "method": "InvokeServer",
+    "receiver": "teleportInvoke",
+    "arg_count": 2,
+    "line": 427,
+    "in_function": "teleportSelected",
+    "remote": "ReplicatedStorage.Remotes.Racing.RaceBrowserTeleportInvoke",
+    "action": "TeleportToRaceStart",
+    "payload_keys": [
+     "EventId",
+     "Mode"
+    ]
+   }
+  ],
+  "listens": []
+ },
+ "bindables": {
+  "fires": [
+   {
+    "receiver": "event",
+    "created_here": false,
+    "lookup": "Players.LocalPlayer.PlayerScripts.Runtime.UI",
+    "arg_count": 0,
+    "line": 385,
+    "in_function": "fireDrivingExit",
+    "name": "FreeRoamVehicleExited"
+   },
+   {
+    "receiver": "event",
+    "created_here": false,
+    "lookup": "Players.LocalPlayer.PlayerScripts.Runtime.UI",
+    "arg_count": 1,
+    "line": 400,
+    "in_function": "publishPresentation",
+    "name": "FreeRoamHudPresentationMode",
+    "payload_keys": [
+     "Owner",
+     "Active",
+     "KeepTelemetry"
+    ],
+    "payload_literals": {
+     "Owner": "RaceBrowser"
+    }
+   },
+   {
+    "receiver": "event",
+    "created_here": false,
+    "lookup": "Players.LocalPlayer.PlayerScripts.Runtime.Racing",
+    "arg_count": 1,
+    "wrapper_defined": "RaceBrowserClient:393",
+    "line": 423,
+    "in_function": "teleportSelected",
+    "via": "wrapper transition()",
+    "name": "RaceTransitionRequest",
+    "payload_keys": [
+     "Reason",
+     "Label"
+    ],
+    "payload_literals": {
+     "Reason": "BrowserTeleport",
+     "Label": "TELEPORTING"
+    }
+   },
+   {
+    "receiver": "event",
+    "created_here": false,
+    "lookup": "Players.LocalPlayer.PlayerScripts.Runtime.Racing",
+    "arg_count": 1,
+    "wrapper_defined": "RaceBrowserClient:393",
+    "line": 432,
+    "in_function": "teleportSelected",
+    "via": "wrapper transition()",
+    "name": "RaceTransitionRequest",
+    "payload_keys": [
+     "Reason",
+     "Delay"
+    ],
+    "payload_literals": {
+     "Reason": "BrowserTeleportFailed"
+    }
+   },
+   {
+    "receiver": "event",
+    "created_here": false,
+    "lookup": "Players.LocalPlayer.PlayerScripts.Runtime.Racing",
+    "arg_count": 1,
+    "wrapper_defined": "RaceBrowserClient:393",
+    "line": 439,
+    "in_function": "teleportSelected",
+    "via": "wrapper transition()",
+    "name": "RaceTransitionRequest",
+    "payload_keys": [
+     "Reason"
+    ],
+    "payload_literals": {
+     "Reason": "BrowserTeleport"
+    }
+   },
+   {
+    "receiver": "event",
+    "created_here": false,
+    "lookup": "Players.LocalPlayer.PlayerScripts.Runtime.Racing",
+    "arg_count": 1,
+    "wrapper_defined": "RaceBrowserClient:393",
+    "line": 440,
+    "in_function": "teleportSelected",
+    "via": "wrapper transition()",
+    "name": "RaceTransitionRequest",
+    "payload_keys": [
+     "Reason",
+     "Delay"
+    ],
+    "payload_literals": {
+     "Reason": "BrowserTeleport"
+    }
+   },
+   {
+    "receiver": "notify",
+    "created_here": false,
+    "lookup": "Players.LocalPlayer.PlayerScripts.Runtime.UI",
+    "arg_count": 2,
+    "args": [
+     "\"ROUTE SET: \" .. string.upper(selected.DisplayName)",
+     "2.2"
+    ],
+    "line": 453,
+    "in_function": "routeSelected",
+    "name": "ShowTopNotification",
+    "payload": null,
+    "payload_expr": "\"ROUTE SET: \" .. string.upper(selected.DisplayName)"
+   }
+  ],
+  "connects": [
+   {
+    "signal": "Event",
+    "receiver": "openEvent",
+    "method": "Connect",
+    "handler": "inline",
+    "handler_line": 606,
+    "handler_params": [],
+    "lookup": "Players.LocalPlayer.PlayerScripts.Runtime.UI",
+    "line": 606,
+    "in_function": "Client.start",
+    "name": "OpenRaceBrowser"
+   }
+  ],
+  "invokes": [],
+  "handlers": [],
+  "created": [],
+  "module_signal_fires": []
+ },
+ "attributes": {
+  "reads": [
+   {
+    "receiver": "event",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "line": 81,
+    "in_function": "addMode",
+    "name": "EventId"
+   }
+  ],
+  "writes": [],
+  "listens": []
+ },
+ "player_attribute_writes": [],
+ "screenguis": {
+  "created": [
+   {
+    "variable": "gui",
+    "class": "ScreenGui",
+    "line": 459,
+    "factory": null,
+    "adopts_existing": false,
+    "Name": "RaceBrowser",
+    "DisplayOrder": 170,
+    "ResetOnSpawn": false,
+    "IgnoreGuiInset": true,
+    "Parent": {
+     "expr": "playerGui"
+    },
+    "enabled_writes": [],
+    "property_lines": {
+     "Name": 460,
+     "IgnoreGuiInset": 461,
+     "ResetOnSpawn": 462,
+     "DisplayOrder": 463,
+     "Parent": 464
+    }
+   }
+  ],
+  "enabled_writes": [
+   {
+    "receiver": "child",
+    "receiver_path": null,
+    "value": false,
+    "screengui_like": "yes",
+    "reason": "IsA(ScreenGui) guard in the same function",
+    "line": 407,
+    "in_function": "suppress"
+   },
+   {
+    "receiver": "otherGui",
+    "receiver_path": null,
+    "value": {
+     "expr": "wasEnabled"
+    },
+    "screengui_like": "unknown",
+    "reason": "",
+    "line": 410,
+    "in_function": "setOpen"
+   }
+  ]
+ },
+ "names": {
+  "assigned": [
+   {
+    "via": "property",
+    "receiver": "picture",
+    "class": "ImageLabel",
+    "line": 123,
+    "in_function": "imageSlot",
+    "name": "Image"
+   },
+   {
+    "via": "property",
+    "receiver": "icon",
+    "class": "ImageLabel",
+    "line": 166,
+    "in_function": "detailIcon",
+    "name": null,
+    "name_expr": "name .. \"Icon\""
+   },
+   {
+    "via": "property",
+    "receiver": "overlay",
+    "class": "Frame",
+    "line": 206,
+    "in_function": "cardGradient",
+    "name": "GradientOverlay"
+   },
+   {
+    "via": "wrapper imageSlot()",
+    "callee": "Panel",
+    "class": null,
+    "wrapper_defined": "RaceBrowserClient:110",
+    "line": 242,
+    "in_function": "renderDetail",
+    "name": "TrackImage"
+   },
+   {
+    "via": "wrapper imageSlot()",
+    "callee": "Panel",
+    "class": null,
+    "wrapper_defined": "RaceBrowserClient:110",
+    "line": 254,
+    "in_function": "renderDetail",
+    "name": "TrackMap"
+   },
+   {
+    "via": "table_field",
+    "callee": "Panel",
+    "class": null,
+    "line": 256,
+    "in_function": "renderDetail",
+    "name": "EventDetails"
+   },
+   {
+    "via": "property",
+    "receiver": "factRow",
+    "class": "Frame",
+    "line": 280,
+    "in_function": "renderDetail",
+    "name": null,
+    "name_expr": "fact.Icon .. \"Row\""
+   },
+   {
+    "via": "table_field",
+    "callee": "Label",
+    "class": null,
+    "line": 302,
+    "in_function": "renderDetail",
+    "name": "PrizeAmount"
+   },
+   {
+    "via": "property",
+    "receiver": "amountGlow",
+    "class": "UIStroke",
+    "line": 312,
+    "in_function": "renderDetail",
+    "name": "TextGlow"
+   },
+   {
+    "via": "table_field",
+    "callee": "Panel",
+    "class": null,
+    "line": 331,
+    "in_function": "renderList",
+    "name": null,
+    "name_pattern": "Event_*",
+    "name_expr": "\"Event_\" .. row.Key"
+   },
+   {
+    "via": "property",
+    "receiver": "click",
+    "class": "TextButton",
+    "line": 342,
+    "in_function": "renderList",
+    "name": "Select"
+   },
+   {
+    "via": "wrapper imageSlot()",
+    "callee": "Panel",
+    "class": null,
+    "wrapper_defined": "RaceBrowserClient:110",
+    "line": 351,
+    "in_function": "renderList",
+    "name": "Thumbnail"
+   },
+   {
+    "via": "property",
+    "receiver": "gui",
+    "class": "ScreenGui",
+    "line": 460,
+    "in_function": "buildGui",
+    "name": "RaceBrowser"
+   },
+   {
+    "via": "property",
+    "receiver": "overlay",
+    "class": "Frame",
+    "line": 467,
+    "in_function": "buildGui",
+    "name": "Overlay"
+   },
+   {
+    "via": "table_field",
+    "callee": "Panel",
+    "class": null,
+    "line": 476,
+    "in_function": "buildGui",
+    "name": "RacingShell"
+   },
+   {
+    "via": "table_field",
+    "callee": "Label",
+    "class": null,
+    "line": 497,
+    "in_function": "buildGui",
+    "name": "Title"
+   },
+   {
+    "via": "property",
+    "receiver": "content",
+    "class": "Frame",
+    "line": 516,
+    "in_function": "buildGui",
+    "name": "Content"
+   },
+   {
+    "via": "property",
+    "receiver": "listPanel",
+    "class": "Frame",
+    "line": 525,
+    "in_function": "buildGui",
+    "name": "AvailableEvents"
+   },
+   {
+    "via": "property",
+    "receiver": "listScroller",
+    "class": "ScrollingFrame",
+    "line": 532,
+    "in_function": "buildGui",
+    "name": "EventList"
+   },
+   {
+    "via": "property",
+    "receiver": "list",
+    "class": "Frame",
+    "line": 543,
+    "in_function": "buildGui",
+    "name": "CardContent"
+   },
+   {
+    "via": "property",
+    "receiver": "detail",
+    "class": "Frame",
+    "line": 552,
+    "in_function": "buildGui",
+    "name": "EventDetail"
+   },
+   {
+    "via": "table_field",
+    "callee": "Label",
+    "class": null,
+    "line": 559,
+    "in_function": "buildGui",
+    "name": "Status"
+   },
+   {
+    "via": "table_field",
+    "callee": "Button",
+    "class": null,
+    "line": 575,
+    "in_function": "buildGui",
+    "name": "Exit"
+   },
+   {
+    "via": "table_field",
+    "callee": "Button",
+    "class": null,
+    "line": 585,
+    "in_function": "buildGui",
+    "name": "SetRoute"
+   },
+   {
+    "via": "table_field",
+    "callee": "Button",
+    "class": null,
+    "line": 595,
+    "in_function": "buildGui",
+    "name": "TeleportToStart"
+   }
+  ],
+  "looked_up": [
+   {
+    "method": "WaitForChild",
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 15,
+    "in_function": "Client.start",
+    "name": "PlayerGui"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 20,
+    "in_function": "Client.start",
+    "name": "Modules"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\")",
+    "receiver_path": "ReplicatedStorage.Modules",
+    "root": "ReplicatedStorage",
+    "line": 20,
+    "in_function": "Client.start",
+    "name": "Game"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game",
+    "root": "ReplicatedStorage",
+    "line": 20,
+    "in_function": "Client.start",
+    "name": "Racing"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 21,
+    "in_function": "Client.start",
+    "name": "Modules"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\")",
+    "receiver_path": "ReplicatedStorage.Modules",
+    "root": "ReplicatedStorage",
+    "line": 21,
+    "in_function": "Client.start",
+    "name": "Game"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game",
+    "root": "ReplicatedStorage",
+    "line": 21,
+    "in_function": "Client.start",
+    "name": "UI"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 22,
+    "in_function": "Client.start",
+    "name": "Modules"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\")",
+    "receiver_path": "ReplicatedStorage.Modules",
+    "root": "ReplicatedStorage",
+    "line": 22,
+    "in_function": "Client.start",
+    "name": "Game"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game",
+    "root": "ReplicatedStorage",
+    "line": 22,
+    "in_function": "Client.start",
+    "name": "Racing"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Racing\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game.Racing",
+    "root": "ReplicatedStorage",
+    "line": 22,
+    "in_function": "Client.start",
+    "name": "RaceConfigReader"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 23,
+    "in_function": "Client.start",
+    "name": "Modules"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\")",
+    "receiver_path": "ReplicatedStorage.Modules",
+    "root": "ReplicatedStorage",
+    "line": 23,
+    "in_function": "Client.start",
+    "name": "Game"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game",
+    "root": "ReplicatedStorage",
+    "line": 23,
+    "in_function": "Client.start",
+    "name": "UI"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"UI\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game.UI",
+    "root": "ReplicatedStorage",
+    "line": 23,
+    "in_function": "Client.start",
+    "name": "RacingUIComponents"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 24,
+    "in_function": "Client.start",
+    "name": "Modules"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\")",
+    "receiver_path": "ReplicatedStorage.Modules",
+    "root": "ReplicatedStorage",
+    "line": 24,
+    "in_function": "Client.start",
+    "name": "Game"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game",
+    "root": "ReplicatedStorage",
+    "line": 24,
+    "in_function": "Client.start",
+    "name": "UI"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"UI\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game.UI",
+    "root": "ReplicatedStorage",
+    "line": 24,
+    "in_function": "Client.start",
+    "name": "RouteGuide"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 25,
+    "in_function": "Client.start",
+    "name": "Modules"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\")",
+    "receiver_path": "ReplicatedStorage.Modules",
+    "root": "ReplicatedStorage",
+    "line": 25,
+    "in_function": "Client.start",
+    "name": "Game"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game",
+    "root": "ReplicatedStorage",
+    "line": 25,
+    "in_function": "Client.start",
+    "name": "UI"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"UI\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game.UI",
+    "root": "ReplicatedStorage",
+    "line": 25,
+    "in_function": "Client.start",
+    "name": "RacingMobileScaledDesktopLayout"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 29,
+    "in_function": "Client.start",
+    "name": "PlayerScripts"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts",
+    "root": "Players",
+    "line": 29,
+    "in_function": "Client.start",
+    "name": "Runtime"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 30,
+    "in_function": "Client.start",
+    "name": "PlayerScripts"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts",
+    "root": "Players",
+    "line": 30,
+    "in_function": "Client.start",
+    "name": "Runtime"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"Runtime\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime",
+    "root": "Players",
+    "line": 30,
+    "in_function": "Client.start",
+    "name": "UI"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 31,
+    "in_function": "Client.start",
+    "name": "PlayerScripts"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts",
+    "root": "Players",
+    "line": 31,
+    "in_function": "Client.start",
+    "name": "Runtime"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"Runtime\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime",
+    "root": "Players",
+    "line": 31,
+    "in_function": "Client.start",
+    "name": "UI"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"Runtime\"):WaitForChild(\"UI\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime.UI",
+    "root": "Players",
+    "line": 31,
+    "in_function": "Client.start",
+    "name": "OpenRaceBrowser"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 32,
+    "in_function": "Client.start",
+    "name": "Remotes"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Remotes\")",
+    "receiver_path": "ReplicatedStorage.Remotes",
+    "root": "ReplicatedStorage",
+    "line": 32,
+    "in_function": "Client.start",
+    "name": "Racing"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 33,
+    "in_function": "Client.start",
+    "name": "Remotes"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Remotes\")",
+    "receiver_path": "ReplicatedStorage.Remotes",
+    "root": "ReplicatedStorage",
+    "line": 33,
+    "in_function": "Client.start",
+    "name": "Racing"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Remotes\"):WaitForChild(\"Racing\")",
+    "receiver_path": "ReplicatedStorage.Remotes.Racing",
+    "root": "ReplicatedStorage",
+    "line": 33,
+    "in_function": "Client.start",
+    "name": "RaceBrowserTeleportInvoke"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 34,
+    "in_function": "Client.start",
+    "name": "Config"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\")",
+    "receiver_path": "ReplicatedStorage.Config",
+    "root": "ReplicatedStorage",
+    "line": 34,
+    "in_function": "Client.start",
+    "name": "Racing"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "racingConfig",
+    "receiver_path": "ReplicatedStorage.Config.Racing",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:80",
+    "line": 98,
+    "in_function": "buildRows",
+    "via": "wrapper addMode()",
+    "name": "TimeTrialCatalog"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "racingConfig",
+    "receiver_path": "ReplicatedStorage.Config.Racing",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:80",
+    "line": 99,
+    "in_function": "buildRows",
+    "via": "wrapper addMode()",
+    "name": "RaceCatalog"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:53",
+    "receiver_kind": "config",
+    "line": 113,
+    "in_function": "imageSlot",
+    "via": "wrapper C()",
+    "name": "PanelDeep",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:53",
+    "receiver_kind": "config",
+    "line": 115,
+    "in_function": "imageSlot",
+    "via": "wrapper C()",
+    "name": "Outline",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:54",
+    "receiver_kind": "config",
+    "line": 130,
+    "in_function": "imageSlot",
+    "via": "wrapper L()",
+    "name": "CornerRadius",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Layout"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:53",
+    "receiver_kind": "config",
+    "line": 136,
+    "in_function": "imageSlot",
+    "via": "wrapper C()",
+    "name": "Muted",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:55",
+    "receiver_kind": "config",
+    "line": 137,
+    "in_function": "imageSlot",
+    "via": "wrapper T()",
+    "name": "Caption",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Typography"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:33",
+    "receiver_kind": "config",
+    "line": 158,
+    "in_function": "detailIcon",
+    "via": "wrapper Components.AssetValue()",
+    "name": "RacingIconAtlas",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Assets"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:33",
+    "receiver_kind": "config",
+    "line": 162,
+    "in_function": "detailIcon",
+    "via": "wrapper Components.AssetValue()",
+    "name": "RacingIconCellSize",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Assets"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:54",
+    "receiver_kind": "config",
+    "line": 214,
+    "in_function": "cardGradient",
+    "via": "wrapper L()",
+    "name": "CornerRadius",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Layout"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:53",
+    "receiver_kind": "config",
+    "line": 229,
+    "in_function": "renderDetail",
+    "via": "wrapper C()",
+    "name": "Muted",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:53",
+    "receiver_kind": "config",
+    "line": 231,
+    "in_function": "renderDetail",
+    "via": "wrapper C()",
+    "name": "Disabled",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:53",
+    "receiver_kind": "config",
+    "line": 233,
+    "in_function": "renderDetail",
+    "via": "wrapper C()",
+    "name": "Disabled",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:53",
+    "receiver_kind": "config",
+    "line": 237,
+    "in_function": "renderDetail",
+    "via": "wrapper C()",
+    "name": "Text",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:53",
+    "receiver_kind": "config",
+    "line": 239,
+    "in_function": "renderDetail",
+    "via": "wrapper C()",
+    "name": "Text",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:55",
+    "receiver_kind": "config",
+    "line": 247,
+    "in_function": "renderDetail",
+    "via": "wrapper T()",
+    "name": "Heading",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Typography"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:54",
+    "receiver_kind": "config",
+    "line": 251,
+    "in_function": "renderDetail",
+    "via": "wrapper L()",
+    "name": "Gap",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Layout"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:53",
+    "receiver_kind": "config",
+    "line": 259,
+    "in_function": "renderDetail",
+    "via": "wrapper C()",
+    "name": "Panel",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:53",
+    "receiver_kind": "config",
+    "line": 261,
+    "in_function": "renderDetail",
+    "via": "wrapper C()",
+    "name": "Outline",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:53",
+    "receiver_kind": "config",
+    "line": 265,
+    "in_function": "renderDetail",
+    "via": "wrapper C()",
+    "name": "Text",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:55",
+    "receiver_kind": "config",
+    "line": 294,
+    "in_function": "renderDetail",
+    "via": "wrapper T()",
+    "name": "Body",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Typography"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:53",
+    "receiver_kind": "config",
+    "line": 295,
+    "in_function": "renderDetail",
+    "via": "wrapper C()",
+    "name": "Text",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:55",
+    "receiver_kind": "config",
+    "line": 306,
+    "in_function": "renderDetail",
+    "via": "wrapper T()",
+    "name": "Body",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Typography"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:53",
+    "receiver_kind": "config",
+    "line": 307,
+    "in_function": "renderDetail",
+    "via": "wrapper C()",
+    "name": "Telemetry",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:53",
+    "receiver_kind": "config",
+    "line": 314,
+    "in_function": "renderDetail",
+    "via": "wrapper C()",
+    "name": "Telemetry",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:53",
+    "receiver_kind": "config",
+    "line": 333,
+    "in_function": "renderList",
+    "via": "wrapper C()",
+    "name": "Telemetry",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:53",
+    "receiver_kind": "config",
+    "line": 333,
+    "in_function": "renderList",
+    "via": "wrapper C()",
+    "name": "Panel",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:53",
+    "receiver_kind": "config",
+    "line": 335,
+    "in_function": "renderList",
+    "via": "wrapper C()",
+    "name": "Telemetry",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:53",
+    "receiver_kind": "config",
+    "line": 335,
+    "in_function": "renderList",
+    "via": "wrapper C()",
+    "name": "Outline",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:55",
+    "receiver_kind": "config",
+    "line": 356,
+    "in_function": "renderList",
+    "via": "wrapper T()",
+    "name": "Body",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Typography"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:53",
+    "receiver_kind": "config",
+    "line": 363,
+    "in_function": "renderList",
+    "via": "wrapper C()",
+    "name": "Muted",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:55",
+    "receiver_kind": "config",
+    "line": 364,
+    "in_function": "renderList",
+    "via": "wrapper T()",
+    "name": "Body",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Typography"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:53",
+    "receiver_kind": "config",
+    "line": 371,
+    "in_function": "renderList",
+    "via": "wrapper C()",
+    "name": "Telemetry",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:55",
+    "receiver_kind": "config",
+    "line": 372,
+    "in_function": "renderList",
+    "via": "wrapper T()",
+    "name": "Body",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Typography"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 384,
+    "in_function": "fireDrivingExit",
+    "name": "PlayerScripts"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts",
+    "root": "Players",
+    "line": 384,
+    "in_function": "fireDrivingExit",
+    "name": "Runtime"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"Runtime\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime",
+    "root": "Players",
+    "line": 384,
+    "in_function": "fireDrivingExit",
+    "name": "UI"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"Runtime\"):WaitForChild(\"UI\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime.UI",
+    "root": "Players",
+    "line": 384,
+    "in_function": "fireDrivingExit",
+    "name": "FreeRoamVehicleExited"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 389,
+    "in_function": "transition",
+    "name": "PlayerScripts"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts",
+    "root": "Players",
+    "line": 389,
+    "in_function": "transition",
+    "name": "Runtime"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"Runtime\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime",
+    "root": "Players",
+    "line": 389,
+    "in_function": "transition",
+    "name": "Racing"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"Runtime\"):WaitForChild(\"Racing\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime.Racing",
+    "root": "Players",
+    "line": 389,
+    "in_function": "transition",
+    "name": "RaceTransitionRequest"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 398,
+    "in_function": "publishPresentation",
+    "name": "PlayerScripts"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts",
+    "root": "Players",
+    "line": 398,
+    "in_function": "publishPresentation",
+    "name": "Runtime"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"Runtime\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime",
+    "root": "Players",
+    "line": 398,
+    "in_function": "publishPresentation",
+    "name": "UI"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 399,
+    "in_function": "publishPresentation",
+    "name": "PlayerScripts"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts",
+    "root": "Players",
+    "line": 399,
+    "in_function": "publishPresentation",
+    "name": "Runtime"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"Runtime\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime",
+    "root": "Players",
+    "line": 399,
+    "in_function": "publishPresentation",
+    "name": "UI"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"Runtime\"):WaitForChild(\"UI\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime.UI",
+    "root": "Players",
+    "line": 399,
+    "in_function": "publishPresentation",
+    "name": "FreeRoamHudPresentationMode"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "uiControllers",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime.UI",
+    "root": "Players",
+    "line": 452,
+    "in_function": "routeSelected",
+    "name": "ShowTopNotification"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "playerGui",
+    "receiver_path": "Players.LocalPlayer.PlayerGui",
+    "root": "Players",
+    "line": 457,
+    "in_function": "buildGui",
+    "name": "RaceBrowser"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:53",
+    "receiver_kind": "config",
+    "line": 477,
+    "in_function": "buildGui",
+    "via": "wrapper C()",
+    "name": "PanelDeep",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:54",
+    "receiver_kind": "config",
+    "line": 478,
+    "in_function": "buildGui",
+    "via": "wrapper L()",
+    "name": "PanelTransparency",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Layout"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:53",
+    "receiver_kind": "config",
+    "line": 479,
+    "in_function": "buildGui",
+    "via": "wrapper C()",
+    "name": "Outline",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:54",
+    "receiver_kind": "config",
+    "line": 480,
+    "in_function": "buildGui",
+    "via": "wrapper L()",
+    "name": "ShellStrokeWidth",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Layout"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "shell",
+    "root": null,
+    "wrapper_defined": "RacingMobileScaledDesktopLayout:25",
+    "line": 487,
+    "in_function": "buildGui",
+    "via": "wrapper Layout.Attach()",
+    "name": "MobileScaledDesktopScale",
+    "receiver_path": null,
+    "receiver_kind": "other"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:54",
+    "receiver_kind": "config",
+    "line": 491,
+    "in_function": "buildGui",
+    "via": "wrapper L()",
+    "name": "ShellWidth",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Layout"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:54",
+    "receiver_kind": "config",
+    "line": 491,
+    "in_function": "buildGui",
+    "via": "wrapper L()",
+    "name": "ShellHeight",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Layout"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "shell",
+    "root": null,
+    "wrapper_defined": "RacingUIComponents:156",
+    "line": 492,
+    "in_function": "buildGui",
+    "via": "wrapper Components.AttachResponsiveScale()",
+    "name": "ResponsiveScale",
+    "receiver_path": null,
+    "receiver_kind": "other"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:54",
+    "receiver_kind": "config",
+    "line": 495,
+    "in_function": "buildGui",
+    "via": "wrapper L()",
+    "name": "HeaderHeight",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Layout"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:55",
+    "receiver_kind": "config",
+    "line": 501,
+    "in_function": "buildGui",
+    "via": "wrapper T()",
+    "name": "Heading",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Typography"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:53",
+    "receiver_kind": "config",
+    "line": 507,
+    "in_function": "buildGui",
+    "via": "wrapper C()",
+    "name": "Outline",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:54",
+    "receiver_kind": "config",
+    "line": 513,
+    "in_function": "buildGui",
+    "via": "wrapper L()",
+    "name": "OuterPadding",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Layout"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:54",
+    "receiver_kind": "config",
+    "line": 514,
+    "in_function": "buildGui",
+    "via": "wrapper L()",
+    "name": "FooterHeight",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Layout"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:54",
+    "receiver_kind": "config",
+    "line": 522,
+    "in_function": "buildGui",
+    "via": "wrapper L()",
+    "name": "BrowserListFraction",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Layout"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:54",
+    "receiver_kind": "config",
+    "line": 523,
+    "in_function": "buildGui",
+    "via": "wrapper L()",
+    "name": "Gap",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Layout"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:53",
+    "receiver_kind": "config",
+    "line": 540,
+    "in_function": "buildGui",
+    "via": "wrapper C()",
+    "name": "Outline",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:54",
+    "receiver_kind": "config",
+    "line": 561,
+    "in_function": "buildGui",
+    "via": "wrapper L()",
+    "name": "ShellHeight",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Layout"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:53",
+    "receiver_kind": "config",
+    "line": 563,
+    "in_function": "buildGui",
+    "via": "wrapper C()",
+    "name": "Danger",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:55",
+    "receiver_kind": "config",
+    "line": 564,
+    "in_function": "buildGui",
+    "via": "wrapper T()",
+    "name": "Caption",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Typography"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:53",
+    "receiver_kind": "config",
+    "line": 579,
+    "in_function": "buildGui",
+    "via": "wrapper C()",
+    "name": "PanelSoft",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:53",
+    "receiver_kind": "config",
+    "line": 580,
+    "in_function": "buildGui",
+    "via": "wrapper C()",
+    "name": "Outline",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:53",
+    "receiver_kind": "config",
+    "line": 581,
+    "in_function": "buildGui",
+    "via": "wrapper C()",
+    "name": "Telemetry",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:53",
+    "receiver_kind": "config",
+    "line": 589,
+    "in_function": "buildGui",
+    "via": "wrapper C()",
+    "name": "PanelSoft",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:53",
+    "receiver_kind": "config",
+    "line": 590,
+    "in_function": "buildGui",
+    "via": "wrapper C()",
+    "name": "Telemetry",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:53",
+    "receiver_kind": "config",
+    "line": 591,
+    "in_function": "buildGui",
+    "via": "wrapper C()",
+    "name": "Telemetry",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:53",
+    "receiver_kind": "config",
+    "line": 599,
+    "in_function": "buildGui",
+    "via": "wrapper C()",
+    "name": "PanelBlue",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:53",
+    "receiver_kind": "config",
+    "line": 600,
+    "in_function": "buildGui",
+    "via": "wrapper C()",
+    "name": "Telemetry",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:53",
+    "receiver_kind": "config",
+    "line": 601,
+    "in_function": "buildGui",
+    "via": "wrapper C()",
+    "name": "Telemetry",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   }
+  ],
+  "text_compared": []
+ },
+ "run_service": {
+  "render_steps": [],
+  "connects": []
+ },
+ "context_actions": [],
+ "user_input_service": {
+  "connects": [],
+  "members_used": [
+   {
+    "member": "TouchEnabled",
+    "kind": "read",
+    "line": 16,
+    "in_function": "Client.start"
+   }
+  ]
+ },
+ "audio": {
+  "bridge_calls": [],
+  "ui_audio_attributes": []
+ },
+ "config": {
+  "paths": [
+   {
+    "path": "ReplicatedStorage.Config",
+    "line": 34
+   },
+   {
+    "path": "ReplicatedStorage.Config.Racing",
+    "line": 34
+   },
+   {
+    "path": "ReplicatedStorage.Config.Racing.<name>",
+    "line": 71
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI.Racing.Assets",
+    "line": 158
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI.Racing.Colours",
+    "line": 113
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI.Racing.Layout",
+    "line": 130
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI.Racing.Typography",
+    "line": 137
+   }
+  ],
+  "attribute_reads": [],
+  "child_lookups": [
+   {
+    "method": "FindFirstChild",
+    "receiver": "racingConfig",
+    "receiver_path": "ReplicatedStorage.Config.Racing",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:80",
+    "line": 98,
+    "in_function": "buildRows",
+    "via": "wrapper addMode()",
+    "name": "TimeTrialCatalog"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "racingConfig",
+    "receiver_path": "ReplicatedStorage.Config.Racing",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:80",
+    "line": 99,
+    "in_function": "buildRows",
+    "via": "wrapper addMode()",
+    "name": "RaceCatalog"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:53",
+    "receiver_kind": "config",
+    "line": 113,
+    "in_function": "imageSlot",
+    "via": "wrapper C()",
+    "name": "PanelDeep",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:53",
+    "receiver_kind": "config",
+    "line": 115,
+    "in_function": "imageSlot",
+    "via": "wrapper C()",
+    "name": "Outline",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:54",
+    "receiver_kind": "config",
+    "line": 130,
+    "in_function": "imageSlot",
+    "via": "wrapper L()",
+    "name": "CornerRadius",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Layout"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:53",
+    "receiver_kind": "config",
+    "line": 136,
+    "in_function": "imageSlot",
+    "via": "wrapper C()",
+    "name": "Muted",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:55",
+    "receiver_kind": "config",
+    "line": 137,
+    "in_function": "imageSlot",
+    "via": "wrapper T()",
+    "name": "Caption",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Typography"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:33",
+    "receiver_kind": "config",
+    "line": 158,
+    "in_function": "detailIcon",
+    "via": "wrapper Components.AssetValue()",
+    "name": "RacingIconAtlas",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Assets"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:33",
+    "receiver_kind": "config",
+    "line": 162,
+    "in_function": "detailIcon",
+    "via": "wrapper Components.AssetValue()",
+    "name": "RacingIconCellSize",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Assets"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:54",
+    "receiver_kind": "config",
+    "line": 214,
+    "in_function": "cardGradient",
+    "via": "wrapper L()",
+    "name": "CornerRadius",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Layout"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:53",
+    "receiver_kind": "config",
+    "line": 229,
+    "in_function": "renderDetail",
+    "via": "wrapper C()",
+    "name": "Muted",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:53",
+    "receiver_kind": "config",
+    "line": 231,
+    "in_function": "renderDetail",
+    "via": "wrapper C()",
+    "name": "Disabled",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:53",
+    "receiver_kind": "config",
+    "line": 233,
+    "in_function": "renderDetail",
+    "via": "wrapper C()",
+    "name": "Disabled",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:53",
+    "receiver_kind": "config",
+    "line": 237,
+    "in_function": "renderDetail",
+    "via": "wrapper C()",
+    "name": "Text",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:53",
+    "receiver_kind": "config",
+    "line": 239,
+    "in_function": "renderDetail",
+    "via": "wrapper C()",
+    "name": "Text",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:55",
+    "receiver_kind": "config",
+    "line": 247,
+    "in_function": "renderDetail",
+    "via": "wrapper T()",
+    "name": "Heading",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Typography"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:54",
+    "receiver_kind": "config",
+    "line": 251,
+    "in_function": "renderDetail",
+    "via": "wrapper L()",
+    "name": "Gap",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Layout"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:53",
+    "receiver_kind": "config",
+    "line": 259,
+    "in_function": "renderDetail",
+    "via": "wrapper C()",
+    "name": "Panel",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:53",
+    "receiver_kind": "config",
+    "line": 261,
+    "in_function": "renderDetail",
+    "via": "wrapper C()",
+    "name": "Outline",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:53",
+    "receiver_kind": "config",
+    "line": 265,
+    "in_function": "renderDetail",
+    "via": "wrapper C()",
+    "name": "Text",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:55",
+    "receiver_kind": "config",
+    "line": 294,
+    "in_function": "renderDetail",
+    "via": "wrapper T()",
+    "name": "Body",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Typography"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:53",
+    "receiver_kind": "config",
+    "line": 295,
+    "in_function": "renderDetail",
+    "via": "wrapper C()",
+    "name": "Text",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:55",
+    "receiver_kind": "config",
+    "line": 306,
+    "in_function": "renderDetail",
+    "via": "wrapper T()",
+    "name": "Body",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Typography"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:53",
+    "receiver_kind": "config",
+    "line": 307,
+    "in_function": "renderDetail",
+    "via": "wrapper C()",
+    "name": "Telemetry",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:53",
+    "receiver_kind": "config",
+    "line": 314,
+    "in_function": "renderDetail",
+    "via": "wrapper C()",
+    "name": "Telemetry",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:53",
+    "receiver_kind": "config",
+    "line": 333,
+    "in_function": "renderList",
+    "via": "wrapper C()",
+    "name": "Telemetry",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:53",
+    "receiver_kind": "config",
+    "line": 333,
+    "in_function": "renderList",
+    "via": "wrapper C()",
+    "name": "Panel",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:53",
+    "receiver_kind": "config",
+    "line": 335,
+    "in_function": "renderList",
+    "via": "wrapper C()",
+    "name": "Telemetry",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:53",
+    "receiver_kind": "config",
+    "line": 335,
+    "in_function": "renderList",
+    "via": "wrapper C()",
+    "name": "Outline",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:55",
+    "receiver_kind": "config",
+    "line": 356,
+    "in_function": "renderList",
+    "via": "wrapper T()",
+    "name": "Body",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Typography"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:53",
+    "receiver_kind": "config",
+    "line": 363,
+    "in_function": "renderList",
+    "via": "wrapper C()",
+    "name": "Muted",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:55",
+    "receiver_kind": "config",
+    "line": 364,
+    "in_function": "renderList",
+    "via": "wrapper T()",
+    "name": "Body",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Typography"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:53",
+    "receiver_kind": "config",
+    "line": 371,
+    "in_function": "renderList",
+    "via": "wrapper C()",
+    "name": "Telemetry",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:55",
+    "receiver_kind": "config",
+    "line": 372,
+    "in_function": "renderList",
+    "via": "wrapper T()",
+    "name": "Body",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Typography"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:53",
+    "receiver_kind": "config",
+    "line": 477,
+    "in_function": "buildGui",
+    "via": "wrapper C()",
+    "name": "PanelDeep",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:54",
+    "receiver_kind": "config",
+    "line": 478,
+    "in_function": "buildGui",
+    "via": "wrapper L()",
+    "name": "PanelTransparency",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Layout"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:53",
+    "receiver_kind": "config",
+    "line": 479,
+    "in_function": "buildGui",
+    "via": "wrapper C()",
+    "name": "Outline",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:54",
+    "receiver_kind": "config",
+    "line": 480,
+    "in_function": "buildGui",
+    "via": "wrapper L()",
+    "name": "ShellStrokeWidth",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Layout"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:54",
+    "receiver_kind": "config",
+    "line": 491,
+    "in_function": "buildGui",
+    "via": "wrapper L()",
+    "name": "ShellWidth",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Layout"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:54",
+    "receiver_kind": "config",
+    "line": 491,
+    "in_function": "buildGui",
+    "via": "wrapper L()",
+    "name": "ShellHeight",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Layout"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:54",
+    "receiver_kind": "config",
+    "line": 495,
+    "in_function": "buildGui",
+    "via": "wrapper L()",
+    "name": "HeaderHeight",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Layout"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:55",
+    "receiver_kind": "config",
+    "line": 501,
+    "in_function": "buildGui",
+    "via": "wrapper T()",
+    "name": "Heading",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Typography"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:53",
+    "receiver_kind": "config",
+    "line": 507,
+    "in_function": "buildGui",
+    "via": "wrapper C()",
+    "name": "Outline",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:54",
+    "receiver_kind": "config",
+    "line": 513,
+    "in_function": "buildGui",
+    "via": "wrapper L()",
+    "name": "OuterPadding",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Layout"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:54",
+    "receiver_kind": "config",
+    "line": 514,
+    "in_function": "buildGui",
+    "via": "wrapper L()",
+    "name": "FooterHeight",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Layout"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:54",
+    "receiver_kind": "config",
+    "line": 522,
+    "in_function": "buildGui",
+    "via": "wrapper L()",
+    "name": "BrowserListFraction",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Layout"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:54",
+    "receiver_kind": "config",
+    "line": 523,
+    "in_function": "buildGui",
+    "via": "wrapper L()",
+    "name": "Gap",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Layout"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:53",
+    "receiver_kind": "config",
+    "line": 540,
+    "in_function": "buildGui",
+    "via": "wrapper C()",
+    "name": "Outline",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:54",
+    "receiver_kind": "config",
+    "line": 561,
+    "in_function": "buildGui",
+    "via": "wrapper L()",
+    "name": "ShellHeight",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Layout"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:53",
+    "receiver_kind": "config",
+    "line": 563,
+    "in_function": "buildGui",
+    "via": "wrapper C()",
+    "name": "Danger",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:55",
+    "receiver_kind": "config",
+    "line": 564,
+    "in_function": "buildGui",
+    "via": "wrapper T()",
+    "name": "Caption",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Typography"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:53",
+    "receiver_kind": "config",
+    "line": 579,
+    "in_function": "buildGui",
+    "via": "wrapper C()",
+    "name": "PanelSoft",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:53",
+    "receiver_kind": "config",
+    "line": 580,
+    "in_function": "buildGui",
+    "via": "wrapper C()",
+    "name": "Outline",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:53",
+    "receiver_kind": "config",
+    "line": 581,
+    "in_function": "buildGui",
+    "via": "wrapper C()",
+    "name": "Telemetry",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:53",
+    "receiver_kind": "config",
+    "line": 589,
+    "in_function": "buildGui",
+    "via": "wrapper C()",
+    "name": "PanelSoft",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:53",
+    "receiver_kind": "config",
+    "line": 590,
+    "in_function": "buildGui",
+    "via": "wrapper C()",
+    "name": "Telemetry",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:53",
+    "receiver_kind": "config",
+    "line": 591,
+    "in_function": "buildGui",
+    "via": "wrapper C()",
+    "name": "Telemetry",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:53",
+    "receiver_kind": "config",
+    "line": 599,
+    "in_function": "buildGui",
+    "via": "wrapper C()",
+    "name": "PanelBlue",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:53",
+    "receiver_kind": "config",
+    "line": 600,
+    "in_function": "buildGui",
+    "via": "wrapper C()",
+    "name": "Telemetry",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceBrowserClient:53",
+    "receiver_kind": "config",
+    "line": 601,
+    "in_function": "buildGui",
+    "via": "wrapper C()",
+    "name": "Telemetry",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   }
+  ]
+ },
+ "startergui_core": [],
+ "gui_service": [],
+ "other_services": {},
+ "service_connects": [],
+ "proximity_prompts": [],
+ "instances_created_by_class": {
+  "Frame": 8,
+  "ImageLabel": 2,
+  "ScreenGui": 1,
+  "ScrollingFrame": 1,
+  "TextButton": 1,
+  "UIGradient": 1,
+  "UIListLayout": 1,
+  "UIStroke": 1
+ },
+ "public_api": [
+  {
+   "name": "start",
+   "kind": "function",
+   "params": [],
+   "line": 4
+  }
+ ],
+ "unresolved": [
+  {
+   "category": "names_assigned",
+   "field": "name",
+   "line": 166,
+   "detail": "not a literal: name .. \"Icon\""
+  },
+  {
+   "category": "names_assigned",
+   "field": "name",
+   "line": 280,
+   "detail": "not a literal: fact.Icon .. \"Row\""
+  },
+  {
+   "category": "names_assigned",
+   "field": "name",
+   "line": 331,
+   "detail": "name built at run time: \"Event_\" .. row.Key"
+  }
+ ],
+ "contract_file": "RaceBrowserClient.json"
+}

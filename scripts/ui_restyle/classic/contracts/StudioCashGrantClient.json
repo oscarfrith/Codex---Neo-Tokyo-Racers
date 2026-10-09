@@ -1,0 +1,312 @@
+{
+ "script": "ReplicatedStorage.Modules.Game.Development.StudioCashGrantClient",
+ "class": "ModuleScript",
+ "source_file": "classic/sources/ReplicatedStorage.Modules.Game.Development.StudioCashGrantClient.lua",
+ "source_lines": 59,
+ "included_because": [
+  "ClientBase entry 'StudioCashGrantClient'"
+ ],
+ "requires": [],
+ "remotes": {
+  "calls": [
+   {
+    "method": "FireServer",
+    "receiver": "remote",
+    "arg_count": 0,
+    "line": 39,
+    "in_function": "bind",
+    "remote": "ReplicatedStorage.Remotes.Debug.StudioCashGrantRequest"
+   }
+  ],
+  "listens": [
+   {
+    "signal": "OnClientEvent",
+    "receiver": "remote",
+    "method": "Connect",
+    "handler": "inline",
+    "handler_line": 45,
+    "handler_params": [
+     "result"
+    ],
+    "payload_fields_read": [
+     "Success",
+     "Message"
+    ],
+    "line": 45,
+    "in_function": "Client.start",
+    "remote": "ReplicatedStorage.Remotes.Debug.StudioCashGrantRequest"
+   }
+  ]
+ },
+ "bindables": {
+  "fires": [],
+  "connects": [],
+  "invokes": [],
+  "handlers": [],
+  "created": [],
+  "module_signal_fires": []
+ },
+ "attributes": {
+  "reads": [
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Development.CashGrant",
+    "receiver_kind": "config",
+    "line": 29,
+    "in_function": "bind",
+    "name": "Enabled"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Development.CashGrant",
+    "receiver_kind": "config",
+    "line": 30,
+    "in_function": "bind",
+    "name": "KeyCode"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Development.CashGrant",
+    "receiver_kind": "config",
+    "line": 42,
+    "in_function": "bind",
+    "name": "Amount"
+   }
+  ],
+  "writes": [],
+  "listens": [
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Development.CashGrant",
+    "receiver_kind": "config",
+    "line": 50,
+    "in_function": "Client.start",
+    "name": "Enabled"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Development.CashGrant",
+    "receiver_kind": "config",
+    "line": 51,
+    "in_function": "Client.start",
+    "name": "KeyCode"
+   }
+  ]
+ },
+ "player_attribute_writes": [],
+ "screenguis": {
+  "created": [],
+  "enabled_writes": []
+ },
+ "names": {
+  "assigned": [],
+  "looked_up": [
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 17,
+    "in_function": "Client.start",
+    "name": "Config"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\")",
+    "receiver_path": "ReplicatedStorage.Config",
+    "root": "ReplicatedStorage",
+    "line": 17,
+    "in_function": "Client.start",
+    "name": "Development"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\"):WaitForChild(\"Development\")",
+    "receiver_path": "ReplicatedStorage.Config.Development",
+    "root": "ReplicatedStorage",
+    "line": 17,
+    "in_function": "Client.start",
+    "name": "CashGrant"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 18,
+    "in_function": "Client.start",
+    "name": "Remotes"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Remotes\")",
+    "receiver_path": "ReplicatedStorage.Remotes",
+    "root": "ReplicatedStorage",
+    "line": 18,
+    "in_function": "Client.start",
+    "name": "Debug"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Remotes\"):WaitForChild(\"Debug\")",
+    "receiver_path": "ReplicatedStorage.Remotes.Debug",
+    "root": "ReplicatedStorage",
+    "line": 18,
+    "in_function": "Client.start",
+    "name": "StudioCashGrantRequest"
+   }
+  ],
+  "text_compared": []
+ },
+ "run_service": {
+  "render_steps": [],
+  "connects": []
+ },
+ "context_actions": [
+  {
+   "method": "UnbindAction",
+   "line": 28,
+   "in_function": "bind",
+   "name": "StudioCashGrant"
+  },
+  {
+   "method": "BindAction",
+   "create_touch_button": false,
+   "inputs": [
+    "keyCode"
+   ],
+   "line": 36,
+   "in_function": "bind",
+   "name": "StudioCashGrant"
+  }
+ ],
+ "user_input_service": {
+  "connects": [],
+  "members_used": [
+   {
+    "member": "GetFocusedTextBox",
+    "kind": "call",
+    "line": 38,
+    "in_function": "bind"
+   }
+  ]
+ },
+ "audio": {
+  "bridge_calls": [],
+  "ui_audio_attributes": []
+ },
+ "config": {
+  "paths": [
+   {
+    "path": "ReplicatedStorage.Config",
+    "line": 17
+   },
+   {
+    "path": "ReplicatedStorage.Config.Development",
+    "line": 17
+   },
+   {
+    "path": "ReplicatedStorage.Config.Development.CashGrant",
+    "line": 17
+   }
+  ],
+  "attribute_reads": [
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Development.CashGrant",
+    "receiver_kind": "config",
+    "line": 29,
+    "in_function": "bind",
+    "name": "Enabled",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Development.CashGrant",
+    "receiver_kind": "config",
+    "line": 30,
+    "in_function": "bind",
+    "name": "KeyCode",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Development.CashGrant",
+    "receiver_kind": "config",
+    "line": 42,
+    "in_function": "bind",
+    "name": "Amount",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Development.CashGrant",
+    "receiver_kind": "config",
+    "line": 50,
+    "in_function": "Client.start",
+    "name": "Enabled",
+    "access": "listen"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Development.CashGrant",
+    "receiver_kind": "config",
+    "line": 51,
+    "in_function": "Client.start",
+    "name": "KeyCode",
+    "access": "listen"
+   }
+  ],
+  "child_lookups": []
+ },
+ "startergui_core": [
+  {
+   "method": "SetCore",
+   "receiver": "StarterGui",
+   "args": [
+    "\"SendNotification\"",
+    "{ Title = title, Text = text, Duration = 2.5 }"
+   ],
+   "line": 23,
+   "in_function": "notify"
+  }
+ ],
+ "gui_service": [],
+ "other_services": {
+  "StarterGui": [
+   {
+    "member": "SetCore",
+    "kind": "call",
+    "line": 23,
+    "in_function": "notify"
+   }
+  ],
+  "ContextActionService": [
+   {
+    "member": "UnbindAction",
+    "kind": "call",
+    "line": 28,
+    "in_function": "bind"
+   },
+   {
+    "member": "BindAction",
+    "kind": "call",
+    "line": 36,
+    "in_function": "bind"
+   }
+  ]
+ },
+ "service_connects": [],
+ "proximity_prompts": [],
+ "instances_created_by_class": {},
+ "public_api": [
+  {
+   "name": "start",
+   "kind": "function",
+   "params": [],
+   "line": 4
+  }
+ ],
+ "unresolved": [],
+ "contract_file": "StudioCashGrantClient.json"
+}

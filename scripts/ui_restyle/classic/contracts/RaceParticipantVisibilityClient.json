@@ -1,0 +1,237 @@
+{
+ "script": "ReplicatedStorage.Modules.Game.Racing.RaceParticipantVisibilityClient",
+ "class": "ModuleScript",
+ "source_file": "classic/sources/ReplicatedStorage.Modules.Game.Racing.RaceParticipantVisibilityClient.lua",
+ "source_lines": 78,
+ "included_because": [
+  "ClientBase entry 'RaceParticipantVisibilityClient'"
+ ],
+ "requires": [],
+ "remotes": {
+  "calls": [],
+  "listens": [
+   {
+    "signal": "OnClientEvent",
+    "receiver": "raceEvent",
+    "method": "Connect",
+    "handler": "inline",
+    "handler_line": 66,
+    "handler_params": [
+     "payload"
+    ],
+    "payload_fields_read": [
+     "Type",
+     "RunId",
+     "Participants",
+     "Active"
+    ],
+    "literal_comparisons": {
+     "Type": [
+      "RaceVisibilityUpdate",
+      "RaceFinished",
+      "RaceDNF",
+      "RaceExitedToStart",
+      "RaceEnded",
+      "TimeTrialFinished",
+      "TimeTrialEnded",
+      "TimeTrialError"
+     ],
+     "RunId": [
+      ""
+     ]
+    },
+    "line": 66,
+    "in_function": "Client.start",
+    "remote": "ReplicatedStorage.Remotes.Racing.RaceEvent"
+   }
+  ]
+ },
+ "bindables": {
+  "fires": [],
+  "connects": [],
+  "invokes": [],
+  "handlers": [],
+  "created": [],
+  "module_signal_fires": []
+ },
+ "attributes": {
+  "reads": [
+   {
+    "receiver": "vehicle",
+    "receiver_path": null,
+    "receiver_kind": "vehicle?",
+    "line": 54,
+    "in_function": "apply",
+    "name": "OwnerUserId"
+   },
+   {
+    "receiver": "vehicle",
+    "receiver_path": null,
+    "receiver_kind": "vehicle?",
+    "line": 54,
+    "in_function": "apply",
+    "name": "RaceRunId"
+   }
+  ],
+  "writes": [],
+  "listens": []
+ },
+ "player_attribute_writes": [],
+ "screenguis": {
+  "created": [],
+  "enabled_writes": [
+   {
+    "receiver": "item",
+    "receiver_path": null,
+    "value": {
+     "expr": "hidden and false or original(item,\"Enabled\",item.Enabled)"
+    },
+    "screengui_like": "no",
+    "reason": "IsA(BasePart,BillboardGui,Decal,Highlight,Humanoid,ParticleEmitter,SelectionBox,SurfaceGui,Texture,Trail) in the same function",
+    "line": 29,
+    "in_function": "setOne"
+   },
+   {
+    "receiver": "item",
+    "receiver_path": null,
+    "value": {
+     "expr": "hidden and false or original(item,\"Enabled\",item.Enabled)"
+    },
+    "screengui_like": "no",
+    "reason": "IsA(BasePart,BillboardGui,Decal,Highlight,Humanoid,ParticleEmitter,SelectionBox,SurfaceGui,Texture,Trail) in the same function",
+    "line": 30,
+    "in_function": "setOne"
+   }
+  ]
+ },
+ "names": {
+  "assigned": [],
+  "looked_up": [
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 13,
+    "in_function": "Client.start",
+    "name": "Remotes"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Remotes\")",
+    "receiver_path": "ReplicatedStorage.Remotes",
+    "root": "ReplicatedStorage",
+    "line": 13,
+    "in_function": "Client.start",
+    "name": "Racing"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Remotes\"):WaitForChild(\"Racing\")",
+    "receiver_path": "ReplicatedStorage.Remotes.Racing",
+    "root": "ReplicatedStorage",
+    "line": 13,
+    "in_function": "Client.start",
+    "name": "RaceEvent"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "game:GetService(\"Workspace\")",
+    "receiver_path": "Workspace",
+    "root": "Workspace",
+    "line": 20,
+    "in_function": "vehiclesRoot",
+    "name": "World"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Workspace\")",
+    "receiver_path": "Workspace",
+    "root": "Workspace",
+    "line": 20,
+    "in_function": "vehiclesRoot",
+    "name": "World"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "game:GetService(\"Workspace\"):WaitForChild(\"World\")",
+    "receiver_path": "Workspace.World",
+    "root": "Workspace",
+    "line": 20,
+    "in_function": "vehiclesRoot",
+    "name": "Runtime"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Workspace\")",
+    "receiver_path": "Workspace",
+    "root": "Workspace",
+    "line": 21,
+    "in_function": "vehiclesRoot",
+    "name": "World"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Workspace\"):WaitForChild(\"World\")",
+    "receiver_path": "Workspace.World",
+    "root": "Workspace",
+    "line": 21,
+    "in_function": "vehiclesRoot",
+    "name": "Runtime"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "game:GetService(\"Workspace\"):WaitForChild(\"World\"):WaitForChild(\"Runtime\")",
+    "receiver_path": "Workspace.World.Runtime",
+    "root": "Workspace",
+    "line": 21,
+    "in_function": "vehiclesRoot",
+    "name": "PlayerVehicles"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "item",
+    "receiver_path": null,
+    "root": null,
+    "line": 65,
+    "in_function": "Client.start",
+    "name": "PlayerVehicles"
+   }
+  ],
+  "text_compared": []
+ },
+ "run_service": {
+  "render_steps": [],
+  "connects": []
+ },
+ "context_actions": [],
+ "user_input_service": {
+  "connects": [],
+  "members_used": []
+ },
+ "audio": {
+  "bridge_calls": [],
+  "ui_audio_attributes": []
+ },
+ "config": {
+  "paths": [],
+  "attribute_reads": [],
+  "child_lookups": []
+ },
+ "startergui_core": [],
+ "gui_service": [],
+ "other_services": {},
+ "service_connects": [],
+ "proximity_prompts": [],
+ "instances_created_by_class": {},
+ "public_api": [
+  {
+   "name": "start",
+   "kind": "function",
+   "params": [],
+   "line": 4
+  }
+ ],
+ "unresolved": [],
+ "contract_file": "RaceParticipantVisibilityClient.json"
+}

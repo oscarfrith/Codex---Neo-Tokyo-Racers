@@ -1,0 +1,24 @@
+<!doctype html><html><head><meta charset="utf-8"><title>r09 Free-roam car panel</title><script src="../shared/boot.js"></script></head><body><script>
+const car = P.sil("car");
+const owned = [
+  {tier:"S",rating:939,sub:"EXOTIC",name:"SERAPH",sel:1,corner:{t:"OUT"}},
+  {tier:"D",rating:390,sub:"EXOTIC",name:"ZEPHYR"},
+  {tier:"D",rating:316,sub:"EXOTIC",name:"STINGER"}];
+P.page(`
+  ${P.freeroam({open:0,speed:0})}
+  <div class="panel abs" style="right:58px;top:206px;width:1180px;height:434px;padding:18px 0 18px 22px;overflow:hidden">
+    <div class="flex ac jb" style="height:56px;padding-right:22px">
+      <div class="t-sect" style="font-size:46px">MY VEHICLES <span class="t-status c-2" style="margin-left:10px">3</span></div>
+      <div class="flex g8">${P.dropdown("CATEGORY","ALL",290)}${P.dropdown("SORT","TIER",230)}</div>
+    </div>
+    <div class="flex" style="gap:10px;align-items:flex-end;height:258px;margin-top:14px">
+      ${P.tile({idx:"DEALERSHIP",vis:`<i class="ic plus" style="font-size:72px;color:rgba(243,240,255,.6)"></i>`,name:"BUY MORE",w:236})}
+      ${owned.map(o=>P.tile({...o,vis:car})).join("")}
+    </div>
+    <div class="flex ac jb" style="margin-top:14px;padding-right:22px;height:56px">
+      <span class="t-label c-2">SELECT A VEHICLE TO SPAWN IT</span>
+      ${P.btn("DESPAWN","close","sm danger")}
+    </div>
+  </div>
+`);
+</script></body></html>

@@ -1,0 +1,350 @@
+{
+ "script": "ReplicatedStorage.Modules.Game.UI.MapMath",
+ "class": "ModuleScript",
+ "source_file": "classic/sources/ReplicatedStorage.Modules.Game.UI.MapMath.lua",
+ "source_lines": 252,
+ "included_because": [
+  "under ReplicatedStorage.Modules.Game.UI"
+ ],
+ "requires": [],
+ "remotes": {
+  "calls": [],
+  "listens": []
+ },
+ "bindables": {
+  "fires": [],
+  "connects": [],
+  "invokes": [],
+  "handlers": [],
+  "created": [],
+  "module_signal_fires": []
+ },
+ "attributes": {
+  "reads": [],
+  "writes": [],
+  "listens": []
+ },
+ "player_attribute_writes": [],
+ "screenguis": {
+  "created": [],
+  "enabled_writes": []
+ },
+ "names": {
+  "assigned": [],
+  "looked_up": [],
+  "text_compared": []
+ },
+ "run_service": {
+  "render_steps": [],
+  "connects": []
+ },
+ "context_actions": [],
+ "user_input_service": {
+  "connects": [],
+  "members_used": []
+ },
+ "audio": {
+  "bridge_calls": [],
+  "ui_audio_attributes": []
+ },
+ "config": {
+  "paths": [],
+  "attribute_reads": [],
+  "child_lookups": []
+ },
+ "startergui_core": [],
+ "gui_service": [],
+ "other_services": {},
+ "service_connects": [],
+ "proximity_prompts": [],
+ "instances_created_by_class": {},
+ "public_api": [
+  {
+   "name": "Finite",
+   "kind": "field",
+   "line": 14,
+   "value": "finite"
+  },
+  {
+   "name": "Calibration",
+   "kind": "function",
+   "params": [
+    "values"
+   ],
+   "line": 18
+  },
+  {
+   "name": "MapDelta",
+   "kind": "function",
+   "params": [
+    "cal",
+    "dx",
+    "dz"
+   ],
+   "line": 37
+  },
+  {
+   "name": "WorldDelta",
+   "kind": "function",
+   "params": [
+    "cal",
+    "mx",
+    "mz"
+   ],
+   "line": 44
+  },
+  {
+   "name": "WorldToUnit",
+   "kind": "function",
+   "params": [
+    "cal",
+    "x",
+    "z"
+   ],
+   "line": 52
+  },
+  {
+   "name": "UnitToWorld",
+   "kind": "function",
+   "params": [
+    "cal",
+    "u",
+    "v"
+   ],
+   "line": 57
+  },
+  {
+   "name": "Heading",
+   "kind": "function",
+   "params": [
+    "cal",
+    "lookX",
+    "lookZ"
+   ],
+   "line": 63
+  },
+  {
+   "name": "MinimapPoint",
+   "kind": "function",
+   "params": [
+    "cal",
+    "dx",
+    "dz",
+    "uiPerStud",
+    "rotationDegrees",
+    "size"
+   ],
+   "line": 71
+  },
+  {
+   "name": "ClampToRect",
+   "kind": "function",
+   "params": [
+    "x",
+    "y",
+    "w",
+    "h",
+    "inset"
+   ],
+   "line": 81
+  },
+  {
+   "name": "Inside",
+   "kind": "function",
+   "params": [
+    "x",
+    "y",
+    "w",
+    "h",
+    "overscan"
+   ],
+   "line": 93
+  },
+  {
+   "name": "ClampVisibleStuds",
+   "kind": "function",
+   "params": [
+    "visible",
+    "minimum",
+    "maximum"
+   ],
+   "line": 99
+  },
+  {
+   "name": "CanvasSide",
+   "kind": "function",
+   "params": [
+    "fullStuds",
+    "shortSide",
+    "visibleStuds"
+   ],
+   "line": 106
+  },
+  {
+   "name": "ScreenToUnit",
+   "kind": "function",
+   "params": [
+    "pan",
+    "point",
+    "centre",
+    "side"
+   ],
+   "line": 111
+  },
+  {
+   "name": "UnitToScreen",
+   "kind": "function",
+   "params": [
+    "pan",
+    "unit",
+    "centre",
+    "side"
+   ],
+   "line": 115
+  },
+  {
+   "name": "ZoomAbout",
+   "kind": "function",
+   "params": [
+    "pan",
+    "oldSide",
+    "newSide",
+    "anchor",
+    "centre"
+   ],
+   "line": 121
+  },
+  {
+   "name": "BoundsToUnits",
+   "kind": "function",
+   "params": [
+    "cal",
+    "minX",
+    "maxX",
+    "minZ",
+    "maxZ"
+   ],
+   "line": 127
+  },
+  {
+   "name": "ClampPan",
+   "kind": "function",
+   "params": [
+    "pan",
+    "side",
+    "viewW",
+    "viewH",
+    "bounds"
+   ],
+   "line": 142
+  },
+  {
+   "name": "MaxStudsForBounds",
+   "kind": "function",
+   "params": [
+    "cal",
+    "bounds",
+    "viewW",
+    "viewH"
+   ],
+   "line": 152
+  },
+  {
+   "name": "FitStudsForBounds",
+   "kind": "function",
+   "params": [
+    "cal",
+    "bounds",
+    "viewW",
+    "viewH"
+   ],
+   "line": 161
+  },
+  {
+   "name": "TileRect",
+   "kind": "function",
+   "params": [
+    "row",
+    "col",
+    "n"
+   ],
+   "line": 169
+  },
+  {
+   "name": "TileOverlaps",
+   "kind": "function",
+   "params": [
+    "row",
+    "col",
+    "n",
+    "uMin",
+    "uMax",
+    "vMin",
+    "vMax"
+   ],
+   "line": 174
+  },
+  {
+   "name": "AssetId",
+   "kind": "function",
+   "params": [
+    "value"
+   ],
+   "line": 180
+  },
+  {
+   "name": "MaxTileGrid",
+   "kind": "field",
+   "line": 187,
+   "value": "8"
+  },
+  {
+   "name": "LegacyTiles",
+   "kind": "field",
+   "line": 188,
+   "value": "{ { \"MapTileTopLeft\", \"MapTileTopRight\" }, { \"MapTileBott..."
+  },
+  {
+   "name": "ResolveTiles",
+   "kind": "function",
+   "params": [
+    "grid",
+    "legacy"
+   ],
+   "line": 194
+  },
+  {
+   "name": "PinCentreOffset",
+   "kind": "function",
+   "params": [
+    "size",
+    "tipY"
+   ],
+   "line": 224
+  },
+  {
+   "name": "Approach",
+   "kind": "function",
+   "params": [
+    "current",
+    "target",
+    "response",
+    "dt"
+   ],
+   "line": 229
+  },
+  {
+   "name": "PickNearest",
+   "kind": "function",
+   "params": [
+    "points",
+    "x",
+    "y",
+    "radius"
+   ],
+   "line": 237
+  }
+ ],
+ "unresolved": [],
+ "contract_file": "MapMath.json"
+}

@@ -1,0 +1,153 @@
+{
+ "script": "StarterPlayer.StarterPlayerScripts.ClientBase",
+ "class": "LocalScript",
+ "source_file": "classic/sources/StarterPlayer.StarterPlayerScripts.ClientBase.lua",
+ "source_lines": 113,
+ "included_because": [
+  "composition root (holds the entries table)"
+ ],
+ "requires": [
+  {
+   "expr": "RS:WaitForChild(\"Modules\").Core.ClientLifecycle",
+   "as": "lifecycle",
+   "line": 3,
+   "target": "ReplicatedStorage.Modules.Core.ClientLifecycle"
+  },
+  {
+   "expr": "item",
+   "line": 108,
+   "target": null,
+   "target_expr": "item"
+  }
+ ],
+ "remotes": {
+  "calls": [],
+  "listens": []
+ },
+ "bindables": {
+  "fires": [],
+  "connects": [],
+  "invokes": [],
+  "handlers": [],
+  "created": [],
+  "module_signal_fires": []
+ },
+ "attributes": {
+  "reads": [],
+  "writes": [],
+  "listens": []
+ },
+ "player_attribute_writes": [],
+ "screenguis": {
+  "created": [],
+  "enabled_writes": []
+ },
+ "names": {
+  "assigned": [
+   {
+    "via": "property",
+    "receiver": "state",
+    "class": "Folder",
+    "line": 104,
+    "name": "StartupState"
+   }
+  ],
+  "looked_up": [
+   {
+    "method": "WaitForChild",
+    "receiver": "RS",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 3,
+    "name": "Modules"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 4,
+    "name": "Config"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\")",
+    "receiver_path": "ReplicatedStorage.Config",
+    "root": "ReplicatedStorage",
+    "line": 4,
+    "name": "Development"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "item",
+    "receiver_path": null,
+    "root": null,
+    "line": 107,
+    "name": null,
+    "name_expr": "part"
+   }
+  ],
+  "text_compared": []
+ },
+ "run_service": {
+  "render_steps": [],
+  "connects": []
+ },
+ "context_actions": [],
+ "user_input_service": {
+  "connects": [],
+  "members_used": []
+ },
+ "audio": {
+  "bridge_calls": [],
+  "ui_audio_attributes": []
+ },
+ "config": {
+  "paths": [
+   {
+    "path": "ReplicatedStorage.Config",
+    "line": 4
+   },
+   {
+    "path": "ReplicatedStorage.Config.Development.ClientTools",
+    "line": 4
+   }
+  ],
+  "attribute_reads": [],
+  "child_lookups": []
+ },
+ "startergui_core": [],
+ "gui_service": [],
+ "other_services": {},
+ "service_connects": [],
+ "proximity_prompts": [],
+ "instances_created_by_class": {
+  "Folder": 1
+ },
+ "public_api": [],
+ "unresolved": [
+  {
+   "category": "lookups",
+   "field": "name",
+   "line": 107,
+   "detail": "not a literal: part"
+  },
+  {
+   "category": "requires",
+   "field": "target",
+   "line": 108,
+   "detail": "not a literal: item"
+  },
+  {
+   "category": "attribute_writes",
+   "line": 110,
+   "detail": "name comes from parameter of anonymous function(); no call site found statically"
+  },
+  {
+   "category": "attribute_reads",
+   "line": 112,
+   "detail": "name comes from parameter of anonymous function(); no call site found statically"
+  }
+ ],
+ "contract_file": "ClientBase.json"
+}

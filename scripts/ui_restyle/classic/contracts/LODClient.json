@@ -1,0 +1,374 @@
+{
+ "script": "ReplicatedStorage.Modules.Game.World.LODClient",
+ "class": "ModuleScript",
+ "source_file": "classic/sources/ReplicatedStorage.Modules.Game.World.LODClient.lua",
+ "source_lines": 61,
+ "included_because": [
+  "ClientBase entry 'LODClient'"
+ ],
+ "requires": [
+  {
+   "expr": "script.Parent.LODPolicy",
+   "as": "Policy",
+   "line": 4,
+   "target": "ReplicatedStorage.Modules.Game.World.LODPolicy"
+  },
+  {
+   "expr": "script.Parent.LODRuntime",
+   "as": "Runtime",
+   "line": 5,
+   "target": "ReplicatedStorage.Modules.Game.World.LODRuntime"
+  }
+ ],
+ "remotes": {
+  "calls": [],
+  "listens": []
+ },
+ "bindables": {
+  "fires": [],
+  "connects": [],
+  "invokes": [],
+  "handlers": [],
+  "created": [],
+  "module_signal_fires": []
+ },
+ "attributes": {
+  "reads": [
+   {
+    "receiver": "config",
+    "receiver_kind": "config",
+    "wrapper_defined": "LODPolicy:7",
+    "line": 26,
+    "in_function": "Client.start",
+    "via": "wrapper Policy.read()",
+    "name": null,
+    "name_expr": "key",
+    "receiver_path": "ReplicatedStorage.Config.World.LOD"
+   },
+   {
+    "receiver": "settings",
+    "receiver_path": "ReplicatedStorage.Config.World.LOD",
+    "receiver_kind": "config",
+    "line": 46,
+    "in_function": "Client.start",
+    "name": "DiagnosticsEnabled"
+   }
+  ],
+  "writes": [
+   {
+    "receiver": "reporter",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime.World",
+    "receiver_kind": "playerScripts",
+    "value": "waiting",
+    "line": 32,
+    "in_function": "Client.start",
+    "name": "Phase5Status"
+   },
+   {
+    "receiver": "reporter",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime.World",
+    "receiver_kind": "playerScripts",
+    "value": "running",
+    "line": 40,
+    "in_function": "Client.start",
+    "name": "Phase5Status"
+   },
+   {
+    "receiver": "reporter",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime.World",
+    "receiver_kind": "playerScripts",
+    "value": {
+     "expr": "game:GetService(\"HttpService\"):JSONEncode(controller and controller:diagnostics() or {waiting_for_city=true})"
+    },
+    "line": 48,
+    "in_function": "Client.start",
+    "name": "Phase5Diagnostics"
+   },
+   {
+    "receiver": "reporter",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime.World",
+    "receiver_kind": "playerScripts",
+    "value": "failed",
+    "line": 56,
+    "in_function": "Client.start",
+    "name": "Phase5Status"
+   }
+  ],
+  "listens": []
+ },
+ "player_attribute_writes": [],
+ "screenguis": {
+  "created": [],
+  "enabled_writes": []
+ },
+ "names": {
+  "assigned": [
+   {
+    "via": "property",
+    "receiver": "active",
+    "class": "Folder",
+    "line": 30,
+    "in_function": "Client.start",
+    "name": "_ActiveFarLOD5"
+   }
+  ],
+  "looked_up": [
+   {
+    "method": "FindFirstChild",
+    "receiver": "game:GetService(\"Workspace\")",
+    "receiver_path": "Workspace",
+    "root": "Workspace",
+    "line": 10,
+    "in_function": "roots",
+    "name": "World"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 12,
+    "in_function": "roots",
+    "name": "Assets"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 13,
+    "in_function": "roots",
+    "name": "Assets"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Assets\")",
+    "receiver_path": "ReplicatedStorage.Assets",
+    "root": "ReplicatedStorage",
+    "line": 13,
+    "in_function": "roots",
+    "name": "World"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Workspace\")",
+    "receiver_path": "Workspace",
+    "root": "Workspace",
+    "line": 14,
+    "in_function": "roots",
+    "name": "World"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "game:GetService(\"Workspace\"):WaitForChild(\"World\")",
+    "receiver_path": "Workspace.World",
+    "root": "Workspace",
+    "line": 14,
+    "in_function": "roots",
+    "name": "City"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "workspace",
+    "receiver_path": "Workspace",
+    "root": "Workspace",
+    "line": 14,
+    "in_function": "roots",
+    "name": "GeneratedCityBlocks"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 15,
+    "in_function": "roots",
+    "name": "Assets"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Assets\")",
+    "receiver_path": "ReplicatedStorage.Assets",
+    "root": "ReplicatedStorage",
+    "line": 15,
+    "in_function": "roots",
+    "name": "World"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Assets\"):WaitForChild(\"World\")",
+    "receiver_path": "ReplicatedStorage.Assets.World",
+    "root": "ReplicatedStorage",
+    "line": 15,
+    "in_function": "roots",
+    "name": "FarLOD5Proxies"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "RS",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 15,
+    "in_function": "roots",
+    "name": "FarLOD5"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 25,
+    "in_function": "Client.start",
+    "name": "Config"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\")",
+    "receiver_path": "ReplicatedStorage.Config",
+    "root": "ReplicatedStorage",
+    "line": 25,
+    "in_function": "Client.start",
+    "name": "World"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\"):WaitForChild(\"World\")",
+    "receiver_path": "ReplicatedStorage.Config.World",
+    "root": "ReplicatedStorage",
+    "line": 25,
+    "in_function": "Client.start",
+    "name": "LOD"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 28,
+    "in_function": "Client.start",
+    "name": "PlayerScripts"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts",
+    "root": "Players",
+    "line": 28,
+    "in_function": "Client.start",
+    "name": "Runtime"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"Runtime\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime",
+    "root": "Players",
+    "line": 28,
+    "in_function": "Client.start",
+    "name": "World"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "workspace",
+    "receiver_path": "Workspace",
+    "root": "Workspace",
+    "line": 29,
+    "in_function": "Client.start",
+    "name": "_ActiveFarLOD5"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "character",
+    "receiver_path": "Players.LocalPlayer.Character",
+    "root": "Players",
+    "line": 41,
+    "in_function": "Client.start",
+    "name": "HumanoidRootPart"
+   }
+  ],
+  "text_compared": []
+ },
+ "run_service": {
+  "render_steps": [],
+  "connects": []
+ },
+ "context_actions": [],
+ "user_input_service": {
+  "connects": [],
+  "members_used": []
+ },
+ "audio": {
+  "bridge_calls": [],
+  "ui_audio_attributes": []
+ },
+ "config": {
+  "paths": [
+   {
+    "path": "ReplicatedStorage.Config",
+    "line": 25
+   },
+   {
+    "path": "ReplicatedStorage.Config.World",
+    "line": 25
+   },
+   {
+    "path": "ReplicatedStorage.Config.World.LOD",
+    "line": 25
+   }
+  ],
+  "attribute_reads": [
+   {
+    "receiver": "config",
+    "receiver_kind": "config",
+    "wrapper_defined": "LODPolicy:7",
+    "line": 26,
+    "in_function": "Client.start",
+    "via": "wrapper Policy.read()",
+    "name": null,
+    "name_expr": "key",
+    "receiver_path": "ReplicatedStorage.Config.World.LOD",
+    "access": "read"
+   },
+   {
+    "receiver": "settings",
+    "receiver_path": "ReplicatedStorage.Config.World.LOD",
+    "receiver_kind": "config",
+    "line": 46,
+    "in_function": "Client.start",
+    "name": "DiagnosticsEnabled",
+    "access": "read"
+   }
+  ],
+  "child_lookups": []
+ },
+ "startergui_core": [],
+ "gui_service": [],
+ "other_services": {},
+ "service_connects": [],
+ "proximity_prompts": [],
+ "instances_created_by_class": {
+  "Folder": 1
+ },
+ "public_api": [
+  {
+   "name": "destroy",
+   "kind": "function",
+   "params": [],
+   "line": 17
+  },
+  {
+   "name": "start",
+   "kind": "function",
+   "params": [],
+   "line": 23
+  }
+ ],
+ "unresolved": [
+  {
+   "category": "attribute_reads",
+   "field": "name",
+   "line": 26,
+   "detail": "not a literal: key"
+  }
+ ],
+ "contract_file": "LODClient.json"
+}

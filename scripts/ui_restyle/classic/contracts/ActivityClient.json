@@ -1,0 +1,1022 @@
+{
+ "script": "ReplicatedStorage.Modules.Game.Activities.ActivityClient",
+ "class": "ModuleScript",
+ "source_file": "classic/sources/ReplicatedStorage.Modules.Game.Activities.ActivityClient.lua",
+ "source_lines": 323,
+ "included_because": [
+  "ClientBase entry 'ActivityClient'"
+ ],
+ "requires": [
+  {
+   "expr": "modules:WaitForChild(\"Game\"):WaitForChild(\"UI\"):WaitForChild(\"RacingUIComponents\")",
+   "as": "UI",
+   "line": 23,
+   "in_function": "Client.start",
+   "target": "ReplicatedStorage.Modules.Game.UI.RacingUIComponents"
+  },
+  {
+   "expr": "modules.Game.UI:WaitForChild(\"ResponsiveUIFoundation\")",
+   "as": "Foundation",
+   "line": 24,
+   "in_function": "Client.start",
+   "target": "ReplicatedStorage.Modules.Game.UI.ResponsiveUIFoundation"
+  },
+  {
+   "expr": "modules.Game.UI:WaitForChild(\"RouteGuide\")",
+   "as": "RouteGuide",
+   "line": 25,
+   "in_function": "Client.start",
+   "target": "ReplicatedStorage.Modules.Game.UI.RouteGuide"
+  },
+  {
+   "expr": "module",
+   "protected": true,
+   "as": "view",
+   "line": 295,
+   "in_function": "Client.start",
+   "target": "ReplicatedStorage.Modules.Game.Activities.CourierClientView",
+   "via": "literal list"
+  },
+  {
+   "expr": "module",
+   "protected": true,
+   "as": "view",
+   "line": 295,
+   "in_function": "Client.start",
+   "target": "ReplicatedStorage.Modules.Game.Activities.PassengerClientView",
+   "via": "literal list"
+  },
+  {
+   "expr": "module",
+   "protected": true,
+   "as": "view",
+   "line": 295,
+   "in_function": "Client.start",
+   "target": "ReplicatedStorage.Modules.Game.Activities.TaxiClientView",
+   "via": "literal list"
+  },
+  {
+   "expr": "module",
+   "protected": true,
+   "as": "view",
+   "line": 295,
+   "in_function": "Client.start",
+   "target": "ReplicatedStorage.Modules.Game.Activities.DuelClientView",
+   "via": "literal list"
+  }
+ ],
+ "remotes": {
+  "calls": [
+   {
+    "method": "InvokeServer",
+    "receiver": "invokeRemote",
+    "arg_count": 2,
+    "wrapper_defined": "ActivityClient:65",
+    "line": 109,
+    "in_function": "Client.start",
+    "via": "wrapper invoke()",
+    "remote": "ReplicatedStorage.Remotes.Activities.ActivityInvoke",
+    "action": "Cancel"
+   }
+  ],
+  "listens": [
+   {
+    "signal": "OnClientEvent",
+    "receiver": "eventRemote",
+    "method": "Connect",
+    "handler": "inline",
+    "handler_line": 305,
+    "handler_params": [
+     "payload"
+    ],
+    "payload_fields_read": [
+     "Type"
+    ],
+    "literal_comparisons": {
+     "Type": [
+      "Rank:Up"
+     ]
+    },
+    "line": 305,
+    "in_function": "Client.start",
+    "remote": "ReplicatedStorage.Remotes.Activities.ActivityEvent"
+   }
+  ]
+ },
+ "bindables": {
+  "fires": [
+   {
+    "receiver": "notify",
+    "created_here": false,
+    "lookup": "Players.LocalPlayer.PlayerScripts.Runtime.UI",
+    "arg_count": 2,
+    "args": [
+     "tostring(text)",
+     "seconds or 2.4"
+    ],
+    "line": 61,
+    "in_function": "toast",
+    "name": "ShowTopNotification",
+    "payload": null,
+    "payload_expr": "tostring(text)"
+   }
+  ],
+  "connects": [],
+  "invokes": [],
+  "handlers": [],
+  "created": [
+   {
+    "variable": "item",
+    "class": "BindableEvent",
+    "line": 54,
+    "factory": "new",
+    "adopts_existing": false,
+    "Name": {
+     "expr": "name"
+    },
+    "Parent": {
+     "expr": "uiFolder"
+    }
+   }
+  ],
+  "module_signal_fires": []
+ },
+ "attributes": {
+  "reads": [
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "line": 75,
+    "in_function": "syncFullMap",
+    "name": "FullMapOpen"
+   },
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "line": 245,
+    "in_function": "racing",
+    "name": "RaceQueueActive"
+   },
+   {
+    "receiver": "vehicle",
+    "receiver_path": null,
+    "receiver_kind": "vehicle?",
+    "line": 250,
+    "in_function": "racing",
+    "name": "RaceParticipant"
+   },
+   {
+    "receiver": "vehicle",
+    "receiver_path": null,
+    "receiver_kind": "vehicle?",
+    "line": 250,
+    "in_function": "racing",
+    "name": "RaceRunId"
+   }
+  ],
+  "writes": [],
+  "listens": [
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "line": 76,
+    "in_function": "Client.start",
+    "name": "FullMapOpen"
+   }
+  ]
+ },
+ "player_attribute_writes": [],
+ "screenguis": {
+  "created": [
+   {
+    "variable": "gui",
+    "class": "ScreenGui",
+    "line": 73,
+    "factory": "new",
+    "adopts_existing": false,
+    "Name": "ActivityHud",
+    "DisplayOrder": 84,
+    "ResetOnSpawn": false,
+    "IgnoreGuiInset": true,
+    "ZIndexBehavior": {
+     "expr": "Enum.ZIndexBehavior.Sibling"
+    },
+    "Enabled": {
+     "expr": "player:GetAttribute(\"FullMapOpen\") ~= true"
+    },
+    "Parent": {
+     "expr": "playerGui"
+    },
+    "enabled_writes": [
+     {
+      "property": "Enabled",
+      "value": {
+       "expr": "player:GetAttribute(\"FullMapOpen\") ~= true"
+      },
+      "line": 75
+     }
+    ],
+    "property_lines": {
+     "Name": 73,
+     "IgnoreGuiInset": 73,
+     "ResetOnSpawn": 73,
+     "DisplayOrder": 73,
+     "ZIndexBehavior": 73,
+     "Enabled": 75
+    }
+   }
+  ],
+  "enabled_writes": [
+   {
+    "receiver": "gui",
+    "receiver_path": null,
+    "value": {
+     "expr": "player:GetAttribute(\"FullMapOpen\") ~= true"
+    },
+    "screengui_like": "yes",
+    "reason": "created here as ScreenGui",
+    "line": 75,
+    "in_function": "syncFullMap",
+    "screengui_name": "ActivityHud"
+   }
+  ]
+ },
+ "names": {
+  "assigned": [
+   {
+    "via": "wrapper event()",
+    "callee": "new",
+    "class": "BindableEvent",
+    "wrapper_defined": "ActivityClient:54",
+    "line": 57,
+    "in_function": "Client.start",
+    "name": "OpenJobs"
+   },
+   {
+    "via": "table_field",
+    "callee": "new",
+    "class": "ScreenGui",
+    "line": 73,
+    "in_function": "Client.start",
+    "name": "ActivityHud"
+   },
+   {
+    "via": "table_field",
+    "callee": "new",
+    "class": "Frame",
+    "line": 78,
+    "in_function": "Client.start",
+    "name": "DesignRoot"
+   },
+   {
+    "via": "table_field",
+    "callee": "panel",
+    "class": null,
+    "line": 99,
+    "in_function": "Client.start",
+    "name": "JobStrip"
+   },
+   {
+    "via": "table_field",
+    "callee": "Label",
+    "class": null,
+    "line": 104,
+    "in_function": "Client.start",
+    "name": "Text"
+   },
+   {
+    "via": "table_field",
+    "callee": "Button",
+    "class": null,
+    "line": 106,
+    "in_function": "Client.start",
+    "name": "Cancel"
+   },
+   {
+    "via": "table_field",
+    "callee": "panel",
+    "class": null,
+    "line": 144,
+    "in_function": "offer",
+    "name": "Offer"
+   },
+   {
+    "via": "table_field",
+    "callee": "Label",
+    "class": null,
+    "line": 148,
+    "in_function": "offer",
+    "name": "Title"
+   },
+   {
+    "via": "table_field",
+    "callee": "Label",
+    "class": null,
+    "line": 149,
+    "in_function": "offer",
+    "name": "Body"
+   },
+   {
+    "via": "table_field",
+    "callee": "Button",
+    "class": null,
+    "line": 163,
+    "in_function": "offer",
+    "name": null,
+    "name_pattern": "Option*",
+    "name_expr": "\"Option\" .. index"
+   },
+   {
+    "via": "table_field",
+    "callee": "new",
+    "class": "Frame",
+    "line": 179,
+    "in_function": "offer",
+    "name": "Timer"
+   },
+   {
+    "via": "table_field",
+    "callee": "panel",
+    "class": null,
+    "line": 192,
+    "in_function": "countdown",
+    "name": "Countdown"
+   },
+   {
+    "via": "table_field",
+    "callee": "Label",
+    "class": null,
+    "line": 197,
+    "in_function": "countdown",
+    "name": "Number"
+   },
+   {
+    "via": "table_field",
+    "callee": "Label",
+    "class": null,
+    "line": 199,
+    "in_function": "countdown",
+    "name": "Label"
+   },
+   {
+    "via": "table_field",
+    "callee": "new",
+    "class": "Part",
+    "line": 223,
+    "in_function": "beacon",
+    "name": null,
+    "name_pattern": "ActivityBeacon_*",
+    "name_expr": "\"ActivityBeacon_\" .. tostring(id)"
+   },
+   {
+    "via": "table_field",
+    "callee": "panel",
+    "class": null,
+    "line": 256,
+    "in_function": "rankUp",
+    "name": "RankUp"
+   },
+   {
+    "via": "table_field",
+    "callee": "Label",
+    "class": null,
+    "line": 260,
+    "in_function": "rankUp",
+    "name": "Kicker"
+   },
+   {
+    "via": "table_field",
+    "callee": "Label",
+    "class": null,
+    "line": 261,
+    "in_function": "rankUp",
+    "name": "Rank"
+   },
+   {
+    "via": "table_field",
+    "callee": "Label",
+    "class": null,
+    "line": 263,
+    "in_function": "rankUp",
+    "name": "Reward"
+   }
+  ],
+  "looked_up": [
+   {
+    "method": "WaitForChild",
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 21,
+    "in_function": "Client.start",
+    "name": "PlayerGui"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "ReplicatedStorage",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 22,
+    "in_function": "Client.start",
+    "name": "Modules"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "modules",
+    "receiver_path": "ReplicatedStorage.Modules",
+    "root": "ReplicatedStorage",
+    "line": 23,
+    "in_function": "Client.start",
+    "name": "Game"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "modules:WaitForChild(\"Game\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game",
+    "root": "ReplicatedStorage",
+    "line": 23,
+    "in_function": "Client.start",
+    "name": "UI"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "modules:WaitForChild(\"Game\"):WaitForChild(\"UI\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game.UI",
+    "root": "ReplicatedStorage",
+    "line": 23,
+    "in_function": "Client.start",
+    "name": "RacingUIComponents"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "modules.Game.UI",
+    "receiver_path": "ReplicatedStorage.Modules.Game.UI",
+    "root": "ReplicatedStorage",
+    "line": 24,
+    "in_function": "Client.start",
+    "name": "ResponsiveUIFoundation"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "modules.Game.UI",
+    "receiver_path": "ReplicatedStorage.Modules.Game.UI",
+    "root": "ReplicatedStorage",
+    "line": 25,
+    "in_function": "Client.start",
+    "name": "RouteGuide"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "modules.Game",
+    "receiver_path": "ReplicatedStorage.Modules.Game",
+    "root": "ReplicatedStorage",
+    "line": 26,
+    "in_function": "Client.start",
+    "name": "Activities"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "ReplicatedStorage",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 27,
+    "in_function": "Client.start",
+    "name": "Remotes"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "ReplicatedStorage:WaitForChild(\"Remotes\")",
+    "receiver_path": "ReplicatedStorage.Remotes",
+    "root": "ReplicatedStorage",
+    "line": 27,
+    "in_function": "Client.start",
+    "name": "Activities"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "remotes",
+    "receiver_path": "ReplicatedStorage.Remotes.Activities",
+    "root": "ReplicatedStorage",
+    "line": 28,
+    "in_function": "Client.start",
+    "name": "ActivityInvoke"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "remotes",
+    "receiver_path": "ReplicatedStorage.Remotes.Activities",
+    "root": "ReplicatedStorage",
+    "line": 29,
+    "in_function": "Client.start",
+    "name": "ActivityEvent"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 30,
+    "in_function": "Client.start",
+    "name": "PlayerScripts"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "player:WaitForChild(\"PlayerScripts\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts",
+    "root": "Players",
+    "line": 30,
+    "in_function": "Client.start",
+    "name": "Runtime"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "player:WaitForChild(\"PlayerScripts\"):WaitForChild(\"Runtime\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime",
+    "root": "Players",
+    "line": 30,
+    "in_function": "Client.start",
+    "name": "UI"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 41,
+    "in_function": "Client.start",
+    "via": "wrapper Components.Colour()",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours",
+    "name": "Panel"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 41,
+    "in_function": "Client.start",
+    "via": "wrapper Components.Colour()",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours",
+    "name": "PanelDeep"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 41,
+    "in_function": "Client.start",
+    "via": "wrapper Components.Colour()",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours",
+    "name": "PanelSoft"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 41,
+    "in_function": "Client.start",
+    "via": "wrapper Components.Colour()",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours",
+    "name": "PanelBlue"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 41,
+    "in_function": "Client.start",
+    "via": "wrapper Components.Colour()",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours",
+    "name": "Outline"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 41,
+    "in_function": "Client.start",
+    "via": "wrapper Components.Colour()",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours",
+    "name": "OutlineSoft"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 41,
+    "in_function": "Client.start",
+    "via": "wrapper Components.Colour()",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours",
+    "name": "Telemetry"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 41,
+    "in_function": "Client.start",
+    "via": "wrapper Components.Colour()",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours",
+    "name": "ElectricBlue"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 41,
+    "in_function": "Client.start",
+    "via": "wrapper Components.Colour()",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours",
+    "name": "HighSpeed"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 41,
+    "in_function": "Client.start",
+    "via": "wrapper Components.Colour()",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours",
+    "name": "Danger"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 41,
+    "in_function": "Client.start",
+    "via": "wrapper Components.Colour()",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours",
+    "name": "Text"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 41,
+    "in_function": "Client.start",
+    "via": "wrapper Components.Colour()",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours",
+    "name": "Muted"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 41,
+    "in_function": "Client.start",
+    "via": "wrapper Components.Colour()",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours",
+    "name": "Disabled"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "uiFolder",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime.UI",
+    "root": "Players",
+    "wrapper_defined": "ActivityClient:53",
+    "line": 57,
+    "in_function": "Client.start",
+    "via": "wrapper event()",
+    "name": "OpenJobs"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "uiFolder",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime.UI",
+    "root": "Players",
+    "line": 60,
+    "in_function": "toast",
+    "name": "ShowTopNotification"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "playerGui",
+    "receiver_path": "Players.LocalPlayer.PlayerGui",
+    "root": "Players",
+    "line": 71,
+    "in_function": "Client.start",
+    "name": "ActivityHud"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "strip",
+    "receiver_path": null,
+    "root": null,
+    "line": 119,
+    "in_function": "renderStrip",
+    "name": "Stroke"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "activityModules",
+    "receiver_path": "ReplicatedStorage.Modules.Game.Activities",
+    "root": "ReplicatedStorage",
+    "line": 293,
+    "in_function": "Client.start",
+    "name": "CourierClientView",
+    "via": "literal list"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "activityModules",
+    "receiver_path": "ReplicatedStorage.Modules.Game.Activities",
+    "root": "ReplicatedStorage",
+    "line": 293,
+    "in_function": "Client.start",
+    "name": "PassengerClientView",
+    "via": "literal list"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "activityModules",
+    "receiver_path": "ReplicatedStorage.Modules.Game.Activities",
+    "root": "ReplicatedStorage",
+    "line": 293,
+    "in_function": "Client.start",
+    "name": "TaxiClientView",
+    "via": "literal list"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "activityModules",
+    "receiver_path": "ReplicatedStorage.Modules.Game.Activities",
+    "root": "ReplicatedStorage",
+    "line": 293,
+    "in_function": "Client.start",
+    "name": "DuelClientView",
+    "via": "literal list"
+   }
+  ],
+  "text_compared": []
+ },
+ "run_service": {
+  "render_steps": [],
+  "connects": [
+   {
+    "signal": "RenderStepped",
+    "method": "Connect",
+    "line": 201,
+    "in_function": "countdown",
+    "callback": "function() if not card.Parent then connection:D..."
+   }
+  ]
+ },
+ "context_actions": [],
+ "user_input_service": {
+  "connects": [],
+  "members_used": [
+   {
+    "member": "TouchEnabled",
+    "kind": "read",
+    "line": 32,
+    "in_function": "Client.start"
+   },
+   {
+    "member": "KeyboardEnabled",
+    "kind": "read",
+    "line": 32,
+    "in_function": "Client.start"
+   }
+  ]
+ },
+ "audio": {
+  "bridge_calls": [],
+  "ui_audio_attributes": []
+ },
+ "config": {
+  "paths": [
+   {
+    "path": "ReplicatedStorage.Config.UI.Racing.Colours",
+    "line": 41
+   }
+  ],
+  "attribute_reads": [],
+  "child_lookups": [
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 41,
+    "in_function": "Client.start",
+    "via": "wrapper Components.Colour()",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours",
+    "name": "Panel"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 41,
+    "in_function": "Client.start",
+    "via": "wrapper Components.Colour()",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours",
+    "name": "PanelDeep"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 41,
+    "in_function": "Client.start",
+    "via": "wrapper Components.Colour()",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours",
+    "name": "PanelSoft"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 41,
+    "in_function": "Client.start",
+    "via": "wrapper Components.Colour()",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours",
+    "name": "PanelBlue"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 41,
+    "in_function": "Client.start",
+    "via": "wrapper Components.Colour()",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours",
+    "name": "Outline"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 41,
+    "in_function": "Client.start",
+    "via": "wrapper Components.Colour()",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours",
+    "name": "OutlineSoft"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 41,
+    "in_function": "Client.start",
+    "via": "wrapper Components.Colour()",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours",
+    "name": "Telemetry"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 41,
+    "in_function": "Client.start",
+    "via": "wrapper Components.Colour()",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours",
+    "name": "ElectricBlue"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 41,
+    "in_function": "Client.start",
+    "via": "wrapper Components.Colour()",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours",
+    "name": "HighSpeed"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 41,
+    "in_function": "Client.start",
+    "via": "wrapper Components.Colour()",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours",
+    "name": "Danger"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 41,
+    "in_function": "Client.start",
+    "via": "wrapper Components.Colour()",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours",
+    "name": "Text"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 41,
+    "in_function": "Client.start",
+    "via": "wrapper Components.Colour()",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours",
+    "name": "Muted"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 41,
+    "in_function": "Client.start",
+    "via": "wrapper Components.Colour()",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours",
+    "name": "Disabled"
+   }
+  ]
+ },
+ "startergui_core": [],
+ "gui_service": [],
+ "other_services": {},
+ "service_connects": [],
+ "proximity_prompts": [],
+ "instances_created_by_class": {
+  "BindableEvent": 1,
+  "Frame": 3,
+  "Part": 1,
+  "ScreenGui": 1,
+  "UIScale": 2
+ },
+ "public_api": [
+  {
+   "name": "start",
+   "kind": "function",
+   "params": [],
+   "line": 10
+  },
+  {
+   "name": "Context",
+   "kind": "field",
+   "line": 289,
+   "value": "ctx"
+  }
+ ],
+ "unresolved": [
+  {
+   "category": "names_assigned",
+   "field": "name",
+   "line": 163,
+   "detail": "name built at run time: \"Option\" .. index"
+  },
+  {
+   "category": "names_assigned",
+   "field": "name",
+   "line": 223,
+   "detail": "name built at run time: \"ActivityBeacon_\" .. tostring(id)"
+  }
+ ],
+ "contract_file": "ActivityClient.json"
+}

@@ -1,0 +1,1349 @@
+{
+ "script": "ReplicatedStorage.Modules.Game.UI.ResponsiveUIFoundation",
+ "class": "ModuleScript",
+ "source_file": "classic/sources/ReplicatedStorage.Modules.Game.UI.ResponsiveUIFoundation.lua",
+ "source_lines": 562,
+ "included_because": [
+  "under ReplicatedStorage.Modules.Game.UI"
+ ],
+ "requires": [],
+ "remotes": {
+  "calls": [],
+  "listens": []
+ },
+ "bindables": {
+  "fires": [],
+  "connects": [],
+  "invokes": [],
+  "handlers": [],
+  "created": [],
+  "module_signal_fires": []
+ },
+ "attributes": {
+  "reads": [
+   {
+    "receiver": "theme",
+    "receiver_path": "ReplicatedStorage.Config.UI.Theme",
+    "receiver_kind": "config",
+    "wrapper_defined": "ResponsiveUIFoundation:15",
+    "line": 24,
+    "in_function": "M.CornerScale",
+    "via": "wrapper number()",
+    "name": "CornerScaleMobile"
+   },
+   {
+    "receiver": "theme",
+    "receiver_path": "ReplicatedStorage.Config.UI.Theme",
+    "receiver_kind": "config",
+    "wrapper_defined": "ResponsiveUIFoundation:15",
+    "line": 24,
+    "in_function": "M.CornerScale",
+    "via": "wrapper number()",
+    "name": "CornerScaleDesktop"
+   },
+   {
+    "receiver": "theme",
+    "receiver_path": "ReplicatedStorage.Config.UI.Theme",
+    "receiver_kind": "config",
+    "wrapper_defined": "ResponsiveUIFoundation:15",
+    "line": 48,
+    "in_function": "M.StrokeWidth",
+    "via": "wrapper number()",
+    "name": "GlowStrokeMobile"
+   },
+   {
+    "receiver": "theme",
+    "receiver_path": "ReplicatedStorage.Config.UI.Theme",
+    "receiver_kind": "config",
+    "wrapper_defined": "ResponsiveUIFoundation:15",
+    "line": 48,
+    "in_function": "M.StrokeWidth",
+    "via": "wrapper number()",
+    "name": "GlowStrokeDesktop"
+   },
+   {
+    "receiver": "theme",
+    "receiver_path": "ReplicatedStorage.Config.UI.Theme",
+    "receiver_kind": "config",
+    "wrapper_defined": "ResponsiveUIFoundation:15",
+    "line": 50,
+    "in_function": "M.StrokeWidth",
+    "via": "wrapper number()",
+    "name": "EmphasisStrokeMobile"
+   },
+   {
+    "receiver": "theme",
+    "receiver_path": "ReplicatedStorage.Config.UI.Theme",
+    "receiver_kind": "config",
+    "wrapper_defined": "ResponsiveUIFoundation:15",
+    "line": 50,
+    "in_function": "M.StrokeWidth",
+    "via": "wrapper number()",
+    "name": "EmphasisStrokeDesktop"
+   },
+   {
+    "receiver": "theme",
+    "receiver_path": "ReplicatedStorage.Config.UI.Theme",
+    "receiver_kind": "config",
+    "wrapper_defined": "ResponsiveUIFoundation:15",
+    "line": 52,
+    "in_function": "M.StrokeWidth",
+    "via": "wrapper number()",
+    "name": "StructuralStrokeMobile"
+   },
+   {
+    "receiver": "theme",
+    "receiver_path": "ReplicatedStorage.Config.UI.Theme",
+    "receiver_kind": "config",
+    "wrapper_defined": "ResponsiveUIFoundation:15",
+    "line": 52,
+    "in_function": "M.StrokeWidth",
+    "via": "wrapper number()",
+    "name": "StructuralStrokeDesktop"
+   },
+   {
+    "receiver": "theme",
+    "receiver_path": "ReplicatedStorage.Config.UI.Theme",
+    "receiver_kind": "config",
+    "wrapper_defined": "ResponsiveUIFoundation:15",
+    "line": 74,
+    "in_function": "M.ApplyBevel",
+    "via": "wrapper number()",
+    "name": "BevelStrength"
+   },
+   {
+    "receiver": "theme",
+    "receiver_path": "ReplicatedStorage.Config.UI.Theme",
+    "receiver_kind": "config",
+    "wrapper_defined": "ResponsiveUIFoundation:15",
+    "line": 89,
+    "in_function": "M.ApplyBevel",
+    "via": "wrapper number()",
+    "name": "BevelRotation"
+   },
+   {
+    "receiver": "theme",
+    "receiver_path": "ReplicatedStorage.Config.UI.Theme",
+    "receiver_kind": "config",
+    "wrapper_defined": "ResponsiveUIFoundation:119",
+    "line": 128,
+    "in_function": "M.FormatFreeRoamMoney",
+    "via": "wrapper cashPresentationFlag()",
+    "name": "FreeRoamCashUseFullFormatting"
+   },
+   {
+    "receiver": "theme",
+    "receiver_path": "ReplicatedStorage.Config.UI.Theme",
+    "receiver_kind": "config",
+    "wrapper_defined": "ResponsiveUIFoundation:119",
+    "line": 156,
+    "in_function": "presenter:SetTarget",
+    "via": "wrapper cashPresentationFlag()",
+    "name": "CashCountAnimationEnabled"
+   },
+   {
+    "receiver": "theme",
+    "receiver_path": "ReplicatedStorage.Config.UI.Theme",
+    "receiver_kind": "config",
+    "wrapper_defined": "ResponsiveUIFoundation:15",
+    "line": 165,
+    "in_function": "presenter:SetTarget",
+    "via": "wrapper number()",
+    "name": "CashCountDurationSeconds"
+   },
+   {
+    "receiver": "theme",
+    "receiver_path": "ReplicatedStorage.Config.UI.Theme",
+    "receiver_kind": "config",
+    "wrapper_defined": "ResponsiveUIFoundation:15",
+    "line": 167,
+    "in_function": "presenter:SetTarget",
+    "via": "wrapper number()",
+    "name": "CashCountEveryDollarLimit"
+   },
+   {
+    "receiver": "theme",
+    "receiver_path": "ReplicatedStorage.Config.UI.Theme",
+    "receiver_kind": "config",
+    "wrapper_defined": "ResponsiveUIFoundation:15",
+    "line": 169,
+    "in_function": "presenter:SetTarget",
+    "via": "wrapper number()",
+    "name": "CashCountLargeIncreaseMaximumSteps"
+   },
+   {
+    "receiver": "theme",
+    "receiver_path": "ReplicatedStorage.Config.UI.Theme",
+    "receiver_kind": "config",
+    "wrapper_defined": "ResponsiveUIFoundation:15",
+    "line": 469,
+    "in_function": "M.CreateTopNotificationController",
+    "via": "wrapper number()",
+    "name": "TopNotificationMaxCards"
+   },
+   {
+    "receiver": "card",
+    "receiver_kind": "other",
+    "wrapper_defined": "ResponsiveUIFoundation:478",
+    "line": 497,
+    "in_function": "relayout",
+    "via": "wrapper cardBounds()",
+    "name": "MessageText",
+    "receiver_path": null
+   }
+  ],
+  "writes": [
+   {
+    "receiver": "corner",
+    "receiver_kind": "other",
+    "value": {
+     "expr": "tonumber(baseRadius) or 0"
+    },
+    "wrapper_defined": "ResponsiveUIFoundation:33",
+    "line": 40,
+    "in_function": "M.Corner",
+    "via": "wrapper M.SetCorner()",
+    "name": "BaseCornerRadius",
+    "receiver_path": null
+   },
+   {
+    "receiver": "corner",
+    "receiver_kind": "other",
+    "value": {
+     "expr": "tonumber(baseRadius) or 0"
+    },
+    "wrapper_defined": "ResponsiveUIFoundation:33",
+    "line": 81,
+    "in_function": "M.ApplyBevel",
+    "via": "wrapper M.SetCorner()",
+    "name": "BaseCornerRadius",
+    "receiver_path": null
+   },
+   {
+    "receiver": "card",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "value": {
+     "expr": "text"
+    },
+    "line": 532,
+    "in_function": "show",
+    "name": "MessageText"
+   }
+  ],
+  "listens": []
+ },
+ "player_attribute_writes": [],
+ "screenguis": {
+  "created": [
+   {
+    "variable": "gui",
+    "class": "ScreenGui",
+    "line": 328,
+    "factory": null,
+    "adopts_existing": false,
+    "Name": "SharedConfirmationOverlay",
+    "DisplayOrder": 1250,
+    "ResetOnSpawn": false,
+    "IgnoreGuiInset": true,
+    "ScreenInsets": {
+     "expr": "Enum.ScreenInsets.None"
+    },
+    "ZIndexBehavior": {
+     "expr": "Enum.ZIndexBehavior.Global"
+    },
+    "ClipToDeviceSafeArea": false,
+    "Parent": {
+     "expr": "playerGui"
+    },
+    "enabled_writes": [],
+    "property_lines": {
+     "Name": 329,
+     "ResetOnSpawn": 330,
+     "IgnoreGuiInset": 331,
+     "DisplayOrder": 332,
+     "ZIndexBehavior": 333,
+     "ScreenInsets": 334,
+     "ClipToDeviceSafeArea": 335,
+     "Parent": 336
+    }
+   },
+   {
+    "variable": "gui",
+    "class": "ScreenGui",
+    "line": 449,
+    "factory": null,
+    "adopts_existing": false,
+    "Name": "SharedTopNotification",
+    "DisplayOrder": 1100,
+    "ResetOnSpawn": false,
+    "IgnoreGuiInset": true,
+    "Parent": {
+     "expr": "playerGui"
+    },
+    "enabled_writes": [],
+    "property_lines": {
+     "Name": 450,
+     "ResetOnSpawn": 451,
+     "IgnoreGuiInset": 452,
+     "DisplayOrder": 453,
+     "Parent": 454
+    }
+   }
+  ],
+  "enabled_writes": []
+ },
+ "names": {
+  "assigned": [
+   {
+    "via": "property",
+    "receiver": "overlay",
+    "class": "Frame",
+    "line": 69,
+    "in_function": "M.ApplyBevel",
+    "name": "GradientOverlay"
+   },
+   {
+    "via": "property",
+    "receiver": "gradient",
+    "class": "UIGradient",
+    "line": 86,
+    "in_function": "M.ApplyBevel",
+    "name": "NeutralOverlay"
+   },
+   {
+    "via": "property",
+    "receiver": "gui",
+    "class": "ScreenGui",
+    "line": 329,
+    "in_function": "M.Confirmation",
+    "name": "SharedConfirmationOverlay"
+   },
+   {
+    "via": "property",
+    "receiver": "backdrop",
+    "class": "Frame",
+    "line": 338,
+    "in_function": "M.Confirmation",
+    "name": "Backdrop"
+   },
+   {
+    "via": "property",
+    "receiver": "canvas",
+    "class": "Frame",
+    "line": 347,
+    "in_function": "M.Confirmation",
+    "name": "ReferenceCanvas"
+   },
+   {
+    "via": "property",
+    "receiver": "shade",
+    "class": "Frame",
+    "line": 358,
+    "in_function": "M.Confirmation",
+    "name": "SharedConfirmation"
+   },
+   {
+    "via": "table_field",
+    "callee": "Panel",
+    "class": null,
+    "line": 365,
+    "in_function": "M.Confirmation",
+    "name": "Panel"
+   },
+   {
+    "via": "property",
+    "receiver": "gui",
+    "class": "ScreenGui",
+    "line": 450,
+    "in_function": "M.CreateTopNotificationController",
+    "name": "SharedTopNotification"
+   },
+   {
+    "via": "property",
+    "receiver": "stack",
+    "class": "Frame",
+    "line": 456,
+    "in_function": "M.CreateTopNotificationController",
+    "name": "Stack"
+   },
+   {
+    "via": "property",
+    "receiver": "card",
+    "class": "Frame",
+    "line": 527,
+    "in_function": "show",
+    "name": null,
+    "name_pattern": "Message*",
+    "name_expr": "\"Message\"..serial"
+   },
+   {
+    "via": "property",
+    "receiver": "gradient",
+    "class": "UIGradient",
+    "line": 537,
+    "in_function": "show",
+    "name": "GreyGradient"
+   },
+   {
+    "via": "property",
+    "receiver": "textLabel",
+    "class": "TextLabel",
+    "line": 542,
+    "in_function": "show",
+    "name": "Text"
+   }
+  ],
+  "looked_up": [
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 10,
+    "name": "Config"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\")",
+    "receiver_path": "ReplicatedStorage.Config",
+    "root": "ReplicatedStorage",
+    "line": 10,
+    "name": "UI"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\"):WaitForChild(\"UI\")",
+    "receiver_path": "ReplicatedStorage.Config.UI",
+    "root": "ReplicatedStorage",
+    "line": 10,
+    "name": "Theme"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "theme",
+    "receiver_path": "ReplicatedStorage.Config.UI.Theme",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "ResponsiveUIFoundation:13",
+    "line": 24,
+    "in_function": "M.CornerScale",
+    "via": "wrapper number()",
+    "name": "CornerScaleMobile"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "theme",
+    "receiver_path": "ReplicatedStorage.Config.UI.Theme",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "ResponsiveUIFoundation:13",
+    "line": 24,
+    "in_function": "M.CornerScale",
+    "via": "wrapper number()",
+    "name": "CornerScaleDesktop"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "theme",
+    "receiver_path": "ReplicatedStorage.Config.UI.Theme",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "ResponsiveUIFoundation:13",
+    "line": 48,
+    "in_function": "M.StrokeWidth",
+    "via": "wrapper number()",
+    "name": "GlowStrokeMobile"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "theme",
+    "receiver_path": "ReplicatedStorage.Config.UI.Theme",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "ResponsiveUIFoundation:13",
+    "line": 48,
+    "in_function": "M.StrokeWidth",
+    "via": "wrapper number()",
+    "name": "GlowStrokeDesktop"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "theme",
+    "receiver_path": "ReplicatedStorage.Config.UI.Theme",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "ResponsiveUIFoundation:13",
+    "line": 50,
+    "in_function": "M.StrokeWidth",
+    "via": "wrapper number()",
+    "name": "EmphasisStrokeMobile"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "theme",
+    "receiver_path": "ReplicatedStorage.Config.UI.Theme",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "ResponsiveUIFoundation:13",
+    "line": 50,
+    "in_function": "M.StrokeWidth",
+    "via": "wrapper number()",
+    "name": "EmphasisStrokeDesktop"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "theme",
+    "receiver_path": "ReplicatedStorage.Config.UI.Theme",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "ResponsiveUIFoundation:13",
+    "line": 52,
+    "in_function": "M.StrokeWidth",
+    "via": "wrapper number()",
+    "name": "StructuralStrokeMobile"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "theme",
+    "receiver_path": "ReplicatedStorage.Config.UI.Theme",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "ResponsiveUIFoundation:13",
+    "line": 52,
+    "in_function": "M.StrokeWidth",
+    "via": "wrapper number()",
+    "name": "StructuralStrokeDesktop"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "theme",
+    "receiver_path": "ReplicatedStorage.Config.UI.Theme",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "ResponsiveUIFoundation:13",
+    "line": 74,
+    "in_function": "M.ApplyBevel",
+    "via": "wrapper number()",
+    "name": "BevelStrength"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "overlay",
+    "receiver_path": null,
+    "root": null,
+    "line": 82,
+    "in_function": "M.ApplyBevel",
+    "name": "NeutralOverlay"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "theme",
+    "receiver_path": "ReplicatedStorage.Config.UI.Theme",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "ResponsiveUIFoundation:13",
+    "line": 89,
+    "in_function": "M.ApplyBevel",
+    "via": "wrapper number()",
+    "name": "BevelRotation"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "theme",
+    "receiver_path": "ReplicatedStorage.Config.UI.Theme",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "ResponsiveUIFoundation:117",
+    "line": 128,
+    "in_function": "M.FormatFreeRoamMoney",
+    "via": "wrapper cashPresentationFlag()",
+    "name": "FreeRoamCashUseFullFormatting"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "theme",
+    "receiver_path": "ReplicatedStorage.Config.UI.Theme",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "ResponsiveUIFoundation:117",
+    "line": 156,
+    "in_function": "presenter:SetTarget",
+    "via": "wrapper cashPresentationFlag()",
+    "name": "CashCountAnimationEnabled"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "theme",
+    "receiver_path": "ReplicatedStorage.Config.UI.Theme",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "ResponsiveUIFoundation:13",
+    "line": 165,
+    "in_function": "presenter:SetTarget",
+    "via": "wrapper number()",
+    "name": "CashCountDurationSeconds"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "theme",
+    "receiver_path": "ReplicatedStorage.Config.UI.Theme",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "ResponsiveUIFoundation:13",
+    "line": 167,
+    "in_function": "presenter:SetTarget",
+    "via": "wrapper number()",
+    "name": "CashCountEveryDollarLimit"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "theme",
+    "receiver_path": "ReplicatedStorage.Config.UI.Theme",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "ResponsiveUIFoundation:13",
+    "line": 169,
+    "in_function": "presenter:SetTarget",
+    "via": "wrapper number()",
+    "name": "CashCountLargeIncreaseMaximumSteps"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "stats",
+    "receiver_path": "<player>.leaderstats",
+    "root": "<player>",
+    "line": 266,
+    "in_function": "bind",
+    "name": "Cash"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "child",
+    "receiver_path": null,
+    "root": null,
+    "line": 274,
+    "in_function": "M.BindReplicatedCash",
+    "name": "leaderstats"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "value",
+    "receiver_path": null,
+    "root": null,
+    "line": 275,
+    "in_function": "M.BindReplicatedCash",
+    "name": "Cash"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "value",
+    "receiver_path": null,
+    "root": null,
+    "line": 280,
+    "in_function": "M.BindReplicatedCash",
+    "name": "Cash"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "playerGui",
+    "receiver_path": null,
+    "root": null,
+    "line": 326,
+    "in_function": "M.Confirmation",
+    "name": "SharedConfirmationOverlay"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "theme",
+    "receiver_path": "ReplicatedStorage.Config.UI.Theme",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "ResponsiveUIFoundation:13",
+    "line": 469,
+    "in_function": "M.CreateTopNotificationController",
+    "via": "wrapper number()",
+    "name": "TopNotificationMaxCards"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "card",
+    "receiver_path": null,
+    "root": null,
+    "line": 499,
+    "in_function": "relayout",
+    "name": "Text"
+   }
+  ],
+  "text_compared": []
+ },
+ "run_service": {
+  "render_steps": [],
+  "connects": []
+ },
+ "context_actions": [
+  {
+   "method": "UnbindAction",
+   "line": 382,
+   "in_function": "disconnect",
+   "name": null,
+   "name_pattern": "SharedConfirmationExit_*",
+   "name_expr": "\"SharedConfirmationExit_\"..tostring(os.clock())"
+  },
+  {
+   "method": "BindActionAtPriority",
+   "create_touch_button": false,
+   "priority_expr": "10000",
+   "priority": 10000,
+   "inputs": [
+    "Enum.KeyCode.Escape",
+    "Enum.KeyCode.ButtonB"
+   ],
+   "line": 423,
+   "in_function": "M.Confirmation",
+   "name": null,
+   "name_pattern": "SharedConfirmationExit_*",
+   "name_expr": "\"SharedConfirmationExit_\"..tostring(os.clock())"
+  }
+ ],
+ "user_input_service": {
+  "connects": [],
+  "members_used": [
+   {
+    "member": "TouchEnabled",
+    "kind": "read",
+    "line": 20,
+    "in_function": "M.IsMobile"
+   },
+   {
+    "member": "GetLastInputType",
+    "kind": "call",
+    "line": 437,
+    "in_function": "M.Confirmation"
+   }
+  ]
+ },
+ "audio": {
+  "bridge_calls": [],
+  "ui_audio_attributes": []
+ },
+ "config": {
+  "paths": [
+   {
+    "path": "ReplicatedStorage.Config",
+    "line": 10
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI",
+    "line": 10
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI.Theme",
+    "line": 10
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI.Theme.<name>",
+    "line": 13
+   }
+  ],
+  "attribute_reads": [
+   {
+    "receiver": "theme",
+    "receiver_path": "ReplicatedStorage.Config.UI.Theme",
+    "receiver_kind": "config",
+    "wrapper_defined": "ResponsiveUIFoundation:15",
+    "line": 24,
+    "in_function": "M.CornerScale",
+    "via": "wrapper number()",
+    "name": "CornerScaleMobile",
+    "access": "read"
+   },
+   {
+    "receiver": "theme",
+    "receiver_path": "ReplicatedStorage.Config.UI.Theme",
+    "receiver_kind": "config",
+    "wrapper_defined": "ResponsiveUIFoundation:15",
+    "line": 24,
+    "in_function": "M.CornerScale",
+    "via": "wrapper number()",
+    "name": "CornerScaleDesktop",
+    "access": "read"
+   },
+   {
+    "receiver": "theme",
+    "receiver_path": "ReplicatedStorage.Config.UI.Theme",
+    "receiver_kind": "config",
+    "wrapper_defined": "ResponsiveUIFoundation:15",
+    "line": 48,
+    "in_function": "M.StrokeWidth",
+    "via": "wrapper number()",
+    "name": "GlowStrokeMobile",
+    "access": "read"
+   },
+   {
+    "receiver": "theme",
+    "receiver_path": "ReplicatedStorage.Config.UI.Theme",
+    "receiver_kind": "config",
+    "wrapper_defined": "ResponsiveUIFoundation:15",
+    "line": 48,
+    "in_function": "M.StrokeWidth",
+    "via": "wrapper number()",
+    "name": "GlowStrokeDesktop",
+    "access": "read"
+   },
+   {
+    "receiver": "theme",
+    "receiver_path": "ReplicatedStorage.Config.UI.Theme",
+    "receiver_kind": "config",
+    "wrapper_defined": "ResponsiveUIFoundation:15",
+    "line": 50,
+    "in_function": "M.StrokeWidth",
+    "via": "wrapper number()",
+    "name": "EmphasisStrokeMobile",
+    "access": "read"
+   },
+   {
+    "receiver": "theme",
+    "receiver_path": "ReplicatedStorage.Config.UI.Theme",
+    "receiver_kind": "config",
+    "wrapper_defined": "ResponsiveUIFoundation:15",
+    "line": 50,
+    "in_function": "M.StrokeWidth",
+    "via": "wrapper number()",
+    "name": "EmphasisStrokeDesktop",
+    "access": "read"
+   },
+   {
+    "receiver": "theme",
+    "receiver_path": "ReplicatedStorage.Config.UI.Theme",
+    "receiver_kind": "config",
+    "wrapper_defined": "ResponsiveUIFoundation:15",
+    "line": 52,
+    "in_function": "M.StrokeWidth",
+    "via": "wrapper number()",
+    "name": "StructuralStrokeMobile",
+    "access": "read"
+   },
+   {
+    "receiver": "theme",
+    "receiver_path": "ReplicatedStorage.Config.UI.Theme",
+    "receiver_kind": "config",
+    "wrapper_defined": "ResponsiveUIFoundation:15",
+    "line": 52,
+    "in_function": "M.StrokeWidth",
+    "via": "wrapper number()",
+    "name": "StructuralStrokeDesktop",
+    "access": "read"
+   },
+   {
+    "receiver": "theme",
+    "receiver_path": "ReplicatedStorage.Config.UI.Theme",
+    "receiver_kind": "config",
+    "wrapper_defined": "ResponsiveUIFoundation:15",
+    "line": 74,
+    "in_function": "M.ApplyBevel",
+    "via": "wrapper number()",
+    "name": "BevelStrength",
+    "access": "read"
+   },
+   {
+    "receiver": "theme",
+    "receiver_path": "ReplicatedStorage.Config.UI.Theme",
+    "receiver_kind": "config",
+    "wrapper_defined": "ResponsiveUIFoundation:15",
+    "line": 89,
+    "in_function": "M.ApplyBevel",
+    "via": "wrapper number()",
+    "name": "BevelRotation",
+    "access": "read"
+   },
+   {
+    "receiver": "theme",
+    "receiver_path": "ReplicatedStorage.Config.UI.Theme",
+    "receiver_kind": "config",
+    "wrapper_defined": "ResponsiveUIFoundation:119",
+    "line": 128,
+    "in_function": "M.FormatFreeRoamMoney",
+    "via": "wrapper cashPresentationFlag()",
+    "name": "FreeRoamCashUseFullFormatting",
+    "access": "read"
+   },
+   {
+    "receiver": "theme",
+    "receiver_path": "ReplicatedStorage.Config.UI.Theme",
+    "receiver_kind": "config",
+    "wrapper_defined": "ResponsiveUIFoundation:119",
+    "line": 156,
+    "in_function": "presenter:SetTarget",
+    "via": "wrapper cashPresentationFlag()",
+    "name": "CashCountAnimationEnabled",
+    "access": "read"
+   },
+   {
+    "receiver": "theme",
+    "receiver_path": "ReplicatedStorage.Config.UI.Theme",
+    "receiver_kind": "config",
+    "wrapper_defined": "ResponsiveUIFoundation:15",
+    "line": 165,
+    "in_function": "presenter:SetTarget",
+    "via": "wrapper number()",
+    "name": "CashCountDurationSeconds",
+    "access": "read"
+   },
+   {
+    "receiver": "theme",
+    "receiver_path": "ReplicatedStorage.Config.UI.Theme",
+    "receiver_kind": "config",
+    "wrapper_defined": "ResponsiveUIFoundation:15",
+    "line": 167,
+    "in_function": "presenter:SetTarget",
+    "via": "wrapper number()",
+    "name": "CashCountEveryDollarLimit",
+    "access": "read"
+   },
+   {
+    "receiver": "theme",
+    "receiver_path": "ReplicatedStorage.Config.UI.Theme",
+    "receiver_kind": "config",
+    "wrapper_defined": "ResponsiveUIFoundation:15",
+    "line": 169,
+    "in_function": "presenter:SetTarget",
+    "via": "wrapper number()",
+    "name": "CashCountLargeIncreaseMaximumSteps",
+    "access": "read"
+   },
+   {
+    "receiver": "theme",
+    "receiver_path": "ReplicatedStorage.Config.UI.Theme",
+    "receiver_kind": "config",
+    "wrapper_defined": "ResponsiveUIFoundation:15",
+    "line": 469,
+    "in_function": "M.CreateTopNotificationController",
+    "via": "wrapper number()",
+    "name": "TopNotificationMaxCards",
+    "access": "read"
+   }
+  ],
+  "child_lookups": [
+   {
+    "method": "FindFirstChild",
+    "receiver": "theme",
+    "receiver_path": "ReplicatedStorage.Config.UI.Theme",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "ResponsiveUIFoundation:13",
+    "line": 24,
+    "in_function": "M.CornerScale",
+    "via": "wrapper number()",
+    "name": "CornerScaleMobile"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "theme",
+    "receiver_path": "ReplicatedStorage.Config.UI.Theme",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "ResponsiveUIFoundation:13",
+    "line": 24,
+    "in_function": "M.CornerScale",
+    "via": "wrapper number()",
+    "name": "CornerScaleDesktop"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "theme",
+    "receiver_path": "ReplicatedStorage.Config.UI.Theme",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "ResponsiveUIFoundation:13",
+    "line": 48,
+    "in_function": "M.StrokeWidth",
+    "via": "wrapper number()",
+    "name": "GlowStrokeMobile"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "theme",
+    "receiver_path": "ReplicatedStorage.Config.UI.Theme",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "ResponsiveUIFoundation:13",
+    "line": 48,
+    "in_function": "M.StrokeWidth",
+    "via": "wrapper number()",
+    "name": "GlowStrokeDesktop"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "theme",
+    "receiver_path": "ReplicatedStorage.Config.UI.Theme",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "ResponsiveUIFoundation:13",
+    "line": 50,
+    "in_function": "M.StrokeWidth",
+    "via": "wrapper number()",
+    "name": "EmphasisStrokeMobile"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "theme",
+    "receiver_path": "ReplicatedStorage.Config.UI.Theme",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "ResponsiveUIFoundation:13",
+    "line": 50,
+    "in_function": "M.StrokeWidth",
+    "via": "wrapper number()",
+    "name": "EmphasisStrokeDesktop"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "theme",
+    "receiver_path": "ReplicatedStorage.Config.UI.Theme",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "ResponsiveUIFoundation:13",
+    "line": 52,
+    "in_function": "M.StrokeWidth",
+    "via": "wrapper number()",
+    "name": "StructuralStrokeMobile"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "theme",
+    "receiver_path": "ReplicatedStorage.Config.UI.Theme",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "ResponsiveUIFoundation:13",
+    "line": 52,
+    "in_function": "M.StrokeWidth",
+    "via": "wrapper number()",
+    "name": "StructuralStrokeDesktop"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "theme",
+    "receiver_path": "ReplicatedStorage.Config.UI.Theme",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "ResponsiveUIFoundation:13",
+    "line": 74,
+    "in_function": "M.ApplyBevel",
+    "via": "wrapper number()",
+    "name": "BevelStrength"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "theme",
+    "receiver_path": "ReplicatedStorage.Config.UI.Theme",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "ResponsiveUIFoundation:13",
+    "line": 89,
+    "in_function": "M.ApplyBevel",
+    "via": "wrapper number()",
+    "name": "BevelRotation"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "theme",
+    "receiver_path": "ReplicatedStorage.Config.UI.Theme",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "ResponsiveUIFoundation:117",
+    "line": 128,
+    "in_function": "M.FormatFreeRoamMoney",
+    "via": "wrapper cashPresentationFlag()",
+    "name": "FreeRoamCashUseFullFormatting"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "theme",
+    "receiver_path": "ReplicatedStorage.Config.UI.Theme",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "ResponsiveUIFoundation:117",
+    "line": 156,
+    "in_function": "presenter:SetTarget",
+    "via": "wrapper cashPresentationFlag()",
+    "name": "CashCountAnimationEnabled"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "theme",
+    "receiver_path": "ReplicatedStorage.Config.UI.Theme",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "ResponsiveUIFoundation:13",
+    "line": 165,
+    "in_function": "presenter:SetTarget",
+    "via": "wrapper number()",
+    "name": "CashCountDurationSeconds"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "theme",
+    "receiver_path": "ReplicatedStorage.Config.UI.Theme",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "ResponsiveUIFoundation:13",
+    "line": 167,
+    "in_function": "presenter:SetTarget",
+    "via": "wrapper number()",
+    "name": "CashCountEveryDollarLimit"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "theme",
+    "receiver_path": "ReplicatedStorage.Config.UI.Theme",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "ResponsiveUIFoundation:13",
+    "line": 169,
+    "in_function": "presenter:SetTarget",
+    "via": "wrapper number()",
+    "name": "CashCountLargeIncreaseMaximumSteps"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "theme",
+    "receiver_path": "ReplicatedStorage.Config.UI.Theme",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "ResponsiveUIFoundation:13",
+    "line": 469,
+    "in_function": "M.CreateTopNotificationController",
+    "via": "wrapper number()",
+    "name": "TopNotificationMaxCards"
+   }
+  ]
+ },
+ "startergui_core": [],
+ "gui_service": [
+  {
+   "member": "SelectedObject",
+   "kind": "read",
+   "line": 322,
+   "in_function": "M.Confirmation"
+  },
+  {
+   "member": "SelectedObject",
+   "kind": "read",
+   "line": 390,
+   "in_function": "close"
+  },
+  {
+   "member": "SelectedObject",
+   "kind": "read",
+   "line": 390,
+   "in_function": "close"
+  },
+  {
+   "member": "SelectedObject",
+   "kind": "write",
+   "line": 390,
+   "in_function": "close",
+   "value": "oldSelection"
+  },
+  {
+   "member": "GetInsetArea",
+   "kind": "call",
+   "line": 400,
+   "in_function": "safeViewportRect"
+  },
+  {
+   "member": "GetInsetArea",
+   "kind": "call",
+   "line": 400,
+   "in_function": "safeViewportRect"
+  },
+  {
+   "member": "SelectedObject",
+   "kind": "write",
+   "line": 438,
+   "in_function": "M.Confirmation",
+   "value": "no"
+  },
+  {
+   "member": "GetGuiInset",
+   "kind": "call",
+   "line": 491,
+   "in_function": "relayout"
+  }
+ ],
+ "other_services": {
+  "ContextActionService": [
+   {
+    "member": "UnbindAction",
+    "kind": "call",
+    "line": 382,
+    "in_function": "disconnect"
+   },
+   {
+    "member": "BindActionAtPriority",
+    "kind": "call",
+    "line": 423,
+    "in_function": "M.Confirmation"
+   }
+  ]
+ },
+ "service_connects": [],
+ "proximity_prompts": [],
+ "instances_created_by_class": {
+  "Frame": 6,
+  "ScreenGui": 2,
+  "TextLabel": 1,
+  "UICorner": 1,
+  "UIGradient": 2,
+  "UIListLayout": 1,
+  "UIScale": 1
+ },
+ "public_api": [
+  {
+   "name": "IsMobile",
+   "kind": "function",
+   "params": [],
+   "line": 19
+  },
+  {
+   "name": "CornerScale",
+   "kind": "function",
+   "params": [],
+   "line": 23
+  },
+  {
+   "name": "CornerRadius",
+   "kind": "function",
+   "params": [
+    "baseRadius"
+   ],
+   "line": 27
+  },
+  {
+   "name": "SetCorner",
+   "kind": "function",
+   "params": [
+    "corner",
+    "baseRadius"
+   ],
+   "line": 31
+  },
+  {
+   "name": "Corner",
+   "kind": "function",
+   "params": [
+    "parent",
+    "baseRadius"
+   ],
+   "line": 38
+  },
+  {
+   "name": "StrokeWidth",
+   "kind": "function",
+   "params": [
+    "role"
+   ],
+   "line": 45
+  },
+  {
+   "name": "StyleStroke",
+   "kind": "function",
+   "params": [
+    "stroke",
+    "role"
+   ],
+   "line": 55
+  },
+  {
+   "name": "ApplyBevel",
+   "kind": "function",
+   "params": [
+    "parent",
+    "options"
+   ],
+   "line": 62
+  },
+  {
+   "name": "FormatNumber",
+   "kind": "function",
+   "params": [
+    "value"
+   ],
+   "line": 99
+  },
+  {
+   "name": "FormatCompactMoney",
+   "kind": "function",
+   "params": [
+    "value"
+   ],
+   "line": 108
+  },
+  {
+   "name": "FormatFullMoney",
+   "kind": "function",
+   "params": [
+    "value"
+   ],
+   "line": 123
+  },
+  {
+   "name": "FormatFreeRoamMoney",
+   "kind": "function",
+   "params": [
+    "value"
+   ],
+   "line": 127
+  },
+  {
+   "name": "CreateCashDisplayPresenter",
+   "kind": "function",
+   "params": [
+    "render",
+    "options"
+   ],
+   "line": 134
+  },
+  {
+   "name": "StyleMetric",
+   "kind": "function",
+   "params": [
+    "label",
+    "kind"
+   ],
+   "line": 210
+  },
+  {
+   "name": "ProjectEconomy",
+   "kind": "function",
+   "params": [
+    "response",
+    "fallback"
+   ],
+   "line": 222
+  },
+  {
+   "name": "BindReplicatedCash",
+   "kind": "function",
+   "params": [
+    "player",
+    "callback"
+   ],
+   "line": 253
+  },
+  {
+   "name": "ConfirmationLayout",
+   "kind": "function",
+   "params": [],
+   "line": 297
+  },
+  {
+   "name": "Confirmation",
+   "kind": "function",
+   "params": [
+    "root",
+    "options",
+    "components"
+   ],
+   "line": 315
+  },
+  {
+   "name": "CreateTopNotificationController",
+   "kind": "function",
+   "params": [
+    "playerGui"
+   ],
+   "line": 444
+  }
+ ],
+ "unresolved": [
+  {
+   "category": "context_actions",
+   "field": "name",
+   "line": 382,
+   "detail": "name built at run time: \"SharedConfirmationExit_\"..tostring(os.clock())"
+  },
+  {
+   "category": "context_actions",
+   "field": "name",
+   "line": 423,
+   "detail": "name built at run time: \"SharedConfirmationExit_\"..tostring(os.clock())"
+  },
+  {
+   "category": "names_assigned",
+   "field": "name",
+   "line": 527,
+   "detail": "name built at run time: \"Message\"..serial"
+  }
+ ],
+ "contract_file": "ResponsiveUIFoundation.json"
+}

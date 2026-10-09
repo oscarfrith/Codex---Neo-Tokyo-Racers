@@ -1,0 +1,30 @@
+<!doctype html><html><head><meta charset="utf-8"><title>r05 Owned-garage browser</title><script src="../shared/boot.js"></script></head><body><script>
+const ph = (t, style) => `<div style="background:#221f3a;display:flex;align-items:center;justify-content:center;${style}"><span class="t-label c-muted" style="opacity:.6">${t}</span></div>`;
+P.page(`
+  ${P.scene("city")}<div class="scrim-menu"></div>
+  ${P.title("GARAGES")}
+  ${P.tabs([{l:"MY GARAGES",i:"garage",on:1},{l:"VISIT",i:"players"}])}
+  ${P.status({garage:"1 / 2",plus:1})}
+  <div class="abs col g4" style="left:100px;top:214px;width:600px">
+    <div class="row sel" style="height:150px;padding-left:0">
+      ${ph("IMAGE","width:200px;height:144px;flex:none")}
+      <div class="grow"><div class="t-label c-2">KANDA</div><div class="t-tile" style="margin:8px 0">KANDA TWO-BAY</div><div class="t-label c-2">1 / 2 SPACES FILLED</div></div>
+    </div>
+    <div class="t-label c-muted" style="margin-top:18px">1 GARAGE OWNED</div>
+  </div>
+  <div class="abs" style="left:740px;top:214px;width:1080px">
+    <div style="position:relative">${ph("GARAGE IMAGE &middot; PLACEHOLDER WHEN NONE","height:356px")}
+      <div class="abs t-label" style="left:28px;top:22px">GARAGE 1 OF 1</div>
+      <div class="abs t-title shadow" style="left:28px;bottom:18px">KANDA TWO-BAY</div></div>
+    <div class="rule-pink"></div>
+    <div class="flex g12" style="margin-top:12px">
+      <div class="panel" style="flex:1;height:270px"><div class="t-label c-2" style="margin-bottom:14px">ABOUT</div>
+        <div class="t-body" style="font-size:24px">A two-bay starter garage. Display your vehicles, build it out and style it from the garage desk.</div></div>
+      <div class="panel" style="width:480px;height:270px;padding-top:8px">
+        ${P.fact("pin","DISTRICT","KANDA")}${P.fact("garage","CAPACITY","2 SPACES")}${P.fact("car","FILLED","1 / 2")}${P.fact("players","ACCESS","PRIVATE")}
+      </div>
+    </div>
+  </div>
+  ${P.btnrow([P.btn("EXIT","exit"),P.btn("ENTER","garage","main")])}
+`);
+</script></body></html>

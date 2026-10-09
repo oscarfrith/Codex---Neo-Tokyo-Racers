@@ -1,0 +1,3423 @@
+{
+ "script": "ReplicatedStorage.Modules.Game.Racing.RaceSessionPresentationClient",
+ "class": "ModuleScript",
+ "source_file": "classic/sources/ReplicatedStorage.Modules.Game.Racing.RaceSessionPresentationClient.lua",
+ "source_lines": 325,
+ "included_because": [
+  "ClientBase entry 'RaceSessionPresentationClient'"
+ ],
+ "requires": [
+  {
+   "expr": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"UI\"):WaitForChild(\"RacingUIComponents\")",
+   "as": "UI",
+   "line": 18,
+   "in_function": "Client.start",
+   "target": "ReplicatedStorage.Modules.Game.UI.RacingUIComponents"
+  },
+  {
+   "expr": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"UI\"):WaitForChild(\"ResponsiveUIFoundation\")",
+   "as": "confirmationLayout",
+   "line": 177,
+   "in_function": "Client.start",
+   "target": "ReplicatedStorage.Modules.Game.UI.ResponsiveUIFoundation"
+  }
+ ],
+ "remotes": {
+  "calls": [
+   {
+    "method": "InvokeServer",
+    "receiver": "remote",
+    "arg_count": 2,
+    "line": 193,
+    "in_function": "invokeSession",
+    "remote": null,
+    "remote_expr": "chosen at run time, one of: ReplicatedStorage.Remotes.Racing.RaceQueueRequest | ReplicatedStorage.Remotes.Racing.RaceRequest",
+    "payload_keys": [
+     "RunId",
+     "EventId"
+    ],
+    "action": "ResetToLastCheckpoint",
+    "via": "literal list"
+   },
+   {
+    "method": "InvokeServer",
+    "receiver": "remote",
+    "arg_count": 2,
+    "line": 193,
+    "in_function": "invokeSession",
+    "remote": null,
+    "remote_expr": "chosen at run time, one of: ReplicatedStorage.Remotes.Racing.RaceQueueRequest | ReplicatedStorage.Remotes.Racing.RaceRequest",
+    "payload_keys": [
+     "RunId",
+     "EventId"
+    ],
+    "action": "ExitRaceToStart",
+    "via": "literal list"
+   },
+   {
+    "method": "InvokeServer",
+    "receiver": "remote",
+    "arg_count": 2,
+    "line": 193,
+    "in_function": "invokeSession",
+    "remote": null,
+    "remote_expr": "chosen at run time, one of: ReplicatedStorage.Remotes.Racing.RaceQueueRequest | ReplicatedStorage.Remotes.Racing.RaceRequest",
+    "payload_keys": [
+     "RunId",
+     "EventId"
+    ],
+    "action": "ResetActiveTimeTrial",
+    "via": "literal list"
+   },
+   {
+    "method": "InvokeServer",
+    "receiver": "remote",
+    "arg_count": 2,
+    "line": 193,
+    "in_function": "invokeSession",
+    "remote": null,
+    "remote_expr": "chosen at run time, one of: ReplicatedStorage.Remotes.Racing.RaceQueueRequest | ReplicatedStorage.Remotes.Racing.RaceRequest",
+    "payload_keys": [
+     "RunId",
+     "EventId"
+    ],
+    "action": "ExitActiveTimeTrial",
+    "via": "literal list"
+   },
+   {
+    "method": "InvokeServer",
+    "receiver": "raceRequest",
+    "arg_count": 2,
+    "wrapper_defined": "RaceSessionPresentationClient:77",
+    "line": 271,
+    "in_function": "queryPB",
+    "via": "wrapper call()",
+    "remote": "ReplicatedStorage.Remotes.Racing.RaceRequest",
+    "action": "GetTimeTrialPersonalBest",
+    "payload_keys": [
+     "EventId",
+     "VehicleTier"
+    ]
+   }
+  ],
+  "listens": [
+   {
+    "signal": "OnClientEvent",
+    "receiver": "raceEvent",
+    "method": "Connect",
+    "handler": "inline",
+    "handler_line": 303,
+    "handler_params": [
+     "payload"
+    ],
+    "payload_fields_read": [
+     "Type",
+     "LapTimes",
+     "Lap",
+     "Elapsed",
+     "NextLap",
+     "CurrentLap",
+     "Place",
+     "ParticipantCount",
+     "LapTarget",
+     "Positions"
+    ],
+    "literal_comparisons": {
+     "Type": [
+      "TimeTrialStaged",
+      "TimeTrialCountdown",
+      "TimeTrialStarted",
+      "TimeTrialCheckpoint",
+      "TimeTrialLapCompleted",
+      "TimeTrialReset",
+      "RaceStaged",
+      "RaceCountdown",
+      "RaceStarted",
+      "RaceCheckpoint",
+      "RaceLapCompleted",
+      "RacePositionUpdate",
+      "TimeTrialFinished",
+      "RaceFinished",
+      "RaceEnded",
+      "TimeTrialEnded",
+      "TimeTrialError",
+      "RaceExitedToStart"
+     ]
+    },
+    "line": 303,
+    "in_function": "Client.start",
+    "remote": "ReplicatedStorage.Remotes.Racing.RaceEvent"
+   }
+  ]
+ },
+ "bindables": {
+  "fires": [
+   {
+    "receiver": "freeRoamMode",
+    "created_here": false,
+    "lookup": "Players.LocalPlayer.PlayerScripts.Runtime.UI",
+    "arg_count": 1,
+    "line": 164,
+    "in_function": "presentationMode",
+    "name": "FreeRoamHudPresentationMode",
+    "payload_keys": [
+     "Owner",
+     "Active",
+     "KeepTelemetry"
+    ],
+    "payload_literals": {
+     "Owner": "RaceSession"
+    }
+   },
+   {
+    "receiver": "transitionRequest",
+    "created_here": false,
+    "lookup": "Players.LocalPlayer.PlayerScripts.Runtime.Racing",
+    "arg_count": 1,
+    "wrapper_defined": "RaceSessionPresentationClient:189",
+    "line": 191,
+    "in_function": "invokeSession",
+    "via": "wrapper transition()",
+    "name": "RaceTransitionRequest",
+    "payload_keys": [
+     "Reason",
+     "Label"
+    ]
+   },
+   {
+    "receiver": "transitionRequest",
+    "created_here": false,
+    "lookup": "Players.LocalPlayer.PlayerScripts.Runtime.Racing",
+    "arg_count": 1,
+    "wrapper_defined": "RaceSessionPresentationClient:189",
+    "line": 194,
+    "in_function": "invokeSession",
+    "via": "wrapper transition()",
+    "name": "RaceTransitionRequest",
+    "payload_keys": [
+     "Reason"
+    ]
+   },
+   {
+    "receiver": "transitionRequest",
+    "created_here": false,
+    "lookup": "Players.LocalPlayer.PlayerScripts.Runtime.Racing",
+    "arg_count": 1,
+    "wrapper_defined": "RaceSessionPresentationClient:189",
+    "line": 194,
+    "in_function": "invokeSession",
+    "via": "wrapper transition()",
+    "name": "RaceTransitionRequest",
+    "payload_keys": [
+     "Reason",
+     "Delay",
+     "Success"
+    ]
+   }
+  ],
+  "connects": [],
+  "invokes": [],
+  "handlers": [],
+  "created": [],
+  "module_signal_fires": []
+ },
+ "attributes": {
+  "reads": [
+   {
+    "receiver": "candidate",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "line": 30,
+    "in_function": "eventFolder",
+    "name": "EventId"
+   },
+   {
+    "receiver": "event",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "line": 31,
+    "in_function": "mapImage",
+    "name": "RaceHudMapImage"
+   },
+   {
+    "receiver": "event",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "line": 43,
+    "in_function": "routeIdFor",
+    "name": "RouteId"
+   },
+   {
+    "receiver": "event",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "line": 43,
+    "in_function": "routeIdFor",
+    "name": "RaceRouteId"
+   }
+  ],
+  "writes": [],
+  "listens": []
+ },
+ "player_attribute_writes": [],
+ "screenguis": {
+  "created": [
+   {
+    "variable": "gui",
+    "class": "ScreenGui",
+    "line": 80,
+    "factory": null,
+    "adopts_existing": false,
+    "Name": "SharedInRaceHUD",
+    "DisplayOrder": 155,
+    "ResetOnSpawn": false,
+    "IgnoreGuiInset": true,
+    "ScreenInsets": {
+     "expr": "Enum.ScreenInsets.None"
+    },
+    "ZIndexBehavior": {
+     "expr": "Enum.ZIndexBehavior.Global"
+    },
+    "ClipToDeviceSafeArea": false,
+    "Parent": {
+     "expr": "playerGui"
+    },
+    "enabled_writes": [],
+    "property_lines": {
+     "Name": 80,
+     "IgnoreGuiInset": 80,
+     "ResetOnSpawn": 80,
+     "DisplayOrder": 80,
+     "ZIndexBehavior": 80,
+     "ScreenInsets": 80,
+     "ClipToDeviceSafeArea": 80,
+     "Parent": 80
+    }
+   }
+  ],
+  "enabled_writes": [
+   {
+    "receiver": "other",
+    "receiver_path": "Players.LocalPlayer.PlayerGui.<name>",
+    "value": false,
+    "screengui_like": "yes",
+    "reason": "child of PlayerGui",
+    "line": 123,
+    "in_function": "suppress",
+    "screengui_name": "<name>"
+   }
+  ]
+ },
+ "names": {
+  "assigned": [
+   {
+    "via": "property",
+    "receiver": "gui",
+    "class": "ScreenGui",
+    "line": 80,
+    "in_function": "Client.start",
+    "name": "SharedInRaceHUD"
+   },
+   {
+    "via": "property",
+    "receiver": "canvas",
+    "class": "Frame",
+    "line": 81,
+    "in_function": "Client.start",
+    "name": "ReferenceCanvas"
+   },
+   {
+    "via": "wrapper panel()",
+    "callee": "Panel",
+    "class": null,
+    "wrapper_defined": "RaceSessionPresentationClient:126",
+    "line": 145,
+    "in_function": "Client.start",
+    "name": "LapProgress"
+   },
+   {
+    "via": "wrapper panel()",
+    "callee": "Panel",
+    "class": null,
+    "wrapper_defined": "RaceSessionPresentationClient:126",
+    "line": 146,
+    "in_function": "Client.start",
+    "name": "PrimaryMetric"
+   },
+   {
+    "via": "wrapper panel()",
+    "callee": "Panel",
+    "class": null,
+    "wrapper_defined": "RaceSessionPresentationClient:126",
+    "line": 147,
+    "in_function": "Client.start",
+    "name": "SessionBoard"
+   },
+   {
+    "via": "wrapper panel()",
+    "callee": "Panel",
+    "class": null,
+    "wrapper_defined": "RaceSessionPresentationClient:126",
+    "line": 148,
+    "in_function": "Client.start",
+    "name": "RaceMap"
+   },
+   {
+    "via": "property",
+    "receiver": "mapArt",
+    "class": "ImageLabel",
+    "line": 151,
+    "in_function": "Client.start",
+    "name": "SimplifiedRaceMap"
+   },
+   {
+    "via": "property",
+    "receiver": "playerMapMarker",
+    "class": "ImageLabel",
+    "line": 152,
+    "in_function": "Client.start",
+    "name": "PlayerMarker"
+   },
+   {
+    "via": "property",
+    "receiver": "controls",
+    "class": "Frame",
+    "line": 165,
+    "in_function": "Client.start",
+    "name": "SessionControls"
+   },
+   {
+    "via": "property",
+    "receiver": "modalBackdrop",
+    "class": "Frame",
+    "line": 175,
+    "in_function": "Client.start",
+    "name": "ExitConfirmationFullScreenBackdrop"
+   },
+   {
+    "via": "property",
+    "receiver": "modalShade",
+    "class": "Frame",
+    "line": 176,
+    "in_function": "Client.start",
+    "name": "ExitConfirmationShade"
+   },
+   {
+    "via": "table_field",
+    "callee": "Panel",
+    "class": null,
+    "line": 178,
+    "in_function": "Client.start",
+    "name": "ExitConfirmation"
+   }
+  ],
+  "looked_up": [
+   {
+    "method": "WaitForChild",
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 15,
+    "in_function": "Client.start",
+    "name": "PlayerGui"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 17,
+    "in_function": "Client.start",
+    "name": "Remotes"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Remotes\")",
+    "receiver_path": "ReplicatedStorage.Remotes",
+    "root": "ReplicatedStorage",
+    "line": 17,
+    "in_function": "Client.start",
+    "name": "Racing"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 17,
+    "in_function": "Client.start",
+    "name": "Remotes"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Remotes\")",
+    "receiver_path": "ReplicatedStorage.Remotes",
+    "root": "ReplicatedStorage",
+    "line": 17,
+    "in_function": "Client.start",
+    "name": "Racing"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Remotes\"):WaitForChild(\"Racing\")",
+    "receiver_path": "ReplicatedStorage.Remotes.Racing",
+    "root": "ReplicatedStorage",
+    "line": 17,
+    "in_function": "Client.start",
+    "name": "RaceEvent"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 17,
+    "in_function": "Client.start",
+    "name": "Remotes"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Remotes\")",
+    "receiver_path": "ReplicatedStorage.Remotes",
+    "root": "ReplicatedStorage",
+    "line": 17,
+    "in_function": "Client.start",
+    "name": "Racing"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Remotes\"):WaitForChild(\"Racing\")",
+    "receiver_path": "ReplicatedStorage.Remotes.Racing",
+    "root": "ReplicatedStorage",
+    "line": 17,
+    "in_function": "Client.start",
+    "name": "RaceRequest"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 18,
+    "in_function": "Client.start",
+    "name": "Modules"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\")",
+    "receiver_path": "ReplicatedStorage.Modules",
+    "root": "ReplicatedStorage",
+    "line": 18,
+    "in_function": "Client.start",
+    "name": "Game"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game",
+    "root": "ReplicatedStorage",
+    "line": 18,
+    "in_function": "Client.start",
+    "name": "UI"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"UI\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game.UI",
+    "root": "ReplicatedStorage",
+    "line": 18,
+    "in_function": "Client.start",
+    "name": "RacingUIComponents"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 19,
+    "in_function": "Client.start",
+    "name": "Config"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\")",
+    "receiver_path": "ReplicatedStorage.Config",
+    "root": "ReplicatedStorage",
+    "line": 19,
+    "in_function": "Client.start",
+    "name": "UI"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\"):WaitForChild(\"UI\")",
+    "receiver_path": "ReplicatedStorage.Config.UI",
+    "root": "ReplicatedStorage",
+    "line": 19,
+    "in_function": "Client.start",
+    "name": "Racing"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\"):WaitForChild(\"UI\"):WaitForChild(\"Racing\")",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing",
+    "root": "ReplicatedStorage",
+    "line": 19,
+    "in_function": "Client.start",
+    "name": "InRace"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 20,
+    "in_function": "Client.start",
+    "name": "Config"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\")",
+    "receiver_path": "ReplicatedStorage.Config",
+    "root": "ReplicatedStorage",
+    "line": 20,
+    "in_function": "Client.start",
+    "name": "Racing"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 21,
+    "in_function": "Client.start",
+    "name": "Config"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\")",
+    "receiver_path": "ReplicatedStorage.Config",
+    "root": "ReplicatedStorage",
+    "line": 21,
+    "in_function": "Client.start",
+    "name": "Racing"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\"):WaitForChild(\"Racing\")",
+    "receiver_path": "ReplicatedStorage.Config.Racing",
+    "root": "ReplicatedStorage",
+    "line": 21,
+    "in_function": "Client.start",
+    "name": "PresentationPerformance"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 24,
+    "in_function": "Client.start",
+    "name": "Config"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\")",
+    "receiver_path": "ReplicatedStorage.Config",
+    "root": "ReplicatedStorage",
+    "line": 24,
+    "in_function": "Client.start",
+    "name": "UI"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\"):WaitForChild(\"UI\")",
+    "receiver_path": "ReplicatedStorage.Config.UI",
+    "root": "ReplicatedStorage",
+    "line": 24,
+    "in_function": "Client.start",
+    "name": "Racing"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\"):WaitForChild(\"UI\"):WaitForChild(\"Racing\")",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing",
+    "root": "ReplicatedStorage",
+    "line": 24,
+    "in_function": "Client.start",
+    "name": "InRace"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\"):WaitForChild(\"UI\"):WaitForChild(\"Racing\"):WaitForChild(\"InRace\")",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "line": 24,
+    "in_function": "Client.start",
+    "name": "Mobile"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "mobileConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace.Mobile",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:25",
+    "line": 26,
+    "in_function": "Client.start",
+    "via": "wrapper MN()",
+    "name": "Enabled"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "racingConfig",
+    "receiver_path": "ReplicatedStorage.Config.Racing",
+    "root": "ReplicatedStorage",
+    "line": 30,
+    "in_function": "eventFolder",
+    "name": "RaceCatalog",
+    "via": "literal list"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "racingConfig",
+    "receiver_path": "ReplicatedStorage.Config.Racing",
+    "root": "ReplicatedStorage",
+    "line": 30,
+    "in_function": "eventFolder",
+    "name": "TimeTrialCatalog",
+    "via": "literal list"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "catalog",
+    "receiver_path": "ReplicatedStorage.Config.Racing.<mode==\"Race\" and \"RaceCatalog\" or \"TimeTrialCatalog\">",
+    "root": "ReplicatedStorage",
+    "line": 30,
+    "in_function": "eventFolder",
+    "name": null,
+    "name_expr": "tostring(eventId or \"\")"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "event",
+    "receiver_path": null,
+    "root": null,
+    "line": 31,
+    "in_function": "mapImage",
+    "name": "RaceHudMapImage"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 32,
+    "in_function": "Client.start",
+    "name": "Config"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\")",
+    "receiver_path": "ReplicatedStorage.Config",
+    "root": "ReplicatedStorage",
+    "line": 32,
+    "in_function": "Client.start",
+    "name": "Racing"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\"):WaitForChild(\"Racing\")",
+    "receiver_path": "ReplicatedStorage.Config.Racing",
+    "root": "ReplicatedStorage",
+    "line": 32,
+    "in_function": "Client.start",
+    "name": "HudMapCatalog"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 33,
+    "in_function": "Client.start",
+    "name": "Config"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\")",
+    "receiver_path": "ReplicatedStorage.Config",
+    "root": "ReplicatedStorage",
+    "line": 33,
+    "in_function": "Client.start",
+    "name": "UI"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\"):WaitForChild(\"UI\")",
+    "receiver_path": "ReplicatedStorage.Config.UI",
+    "root": "ReplicatedStorage",
+    "line": 33,
+    "in_function": "Client.start",
+    "name": "DesktopFreeRoamHud"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 34,
+    "in_function": "Client.start",
+    "name": "Config"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\")",
+    "receiver_path": "ReplicatedStorage.Config",
+    "root": "ReplicatedStorage",
+    "line": 34,
+    "in_function": "Client.start",
+    "name": "UI"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\"):WaitForChild(\"UI\")",
+    "receiver_path": "ReplicatedStorage.Config.UI",
+    "root": "ReplicatedStorage",
+    "line": 34,
+    "in_function": "Client.start",
+    "name": "DesktopFreeRoamHud"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\"):WaitForChild(\"UI\"):WaitForChild(\"DesktopFreeRoamHud\")",
+    "receiver_path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud",
+    "root": "ReplicatedStorage",
+    "line": 34,
+    "in_function": "Client.start",
+    "name": "Assets"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 35,
+    "in_function": "Client.start",
+    "name": "Config"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\")",
+    "receiver_path": "ReplicatedStorage.Config",
+    "root": "ReplicatedStorage",
+    "line": 35,
+    "in_function": "Client.start",
+    "name": "UI"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\"):WaitForChild(\"UI\")",
+    "receiver_path": "ReplicatedStorage.Config.UI",
+    "root": "ReplicatedStorage",
+    "line": 35,
+    "in_function": "Client.start",
+    "name": "DesktopFreeRoamHud"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\"):WaitForChild(\"UI\"):WaitForChild(\"DesktopFreeRoamHud\")",
+    "receiver_path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud",
+    "root": "ReplicatedStorage",
+    "line": 35,
+    "in_function": "Client.start",
+    "name": "Layout"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "event",
+    "receiver_path": null,
+    "root": null,
+    "line": 44,
+    "in_function": "routeIdFor",
+    "name": "RouteId"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "event",
+    "receiver_path": null,
+    "root": null,
+    "line": 44,
+    "in_function": "routeIdFor",
+    "name": "RaceRouteId"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "hudMapCatalog",
+    "receiver_path": "ReplicatedStorage.Config.Racing.HudMapCatalog",
+    "root": "ReplicatedStorage",
+    "line": 49,
+    "in_function": "hudMapConfig",
+    "name": null,
+    "name_expr": "routeIdFor(mode,eventId)"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": null,
+    "wrapper_defined": "RaceSessionPresentationClient:37",
+    "line": 52,
+    "in_function": "hudMapImage",
+    "via": "wrapper mapValue()",
+    "name": "Image",
+    "receiver_path": null,
+    "receiver_kind": "config?"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "vehicle",
+    "receiver_path": null,
+    "root": null,
+    "recursive": true,
+    "line": 59,
+    "in_function": "mapSubject",
+    "name": "CockpitRoot_DoNotRename"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "character",
+    "receiver_path": "Players.LocalPlayer.Character",
+    "root": "Players",
+    "line": 63,
+    "in_function": "mapSubject",
+    "name": "HumanoidRootPart"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "game:GetService(\"Workspace\")",
+    "receiver_path": "Workspace",
+    "root": "Workspace",
+    "line": 71,
+    "in_function": "mapAnchor",
+    "name": "World"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Workspace\")",
+    "receiver_path": "Workspace",
+    "root": "Workspace",
+    "line": 71,
+    "in_function": "mapAnchor",
+    "name": "World"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "game:GetService(\"Workspace\"):WaitForChild(\"World\")",
+    "receiver_path": "Workspace.World",
+    "root": "Workspace",
+    "line": 71,
+    "in_function": "mapAnchor",
+    "name": "RaceRoutes"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "route",
+    "receiver_path": "Workspace.World.RaceRoutes.<routeId>",
+    "root": "Workspace",
+    "recursive": true,
+    "line": 72,
+    "in_function": "mapAnchor",
+    "name": null,
+    "name_expr": "name"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "playerGui",
+    "receiver_path": "Players.LocalPlayer.PlayerGui",
+    "root": "Players",
+    "line": 79,
+    "in_function": "Client.start",
+    "name": "SharedInRaceHUD"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "playerGui",
+    "receiver_path": "Players.LocalPlayer.PlayerGui",
+    "root": "Players",
+    "line": 122,
+    "in_function": "suppress",
+    "name": "RaceHud",
+    "via": "literal list"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "playerGui",
+    "receiver_path": "Players.LocalPlayer.PlayerGui",
+    "root": "Players",
+    "line": 122,
+    "in_function": "suppress",
+    "name": "RaceHud_Phase3",
+    "via": "literal list"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "playerGui",
+    "receiver_path": "Players.LocalPlayer.PlayerGui",
+    "root": "Players",
+    "line": 122,
+    "in_function": "suppress",
+    "name": "RaceCheckpointBadge_Phase5D",
+    "via": "literal list"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "playerGui",
+    "receiver_path": "Players.LocalPlayer.PlayerGui",
+    "root": "Players",
+    "line": 122,
+    "in_function": "suppress",
+    "name": "RaceQueue_Phase8",
+    "via": "literal list"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "playerGui",
+    "receiver_path": "Players.LocalPlayer.PlayerGui",
+    "root": "Players",
+    "line": 122,
+    "in_function": "suppress",
+    "name": "RaceSessionControls_Phase8D",
+    "via": "literal list"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:22",
+    "line": 126,
+    "in_function": "panel",
+    "via": "wrapper N()",
+    "name": "PanelTransparency"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:22",
+    "line": 129,
+    "in_function": "metricCard",
+    "via": "wrapper N()",
+    "name": "MetricCardTransparency"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:22",
+    "line": 131,
+    "in_function": "metricCard",
+    "via": "wrapper N()",
+    "name": "MetricCardCornerRadius"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:22",
+    "line": 136,
+    "in_function": "dataRow",
+    "via": "wrapper N()",
+    "name": "DataRowTransparency"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:22",
+    "line": 137,
+    "in_function": "dataRow",
+    "via": "wrapper N()",
+    "name": "DataRowCornerRadius"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "line": 142,
+    "in_function": "placementColor",
+    "name": null,
+    "name_expr": "name"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "mobileConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace.Mobile",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:25",
+    "line": 145,
+    "in_function": "Client.start",
+    "via": "wrapper MN()",
+    "name": "ProgressOffsetX"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "mobileConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace.Mobile",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:25",
+    "line": 145,
+    "in_function": "Client.start",
+    "via": "wrapper MN()",
+    "name": "ProgressOffsetY"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "mobileConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace.Mobile",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:25",
+    "line": 145,
+    "in_function": "Client.start",
+    "via": "wrapper MN()",
+    "name": "ProgressWidth"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "mobileConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace.Mobile",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:25",
+    "line": 145,
+    "in_function": "Client.start",
+    "via": "wrapper MN()",
+    "name": "ProgressHeight"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:22",
+    "line": 145,
+    "in_function": "Client.start",
+    "via": "wrapper N()",
+    "name": "ProgressOffsetX"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:22",
+    "line": 145,
+    "in_function": "Client.start",
+    "via": "wrapper N()",
+    "name": "ProgressOffsetY"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:22",
+    "line": 145,
+    "in_function": "Client.start",
+    "via": "wrapper N()",
+    "name": "ProgressWidth"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:22",
+    "line": 145,
+    "in_function": "Client.start",
+    "via": "wrapper N()",
+    "name": "ProgressHeight"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "mobileConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace.Mobile",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:25",
+    "line": 146,
+    "in_function": "Client.start",
+    "via": "wrapper MN()",
+    "name": "MetricOffsetY"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "mobileConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace.Mobile",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 146,
+    "in_function": "Client.start",
+    "via": "wrapper HN()",
+    "name": "MetricWidth"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "mobileConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace.Mobile",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 146,
+    "in_function": "Client.start",
+    "via": "wrapper HN()",
+    "name": "MetricWidth"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "mobileConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace.Mobile",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 146,
+    "in_function": "Client.start",
+    "via": "wrapper HN()",
+    "name": "MetricHeight"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:22",
+    "line": 146,
+    "in_function": "Client.start",
+    "via": "wrapper N()",
+    "name": "EdgeY"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 146,
+    "in_function": "Client.start",
+    "via": "wrapper HN()",
+    "name": "MetricWidth"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 146,
+    "in_function": "Client.start",
+    "via": "wrapper HN()",
+    "name": "MetricWidth"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 146,
+    "in_function": "Client.start",
+    "via": "wrapper HN()",
+    "name": "MetricHeight"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "mobileConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace.Mobile",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 147,
+    "in_function": "Client.start",
+    "via": "wrapper HN()",
+    "name": "BoardOffsetX"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "mobileConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace.Mobile",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 147,
+    "in_function": "Client.start",
+    "via": "wrapper HN()",
+    "name": "BoardWidth"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "mobileConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace.Mobile",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 147,
+    "in_function": "Client.start",
+    "via": "wrapper HN()",
+    "name": "BoardOffsetY"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "mobileConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace.Mobile",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 147,
+    "in_function": "Client.start",
+    "via": "wrapper HN()",
+    "name": "BoardWidth"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "mobileConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace.Mobile",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 147,
+    "in_function": "Client.start",
+    "via": "wrapper HN()",
+    "name": "BoardHeight"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 147,
+    "in_function": "Client.start",
+    "via": "wrapper HN()",
+    "name": "BoardOffsetX"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 147,
+    "in_function": "Client.start",
+    "via": "wrapper HN()",
+    "name": "BoardWidth"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 147,
+    "in_function": "Client.start",
+    "via": "wrapper HN()",
+    "name": "BoardOffsetY"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 147,
+    "in_function": "Client.start",
+    "via": "wrapper HN()",
+    "name": "BoardWidth"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 147,
+    "in_function": "Client.start",
+    "via": "wrapper HN()",
+    "name": "BoardHeight"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:22",
+    "line": 148,
+    "in_function": "Client.start",
+    "via": "wrapper N()",
+    "name": "MapOffsetX"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:22",
+    "line": 148,
+    "in_function": "Client.start",
+    "via": "wrapper N()",
+    "name": "MapOffsetY"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:22",
+    "line": 148,
+    "in_function": "Client.start",
+    "via": "wrapper N()",
+    "name": "MapHeight"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:22",
+    "line": 148,
+    "in_function": "Client.start",
+    "via": "wrapper N()",
+    "name": "MapWidth"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:22",
+    "line": 148,
+    "in_function": "Client.start",
+    "via": "wrapper N()",
+    "name": "MapHeight"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:22",
+    "line": 150,
+    "in_function": "Client.start",
+    "via": "wrapper N()",
+    "name": "MapInnerPadding"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:22",
+    "line": 151,
+    "in_function": "Client.start",
+    "via": "wrapper N()",
+    "name": "MapOpacity"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:37",
+    "receiver_kind": "config",
+    "line": 152,
+    "in_function": "Client.start",
+    "via": "wrapper mapValue()",
+    "name": "MapPlayerIcon",
+    "receiver_path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud.Assets"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:37",
+    "receiver_kind": "config",
+    "line": 152,
+    "in_function": "Client.start",
+    "via": "wrapper mapValue()",
+    "name": "MapPlayerIconSize",
+    "receiver_path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud.Layout"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:37",
+    "receiver_kind": "config",
+    "line": 152,
+    "in_function": "Client.start",
+    "via": "wrapper mapValue()",
+    "name": "MapPlayerIconSize",
+    "receiver_path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud.Layout"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "mobileConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace.Mobile",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 154,
+    "in_function": "Client.start",
+    "via": "wrapper HN()",
+    "name": "MetricHeadingSize"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 154,
+    "in_function": "Client.start",
+    "via": "wrapper HN()",
+    "name": "MetricHeadingSize"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "mobileConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace.Mobile",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 155,
+    "in_function": "Client.start",
+    "via": "wrapper HN()",
+    "name": "MetricValueSize"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 155,
+    "in_function": "Client.start",
+    "via": "wrapper HN()",
+    "name": "MetricValueSize"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "mobileConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace.Mobile",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 156,
+    "in_function": "Client.start",
+    "via": "wrapper HN()",
+    "name": "MetricHeadingSize"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 156,
+    "in_function": "Client.start",
+    "via": "wrapper HN()",
+    "name": "MetricHeadingSize"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "mobileConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace.Mobile",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 157,
+    "in_function": "Client.start",
+    "via": "wrapper HN()",
+    "name": "MetricValueSize"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 157,
+    "in_function": "Client.start",
+    "via": "wrapper HN()",
+    "name": "MetricValueSize"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 161,
+    "in_function": "Client.start",
+    "name": "Remotes"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Remotes\")",
+    "receiver_path": "ReplicatedStorage.Remotes",
+    "root": "ReplicatedStorage",
+    "line": 161,
+    "in_function": "Client.start",
+    "name": "Racing"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Remotes\"):WaitForChild(\"Racing\")",
+    "receiver_path": "ReplicatedStorage.Remotes.Racing",
+    "root": "ReplicatedStorage",
+    "line": 161,
+    "in_function": "Client.start",
+    "name": "RaceQueueRequest"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 162,
+    "in_function": "Client.start",
+    "name": "PlayerScripts"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts",
+    "root": "Players",
+    "line": 162,
+    "in_function": "Client.start",
+    "name": "Runtime"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"Runtime\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime",
+    "root": "Players",
+    "line": 162,
+    "in_function": "Client.start",
+    "name": "Racing"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"Runtime\"):WaitForChild(\"Racing\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime.Racing",
+    "root": "Players",
+    "line": 162,
+    "in_function": "Client.start",
+    "name": "RaceTransitionRequest"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 163,
+    "in_function": "Client.start",
+    "name": "PlayerScripts"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts",
+    "root": "Players",
+    "line": 163,
+    "in_function": "Client.start",
+    "name": "Runtime"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"Runtime\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime",
+    "root": "Players",
+    "line": 163,
+    "in_function": "Client.start",
+    "name": "UI"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 163,
+    "in_function": "Client.start",
+    "name": "PlayerScripts"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts",
+    "root": "Players",
+    "line": 163,
+    "in_function": "Client.start",
+    "name": "Runtime"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"Runtime\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime",
+    "root": "Players",
+    "line": 163,
+    "in_function": "Client.start",
+    "name": "UI"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"Runtime\"):WaitForChild(\"UI\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime.UI",
+    "root": "Players",
+    "line": 163,
+    "in_function": "Client.start",
+    "name": "FreeRoamHudPresentationMode"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:22",
+    "line": 165,
+    "in_function": "Client.start",
+    "via": "wrapper N()",
+    "name": "BottomY"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "mobileConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace.Mobile",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:25",
+    "line": 169,
+    "in_function": "Client.start",
+    "via": "wrapper MN()",
+    "name": "SessionButtonWidth"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "mobileConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace.Mobile",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:25",
+    "line": 169,
+    "in_function": "Client.start",
+    "via": "wrapper MN()",
+    "name": "SessionButtonHeight"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "mobileConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace.Mobile",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:25",
+    "line": 169,
+    "in_function": "Client.start",
+    "via": "wrapper MN()",
+    "name": "SessionButtonGap"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "mobileConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace.Mobile",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:25",
+    "line": 169,
+    "in_function": "Client.start",
+    "via": "wrapper MN()",
+    "name": "SessionButtonTextSize"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "mobileConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace.Mobile",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:25",
+    "line": 170,
+    "in_function": "Client.start",
+    "via": "wrapper MN()",
+    "name": "SessionControlsCenterX"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "mobileConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace.Mobile",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:25",
+    "line": 170,
+    "in_function": "Client.start",
+    "via": "wrapper MN()",
+    "name": "SessionControlsBottomOffset"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 177,
+    "in_function": "Client.start",
+    "name": "Modules"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\")",
+    "receiver_path": "ReplicatedStorage.Modules",
+    "root": "ReplicatedStorage",
+    "line": 177,
+    "in_function": "Client.start",
+    "name": "Game"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game",
+    "root": "ReplicatedStorage",
+    "line": 177,
+    "in_function": "Client.start",
+    "name": "UI"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"UI\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game.UI",
+    "root": "ReplicatedStorage",
+    "line": 177,
+    "in_function": "Client.start",
+    "name": "ResponsiveUIFoundation"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 205,
+    "in_function": "Client.start",
+    "name": "Config"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\")",
+    "receiver_path": "ReplicatedStorage.Config",
+    "root": "ReplicatedStorage",
+    "line": 205,
+    "in_function": "Client.start",
+    "name": "UI"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\"):WaitForChild(\"UI\")",
+    "receiver_path": "ReplicatedStorage.Config.UI",
+    "root": "ReplicatedStorage",
+    "line": 205,
+    "in_function": "Client.start",
+    "name": "Racing"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\"):WaitForChild(\"UI\"):WaitForChild(\"Racing\")",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing",
+    "root": "ReplicatedStorage",
+    "line": 205,
+    "in_function": "Client.start",
+    "name": "InRace"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\"):WaitForChild(\"UI\"):WaitForChild(\"Racing\"):WaitForChild(\"InRace\")",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "line": 205,
+    "in_function": "Client.start",
+    "name": "MapOpacity"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": null,
+    "wrapper_defined": "RaceSessionPresentationClient:37",
+    "line": 219,
+    "in_function": "prepareHudMapSession",
+    "via": "wrapper mapValue()",
+    "name": "ImageWidthPixels",
+    "receiver_path": null,
+    "receiver_kind": "config?"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": null,
+    "wrapper_defined": "RaceSessionPresentationClient:37",
+    "line": 220,
+    "in_function": "prepareHudMapSession",
+    "via": "wrapper mapValue()",
+    "name": "ImageHeightPixels",
+    "receiver_path": null,
+    "receiver_kind": "config?"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": null,
+    "wrapper_defined": "RaceSessionPresentationClient:37",
+    "line": 221,
+    "in_function": "prepareHudMapSession",
+    "via": "wrapper mapValue()",
+    "name": "MapRotationDegrees",
+    "receiver_path": null,
+    "receiver_kind": "config?"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": null,
+    "wrapper_defined": "RaceSessionPresentationClient:37",
+    "line": 223,
+    "in_function": "prepareHudMapSession",
+    "via": "wrapper mapValue()",
+    "name": "Enabled",
+    "receiver_path": null,
+    "receiver_kind": "config?"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "routes",
+    "receiver_path": "Workspace.World.RaceRoutes",
+    "root": "Workspace",
+    "wrapper_defined": "RaceSessionPresentationClient:71",
+    "line": 224,
+    "in_function": "prepareHudMapSession",
+    "via": "wrapper mapAnchor()",
+    "name": null,
+    "name_expr": "routeId"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": null,
+    "wrapper_defined": "RaceSessionPresentationClient:37",
+    "line": 224,
+    "in_function": "prepareHudMapSession",
+    "via": "wrapper mapValue()",
+    "name": "StudsPerPixel",
+    "receiver_path": null,
+    "receiver_kind": "config?"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": null,
+    "wrapper_defined": "RaceSessionPresentationClient:72",
+    "line": 224,
+    "in_function": "prepareHudMapSession",
+    "via": "wrapper mapAnchor()",
+    "name": "AnchorPartName",
+    "receiver_path": null,
+    "receiver_kind": "config?"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": null,
+    "wrapper_defined": "RaceSessionPresentationClient:69",
+    "line": 224,
+    "in_function": "prepareHudMapSession",
+    "via": "wrapper mapAnchor()",
+    "name": "WorldAnchorZ",
+    "receiver_path": null,
+    "receiver_kind": "config?"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": null,
+    "wrapper_defined": "RaceSessionPresentationClient:69",
+    "line": 224,
+    "in_function": "prepareHudMapSession",
+    "via": "wrapper mapAnchor()",
+    "name": "WorldAnchorX",
+    "receiver_path": null,
+    "receiver_kind": "config?"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": null,
+    "wrapper_defined": "RaceSessionPresentationClient:68",
+    "line": 224,
+    "in_function": "prepareHudMapSession",
+    "via": "wrapper mapAnchor()",
+    "name": "UseConfiguredWorldAnchor",
+    "receiver_path": null,
+    "receiver_kind": "config?"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": null,
+    "wrapper_defined": "RaceSessionPresentationClient:37",
+    "line": 225,
+    "in_function": "prepareHudMapSession",
+    "via": "wrapper mapValue()",
+    "name": "FlipX",
+    "receiver_path": null,
+    "receiver_kind": "config?"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": null,
+    "wrapper_defined": "RaceSessionPresentationClient:37",
+    "line": 225,
+    "in_function": "prepareHudMapSession",
+    "via": "wrapper mapValue()",
+    "name": "FlipY",
+    "receiver_path": null,
+    "receiver_kind": "config?"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": null,
+    "wrapper_defined": "RaceSessionPresentationClient:37",
+    "line": 226,
+    "in_function": "prepareHudMapSession",
+    "via": "wrapper mapValue()",
+    "name": "StartPixelX",
+    "receiver_path": null,
+    "receiver_kind": "config?"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": null,
+    "wrapper_defined": "RaceSessionPresentationClient:37",
+    "line": 226,
+    "in_function": "prepareHudMapSession",
+    "via": "wrapper mapValue()",
+    "name": "StartPixelY",
+    "receiver_path": null,
+    "receiver_kind": "config?"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": null,
+    "wrapper_defined": "RaceSessionPresentationClient:37",
+    "line": 227,
+    "in_function": "prepareHudMapSession",
+    "via": "wrapper mapValue()",
+    "name": "ClampMarkersToMap",
+    "receiver_path": null,
+    "receiver_kind": "config?"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": null,
+    "wrapper_defined": "RaceSessionPresentationClient:37",
+    "line": 227,
+    "in_function": "prepareHudMapSession",
+    "via": "wrapper mapValue()",
+    "name": "Smoothing",
+    "receiver_path": null,
+    "receiver_kind": "config?"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": null,
+    "wrapper_defined": "RaceSessionPresentationClient:37",
+    "line": 228,
+    "in_function": "prepareHudMapSession",
+    "via": "wrapper mapValue()",
+    "name": "MarkerRotationOffsetDegrees",
+    "receiver_path": null,
+    "receiver_kind": "config?"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": null,
+    "wrapper_defined": "RaceSessionPresentationClient:37",
+    "line": 228,
+    "in_function": "prepareHudMapSession",
+    "via": "wrapper mapValue()",
+    "name": "PlayerMarkerScale",
+    "receiver_path": null,
+    "receiver_kind": "config?"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:22",
+    "line": 231,
+    "in_function": "prepareHudMapSession",
+    "via": "wrapper N()",
+    "name": "MapOpacity"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:37",
+    "receiver_kind": "config",
+    "line": 242,
+    "in_function": "updateHudMapMarker",
+    "via": "wrapper mapValue()",
+    "name": "HudMapSubjectResolveSeconds",
+    "receiver_path": "ReplicatedStorage.Config.Racing.PresentationPerformance"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:37",
+    "receiver_kind": "config",
+    "line": 265,
+    "in_function": "updateHudMapMarker",
+    "via": "wrapper mapValue()",
+    "name": "MapPlayerIconSize",
+    "receiver_path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud.Layout"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "mobileConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace.Mobile",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 274,
+    "in_function": "renderTimeTrialBoard",
+    "via": "wrapper HN()",
+    "name": "DataRowHeight"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "mobileConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace.Mobile",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 274,
+    "in_function": "renderTimeTrialBoard",
+    "via": "wrapper HN()",
+    "name": "DataRowGap"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 274,
+    "in_function": "renderTimeTrialBoard",
+    "via": "wrapper HN()",
+    "name": "DataRowHeight"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 274,
+    "in_function": "renderTimeTrialBoard",
+    "via": "wrapper HN()",
+    "name": "DataRowGap"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "mobileConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace.Mobile",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 276,
+    "in_function": "renderTimeTrialBoard",
+    "via": "wrapper HN()",
+    "name": "DataRowTextSize"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 276,
+    "in_function": "renderTimeTrialBoard",
+    "via": "wrapper HN()",
+    "name": "DataRowTextSize"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "mobileConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace.Mobile",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 277,
+    "in_function": "renderTimeTrialBoard",
+    "via": "wrapper HN()",
+    "name": "DataRowMetricSize"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 277,
+    "in_function": "renderTimeTrialBoard",
+    "via": "wrapper HN()",
+    "name": "DataRowMetricSize"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "mobileConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace.Mobile",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 280,
+    "in_function": "renderTimeTrialBoard",
+    "via": "wrapper HN()",
+    "name": "DataRowTextSize"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 280,
+    "in_function": "renderTimeTrialBoard",
+    "via": "wrapper HN()",
+    "name": "DataRowTextSize"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "mobileConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace.Mobile",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 281,
+    "in_function": "renderTimeTrialBoard",
+    "via": "wrapper HN()",
+    "name": "DataRowMetricSize"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 281,
+    "in_function": "renderTimeTrialBoard",
+    "via": "wrapper HN()",
+    "name": "DataRowMetricSize"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "mobileConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace.Mobile",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 287,
+    "in_function": "renderRaceBoard",
+    "via": "wrapper HN()",
+    "name": "DataRowHeight"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "mobileConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace.Mobile",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 287,
+    "in_function": "renderRaceBoard",
+    "via": "wrapper HN()",
+    "name": "DataRowGap"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 287,
+    "in_function": "renderRaceBoard",
+    "via": "wrapper HN()",
+    "name": "DataRowHeight"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 287,
+    "in_function": "renderRaceBoard",
+    "via": "wrapper HN()",
+    "name": "DataRowGap"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:22",
+    "line": 290,
+    "in_function": "renderRaceBoard",
+    "via": "wrapper N()",
+    "name": "LocalRowTransparency"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "mobileConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace.Mobile",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 292,
+    "in_function": "renderRaceBoard",
+    "via": "wrapper HN()",
+    "name": "DataRowTextSize"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 292,
+    "in_function": "renderRaceBoard",
+    "via": "wrapper HN()",
+    "name": "DataRowTextSize"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "mobileConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace.Mobile",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 293,
+    "in_function": "renderRaceBoard",
+    "via": "wrapper HN()",
+    "name": "BoardAvatarSize"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 293,
+    "in_function": "renderRaceBoard",
+    "via": "wrapper HN()",
+    "name": "BoardAvatarSize"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "mobileConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace.Mobile",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 294,
+    "in_function": "renderRaceBoard",
+    "via": "wrapper HN()",
+    "name": "DataRowTextSize"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 294,
+    "in_function": "renderRaceBoard",
+    "via": "wrapper HN()",
+    "name": "DataRowTextSize"
+   }
+  ],
+  "text_compared": []
+ },
+ "run_service": {
+  "render_steps": [],
+  "connects": [
+   {
+    "signal": "RenderStepped",
+    "method": "Connect",
+    "line": 317,
+    "in_function": "Client.start",
+    "callback": "function(dt) if not active then return end upda..."
+   }
+  ]
+ },
+ "context_actions": [],
+ "user_input_service": {
+  "connects": [],
+  "members_used": [
+   {
+    "member": "TouchEnabled",
+    "kind": "read",
+    "line": 23,
+    "in_function": "Client.start"
+   }
+  ]
+ },
+ "audio": {
+  "bridge_calls": [],
+  "ui_audio_attributes": []
+ },
+ "config": {
+  "paths": [
+   {
+    "path": "ReplicatedStorage.Config",
+    "line": 19
+   },
+   {
+    "path": "ReplicatedStorage.Config.Racing",
+    "line": 20
+   },
+   {
+    "path": "ReplicatedStorage.Config.Racing.<mode==\"Race\" and \"RaceCatalog\" or \"TimeTrialCatalog\">",
+    "line": 30
+   },
+   {
+    "path": "ReplicatedStorage.Config.Racing.<mode==\"Race\" and \"RaceCatalog\" or \"TimeTrialCatalog\">.<tostring(eventId or \"\")>",
+    "line": 30
+   },
+   {
+    "path": "ReplicatedStorage.Config.Racing.HudMapCatalog",
+    "line": 32
+   },
+   {
+    "path": "ReplicatedStorage.Config.Racing.PresentationPerformance",
+    "line": 21
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI",
+    "line": 19
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud",
+    "line": 33
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud.Assets",
+    "line": 34
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud.Layout",
+    "line": 35
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI.Racing",
+    "line": 19
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "line": 19
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI.Racing.InRace.<name>",
+    "line": 22
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI.Racing.InRace.MapOpacity",
+    "line": 205
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI.Racing.InRace.Mobile",
+    "line": 24
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI.Racing.InRace.Mobile.<name>",
+    "line": 25
+   }
+  ],
+  "attribute_reads": [],
+  "child_lookups": [
+   {
+    "method": "FindFirstChild",
+    "receiver": "mobileConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace.Mobile",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:25",
+    "line": 26,
+    "in_function": "Client.start",
+    "via": "wrapper MN()",
+    "name": "Enabled"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:22",
+    "line": 126,
+    "in_function": "panel",
+    "via": "wrapper N()",
+    "name": "PanelTransparency"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:22",
+    "line": 129,
+    "in_function": "metricCard",
+    "via": "wrapper N()",
+    "name": "MetricCardTransparency"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:22",
+    "line": 131,
+    "in_function": "metricCard",
+    "via": "wrapper N()",
+    "name": "MetricCardCornerRadius"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:22",
+    "line": 136,
+    "in_function": "dataRow",
+    "via": "wrapper N()",
+    "name": "DataRowTransparency"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:22",
+    "line": 137,
+    "in_function": "dataRow",
+    "via": "wrapper N()",
+    "name": "DataRowCornerRadius"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "mobileConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace.Mobile",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:25",
+    "line": 145,
+    "in_function": "Client.start",
+    "via": "wrapper MN()",
+    "name": "ProgressOffsetX"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "mobileConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace.Mobile",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:25",
+    "line": 145,
+    "in_function": "Client.start",
+    "via": "wrapper MN()",
+    "name": "ProgressOffsetY"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "mobileConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace.Mobile",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:25",
+    "line": 145,
+    "in_function": "Client.start",
+    "via": "wrapper MN()",
+    "name": "ProgressWidth"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "mobileConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace.Mobile",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:25",
+    "line": 145,
+    "in_function": "Client.start",
+    "via": "wrapper MN()",
+    "name": "ProgressHeight"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:22",
+    "line": 145,
+    "in_function": "Client.start",
+    "via": "wrapper N()",
+    "name": "ProgressOffsetX"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:22",
+    "line": 145,
+    "in_function": "Client.start",
+    "via": "wrapper N()",
+    "name": "ProgressOffsetY"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:22",
+    "line": 145,
+    "in_function": "Client.start",
+    "via": "wrapper N()",
+    "name": "ProgressWidth"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:22",
+    "line": 145,
+    "in_function": "Client.start",
+    "via": "wrapper N()",
+    "name": "ProgressHeight"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "mobileConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace.Mobile",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:25",
+    "line": 146,
+    "in_function": "Client.start",
+    "via": "wrapper MN()",
+    "name": "MetricOffsetY"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "mobileConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace.Mobile",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 146,
+    "in_function": "Client.start",
+    "via": "wrapper HN()",
+    "name": "MetricWidth"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "mobileConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace.Mobile",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 146,
+    "in_function": "Client.start",
+    "via": "wrapper HN()",
+    "name": "MetricWidth"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "mobileConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace.Mobile",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 146,
+    "in_function": "Client.start",
+    "via": "wrapper HN()",
+    "name": "MetricHeight"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:22",
+    "line": 146,
+    "in_function": "Client.start",
+    "via": "wrapper N()",
+    "name": "EdgeY"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 146,
+    "in_function": "Client.start",
+    "via": "wrapper HN()",
+    "name": "MetricWidth"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 146,
+    "in_function": "Client.start",
+    "via": "wrapper HN()",
+    "name": "MetricWidth"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 146,
+    "in_function": "Client.start",
+    "via": "wrapper HN()",
+    "name": "MetricHeight"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "mobileConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace.Mobile",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 147,
+    "in_function": "Client.start",
+    "via": "wrapper HN()",
+    "name": "BoardOffsetX"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "mobileConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace.Mobile",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 147,
+    "in_function": "Client.start",
+    "via": "wrapper HN()",
+    "name": "BoardWidth"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "mobileConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace.Mobile",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 147,
+    "in_function": "Client.start",
+    "via": "wrapper HN()",
+    "name": "BoardOffsetY"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "mobileConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace.Mobile",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 147,
+    "in_function": "Client.start",
+    "via": "wrapper HN()",
+    "name": "BoardWidth"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "mobileConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace.Mobile",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 147,
+    "in_function": "Client.start",
+    "via": "wrapper HN()",
+    "name": "BoardHeight"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 147,
+    "in_function": "Client.start",
+    "via": "wrapper HN()",
+    "name": "BoardOffsetX"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 147,
+    "in_function": "Client.start",
+    "via": "wrapper HN()",
+    "name": "BoardWidth"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 147,
+    "in_function": "Client.start",
+    "via": "wrapper HN()",
+    "name": "BoardOffsetY"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 147,
+    "in_function": "Client.start",
+    "via": "wrapper HN()",
+    "name": "BoardWidth"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 147,
+    "in_function": "Client.start",
+    "via": "wrapper HN()",
+    "name": "BoardHeight"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:22",
+    "line": 148,
+    "in_function": "Client.start",
+    "via": "wrapper N()",
+    "name": "MapOffsetX"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:22",
+    "line": 148,
+    "in_function": "Client.start",
+    "via": "wrapper N()",
+    "name": "MapOffsetY"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:22",
+    "line": 148,
+    "in_function": "Client.start",
+    "via": "wrapper N()",
+    "name": "MapHeight"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:22",
+    "line": 148,
+    "in_function": "Client.start",
+    "via": "wrapper N()",
+    "name": "MapWidth"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:22",
+    "line": 148,
+    "in_function": "Client.start",
+    "via": "wrapper N()",
+    "name": "MapHeight"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:22",
+    "line": 150,
+    "in_function": "Client.start",
+    "via": "wrapper N()",
+    "name": "MapInnerPadding"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:22",
+    "line": 151,
+    "in_function": "Client.start",
+    "via": "wrapper N()",
+    "name": "MapOpacity"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:37",
+    "receiver_kind": "config",
+    "line": 152,
+    "in_function": "Client.start",
+    "via": "wrapper mapValue()",
+    "name": "MapPlayerIcon",
+    "receiver_path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud.Assets"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:37",
+    "receiver_kind": "config",
+    "line": 152,
+    "in_function": "Client.start",
+    "via": "wrapper mapValue()",
+    "name": "MapPlayerIconSize",
+    "receiver_path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud.Layout"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:37",
+    "receiver_kind": "config",
+    "line": 152,
+    "in_function": "Client.start",
+    "via": "wrapper mapValue()",
+    "name": "MapPlayerIconSize",
+    "receiver_path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud.Layout"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "mobileConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace.Mobile",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 154,
+    "in_function": "Client.start",
+    "via": "wrapper HN()",
+    "name": "MetricHeadingSize"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 154,
+    "in_function": "Client.start",
+    "via": "wrapper HN()",
+    "name": "MetricHeadingSize"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "mobileConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace.Mobile",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 155,
+    "in_function": "Client.start",
+    "via": "wrapper HN()",
+    "name": "MetricValueSize"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 155,
+    "in_function": "Client.start",
+    "via": "wrapper HN()",
+    "name": "MetricValueSize"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "mobileConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace.Mobile",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 156,
+    "in_function": "Client.start",
+    "via": "wrapper HN()",
+    "name": "MetricHeadingSize"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 156,
+    "in_function": "Client.start",
+    "via": "wrapper HN()",
+    "name": "MetricHeadingSize"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "mobileConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace.Mobile",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 157,
+    "in_function": "Client.start",
+    "via": "wrapper HN()",
+    "name": "MetricValueSize"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 157,
+    "in_function": "Client.start",
+    "via": "wrapper HN()",
+    "name": "MetricValueSize"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:22",
+    "line": 165,
+    "in_function": "Client.start",
+    "via": "wrapper N()",
+    "name": "BottomY"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "mobileConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace.Mobile",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:25",
+    "line": 169,
+    "in_function": "Client.start",
+    "via": "wrapper MN()",
+    "name": "SessionButtonWidth"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "mobileConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace.Mobile",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:25",
+    "line": 169,
+    "in_function": "Client.start",
+    "via": "wrapper MN()",
+    "name": "SessionButtonHeight"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "mobileConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace.Mobile",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:25",
+    "line": 169,
+    "in_function": "Client.start",
+    "via": "wrapper MN()",
+    "name": "SessionButtonGap"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "mobileConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace.Mobile",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:25",
+    "line": 169,
+    "in_function": "Client.start",
+    "via": "wrapper MN()",
+    "name": "SessionButtonTextSize"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "mobileConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace.Mobile",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:25",
+    "line": 170,
+    "in_function": "Client.start",
+    "via": "wrapper MN()",
+    "name": "SessionControlsCenterX"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "mobileConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace.Mobile",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:25",
+    "line": 170,
+    "in_function": "Client.start",
+    "via": "wrapper MN()",
+    "name": "SessionControlsBottomOffset"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:22",
+    "line": 231,
+    "in_function": "prepareHudMapSession",
+    "via": "wrapper N()",
+    "name": "MapOpacity"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:37",
+    "receiver_kind": "config",
+    "line": 242,
+    "in_function": "updateHudMapMarker",
+    "via": "wrapper mapValue()",
+    "name": "HudMapSubjectResolveSeconds",
+    "receiver_path": "ReplicatedStorage.Config.Racing.PresentationPerformance"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:37",
+    "receiver_kind": "config",
+    "line": 265,
+    "in_function": "updateHudMapMarker",
+    "via": "wrapper mapValue()",
+    "name": "MapPlayerIconSize",
+    "receiver_path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud.Layout"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "mobileConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace.Mobile",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 274,
+    "in_function": "renderTimeTrialBoard",
+    "via": "wrapper HN()",
+    "name": "DataRowHeight"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "mobileConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace.Mobile",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 274,
+    "in_function": "renderTimeTrialBoard",
+    "via": "wrapper HN()",
+    "name": "DataRowGap"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 274,
+    "in_function": "renderTimeTrialBoard",
+    "via": "wrapper HN()",
+    "name": "DataRowHeight"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 274,
+    "in_function": "renderTimeTrialBoard",
+    "via": "wrapper HN()",
+    "name": "DataRowGap"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "mobileConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace.Mobile",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 276,
+    "in_function": "renderTimeTrialBoard",
+    "via": "wrapper HN()",
+    "name": "DataRowTextSize"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 276,
+    "in_function": "renderTimeTrialBoard",
+    "via": "wrapper HN()",
+    "name": "DataRowTextSize"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "mobileConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace.Mobile",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 277,
+    "in_function": "renderTimeTrialBoard",
+    "via": "wrapper HN()",
+    "name": "DataRowMetricSize"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 277,
+    "in_function": "renderTimeTrialBoard",
+    "via": "wrapper HN()",
+    "name": "DataRowMetricSize"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "mobileConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace.Mobile",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 280,
+    "in_function": "renderTimeTrialBoard",
+    "via": "wrapper HN()",
+    "name": "DataRowTextSize"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 280,
+    "in_function": "renderTimeTrialBoard",
+    "via": "wrapper HN()",
+    "name": "DataRowTextSize"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "mobileConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace.Mobile",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 281,
+    "in_function": "renderTimeTrialBoard",
+    "via": "wrapper HN()",
+    "name": "DataRowMetricSize"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 281,
+    "in_function": "renderTimeTrialBoard",
+    "via": "wrapper HN()",
+    "name": "DataRowMetricSize"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "mobileConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace.Mobile",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 287,
+    "in_function": "renderRaceBoard",
+    "via": "wrapper HN()",
+    "name": "DataRowHeight"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "mobileConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace.Mobile",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 287,
+    "in_function": "renderRaceBoard",
+    "via": "wrapper HN()",
+    "name": "DataRowGap"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 287,
+    "in_function": "renderRaceBoard",
+    "via": "wrapper HN()",
+    "name": "DataRowHeight"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 287,
+    "in_function": "renderRaceBoard",
+    "via": "wrapper HN()",
+    "name": "DataRowGap"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:22",
+    "line": 290,
+    "in_function": "renderRaceBoard",
+    "via": "wrapper N()",
+    "name": "LocalRowTransparency"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "mobileConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace.Mobile",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 292,
+    "in_function": "renderRaceBoard",
+    "via": "wrapper HN()",
+    "name": "DataRowTextSize"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 292,
+    "in_function": "renderRaceBoard",
+    "via": "wrapper HN()",
+    "name": "DataRowTextSize"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "mobileConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace.Mobile",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 293,
+    "in_function": "renderRaceBoard",
+    "via": "wrapper HN()",
+    "name": "BoardAvatarSize"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 293,
+    "in_function": "renderRaceBoard",
+    "via": "wrapper HN()",
+    "name": "BoardAvatarSize"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "mobileConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace.Mobile",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 294,
+    "in_function": "renderRaceBoard",
+    "via": "wrapper HN()",
+    "name": "DataRowTextSize"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionPresentationClient:27",
+    "line": 294,
+    "in_function": "renderRaceBoard",
+    "via": "wrapper HN()",
+    "name": "DataRowTextSize"
+   }
+  ]
+ },
+ "startergui_core": [],
+ "gui_service": [
+  {
+   "member": "GetInsetArea",
+   "kind": "call",
+   "line": 88,
+   "in_function": "safeViewportRect"
+  },
+  {
+   "member": "GetInsetArea",
+   "kind": "call",
+   "line": 88,
+   "in_function": "safeViewportRect"
+  }
+ ],
+ "other_services": {},
+ "service_connects": [],
+ "proximity_prompts": [],
+ "instances_created_by_class": {
+  "Frame": 6,
+  "ImageLabel": 3,
+  "ScreenGui": 1,
+  "UICorner": 1,
+  "UIGradient": 2,
+  "UIScale": 1
+ },
+ "public_api": [
+  {
+   "name": "start",
+   "kind": "function",
+   "params": [],
+   "line": 4
+  }
+ ],
+ "unresolved": [
+  {
+   "category": "lookups",
+   "field": "name",
+   "line": 30,
+   "detail": "not a literal: tostring(eventId or \"\")"
+  },
+  {
+   "category": "lookups",
+   "field": "name",
+   "line": 49,
+   "detail": "not a literal: routeIdFor(mode,eventId)"
+  },
+  {
+   "category": "lookups",
+   "field": "name",
+   "line": 72,
+   "detail": "not a literal: name"
+  },
+  {
+   "category": "lookups",
+   "field": "name",
+   "line": 142,
+   "detail": "not a literal: name"
+  },
+  {
+   "category": "remote_calls",
+   "field": "remote",
+   "line": 193,
+   "detail": "not a literal: chosen at run time, one of: ReplicatedStorage.Remotes.Racing.RaceQueueRequest | ReplicatedStorage.Remotes.Racing.RaceRequest"
+  },
+  {
+   "category": "lookups",
+   "field": "name",
+   "line": 224,
+   "detail": "not a literal: routeId"
+  }
+ ],
+ "contract_file": "RaceSessionPresentationClient.json"
+}

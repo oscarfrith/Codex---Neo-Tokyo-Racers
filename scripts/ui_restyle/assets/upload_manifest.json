@@ -1,0 +1,366 @@
+{
+  "batch": "Pulse UI restyle, Phase 0, one upload batch",
+  "note": "Nothing is uploaded. Each file needs Oscar's yes from out/contact_sheet.png. Uploads cannot be edited; a revision is a new id. No existing asset id changes.",
+  "count": 18,
+  "files": [
+    {
+      "file": "out/icons.png",
+      "purpose": "UI glyphs, 128 px cells, 96 px ink box; rects in icons.json",
+      "config_key": "Config.UI.Pulse.Assets.IconSheet",
+      "data": {
+        "rects": "icons.json"
+      },
+      "tintable_white": true,
+      "alternative": false,
+      "status": "not uploaded",
+      "asset_id": null,
+      "size": [
+        1024,
+        1024
+      ],
+      "bytes": 59326,
+      "pixel_sha1": "73a761d84ea366181c5b81adce7ec1a3ce06ab82"
+    },
+    {
+      "file": "out/map_icons.png",
+      "purpose": "14 map icons redrawn white, 128 px cells; rects in map_icons.json",
+      "config_key": "Config.UI.Pulse.Assets.MapIconSheet",
+      "data": {
+        "rects": "map_icons.json",
+        "PinTipY": 0.9219
+      },
+      "tintable_white": true,
+      "alternative": false,
+      "status": "not uploaded",
+      "asset_id": null,
+      "size": [
+        512,
+        512
+      ],
+      "bytes": 20767,
+      "pixel_sha1": "5d09cd07318d2a5dfab84e8367c02788c124c760"
+    },
+    {
+      "file": "out/glow_soft.png",
+      "purpose": "Selected tile outer glow (9-slice)",
+      "config_key": "Config.UI.Pulse.Assets.GlowSoft",
+      "data": {
+        "SliceCenter": [
+          62,
+          62,
+          66,
+          66
+        ],
+        "edge_inset": 44
+      },
+      "tintable_white": true,
+      "alternative": false,
+      "status": "not uploaded",
+      "asset_id": null,
+      "size": [
+        128,
+        128
+      ],
+      "bytes": 3241,
+      "pixel_sha1": "e400de9d9d2f33ef0cd5bccdde408474c021b3ea"
+    },
+    {
+      "file": "out/glow_tight.png",
+      "purpose": "Main button glow (9-slice)",
+      "config_key": "Config.UI.Pulse.Assets.GlowTight",
+      "data": {
+        "SliceCenter": [
+          30,
+          30,
+          34,
+          34
+        ],
+        "edge_inset": 20
+      },
+      "tintable_white": true,
+      "alternative": false,
+      "status": "not uploaded",
+      "asset_id": null,
+      "size": [
+        64,
+        64
+      ],
+      "bytes": 1308,
+      "pixel_sha1": "65caf67a34803b5f0313c8d2cfb632a4a7421064"
+    },
+    {
+      "file": "out/glow_line.png",
+      "purpose": "Hairline base-line glow (stretches horizontally only)",
+      "config_key": "Config.UI.Pulse.Assets.GlowLine",
+      "data": {
+        "SliceCenter": [
+          30,
+          0,
+          34,
+          64
+        ],
+        "end_inset": 20
+      },
+      "tintable_white": true,
+      "alternative": false,
+      "status": "not uploaded",
+      "asset_id": null,
+      "size": [
+        64,
+        64
+      ],
+      "bytes": 1197,
+      "pixel_sha1": "c207012ba7e685585be2d0e177d08d2ae2d5def4"
+    },
+    {
+      "file": "out/digits_256.png",
+      "purpose": "BigNumber digits, 256 px cells (HeroNumber, countdown, results)",
+      "config_key": "Config.UI.Pulse.Assets.Digits256",
+      "data": {
+        "rects": "digits.json sheets.256"
+      },
+      "tintable_white": true,
+      "alternative": false,
+      "status": "not uploaded",
+      "asset_id": null,
+      "size": [
+        1024,
+        512
+      ],
+      "bytes": 25242,
+      "pixel_sha1": "fe513caf7b42615b572dfc2aca59e6308593af49"
+    },
+    {
+      "file": "out/digits_128.png",
+      "purpose": "BigNumber digits, 128 px cells (SpeedNumber, timers, position)",
+      "config_key": "Config.UI.Pulse.Assets.Digits128",
+      "data": {
+        "rects": "digits.json sheets.128"
+      },
+      "tintable_white": true,
+      "alternative": false,
+      "status": "not uploaded",
+      "asset_id": null,
+      "size": [
+        1024,
+        128
+      ],
+      "bytes": 12578,
+      "pixel_sha1": "db809b562fa81034840423f57e8900323373e8f5"
+    },
+    {
+      "file": "out/digits_punct.png",
+      "purpose": "BigNumber punctuation and units, both sizes, variable-width cells",
+      "config_key": "Config.UI.Pulse.Assets.DigitsPunct",
+      "data": {
+        "rects": "digits.json punctuation"
+      },
+      "tintable_white": true,
+      "alternative": false,
+      "status": "not uploaded",
+      "asset_id": null,
+      "size": [
+        1024,
+        1024
+      ],
+      "bytes": 64177,
+      "pixel_sha1": "fb78f0b9c0082115181a64fe8085858c9ffa0bf8"
+    },
+    {
+      "file": "out/gauge_ring.png",
+      "purpose": "Speed gauge 270 degree arc; revealed by a rotating UIGradient",
+      "config_key": "Config.UI.Pulse.Assets.GaugeRing",
+      "data": {
+        "geometry": "static_geometry.json gauge"
+      },
+      "tintable_white": true,
+      "alternative": false,
+      "status": "not uploaded",
+      "asset_id": null,
+      "size": [
+        512,
+        512
+      ],
+      "bytes": 14555,
+      "pixel_sha1": "8e1da442dd2f35e8627f99d6da313258e9e2efe7"
+    },
+    {
+      "file": "out/gauge_ticks.png",
+      "purpose": "Speed gauge tick ring, 11 major and 40 minor ticks over the same 270 degrees",
+      "config_key": "Config.UI.Pulse.Assets.GaugeTicks",
+      "data": {
+        "geometry": "static_geometry.json gauge"
+      },
+      "tintable_white": true,
+      "alternative": false,
+      "status": "not uploaded",
+      "asset_id": null,
+      "size": [
+        512,
+        512
+      ],
+      "bytes": 13784,
+      "pixel_sha1": "a6d1d8790170709e60c011571a802d69462352d8"
+    },
+    {
+      "file": "out/minimap_ring.png",
+      "purpose": "Round minimap ring (pink to cyan UIGradient at run time); also the gauge track",
+      "config_key": "Config.UI.Pulse.Assets.MinimapRing",
+      "data": {
+        "geometry": "static_geometry.json minimap"
+      },
+      "tintable_white": true,
+      "alternative": false,
+      "status": "not uploaded",
+      "asset_id": null,
+      "size": [
+        512,
+        512
+      ],
+      "bytes": 20244,
+      "pixel_sha1": "631d57734a24b15c3765fcf5fb7a529a86556105"
+    },
+    {
+      "file": "out/minimap_vignette.png",
+      "purpose": "Minimap inner vignette, tinted Ink",
+      "config_key": "Config.UI.Pulse.Assets.MinimapVignette",
+      "data": {
+        "geometry": "static_geometry.json minimap"
+      },
+      "tintable_white": true,
+      "alternative": false,
+      "status": "not uploaded",
+      "asset_id": null,
+      "size": [
+        512,
+        512
+      ],
+      "bytes": 30215,
+      "pixel_sha1": "23621aea71cbe5bddb43f0bda7be81d67c790848"
+    },
+    {
+      "file": "out/map_player_arrow.png",
+      "purpose": "Player arrow for minimap and full map; points up, pivot at centre",
+      "config_key": "Config.UI.Pulse.Assets.MapPlayerArrow",
+      "data": {},
+      "tintable_white": true,
+      "alternative": false,
+      "status": "not uploaded",
+      "asset_id": null,
+      "size": [
+        128,
+        128
+      ],
+      "bytes": 2189,
+      "pixel_sha1": "a582a5c47c28a5db111120da349d54da198d7fda"
+    },
+    {
+      "file": "out/segment_strip.png",
+      "purpose": "StatPanel SegmentedBar tile (ScaleType.Tile)",
+      "config_key": "Config.UI.Pulse.Assets.SegmentStrip",
+      "data": {
+        "TileSize": "UDim2.new(0, pitch, 1, 0)",
+        "fill_fraction": 0.71875
+      },
+      "tintable_white": true,
+      "alternative": false,
+      "status": "not uploaded",
+      "asset_id": null,
+      "size": [
+        64,
+        64
+      ],
+      "bytes": 165,
+      "pixel_sha1": "15a843b4c4b383b7e37aa63cf23dded19ca1f62d"
+    },
+    {
+      "file": "out/chequer_corner.png",
+      "purpose": "Chequered corner mark on event cards (white squares only)",
+      "config_key": "Config.UI.Pulse.Assets.ChequerCorner",
+      "data": {},
+      "tintable_white": true,
+      "alternative": false,
+      "status": "not uploaded",
+      "asset_id": null,
+      "size": [
+        256,
+        256
+      ],
+      "bytes": 2393,
+      "pixel_sha1": "cb1209cfae448aefc749b4b401a1a54d79a11fb6"
+    },
+    {
+      "file": "out/wordmark_placeholder.png",
+      "purpose": "PLACEHOLDER 'PULSE RACERS' lockup in Barlow ExtraBold Italic; not a logo",
+      "config_key": "Config.UI.Pulse.Assets.TitleMark",
+      "data": {},
+      "tintable_white": true,
+      "alternative": false,
+      "status": "not uploaded",
+      "asset_id": null,
+      "size": [
+        1024,
+        256
+      ],
+      "bytes": 13425,
+      "pixel_sha1": "bc06d6c2630daabf35a15010d17b072355df96b1"
+    },
+    {
+      "file": "out/keycap_9slice.png",
+      "purpose": "Key cap (9-slice) for prompt banners; letter drawn in Ink on top",
+      "config_key": "Config.UI.Pulse.Assets.KeyCap",
+      "data": {
+        "SliceCenter": [
+          20,
+          20,
+          44,
+          44
+        ]
+      },
+      "tintable_white": true,
+      "alternative": false,
+      "status": "not uploaded",
+      "asset_id": null,
+      "size": [
+        64,
+        64
+      ],
+      "bytes": 615,
+      "pixel_sha1": "3434d0657fda81858d0f1fb3537374da13836af6"
+    },
+    {
+      "file": "out/touch_controls.png",
+      "purpose": "Four touch-control images, 512 px cells: accelerate, brake, drift, boost",
+      "config_key": "Config.UI.Pulse.Assets.TouchControls",
+      "data": {
+        "rects": "marks.json touch"
+      },
+      "tintable_white": true,
+      "alternative": false,
+      "status": "not uploaded",
+      "asset_id": null,
+      "size": [
+        1024,
+        1024
+      ],
+      "bytes": 37181,
+      "pixel_sha1": "45a148722000ccdef097233c6bf952e8412dd549"
+    },
+    {
+      "file": "out/chequer_corner_two_tone.png",
+      "purpose": "ALTERNATIVE to chequer_corner.png: white and Ink squares baked in (matches the mockup on any background, cannot be tinted). Pick one.",
+      "config_key": "Config.UI.Pulse.Assets.ChequerCorner",
+      "data": {},
+      "tintable_white": false,
+      "alternative": true,
+      "status": "not uploaded",
+      "asset_id": null,
+      "size": [
+        256,
+        256
+      ],
+      "bytes": 5446,
+      "pixel_sha1": "1bc7b24ab6adcb796c1bca6ab1e521fff422e9a6"
+    }
+  ]
+}

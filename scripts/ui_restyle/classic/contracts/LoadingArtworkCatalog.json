@@ -1,0 +1,247 @@
+{
+ "script": "ReplicatedFirst.Loading.LoadingArtworkCatalog",
+ "class": "ModuleScript",
+ "source_file": "classic/sources/ReplicatedFirst.Loading.LoadingArtworkCatalog.lua",
+ "source_lines": 109,
+ "included_because": [
+  "under ReplicatedFirst.Loading"
+ ],
+ "requires": [],
+ "remotes": {
+  "calls": [],
+  "listens": []
+ },
+ "bindables": {
+  "fires": [],
+  "connects": [],
+  "invokes": [],
+  "handlers": [],
+  "created": [],
+  "module_signal_fires": []
+ },
+ "attributes": {
+  "reads": [
+   {
+    "receiver": "tile",
+    "receiver_path": "<item>.Tiles.<name>",
+    "receiver_kind": "other",
+    "line": 33,
+    "in_function": "tileSet",
+    "name": "ImageAssetId"
+   },
+   {
+    "receiver": "item",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "line": 45,
+    "in_function": "entries",
+    "name": "Enabled"
+   },
+   {
+    "receiver": "item",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "line": 45,
+    "in_function": "entries",
+    "name": "Destinations"
+   },
+   {
+    "receiver": "item",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "line": 46,
+    "in_function": "entries",
+    "name": "Layout"
+   },
+   {
+    "receiver": "item",
+    "receiver_kind": "other",
+    "wrapper_defined": "LoadingArtworkCatalog:23",
+    "line": 47,
+    "in_function": "entries",
+    "via": "wrapper tileSet()",
+    "name": "Rows",
+    "receiver_path": null
+   },
+   {
+    "receiver": "item",
+    "receiver_kind": "other",
+    "wrapper_defined": "LoadingArtworkCatalog:22",
+    "line": 47,
+    "in_function": "entries",
+    "via": "wrapper tileSet()",
+    "name": "Columns",
+    "receiver_path": null
+   },
+   {
+    "receiver": "item",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "line": 49,
+    "in_function": "entries",
+    "name": "ArtworkId"
+   },
+   {
+    "receiver": "item",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "line": 50,
+    "in_function": "entries",
+    "name": "ImageAssetId"
+   },
+   {
+    "receiver": "item",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "line": 51,
+    "in_function": "entries",
+    "name": "Weight"
+   },
+   {
+    "receiver": "item",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "line": 52,
+    "in_function": "entries",
+    "name": "FocalPointX"
+   },
+   {
+    "receiver": "item",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "line": 53,
+    "in_function": "entries",
+    "name": "FocalPointY"
+   },
+   {
+    "receiver": "item",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "line": 54,
+    "in_function": "entries",
+    "name": "MotionPreset"
+   },
+   {
+    "receiver": "item",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "line": 58,
+    "in_function": "entries",
+    "name": "AspectRatio"
+   },
+   {
+    "receiver": "item",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "line": 61,
+    "in_function": "entries",
+    "name": "StartScreenEligible"
+   }
+  ],
+  "writes": [],
+  "listens": []
+ },
+ "player_attribute_writes": [],
+ "screenguis": {
+  "created": [],
+  "enabled_writes": []
+ },
+ "names": {
+  "assigned": [
+   {
+    "via": "table_field",
+    "callee": "insert",
+    "class": null,
+    "line": 35,
+    "in_function": "tileSet",
+    "name": null,
+    "name_expr": "name"
+   }
+  ],
+  "looked_up": [
+   {
+    "method": "FindFirstChild",
+    "receiver": "root",
+    "receiver_path": "<item>.Tiles",
+    "root": "<item>",
+    "line": 32,
+    "in_function": "tileSet",
+    "name": null,
+    "name_expr": "name"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "item",
+    "root": null,
+    "wrapper_defined": "LoadingArtworkCatalog:28",
+    "line": 47,
+    "in_function": "entries",
+    "via": "wrapper tileSet()",
+    "name": "Tiles",
+    "receiver_path": null,
+    "receiver_kind": "other"
+   }
+  ],
+  "text_compared": []
+ },
+ "run_service": {
+  "render_steps": [],
+  "connects": []
+ },
+ "context_actions": [],
+ "user_input_service": {
+  "connects": [],
+  "members_used": []
+ },
+ "audio": {
+  "bridge_calls": [],
+  "ui_audio_attributes": []
+ },
+ "config": {
+  "paths": [],
+  "attribute_reads": [],
+  "child_lookups": []
+ },
+ "startergui_core": [],
+ "gui_service": [],
+ "other_services": {},
+ "service_connects": [],
+ "proximity_prompts": [],
+ "instances_created_by_class": {},
+ "public_api": [
+  {
+   "name": "Choose",
+   "kind": "function",
+   "params": [
+    "config",
+    "destination",
+    "previousId"
+   ],
+   "line": 93
+  },
+  {
+   "name": "List",
+   "kind": "function",
+   "params": [
+    "config",
+    "destination"
+   ],
+   "line": 104
+  }
+ ],
+ "unresolved": [
+  {
+   "category": "lookups",
+   "field": "name",
+   "line": 32,
+   "detail": "not a literal: name"
+  },
+  {
+   "category": "names_assigned",
+   "field": "name",
+   "line": 35,
+   "detail": "not a literal: name"
+  }
+ ],
+ "contract_file": "LoadingArtworkCatalog.json"
+}

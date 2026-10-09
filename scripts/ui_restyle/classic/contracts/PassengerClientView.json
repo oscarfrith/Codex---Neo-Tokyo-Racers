@@ -1,0 +1,347 @@
+{
+ "script": "ReplicatedStorage.Modules.Game.Activities.PassengerClientView",
+ "class": "ModuleScript",
+ "source_file": "classic/sources/ReplicatedStorage.Modules.Game.Activities.PassengerClientView.lua",
+ "source_lines": 188,
+ "included_because": [
+  "client script that is UI-coupled: creates ProximityPrompt",
+  "loaded by ActivityClient from a literal name list (line 295)"
+ ],
+ "requires": [],
+ "remotes": {
+  "calls": [],
+  "listens": []
+ },
+ "bindables": {
+  "fires": [],
+  "connects": [],
+  "invokes": [],
+  "handlers": [],
+  "created": [],
+  "module_signal_fires": []
+ },
+ "attributes": {
+  "reads": [
+   {
+    "receiver": "vehicle",
+    "receiver_path": null,
+    "receiver_kind": "vehicle?",
+    "line": 102,
+    "in_function": "riderStrip",
+    "name": "OwnerUserId"
+   },
+   {
+    "receiver": "vehicle",
+    "receiver_path": null,
+    "receiver_kind": "vehicle?",
+    "line": 103,
+    "in_function": "riderStrip",
+    "name": "OwnerUserId"
+   },
+   {
+    "receiver": "vehicle",
+    "receiver_path": null,
+    "receiver_kind": "vehicle?",
+    "line": 124,
+    "in_function": "refresh",
+    "name": "OwnerUserId"
+   },
+   {
+    "receiver": "vehicle",
+    "receiver_path": null,
+    "receiver_kind": "vehicle?",
+    "line": 131,
+    "in_function": "refresh",
+    "name": "RaceParticipant"
+   },
+   {
+    "receiver": "owner",
+    "receiver_path": null,
+    "receiver_kind": "player?",
+    "line": 132,
+    "in_function": "refresh",
+    "name": "RaceQueueActive"
+   },
+   {
+    "receiver": "owner",
+    "receiver_path": null,
+    "receiver_kind": "player?",
+    "line": 133,
+    "in_function": "refresh",
+    "name": "GarageSessionActive"
+   },
+   {
+    "receiver": "owner",
+    "receiver_path": null,
+    "receiver_kind": "player?",
+    "line": 134,
+    "in_function": "refresh",
+    "name": "OwnedGarageInside"
+   },
+   {
+    "receiver": "vehicle",
+    "receiver_path": null,
+    "receiver_kind": "vehicle?",
+    "line": 135,
+    "in_function": "refresh",
+    "name": "RaceRunId"
+   },
+   {
+    "receiver": "owner",
+    "receiver_kind": "player?",
+    "wrapper_defined": "PassengerClientView:45",
+    "line": 136,
+    "in_function": "refresh",
+    "via": "wrapper accessAllows()",
+    "name": "PassengerAccess",
+    "receiver_path": null
+   }
+  ],
+  "writes": [],
+  "listens": []
+ },
+ "player_attribute_writes": [],
+ "screenguis": {
+  "created": [],
+  "enabled_writes": [
+   {
+    "receiver": "prompt",
+    "receiver_path": null,
+    "value": false,
+    "screengui_like": "no",
+    "reason": "created here as ProximityPrompt",
+    "line": 83,
+    "in_function": "ensurePrompt",
+    "screengui_name": "PassengerRidePrompt"
+   },
+   {
+    "receiver": "ensurePrompt(seat, owner)",
+    "receiver_path": null,
+    "value": {
+     "expr": "not busy"
+    },
+    "screengui_like": "unknown",
+    "reason": "",
+    "line": 138,
+    "in_function": "refresh"
+   },
+   {
+    "receiver": "prompts[seat].Prompt",
+    "receiver_path": null,
+    "value": false,
+    "screengui_like": "unknown",
+    "reason": "",
+    "line": 140,
+    "in_function": "refresh"
+   }
+  ]
+ },
+ "names": {
+  "assigned": [
+   {
+    "via": "property",
+    "receiver": "prompt",
+    "class": "ProximityPrompt",
+    "line": 70,
+    "in_function": "ensurePrompt",
+    "name": "PassengerRidePrompt"
+   }
+  ],
+  "looked_up": [
+   {
+    "method": "FindFirstChild",
+    "receiver": "Workspace",
+    "receiver_path": "Workspace",
+    "root": "Workspace",
+    "line": 26,
+    "in_function": "vehiclesRoot",
+    "name": "World"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "world",
+    "receiver_path": "Workspace.World",
+    "root": "Workspace",
+    "line": 27,
+    "in_function": "vehiclesRoot",
+    "name": "Runtime"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "runtime",
+    "receiver_path": "Workspace.World.Runtime",
+    "root": "Workspace",
+    "line": 28,
+    "in_function": "vehiclesRoot",
+    "name": "PlayerVehicles"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "seat",
+    "receiver_path": null,
+    "root": null,
+    "receiver_isa": [
+     "VehicleSeat"
+    ],
+    "line": 100,
+    "in_function": "riderStrip",
+    "name": "PassengerSeat"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "vehicle",
+    "receiver_path": null,
+    "root": null,
+    "recursive": true,
+    "line": 126,
+    "in_function": "refresh",
+    "name": "PassengerSeat"
+   }
+  ],
+  "text_compared": []
+ },
+ "run_service": {
+  "render_steps": [],
+  "connects": []
+ },
+ "context_actions": [],
+ "user_input_service": {
+  "connects": [],
+  "members_used": []
+ },
+ "audio": {
+  "bridge_calls": [],
+  "ui_audio_attributes": []
+ },
+ "config": {
+  "paths": [],
+  "attribute_reads": [],
+  "child_lookups": []
+ },
+ "startergui_core": [],
+ "gui_service": [],
+ "other_services": {},
+ "service_connects": [],
+ "proximity_prompts": [
+  {
+   "variable": "prompt",
+   "class": "ProximityPrompt",
+   "line": 69,
+   "factory": null,
+   "adopts_existing": false,
+   "properties": {
+    "Name": "PassengerRidePrompt",
+    "ActionText": "RIDE",
+    "ObjectText": {
+     "expr": "owner.DisplayName"
+    },
+    "KeyboardKeyCode": {
+     "expr": "Enum.KeyCode.F"
+    },
+    "GamepadKeyCode": {
+     "expr": "Enum.KeyCode.ButtonY"
+    },
+    "HoldDuration": 0,
+    "MaxActivationDistance": 14,
+    "RequiresLineOfSight": false,
+    "UIOffset": {
+     "expr": "Vector2.new(0, 40)"
+    },
+    "Parent": {
+     "expr": "seat"
+    },
+    "Enabled": false
+   },
+   "writes": [
+    {
+     "property": "Name",
+     "value": "PassengerRidePrompt",
+     "line": 70
+    },
+    {
+     "property": "ActionText",
+     "value": "RIDE",
+     "line": 71
+    },
+    {
+     "property": "ObjectText",
+     "value": {
+      "expr": "owner.DisplayName"
+     },
+     "line": 72
+    },
+    {
+     "property": "KeyboardKeyCode",
+     "value": {
+      "expr": "Enum.KeyCode.F"
+     },
+     "line": 73
+    },
+    {
+     "property": "GamepadKeyCode",
+     "value": {
+      "expr": "Enum.KeyCode.ButtonY"
+     },
+     "line": 74
+    },
+    {
+     "property": "HoldDuration",
+     "value": 0,
+     "line": 75
+    },
+    {
+     "property": "MaxActivationDistance",
+     "value": 14,
+     "line": 76
+    },
+    {
+     "property": "RequiresLineOfSight",
+     "value": false,
+     "line": 77
+    },
+    {
+     "property": "UIOffset",
+     "value": {
+      "expr": "Vector2.new(0, 40)"
+     },
+     "line": 78
+    },
+    {
+     "property": "Parent",
+     "value": {
+      "expr": "seat"
+     },
+     "line": 79
+    },
+    {
+     "property": "Enabled",
+     "value": false,
+     "line": 83
+    }
+   ]
+  }
+ ],
+ "instances_created_by_class": {
+  "ProximityPrompt": 1
+ },
+ "public_api": [
+  {
+   "name": "Mount",
+   "kind": "function",
+   "params": [
+    "context"
+   ],
+   "line": 150
+  },
+  {
+   "name": "OnEvent",
+   "kind": "function",
+   "params": [
+    "payload"
+   ],
+   "line": 165
+  }
+ ],
+ "unresolved": [],
+ "contract_file": "PassengerClientView.json"
+}

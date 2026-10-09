@@ -1,0 +1,12 @@
+<!doctype html><html><head><meta charset="utf-8"><title>r10c Get Cash modal</title><script src="../shared/boot.js"></script></head><body><script>
+const coin = (n) => `<span class="flex g4">${Array.from({length:n},()=>`<i class="ic coin" style="font-size:52px;color:var(--yellow)"></i>`).join("")}</span>`;
+const pack = (i, n, best) => P.tile({w:236,idx:"0"+i,corner:best?{t:"BEST VALUE",cls:"yellow"}:{t:"NOT ENABLED"},vis:coin(n),sub:"CASH PACK",name:"PACK "+i,cls:"dis"});
+P.page(`
+  ${P.freeroam({speed:0,dimmed:1})}
+  ${P.modal("GET CASH", `
+    <div class="abs" style="right:40px;top:30px"><div class="cash fixed">${P.ic("coin")}<span class="t-status">$3,613,709</span></div></div>
+    <div class="flex" style="gap:10px;opacity:.6">${pack(1,1)}${pack(2,2)}${pack(3,3,1)}${pack(4,4)}</div>
+    <div class="t-value c-2" style="margin-top:22px">CASH PRODUCTS ARE NOT ENABLED YET</div>
+  `, [P.btn("CLOSE","back","md")], "width:1054px")}
+`);
+</script></body></html>

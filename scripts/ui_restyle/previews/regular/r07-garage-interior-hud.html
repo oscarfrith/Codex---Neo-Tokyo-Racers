@@ -1,0 +1,19 @@
+<!doctype html><html><head><meta charset="utf-8"><title>r07 Garage interior HUD</title><script src="../shared/boot.js"></script></head><body><script>
+const dd = (label, icon, open) => `<div class="btn sm ${open ? "focus" : ""}" style="width:230px;justify-content:space-between;padding:0 14px 0 18px"><span class="flex ac g12">${P.ic(icon)}${label}</span>${P.ic(open ? "up" : "down")}</div>`;
+const opt = (l, on) => `<div class="row ${on ? "you" : ""}" style="min-height:56px;padding:0 18px"><span class="t-tab grow">${l}</span>${on ? P.ic("tick") : ""}</div>`;
+P.page(`
+  ${P.scene("garage","3D SCENE &middot; OWNER ON FOOT INSIDE THE GARAGE")}<div class="scrim-hud"></div>
+  ${P.status({hud:1,cash:"$3,613,696"})}
+  <div class="abs" style="left:58px;top:58px">
+    <div class="flex ac g12" style="height:66px"><div class="titlemark" style="width:22px;height:40px;background:repeating-linear-gradient(135deg,var(--pink) 0 6px,transparent 6px 11px)"></div><div class="t-sect shadow" style="font-size:46px">KANDA TWO-BAY</div></div>
+    <div class="flex g8" style="margin-top:10px">${dd("ACCESS","lock",1)}${dd("INVITE","players",0)}</div>
+    <div class="col" style="width:300px;margin-top:4px">
+      ${opt("PRIVATE")}${opt("FRIENDS ONLY",1)}${opt("INVITE ONLY")}${opt("PUBLIC")}
+    </div>
+  </div>
+  <div class="toastslot">${P.toast("ACCESS SET TO FRIENDS ONLY","ok","tick")}</div>
+  <div class="promptstack">${P.prompt("MANAGE GARAGE","GARAGE DESK",P.key("E"))}</div>
+  <div class="btnrow centre" style="bottom:40px">${P.btn("CONTROLS","gamepad","sm")}</div>
+  <div class="abs note" style="left:58px;bottom:44px;width:520px">Owner only: ACCESS and INVITE. Leaving is by world prompt (Drive Out, Exit Garage); no minimap or gauge indoors.</div>
+`);
+</script></body></html>

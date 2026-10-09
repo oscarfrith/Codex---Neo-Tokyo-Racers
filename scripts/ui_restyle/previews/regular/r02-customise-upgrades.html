@@ -1,0 +1,20 @@
+<!doctype html><html><head><meta charset="utf-8"><title>r02 Customise: Upgrades tab</title><script src="../shared/boot.js"></script></head><body><script>
+const ups = [
+  {variant:"LV 1",corner:{t:"FITTED"},sub:"1 PIP",name:"INTAKE"},
+  {variant:"LV 1",corner:{t:"FITTED"},sub:"1 PIP",name:"COOLING"},
+  {variant:"LV 2",price:"$12,000",sub:"2 PIPS",name:"INJECTORS",sel:1},
+  {variant:"LV 2",price:"$18,000",sub:"2 PIPS",name:"EXHAUST"},
+  {variant:"LV 3",price:"$46,000",sub:"NEEDS INJECTORS",name:"TURBINE",locked:1,unaff:1},
+  {variant:"LV 3",price:"$60,000",sub:"NEEDS EXHAUST",name:"AFTERBURN",locked:1,unaff:1}];
+const pips = Array.from({length:10},(_,i)=>`<div style="width:22px;height:12px;transform:skewX(-14deg);background:${i<2?"var(--white)":i<4?"var(--cyan)":"rgba(243,240,255,.22)"}"></div>`).join("");
+P.page(`
+  ${P.scene("garage")}<div class="scrim-garage"></div>
+  ${P.title("CUSTOMISE")}${P.customiseTabs(1)}
+  ${P.status({garage:"3 / 4",plus:1})}
+  ${P.statpanel({name:"STINGER",badge:"<span>D</span><span>321</span>",sub:[["FRONT ENGINE","Standard"],["PREVIEWING","Injectors"]],
+     stats:[["SPEED",83,3],["ACCEL",78,4],["HANDLING",63],["DRIFT",61],["BRAKING",62],["BOOST",61]]})}
+  ${P.railhead("FRONT ENGINE 3/6",`<div class="col g8" style="padding-bottom:6px"><div class="t-label c-2 shadow">UPGRADE BUDGET &middot; 4 / 10</div><div class="flex g4">${pips}</div></div>`)}
+  <div class="rail">${ups.map(u=>P.tile({...u,vis:P.sil("eng")})).join("")}</div>
+  ${P.btnrow([P.btn("BACK","back"),P.btn("DRIVE","wheel"),P.btn("UPGRADE $12,000","","buy")])}
+`);
+</script></body></html>

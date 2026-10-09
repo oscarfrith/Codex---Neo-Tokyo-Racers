@@ -1,0 +1,173 @@
+{
+ "script": "ReplicatedStorage.Modules.Game.Development.TrailerShotClient",
+ "class": "ModuleScript",
+ "source_file": "classic/sources/ReplicatedStorage.Modules.Game.Development.TrailerShotClient.lua",
+ "source_lines": 113,
+ "included_because": [
+  "ClientBase entry 'TrailerShotClient'"
+ ],
+ "requires": [
+  {
+   "expr": "game:GetService(\"ReplicatedStorage\").Modules.Core.ClientLifecycle",
+   "line": 7,
+   "in_function": "Client.start",
+   "target": "ReplicatedStorage.Modules.Core.ClientLifecycle"
+  }
+ ],
+ "remotes": {
+  "calls": [],
+  "listens": []
+ },
+ "bindables": {
+  "fires": [],
+  "connects": [],
+  "invokes": [],
+  "handlers": [],
+  "created": [],
+  "module_signal_fires": []
+ },
+ "attributes": {
+  "reads": [],
+  "writes": [],
+  "listens": []
+ },
+ "player_attribute_writes": [],
+ "screenguis": {
+  "created": [],
+  "enabled_writes": []
+ },
+ "names": {
+  "assigned": [],
+  "looked_up": [
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 6,
+    "in_function": "Client.start",
+    "name": "Config"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\")",
+    "receiver_path": "ReplicatedStorage.Config",
+    "root": "ReplicatedStorage",
+    "line": 6,
+    "in_function": "Client.start",
+    "name": "Development"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "workspace",
+    "receiver_path": "Workspace",
+    "root": "Workspace",
+    "line": 22,
+    "in_function": "Client.start",
+    "name": "TrailerShots"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "shots",
+    "receiver_path": "Workspace.TrailerShots",
+    "root": "Workspace",
+    "line": 23,
+    "in_function": "Client.start",
+    "name": "Shot01_StraightRoadPan"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "shotFolder",
+    "receiver_path": "Workspace.TrailerShots.Shot01_StraightRoadPan",
+    "root": "Workspace",
+    "line": 26,
+    "in_function": "Client.start",
+    "name": "Camera_A"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "shotFolder",
+    "receiver_path": "Workspace.TrailerShots.Shot01_StraightRoadPan",
+    "root": "Workspace",
+    "line": 28,
+    "in_function": "Client.start",
+    "name": "Camera_B"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "shotFolder",
+    "receiver_path": "Workspace.TrailerShots.Shot01_StraightRoadPan",
+    "root": "Workspace",
+    "line": 30,
+    "in_function": "Client.start",
+    "name": "LookAt_Target"
+   }
+  ],
+  "text_compared": []
+ },
+ "run_service": {
+  "render_steps": [],
+  "connects": [
+   {
+    "signal": "RenderStepped",
+    "method": "Connect",
+    "line": 80,
+    "in_function": "playShot01",
+    "callback": "function() local elapsed = os.clock() - startTi..."
+   }
+  ]
+ },
+ "context_actions": [],
+ "user_input_service": {
+  "connects": [
+   {
+    "signal": "InputBegan",
+    "method": "Connect",
+    "line": 96,
+    "in_function": "Client.start"
+   }
+  ],
+  "members_used": [
+   {
+    "member": "InputBegan",
+    "kind": "connect",
+    "line": 96,
+    "in_function": "Client.start"
+   }
+  ]
+ },
+ "audio": {
+  "bridge_calls": [],
+  "ui_audio_attributes": []
+ },
+ "config": {
+  "paths": [
+   {
+    "path": "ReplicatedStorage.Config",
+    "line": 6
+   },
+   {
+    "path": "ReplicatedStorage.Config.Development.ClientTools",
+    "line": 6
+   }
+  ],
+  "attribute_reads": [],
+  "child_lookups": []
+ },
+ "startergui_core": [],
+ "gui_service": [],
+ "other_services": {},
+ "service_connects": [],
+ "proximity_prompts": [],
+ "instances_created_by_class": {},
+ "public_api": [
+  {
+   "name": "start",
+   "kind": "function",
+   "params": [],
+   "line": 4
+  }
+ ],
+ "unresolved": [],
+ "contract_file": "TrailerShotClient.json"
+}

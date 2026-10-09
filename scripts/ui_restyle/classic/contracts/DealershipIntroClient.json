@@ -1,0 +1,1220 @@
+{
+ "script": "ReplicatedStorage.Modules.Game.Dealership.DealershipIntroClient",
+ "class": "ModuleScript",
+ "source_file": "classic/sources/ReplicatedStorage.Modules.Game.Dealership.DealershipIntroClient.lua",
+ "source_lines": 738,
+ "included_because": [
+  "ClientBase entry 'DealershipIntroClient'"
+ ],
+ "requires": [
+  {
+   "expr": "module",
+   "line": 50,
+   "in_function": "readUITheme",
+   "target": "ReplicatedStorage.Modules.Game.UI.UITheme"
+  }
+ ],
+ "remotes": {
+  "calls": [
+   {
+    "method": "InvokeServer",
+    "receiver": "getComplete",
+    "arg_count": 0,
+    "line": 569,
+    "in_function": "isObjectiveComplete",
+    "remote": null,
+    "remote_expr": "getComplete"
+   },
+   {
+    "method": "FireServer",
+    "receiver": "completeRemote",
+    "arg_count": 0,
+    "line": 595,
+    "in_function": "markObjectiveComplete",
+    "remote": null,
+    "remote_expr": "completeRemote"
+   }
+  ],
+  "listens": []
+ },
+ "bindables": {
+  "fires": [
+   {
+    "receiver": "openEvent",
+    "created_here": false,
+    "lookup": "Players.LocalPlayer.PlayerScripts.Runtime.Dealership",
+    "arg_count": 0,
+    "line": 614,
+    "in_function": "tryOpenGarage",
+    "name": "OpenGarageFromIntro"
+   }
+  ],
+  "connects": [
+   {
+    "signal": "Event",
+    "receiver": "closeEvent",
+    "method": "Connect",
+    "handler": "onExited",
+    "handler_line": 681,
+    "handler_params": [],
+    "lookup": "created in this script (line 672)",
+    "created_here": true,
+    "line": 687,
+    "in_function": "run",
+    "name": "GarageClosedFromDealershipExit"
+   }
+  ],
+  "invokes": [],
+  "handlers": [],
+  "created": [
+   {
+    "variable": "closeEvent",
+    "class": "BindableEvent",
+    "line": 672,
+    "factory": null,
+    "adopts_existing": false,
+    "Name": "GarageClosedFromDealershipExit",
+    "Parent": {
+     "expr": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"Runtime\"):WaitForChild(\"Dealership\")"
+    }
+   }
+  ],
+  "module_signal_fires": []
+ },
+ "attributes": {
+  "reads": [
+   {
+    "receiver": "camera",
+    "receiver_path": "Workspace.CurrentCamera",
+    "receiver_kind": "workspace",
+    "line": 510,
+    "in_function": "playCameraIntro",
+    "name": "DealershipIntroCameraActive"
+   },
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "line": 550,
+    "in_function": "isObjectiveComplete",
+    "name": "DealershipIntroObjectiveComplete"
+   },
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "line": 584,
+    "in_function": "markObjectiveComplete",
+    "name": "DealershipIntroObjectiveComplete"
+   },
+   {
+    "receiver": "<intro>.Desk.GarageDeskTrigger",
+    "receiver_kind": "other",
+    "wrapper_defined": "DealershipIntroClient:111",
+    "line": 644,
+    "in_function": "run",
+    "via": "wrapper getIntroConfig()",
+    "name": "ActivationDistance",
+    "receiver_path": null
+   },
+   {
+    "receiver": "intro",
+    "receiver_kind": "other",
+    "wrapper_defined": "DealershipIntroClient:147",
+    "line": 644,
+    "in_function": "run",
+    "via": "wrapper getIntroConfig()",
+    "name": "Debug",
+    "receiver_path": null
+   },
+   {
+    "receiver": "intro",
+    "receiver_kind": "other",
+    "wrapper_defined": "DealershipIntroClient:146",
+    "line": 644,
+    "in_function": "run",
+    "via": "wrapper getIntroConfig()",
+    "name": "DynamicArrowTetherBeamCoreTransparency",
+    "receiver_path": null
+   },
+   {
+    "receiver": "intro",
+    "receiver_kind": "other",
+    "wrapper_defined": "DealershipIntroClient:145",
+    "line": 644,
+    "in_function": "run",
+    "via": "wrapper getIntroConfig()",
+    "name": "DynamicArrowTetherBeamCoreWidth",
+    "receiver_path": null
+   },
+   {
+    "receiver": "intro",
+    "receiver_kind": "other",
+    "wrapper_defined": "DealershipIntroClient:144",
+    "line": 644,
+    "in_function": "run",
+    "via": "wrapper getIntroConfig()",
+    "name": "DynamicArrowTetherBeamTransparency",
+    "receiver_path": null
+   },
+   {
+    "receiver": "intro",
+    "receiver_kind": "other",
+    "wrapper_defined": "DealershipIntroClient:143",
+    "line": 644,
+    "in_function": "run",
+    "via": "wrapper getIntroConfig()",
+    "name": "DynamicArrowTetherBeamWidth",
+    "receiver_path": null
+   },
+   {
+    "receiver": "intro",
+    "receiver_kind": "other",
+    "wrapper_defined": "DealershipIntroClient:142",
+    "line": 644,
+    "in_function": "run",
+    "via": "wrapper getIntroConfig()",
+    "name": "DynamicArrowTetherBeamColor",
+    "receiver_path": null
+   },
+   {
+    "receiver": "intro",
+    "receiver_kind": "other",
+    "wrapper_defined": "DealershipIntroClient:141",
+    "line": 644,
+    "in_function": "run",
+    "via": "wrapper getIntroConfig()",
+    "name": "DynamicArrowTetherBeamEnabled",
+    "receiver_path": null
+   },
+   {
+    "receiver": "intro",
+    "receiver_kind": "other",
+    "wrapper_defined": "DealershipIntroClient:140",
+    "line": 644,
+    "in_function": "run",
+    "via": "wrapper getIntroConfig()",
+    "name": "DynamicArrowTetherHeadColor",
+    "receiver_path": null
+   },
+   {
+    "receiver": "intro",
+    "receiver_kind": "other",
+    "wrapper_defined": "DealershipIntroClient:139",
+    "line": 644,
+    "in_function": "run",
+    "via": "wrapper getIntroConfig()",
+    "name": "DynamicArrowTetherColor",
+    "receiver_path": null
+   },
+   {
+    "receiver": "intro",
+    "receiver_kind": "other",
+    "wrapper_defined": "DealershipIntroClient:138",
+    "line": 644,
+    "in_function": "run",
+    "via": "wrapper getIntroConfig()",
+    "name": "DynamicArrowTetherPulseSpeed",
+    "receiver_path": null
+   },
+   {
+    "receiver": "intro",
+    "receiver_kind": "other",
+    "wrapper_defined": "DealershipIntroClient:137",
+    "line": 644,
+    "in_function": "run",
+    "via": "wrapper getIntroConfig()",
+    "name": "DynamicArrowTetherArrowTransparency",
+    "receiver_path": null
+   },
+   {
+    "receiver": "intro",
+    "receiver_kind": "other",
+    "wrapper_defined": "DealershipIntroClient:136",
+    "line": 644,
+    "in_function": "run",
+    "via": "wrapper getIntroConfig()",
+    "name": "DynamicArrowTetherHeadWidth",
+    "receiver_path": null
+   },
+   {
+    "receiver": "intro",
+    "receiver_kind": "other",
+    "wrapper_defined": "DealershipIntroClient:135",
+    "line": 644,
+    "in_function": "run",
+    "via": "wrapper getIntroConfig()",
+    "name": "DynamicArrowTetherHeadLength",
+    "receiver_path": null
+   },
+   {
+    "receiver": "intro",
+    "receiver_kind": "other",
+    "wrapper_defined": "DealershipIntroClient:134",
+    "line": 644,
+    "in_function": "run",
+    "via": "wrapper getIntroConfig()",
+    "name": "DynamicArrowTetherShaftWidth",
+    "receiver_path": null
+   },
+   {
+    "receiver": "intro",
+    "receiver_kind": "other",
+    "wrapper_defined": "DealershipIntroClient:133",
+    "line": 644,
+    "in_function": "run",
+    "via": "wrapper getIntroConfig()",
+    "name": "DynamicArrowTetherShaftLength",
+    "receiver_path": null
+   },
+   {
+    "receiver": "intro",
+    "receiver_kind": "other",
+    "wrapper_defined": "DealershipIntroClient:132",
+    "line": 644,
+    "in_function": "run",
+    "via": "wrapper getIntroConfig()",
+    "name": "DynamicArrowTetherShaftEnabled",
+    "receiver_path": null
+   },
+   {
+    "receiver": "intro",
+    "receiver_kind": "other",
+    "wrapper_defined": "DealershipIntroClient:131",
+    "line": 644,
+    "in_function": "run",
+    "via": "wrapper getIntroConfig()",
+    "name": "DynamicArrowTetherArrowScale",
+    "receiver_path": null
+   },
+   {
+    "receiver": "intro",
+    "receiver_kind": "other",
+    "wrapper_defined": "DealershipIntroClient:130",
+    "line": 644,
+    "in_function": "run",
+    "via": "wrapper getIntroConfig()",
+    "name": "PathArrowHeightOffset",
+    "receiver_path": null
+   },
+   {
+    "receiver": "intro",
+    "receiver_kind": "other",
+    "wrapper_defined": "DealershipIntroClient:130",
+    "line": 644,
+    "in_function": "run",
+    "via": "wrapper getIntroConfig()",
+    "name": "DynamicArrowTetherHeightOffset",
+    "receiver_path": null
+   },
+   {
+    "receiver": "intro",
+    "receiver_kind": "other",
+    "wrapper_defined": "DealershipIntroClient:129",
+    "line": 644,
+    "in_function": "run",
+    "via": "wrapper getIntroConfig()",
+    "name": "DynamicArrowTetherEndOffset",
+    "receiver_path": null
+   },
+   {
+    "receiver": "intro",
+    "receiver_kind": "other",
+    "wrapper_defined": "DealershipIntroClient:128",
+    "line": 644,
+    "in_function": "run",
+    "via": "wrapper getIntroConfig()",
+    "name": "DynamicArrowTetherStartOffset",
+    "receiver_path": null
+   },
+   {
+    "receiver": "intro",
+    "receiver_kind": "other",
+    "wrapper_defined": "DealershipIntroClient:127",
+    "line": 644,
+    "in_function": "run",
+    "via": "wrapper getIntroConfig()",
+    "name": "DynamicArrowTetherMinDistance",
+    "receiver_path": null
+   },
+   {
+    "receiver": "intro",
+    "receiver_kind": "other",
+    "wrapper_defined": "DealershipIntroClient:126",
+    "line": 644,
+    "in_function": "run",
+    "via": "wrapper getIntroConfig()",
+    "name": "DynamicArrowTetherMaxArrows",
+    "receiver_path": null
+   },
+   {
+    "receiver": "intro",
+    "receiver_kind": "other",
+    "wrapper_defined": "DealershipIntroClient:125",
+    "line": 644,
+    "in_function": "run",
+    "via": "wrapper getIntroConfig()",
+    "name": "DynamicArrowTetherSpacing",
+    "receiver_path": null
+   },
+   {
+    "receiver": "intro",
+    "receiver_kind": "other",
+    "wrapper_defined": "DealershipIntroClient:124",
+    "line": 644,
+    "in_function": "run",
+    "via": "wrapper getIntroConfig()",
+    "name": "DynamicArrowTetherEnabled",
+    "receiver_path": null
+   },
+   {
+    "receiver": "intro",
+    "receiver_kind": "other",
+    "wrapper_defined": "DealershipIntroClient:123",
+    "line": 644,
+    "in_function": "run",
+    "via": "wrapper getIntroConfig()",
+    "name": "PersistIntroObjectiveCompletion",
+    "receiver_path": null
+   },
+   {
+    "receiver": "intro",
+    "receiver_kind": "other",
+    "wrapper_defined": "DealershipIntroClient:122",
+    "line": 644,
+    "in_function": "run",
+    "via": "wrapper getIntroConfig()",
+    "name": "CameraIntroDuration",
+    "receiver_path": null
+   },
+   {
+    "receiver": "intro",
+    "receiver_kind": "other",
+    "wrapper_defined": "DealershipIntroClient:121",
+    "line": 644,
+    "in_function": "run",
+    "via": "wrapper getIntroConfig()",
+    "name": "CameraIntroEnabled",
+    "receiver_path": null
+   },
+   {
+    "receiver": "intro",
+    "receiver_kind": "other",
+    "wrapper_defined": "DealershipIntroClient:120",
+    "line": 644,
+    "in_function": "run",
+    "via": "wrapper getIntroConfig()",
+    "name": "IntroObjectiveText",
+    "receiver_path": null
+   },
+   {
+    "receiver": "intro",
+    "receiver_kind": "other",
+    "wrapper_defined": "DealershipIntroClient:119",
+    "line": 644,
+    "in_function": "run",
+    "via": "wrapper getIntroConfig()",
+    "name": "ShowObjectiveText",
+    "receiver_path": null
+   },
+   {
+    "receiver": "intro",
+    "receiver_kind": "other",
+    "wrapper_defined": "DealershipIntroClient:118",
+    "line": 644,
+    "in_function": "run",
+    "via": "wrapper getIntroConfig()",
+    "name": "AutoOpenGarageAtDesk",
+    "receiver_path": null
+   },
+   {
+    "receiver": "intro",
+    "receiver_kind": "other",
+    "wrapper_defined": "DealershipIntroClient:116",
+    "line": 644,
+    "in_function": "run",
+    "via": "wrapper getIntroConfig()",
+    "name": "Enabled",
+    "receiver_path": null
+   },
+   {
+    "receiver": "intro",
+    "receiver_kind": "other",
+    "wrapper_defined": "DealershipIntroClient:110",
+    "line": 644,
+    "in_function": "run",
+    "via": "wrapper getIntroConfig()",
+    "name": "DeskActivationDistance",
+    "receiver_path": null
+   }
+  ],
+  "writes": [
+   {
+    "receiver": "camera",
+    "receiver_path": "Workspace.CurrentCamera",
+    "receiver_kind": "workspace",
+    "value": true,
+    "line": 501,
+    "in_function": "playCameraIntro",
+    "name": "DealershipIntroCameraActive"
+   },
+   {
+    "receiver": "camera",
+    "receiver_path": "Workspace.CurrentCamera",
+    "receiver_kind": "workspace",
+    "value": false,
+    "line": 511,
+    "in_function": "playCameraIntro",
+    "name": "DealershipIntroCameraActive"
+   },
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "value": true,
+    "line": 572,
+    "in_function": "isObjectiveComplete",
+    "name": "DealershipIntroObjectiveComplete"
+   },
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "value": true,
+    "line": 588,
+    "in_function": "markObjectiveComplete",
+    "name": "DealershipIntroObjectiveComplete"
+   }
+  ],
+  "listens": []
+ },
+ "player_attribute_writes": [
+  {
+   "receiver": "player",
+   "receiver_path": "Players.LocalPlayer",
+   "receiver_kind": "player",
+   "value": true,
+   "line": 572,
+   "in_function": "isObjectiveComplete",
+   "name": "DealershipIntroObjectiveComplete"
+  },
+  {
+   "receiver": "player",
+   "receiver_path": "Players.LocalPlayer",
+   "receiver_kind": "player",
+   "value": true,
+   "line": 588,
+   "in_function": "markObjectiveComplete",
+   "name": "DealershipIntroObjectiveComplete"
+  }
+ ],
+ "screenguis": {
+  "created": [
+   {
+    "variable": "gui",
+    "class": "ScreenGui",
+    "line": 173,
+    "factory": null,
+    "adopts_existing": false,
+    "Name": "DealershipIntroObjective",
+    "DisplayOrder": 18,
+    "ResetOnSpawn": false,
+    "IgnoreGuiInset": true,
+    "ZIndexBehavior": {
+     "expr": "Enum.ZIndexBehavior.Sibling"
+    },
+    "Parent": {
+     "expr": "playerGui"
+    },
+    "enabled_writes": [],
+    "property_lines": {
+     "Name": 174,
+     "ResetOnSpawn": 175,
+     "IgnoreGuiInset": 176,
+     "ZIndexBehavior": 177,
+     "DisplayOrder": 178,
+     "Parent": 179
+    }
+   }
+  ],
+  "enabled_writes": [
+   {
+    "receiver": "aura",
+    "receiver_path": null,
+    "value": false,
+    "screengui_like": "no",
+    "reason": "created here as Beam",
+    "line": 319,
+    "in_function": "createTetherBeam",
+    "screengui_name": "AuraBeam"
+   },
+   {
+    "receiver": "core",
+    "receiver_path": null,
+    "value": false,
+    "screengui_like": "no",
+    "reason": "created here as Beam",
+    "line": 334,
+    "in_function": "createTetherBeam",
+    "screengui_name": "CoreBeam"
+   },
+   {
+    "receiver": "beam.Aura",
+    "receiver_path": null,
+    "value": {
+     "expr": "visible"
+    },
+    "screengui_like": "unknown",
+    "reason": "",
+    "line": 350,
+    "in_function": "setBeamVisible"
+   },
+   {
+    "receiver": "beam.Core",
+    "receiver_path": null,
+    "value": {
+     "expr": "visible"
+    },
+    "screengui_like": "unknown",
+    "reason": "",
+    "line": 351,
+    "in_function": "setBeamVisible"
+   },
+   {
+    "receiver": "objectiveGui",
+    "receiver_path": null,
+    "value": false,
+    "screengui_like": "unknown",
+    "reason": "",
+    "line": 624,
+    "in_function": "cleanup"
+   }
+  ]
+ },
+ "names": {
+  "assigned": [
+   {
+    "via": "property",
+    "receiver": "gui",
+    "class": "ScreenGui",
+    "line": 174,
+    "in_function": "createObjectiveGui",
+    "name": "DealershipIntroObjective"
+   },
+   {
+    "via": "property",
+    "receiver": "root",
+    "class": "Frame",
+    "line": 182,
+    "in_function": "createObjectiveGui",
+    "name": "ObjectiveRoot"
+   },
+   {
+    "via": "property",
+    "receiver": "label",
+    "class": "TextLabel",
+    "line": 206,
+    "in_function": "createObjectiveGui",
+    "name": "ObjectiveText"
+   },
+   {
+    "via": "property",
+    "receiver": "clientRoot",
+    "class": "Folder",
+    "line": 245,
+    "in_function": "ensureClientPathFolder",
+    "name": "ClientOnly"
+   },
+   {
+    "via": "property",
+    "receiver": "introPath",
+    "class": "Folder",
+    "line": 255,
+    "in_function": "ensureClientPathFolder",
+    "name": "IntroPath"
+   },
+   {
+    "via": "property",
+    "receiver": "attachment",
+    "class": "Attachment",
+    "line": 289,
+    "in_function": "makeBeamAnchor",
+    "name": "Attachment"
+   },
+   {
+    "via": "property",
+    "receiver": "beamFolder",
+    "class": "Folder",
+    "line": 301,
+    "in_function": "createTetherBeam",
+    "name": "DynamicBeam"
+   },
+   {
+    "via": "wrapper makeBeamAnchor()",
+    "receiver": "part",
+    "class": "Part",
+    "wrapper_defined": "DealershipIntroClient:279",
+    "line": 304,
+    "in_function": "createTetherBeam",
+    "name": "BeamStart"
+   },
+   {
+    "via": "wrapper makeBeamAnchor()",
+    "receiver": "part",
+    "class": "Part",
+    "wrapper_defined": "DealershipIntroClient:279",
+    "line": 305,
+    "in_function": "createTetherBeam",
+    "name": "BeamEnd"
+   },
+   {
+    "via": "property",
+    "receiver": "aura",
+    "class": "Beam",
+    "line": 308,
+    "in_function": "createTetherBeam",
+    "name": "AuraBeam"
+   },
+   {
+    "via": "property",
+    "receiver": "core",
+    "class": "Beam",
+    "line": 323,
+    "in_function": "createTetherBeam",
+    "name": "CoreBeam"
+   },
+   {
+    "via": "property",
+    "receiver": "arrow",
+    "class": "Model",
+    "line": 366,
+    "in_function": "createArrowModel",
+    "name": null,
+    "name_expr": "string.format(\"DynamicArrow_%02d\", index)"
+   },
+   {
+    "via": "wrapper makeArrowPart()",
+    "receiver": "part",
+    "class": "Part",
+    "wrapper_defined": "DealershipIntroClient:262",
+    "line": 369,
+    "in_function": "createArrowModel",
+    "name": "Shaft"
+   },
+   {
+    "via": "wrapper makeArrowPart()",
+    "receiver": "part",
+    "class": "Part",
+    "wrapper_defined": "DealershipIntroClient:262",
+    "line": 370,
+    "in_function": "createArrowModel",
+    "name": "HeadLeft"
+   },
+   {
+    "via": "wrapper makeArrowPart()",
+    "receiver": "part",
+    "class": "Part",
+    "wrapper_defined": "DealershipIntroClient:262",
+    "line": 371,
+    "in_function": "createArrowModel",
+    "name": "HeadRight"
+   },
+   {
+    "via": "property",
+    "receiver": "closeEvent",
+    "class": "BindableEvent",
+    "line": 673,
+    "in_function": "run",
+    "name": "GarageClosedFromDealershipExit"
+   }
+  ],
+  "looked_up": [
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 49,
+    "in_function": "readUITheme",
+    "name": "Modules"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\")",
+    "receiver_path": "ReplicatedStorage.Modules",
+    "root": "ReplicatedStorage",
+    "line": 49,
+    "in_function": "readUITheme",
+    "name": "Game"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game",
+    "root": "ReplicatedStorage",
+    "line": 49,
+    "in_function": "readUITheme",
+    "name": "UI"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"UI\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game.UI",
+    "root": "ReplicatedStorage",
+    "line": 49,
+    "in_function": "readUITheme",
+    "name": "UITheme"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "character",
+    "receiver_path": "Players.LocalPlayer.Character",
+    "root": "Players",
+    "line": 92,
+    "in_function": "waitForCharacterRoot",
+    "name": "HumanoidRootPart"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "character",
+    "receiver_path": "Players.LocalPlayer.Character",
+    "root": "Players",
+    "line": 95,
+    "in_function": "waitForCharacterRoot",
+    "name": "HumanoidRootPart"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Workspace\")",
+    "receiver_path": "Workspace",
+    "root": "Workspace",
+    "line": 104,
+    "in_function": "waitForIntro",
+    "name": "World"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Workspace\")",
+    "receiver_path": "Workspace",
+    "root": "Workspace",
+    "line": 105,
+    "in_function": "waitForIntro",
+    "name": "World"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Workspace\"):WaitForChild(\"World\")",
+    "receiver_path": "Workspace.World",
+    "root": "Workspace",
+    "line": 105,
+    "in_function": "waitForIntro",
+    "name": "Dealership"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Workspace\")",
+    "receiver_path": "Workspace",
+    "root": "Workspace",
+    "line": 106,
+    "in_function": "waitForIntro",
+    "name": "World"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Workspace\"):WaitForChild(\"World\")",
+    "receiver_path": "Workspace.World",
+    "root": "Workspace",
+    "line": 106,
+    "in_function": "waitForIntro",
+    "name": "Dealership"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Workspace\"):WaitForChild(\"World\"):WaitForChild(\"Dealership\")",
+    "receiver_path": "Workspace.World.Dealership",
+    "root": "Workspace",
+    "line": 106,
+    "in_function": "waitForIntro",
+    "name": "Intro"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 158,
+    "in_function": "clearObjectiveGui",
+    "name": "PlayerGui"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "playerGui",
+    "receiver_path": "Players.LocalPlayer.PlayerGui",
+    "root": "Players",
+    "line": 159,
+    "in_function": "clearObjectiveGui",
+    "name": "DealershipIntroObjective"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 172,
+    "in_function": "createObjectiveGui",
+    "name": "PlayerGui"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "Workspace",
+    "receiver_path": "Workspace",
+    "root": "Workspace",
+    "line": 234,
+    "in_function": "clearPathArrows",
+    "name": "ClientOnly"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "clientRoot",
+    "receiver_path": "Workspace.ClientOnly",
+    "root": "Workspace",
+    "line": 235,
+    "in_function": "clearPathArrows",
+    "name": "IntroPath"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "Workspace",
+    "receiver_path": "Workspace",
+    "root": "Workspace",
+    "line": 242,
+    "in_function": "ensureClientPathFolder",
+    "name": "ClientOnly"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "clientRoot",
+    "receiver_path": null,
+    "root": null,
+    "line": 249,
+    "in_function": "ensureClientPathFolder",
+    "name": "IntroPath"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "cameraFolder",
+    "receiver_path": "<intro>.Camera",
+    "root": "<intro>",
+    "line": 481,
+    "in_function": "playCameraIntro",
+    "name": "DealershipLookCameraPoint"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "intro.Desk",
+    "receiver_path": null,
+    "root": null,
+    "line": 487,
+    "in_function": "playCameraIntro",
+    "name": "GarageDeskTrigger"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 530,
+    "in_function": "getProgressRemotes",
+    "name": "Remotes"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 531,
+    "in_function": "getProgressRemotes",
+    "name": "Remotes"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Remotes\")",
+    "receiver_path": "ReplicatedStorage.Remotes",
+    "root": "ReplicatedStorage",
+    "line": 531,
+    "in_function": "getProgressRemotes",
+    "name": "DealershipIntro"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Remotes.DealershipIntro",
+    "root": "ReplicatedStorage",
+    "line": 532,
+    "in_function": "getProgressRemotes",
+    "name": "GetDealershipIntroObjectiveComplete"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Remotes.DealershipIntro",
+    "root": "ReplicatedStorage",
+    "line": 533,
+    "in_function": "getProgressRemotes",
+    "name": "CompleteDealershipIntroObjective"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 607,
+    "in_function": "tryOpenGarage",
+    "name": "PlayerScripts"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts",
+    "root": "Players",
+    "line": 607,
+    "in_function": "tryOpenGarage",
+    "name": "Runtime"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"Runtime\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime",
+    "root": "Players",
+    "line": 607,
+    "in_function": "tryOpenGarage",
+    "name": "Dealership"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"Runtime\"):WaitForChild(\"Dealership\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime.Dealership",
+    "root": "Players",
+    "line": 607,
+    "in_function": "tryOpenGarage",
+    "name": "OpenGarageFromIntro"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 609,
+    "in_function": "tryOpenGarage",
+    "name": "PlayerScripts"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts",
+    "root": "Players",
+    "line": 609,
+    "in_function": "tryOpenGarage",
+    "name": "Runtime"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"Runtime\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime",
+    "root": "Players",
+    "line": 609,
+    "in_function": "tryOpenGarage",
+    "name": "Dealership"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"Runtime\"):WaitForChild(\"Dealership\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime.Dealership",
+    "root": "Players",
+    "line": 609,
+    "in_function": "tryOpenGarage",
+    "name": "OpenGarageFromIntro"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "intro",
+    "receiver_path": null,
+    "root": null,
+    "line": 636,
+    "in_function": "run",
+    "name": "Desk"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "deskFolder",
+    "receiver_path": "<intro>.Desk",
+    "root": "<intro>",
+    "line": 637,
+    "in_function": "run",
+    "name": "GarageDeskTrigger"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "intro",
+    "root": null,
+    "wrapper_defined": "DealershipIntroClient:487",
+    "line": 659,
+    "in_function": "run",
+    "via": "wrapper playCameraIntro()",
+    "name": "Desk",
+    "receiver_path": null,
+    "receiver_kind": "other"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "intro",
+    "root": null,
+    "wrapper_defined": "DealershipIntroClient:480",
+    "line": 659,
+    "in_function": "run",
+    "via": "wrapper playCameraIntro()",
+    "name": "Camera",
+    "receiver_path": null,
+    "receiver_kind": "other"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 666,
+    "in_function": "run",
+    "name": "PlayerScripts"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts",
+    "root": "Players",
+    "line": 666,
+    "in_function": "run",
+    "name": "Runtime"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"Runtime\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime",
+    "root": "Players",
+    "line": 666,
+    "in_function": "run",
+    "name": "Dealership"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"Runtime\"):WaitForChild(\"Dealership\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime.Dealership",
+    "root": "Players",
+    "line": 666,
+    "in_function": "run",
+    "name": "GarageClosedFromDealershipExit"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 674,
+    "in_function": "run",
+    "name": "PlayerScripts"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts",
+    "root": "Players",
+    "line": 674,
+    "in_function": "run",
+    "name": "Runtime"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"Runtime\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime",
+    "root": "Players",
+    "line": 674,
+    "in_function": "run",
+    "name": "Dealership"
+   }
+  ],
+  "text_compared": []
+ },
+ "run_service": {
+  "render_steps": [],
+  "connects": [
+   {
+    "signal": "RenderStepped",
+    "method": "Connect",
+    "line": 420,
+    "in_function": "createDynamicTether",
+    "callback": "function() if not active or not root.Parent or ..."
+   }
+  ]
+ },
+ "context_actions": [],
+ "user_input_service": {
+  "connects": [],
+  "members_used": []
+ },
+ "audio": {
+  "bridge_calls": [],
+  "ui_audio_attributes": []
+ },
+ "config": {
+  "paths": [],
+  "attribute_reads": [],
+  "child_lookups": []
+ },
+ "startergui_core": [],
+ "gui_service": [],
+ "other_services": {},
+ "service_connects": [],
+ "proximity_prompts": [],
+ "instances_created_by_class": {
+  "Attachment": 1,
+  "Beam": 2,
+  "BindableEvent": 1,
+  "Folder": 3,
+  "Frame": 1,
+  "Model": 1,
+  "Part": 2,
+  "ScreenGui": 1,
+  "TextLabel": 1,
+  "UICorner": 1,
+  "UIScale": 1,
+  "UIStroke": 1
+ },
+ "public_api": [
+  {
+   "name": "start",
+   "kind": "function",
+   "params": [],
+   "line": 4
+  }
+ ],
+ "unresolved": [
+  {
+   "category": "names_assigned",
+   "field": "name",
+   "line": 366,
+   "detail": "not a literal: string.format(\"DynamicArrow_%02d\", index)"
+  },
+  {
+   "category": "remote_calls",
+   "field": "remote",
+   "line": 569,
+   "detail": "not a literal: getComplete"
+  },
+  {
+   "category": "remote_calls",
+   "field": "remote",
+   "line": 595,
+   "detail": "not a literal: completeRemote"
+  }
+ ],
+ "contract_file": "DealershipIntroClient.json"
+}

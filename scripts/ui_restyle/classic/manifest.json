@@ -1,0 +1,1784 @@
+{
+ "record": {
+  "count": 221,
+  "hashes": {
+   "djb2": "x=(x*33+byte)%2^32, seed 5381, over source bytes",
+   "fnv1a32": "FNV-1a 32, seed 2166136261, prime 16777619, over source bytes"
+  },
+  "mode": "Edit",
+  "place": "Space Racers v3",
+  "placeId": 93959280828322,
+  "taken": "2026-10-09",
+  "totalBytes": 3518053
+ },
+ "scripts": [
+  {
+   "class": "LocalScript",
+   "djb2": 2766163382,
+   "file": "ReplicatedFirst.Loading.InitialLoadingAndStartScreenClient.lua",
+   "fnv1a32": 2398528174,
+   "length": 13991,
+   "path": "ReplicatedFirst.Loading.InitialLoadingAndStartScreenClient"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 510506120,
+   "file": "ReplicatedFirst.Loading.LoadingArtworkCatalog.lua",
+   "fnv1a32": 3864248024,
+   "length": 4449,
+   "path": "ReplicatedFirst.Loading.LoadingArtworkCatalog"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 3715744780,
+   "file": "ReplicatedFirst.Loading.LoadingScreenView.lua",
+   "fnv1a32": 3961092576,
+   "length": 16048,
+   "path": "ReplicatedFirst.Loading.LoadingScreenView"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 3678004565,
+   "file": "ReplicatedFirst.Loading.LoadingTransitionRuntime.lua",
+   "fnv1a32": 140103705,
+   "length": 8393,
+   "path": "ReplicatedFirst.Loading.LoadingTransitionRuntime"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 3800079328,
+   "file": "ReplicatedStorage.Modules.Core.CameraService.lua",
+   "fnv1a32": 1967112136,
+   "length": 4176,
+   "path": "ReplicatedStorage.Modules.Core.CameraService"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 2986997505,
+   "file": "ReplicatedStorage.Modules.Core.ClientLifecycle.lua",
+   "fnv1a32": 3880469461,
+   "length": 2116,
+   "path": "ReplicatedStorage.Modules.Core.ClientLifecycle"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 1433138186,
+   "file": "ReplicatedStorage.Modules.Core.ConfigReader.lua",
+   "fnv1a32": 949238064,
+   "length": 3431,
+   "path": "ReplicatedStorage.Modules.Core.ConfigReader"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 2483315502,
+   "file": "ReplicatedStorage.Modules.Core.ConnectionScope.lua",
+   "fnv1a32": 1197125440,
+   "length": 1585,
+   "path": "ReplicatedStorage.Modules.Core.ConnectionScope"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 1831732189,
+   "file": "ReplicatedStorage.Modules.Core.PathResolver.lua",
+   "fnv1a32": 4105426631,
+   "length": 1880,
+   "path": "ReplicatedStorage.Modules.Core.PathResolver"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 3954650074,
+   "file": "ReplicatedStorage.Modules.Core.Signal.lua",
+   "fnv1a32": 3504925060,
+   "length": 1949,
+   "path": "ReplicatedStorage.Modules.Core.Signal"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 4031328682,
+   "file": "ReplicatedStorage.Modules.Core.Tags.lua",
+   "fnv1a32": 742014746,
+   "length": 2652,
+   "path": "ReplicatedStorage.Modules.Core.Tags"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 1105755418,
+   "file": "ReplicatedStorage.Modules.Game.Activities.ActivityClient.lua",
+   "fnv1a32": 1231380512,
+   "length": 15105,
+   "path": "ReplicatedStorage.Modules.Game.Activities.ActivityClient"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 2302226590,
+   "file": "ReplicatedStorage.Modules.Game.Activities.CourierClientView.lua",
+   "fnv1a32": 4057366690,
+   "length": 2650,
+   "path": "ReplicatedStorage.Modules.Game.Activities.CourierClientView"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 1567032644,
+   "file": "ReplicatedStorage.Modules.Game.Activities.DuelClientView.lua",
+   "fnv1a32": 3947459796,
+   "length": 11242,
+   "path": "ReplicatedStorage.Modules.Game.Activities.DuelClientView"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 2027356111,
+   "file": "ReplicatedStorage.Modules.Game.Activities.JobClient.lua",
+   "fnv1a32": 3256043255,
+   "length": 17623,
+   "path": "ReplicatedStorage.Modules.Game.Activities.JobClient"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 1655756386,
+   "file": "ReplicatedStorage.Modules.Game.Activities.JobRules.lua",
+   "fnv1a32": 486055130,
+   "length": 36409,
+   "path": "ReplicatedStorage.Modules.Game.Activities.JobRules"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 4268019961,
+   "file": "ReplicatedStorage.Modules.Game.Activities.PassengerClientView.lua",
+   "fnv1a32": 810698959,
+   "length": 7142,
+   "path": "ReplicatedStorage.Modules.Game.Activities.PassengerClientView"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 1726721163,
+   "file": "ReplicatedStorage.Modules.Game.Activities.TaxiClientView.lua",
+   "fnv1a32": 810687121,
+   "length": 1565,
+   "path": "ReplicatedStorage.Modules.Game.Activities.TaxiClientView"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 1758576276,
+   "file": "ReplicatedStorage.Modules.Game.Audio.AcousticsClient.lua",
+   "fnv1a32": 3395589610,
+   "length": 10693,
+   "path": "ReplicatedStorage.Modules.Game.Audio.AcousticsClient"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 2365413866,
+   "file": "ReplicatedStorage.Modules.Game.Audio.AcousticsRuntimeClient.lua",
+   "fnv1a32": 622999620,
+   "length": 844,
+   "path": "ReplicatedStorage.Modules.Game.Audio.AcousticsRuntimeClient"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 649323993,
+   "file": "ReplicatedStorage.Modules.Game.Audio.AudioBusClient.lua",
+   "fnv1a32": 4149640153,
+   "length": 2283,
+   "path": "ReplicatedStorage.Modules.Game.Audio.AudioBusClient"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 3188170967,
+   "file": "ReplicatedStorage.Modules.Game.Audio.AudioMixClient.lua",
+   "fnv1a32": 3715195681,
+   "length": 3590,
+   "path": "ReplicatedStorage.Modules.Game.Audio.AudioMixClient"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 3698657985,
+   "file": "ReplicatedStorage.Modules.Game.Audio.AudioRuntimeClient.lua",
+   "fnv1a32": 1139932223,
+   "length": 834,
+   "path": "ReplicatedStorage.Modules.Game.Audio.AudioRuntimeClient"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 3750435183,
+   "file": "ReplicatedStorage.Modules.Game.Audio.ContextAudioCatalog.lua",
+   "fnv1a32": 2316040483,
+   "length": 3461,
+   "path": "ReplicatedStorage.Modules.Game.Audio.ContextAudioCatalog"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 1827509779,
+   "file": "ReplicatedStorage.Modules.Game.Audio.ContextAudioClient.lua",
+   "fnv1a32": 4207501003,
+   "length": 11831,
+   "path": "ReplicatedStorage.Modules.Game.Audio.ContextAudioClient"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 858014032,
+   "file": "ReplicatedStorage.Modules.Game.Audio.ContextAudioRuntimeClient.lua",
+   "fnv1a32": 2243498408,
+   "length": 849,
+   "path": "ReplicatedStorage.Modules.Game.Audio.ContextAudioRuntimeClient"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 3859772963,
+   "file": "ReplicatedStorage.Modules.Game.Audio.PresentationAudioBridge.lua",
+   "fnv1a32": 1748238947,
+   "length": 1783,
+   "path": "ReplicatedStorage.Modules.Game.Audio.PresentationAudioBridge"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 2526843509,
+   "file": "ReplicatedStorage.Modules.Game.Audio.PresentationAudioCatalog.lua",
+   "fnv1a32": 2423685961,
+   "length": 3127,
+   "path": "ReplicatedStorage.Modules.Game.Audio.PresentationAudioCatalog"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 3398759329,
+   "file": "ReplicatedStorage.Modules.Game.Audio.PresentationAudioClient.lua",
+   "fnv1a32": 2298481827,
+   "length": 16939,
+   "path": "ReplicatedStorage.Modules.Game.Audio.PresentationAudioClient"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 1187310998,
+   "file": "ReplicatedStorage.Modules.Game.Audio.PresentationAudioRuntimeClient.lua",
+   "fnv1a32": 3579410652,
+   "length": 839,
+   "path": "ReplicatedStorage.Modules.Game.Audio.PresentationAudioRuntimeClient"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 1460535694,
+   "file": "ReplicatedStorage.Modules.Game.Audio.VehicleAudioCatalog.lua",
+   "fnv1a32": 271053756,
+   "length": 12905,
+   "path": "ReplicatedStorage.Modules.Game.Audio.VehicleAudioCatalog"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 1238597003,
+   "file": "ReplicatedStorage.Modules.Game.Audio.VehicleAudioClient.lua",
+   "fnv1a32": 2489859809,
+   "length": 71299,
+   "path": "ReplicatedStorage.Modules.Game.Audio.VehicleAudioClient"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 3300681719,
+   "file": "ReplicatedStorage.Modules.Game.Audio.VehicleAudioStateContract.lua",
+   "fnv1a32": 3987532863,
+   "length": 1188,
+   "path": "ReplicatedStorage.Modules.Game.Audio.VehicleAudioStateContract"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 2614182266,
+   "file": "ReplicatedStorage.Modules.Game.Dealership.DealershipIntroClient.lua",
+   "fnv1a32": 1656528266,
+   "length": 26374,
+   "path": "ReplicatedStorage.Modules.Game.Dealership.DealershipIntroClient"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 180098077,
+   "file": "ReplicatedStorage.Modules.Game.Dealership.GarageEntranceClient.lua",
+   "fnv1a32": 3720051471,
+   "length": 9204,
+   "path": "ReplicatedStorage.Modules.Game.Dealership.GarageEntranceClient"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 1211678856,
+   "file": "ReplicatedStorage.Modules.Game.Development.DriveToEarnCashTelemetryClient.lua",
+   "fnv1a32": 704894912,
+   "length": 3704,
+   "path": "ReplicatedStorage.Modules.Game.Development.DriveToEarnCashTelemetryClient"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 3150515247,
+   "file": "ReplicatedStorage.Modules.Game.Development.LightingPreviewClient.lua",
+   "fnv1a32": 4138885145,
+   "length": 5345,
+   "path": "ReplicatedStorage.Modules.Game.Development.LightingPreviewClient"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 1358893985,
+   "file": "ReplicatedStorage.Modules.Game.Development.StudioCashGrantClient.lua",
+   "fnv1a32": 1113589907,
+   "length": 2341,
+   "path": "ReplicatedStorage.Modules.Game.Development.StudioCashGrantClient"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 2549080343,
+   "file": "ReplicatedStorage.Modules.Game.Development.TrailerModeClient.lua",
+   "fnv1a32": 2610256919,
+   "length": 2361,
+   "path": "ReplicatedStorage.Modules.Game.Development.TrailerModeClient"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 1124926860,
+   "file": "ReplicatedStorage.Modules.Game.Development.TrailerShotClient.lua",
+   "fnv1a32": 2012667056,
+   "length": 3379,
+   "path": "ReplicatedStorage.Modules.Game.Development.TrailerShotClient"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 2311552095,
+   "file": "ReplicatedStorage.Modules.Game.Development.TrailerVehicleCameraClient.lua",
+   "fnv1a32": 2227258889,
+   "length": 5450,
+   "path": "ReplicatedStorage.Modules.Game.Development.TrailerVehicleCameraClient"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 626059740,
+   "file": "ReplicatedStorage.Modules.Game.Garage.GarageCatalogClient.lua",
+   "fnv1a32": 3154640144,
+   "length": 1847,
+   "path": "ReplicatedStorage.Modules.Game.Garage.GarageCatalogClient"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 1659801764,
+   "file": "ReplicatedStorage.Modules.Game.Garage.GarageModuleInstancePreviewAdapter.lua",
+   "fnv1a32": 1147274932,
+   "length": 5617,
+   "path": "ReplicatedStorage.Modules.Game.Garage.GarageModuleInstancePreviewAdapter"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 3929723255,
+   "file": "ReplicatedStorage.Modules.Game.Garage.GaragePreviewPresentationClient.lua",
+   "fnv1a32": 620607823,
+   "length": 11677,
+   "path": "ReplicatedStorage.Modules.Game.Garage.GaragePreviewPresentationClient"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 3164334053,
+   "file": "ReplicatedStorage.Modules.Game.Garage.GaragePropertyCatalog.lua",
+   "fnv1a32": 3985635495,
+   "length": 2085,
+   "path": "ReplicatedStorage.Modules.Game.Garage.GaragePropertyCatalog"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 2896002640,
+   "file": "ReplicatedStorage.Modules.Game.Garage.GarageUI.lua",
+   "fnv1a32": 3127929714,
+   "length": 61205,
+   "path": "ReplicatedStorage.Modules.Game.Garage.GarageUI"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 2563715555,
+   "file": "ReplicatedStorage.Modules.Game.Garage.GarageVehiclePreviewProfile.lua",
+   "fnv1a32": 4253675875,
+   "length": 4767,
+   "path": "ReplicatedStorage.Modules.Game.Garage.GarageVehiclePreviewProfile"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 3821484585,
+   "file": "ReplicatedStorage.Modules.Game.Garage.OwnedGarageDecorationCatalog.lua",
+   "fnv1a32": 2055797883,
+   "length": 10521,
+   "path": "ReplicatedStorage.Modules.Game.Garage.OwnedGarageDecorationCatalog"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 3404237826,
+   "file": "ReplicatedStorage.Modules.Game.Garage.OwnedGarageInteriorStyleCatalog.lua",
+   "fnv1a32": 1416526694,
+   "length": 8057,
+   "path": "ReplicatedStorage.Modules.Game.Garage.OwnedGarageInteriorStyleCatalog"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 1426339832,
+   "file": "ReplicatedStorage.Modules.Game.Garage.OwnedGarageLightingCatalog.lua",
+   "fnv1a32": 1799205256,
+   "length": 4538,
+   "path": "ReplicatedStorage.Modules.Game.Garage.OwnedGarageLightingCatalog"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 1249869749,
+   "file": "ReplicatedStorage.Modules.Game.Garage.OwnedGaragePropertyCatalog.lua",
+   "fnv1a32": 2543626413,
+   "length": 5545,
+   "path": "ReplicatedStorage.Modules.Game.Garage.OwnedGaragePropertyCatalog"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 50971152,
+   "file": "ReplicatedStorage.Modules.Game.Garage.PaintClient.lua",
+   "fnv1a32": 642816284,
+   "length": 4665,
+   "path": "ReplicatedStorage.Modules.Game.Garage.PaintClient"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 2000030023,
+   "file": "ReplicatedStorage.Modules.Game.Garage.PreviewCameraClient.lua",
+   "fnv1a32": 2353299771,
+   "length": 8158,
+   "path": "ReplicatedStorage.Modules.Game.Garage.PreviewCameraClient"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 2115227730,
+   "file": "ReplicatedStorage.Modules.Game.Garage.PreviewVehicleClient.lua",
+   "fnv1a32": 1488255556,
+   "length": 10244,
+   "path": "ReplicatedStorage.Modules.Game.Garage.PreviewVehicleClient"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 3689038112,
+   "file": "ReplicatedStorage.Modules.Game.Garage.ThrustPreviewClient.lua",
+   "fnv1a32": 2626974536,
+   "length": 8174,
+   "path": "ReplicatedStorage.Modules.Game.Garage.ThrustPreviewClient"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 322676254,
+   "file": "ReplicatedStorage.Modules.Game.Racing.RaceBrowserClient.lua",
+   "fnv1a32": 3529337420,
+   "length": 24014,
+   "path": "ReplicatedStorage.Modules.Game.Racing.RaceBrowserClient"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 4043493017,
+   "file": "ReplicatedStorage.Modules.Game.Racing.RaceConfigReader.lua",
+   "fnv1a32": 3494766261,
+   "length": 4717,
+   "path": "ReplicatedStorage.Modules.Game.Racing.RaceConfigReader"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 2159433225,
+   "file": "ReplicatedStorage.Modules.Game.Racing.RaceCountdownPresentationClient.lua",
+   "fnv1a32": 697176605,
+   "length": 5523,
+   "path": "ReplicatedStorage.Modules.Game.Racing.RaceCountdownPresentationClient"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 2731000328,
+   "file": "ReplicatedStorage.Modules.Game.Racing.RaceEntryMenuClient.lua",
+   "fnv1a32": 1831823592,
+   "length": 6748,
+   "path": "ReplicatedStorage.Modules.Game.Racing.RaceEntryMenuClient"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 1233874112,
+   "file": "ReplicatedStorage.Modules.Game.Racing.RaceEntryPresentationClient.lua",
+   "fnv1a32": 1365003648,
+   "length": 58733,
+   "path": "ReplicatedStorage.Modules.Game.Racing.RaceEntryPresentationClient"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 2429655336,
+   "file": "ReplicatedStorage.Modules.Game.Racing.RaceLifecyclePresentationClient.lua",
+   "fnv1a32": 836016074,
+   "length": 11113,
+   "path": "ReplicatedStorage.Modules.Game.Racing.RaceLifecyclePresentationClient"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 2064565301,
+   "file": "ReplicatedStorage.Modules.Game.Racing.RaceParticipantVisibilityClient.lua",
+   "fnv1a32": 3485015239,
+   "length": 6273,
+   "path": "ReplicatedStorage.Modules.Game.Racing.RaceParticipantVisibilityClient"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 3704443209,
+   "file": "ReplicatedStorage.Modules.Game.Racing.RaceQueueClient.lua",
+   "fnv1a32": 2673929279,
+   "length": 7379,
+   "path": "ReplicatedStorage.Modules.Game.Racing.RaceQueueClient"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 2323895516,
+   "file": "ReplicatedStorage.Modules.Game.Racing.RaceRouteDefinition.lua",
+   "fnv1a32": 1441745250,
+   "length": 6959,
+   "path": "ReplicatedStorage.Modules.Game.Racing.RaceRouteDefinition"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 1470327058,
+   "file": "ReplicatedStorage.Modules.Game.Racing.RaceRouteGuideClient.lua",
+   "fnv1a32": 2812228794,
+   "length": 17390,
+   "path": "ReplicatedStorage.Modules.Game.Racing.RaceRouteGuideClient"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 2414422164,
+   "file": "ReplicatedStorage.Modules.Game.Racing.RaceSessionAssetsClient.lua",
+   "fnv1a32": 566922906,
+   "length": 12183,
+   "path": "ReplicatedStorage.Modules.Game.Racing.RaceSessionAssetsClient"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 971660827,
+   "file": "ReplicatedStorage.Modules.Game.Racing.RaceSessionPresentationClient.lua",
+   "fnv1a32": 3622928799,
+   "length": 33119,
+   "path": "ReplicatedStorage.Modules.Game.Racing.RaceSessionPresentationClient"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 1925469233,
+   "file": "ReplicatedStorage.Modules.Game.Racing.RaceTimeTrialResultCoachClient.lua",
+   "fnv1a32": 467408791,
+   "length": 23199,
+   "path": "ReplicatedStorage.Modules.Game.Racing.RaceTimeTrialResultCoachClient"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 2980531919,
+   "file": "ReplicatedStorage.Modules.Game.Racing.RaceTransitionClient.lua",
+   "fnv1a32": 103543837,
+   "length": 15757,
+   "path": "ReplicatedStorage.Modules.Game.Racing.RaceTransitionClient"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 2806148095,
+   "file": "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI.lua",
+   "fnv1a32": 1779777671,
+   "length": 75271,
+   "path": "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 341231348,
+   "file": "ReplicatedStorage.Modules.Game.UI.FreeRoamMapPlayerMarkers.lua",
+   "fnv1a32": 4020979454,
+   "length": 16832,
+   "path": "ReplicatedStorage.Modules.Game.UI.FreeRoamMapPlayerMarkers"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 1194648820,
+   "file": "ReplicatedStorage.Modules.Game.UI.FreeRoamVehicleExitButtonClient.lua",
+   "fnv1a32": 1206855458,
+   "length": 451,
+   "path": "ReplicatedStorage.Modules.Game.UI.FreeRoamVehicleExitButtonClient"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 2329873960,
+   "file": "ReplicatedStorage.Modules.Game.UI.FullMapUI.lua",
+   "fnv1a32": 1624746398,
+   "length": 40971,
+   "path": "ReplicatedStorage.Modules.Game.UI.FullMapUI"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 491082155,
+   "file": "ReplicatedStorage.Modules.Game.UI.GarageBrowserUI.lua",
+   "fnv1a32": 2663193517,
+   "length": 22271,
+   "path": "ReplicatedStorage.Modules.Game.UI.GarageBrowserUI"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 3038173393,
+   "file": "ReplicatedStorage.Modules.Game.UI.GarageComponents.lua",
+   "fnv1a32": 2665894595,
+   "length": 49472,
+   "path": "ReplicatedStorage.Modules.Game.UI.GarageComponents"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 1076387986,
+   "file": "ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI.lua",
+   "fnv1a32": 1047518818,
+   "length": 24152,
+   "path": "ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 4006954863,
+   "file": "ReplicatedStorage.Modules.Game.UI.GarageInteriorTransitionUI.lua",
+   "fnv1a32": 1782643237,
+   "length": 1650,
+   "path": "ReplicatedStorage.Modules.Game.UI.GarageInteriorTransitionUI"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 2841705015,
+   "file": "ReplicatedStorage.Modules.Game.UI.GarageModuleCardViewModel.lua",
+   "fnv1a32": 3920266363,
+   "length": 4272,
+   "path": "ReplicatedStorage.Modules.Game.UI.GarageModuleCardViewModel"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 273635997,
+   "file": "ReplicatedStorage.Modules.Game.UI.GarageWorkspaceUI.lua",
+   "fnv1a32": 1718652677,
+   "length": 50125,
+   "path": "ReplicatedStorage.Modules.Game.UI.GarageWorkspaceUI"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 4151184548,
+   "file": "ReplicatedStorage.Modules.Game.UI.LoadingTransitionUI.lua",
+   "fnv1a32": 393969318,
+   "length": 1393,
+   "path": "ReplicatedStorage.Modules.Game.UI.LoadingTransitionUI"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 3871415126,
+   "file": "ReplicatedStorage.Modules.Game.UI.MapIconLayer.lua",
+   "fnv1a32": 1853682768,
+   "length": 13869,
+   "path": "ReplicatedStorage.Modules.Game.UI.MapIconLayer"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 3738831100,
+   "file": "ReplicatedStorage.Modules.Game.UI.MapMarkers.lua",
+   "fnv1a32": 4202892632,
+   "length": 5110,
+   "path": "ReplicatedStorage.Modules.Game.UI.MapMarkers"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 2107505440,
+   "file": "ReplicatedStorage.Modules.Game.UI.MapMath.lua",
+   "fnv1a32": 3201179610,
+   "length": 10758,
+   "path": "ReplicatedStorage.Modules.Game.UI.MapMath"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 140974435,
+   "file": "ReplicatedStorage.Modules.Game.UI.MapTileSet.lua",
+   "fnv1a32": 2940343971,
+   "length": 3753,
+   "path": "ReplicatedStorage.Modules.Game.UI.MapTileSet"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 2985228028,
+   "file": "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI.lua",
+   "fnv1a32": 3730293368,
+   "length": 55184,
+   "path": "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 949004147,
+   "file": "ReplicatedStorage.Modules.Game.UI.OnboardingClient.lua",
+   "fnv1a32": 1137408025,
+   "length": 55484,
+   "path": "ReplicatedStorage.Modules.Game.UI.OnboardingClient"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 2397887782,
+   "file": "ReplicatedStorage.Modules.Game.UI.OnboardingGuideTrailRenderer.lua",
+   "fnv1a32": 2005158228,
+   "length": 10514,
+   "path": "ReplicatedStorage.Modules.Game.UI.OnboardingGuideTrailRenderer"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 3016215632,
+   "file": "ReplicatedStorage.Modules.Game.UI.OwnedGarageBrowserUI.lua",
+   "fnv1a32": 3150167394,
+   "length": 26279,
+   "path": "ReplicatedStorage.Modules.Game.UI.OwnedGarageBrowserUI"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 3525249070,
+   "file": "ReplicatedStorage.Modules.Game.UI.OwnedGarageClient.lua",
+   "fnv1a32": 3314612362,
+   "length": 944,
+   "path": "ReplicatedStorage.Modules.Game.UI.OwnedGarageClient"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 2650929435,
+   "file": "ReplicatedStorage.Modules.Game.UI.OwnedGarageWorkspaceUI.lua",
+   "fnv1a32": 1320081673,
+   "length": 45386,
+   "path": "ReplicatedStorage.Modules.Game.UI.OwnedGarageWorkspaceUI"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 2766924647,
+   "file": "ReplicatedStorage.Modules.Game.UI.RacingMobileScaledDesktopLayout.lua",
+   "fnv1a32": 1375865245,
+   "length": 3703,
+   "path": "ReplicatedStorage.Modules.Game.UI.RacingMobileScaledDesktopLayout"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 3920988433,
+   "file": "ReplicatedStorage.Modules.Game.UI.RacingUIComponents.lua",
+   "fnv1a32": 719026363,
+   "length": 8409,
+   "path": "ReplicatedStorage.Modules.Game.UI.RacingUIComponents"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 2803877065,
+   "file": "ReplicatedStorage.Modules.Game.UI.ResponsiveUIFoundation.lua",
+   "fnv1a32": 4066753253,
+   "length": 22083,
+   "path": "ReplicatedStorage.Modules.Game.UI.ResponsiveUIFoundation"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 818075617,
+   "file": "ReplicatedStorage.Modules.Game.UI.RouteGuide.lua",
+   "fnv1a32": 524474063,
+   "length": 15620,
+   "path": "ReplicatedStorage.Modules.Game.UI.RouteGuide"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 3998729721,
+   "file": "ReplicatedStorage.Modules.Game.UI.SharedTopNotificationUI.lua",
+   "fnv1a32": 1789350765,
+   "length": 1286,
+   "path": "ReplicatedStorage.Modules.Game.UI.SharedTopNotificationUI"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 4180559146,
+   "file": "ReplicatedStorage.Modules.Game.UI.UITheme.lua",
+   "fnv1a32": 382869430,
+   "length": 3980,
+   "path": "ReplicatedStorage.Modules.Game.UI.UITheme"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 1772418321,
+   "file": "ReplicatedStorage.Modules.Game.Vehicles.CharacterSprintClient.lua",
+   "fnv1a32": 3905777813,
+   "length": 10080,
+   "path": "ReplicatedStorage.Modules.Game.Vehicles.CharacterSprintClient"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 699830675,
+   "file": "ReplicatedStorage.Modules.Game.Vehicles.DriveSessionClient.lua",
+   "fnv1a32": 2795974467,
+   "length": 2088,
+   "path": "ReplicatedStorage.Modules.Game.Vehicles.DriveSessionClient"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 626025327,
+   "file": "ReplicatedStorage.Modules.Game.Vehicles.DriveTuning.lua",
+   "fnv1a32": 3564154487,
+   "length": 1235,
+   "path": "ReplicatedStorage.Modules.Game.Vehicles.DriveTuning"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 2387143006,
+   "file": "ReplicatedStorage.Modules.Game.Vehicles.DrivingCameraClient.lua",
+   "fnv1a32": 4212364376,
+   "length": 38338,
+   "path": "ReplicatedStorage.Modules.Game.Vehicles.DrivingCameraClient"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 2591581746,
+   "file": "ReplicatedStorage.Modules.Game.Vehicles.DrivingClient.lua",
+   "fnv1a32": 1063553814,
+   "length": 72479,
+   "path": "ReplicatedStorage.Modules.Game.Vehicles.DrivingClient"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 2373235167,
+   "file": "ReplicatedStorage.Modules.Game.Vehicles.FreeRoamParkedHoverClient.lua",
+   "fnv1a32": 940786555,
+   "length": 27528,
+   "path": "ReplicatedStorage.Modules.Game.Vehicles.FreeRoamParkedHoverClient"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 3253506028,
+   "file": "ReplicatedStorage.Modules.Game.Vehicles.GameplayInputGate.lua",
+   "fnv1a32": 4294734112,
+   "length": 3849,
+   "path": "ReplicatedStorage.Modules.Game.Vehicles.GameplayInputGate"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 906385826,
+   "file": "ReplicatedStorage.Modules.Game.Vehicles.MobileDriveControlsClient.lua",
+   "fnv1a32": 1057649558,
+   "length": 17707,
+   "path": "ReplicatedStorage.Modules.Game.Vehicles.MobileDriveControlsClient"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 2854171637,
+   "file": "ReplicatedStorage.Modules.Game.Vehicles.MobileDriveInputState.lua",
+   "fnv1a32": 3568903575,
+   "length": 1924,
+   "path": "ReplicatedStorage.Modules.Game.Vehicles.MobileDriveInputState"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 271673375,
+   "file": "ReplicatedStorage.Modules.Game.Vehicles.Performance.PerformanceCalculator.lua",
+   "fnv1a32": 905104013,
+   "length": 6327,
+   "path": "ReplicatedStorage.Modules.Game.Vehicles.Performance.PerformanceCalculator"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 1422862476,
+   "file": "ReplicatedStorage.Modules.Game.Vehicles.Performance.PerformanceDefinitions.lua",
+   "fnv1a32": 3834730496,
+   "length": 5067,
+   "path": "ReplicatedStorage.Modules.Game.Vehicles.Performance.PerformanceDefinitions"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 3792623840,
+   "file": "ReplicatedStorage.Modules.Game.Vehicles.Performance.PerformanceDynamics.lua",
+   "fnv1a32": 2288565702,
+   "length": 1714,
+   "path": "ReplicatedStorage.Modules.Game.Vehicles.Performance.PerformanceDynamics"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 2133728982,
+   "file": "ReplicatedStorage.Modules.Game.Vehicles.Performance.PerformanceRuntime.lua",
+   "fnv1a32": 3513530230,
+   "length": 5494,
+   "path": "ReplicatedStorage.Modules.Game.Vehicles.Performance.PerformanceRuntime"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 83897564,
+   "file": "ReplicatedStorage.Modules.Game.Vehicles.Performance.PerformanceUpgradeRuntime.lua",
+   "fnv1a32": 2066188392,
+   "length": 11211,
+   "path": "ReplicatedStorage.Modules.Game.Vehicles.Performance.PerformanceUpgradeRuntime"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 760983816,
+   "file": "ReplicatedStorage.Modules.Game.Vehicles.Performance.VehicleModuleUpgradeRuntime.lua",
+   "fnv1a32": 4221233450,
+   "length": 6828,
+   "path": "ReplicatedStorage.Modules.Game.Vehicles.Performance.VehicleModuleUpgradeRuntime"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 1643592832,
+   "file": "ReplicatedStorage.Modules.Game.Vehicles.Performance.VehiclePerformanceResolver.lua",
+   "fnv1a32": 3157794484,
+   "length": 9794,
+   "path": "ReplicatedStorage.Modules.Game.Vehicles.Performance.VehiclePerformanceResolver"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 2093786909,
+   "file": "ReplicatedStorage.Modules.Game.Vehicles.Performance.VehicleUpgradeDefinitions.lua",
+   "fnv1a32": 2263120565,
+   "length": 5248,
+   "path": "ReplicatedStorage.Modules.Game.Vehicles.Performance.VehicleUpgradeDefinitions"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 2513494303,
+   "file": "ReplicatedStorage.Modules.Game.Vehicles.RuntimeVFXClient.lua",
+   "fnv1a32": 782156235,
+   "length": 849,
+   "path": "ReplicatedStorage.Modules.Game.Vehicles.RuntimeVFXClient"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 687018892,
+   "file": "ReplicatedStorage.Modules.Game.Vehicles.VehicleCatalog.lua",
+   "fnv1a32": 1051889394,
+   "length": 958,
+   "path": "ReplicatedStorage.Modules.Game.Vehicles.VehicleCatalog"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 2757827407,
+   "file": "ReplicatedStorage.Modules.Game.Vehicles.VehicleCatalogData.lua",
+   "fnv1a32": 3518272837,
+   "length": 747,
+   "path": "ReplicatedStorage.Modules.Game.Vehicles.VehicleCatalogData"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 968671351,
+   "file": "ReplicatedStorage.Modules.Game.Vehicles.VehicleCatalogData.EXOTIC_1.lua",
+   "fnv1a32": 3464525093,
+   "length": 149594,
+   "path": "ReplicatedStorage.Modules.Game.Vehicles.VehicleCatalogData.EXOTIC_1"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 4145848710,
+   "file": "ReplicatedStorage.Modules.Game.Vehicles.VehicleCatalogData.EXOTIC_2.lua",
+   "fnv1a32": 3138523666,
+   "length": 149548,
+   "path": "ReplicatedStorage.Modules.Game.Vehicles.VehicleCatalogData.EXOTIC_2"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 2387854634,
+   "file": "ReplicatedStorage.Modules.Game.Vehicles.VehicleCatalogData.EXOTIC_3.lua",
+   "fnv1a32": 2077902926,
+   "length": 21600,
+   "path": "ReplicatedStorage.Modules.Game.Vehicles.VehicleCatalogData.EXOTIC_3"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 92301290,
+   "file": "ReplicatedStorage.Modules.Game.Vehicles.VehicleCatalogData.MUSCLE_1.lua",
+   "fnv1a32": 173386164,
+   "length": 149112,
+   "path": "ReplicatedStorage.Modules.Game.Vehicles.VehicleCatalogData.MUSCLE_1"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 2730292512,
+   "file": "ReplicatedStorage.Modules.Game.Vehicles.VehicleCatalogData.MUSCLE_2.lua",
+   "fnv1a32": 1642038198,
+   "length": 149501,
+   "path": "ReplicatedStorage.Modules.Game.Vehicles.VehicleCatalogData.MUSCLE_2"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 1061091428,
+   "file": "ReplicatedStorage.Modules.Game.Vehicles.VehicleCatalogData.MUSCLE_3.lua",
+   "fnv1a32": 3328207574,
+   "length": 21556,
+   "path": "ReplicatedStorage.Modules.Game.Vehicles.VehicleCatalogData.MUSCLE_3"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 3901143938,
+   "file": "ReplicatedStorage.Modules.Game.Vehicles.VehicleCatalogData.PIERCER_1.lua",
+   "fnv1a32": 1586762966,
+   "length": 149842,
+   "path": "ReplicatedStorage.Modules.Game.Vehicles.VehicleCatalogData.PIERCER_1"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 2420924571,
+   "file": "ReplicatedStorage.Modules.Game.Vehicles.VehicleCatalogData.PIERCER_2.lua",
+   "fnv1a32": 4111933221,
+   "length": 47288,
+   "path": "ReplicatedStorage.Modules.Game.Vehicles.VehicleCatalogData.PIERCER_2"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 855058272,
+   "file": "ReplicatedStorage.Modules.Game.Vehicles.VehicleCosmeticCatalog.lua",
+   "fnv1a32": 2013069378,
+   "length": 5856,
+   "path": "ReplicatedStorage.Modules.Game.Vehicles.VehicleCosmeticCatalog"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 3787826380,
+   "file": "ReplicatedStorage.Modules.Game.Vehicles.VehicleDefinition.lua",
+   "fnv1a32": 58033656,
+   "length": 1067,
+   "path": "ReplicatedStorage.Modules.Game.Vehicles.VehicleDefinition"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 3094670397,
+   "file": "ReplicatedStorage.Modules.Game.Vehicles.VehicleDisplayNames.lua",
+   "fnv1a32": 2311939489,
+   "length": 3191,
+   "path": "ReplicatedStorage.Modules.Game.Vehicles.VehicleDisplayNames"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 1003619947,
+   "file": "ReplicatedStorage.Modules.Game.Vehicles.VehicleDynamics.lua",
+   "fnv1a32": 195961823,
+   "length": 25406,
+   "path": "ReplicatedStorage.Modules.Game.Vehicles.VehicleDynamics"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 3342311435,
+   "file": "ReplicatedStorage.Modules.Game.Vehicles.VehiclePreviewVFXClient.lua",
+   "fnv1a32": 3098309997,
+   "length": 69442,
+   "path": "ReplicatedStorage.Modules.Game.Vehicles.VehiclePreviewVFXClient"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 2740463846,
+   "file": "ReplicatedStorage.Modules.Game.Vehicles.VehicleTemplateIndex.lua",
+   "fnv1a32": 3262832500,
+   "length": 716,
+   "path": "ReplicatedStorage.Modules.Game.Vehicles.VehicleTemplateIndex"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 2015947705,
+   "file": "ReplicatedStorage.Modules.Game.Vehicles.VehicleVFXClient.lua",
+   "fnv1a32": 2458903039,
+   "length": 39741,
+   "path": "ReplicatedStorage.Modules.Game.Vehicles.VehicleVFXClient"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 3866762740,
+   "file": "ReplicatedStorage.Modules.Game.World.LODClient.lua",
+   "fnv1a32": 2523687306,
+   "length": 3284,
+   "path": "ReplicatedStorage.Modules.Game.World.LODClient"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 2637215499,
+   "file": "ReplicatedStorage.Modules.Game.World.LODPolicy.lua",
+   "fnv1a32": 2316988257,
+   "length": 1454,
+   "path": "ReplicatedStorage.Modules.Game.World.LODPolicy"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 88798148,
+   "file": "ReplicatedStorage.Modules.Game.World.LODRuntime.lua",
+   "fnv1a32": 2143760132,
+   "length": 9261,
+   "path": "ReplicatedStorage.Modules.Game.World.LODRuntime"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 3429018715,
+   "file": "ReplicatedStorage.Modules.Game.World.LightingClient.lua",
+   "fnv1a32": 331841679,
+   "length": 8838,
+   "path": "ReplicatedStorage.Modules.Game.World.LightingClient"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 3834623235,
+   "file": "ReplicatedStorage.Modules.Game.World.LightingCycle.lua",
+   "fnv1a32": 877496699,
+   "length": 13957,
+   "path": "ReplicatedStorage.Modules.Game.World.LightingCycle"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 230659736,
+   "file": "ReplicatedStorage.Modules.Game.World.LightingCycleDefinition.lua",
+   "fnv1a32": 557649614,
+   "length": 3207,
+   "path": "ReplicatedStorage.Modules.Game.World.LightingCycleDefinition"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 1123942153,
+   "file": "ReplicatedStorage.Modules.Game.World.LightingPresets.lua",
+   "fnv1a32": 2463976623,
+   "length": 12790,
+   "path": "ReplicatedStorage.Modules.Game.World.LightingPresets"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 3396834633,
+   "file": "ReplicatedStorage.Modules.Game.World.LightingSchedule.lua",
+   "fnv1a32": 893032355,
+   "length": 1086,
+   "path": "ReplicatedStorage.Modules.Game.World.LightingSchedule"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 1487207463,
+   "file": "ReplicatedStorage.Modules.Game.World.NightLamppostLightClient.lua",
+   "fnv1a32": 2546922969,
+   "length": 2374,
+   "path": "ReplicatedStorage.Modules.Game.World.NightLamppostLightClient"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 3748990788,
+   "file": "ReplicatedStorage.Modules.Game.World.OwnedGarageEnvironmentLightingClient.lua",
+   "fnv1a32": 151946668,
+   "length": 7308,
+   "path": "ReplicatedStorage.Modules.Game.World.OwnedGarageEnvironmentLightingClient"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 849271225,
+   "file": "ReplicatedStorage.Modules.Game.World.RoadGraphData.lua",
+   "fnv1a32": 3288061703,
+   "length": 45493,
+   "path": "ReplicatedStorage.Modules.Game.World.RoadGraphData"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 251475308,
+   "file": "ReplicatedStorage.Modules.Game.World.RoadRouting.lua",
+   "fnv1a32": 237551508,
+   "length": 12593,
+   "path": "ReplicatedStorage.Modules.Game.World.RoadRouting"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 475348978,
+   "file": "ReplicatedStorage.Modules.Game.World.WindowMaterialClient.lua",
+   "fnv1a32": 99481688,
+   "length": 2545,
+   "path": "ReplicatedStorage.Modules.Game.World.WindowMaterialClient"
+  },
+  {
+   "class": "Script",
+   "djb2": 553468944,
+   "file": "ServerScriptService.ServerBase.lua",
+   "fnv1a32": 4132407090,
+   "length": 5981,
+   "path": "ServerScriptService.ServerBase"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 2476968560,
+   "file": "ServerStorage.Modules.Core.FeatureFlags.lua",
+   "fnv1a32": 2857528204,
+   "length": 1942,
+   "path": "ServerStorage.Modules.Core.FeatureFlags"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 2874709334,
+   "file": "ServerStorage.Modules.Core.Net.lua",
+   "fnv1a32": 157982828,
+   "length": 7802,
+   "path": "ServerStorage.Modules.Core.Net"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 2911277167,
+   "file": "ServerStorage.Modules.Core.ServerLifecycle.lua",
+   "fnv1a32": 2807373303,
+   "length": 1852,
+   "path": "ServerStorage.Modules.Core.ServerLifecycle"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 1354350414,
+   "file": "ServerStorage.Modules.Game.Activities.ActivityPayout.lua",
+   "fnv1a32": 3691772876,
+   "length": 6095,
+   "path": "ServerStorage.Modules.Game.Activities.ActivityPayout"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 2998431028,
+   "file": "ServerStorage.Modules.Game.Activities.ActivityService.lua",
+   "fnv1a32": 4163845884,
+   "length": 12463,
+   "path": "ServerStorage.Modules.Game.Activities.ActivityService"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 798590485,
+   "file": "ServerStorage.Modules.Game.Activities.CourierJob.lua",
+   "fnv1a32": 630709195,
+   "length": 2561,
+   "path": "ServerStorage.Modules.Game.Activities.CourierJob"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 3670533052,
+   "file": "ServerStorage.Modules.Game.Activities.CourierRules.lua",
+   "fnv1a32": 1616163002,
+   "length": 2496,
+   "path": "ServerStorage.Modules.Game.Activities.CourierRules"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 3233915862,
+   "file": "ServerStorage.Modules.Game.Activities.DuelRules.lua",
+   "fnv1a32": 1772441156,
+   "length": 21342,
+   "path": "ServerStorage.Modules.Game.Activities.DuelRules"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 1431201617,
+   "file": "ServerStorage.Modules.Game.Activities.DuelService.lua",
+   "fnv1a32": 4204536539,
+   "length": 40569,
+   "path": "ServerStorage.Modules.Game.Activities.DuelService"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 87224007,
+   "file": "ServerStorage.Modules.Game.Activities.JobBoard.lua",
+   "fnv1a32": 418366387,
+   "length": 43331,
+   "path": "ServerStorage.Modules.Game.Activities.JobBoard"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 2628876442,
+   "file": "ServerStorage.Modules.Game.Activities.PassengerService.lua",
+   "fnv1a32": 4017146310,
+   "length": 18077,
+   "path": "ServerStorage.Modules.Game.Activities.PassengerService"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 110570581,
+   "file": "ServerStorage.Modules.Game.Activities.ProgressionRules.lua",
+   "fnv1a32": 2543094885,
+   "length": 3407,
+   "path": "ServerStorage.Modules.Game.Activities.ProgressionRules"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 3912030778,
+   "file": "ServerStorage.Modules.Game.Activities.ProgressionService.lua",
+   "fnv1a32": 1566097862,
+   "length": 7194,
+   "path": "ServerStorage.Modules.Game.Activities.ProgressionService"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 1652427959,
+   "file": "ServerStorage.Modules.Game.Activities.TaxiJob.lua",
+   "fnv1a32": 3364196341,
+   "length": 12979,
+   "path": "ServerStorage.Modules.Game.Activities.TaxiJob"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 3863369987,
+   "file": "ServerStorage.Modules.Game.Activities.TaxiRules.lua",
+   "fnv1a32": 1157035027,
+   "length": 3025,
+   "path": "ServerStorage.Modules.Game.Activities.TaxiRules"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 770405451,
+   "file": "ServerStorage.Modules.Game.Audio.VehicleAudioServer.lua",
+   "fnv1a32": 4043939571,
+   "length": 7578,
+   "path": "ServerStorage.Modules.Game.Audio.VehicleAudioServer"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 1402913298,
+   "file": "ServerStorage.Modules.Game.Dealership.IntroProgressServer.lua",
+   "fnv1a32": 66761704,
+   "length": 7282,
+   "path": "ServerStorage.Modules.Game.Dealership.IntroProgressServer"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 3929577141,
+   "file": "ServerStorage.Modules.Game.Development.StudioCashGrantServer.lua",
+   "fnv1a32": 3980734551,
+   "length": 3814,
+   "path": "ServerStorage.Modules.Game.Development.StudioCashGrantServer"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 1757481104,
+   "file": "ServerStorage.Modules.Game.Development.VehiclePerformanceComparisonServer.lua",
+   "fnv1a32": 1557755152,
+   "length": 2073,
+   "path": "ServerStorage.Modules.Game.Development.VehiclePerformanceComparisonServer"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 3836522898,
+   "file": "ServerStorage.Modules.Game.Garage.GarageCapacity.lua",
+   "fnv1a32": 1630816838,
+   "length": 8511,
+   "path": "ServerStorage.Modules.Game.Garage.GarageCapacity"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 3107121868,
+   "file": "ServerStorage.Modules.Game.Garage.GarageCatalogLookup.lua",
+   "fnv1a32": 1801157366,
+   "length": 8742,
+   "path": "ServerStorage.Modules.Game.Garage.GarageCatalogLookup"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 4082780879,
+   "file": "ServerStorage.Modules.Game.Garage.GarageCatalogService.lua",
+   "fnv1a32": 2283690971,
+   "length": 12417,
+   "path": "ServerStorage.Modules.Game.Garage.GarageCatalogService"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 463995121,
+   "file": "ServerStorage.Modules.Game.Garage.GarageClientProfile.lua",
+   "fnv1a32": 36694383,
+   "length": 5513,
+   "path": "ServerStorage.Modules.Game.Garage.GarageClientProfile"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 272158441,
+   "file": "ServerStorage.Modules.Game.Garage.GarageModuleInstanceCustomization.lua",
+   "fnv1a32": 3040958961,
+   "length": 7738,
+   "path": "ServerStorage.Modules.Game.Garage.GarageModuleInstanceCustomization"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 384901852,
+   "file": "ServerStorage.Modules.Game.Garage.GarageModuleInventory.lua",
+   "fnv1a32": 3784497052,
+   "length": 9950,
+   "path": "ServerStorage.Modules.Game.Garage.GarageModuleInventory"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 185403850,
+   "file": "ServerStorage.Modules.Game.Garage.GarageModuleTransaction.lua",
+   "fnv1a32": 1971757128,
+   "length": 7631,
+   "path": "ServerStorage.Modules.Game.Garage.GarageModuleTransaction"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 624569728,
+   "file": "ServerStorage.Modules.Game.Garage.GarageProfile.lua",
+   "fnv1a32": 3944146010,
+   "length": 5497,
+   "path": "ServerStorage.Modules.Game.Garage.GarageProfile"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 544835065,
+   "file": "ServerStorage.Modules.Game.Garage.GarageProfileView.lua",
+   "fnv1a32": 1420093369,
+   "length": 8897,
+   "path": "ServerStorage.Modules.Game.Garage.GarageProfileView"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 240601869,
+   "file": "ServerStorage.Modules.Game.Garage.GarageRequestGuard.lua",
+   "fnv1a32": 3705759327,
+   "length": 3041,
+   "path": "ServerStorage.Modules.Game.Garage.GarageRequestGuard"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 104639769,
+   "file": "ServerStorage.Modules.Game.Garage.GarageServer.lua",
+   "fnv1a32": 2908357959,
+   "length": 69233,
+   "path": "ServerStorage.Modules.Game.Garage.GarageServer"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 1003869357,
+   "file": "ServerStorage.Modules.Game.Garage.GarageSessionServer.lua",
+   "fnv1a32": 1164977253,
+   "length": 8321,
+   "path": "ServerStorage.Modules.Game.Garage.GarageSessionServer"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 2234515948,
+   "file": "ServerStorage.Modules.Game.Garage.GarageVisitRules.lua",
+   "fnv1a32": 1063971960,
+   "length": 8046,
+   "path": "ServerStorage.Modules.Game.Garage.GarageVisitRules"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 3918452980,
+   "file": "ServerStorage.Modules.Game.Garage.OwnedGarageAuthoritativeCommand.lua",
+   "fnv1a32": 3902007978,
+   "length": 4557,
+   "path": "ServerStorage.Modules.Game.Garage.OwnedGarageAuthoritativeCommand"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 3744938593,
+   "file": "ServerStorage.Modules.Game.Garage.OwnedGarageDisplay.lua",
+   "fnv1a32": 627139809,
+   "length": 9170,
+   "path": "ServerStorage.Modules.Game.Garage.OwnedGarageDisplay"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 4006897321,
+   "file": "ServerStorage.Modules.Game.Garage.OwnedGarageDisplayAssignment.lua",
+   "fnv1a32": 1561439305,
+   "length": 5334,
+   "path": "ServerStorage.Modules.Game.Garage.OwnedGarageDisplayAssignment"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 2144946125,
+   "file": "ServerStorage.Modules.Game.Garage.OwnedGarageFinish.lua",
+   "fnv1a32": 3695316061,
+   "length": 12705,
+   "path": "ServerStorage.Modules.Game.Garage.OwnedGarageFinish"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 2496509926,
+   "file": "ServerStorage.Modules.Game.Garage.OwnedGarageInterior.lua",
+   "fnv1a32": 1693970984,
+   "length": 4412,
+   "path": "ServerStorage.Modules.Game.Garage.OwnedGarageInterior"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 4151988509,
+   "file": "ServerStorage.Modules.Game.Garage.OwnedGarageManagement.lua",
+   "fnv1a32": 1543579631,
+   "length": 88342,
+   "path": "ServerStorage.Modules.Game.Garage.OwnedGarageManagement"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 1320718481,
+   "file": "ServerStorage.Modules.Game.Garage.OwnedGarageProfile.lua",
+   "fnv1a32": 288954023,
+   "length": 24584,
+   "path": "ServerStorage.Modules.Game.Garage.OwnedGarageProfile"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 3985759657,
+   "file": "ServerStorage.Modules.Game.Garage.OwnedGarageServer.lua",
+   "fnv1a32": 20622013,
+   "length": 747,
+   "path": "ServerStorage.Modules.Game.Garage.OwnedGarageServer"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 3397805197,
+   "file": "ServerStorage.Modules.Game.Garage.VehicleBuildService.lua",
+   "fnv1a32": 2548974947,
+   "length": 13824,
+   "path": "ServerStorage.Modules.Game.Garage.VehicleBuildService"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 3531916915,
+   "file": "ServerStorage.Modules.Game.Garage.VehicleCosmeticServer.lua",
+   "fnv1a32": 812813777,
+   "length": 4915,
+   "path": "ServerStorage.Modules.Game.Garage.VehicleCosmeticServer"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 1790821347,
+   "file": "ServerStorage.Modules.Game.Garage.VehicleLifecycleService.lua",
+   "fnv1a32": 715324319,
+   "length": 13120,
+   "path": "ServerStorage.Modules.Game.Garage.VehicleLifecycleService"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 2844698498,
+   "file": "ServerStorage.Modules.Game.Garage.VehicleSpawnService.lua",
+   "fnv1a32": 2908479148,
+   "length": 11070,
+   "path": "ServerStorage.Modules.Game.Garage.VehicleSpawnService"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 394203653,
+   "file": "ServerStorage.Modules.Game.Player.AnalyticsServer.lua",
+   "fnv1a32": 425911009,
+   "length": 4159,
+   "path": "ServerStorage.Modules.Game.Player.AnalyticsServer"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 3647163918,
+   "file": "ServerStorage.Modules.Game.Player.EconomyServer.lua",
+   "fnv1a32": 3015720260,
+   "length": 10140,
+   "path": "ServerStorage.Modules.Game.Player.EconomyServer"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 1338200825,
+   "file": "ServerStorage.Modules.Game.Player.GarageProfileProjection.lua",
+   "fnv1a32": 3107147,
+   "length": 9007,
+   "path": "ServerStorage.Modules.Game.Player.GarageProfileProjection"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 659406731,
+   "file": "ServerStorage.Modules.Game.Player.MoneyService.lua",
+   "fnv1a32": 4078045943,
+   "length": 2724,
+   "path": "ServerStorage.Modules.Game.Player.MoneyService"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 1273936111,
+   "file": "ServerStorage.Modules.Game.Player.OnboardingServer.lua",
+   "fnv1a32": 1423390525,
+   "length": 7200,
+   "path": "ServerStorage.Modules.Game.Player.OnboardingServer"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 4115008296,
+   "file": "ServerStorage.Modules.Game.Player.PlayerProfileSchema.lua",
+   "fnv1a32": 3977406028,
+   "length": 10564,
+   "path": "ServerStorage.Modules.Game.Player.PlayerProfileSchema"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 312026230,
+   "file": "ServerStorage.Modules.Game.Player.ProfileCompatibility.lua",
+   "fnv1a32": 3944071344,
+   "length": 1622,
+   "path": "ServerStorage.Modules.Game.Player.ProfileCompatibility"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 3672945742,
+   "file": "ServerStorage.Modules.Game.Player.ProfileCompatibilityServer.lua",
+   "fnv1a32": 4239300908,
+   "length": 2690,
+   "path": "ServerStorage.Modules.Game.Player.ProfileCompatibilityServer"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 117926565,
+   "file": "ServerStorage.Modules.Game.Player.ProfileServer.lua",
+   "fnv1a32": 1955201183,
+   "length": 25065,
+   "path": "ServerStorage.Modules.Game.Player.ProfileServer"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 2680664488,
+   "file": "ServerStorage.Modules.Game.Player.ProfileStore.lua",
+   "fnv1a32": 2289897616,
+   "length": 3653,
+   "path": "ServerStorage.Modules.Game.Player.ProfileStore"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 2785903561,
+   "file": "ServerStorage.Modules.Game.Player.ReceiptProcessor.lua",
+   "fnv1a32": 1790944247,
+   "length": 2924,
+   "path": "ServerStorage.Modules.Game.Player.ReceiptProcessor"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 2365520989,
+   "file": "ServerStorage.Modules.Game.Racing.GlobalLeaderboardServer.lua",
+   "fnv1a32": 1670008533,
+   "length": 6089,
+   "path": "ServerStorage.Modules.Game.Racing.GlobalLeaderboardServer"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 4272534936,
+   "file": "ServerStorage.Modules.Game.Racing.MatchmakingServer.lua",
+   "fnv1a32": 3659786260,
+   "length": 46976,
+   "path": "ServerStorage.Modules.Game.Racing.MatchmakingServer"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 188746672,
+   "file": "ServerStorage.Modules.Game.Racing.PersonalBestServer.lua",
+   "fnv1a32": 1195488726,
+   "length": 12091,
+   "path": "ServerStorage.Modules.Game.Racing.PersonalBestServer"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 2355809774,
+   "file": "ServerStorage.Modules.Game.Racing.RaceAssetsServer.lua",
+   "fnv1a32": 3883007844,
+   "length": 12994,
+   "path": "ServerStorage.Modules.Game.Racing.RaceAssetsServer"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 3341057859,
+   "file": "ServerStorage.Modules.Game.Racing.RaceDisplayNameServer.lua",
+   "fnv1a32": 2364023569,
+   "length": 3044,
+   "path": "ServerStorage.Modules.Game.Racing.RaceDisplayNameServer"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 3087586043,
+   "file": "ServerStorage.Modules.Game.Racing.RaceIntegrity.lua",
+   "fnv1a32": 319011109,
+   "length": 4966,
+   "path": "ServerStorage.Modules.Game.Racing.RaceIntegrity"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 1159116538,
+   "file": "ServerStorage.Modules.Game.Racing.RaceRewardsServer.lua",
+   "fnv1a32": 2926978506,
+   "length": 15452,
+   "path": "ServerStorage.Modules.Game.Racing.RaceRewardsServer"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 3089442392,
+   "file": "ServerStorage.Modules.Game.Racing.RaceTeleportServer.lua",
+   "fnv1a32": 2903263088,
+   "length": 8827,
+   "path": "ServerStorage.Modules.Game.Racing.RaceTeleportServer"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 2658051730,
+   "file": "ServerStorage.Modules.Game.Racing.TimeTrialServer.lua",
+   "fnv1a32": 217825938,
+   "length": 50871,
+   "path": "ServerStorage.Modules.Game.Racing.TimeTrialServer"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 3816560977,
+   "file": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer.lua",
+   "fnv1a32": 2846762453,
+   "length": 19471,
+   "path": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 2360838784,
+   "file": "ServerStorage.Modules.Game.Vehicles.DriverSeatServer.lua",
+   "fnv1a32": 290781286,
+   "length": 7254,
+   "path": "ServerStorage.Modules.Game.Vehicles.DriverSeatServer"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 700019036,
+   "file": "ServerStorage.Modules.Game.Vehicles.Performance.VehiclePerformance.lua",
+   "fnv1a32": 409678190,
+   "length": 2053,
+   "path": "ServerStorage.Modules.Game.Vehicles.Performance.VehiclePerformance"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 3493412410,
+   "file": "ServerStorage.Modules.Game.Vehicles.VehicleAccessServer.lua",
+   "fnv1a32": 2197526664,
+   "length": 4407,
+   "path": "ServerStorage.Modules.Game.Vehicles.VehicleAccessServer"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 3052337815,
+   "file": "ServerStorage.Modules.Game.Vehicles.VehicleCollisionServer.lua",
+   "fnv1a32": 4203345481,
+   "length": 7617,
+   "path": "ServerStorage.Modules.Game.Vehicles.VehicleCollisionServer"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 4041395132,
+   "file": "ServerStorage.Modules.Game.Vehicles.VehiclePerformanceServer.lua",
+   "fnv1a32": 3978552314,
+   "length": 2269,
+   "path": "ServerStorage.Modules.Game.Vehicles.VehiclePerformanceServer"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 1769963103,
+   "file": "ServerStorage.Modules.Game.World.FreeRoamTeleportServer.lua",
+   "fnv1a32": 3691369477,
+   "length": 6387,
+   "path": "ServerStorage.Modules.Game.World.FreeRoamTeleportServer"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 2133020436,
+   "file": "ServerStorage.Modules.Game.World.LightingServer.lua",
+   "fnv1a32": 3871174768,
+   "length": 9983,
+   "path": "ServerStorage.Modules.Game.World.LightingServer"
+  },
+  {
+   "class": "ModuleScript",
+   "djb2": 484000212,
+   "file": "ServerStorage.Modules.Game.World.TrafficLightServer.lua",
+   "fnv1a32": 1769130320,
+   "length": 1470,
+   "path": "ServerStorage.Modules.Game.World.TrafficLightServer"
+  },
+  {
+   "class": "LocalScript",
+   "djb2": 2119143228,
+   "file": "StarterPlayer.StarterPlayerScripts.ClientBase.lua",
+   "fnv1a32": 2907380354,
+   "length": 7577,
+   "path": "StarterPlayer.StarterPlayerScripts.ClientBase"
+  },
+  {
+   "class": "Script",
+   "djb2": 32115348,
+   "file": "Workspace.FBX_-_3D_Lady_Head_v2.Script.lua",
+   "fnv1a32": 1964190050,
+   "length": 377,
+   "path": "Workspace.FBX - 3D Lady Head v2.Script"
+  },
+  {
+   "class": "Script",
+   "djb2": 32115348,
+   "file": "Workspace.FBX_-_3D_Vehicle_Holographic_v3.Script.lua",
+   "fnv1a32": 1964190050,
+   "length": 377,
+   "path": "Workspace.FBX - 3D Vehicle Holographic v3.Script"
+  }
+ ]
+}

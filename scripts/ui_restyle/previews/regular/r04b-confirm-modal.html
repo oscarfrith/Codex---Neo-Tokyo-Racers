@@ -1,0 +1,21 @@
+<!doctype html><html><head><meta charset="utf-8"><title>r04b Confirm modal</title><script src="../shared/boot.js"></script></head><body><script>
+const w = P.sil("wing");
+const mods = [
+  {variant:"STD",corner:{t:"FITTED"},sub:"SPINE &middot; D 316",name:"SPINE WING"},
+  {variant:"EVO",corner:{t:"OWNED X2"},sub:"SPINE &middot; D 321",name:"SPINE WING"},
+  {variant:"GT",corner:{t:"OWNED X1"},sub:"BRIDGE &middot; D 318",name:"BRIDGE WING"},
+  {variant:"STD",corner:{t:"IN USE"},sub:"IN USE BY ZEPHYR",name:"BLADE WING",sel:1}];
+P.page(`
+  ${P.scene("garage")}<div class="scrim-garage"></div>
+  ${P.title("CUSTOMISE")}${P.customiseTabs(0)}
+  ${P.status({garage:"3 / 4",plus:1})}
+  ${P.railhead("WING 4/4",P.sw([{l:"SHOP"},{l:"OWNED",on:1}]))}
+  <div class="rail">${mods.map(m=>P.tile({...m,vis:w})).join("")}</div>
+  ${P.btnrow([P.btn("BACK","back"),P.btn("DRIVE","wheel"),P.btn("EQUIP","tick","main")])}
+  <div class="scrim-modal"></div>
+  ${P.modal("MOVE THIS PART?",
+    `<div class="t-body" style="font-size:26px">Blade Wing Standard is fitted to your Zephyr. Moving it here leaves the Zephyr without a wing.</div>`,
+    [P.btn("NO","","md focus"),P.btn("YES","","md main nochev")],"width:760px;top:43%")}
+  <div class="abs note above" style="left:50%;transform:translateX(-50%);top:236px;width:760px;text-align:center">Kit.Confirm: NO on the left and focused on open, YES on the right. Escape and gamepad B cancel; a click on the dimmed scene does not.</div>
+`);
+</script></body></html>

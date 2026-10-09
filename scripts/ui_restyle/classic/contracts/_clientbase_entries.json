@@ -1,0 +1,952 @@
+{
+ "generated_by": "scripts/ui_restyle/tools/extract_contracts.py",
+ "source": "StarterPlayer.StarterPlayerScripts.ClientBase",
+ "table_line": 5,
+ "entries": [
+  {
+   "name": "ActivityClient",
+   "path": "ReplicatedStorage.Modules.Game.Activities.ActivityClient",
+   "dependencies": [
+    "SharedTopNotificationUI"
+   ],
+   "tool": null,
+   "line": 5
+  },
+  {
+   "name": "LightingClient",
+   "path": "ReplicatedStorage.Modules.Game.World.LightingClient",
+   "dependencies": [],
+   "tool": null,
+   "line": 8
+  },
+  {
+   "name": "DriveSessionClient",
+   "path": "ReplicatedStorage.Modules.Game.Vehicles.DriveSessionClient",
+   "dependencies": [],
+   "tool": null,
+   "line": 8
+  },
+  {
+   "name": "AcousticsRuntimeClient",
+   "path": "ReplicatedStorage.Modules.Game.Audio.AcousticsRuntimeClient",
+   "dependencies": [],
+   "tool": null,
+   "line": 8
+  },
+  {
+   "name": "AudioRuntimeClient",
+   "path": "ReplicatedStorage.Modules.Game.Audio.AudioRuntimeClient",
+   "dependencies": [],
+   "tool": null,
+   "line": 10
+  },
+  {
+   "name": "ContextAudioRuntimeClient",
+   "path": "ReplicatedStorage.Modules.Game.Audio.ContextAudioRuntimeClient",
+   "dependencies": [],
+   "tool": null,
+   "line": 12
+  },
+  {
+   "name": "PresentationAudioRuntimeClient",
+   "path": "ReplicatedStorage.Modules.Game.Audio.PresentationAudioRuntimeClient",
+   "dependencies": [],
+   "tool": null,
+   "line": 14
+  },
+  {
+   "name": "DriveToEarnCashTelemetryClient",
+   "path": "ReplicatedStorage.Modules.Game.Development.DriveToEarnCashTelemetryClient",
+   "dependencies": [],
+   "tool": null,
+   "line": 16
+  },
+  {
+   "name": "StudioCashGrantClient",
+   "path": "ReplicatedStorage.Modules.Game.Development.StudioCashGrantClient",
+   "dependencies": [],
+   "tool": null,
+   "line": 18
+  },
+  {
+   "name": "DealershipIntroClient",
+   "path": "ReplicatedStorage.Modules.Game.Dealership.DealershipIntroClient",
+   "dependencies": [
+    "GarageUI"
+   ],
+   "tool": null,
+   "line": 20
+  },
+  {
+   "name": "GarageEntranceClient",
+   "path": "ReplicatedStorage.Modules.Game.Dealership.GarageEntranceClient",
+   "dependencies": [
+    "LoadingTransitionUI",
+    "GarageUI"
+   ],
+   "tool": null,
+   "line": 23
+  },
+  {
+   "name": "GaragePreviewPresentationClient",
+   "path": "ReplicatedStorage.Modules.Game.Garage.GaragePreviewPresentationClient",
+   "dependencies": [
+    "LightingClient"
+   ],
+   "tool": null,
+   "line": 27
+  },
+  {
+   "name": "ThrustPreviewClient",
+   "path": "ReplicatedStorage.Modules.Game.Garage.ThrustPreviewClient",
+   "dependencies": [],
+   "tool": null,
+   "line": 29
+  },
+  {
+   "name": "RaceBrowserClient",
+   "path": "ReplicatedStorage.Modules.Game.Racing.RaceBrowserClient",
+   "dependencies": [],
+   "tool": null,
+   "line": 31
+  },
+  {
+   "name": "RaceCountdownPresentationClient",
+   "path": "ReplicatedStorage.Modules.Game.Racing.RaceCountdownPresentationClient",
+   "dependencies": [],
+   "tool": null,
+   "line": 33
+  },
+  {
+   "name": "RaceEntryMenuClient",
+   "path": "ReplicatedStorage.Modules.Game.Racing.RaceEntryMenuClient",
+   "dependencies": [],
+   "tool": null,
+   "line": 35
+  },
+  {
+   "name": "RaceEntryPresentationClient",
+   "path": "ReplicatedStorage.Modules.Game.Racing.RaceEntryPresentationClient",
+   "dependencies": [
+    "LoadingTransitionUI"
+   ],
+   "tool": null,
+   "line": 37
+  },
+  {
+   "name": "RaceLifecyclePresentationClient",
+   "path": "ReplicatedStorage.Modules.Game.Racing.RaceLifecyclePresentationClient",
+   "dependencies": [],
+   "tool": null,
+   "line": 40
+  },
+  {
+   "name": "RaceParticipantVisibilityClient",
+   "path": "ReplicatedStorage.Modules.Game.Racing.RaceParticipantVisibilityClient",
+   "dependencies": [],
+   "tool": null,
+   "line": 42
+  },
+  {
+   "name": "RaceQueueClient",
+   "path": "ReplicatedStorage.Modules.Game.Racing.RaceQueueClient",
+   "dependencies": [],
+   "tool": null,
+   "line": 44
+  },
+  {
+   "name": "RaceRouteGuideClient",
+   "path": "ReplicatedStorage.Modules.Game.Racing.RaceRouteGuideClient",
+   "dependencies": [],
+   "tool": null,
+   "line": 46
+  },
+  {
+   "name": "RaceSessionAssetsClient",
+   "path": "ReplicatedStorage.Modules.Game.Racing.RaceSessionAssetsClient",
+   "dependencies": [],
+   "tool": null,
+   "line": 48
+  },
+  {
+   "name": "RaceSessionPresentationClient",
+   "path": "ReplicatedStorage.Modules.Game.Racing.RaceSessionPresentationClient",
+   "dependencies": [],
+   "tool": null,
+   "line": 50
+  },
+  {
+   "name": "RaceTimeTrialResultCoachClient",
+   "path": "ReplicatedStorage.Modules.Game.Racing.RaceTimeTrialResultCoachClient",
+   "dependencies": [],
+   "tool": null,
+   "line": 52
+  },
+  {
+   "name": "RaceTransitionClient",
+   "path": "ReplicatedStorage.Modules.Game.Racing.RaceTransitionClient",
+   "dependencies": [],
+   "tool": null,
+   "line": 54
+  },
+  {
+   "name": "CharacterSprintClient",
+   "path": "ReplicatedStorage.Modules.Game.Vehicles.CharacterSprintClient",
+   "dependencies": [],
+   "tool": null,
+   "line": 56
+  },
+  {
+   "name": "FreeRoamParkedHoverClient",
+   "path": "ReplicatedStorage.Modules.Game.Vehicles.FreeRoamParkedHoverClient",
+   "dependencies": [],
+   "tool": null,
+   "line": 58
+  },
+  {
+   "name": "MobileDriveControlsClient",
+   "path": "ReplicatedStorage.Modules.Game.Vehicles.MobileDriveControlsClient",
+   "dependencies": [],
+   "tool": null,
+   "line": 60
+  },
+  {
+   "name": "RuntimeVFXClient",
+   "path": "ReplicatedStorage.Modules.Game.Vehicles.RuntimeVFXClient",
+   "dependencies": [],
+   "tool": null,
+   "line": 62
+  },
+  {
+   "name": "DesktopFreeRoamHudUI",
+   "path": "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+   "dependencies": [],
+   "tool": null,
+   "line": 64
+  },
+  {
+   "name": "FreeRoamVehicleExitButtonClient",
+   "path": "ReplicatedStorage.Modules.Game.UI.FreeRoamVehicleExitButtonClient",
+   "dependencies": [],
+   "tool": null,
+   "line": 66
+  },
+  {
+   "name": "LoadingTransitionUI",
+   "path": "ReplicatedStorage.Modules.Game.UI.LoadingTransitionUI",
+   "dependencies": [],
+   "tool": null,
+   "line": 68
+  },
+  {
+   "name": "MobileFreeRoamHudUI",
+   "path": "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI",
+   "dependencies": [],
+   "tool": null,
+   "line": 70
+  },
+  {
+   "name": "FullMapUI",
+   "path": "ReplicatedStorage.Modules.Game.UI.FullMapUI",
+   "dependencies": [],
+   "tool": null,
+   "line": 72
+  },
+  {
+   "name": "OnboardingClient",
+   "path": "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+   "dependencies": [],
+   "tool": null,
+   "line": 72
+  },
+  {
+   "name": "OwnedGarageClient",
+   "path": "ReplicatedStorage.Modules.Game.UI.OwnedGarageClient",
+   "dependencies": [
+    "LoadingTransitionUI"
+   ],
+   "tool": null,
+   "line": 74
+  },
+  {
+   "name": "SharedTopNotificationUI",
+   "path": "ReplicatedStorage.Modules.Game.UI.SharedTopNotificationUI",
+   "dependencies": [],
+   "tool": null,
+   "line": 77
+  },
+  {
+   "name": "LODClient",
+   "path": "ReplicatedStorage.Modules.Game.World.LODClient",
+   "dependencies": [],
+   "tool": null,
+   "line": 79
+  },
+  {
+   "name": "NightLamppostLightClient",
+   "path": "ReplicatedStorage.Modules.Game.World.NightLamppostLightClient",
+   "dependencies": [],
+   "tool": null,
+   "line": 81
+  },
+  {
+   "name": "OwnedGarageEnvironmentLightingClient",
+   "path": "ReplicatedStorage.Modules.Game.World.OwnedGarageEnvironmentLightingClient",
+   "dependencies": [
+    "LightingClient"
+   ],
+   "tool": null,
+   "line": 83
+  },
+  {
+   "name": "WindowMaterialClient",
+   "path": "ReplicatedStorage.Modules.Game.World.WindowMaterialClient",
+   "dependencies": [],
+   "tool": null,
+   "line": 85
+  },
+  {
+   "name": "GarageUI",
+   "path": "ReplicatedStorage.Modules.Game.Garage.GarageUI",
+   "dependencies": [
+    "DriveSessionClient",
+    "LoadingTransitionUI",
+    "SharedTopNotificationUI"
+   ],
+   "tool": null,
+   "line": 87
+  },
+  {
+   "name": "TrailerVehicleCameraClient",
+   "path": "ReplicatedStorage.Modules.Game.Development.TrailerVehicleCameraClient",
+   "dependencies": [],
+   "tool": "TrailerVehicleCameraEnabled",
+   "line": 91
+  },
+  {
+   "name": "LightingPreviewClient",
+   "path": "ReplicatedStorage.Modules.Game.Development.LightingPreviewClient",
+   "dependencies": [
+    "LightingClient"
+   ],
+   "tool": "LightingPreviewEnabled",
+   "line": 94
+  },
+  {
+   "name": "TrailerModeClient",
+   "path": "ReplicatedStorage.Modules.Game.Development.TrailerModeClient",
+   "dependencies": [],
+   "tool": "TrailerModeEnabled",
+   "line": 97
+  },
+  {
+   "name": "TrailerShotClient",
+   "path": "ReplicatedStorage.Modules.Game.Development.TrailerShotClient",
+   "dependencies": [],
+   "tool": "TrailerShotEnabled",
+   "line": 100
+  }
+ ],
+ "required_by": {
+  "Players.LocalPlayer.PlayerScripts.PlayerModule": [
+   "ReplicatedStorage.Modules.Game.Garage.ThrustPreviewClient",
+   "ReplicatedStorage.Modules.Game.Vehicles.CharacterSprintClient",
+   "ReplicatedStorage.Modules.Game.Vehicles.GameplayInputGate",
+   "ReplicatedStorage.Modules.Game.Vehicles.VehicleVFXClient"
+  ],
+  "ReplicatedFirst.Loading.LoadingArtworkCatalog": [
+   "ReplicatedFirst.Loading.LoadingTransitionRuntime"
+  ],
+  "ReplicatedFirst.Loading.LoadingScreenView": [
+   "ReplicatedFirst.Loading.LoadingTransitionRuntime"
+  ],
+  "ReplicatedFirst.Loading.LoadingTransitionRuntime": [
+   "ReplicatedFirst.Loading.InitialLoadingAndStartScreenClient",
+   "ReplicatedStorage.Modules.Game.UI.LoadingTransitionUI"
+  ],
+  "ReplicatedStorage.Modules.Core.CameraService": [
+   "ReplicatedStorage.Modules.Game.Vehicles.CharacterSprintClient",
+   "ReplicatedStorage.Modules.Game.Vehicles.DrivingCameraClient"
+  ],
+  "ReplicatedStorage.Modules.Core.ClientLifecycle": [
+   "ReplicatedStorage.Modules.Game.Development.LightingPreviewClient",
+   "ReplicatedStorage.Modules.Game.Development.TrailerModeClient",
+   "ReplicatedStorage.Modules.Game.Development.TrailerShotClient",
+   "ReplicatedStorage.Modules.Game.Development.TrailerVehicleCameraClient",
+   "StarterPlayer.StarterPlayerScripts.ClientBase"
+  ],
+  "ReplicatedStorage.Modules.Core.ConfigReader": [
+   "ReplicatedStorage.Modules.Game.Vehicles.DriveTuning"
+  ],
+  "ReplicatedStorage.Modules.Core.ConnectionScope": [
+   "ReplicatedStorage.Modules.Game.Vehicles.DriveSessionClient",
+   "ReplicatedStorage.Modules.Game.World.LODRuntime"
+  ],
+  "ReplicatedStorage.Modules.Core.PathResolver": [
+   "ReplicatedStorage.Modules.Game.Garage.PreviewVehicleClient"
+  ],
+  "ReplicatedStorage.Modules.Core.Signal": [
+   "ReplicatedStorage.Modules.Game.UI.MapMarkers",
+   "ReplicatedStorage.Modules.Game.UI.RouteGuide",
+   "ServerStorage.Modules.Game.Activities.ActivityService",
+   "ServerStorage.Modules.Game.Activities.PassengerService",
+   "ServerStorage.Modules.Game.Activities.ProgressionService",
+   "ServerStorage.Modules.Game.Player.MoneyService"
+  ],
+  "ReplicatedStorage.Modules.Game.Activities.CourierClientView": [
+   "ReplicatedStorage.Modules.Game.Activities.ActivityClient"
+  ],
+  "ReplicatedStorage.Modules.Game.Activities.DuelClientView": [
+   "ReplicatedStorage.Modules.Game.Activities.ActivityClient"
+  ],
+  "ReplicatedStorage.Modules.Game.Activities.JobClient": [
+   "ReplicatedStorage.Modules.Game.Activities.CourierClientView",
+   "ReplicatedStorage.Modules.Game.Activities.TaxiClientView"
+  ],
+  "ReplicatedStorage.Modules.Game.Activities.JobRules": [
+   "ReplicatedStorage.Modules.Game.Activities.CourierClientView",
+   "ReplicatedStorage.Modules.Game.Activities.JobClient",
+   "ReplicatedStorage.Modules.Game.Activities.TaxiClientView",
+   "ServerStorage.Modules.Game.Activities.JobBoard"
+  ],
+  "ReplicatedStorage.Modules.Game.Activities.PassengerClientView": [
+   "ReplicatedStorage.Modules.Game.Activities.ActivityClient"
+  ],
+  "ReplicatedStorage.Modules.Game.Activities.TaxiClientView": [
+   "ReplicatedStorage.Modules.Game.Activities.ActivityClient"
+  ],
+  "ReplicatedStorage.Modules.Game.Audio.AcousticsClient": [
+   "ReplicatedStorage.Modules.Game.Audio.AcousticsRuntimeClient"
+  ],
+  "ReplicatedStorage.Modules.Game.Audio.AudioBusClient": [
+   "ReplicatedStorage.Modules.Game.Audio.VehicleAudioClient"
+  ],
+  "ReplicatedStorage.Modules.Game.Audio.AudioMixClient": [
+   "ReplicatedFirst.Loading.LoadingTransitionRuntime"
+  ],
+  "ReplicatedStorage.Modules.Game.Audio.ContextAudioCatalog": [
+   "ReplicatedStorage.Modules.Game.Audio.ContextAudioClient"
+  ],
+  "ReplicatedStorage.Modules.Game.Audio.ContextAudioClient": [
+   "ReplicatedStorage.Modules.Game.Audio.AcousticsClient",
+   "ReplicatedStorage.Modules.Game.Audio.ContextAudioRuntimeClient"
+  ],
+  "ReplicatedStorage.Modules.Game.Audio.PresentationAudioBridge": [
+   "ReplicatedStorage.Modules.Game.Audio.PresentationAudioClient",
+   "ReplicatedStorage.Modules.Game.Dealership.GarageEntranceClient",
+   "ReplicatedStorage.Modules.Game.Garage.GarageUI",
+   "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+   "ReplicatedStorage.Modules.Game.UI.OwnedGarageWorkspaceUI"
+  ],
+  "ReplicatedStorage.Modules.Game.Audio.PresentationAudioCatalog": [
+   "ReplicatedStorage.Modules.Game.Audio.PresentationAudioClient"
+  ],
+  "ReplicatedStorage.Modules.Game.Audio.PresentationAudioClient": [
+   "ReplicatedStorage.Modules.Game.Audio.PresentationAudioRuntimeClient"
+  ],
+  "ReplicatedStorage.Modules.Game.Audio.VehicleAudioCatalog": [
+   "ReplicatedStorage.Modules.Game.Audio.VehicleAudioClient"
+  ],
+  "ReplicatedStorage.Modules.Game.Audio.VehicleAudioClient": [
+   "ReplicatedStorage.Modules.Game.Audio.AudioRuntimeClient"
+  ],
+  "ReplicatedStorage.Modules.Game.Audio.VehicleAudioStateContract": [
+   "ReplicatedStorage.Modules.Game.Audio.VehicleAudioClient",
+   "ServerStorage.Modules.Game.Audio.VehicleAudioServer"
+  ],
+  "ReplicatedStorage.Modules.Game.Garage.GarageCatalogClient": [
+   "ReplicatedStorage.Modules.Game.Garage.GarageUI",
+   "ReplicatedStorage.Modules.Game.Racing.RaceEntryMenuClient",
+   "ReplicatedStorage.Modules.Game.Racing.RaceEntryPresentationClient",
+   "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+   "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI"
+  ],
+  "ReplicatedStorage.Modules.Game.Garage.GarageModuleInstancePreviewAdapter": [
+   "ReplicatedStorage.Modules.Game.Garage.GarageUI",
+   "ReplicatedStorage.Modules.Game.Garage.PreviewVehicleClient"
+  ],
+  "ReplicatedStorage.Modules.Game.Garage.GaragePropertyCatalog": [
+   "ReplicatedStorage.Modules.Game.Garage.GarageUI",
+   "ServerStorage.Modules.Game.Garage.GarageCapacity"
+  ],
+  "ReplicatedStorage.Modules.Game.Garage.GarageVehiclePreviewProfile": [
+   "ReplicatedStorage.Modules.Game.Garage.GarageUI"
+  ],
+  "ReplicatedStorage.Modules.Game.Garage.OwnedGarageDecorationCatalog": [
+   "ServerStorage.Modules.Game.Garage.OwnedGarageManagement",
+   "ServerStorage.Modules.Game.Garage.OwnedGarageProfile"
+  ],
+  "ReplicatedStorage.Modules.Game.Garage.OwnedGarageInteriorStyleCatalog": [
+   "ServerStorage.Modules.Game.Garage.OwnedGarageFinish",
+   "ServerStorage.Modules.Game.Garage.OwnedGarageManagement",
+   "ServerStorage.Modules.Game.Garage.OwnedGarageProfile"
+  ],
+  "ReplicatedStorage.Modules.Game.Garage.OwnedGarageLightingCatalog": [
+   "ServerStorage.Modules.Game.Garage.OwnedGarageManagement",
+   "ServerStorage.Modules.Game.Garage.OwnedGarageProfile"
+  ],
+  "ReplicatedStorage.Modules.Game.Garage.OwnedGaragePropertyCatalog": [
+   "ServerStorage.Modules.Game.Garage.OwnedGarageManagement",
+   "ServerStorage.Modules.Game.Garage.OwnedGarageProfile"
+  ],
+  "ReplicatedStorage.Modules.Game.Garage.PaintClient": [
+   "ReplicatedStorage.Modules.Game.Garage.PreviewVehicleClient"
+  ],
+  "ReplicatedStorage.Modules.Game.Garage.PreviewCameraClient": [
+   "ReplicatedStorage.Modules.Game.Garage.GarageUI"
+  ],
+  "ReplicatedStorage.Modules.Game.Garage.PreviewVehicleClient": [
+   "ReplicatedStorage.Modules.Game.Garage.GarageUI"
+  ],
+  "ReplicatedStorage.Modules.Game.Racing.RaceConfigReader": [
+   "ReplicatedStorage.Modules.Game.Racing.RaceBrowserClient",
+   "ReplicatedStorage.Modules.Game.Racing.RaceEntryPresentationClient",
+   "ServerStorage.Modules.Game.Racing.MatchmakingServer",
+   "ServerStorage.Modules.Game.Racing.RaceTeleportServer",
+   "ServerStorage.Modules.Game.Racing.TimeTrialServer"
+  ],
+  "ReplicatedStorage.Modules.Game.Racing.RaceRouteDefinition": [
+   "ReplicatedStorage.Modules.Game.Racing.RaceConfigReader",
+   "ReplicatedStorage.Modules.Game.Racing.RaceRouteGuideClient",
+   "ServerStorage.Modules.Game.Racing.MatchmakingServer",
+   "ServerStorage.Modules.Game.Racing.RaceTeleportServer",
+   "ServerStorage.Modules.Game.Racing.TimeTrialServer"
+  ],
+  "ReplicatedStorage.Modules.Game.UI.FreeRoamMapPlayerMarkers": [
+   "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+   "ReplicatedStorage.Modules.Game.UI.FullMapUI",
+   "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI"
+  ],
+  "ReplicatedStorage.Modules.Game.UI.FullMapUI": [
+   "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+   "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI"
+  ],
+  "ReplicatedStorage.Modules.Game.UI.GarageBrowserUI": [
+   "ReplicatedStorage.Modules.Game.Garage.GarageUI"
+  ],
+  "ReplicatedStorage.Modules.Game.UI.GarageComponents": [
+   "ReplicatedStorage.Modules.Game.Garage.GarageUI",
+   "ReplicatedStorage.Modules.Game.Racing.RaceEntryPresentationClient",
+   "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+   "ReplicatedStorage.Modules.Game.UI.GarageBrowserUI",
+   "ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI",
+   "ReplicatedStorage.Modules.Game.UI.GarageWorkspaceUI",
+   "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI",
+   "ReplicatedStorage.Modules.Game.UI.OwnedGarageBrowserUI",
+   "ReplicatedStorage.Modules.Game.UI.OwnedGarageWorkspaceUI"
+  ],
+  "ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI": [
+   "ReplicatedStorage.Modules.Game.UI.OwnedGarageClient"
+  ],
+  "ReplicatedStorage.Modules.Game.UI.GarageInteriorTransitionUI": [
+   "ReplicatedStorage.Modules.Game.UI.OwnedGarageClient"
+  ],
+  "ReplicatedStorage.Modules.Game.UI.GarageModuleCardViewModel": [
+   "ReplicatedStorage.Modules.Game.Garage.GarageUI"
+  ],
+  "ReplicatedStorage.Modules.Game.UI.GarageWorkspaceUI": [
+   "ReplicatedStorage.Modules.Game.Garage.GarageUI",
+   "ReplicatedStorage.Modules.Game.UI.OwnedGarageWorkspaceUI"
+  ],
+  "ReplicatedStorage.Modules.Game.UI.MapIconLayer": [
+   "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+   "ReplicatedStorage.Modules.Game.UI.FullMapUI",
+   "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI"
+  ],
+  "ReplicatedStorage.Modules.Game.UI.MapMarkers": [
+   "ReplicatedStorage.Modules.Game.Activities.JobClient",
+   "ReplicatedStorage.Modules.Game.UI.FullMapUI",
+   "ReplicatedStorage.Modules.Game.UI.MapIconLayer"
+  ],
+  "ReplicatedStorage.Modules.Game.UI.MapMath": [
+   "ReplicatedStorage.Modules.Game.UI.FullMapUI",
+   "ReplicatedStorage.Modules.Game.UI.MapIconLayer",
+   "ReplicatedStorage.Modules.Game.UI.MapTileSet"
+  ],
+  "ReplicatedStorage.Modules.Game.UI.MapTileSet": [
+   "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+   "ReplicatedStorage.Modules.Game.UI.FullMapUI",
+   "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI"
+  ],
+  "ReplicatedStorage.Modules.Game.UI.OnboardingGuideTrailRenderer": [
+   "ReplicatedStorage.Modules.Game.UI.OnboardingClient"
+  ],
+  "ReplicatedStorage.Modules.Game.UI.OwnedGarageBrowserUI": [
+   "ReplicatedStorage.Modules.Game.UI.GarageInteriorTransitionUI",
+   "ReplicatedStorage.Modules.Game.UI.OwnedGarageClient"
+  ],
+  "ReplicatedStorage.Modules.Game.UI.OwnedGarageWorkspaceUI": [
+   "ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI",
+   "ReplicatedStorage.Modules.Game.UI.GarageInteriorTransitionUI",
+   "ReplicatedStorage.Modules.Game.UI.OwnedGarageClient"
+  ],
+  "ReplicatedStorage.Modules.Game.UI.RacingMobileScaledDesktopLayout": [
+   "ReplicatedStorage.Modules.Game.Racing.RaceBrowserClient",
+   "ReplicatedStorage.Modules.Game.Racing.RaceEntryPresentationClient",
+   "ReplicatedStorage.Modules.Game.Racing.RaceTimeTrialResultCoachClient",
+   "ReplicatedStorage.Modules.Game.UI.OwnedGarageBrowserUI"
+  ],
+  "ReplicatedStorage.Modules.Game.UI.RacingUIComponents": [
+   "ReplicatedFirst.Loading.InitialLoadingAndStartScreenClient",
+   "ReplicatedStorage.Modules.Game.Activities.ActivityClient",
+   "ReplicatedStorage.Modules.Game.Garage.GarageUI",
+   "ReplicatedStorage.Modules.Game.Racing.RaceBrowserClient",
+   "ReplicatedStorage.Modules.Game.Racing.RaceCountdownPresentationClient",
+   "ReplicatedStorage.Modules.Game.Racing.RaceEntryPresentationClient",
+   "ReplicatedStorage.Modules.Game.Racing.RaceQueueClient",
+   "ReplicatedStorage.Modules.Game.Racing.RaceSessionPresentationClient",
+   "ReplicatedStorage.Modules.Game.Racing.RaceTimeTrialResultCoachClient",
+   "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+   "ReplicatedStorage.Modules.Game.UI.FullMapUI",
+   "ReplicatedStorage.Modules.Game.UI.GarageBrowserUI",
+   "ReplicatedStorage.Modules.Game.UI.GarageComponents",
+   "ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI",
+   "ReplicatedStorage.Modules.Game.UI.GarageWorkspaceUI",
+   "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI",
+   "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+   "ReplicatedStorage.Modules.Game.UI.OwnedGarageBrowserUI",
+   "ReplicatedStorage.Modules.Game.UI.OwnedGarageWorkspaceUI"
+  ],
+  "ReplicatedStorage.Modules.Game.UI.ResponsiveUIFoundation": [
+   "ReplicatedStorage.Modules.Game.Activities.ActivityClient",
+   "ReplicatedStorage.Modules.Game.Racing.RaceRouteGuideClient",
+   "ReplicatedStorage.Modules.Game.Racing.RaceSessionPresentationClient",
+   "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+   "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI",
+   "ReplicatedStorage.Modules.Game.UI.RacingUIComponents",
+   "ReplicatedStorage.Modules.Game.UI.SharedTopNotificationUI",
+   "ReplicatedStorage.Modules.Game.UI.UITheme"
+  ],
+  "ReplicatedStorage.Modules.Game.UI.RouteGuide": [
+   "ReplicatedStorage.Modules.Game.Activities.ActivityClient",
+   "ReplicatedStorage.Modules.Game.Racing.RaceBrowserClient",
+   "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+   "ReplicatedStorage.Modules.Game.UI.FullMapUI",
+   "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI"
+  ],
+  "ReplicatedStorage.Modules.Game.UI.UITheme": [
+   "ReplicatedStorage.Modules.Game.Dealership.DealershipIntroClient"
+  ],
+  "ReplicatedStorage.Modules.Game.Vehicles.DriveTuning": [
+   "ReplicatedStorage.Modules.Game.Vehicles.DrivingClient",
+   "ReplicatedStorage.Modules.Game.Vehicles.FreeRoamParkedHoverClient",
+   "ServerStorage.Modules.Game.Garage.VehicleBuildService"
+  ],
+  "ReplicatedStorage.Modules.Game.Vehicles.DrivingCameraClient": [
+   "ReplicatedStorage.Modules.Game.Vehicles.DrivingClient"
+  ],
+  "ReplicatedStorage.Modules.Game.Vehicles.DrivingClient": [
+   "ReplicatedStorage.Modules.Game.Vehicles.DriveSessionClient"
+  ],
+  "ReplicatedStorage.Modules.Game.Vehicles.GameplayInputGate": [
+   "ReplicatedFirst.Loading.LoadingTransitionRuntime",
+   "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+   "ReplicatedStorage.Modules.Game.UI.FullMapUI",
+   "ReplicatedStorage.Modules.Game.Vehicles.DrivingClient"
+  ],
+  "ReplicatedStorage.Modules.Game.Vehicles.MobileDriveInputState": [
+   "ReplicatedStorage.Modules.Game.Audio.VehicleAudioClient",
+   "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+   "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI",
+   "ReplicatedStorage.Modules.Game.Vehicles.DriveSessionClient",
+   "ReplicatedStorage.Modules.Game.Vehicles.GameplayInputGate",
+   "ReplicatedStorage.Modules.Game.Vehicles.MobileDriveControlsClient"
+  ],
+  "ReplicatedStorage.Modules.Game.Vehicles.Performance.PerformanceCalculator": [
+   "ReplicatedStorage.Modules.Game.Vehicles.Performance.PerformanceDynamics",
+   "ReplicatedStorage.Modules.Game.Vehicles.Performance.PerformanceRuntime",
+   "ReplicatedStorage.Modules.Game.Vehicles.Performance.PerformanceUpgradeRuntime",
+   "ReplicatedStorage.Modules.Game.Vehicles.Performance.VehiclePerformanceResolver"
+  ],
+  "ReplicatedStorage.Modules.Game.Vehicles.Performance.PerformanceDefinitions": [
+   "ReplicatedStorage.Modules.Game.Vehicles.Performance.PerformanceCalculator",
+   "ReplicatedStorage.Modules.Game.Vehicles.Performance.PerformanceRuntime",
+   "ReplicatedStorage.Modules.Game.Vehicles.Performance.PerformanceUpgradeRuntime",
+   "ReplicatedStorage.Modules.Game.Vehicles.Performance.VehicleModuleUpgradeRuntime"
+  ],
+  "ReplicatedStorage.Modules.Game.Vehicles.Performance.PerformanceDynamics": [
+   "ReplicatedStorage.Modules.Game.Vehicles.Performance.PerformanceRuntime"
+  ],
+  "ReplicatedStorage.Modules.Game.Vehicles.Performance.PerformanceRuntime": [
+   "ReplicatedStorage.Modules.Game.Vehicles.Performance.VehicleModuleUpgradeRuntime",
+   "ReplicatedStorage.Modules.Game.Vehicles.Performance.VehiclePerformanceResolver",
+   "ServerStorage.Modules.Game.Development.VehiclePerformanceComparisonServer",
+   "ServerStorage.Modules.Game.Vehicles.Performance.VehiclePerformance"
+  ],
+  "ReplicatedStorage.Modules.Game.Vehicles.Performance.PerformanceUpgradeRuntime": [
+   "ReplicatedStorage.Modules.Game.Vehicles.Performance.PerformanceRuntime",
+   "ReplicatedStorage.Modules.Game.Vehicles.Performance.VehicleModuleUpgradeRuntime",
+   "ReplicatedStorage.Modules.Game.Vehicles.Performance.VehiclePerformanceResolver"
+  ],
+  "ReplicatedStorage.Modules.Game.Vehicles.Performance.VehicleModuleUpgradeRuntime": [
+   "ServerStorage.Modules.Game.Garage.GarageServer"
+  ],
+  "ReplicatedStorage.Modules.Game.Vehicles.Performance.VehiclePerformanceResolver": [
+   "ReplicatedStorage.Modules.Game.Garage.GarageModuleInstancePreviewAdapter",
+   "ReplicatedStorage.Modules.Game.Garage.GarageUI"
+  ],
+  "ReplicatedStorage.Modules.Game.Vehicles.Performance.VehicleUpgradeDefinitions": [
+   "ReplicatedStorage.Modules.Game.Vehicles.Performance.PerformanceUpgradeRuntime"
+  ],
+  "ReplicatedStorage.Modules.Game.Vehicles.VehicleCatalog": [
+   "ReplicatedStorage.Modules.Game.Garage.GarageUI",
+   "ReplicatedStorage.Modules.Game.Vehicles.Performance.VehiclePerformanceResolver",
+   "ReplicatedStorage.Modules.Game.Vehicles.VehicleTemplateIndex"
+  ],
+  "ReplicatedStorage.Modules.Game.Vehicles.VehicleCatalogData": [
+   "ReplicatedStorage.Modules.Game.Vehicles.VehicleCatalog"
+  ],
+  "ReplicatedStorage.Modules.Game.Vehicles.VehicleCosmeticCatalog": [
+   "ReplicatedStorage.Modules.Game.Garage.PreviewVehicleClient",
+   "ReplicatedStorage.Modules.Game.Garage.ThrustPreviewClient",
+   "ReplicatedStorage.Modules.Game.Vehicles.VehicleVFXClient",
+   "ServerStorage.Modules.Game.Garage.GarageServer",
+   "ServerStorage.Modules.Game.Garage.OwnedGarageDisplay",
+   "ServerStorage.Modules.Game.Garage.VehicleCosmeticServer",
+   "ServerStorage.Modules.Game.Player.PlayerProfileSchema"
+  ],
+  "ReplicatedStorage.Modules.Game.Vehicles.VehicleDefinition": [
+   "ReplicatedStorage.Modules.Game.Vehicles.Performance.PerformanceRuntime",
+   "ReplicatedStorage.Modules.Game.Vehicles.Performance.PerformanceUpgradeRuntime",
+   "ReplicatedStorage.Modules.Game.Vehicles.Performance.VehiclePerformanceResolver"
+  ],
+  "ReplicatedStorage.Modules.Game.Vehicles.VehicleDisplayNames": [
+   "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+   "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI",
+   "ServerStorage.Modules.Game.Garage.OwnedGarageManagement"
+  ],
+  "ReplicatedStorage.Modules.Game.Vehicles.VehicleDynamics": [
+   "ReplicatedStorage.Modules.Game.Vehicles.DrivingClient"
+  ],
+  "ReplicatedStorage.Modules.Game.Vehicles.VehiclePreviewVFXClient": [
+   "ReplicatedStorage.Modules.Game.Garage.ThrustPreviewClient",
+   "ReplicatedStorage.Modules.Game.Vehicles.VehicleVFXClient"
+  ],
+  "ReplicatedStorage.Modules.Game.Vehicles.VehicleTemplateIndex": [
+   "ReplicatedStorage.Modules.Game.Garage.GarageModuleInstancePreviewAdapter",
+   "ReplicatedStorage.Modules.Game.Garage.PreviewVehicleClient"
+  ],
+  "ReplicatedStorage.Modules.Game.Vehicles.VehicleVFXClient": [
+   "ReplicatedStorage.Modules.Game.Vehicles.RuntimeVFXClient"
+  ],
+  "ReplicatedStorage.Modules.Game.World.LODPolicy": [
+   "ReplicatedStorage.Modules.Game.World.LODClient",
+   "ReplicatedStorage.Modules.Game.World.LODRuntime"
+  ],
+  "ReplicatedStorage.Modules.Game.World.LODRuntime": [
+   "ReplicatedStorage.Modules.Game.World.LODClient"
+  ],
+  "ReplicatedStorage.Modules.Game.World.LightingClient": [
+   "ReplicatedStorage.Modules.Game.Development.LightingPreviewClient",
+   "ReplicatedStorage.Modules.Game.Garage.GaragePreviewPresentationClient",
+   "ReplicatedStorage.Modules.Game.World.OwnedGarageEnvironmentLightingClient"
+  ],
+  "ReplicatedStorage.Modules.Game.World.LightingCycle": [
+   "ReplicatedStorage.Modules.Game.Development.LightingPreviewClient",
+   "ReplicatedStorage.Modules.Game.World.LightingClient",
+   "ServerStorage.Modules.Game.World.LightingServer"
+  ],
+  "ReplicatedStorage.Modules.Game.World.LightingCycleDefinition": [
+   "ServerStorage.Modules.Game.World.LightingServer"
+  ],
+  "ReplicatedStorage.Modules.Game.World.LightingPresets": [
+   "ReplicatedStorage.Modules.Game.Development.LightingPreviewClient",
+   "ReplicatedStorage.Modules.Game.Garage.GaragePreviewPresentationClient",
+   "ReplicatedStorage.Modules.Game.World.LightingClient",
+   "ReplicatedStorage.Modules.Game.World.OwnedGarageEnvironmentLightingClient",
+   "ServerStorage.Modules.Game.World.LightingServer"
+  ],
+  "ReplicatedStorage.Modules.Game.World.LightingSchedule": [
+   "ReplicatedStorage.Modules.Game.Development.LightingPreviewClient",
+   "ReplicatedStorage.Modules.Game.World.LightingClient",
+   "ServerStorage.Modules.Game.World.LightingServer"
+  ],
+  "ReplicatedStorage.Modules.Game.World.RoadGraphData": [
+   "ReplicatedStorage.Modules.Game.UI.RouteGuide",
+   "ServerStorage.Modules.Game.Activities.ActivityService"
+  ],
+  "ReplicatedStorage.Modules.Game.World.RoadRouting": [
+   "ReplicatedStorage.Modules.Game.UI.RouteGuide",
+   "ServerStorage.Modules.Game.Activities.ActivityService",
+   "ServerStorage.Modules.Game.Activities.JobBoard"
+  ],
+  "ServerStorage.Modules.Core.FeatureFlags": [
+   "ServerStorage.Modules.Game.Activities.CourierJob",
+   "ServerStorage.Modules.Game.Activities.DuelService",
+   "ServerStorage.Modules.Game.Activities.PassengerService",
+   "ServerStorage.Modules.Game.Activities.ProgressionService",
+   "ServerStorage.Modules.Game.Activities.TaxiJob",
+   "ServerStorage.Modules.Game.Garage.GarageServer",
+   "ServerStorage.Modules.Game.Garage.OwnedGarageManagement",
+   "ServerStorage.Modules.Game.Player.AnalyticsServer",
+   "ServerStorage.Modules.Game.Racing.RaceIntegrity"
+  ],
+  "ServerStorage.Modules.Core.Net": [
+   "ServerStorage.Modules.Game.Activities.ActivityService",
+   "ServerStorage.Modules.Game.Audio.VehicleAudioServer",
+   "ServerStorage.Modules.Game.Dealership.IntroProgressServer",
+   "ServerStorage.Modules.Game.Development.StudioCashGrantServer",
+   "ServerStorage.Modules.Game.Garage.GarageRequestGuard",
+   "ServerStorage.Modules.Game.Garage.GarageSessionServer",
+   "ServerStorage.Modules.Game.Garage.OwnedGarageManagement",
+   "ServerStorage.Modules.Game.Player.OnboardingServer",
+   "ServerStorage.Modules.Game.Racing.MatchmakingServer",
+   "ServerStorage.Modules.Game.Racing.RaceTeleportServer",
+   "ServerStorage.Modules.Game.Racing.TimeTrialServer",
+   "ServerStorage.Modules.Game.World.FreeRoamTeleportServer"
+  ],
+  "ServerStorage.Modules.Core.ServerLifecycle": [
+   "ServerScriptService.ServerBase"
+  ],
+  "ServerStorage.Modules.Game.Activities.ActivityPayout": [
+   "ServerStorage.Modules.Game.Activities.DuelService",
+   "ServerStorage.Modules.Game.Activities.JobBoard"
+  ],
+  "ServerStorage.Modules.Game.Activities.ActivityService": [
+   "ServerStorage.Modules.Game.Activities.CourierJob",
+   "ServerStorage.Modules.Game.Activities.DuelService",
+   "ServerStorage.Modules.Game.Activities.JobBoard",
+   "ServerStorage.Modules.Game.Activities.PassengerService",
+   "ServerStorage.Modules.Game.Activities.TaxiJob"
+  ],
+  "ServerStorage.Modules.Game.Activities.CourierRules": [
+   "ServerStorage.Modules.Game.Activities.CourierJob"
+  ],
+  "ServerStorage.Modules.Game.Activities.DuelRules": [
+   "ServerStorage.Modules.Game.Activities.DuelService"
+  ],
+  "ServerStorage.Modules.Game.Activities.JobBoard": [
+   "ServerStorage.Modules.Game.Activities.CourierJob",
+   "ServerStorage.Modules.Game.Activities.TaxiJob"
+  ],
+  "ServerStorage.Modules.Game.Activities.PassengerService": [
+   "ServerStorage.Modules.Game.Activities.TaxiJob"
+  ],
+  "ServerStorage.Modules.Game.Activities.ProgressionRules": [
+   "ServerStorage.Modules.Game.Activities.ProgressionService"
+  ],
+  "ServerStorage.Modules.Game.Activities.ProgressionService": [
+   "ServerStorage.Modules.Game.Activities.ActivityPayout",
+   "ServerStorage.Modules.Game.Activities.DuelService",
+   "ServerStorage.Modules.Game.Activities.JobBoard"
+  ],
+  "ServerStorage.Modules.Game.Activities.TaxiRules": [
+   "ServerStorage.Modules.Game.Activities.TaxiJob"
+  ],
+  "ServerStorage.Modules.Game.Garage.GarageCapacity": [
+   "ServerStorage.Modules.Game.Garage.GarageServer"
+  ],
+  "ServerStorage.Modules.Game.Garage.GarageCatalogLookup": [
+   "ServerStorage.Modules.Game.Garage.GarageServer"
+  ],
+  "ServerStorage.Modules.Game.Garage.GarageCatalogService": [
+   "ServerStorage.Modules.Game.Garage.GarageServer"
+  ],
+  "ServerStorage.Modules.Game.Garage.GarageClientProfile": [
+   "ServerStorage.Modules.Game.Garage.GarageServer"
+  ],
+  "ServerStorage.Modules.Game.Garage.GarageModuleInstanceCustomization": [
+   "ServerStorage.Modules.Game.Garage.GarageServer"
+  ],
+  "ServerStorage.Modules.Game.Garage.GarageModuleInventory": [
+   "ServerStorage.Modules.Game.Garage.GarageServer"
+  ],
+  "ServerStorage.Modules.Game.Garage.GarageModuleTransaction": [
+   "ServerStorage.Modules.Game.Garage.GarageServer"
+  ],
+  "ServerStorage.Modules.Game.Garage.GarageProfile": [
+   "ServerStorage.Modules.Game.Garage.GarageServer"
+  ],
+  "ServerStorage.Modules.Game.Garage.GarageProfileView": [
+   "ServerStorage.Modules.Game.Garage.GarageServer"
+  ],
+  "ServerStorage.Modules.Game.Garage.GarageRequestGuard": [
+   "ServerStorage.Modules.Game.Garage.GarageServer"
+  ],
+  "ServerStorage.Modules.Game.Garage.GarageVisitRules": [
+   "ServerStorage.Modules.Game.Garage.OwnedGarageManagement"
+  ],
+  "ServerStorage.Modules.Game.Garage.OwnedGarageAuthoritativeCommand": [
+   "ServerStorage.Modules.Game.Player.ProfileServer"
+  ],
+  "ServerStorage.Modules.Game.Garage.OwnedGarageDisplay": [
+   "ServerStorage.Modules.Game.Garage.OwnedGarageManagement"
+  ],
+  "ServerStorage.Modules.Game.Garage.OwnedGarageDisplayAssignment": [
+   "ServerStorage.Modules.Game.Garage.OwnedGarageAuthoritativeCommand",
+   "ServerStorage.Modules.Game.Garage.OwnedGarageManagement"
+  ],
+  "ServerStorage.Modules.Game.Garage.OwnedGarageFinish": [
+   "ServerStorage.Modules.Game.Garage.OwnedGarageManagement",
+   "ServerStorage.Modules.Game.Garage.OwnedGarageProfile"
+  ],
+  "ServerStorage.Modules.Game.Garage.OwnedGarageInterior": [
+   "ServerStorage.Modules.Game.Garage.OwnedGarageManagement"
+  ],
+  "ServerStorage.Modules.Game.Garage.OwnedGarageManagement": [
+   "ServerStorage.Modules.Game.Garage.OwnedGarageServer"
+  ],
+  "ServerStorage.Modules.Game.Garage.OwnedGarageProfile": [
+   "ServerStorage.Modules.Game.Garage.OwnedGarageAuthoritativeCommand",
+   "ServerStorage.Modules.Game.Garage.OwnedGarageDisplayAssignment",
+   "ServerStorage.Modules.Game.Garage.OwnedGarageManagement"
+  ],
+  "ServerStorage.Modules.Game.Garage.VehicleBuildService": [
+   "ServerStorage.Modules.Game.Garage.GarageServer"
+  ],
+  "ServerStorage.Modules.Game.Garage.VehicleCosmeticServer": [
+   "ServerStorage.Modules.Game.Garage.GarageServer"
+  ],
+  "ServerStorage.Modules.Game.Garage.VehicleLifecycleService": [
+   "ServerStorage.Modules.Game.Garage.GarageServer"
+  ],
+  "ServerStorage.Modules.Game.Garage.VehicleSpawnService": [
+   "ServerStorage.Modules.Game.Garage.GarageServer"
+  ],
+  "ServerStorage.Modules.Game.Player.AnalyticsServer": [
+   "ServerStorage.Modules.Game.Activities.ProgressionService",
+   "ServerStorage.Modules.Game.Player.OnboardingServer"
+  ],
+  "ServerStorage.Modules.Game.Player.EconomyServer": [
+   "ServerStorage.Modules.Game.Player.ProfileServer"
+  ],
+  "ServerStorage.Modules.Game.Player.GarageProfileProjection": [
+   "ServerStorage.Modules.Game.Player.ProfileCompatibilityServer"
+  ],
+  "ServerStorage.Modules.Game.Player.MoneyService": [
+   "ReplicatedStorage.Modules.Game.Vehicles.Performance.PerformanceUpgradeRuntime",
+   "ServerStorage.Modules.Game.Activities.ActivityPayout",
+   "ServerStorage.Modules.Game.Garage.GarageModuleTransaction",
+   "ServerStorage.Modules.Game.Garage.GarageServer",
+   "ServerStorage.Modules.Game.Garage.OwnedGarageProfile",
+   "ServerStorage.Modules.Game.Garage.VehicleCosmeticServer"
+  ],
+  "ServerStorage.Modules.Game.Player.PlayerProfileSchema": [
+   "ServerStorage.Modules.Game.Player.ProfileCompatibilityServer",
+   "ServerStorage.Modules.Game.Player.ProfileServer"
+  ],
+  "ServerStorage.Modules.Game.Player.ProfileCompatibility": [
+   "ServerStorage.Modules.Game.Player.ProfileServer"
+  ],
+  "ServerStorage.Modules.Game.Player.ProfileServer": [
+   "ServerStorage.Modules.Game.Activities.ActivityPayout",
+   "ServerStorage.Modules.Game.Activities.ActivityService",
+   "ServerStorage.Modules.Game.Activities.DuelService",
+   "ServerStorage.Modules.Game.Activities.ProgressionService",
+   "ServerStorage.Modules.Game.Garage.GarageServer",
+   "ServerStorage.Modules.Game.Racing.RaceRewardsServer"
+  ],
+  "ServerStorage.Modules.Game.Player.ProfileStore": [
+   "ServerStorage.Modules.Game.Player.ProfileServer"
+  ],
+  "ServerStorage.Modules.Game.Racing.RaceIntegrity": [
+   "ServerStorage.Modules.Game.Activities.DuelService",
+   "ServerStorage.Modules.Game.Activities.JobBoard",
+   "ServerStorage.Modules.Game.Racing.MatchmakingServer",
+   "ServerStorage.Modules.Game.Racing.TimeTrialServer"
+  ],
+  "ServerStorage.Modules.Game.Vehicles.Performance.VehiclePerformance": [
+   "ServerStorage.Modules.Game.Vehicles.VehiclePerformanceServer"
+  ]
+ }
+}

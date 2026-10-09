@@ -1,0 +1,12 @@
+<!doctype html><html><head><meta charset="utf-8"><title>r19b Start screen</title><script src="../shared/boot.js"></script></head><body><script>
+P.startBackdrop = () => `
+  <div class="scene" style="background:linear-gradient(180deg,#241a4a 0,#3b1d5c 45%,#15122a 100%)"></div>
+  <div class="scene-tag" style="top:470px">START-SCREEN ARTWORK (NeoTokyoStreet01) &middot; UNCHANGED</div>
+  <div class="abs" style="left:0;right:0;bottom:0;height:520px;background:linear-gradient(0deg,rgba(7,6,13,.92),rgba(7,6,13,0))"></div>
+  <div class="abs" style="left:50%;transform:translateX(-50%);top:150px;width:760px;height:200px;border:2px solid var(--hair-bot);display:flex;align-items:center;justify-content:center"><span class="t-label c-muted">GAME LOGO ART &middot; UNCHANGED</span></div>`;
+P.page(`
+  ${P.startBackdrop()}
+  <div class="abs" style="left:0;right:0;top:800px;text-align:center"><div class="t-status shadow c-cyan">READY</div></div>
+  <div class="abs flex g12" style="left:50%;transform:translateX(-50%);top:856px">${P.btn("SHOP","cart")}${P.btn("PLAY","wheel","main")}</div>
+`);
+</script></body></html>

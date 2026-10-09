@@ -1,0 +1,4485 @@
+{
+ "script": "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+ "class": "ModuleScript",
+ "source_file": "classic/sources/ReplicatedStorage.Modules.Game.UI.OnboardingClient.lua",
+ "source_lines": 766,
+ "included_because": [
+  "ClientBase entry 'OnboardingClient'",
+  "under ReplicatedStorage.Modules.Game.UI"
+ ],
+ "requires": [
+  {
+   "expr": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"UI\"):WaitForChild(\"RacingUIComponents\")",
+   "as": "Racing",
+   "line": 20,
+   "in_function": "Client.start",
+   "target": "ReplicatedStorage.Modules.Game.UI.RacingUIComponents"
+  },
+  {
+   "expr": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Audio\"):WaitForChild(\"PresentationAudioBridge\")",
+   "as": "AudioBridge",
+   "line": 21,
+   "in_function": "Client.start",
+   "target": "ReplicatedStorage.Modules.Game.Audio.PresentationAudioBridge"
+  },
+  {
+   "expr": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"UI\"):WaitForChild(\"OnboardingGuideTrailRenderer\")",
+   "as": "GuideTrail",
+   "line": 22,
+   "in_function": "Client.start",
+   "target": "ReplicatedStorage.Modules.Game.UI.OnboardingGuideTrailRenderer"
+  }
+ ],
+ "remotes": {
+  "calls": [
+   {
+    "method": "InvokeServer",
+    "receiver": "invoke",
+    "arg_count": 2,
+    "line": 437,
+    "in_function": "markSeen",
+    "remote": "ReplicatedStorage.Remotes.Onboarding.OnboardingInvoke",
+    "action": "MarkSeen",
+    "payload_keys": [
+     "PageId"
+    ]
+   },
+   {
+    "method": "InvokeServer",
+    "receiver": "invoke",
+    "arg_count": 2,
+    "line": 750,
+    "in_function": "Client.start",
+    "remote": "ReplicatedStorage.Remotes.Onboarding.OnboardingInvoke",
+    "action": "GetState",
+    "payload_keys": []
+   }
+  ],
+  "listens": [
+   {
+    "signal": "OnClientEvent",
+    "receiver": "stateChanged",
+    "method": "Connect",
+    "handler": "accept",
+    "handler_line": 720,
+    "handler_params": [
+     "newState"
+    ],
+    "payload_fields_read": [
+     "Success"
+    ],
+    "line": 725,
+    "in_function": "Client.start",
+    "remote": "ReplicatedStorage.Remotes.Onboarding.OnboardingStateChanged"
+   }
+  ]
+ },
+ "bindables": {
+  "fires": [
+   {
+    "receiver": "event",
+    "created_here": false,
+    "lookup": "Players.LocalPlayer.PlayerScripts.Runtime.UI",
+    "arg_count": 1,
+    "line": 696,
+    "in_function": "tryBeginFirstDriveControls",
+    "name": "OpenDrivingControlsFromOnboarding",
+    "payload_keys": [
+     "FirstDrive"
+    ]
+   }
+  ],
+  "connects": [
+   {
+    "signal": "Event",
+    "receiver": "freeRoamVehicleSpawned",
+    "method": "Connect",
+    "handler": "inline",
+    "handler_line": 714,
+    "handler_params": [],
+    "lookup": "Players.LocalPlayer.PlayerScripts.Runtime.UI",
+    "line": 714,
+    "in_function": "Client.start",
+    "name": "FreeRoamVehicleSpawned"
+   },
+   {
+    "signal": "Event",
+    "receiver": "presentation",
+    "method": "Connect",
+    "handler": "inline",
+    "handler_line": 727,
+    "handler_params": [
+     "payload"
+    ],
+    "payload_fields_read": [
+     "Owner",
+     "Active"
+    ],
+    "lookup": "Players.LocalPlayer.PlayerScripts.Runtime.UI",
+    "line": 727,
+    "in_function": "Client.start",
+    "name": "FreeRoamHudPresentationMode"
+   },
+   {
+    "signal": "Event",
+    "receiver": "loadingChanged",
+    "method": "Connect",
+    "handler": "refreshLoadingGate",
+    "handler_line": 728,
+    "handler_params": [],
+    "lookup": "Players.LocalPlayer.PlayerScripts.Runtime.UI",
+    "line": 744,
+    "in_function": "Client.start",
+    "name": "LoadingPresentationChanged"
+   }
+  ],
+  "invokes": [],
+  "handlers": [],
+  "created": [],
+  "module_signal_fires": []
+ },
+ "attributes": {
+  "reads": [
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "line": 31,
+    "in_function": "Client.start",
+    "name": "TutorialGold"
+   },
+   {
+    "receiver": "loadingConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.LoadingSystem",
+    "receiver_kind": "config",
+    "line": 82,
+    "in_function": "Client.start",
+    "name": "DisplayOrder"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 87,
+    "in_function": "Client.start",
+    "via": "wrapper setting()",
+    "name": "DimTransparency"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 94,
+    "in_function": "Client.start",
+    "via": "wrapper setting()",
+    "name": "NextGradientTransparency"
+   },
+   {
+    "receiver": "object",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "line": 157,
+    "in_function": "cardGroup",
+    "name": "CanonicalGarageCard"
+   },
+   {
+    "receiver": "object",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "line": 158,
+    "in_function": "cardGroup",
+    "name": "CanonicalGarageCardId"
+   },
+   {
+    "receiver": "object",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "line": 170,
+    "in_function": "visibleScrollerCards",
+    "name": "CanonicalGarageCard"
+   },
+   {
+    "receiver": "root",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "line": 186,
+    "in_function": "workspacePage",
+    "name": "TutorialWorkspace"
+   },
+   {
+    "receiver": "root",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "line": 186,
+    "in_function": "workspacePage",
+    "name": "TutorialPageId"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 233,
+    "in_function": "isLandscapePhone",
+    "via": "wrapper setting()",
+    "name": "LandscapePhoneShortSidePixels"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 240,
+    "in_function": "ownerScale",
+    "via": "wrapper setting()",
+    "name": "TutorialMinimumScale"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 240,
+    "in_function": "ownerScale",
+    "via": "wrapper setting()",
+    "name": "TutorialMaximumScale"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 244,
+    "in_function": "ownerScale",
+    "via": "wrapper setting()",
+    "name": "LandscapePhoneScale"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 245,
+    "in_function": "ownerScale",
+    "via": "wrapper setting()",
+    "name": "TutorialDesktopMinimumScale"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 245,
+    "in_function": "ownerScale",
+    "via": "wrapper setting()",
+    "name": "TutorialMaximumScale"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 249,
+    "in_function": "tutorialMetrics",
+    "via": "wrapper setting()",
+    "name": "TutorialPhoneMinimumTextSize"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 249,
+    "in_function": "tutorialMetrics",
+    "via": "wrapper setting()",
+    "name": "TutorialDesktopMinimumTextSize"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 250,
+    "in_function": "tutorialMetrics",
+    "via": "wrapper setting()",
+    "name": "TutorialTextSize"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 259,
+    "in_function": "rect",
+    "via": "wrapper setting()",
+    "name": "HighlightPaddingPixels"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 271,
+    "in_function": "safeRect",
+    "via": "wrapper setting()",
+    "name": "CalloutMarginPixels"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 291,
+    "in_function": "placeBubble",
+    "via": "wrapper setting()",
+    "name": "TutorialStackedWidthPixels"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 292,
+    "in_function": "placeBubble",
+    "via": "wrapper setting()",
+    "name": "LandscapePhoneShortcutWidthRatio"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 292,
+    "in_function": "placeBubble",
+    "via": "wrapper setting()",
+    "name": "LandscapePhoneTextWidthRatio"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 292,
+    "in_function": "placeBubble",
+    "via": "wrapper setting()",
+    "name": "TutorialMaximumTextWidth"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 301,
+    "in_function": "placeBubble",
+    "via": "wrapper setting()",
+    "name": "LandscapePhoneShortcutWidthRatio"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 304,
+    "in_function": "placeBubble",
+    "via": "wrapper setting()",
+    "name": "LandscapePhoneShortcutGapPixels"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 304,
+    "in_function": "placeBubble",
+    "via": "wrapper setting()",
+    "name": "ShortcutCalloutGapPixels"
+   },
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "line": 330,
+    "in_function": "loadingActive",
+    "name": "StartScreenActive"
+   },
+   {
+    "receiver": "loadingState",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime.UI.LoadingPresentationState",
+    "receiver_kind": "playerScripts",
+    "line": 330,
+    "in_function": "loadingActive",
+    "name": "Active"
+   },
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "line": 334,
+    "in_function": "fullMapOpen",
+    "name": "FullMapOpen"
+   },
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "line": 339,
+    "in_function": "onboardingPresentationBlocked",
+    "name": "FirstDrivePresentationPending"
+   },
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "line": 340,
+    "in_function": "onboardingPresentationBlocked",
+    "name": "DrivingControlsOpen"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 360,
+    "in_function": "renderPinned",
+    "via": "wrapper setting()",
+    "name": "EdgeOverscanPixels"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 373,
+    "in_function": "scheduleLayout",
+    "via": "wrapper setting()",
+    "name": "TargetStabilityFrames"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 418,
+    "in_function": "scheduleResolve",
+    "via": "wrapper setting()",
+    "name": "PageAbandonSeconds"
+   },
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "line": 458,
+    "in_function": "controlsOpen",
+    "name": "DrivingControlsOpen"
+   },
+   {
+    "receiver": "root",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "line": 468,
+    "in_function": "majorMenuOpen",
+    "name": "TutorialWorkspace"
+   },
+   {
+    "receiver": "playerGui",
+    "receiver_path": "Players.LocalPlayer.PlayerGui",
+    "receiver_kind": "playerGui",
+    "line": 470,
+    "in_function": "majorMenuOpen",
+    "name": "OwnedGarageManagementOpen"
+   },
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "line": 471,
+    "in_function": "majorMenuOpen",
+    "name": "GarageSessionActive"
+   },
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "line": 471,
+    "in_function": "majorMenuOpen",
+    "name": "GarageSessionMode"
+   },
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "line": 472,
+    "in_function": "majorMenuOpen",
+    "name": "RaceSessionActive"
+   },
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "line": 473,
+    "in_function": "majorMenuOpen",
+    "name": "MobileFreeRoamCarMenuOpen"
+   },
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "line": 474,
+    "in_function": "majorMenuOpen",
+    "name": "MobileMajorMenuOpen"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 517,
+    "in_function": "styleObjectiveCard",
+    "via": "wrapper setting()",
+    "name": "ObjectiveCardPaddingPixels"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 517,
+    "in_function": "styleObjectiveCard",
+    "via": "wrapper setting()",
+    "name": "ObjectiveDesktopTextMultiplier"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:518",
+    "line": 519,
+    "in_function": "styleObjectiveCard",
+    "via": "wrapper textSize()",
+    "name": "ObjectiveNumberTextSize"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:518",
+    "line": 519,
+    "in_function": "styleObjectiveCard",
+    "via": "wrapper textSize()",
+    "name": "ObjectiveTitleTextSize"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:518",
+    "line": 519,
+    "in_function": "styleObjectiveCard",
+    "via": "wrapper textSize()",
+    "name": "ObjectiveHintTextSize"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:518",
+    "line": 519,
+    "in_function": "styleObjectiveCard",
+    "via": "wrapper textSize()",
+    "name": "ObjectiveProgressTextSize"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 560,
+    "in_function": "layoutObjectives",
+    "via": "wrapper setting()",
+    "name": "ObjectiveReflowSeconds"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 574,
+    "in_function": "enterObjective",
+    "via": "wrapper setting()",
+    "name": "ObjectiveOffscreenPaddingPixels"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 576,
+    "in_function": "enterObjective",
+    "via": "wrapper setting()",
+    "name": "ObjectiveEnterSeconds"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 585,
+    "in_function": "exitObjective",
+    "via": "wrapper setting()",
+    "name": "ObjectiveExitHoldSeconds"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 588,
+    "in_function": "exitObjective",
+    "via": "wrapper setting()",
+    "name": "ObjectiveOffscreenPaddingPixels"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 589,
+    "in_function": "exitObjective",
+    "via": "wrapper setting()",
+    "name": "ObjectiveExitSeconds"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 603,
+    "in_function": "syncObjectives",
+    "via": "wrapper setting()",
+    "name": "ObjectiveExitHoldSeconds"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 603,
+    "in_function": "syncObjectives",
+    "via": "wrapper setting()",
+    "name": "ObjectiveExitSeconds"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 605,
+    "in_function": "syncObjectives",
+    "via": "wrapper setting()",
+    "name": "ObjectiveStaggerSeconds"
+   },
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "line": 613,
+    "in_function": "refreshObjective",
+    "name": "OwnedGarageInside"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 615,
+    "in_function": "refreshObjective",
+    "via": "wrapper setting()",
+    "name": "ObjectiveCardWidthPixels"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 615,
+    "in_function": "refreshObjective",
+    "via": "wrapper setting()",
+    "name": "ObjectivePhoneCardHeightPixels"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 615,
+    "in_function": "refreshObjective",
+    "via": "wrapper setting()",
+    "name": "ObjectiveCardHeightPixels"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 615,
+    "in_function": "refreshObjective",
+    "via": "wrapper setting()",
+    "name": "ObjectivePhoneCardGapPixels"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 615,
+    "in_function": "refreshObjective",
+    "via": "wrapper setting()",
+    "name": "ObjectiveCardGapPixels"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 615,
+    "in_function": "refreshObjective",
+    "via": "wrapper setting()",
+    "name": "ObjectiveGlowSafePaddingPixels"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 617,
+    "in_function": "refreshObjective",
+    "via": "wrapper setting()",
+    "name": "ObjectivePhoneFallbackTopPixels"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 620,
+    "in_function": "refreshObjective",
+    "via": "wrapper setting()",
+    "name": "ObjectivePhoneTopRowClearancePixels"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 629,
+    "in_function": "refreshObjective",
+    "via": "wrapper setting()",
+    "name": "ObjectivePhoneBoostGapPixels"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 630,
+    "in_function": "refreshObjective",
+    "via": "wrapper setting()",
+    "name": "ObjectivePhoneMinimumCardHeightPixels"
+   },
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "line": 662,
+    "in_function": "updateGuideTrail",
+    "name": "OwnedGarageInside"
+   },
+   {
+    "receiver": "playerGui",
+    "receiver_path": "Players.LocalPlayer.PlayerGui",
+    "receiver_kind": "playerGui",
+    "line": 662,
+    "in_function": "updateGuideTrail",
+    "name": "OwnedGarageManagementOpen"
+   },
+   {
+    "receiver": "vehicle",
+    "receiver_path": null,
+    "receiver_kind": "vehicle?",
+    "line": 674,
+    "in_function": "activelyDriving",
+    "name": "OwnerUserId"
+   },
+   {
+    "receiver": "vehicle",
+    "receiver_path": null,
+    "receiver_kind": "vehicle?",
+    "line": 674,
+    "in_function": "activelyDriving",
+    "name": "DriverUserId"
+   },
+   {
+    "receiver": "drivenVehicle",
+    "receiver_path": null,
+    "receiver_kind": "vehicle?",
+    "line": 684,
+    "in_function": "tryBeginFirstDriveControls",
+    "name": "RaceParticipant"
+   },
+   {
+    "receiver": "drivenVehicle",
+    "receiver_path": null,
+    "receiver_kind": "vehicle?",
+    "line": 684,
+    "in_function": "tryBeginFirstDriveControls",
+    "name": "RaceRunId"
+   },
+   {
+    "receiver": "loadingState",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime.UI.LoadingPresentationState",
+    "receiver_kind": "playerScripts",
+    "line": 717,
+    "in_function": "Client.start",
+    "name": "Destination"
+   }
+  ],
+  "writes": [
+   {
+    "receiver": "f",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "value": "",
+    "line": 87,
+    "in_function": "Client.start",
+    "name": "UIAudioHoverCue"
+   },
+   {
+    "receiver": "catch",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "value": "",
+    "line": 88,
+    "in_function": "Client.start",
+    "name": "UIAudioHoverCue"
+   },
+   {
+    "receiver": "nextButton",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "value": "",
+    "line": 93,
+    "in_function": "Client.start",
+    "name": "UIAudioHoverCue"
+   },
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "value": false,
+    "line": 689,
+    "in_function": "tryBeginFirstDriveControls",
+    "name": "FirstDrivePresentationPending"
+   },
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "value": true,
+    "line": 692,
+    "in_function": "tryBeginFirstDriveControls",
+    "name": "FirstDrivePresentationPending"
+   }
+  ],
+  "listens": [
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "line": 739,
+    "in_function": "Client.start",
+    "name": "StartScreenActive"
+   },
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "line": 740,
+    "in_function": "Client.start",
+    "name": "FirstDrivePresentationPending"
+   },
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "line": 741,
+    "in_function": "Client.start",
+    "name": "DrivingControlsOpen"
+   },
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "line": 742,
+    "in_function": "Client.start",
+    "name": "FullMapOpen"
+   },
+   {
+    "receiver": "loadingState",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime.UI.LoadingPresentationState",
+    "receiver_kind": "playerScripts",
+    "line": 743,
+    "in_function": "Client.start",
+    "name": "Active"
+   }
+  ]
+ },
+ "player_attribute_writes": [
+  {
+   "receiver": "player",
+   "receiver_path": "Players.LocalPlayer",
+   "receiver_kind": "player",
+   "value": false,
+   "line": 689,
+   "in_function": "tryBeginFirstDriveControls",
+   "name": "FirstDrivePresentationPending"
+  },
+  {
+   "receiver": "player",
+   "receiver_path": "Players.LocalPlayer",
+   "receiver_kind": "player",
+   "value": true,
+   "line": 692,
+   "in_function": "tryBeginFirstDriveControls",
+   "name": "FirstDrivePresentationPending"
+  }
+ ],
+ "screenguis": {
+  "created": [
+   {
+    "variable": "gui",
+    "class": "ScreenGui",
+    "line": 82,
+    "factory": null,
+    "adopts_existing": false,
+    "Name": "Onboarding",
+    "DisplayOrder": {
+     "expr": "math.max(1,(tonumber(loadingConfig:GetAttribute(\"DisplayOrder\")) or 1000)-10)"
+    },
+    "ResetOnSpawn": false,
+    "IgnoreGuiInset": true,
+    "ScreenInsets": {
+     "expr": "Enum.ScreenInsets.None"
+    },
+    "ZIndexBehavior": {
+     "expr": "Enum.ZIndexBehavior.Sibling"
+    },
+    "Enabled": false,
+    "ClipToDeviceSafeArea": false,
+    "Parent": {
+     "expr": "playerGui"
+    },
+    "enabled_writes": [
+     {
+      "property": "Enabled",
+      "value": false,
+      "line": 730
+     },
+     {
+      "property": "Enabled",
+      "value": true,
+      "line": 734
+     }
+    ],
+    "property_lines": {
+     "Name": 82,
+     "IgnoreGuiInset": 82,
+     "ResetOnSpawn": 82,
+     "DisplayOrder": 82,
+     "ZIndexBehavior": 82,
+     "ScreenInsets": 83,
+     "ClipToDeviceSafeArea": 83,
+     "Parent": 83,
+     "Enabled": 730
+    }
+   }
+  ],
+  "enabled_writes": [
+   {
+    "receiver": "gui",
+    "receiver_path": null,
+    "value": false,
+    "screengui_like": "yes",
+    "reason": "created here as ScreenGui",
+    "line": 730,
+    "in_function": "refreshLoadingGate",
+    "screengui_name": "Onboarding"
+   },
+   {
+    "receiver": "gui",
+    "receiver_path": null,
+    "value": true,
+    "screengui_like": "yes",
+    "reason": "created here as ScreenGui",
+    "line": 734,
+    "in_function": "refreshLoadingGate",
+    "screengui_name": "Onboarding"
+   }
+  ]
+ },
+ "names": {
+  "assigned": [
+   {
+    "via": "property",
+    "receiver": "gui",
+    "class": "ScreenGui",
+    "line": 82,
+    "in_function": "Client.start",
+    "name": "Onboarding"
+   },
+   {
+    "via": "property",
+    "receiver": "overlay",
+    "class": "Frame",
+    "line": 84,
+    "in_function": "Client.start",
+    "name": "Overlay"
+   },
+   {
+    "via": "property",
+    "receiver": "objectiveLayer",
+    "class": "Frame",
+    "line": 85,
+    "in_function": "Client.start",
+    "name": "Objectives"
+   },
+   {
+    "via": "property",
+    "receiver": "f",
+    "class": "TextButton",
+    "line": 87,
+    "in_function": "Client.start",
+    "name": null,
+    "name_pattern": "Shade*",
+    "name_expr": "\"Shade\"..i"
+   },
+   {
+    "via": "property",
+    "receiver": "catch",
+    "class": "TextButton",
+    "line": 88,
+    "in_function": "Client.start",
+    "name": "Advance"
+   },
+   {
+    "via": "table_field",
+    "callee": "Panel",
+    "class": null,
+    "line": 89,
+    "in_function": "Client.start",
+    "name": "HighlightBorder"
+   },
+   {
+    "via": "property",
+    "receiver": "connector",
+    "class": "Frame",
+    "line": 90,
+    "in_function": "Client.start",
+    "name": "Connector"
+   },
+   {
+    "via": "table_field",
+    "callee": "Panel",
+    "class": null,
+    "line": 91,
+    "in_function": "Client.start",
+    "name": "Bubble"
+   },
+   {
+    "via": "table_field",
+    "callee": "Label",
+    "class": null,
+    "line": 92,
+    "in_function": "Client.start",
+    "name": "Copy"
+   },
+   {
+    "via": "table_field",
+    "callee": "Button",
+    "class": null,
+    "line": 93,
+    "in_function": "Client.start",
+    "name": "Next"
+   },
+   {
+    "via": "property",
+    "receiver": "group",
+    "class": "CanvasGroup",
+    "line": 506,
+    "in_function": "createObjectiveCard",
+    "name": null,
+    "name_pattern": "Objective*",
+    "name_expr": "\"Objective\"..index"
+   },
+   {
+    "via": "table_field",
+    "callee": "Panel",
+    "class": null,
+    "line": 507,
+    "in_function": "createObjectiveCard",
+    "name": "Panel"
+   }
+  ],
+  "looked_up": [
+   {
+    "method": "WaitForChild",
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 16,
+    "in_function": "Client.start",
+    "name": "PlayerGui"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 18,
+    "in_function": "Client.start",
+    "name": "Config"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\")",
+    "receiver_path": "ReplicatedStorage.Config",
+    "root": "ReplicatedStorage",
+    "line": 18,
+    "in_function": "Client.start",
+    "name": "Player"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\"):WaitForChild(\"Player\")",
+    "receiver_path": "ReplicatedStorage.Config.Player",
+    "root": "ReplicatedStorage",
+    "line": 18,
+    "in_function": "Client.start",
+    "name": "Onboarding"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 19,
+    "in_function": "Client.start",
+    "name": "Config"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\")",
+    "receiver_path": "ReplicatedStorage.Config",
+    "root": "ReplicatedStorage",
+    "line": 19,
+    "in_function": "Client.start",
+    "name": "UI"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\"):WaitForChild(\"UI\")",
+    "receiver_path": "ReplicatedStorage.Config.UI",
+    "root": "ReplicatedStorage",
+    "line": 19,
+    "in_function": "Client.start",
+    "name": "LoadingSystem"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 20,
+    "in_function": "Client.start",
+    "name": "Modules"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\")",
+    "receiver_path": "ReplicatedStorage.Modules",
+    "root": "ReplicatedStorage",
+    "line": 20,
+    "in_function": "Client.start",
+    "name": "Game"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game",
+    "root": "ReplicatedStorage",
+    "line": 20,
+    "in_function": "Client.start",
+    "name": "UI"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"UI\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game.UI",
+    "root": "ReplicatedStorage",
+    "line": 20,
+    "in_function": "Client.start",
+    "name": "RacingUIComponents"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 21,
+    "in_function": "Client.start",
+    "name": "Modules"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\")",
+    "receiver_path": "ReplicatedStorage.Modules",
+    "root": "ReplicatedStorage",
+    "line": 21,
+    "in_function": "Client.start",
+    "name": "Game"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game",
+    "root": "ReplicatedStorage",
+    "line": 21,
+    "in_function": "Client.start",
+    "name": "Audio"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Audio\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game.Audio",
+    "root": "ReplicatedStorage",
+    "line": 21,
+    "in_function": "Client.start",
+    "name": "PresentationAudioBridge"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 22,
+    "in_function": "Client.start",
+    "name": "Modules"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\")",
+    "receiver_path": "ReplicatedStorage.Modules",
+    "root": "ReplicatedStorage",
+    "line": 22,
+    "in_function": "Client.start",
+    "name": "Game"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game",
+    "root": "ReplicatedStorage",
+    "line": 22,
+    "in_function": "Client.start",
+    "name": "UI"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"UI\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game.UI",
+    "root": "ReplicatedStorage",
+    "line": 22,
+    "in_function": "Client.start",
+    "name": "OnboardingGuideTrailRenderer"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 23,
+    "in_function": "Client.start",
+    "name": "Remotes"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Remotes\")",
+    "receiver_path": "ReplicatedStorage.Remotes",
+    "root": "ReplicatedStorage",
+    "line": 23,
+    "in_function": "Client.start",
+    "name": "Onboarding"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 24,
+    "in_function": "Client.start",
+    "name": "Remotes"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Remotes\")",
+    "receiver_path": "ReplicatedStorage.Remotes",
+    "root": "ReplicatedStorage",
+    "line": 24,
+    "in_function": "Client.start",
+    "name": "Onboarding"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Remotes\"):WaitForChild(\"Onboarding\")",
+    "receiver_path": "ReplicatedStorage.Remotes.Onboarding",
+    "root": "ReplicatedStorage",
+    "line": 24,
+    "in_function": "Client.start",
+    "name": "OnboardingInvoke"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 25,
+    "in_function": "Client.start",
+    "name": "Remotes"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Remotes\")",
+    "receiver_path": "ReplicatedStorage.Remotes",
+    "root": "ReplicatedStorage",
+    "line": 25,
+    "in_function": "Client.start",
+    "name": "Onboarding"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Remotes\"):WaitForChild(\"Onboarding\")",
+    "receiver_path": "ReplicatedStorage.Remotes.Onboarding",
+    "root": "ReplicatedStorage",
+    "line": 25,
+    "in_function": "Client.start",
+    "name": "OnboardingStateChanged"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "nextButton",
+    "receiver_path": null,
+    "root": null,
+    "line": 94,
+    "in_function": "Client.start",
+    "name": "GradientOverlay"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "at.Parent",
+    "receiver_path": null,
+    "root": null,
+    "line": 110,
+    "in_function": "scopeRoot",
+    "name": "CanonicalCanvas"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "playerGui",
+    "receiver_path": "Players.LocalPlayer.PlayerGui",
+    "root": "Players",
+    "line": 143,
+    "in_function": "canonicalBrowser",
+    "name": "CanonicalGarageGui"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "screen",
+    "receiver_path": "Players.LocalPlayer.PlayerGui.CanonicalGarageGui",
+    "root": "Players",
+    "line": 143,
+    "in_function": "canonicalBrowser",
+    "name": "CanonicalCanvas"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "canvas",
+    "receiver_path": "Players.LocalPlayer.PlayerGui.CanonicalGarageGui.CanonicalCanvas",
+    "root": "Players",
+    "line": 143,
+    "in_function": "canonicalBrowser",
+    "name": "CanonicalGarageBrowser"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:165",
+    "line": 190,
+    "in_function": "G2",
+    "via": "wrapper visibleScrollerCards()",
+    "name": "VehicleScroller"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 190,
+    "in_function": "G1",
+    "via": "wrapper group()",
+    "name": "Categories"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 190,
+    "in_function": "G4",
+    "via": "wrapper group()",
+    "name": "Stats"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 190,
+    "in_function": "A2",
+    "via": "wrapper group()",
+    "name": "Capacity"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:165",
+    "line": 190,
+    "in_function": "G2",
+    "via": "wrapper visibleScrollerCards()",
+    "name": "VehicleScroller"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 190,
+    "in_function": "G1",
+    "via": "wrapper group()",
+    "name": "Categories"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 190,
+    "in_function": "G4",
+    "via": "wrapper group()",
+    "name": "Stats"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 190,
+    "in_function": "A2",
+    "via": "wrapper group()",
+    "name": "Capacity"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "root",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:165",
+    "line": 190,
+    "in_function": "G2",
+    "via": "wrapper visibleScrollerCards()",
+    "name": "VehicleScroller"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "root",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 190,
+    "in_function": "G1",
+    "via": "wrapper group()",
+    "name": "Categories"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "root",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 190,
+    "in_function": "G4",
+    "via": "wrapper group()",
+    "name": "Stats"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "root",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 190,
+    "in_function": "A2",
+    "via": "wrapper group()",
+    "name": "Capacity"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:165",
+    "line": 192,
+    "in_function": "K1",
+    "via": "wrapper visibleScrollerCards()",
+    "name": "TutorialCardScroller"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 192,
+    "in_function": "L1",
+    "via": "wrapper group()",
+    "name": "Categories"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 192,
+    "in_function": "L2",
+    "via": "wrapper group()",
+    "name": "UpgradeBudget"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 192,
+    "in_function": "M1",
+    "via": "wrapper group()",
+    "name": "Categories"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:165",
+    "line": 192,
+    "in_function": "K1",
+    "via": "wrapper visibleScrollerCards()",
+    "name": "TutorialCardScroller"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 192,
+    "in_function": "L1",
+    "via": "wrapper group()",
+    "name": "Categories"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 192,
+    "in_function": "L2",
+    "via": "wrapper group()",
+    "name": "UpgradeBudget"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 192,
+    "in_function": "M1",
+    "via": "wrapper group()",
+    "name": "Categories"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "root",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:165",
+    "line": 192,
+    "in_function": "K1",
+    "via": "wrapper visibleScrollerCards()",
+    "name": "TutorialCardScroller"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "root",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 192,
+    "in_function": "L1",
+    "via": "wrapper group()",
+    "name": "Categories"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "root",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 192,
+    "in_function": "L2",
+    "via": "wrapper group()",
+    "name": "UpgradeBudget"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "root",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 192,
+    "in_function": "M1",
+    "via": "wrapper group()",
+    "name": "Categories"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 193,
+    "in_function": "D7",
+    "via": "wrapper group()",
+    "name": "DriftLeft"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 193,
+    "in_function": "D7",
+    "via": "wrapper group()",
+    "name": "DriftRight"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 193,
+    "in_function": "D7",
+    "via": "wrapper group()",
+    "name": "DriftLeftButton"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 193,
+    "in_function": "D7",
+    "via": "wrapper group()",
+    "name": "DriftRightButton"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 193,
+    "in_function": "D8",
+    "via": "wrapper group()",
+    "name": "Boost"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 193,
+    "in_function": "D8",
+    "via": "wrapper group()",
+    "name": "BoostButton"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 193,
+    "in_function": "D7",
+    "via": "wrapper group()",
+    "name": "DriftLeft"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 193,
+    "in_function": "D7",
+    "via": "wrapper group()",
+    "name": "DriftRight"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 193,
+    "in_function": "D7",
+    "via": "wrapper group()",
+    "name": "DriftLeftButton"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 193,
+    "in_function": "D7",
+    "via": "wrapper group()",
+    "name": "DriftRightButton"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 193,
+    "in_function": "D8",
+    "via": "wrapper group()",
+    "name": "Boost"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 193,
+    "in_function": "D8",
+    "via": "wrapper group()",
+    "name": "BoostButton"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "root",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 193,
+    "in_function": "D7",
+    "via": "wrapper group()",
+    "name": "DriftLeft"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "root",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 193,
+    "in_function": "D7",
+    "via": "wrapper group()",
+    "name": "DriftRight"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "root",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 193,
+    "in_function": "D7",
+    "via": "wrapper group()",
+    "name": "DriftLeftButton"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "root",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 193,
+    "in_function": "D7",
+    "via": "wrapper group()",
+    "name": "DriftRightButton"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "root",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 193,
+    "in_function": "D8",
+    "via": "wrapper group()",
+    "name": "Boost"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "root",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 193,
+    "in_function": "D8",
+    "via": "wrapper group()",
+    "name": "BoostButton"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 194,
+    "in_function": "B2",
+    "via": "wrapper group()",
+    "name": "Car"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 194,
+    "in_function": "B3",
+    "via": "wrapper group()",
+    "name": "Garage"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 194,
+    "in_function": "B4",
+    "via": "wrapper group()",
+    "name": "Race"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 194,
+    "in_function": "B2",
+    "via": "wrapper group()",
+    "name": "Car"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 194,
+    "in_function": "B3",
+    "via": "wrapper group()",
+    "name": "Garage"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 194,
+    "in_function": "B4",
+    "via": "wrapper group()",
+    "name": "Race"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "root",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 194,
+    "in_function": "B2",
+    "via": "wrapper group()",
+    "name": "Car"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "root",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 194,
+    "in_function": "B3",
+    "via": "wrapper group()",
+    "name": "Garage"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "root",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 194,
+    "in_function": "B4",
+    "via": "wrapper group()",
+    "name": "Race"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 195,
+    "in_function": "N1",
+    "via": "wrapper group()",
+    "name": "CardContent"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 195,
+    "in_function": "N6",
+    "via": "wrapper group()",
+    "name": "TeleportToStart"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 195,
+    "in_function": "N1",
+    "via": "wrapper group()",
+    "name": "CardContent"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 195,
+    "in_function": "N6",
+    "via": "wrapper group()",
+    "name": "TeleportToStart"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "root",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 195,
+    "in_function": "N1",
+    "via": "wrapper group()",
+    "name": "CardContent"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "root",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 195,
+    "in_function": "N6",
+    "via": "wrapper group()",
+    "name": "TeleportToStart"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 196,
+    "in_function": "Q1",
+    "via": "wrapper group()",
+    "name": "TierE"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 196,
+    "in_function": "Q1",
+    "via": "wrapper group()",
+    "name": "TierD"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 196,
+    "in_function": "Q1",
+    "via": "wrapper group()",
+    "name": "TierC"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 196,
+    "in_function": "Q1",
+    "via": "wrapper group()",
+    "name": "TierB"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 196,
+    "in_function": "Q1",
+    "via": "wrapper group()",
+    "name": "TierA"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 196,
+    "in_function": "Q1",
+    "via": "wrapper group()",
+    "name": "TierS"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 196,
+    "in_function": "Q5",
+    "via": "wrapper group()",
+    "name": "PrizeSummary"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 196,
+    "in_function": "Q8",
+    "via": "wrapper group()",
+    "name": "MedalTargets"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 196,
+    "in_function": "Q4",
+    "via": "wrapper group()",
+    "name": "LapSelector"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 196,
+    "in_function": "Q1",
+    "via": "wrapper group()",
+    "name": "TierE"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 196,
+    "in_function": "Q1",
+    "via": "wrapper group()",
+    "name": "TierD"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 196,
+    "in_function": "Q1",
+    "via": "wrapper group()",
+    "name": "TierC"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 196,
+    "in_function": "Q1",
+    "via": "wrapper group()",
+    "name": "TierB"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 196,
+    "in_function": "Q1",
+    "via": "wrapper group()",
+    "name": "TierA"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 196,
+    "in_function": "Q1",
+    "via": "wrapper group()",
+    "name": "TierS"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 196,
+    "in_function": "Q5",
+    "via": "wrapper group()",
+    "name": "PrizeSummary"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 196,
+    "in_function": "Q8",
+    "via": "wrapper group()",
+    "name": "MedalTargets"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 196,
+    "in_function": "Q4",
+    "via": "wrapper group()",
+    "name": "LapSelector"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "root",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 196,
+    "in_function": "Q1",
+    "via": "wrapper group()",
+    "name": "TierE"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "root",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 196,
+    "in_function": "Q1",
+    "via": "wrapper group()",
+    "name": "TierD"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "root",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 196,
+    "in_function": "Q1",
+    "via": "wrapper group()",
+    "name": "TierC"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "root",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 196,
+    "in_function": "Q1",
+    "via": "wrapper group()",
+    "name": "TierB"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "root",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 196,
+    "in_function": "Q1",
+    "via": "wrapper group()",
+    "name": "TierA"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "root",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 196,
+    "in_function": "Q1",
+    "via": "wrapper group()",
+    "name": "TierS"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "root",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 196,
+    "in_function": "Q5",
+    "via": "wrapper group()",
+    "name": "PrizeSummary"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "root",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 196,
+    "in_function": "Q8",
+    "via": "wrapper group()",
+    "name": "MedalTargets"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "root",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 196,
+    "in_function": "Q4",
+    "via": "wrapper group()",
+    "name": "LapSelector"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 197,
+    "in_function": "P1",
+    "via": "wrapper group()",
+    "name": "RaceFormat"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 197,
+    "in_function": "P1",
+    "via": "wrapper group()",
+    "name": "DetailColumn"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 197,
+    "in_function": "P1",
+    "via": "wrapper group()",
+    "name": "RaceFormat"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 197,
+    "in_function": "P1",
+    "via": "wrapper group()",
+    "name": "DetailColumn"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "root",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 197,
+    "in_function": "P1",
+    "via": "wrapper group()",
+    "name": "RaceFormat"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "root",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 197,
+    "in_function": "P1",
+    "via": "wrapper group()",
+    "name": "DetailColumn"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 198,
+    "in_function": "X1",
+    "via": "wrapper group()",
+    "name": "GarageList"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 198,
+    "in_function": "X3",
+    "via": "wrapper group()",
+    "name": "Enter"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 198,
+    "in_function": "X1",
+    "via": "wrapper group()",
+    "name": "GarageList"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 198,
+    "in_function": "X3",
+    "via": "wrapper group()",
+    "name": "Enter"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "root",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 198,
+    "in_function": "X1",
+    "via": "wrapper group()",
+    "name": "GarageList"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "root",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 198,
+    "in_function": "X3",
+    "via": "wrapper group()",
+    "name": "Enter"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:165",
+    "line": 200,
+    "in_function": "AA1",
+    "via": "wrapper visibleScrollerCards()",
+    "name": "TutorialCardScroller"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 200,
+    "in_function": "AC1",
+    "via": "wrapper group()",
+    "name": "Categories"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 200,
+    "in_function": "AD1",
+    "via": "wrapper group()",
+    "name": "Categories"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:165",
+    "line": 200,
+    "in_function": "AA1",
+    "via": "wrapper visibleScrollerCards()",
+    "name": "TutorialCardScroller"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 200,
+    "in_function": "AC1",
+    "via": "wrapper group()",
+    "name": "Categories"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 200,
+    "in_function": "AD1",
+    "via": "wrapper group()",
+    "name": "Categories"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "root",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:165",
+    "line": 200,
+    "in_function": "AA1",
+    "via": "wrapper visibleScrollerCards()",
+    "name": "TutorialCardScroller"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "root",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 200,
+    "in_function": "AC1",
+    "via": "wrapper group()",
+    "name": "Categories"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "root",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:149",
+    "line": 200,
+    "in_function": "AD1",
+    "via": "wrapper group()",
+    "name": "Categories"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:121",
+    "line": 208,
+    "in_function": "MobileDriving",
+    "via": "wrapper named()",
+    "name": "DriftLeft"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:121",
+    "line": 208,
+    "in_function": "MobileDriving",
+    "via": "wrapper named()",
+    "name": "DriftLeftButton"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:120",
+    "line": 208,
+    "in_function": "MobileDriving",
+    "via": "wrapper named()",
+    "name": "DriftLeft"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:120",
+    "line": 208,
+    "in_function": "MobileDriving",
+    "via": "wrapper named()",
+    "name": "DriftLeftButton"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "root",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:120",
+    "line": 208,
+    "in_function": "MobileDriving",
+    "via": "wrapper named()",
+    "name": "DriftLeft"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "root",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:120",
+    "line": 208,
+    "in_function": "MobileDriving",
+    "via": "wrapper named()",
+    "name": "DriftLeftButton"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:121",
+    "line": 209,
+    "in_function": "VehicleShortcut",
+    "via": "wrapper named()",
+    "name": "Car"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:120",
+    "line": 209,
+    "in_function": "VehicleShortcut",
+    "via": "wrapper named()",
+    "name": "Car"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "root",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:120",
+    "line": 209,
+    "in_function": "VehicleShortcut",
+    "via": "wrapper named()",
+    "name": "Car"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:121",
+    "line": 210,
+    "in_function": "RaceShortcut",
+    "via": "wrapper named()",
+    "name": "Race"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:120",
+    "line": 210,
+    "in_function": "RaceShortcut",
+    "via": "wrapper named()",
+    "name": "Race"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "root",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:120",
+    "line": 210,
+    "in_function": "RaceShortcut",
+    "via": "wrapper named()",
+    "name": "Race"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "playerGui",
+    "receiver_path": "Players.LocalPlayer.PlayerGui",
+    "root": "Players",
+    "wrapper_defined": "OnboardingClient:137",
+    "line": 211,
+    "in_function": "RaceBrowser",
+    "via": "wrapper screenRoot()",
+    "name": "RaceBrowser"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "playerGui",
+    "receiver_path": "Players.LocalPlayer.PlayerGui",
+    "root": "Players",
+    "wrapper_defined": "OnboardingClient:137",
+    "line": 212,
+    "in_function": "EventMode",
+    "via": "wrapper screenRoot()",
+    "name": "RaceEntryPresentation"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:121",
+    "line": 213,
+    "in_function": "TimeTrialSetup",
+    "via": "wrapper named()",
+    "name": "TierE"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:121",
+    "line": 213,
+    "in_function": "TimeTrialSetup",
+    "via": "wrapper named()",
+    "name": "LapSelector"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:120",
+    "line": 213,
+    "in_function": "TimeTrialSetup",
+    "via": "wrapper named()",
+    "name": "TierE"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:120",
+    "line": 213,
+    "in_function": "TimeTrialSetup",
+    "via": "wrapper named()",
+    "name": "LapSelector"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "root",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:120",
+    "line": 213,
+    "in_function": "TimeTrialSetup",
+    "via": "wrapper named()",
+    "name": "TierE"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "root",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:120",
+    "line": 213,
+    "in_function": "TimeTrialSetup",
+    "via": "wrapper named()",
+    "name": "LapSelector"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:121",
+    "line": 214,
+    "in_function": "RaceSetup",
+    "via": "wrapper named()",
+    "name": "RaceFormat"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:120",
+    "line": 214,
+    "in_function": "RaceSetup",
+    "via": "wrapper named()",
+    "name": "RaceFormat"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "root",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:120",
+    "line": 214,
+    "in_function": "RaceSetup",
+    "via": "wrapper named()",
+    "name": "RaceFormat"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:121",
+    "line": 215,
+    "in_function": "GarageShortcut",
+    "via": "wrapper named()",
+    "name": "Garage"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:120",
+    "line": 215,
+    "in_function": "GarageShortcut",
+    "via": "wrapper named()",
+    "name": "Garage"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "root",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:120",
+    "line": 215,
+    "in_function": "GarageShortcut",
+    "via": "wrapper named()",
+    "name": "Garage"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "playerGui",
+    "receiver_path": "Players.LocalPlayer.PlayerGui",
+    "root": "Players",
+    "wrapper_defined": "OnboardingClient:137",
+    "line": 216,
+    "in_function": "GarageBrowser",
+    "via": "wrapper screenRoot()",
+    "name": "OwnedGarageBrowser"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 319,
+    "in_function": "Client.start",
+    "name": "PlayerScripts"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts",
+    "root": "Players",
+    "line": 319,
+    "in_function": "Client.start",
+    "name": "Runtime"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"Runtime\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime",
+    "root": "Players",
+    "line": 319,
+    "in_function": "Client.start",
+    "name": "UI"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"Runtime\"):WaitForChild(\"UI\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime.UI",
+    "root": "Players",
+    "line": 319,
+    "in_function": "Client.start",
+    "name": "LoadingPresentationState"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 320,
+    "in_function": "Client.start",
+    "name": "PlayerScripts"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts",
+    "root": "Players",
+    "line": 320,
+    "in_function": "Client.start",
+    "name": "Runtime"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"Runtime\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime",
+    "root": "Players",
+    "line": 320,
+    "in_function": "Client.start",
+    "name": "UI"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"Runtime\"):WaitForChild(\"UI\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime.UI",
+    "root": "Players",
+    "line": 320,
+    "in_function": "Client.start",
+    "name": "LoadingPresentationChanged"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "border",
+    "receiver_path": null,
+    "root": null,
+    "line": 365,
+    "in_function": "renderPinned",
+    "name": "Stroke"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "border",
+    "receiver_path": null,
+    "root": null,
+    "line": 365,
+    "in_function": "renderPinned",
+    "name": "GlowStroke"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "bubble",
+    "receiver_path": null,
+    "root": null,
+    "line": 366,
+    "in_function": "renderPinned",
+    "name": "Stroke"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "bubble",
+    "receiver_path": null,
+    "root": null,
+    "line": 366,
+    "in_function": "renderPinned",
+    "name": "GlowStroke"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "playerGui",
+    "receiver_path": "Players.LocalPlayer.PlayerGui",
+    "root": "Players",
+    "line": 459,
+    "in_function": "controlsOpen",
+    "name": "DesktopFreeRoamHud"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "screen",
+    "receiver_path": "Players.LocalPlayer.PlayerGui.DesktopFreeRoamHud",
+    "root": "Players",
+    "line": 460,
+    "in_function": "controlsOpen",
+    "name": "DesignRoot"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "design",
+    "receiver_path": "Players.LocalPlayer.PlayerGui.DesktopFreeRoamHud.DesignRoot",
+    "root": "Players",
+    "line": 461,
+    "in_function": "controlsOpen",
+    "name": "ModalLayer"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "modal",
+    "receiver_path": "Players.LocalPlayer.PlayerGui.DesktopFreeRoamHud.DesignRoot.ModalLayer",
+    "root": "Players",
+    "line": 462,
+    "in_function": "controlsOpen",
+    "name": "Controls"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "playerGui",
+    "receiver_path": "Players.LocalPlayer.PlayerGui",
+    "root": "Players",
+    "wrapper_defined": "OnboardingClient:137",
+    "line": 469,
+    "in_function": "majorMenuOpen",
+    "via": "wrapper screenRoot()",
+    "name": "RaceBrowser"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "playerGui",
+    "receiver_path": "Players.LocalPlayer.PlayerGui",
+    "root": "Players",
+    "wrapper_defined": "OnboardingClient:137",
+    "line": 469,
+    "in_function": "majorMenuOpen",
+    "via": "wrapper screenRoot()",
+    "name": "RaceEntryPresentation"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "playerGui",
+    "receiver_path": "Players.LocalPlayer.PlayerGui",
+    "root": "Players",
+    "wrapper_defined": "OnboardingClient:137",
+    "line": 469,
+    "in_function": "majorMenuOpen",
+    "via": "wrapper screenRoot()",
+    "name": "OwnedGarageBrowser"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:454",
+    "line": 475,
+    "in_function": "majorMenuOpen",
+    "via": "wrapper visibleRoot()",
+    "name": "CarPanel"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:454",
+    "line": 475,
+    "in_function": "majorMenuOpen",
+    "via": "wrapper visibleRoot()",
+    "name": "CarPanel"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "root",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:454",
+    "line": 475,
+    "in_function": "majorMenuOpen",
+    "via": "wrapper visibleRoot()",
+    "name": "CarPanel"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:454",
+    "line": 476,
+    "in_function": "majorMenuOpen",
+    "via": "wrapper visibleRoot()",
+    "name": "ModalLayer"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:454",
+    "line": 476,
+    "in_function": "majorMenuOpen",
+    "via": "wrapper visibleRoot()",
+    "name": "ModalLayer"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "root",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:454",
+    "line": 476,
+    "in_function": "majorMenuOpen",
+    "via": "wrapper visibleRoot()",
+    "name": "ModalLayer"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "card.Panel",
+    "receiver_path": null,
+    "root": null,
+    "line": 541,
+    "in_function": "styleObjectiveCard",
+    "name": "Stroke"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "card.Panel",
+    "receiver_path": null,
+    "root": null,
+    "line": 541,
+    "in_function": "styleObjectiveCard",
+    "name": "GlowStroke"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:121",
+    "line": 613,
+    "in_function": "refreshObjective",
+    "via": "wrapper named()",
+    "name": "AccessControls"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:120",
+    "line": 613,
+    "in_function": "refreshObjective",
+    "via": "wrapper named()",
+    "name": "AccessControls"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "root",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:120",
+    "line": 613,
+    "in_function": "refreshObjective",
+    "via": "wrapper named()",
+    "name": "AccessControls"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:121",
+    "line": 614,
+    "in_function": "refreshObjective",
+    "via": "wrapper named()",
+    "name": "Car"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:121",
+    "line": 614,
+    "in_function": "refreshObjective",
+    "via": "wrapper named()",
+    "name": "Race"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:121",
+    "line": 614,
+    "in_function": "refreshObjective",
+    "via": "wrapper named()",
+    "name": "Garage"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:120",
+    "line": 614,
+    "in_function": "refreshObjective",
+    "via": "wrapper named()",
+    "name": "Car"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:120",
+    "line": 614,
+    "in_function": "refreshObjective",
+    "via": "wrapper named()",
+    "name": "Race"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:120",
+    "line": 614,
+    "in_function": "refreshObjective",
+    "via": "wrapper named()",
+    "name": "Garage"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "root",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:120",
+    "line": 614,
+    "in_function": "refreshObjective",
+    "via": "wrapper named()",
+    "name": "Car"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "root",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:120",
+    "line": 614,
+    "in_function": "refreshObjective",
+    "via": "wrapper named()",
+    "name": "Race"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "root",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:120",
+    "line": 614,
+    "in_function": "refreshObjective",
+    "via": "wrapper named()",
+    "name": "Garage"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:121",
+    "line": 624,
+    "in_function": "refreshObjective",
+    "via": "wrapper named()",
+    "name": "BoostButton"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:121",
+    "line": 624,
+    "in_function": "refreshObjective",
+    "via": "wrapper named()",
+    "name": "Boost"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:120",
+    "line": 624,
+    "in_function": "refreshObjective",
+    "via": "wrapper named()",
+    "name": "BoostButton"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:120",
+    "line": 624,
+    "in_function": "refreshObjective",
+    "via": "wrapper named()",
+    "name": "Boost"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "root",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:120",
+    "line": 624,
+    "in_function": "refreshObjective",
+    "via": "wrapper named()",
+    "name": "BoostButton"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "root",
+    "receiver_path": null,
+    "root": null,
+    "wrapper_defined": "OnboardingClient:120",
+    "line": 624,
+    "in_function": "refreshObjective",
+    "via": "wrapper named()",
+    "name": "Boost"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "character",
+    "receiver_path": "Players.LocalPlayer.Character",
+    "root": "Players",
+    "line": 647,
+    "in_function": "nearestGarageDesk",
+    "name": "HumanoidRootPart"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "receiver_isa": [
+     "BasePart"
+    ],
+    "line": 650,
+    "in_function": "nearestGarageDesk",
+    "name": "DeskPromptAnchor"
+   },
+   {
+    "method": "FindFirstAncestor",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "line": 650,
+    "in_function": "nearestGarageDesk",
+    "name": "ManagementDesk"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "game:GetService(\"Workspace\")",
+    "receiver_path": "Workspace",
+    "root": "Workspace",
+    "line": 660,
+    "in_function": "updateGuideTrail",
+    "name": "World"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Workspace\")",
+    "receiver_path": "Workspace",
+    "root": "Workspace",
+    "line": 660,
+    "in_function": "updateGuideTrail",
+    "name": "World"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "game:GetService(\"Workspace\"):WaitForChild(\"World\")",
+    "receiver_path": "Workspace.World",
+    "root": "Workspace",
+    "line": 660,
+    "in_function": "updateGuideTrail",
+    "name": "Dealership"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Workspace\")",
+    "receiver_path": "Workspace",
+    "root": "Workspace",
+    "line": 660,
+    "in_function": "updateGuideTrail",
+    "name": "World"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "game:GetService(\"Workspace\"):WaitForChild(\"World\").Dealership",
+    "receiver_path": "Workspace.World.Dealership",
+    "root": "Workspace",
+    "line": 660,
+    "in_function": "updateGuideTrail",
+    "name": "Intro"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Workspace\")",
+    "receiver_path": "Workspace",
+    "root": "Workspace",
+    "line": 660,
+    "in_function": "updateGuideTrail",
+    "name": "World"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Workspace\"):WaitForChild(\"World\")",
+    "receiver_path": "Workspace.World",
+    "root": "Workspace",
+    "line": 660,
+    "in_function": "updateGuideTrail",
+    "name": "Dealership"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Workspace\"):WaitForChild(\"World\"):WaitForChild(\"Dealership\")",
+    "receiver_path": "Workspace.World.Dealership",
+    "root": "Workspace",
+    "line": 660,
+    "in_function": "updateGuideTrail",
+    "name": "Intro"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "game:GetService(\"Workspace\"):WaitForChild(\"World\"):WaitForChild(\"Dealership\"):WaitForChild(\"Intro\")",
+    "receiver_path": "Workspace.World.Dealership.Intro",
+    "root": "Workspace",
+    "line": 660,
+    "in_function": "updateGuideTrail",
+    "name": "Desk"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Workspace\")",
+    "receiver_path": "Workspace",
+    "root": "Workspace",
+    "line": 660,
+    "in_function": "updateGuideTrail",
+    "name": "World"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Workspace\"):WaitForChild(\"World\")",
+    "receiver_path": "Workspace.World",
+    "root": "Workspace",
+    "line": 660,
+    "in_function": "updateGuideTrail",
+    "name": "Dealership"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Workspace\"):WaitForChild(\"World\"):WaitForChild(\"Dealership\")",
+    "receiver_path": "Workspace.World.Dealership",
+    "root": "Workspace",
+    "line": 660,
+    "in_function": "updateGuideTrail",
+    "name": "Intro"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Workspace\"):WaitForChild(\"World\"):WaitForChild(\"Dealership\"):WaitForChild(\"Intro\")",
+    "receiver_path": "Workspace.World.Dealership.Intro",
+    "root": "Workspace",
+    "line": 660,
+    "in_function": "updateGuideTrail",
+    "name": "Desk"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "game:GetService(\"Workspace\"):WaitForChild(\"World\"):WaitForChild(\"Dealership\"):WaitForChild(\"Intro\"):WaitForChild(\"Desk\")",
+    "receiver_path": "Workspace.World.Dealership.Intro.Desk",
+    "root": "Workspace",
+    "line": 660,
+    "in_function": "updateGuideTrail",
+    "name": "GarageDeskTrigger"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "receiver_isa": [
+     "GuiButton"
+    ],
+    "receiver_property_writes": [
+     "Active",
+     "Selectable",
+     "AutoButtonColor"
+    ],
+    "line": 669,
+    "in_function": "applyLocks",
+    "name": "Car",
+    "via": "literal list"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "receiver_isa": [
+     "GuiButton"
+    ],
+    "receiver_property_writes": [
+     "Active",
+     "Selectable",
+     "AutoButtonColor"
+    ],
+    "line": 669,
+    "in_function": "applyLocks",
+    "name": "Race",
+    "via": "literal list"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "object",
+    "receiver_path": null,
+    "root": null,
+    "receiver_isa": [
+     "GuiButton"
+    ],
+    "receiver_property_writes": [
+     "Active",
+     "Selectable",
+     "AutoButtonColor"
+    ],
+    "line": 669,
+    "in_function": "applyLocks",
+    "name": "Garage",
+    "via": "literal list"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "game:GetService(\"Workspace\")",
+    "receiver_path": "Workspace",
+    "root": "Workspace",
+    "line": 673,
+    "in_function": "activelyDriving",
+    "name": "World"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Workspace\")",
+    "receiver_path": "Workspace",
+    "root": "Workspace",
+    "line": 673,
+    "in_function": "activelyDriving",
+    "name": "World"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "game:GetService(\"Workspace\"):WaitForChild(\"World\")",
+    "receiver_path": "Workspace.World",
+    "root": "Workspace",
+    "line": 673,
+    "in_function": "activelyDriving",
+    "name": "Runtime"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Workspace\")",
+    "receiver_path": "Workspace",
+    "root": "Workspace",
+    "line": 673,
+    "in_function": "activelyDriving",
+    "name": "World"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Workspace\"):WaitForChild(\"World\")",
+    "receiver_path": "Workspace.World",
+    "root": "Workspace",
+    "line": 673,
+    "in_function": "activelyDriving",
+    "name": "Runtime"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "game:GetService(\"Workspace\"):WaitForChild(\"World\"):WaitForChild(\"Runtime\")",
+    "receiver_path": "Workspace.World.Runtime",
+    "root": "Workspace",
+    "line": 673,
+    "in_function": "activelyDriving",
+    "name": "PlayerVehicles"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "vehicle",
+    "receiver_path": null,
+    "root": null,
+    "recursive": true,
+    "line": 674,
+    "in_function": "activelyDriving",
+    "name": "DriverSeat"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 686,
+    "in_function": "tryBeginFirstDriveControls",
+    "name": "PlayerScripts"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts",
+    "root": "Players",
+    "line": 686,
+    "in_function": "tryBeginFirstDriveControls",
+    "name": "Runtime"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"Runtime\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime",
+    "root": "Players",
+    "line": 686,
+    "in_function": "tryBeginFirstDriveControls",
+    "name": "UI"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"Runtime\"):WaitForChild(\"UI\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime.UI",
+    "root": "Players",
+    "line": 686,
+    "in_function": "tryBeginFirstDriveControls",
+    "name": "OpenDrivingControlsFromOnboarding"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 713,
+    "in_function": "Client.start",
+    "name": "PlayerScripts"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts",
+    "root": "Players",
+    "line": 713,
+    "in_function": "Client.start",
+    "name": "Runtime"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"Runtime\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime",
+    "root": "Players",
+    "line": 713,
+    "in_function": "Client.start",
+    "name": "UI"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"Runtime\"):WaitForChild(\"UI\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime.UI",
+    "root": "Players",
+    "line": 713,
+    "in_function": "Client.start",
+    "name": "FreeRoamVehicleSpawned"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 726,
+    "in_function": "Client.start",
+    "name": "PlayerScripts"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts",
+    "root": "Players",
+    "line": 726,
+    "in_function": "Client.start",
+    "name": "Runtime"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"Runtime\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime",
+    "root": "Players",
+    "line": 726,
+    "in_function": "Client.start",
+    "name": "UI"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"Runtime\"):WaitForChild(\"UI\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime.UI",
+    "root": "Players",
+    "line": 726,
+    "in_function": "Client.start",
+    "name": "FreeRoamHudPresentationMode"
+   }
+  ],
+  "text_compared": [
+   {
+    "method": "TextCompare",
+    "receiver": "object",
+    "operator": "==",
+    "transform": "string.upper",
+    "wrapper_defined": "OnboardingClient:126",
+    "line": 144,
+    "in_function": "canonicalBrowser",
+    "via": "wrapper buttonWithText()",
+    "text": "DEALERSHIP"
+   },
+   {
+    "method": "TextCompare",
+    "receiver": "object",
+    "operator": "==",
+    "transform": "string.upper",
+    "line": 145,
+    "in_function": "canonicalBrowser",
+    "text": "DEALERSHIP"
+   },
+   {
+    "method": "TextCompare",
+    "receiver": "object",
+    "operator": "==",
+    "transform": "string.upper",
+    "wrapper_defined": "OnboardingClient:152",
+    "line": 196,
+    "in_function": "O1",
+    "via": "wrapper textGroup()",
+    "text": "TIME TRIAL"
+   },
+   {
+    "method": "TextCompare",
+    "receiver": "object",
+    "operator": "==",
+    "transform": "string.upper",
+    "wrapper_defined": "OnboardingClient:152",
+    "line": 196,
+    "in_function": "O1",
+    "via": "wrapper textGroup()",
+    "text": "RACE"
+   },
+   {
+    "method": "TextCompare",
+    "receiver": "object",
+    "operator": "==",
+    "transform": "string.upper",
+    "wrapper_defined": "OnboardingClient:126",
+    "line": 212,
+    "in_function": "EventMode",
+    "via": "wrapper buttonWithText()",
+    "text": "TIME TRIAL"
+   },
+   {
+    "method": "TextCompare",
+    "receiver": "object",
+    "operator": "==",
+    "transform": "string.upper",
+    "wrapper_defined": "OnboardingClient:126",
+    "line": 212,
+    "in_function": "EventMode",
+    "via": "wrapper buttonWithText()",
+    "text": "RACE"
+   }
+  ]
+ },
+ "run_service": {
+  "render_steps": [],
+  "connects": [
+   {
+    "signal": "RenderStepped",
+    "method": "Connect",
+    "line": 757,
+    "in_function": "Client.start",
+    "callback": "function(dt) elapsed+=dt; if elapsed<.2 then re..."
+   }
+  ]
+ },
+ "context_actions": [],
+ "user_input_service": {
+  "connects": [],
+  "members_used": [
+   {
+    "member": "TouchEnabled",
+    "kind": "read",
+    "line": 208,
+    "in_function": "MobileDriving"
+   },
+   {
+    "member": "TouchEnabled",
+    "kind": "read",
+    "line": 682,
+    "in_function": "tryBeginFirstDriveControls"
+   },
+   {
+    "member": "TouchEnabled",
+    "kind": "read",
+    "line": 715,
+    "in_function": "Client.start"
+   }
+  ]
+ },
+ "audio": {
+  "bridge_calls": [
+   {
+    "method": "Emit",
+    "receiver": "AudioBridge",
+    "args": [
+     "\"Objective.Complete\"",
+     "{Key=\"Objective:\"..tostring(index),ObjectiveIndex=index}"
+    ],
+    "line": 608,
+    "in_function": "syncObjectives",
+    "cue": "Objective.Complete",
+    "payload_keys": [
+     "Key",
+     "ObjectiveIndex"
+    ]
+   }
+  ],
+  "ui_audio_attributes": [
+   {
+    "receiver": "f",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "value": "",
+    "line": 87,
+    "in_function": "Client.start",
+    "name": "UIAudioHoverCue",
+    "access": "write"
+   },
+   {
+    "receiver": "catch",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "value": "",
+    "line": 88,
+    "in_function": "Client.start",
+    "name": "UIAudioHoverCue",
+    "access": "write"
+   },
+   {
+    "receiver": "nextButton",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "value": "",
+    "line": 93,
+    "in_function": "Client.start",
+    "name": "UIAudioHoverCue",
+    "access": "write"
+   }
+  ]
+ },
+ "config": {
+  "paths": [
+   {
+    "path": "ReplicatedStorage.Config",
+    "line": 18
+   },
+   {
+    "path": "ReplicatedStorage.Config.Player",
+    "line": 18
+   },
+   {
+    "path": "ReplicatedStorage.Config.Player.Onboarding",
+    "line": 18
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI",
+    "line": 19
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI.LoadingSystem",
+    "line": 19
+   }
+  ],
+  "attribute_reads": [
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "line": 31,
+    "in_function": "Client.start",
+    "name": "TutorialGold",
+    "access": "read"
+   },
+   {
+    "receiver": "loadingConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.LoadingSystem",
+    "receiver_kind": "config",
+    "line": 82,
+    "in_function": "Client.start",
+    "name": "DisplayOrder",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 87,
+    "in_function": "Client.start",
+    "via": "wrapper setting()",
+    "name": "DimTransparency",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 94,
+    "in_function": "Client.start",
+    "via": "wrapper setting()",
+    "name": "NextGradientTransparency",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 233,
+    "in_function": "isLandscapePhone",
+    "via": "wrapper setting()",
+    "name": "LandscapePhoneShortSidePixels",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 240,
+    "in_function": "ownerScale",
+    "via": "wrapper setting()",
+    "name": "TutorialMinimumScale",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 240,
+    "in_function": "ownerScale",
+    "via": "wrapper setting()",
+    "name": "TutorialMaximumScale",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 244,
+    "in_function": "ownerScale",
+    "via": "wrapper setting()",
+    "name": "LandscapePhoneScale",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 245,
+    "in_function": "ownerScale",
+    "via": "wrapper setting()",
+    "name": "TutorialDesktopMinimumScale",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 245,
+    "in_function": "ownerScale",
+    "via": "wrapper setting()",
+    "name": "TutorialMaximumScale",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 249,
+    "in_function": "tutorialMetrics",
+    "via": "wrapper setting()",
+    "name": "TutorialPhoneMinimumTextSize",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 249,
+    "in_function": "tutorialMetrics",
+    "via": "wrapper setting()",
+    "name": "TutorialDesktopMinimumTextSize",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 250,
+    "in_function": "tutorialMetrics",
+    "via": "wrapper setting()",
+    "name": "TutorialTextSize",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 259,
+    "in_function": "rect",
+    "via": "wrapper setting()",
+    "name": "HighlightPaddingPixels",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 271,
+    "in_function": "safeRect",
+    "via": "wrapper setting()",
+    "name": "CalloutMarginPixels",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 291,
+    "in_function": "placeBubble",
+    "via": "wrapper setting()",
+    "name": "TutorialStackedWidthPixels",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 292,
+    "in_function": "placeBubble",
+    "via": "wrapper setting()",
+    "name": "LandscapePhoneShortcutWidthRatio",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 292,
+    "in_function": "placeBubble",
+    "via": "wrapper setting()",
+    "name": "LandscapePhoneTextWidthRatio",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 292,
+    "in_function": "placeBubble",
+    "via": "wrapper setting()",
+    "name": "TutorialMaximumTextWidth",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 301,
+    "in_function": "placeBubble",
+    "via": "wrapper setting()",
+    "name": "LandscapePhoneShortcutWidthRatio",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 304,
+    "in_function": "placeBubble",
+    "via": "wrapper setting()",
+    "name": "LandscapePhoneShortcutGapPixels",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 304,
+    "in_function": "placeBubble",
+    "via": "wrapper setting()",
+    "name": "ShortcutCalloutGapPixels",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 360,
+    "in_function": "renderPinned",
+    "via": "wrapper setting()",
+    "name": "EdgeOverscanPixels",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 373,
+    "in_function": "scheduleLayout",
+    "via": "wrapper setting()",
+    "name": "TargetStabilityFrames",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 418,
+    "in_function": "scheduleResolve",
+    "via": "wrapper setting()",
+    "name": "PageAbandonSeconds",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 517,
+    "in_function": "styleObjectiveCard",
+    "via": "wrapper setting()",
+    "name": "ObjectiveCardPaddingPixels",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 517,
+    "in_function": "styleObjectiveCard",
+    "via": "wrapper setting()",
+    "name": "ObjectiveDesktopTextMultiplier",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:518",
+    "line": 519,
+    "in_function": "styleObjectiveCard",
+    "via": "wrapper textSize()",
+    "name": "ObjectiveNumberTextSize",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:518",
+    "line": 519,
+    "in_function": "styleObjectiveCard",
+    "via": "wrapper textSize()",
+    "name": "ObjectiveTitleTextSize",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:518",
+    "line": 519,
+    "in_function": "styleObjectiveCard",
+    "via": "wrapper textSize()",
+    "name": "ObjectiveHintTextSize",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:518",
+    "line": 519,
+    "in_function": "styleObjectiveCard",
+    "via": "wrapper textSize()",
+    "name": "ObjectiveProgressTextSize",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 560,
+    "in_function": "layoutObjectives",
+    "via": "wrapper setting()",
+    "name": "ObjectiveReflowSeconds",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 574,
+    "in_function": "enterObjective",
+    "via": "wrapper setting()",
+    "name": "ObjectiveOffscreenPaddingPixels",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 576,
+    "in_function": "enterObjective",
+    "via": "wrapper setting()",
+    "name": "ObjectiveEnterSeconds",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 585,
+    "in_function": "exitObjective",
+    "via": "wrapper setting()",
+    "name": "ObjectiveExitHoldSeconds",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 588,
+    "in_function": "exitObjective",
+    "via": "wrapper setting()",
+    "name": "ObjectiveOffscreenPaddingPixels",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 589,
+    "in_function": "exitObjective",
+    "via": "wrapper setting()",
+    "name": "ObjectiveExitSeconds",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 603,
+    "in_function": "syncObjectives",
+    "via": "wrapper setting()",
+    "name": "ObjectiveExitHoldSeconds",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 603,
+    "in_function": "syncObjectives",
+    "via": "wrapper setting()",
+    "name": "ObjectiveExitSeconds",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 605,
+    "in_function": "syncObjectives",
+    "via": "wrapper setting()",
+    "name": "ObjectiveStaggerSeconds",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 615,
+    "in_function": "refreshObjective",
+    "via": "wrapper setting()",
+    "name": "ObjectiveCardWidthPixels",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 615,
+    "in_function": "refreshObjective",
+    "via": "wrapper setting()",
+    "name": "ObjectivePhoneCardHeightPixels",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 615,
+    "in_function": "refreshObjective",
+    "via": "wrapper setting()",
+    "name": "ObjectiveCardHeightPixels",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 615,
+    "in_function": "refreshObjective",
+    "via": "wrapper setting()",
+    "name": "ObjectivePhoneCardGapPixels",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 615,
+    "in_function": "refreshObjective",
+    "via": "wrapper setting()",
+    "name": "ObjectiveCardGapPixels",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 615,
+    "in_function": "refreshObjective",
+    "via": "wrapper setting()",
+    "name": "ObjectiveGlowSafePaddingPixels",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 617,
+    "in_function": "refreshObjective",
+    "via": "wrapper setting()",
+    "name": "ObjectivePhoneFallbackTopPixels",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 620,
+    "in_function": "refreshObjective",
+    "via": "wrapper setting()",
+    "name": "ObjectivePhoneTopRowClearancePixels",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 629,
+    "in_function": "refreshObjective",
+    "via": "wrapper setting()",
+    "name": "ObjectivePhoneBoostGapPixels",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Player.Onboarding",
+    "receiver_kind": "config",
+    "wrapper_defined": "OnboardingClient:35",
+    "line": 630,
+    "in_function": "refreshObjective",
+    "via": "wrapper setting()",
+    "name": "ObjectivePhoneMinimumCardHeightPixels",
+    "access": "read"
+   }
+  ],
+  "child_lookups": []
+ },
+ "startergui_core": [],
+ "gui_service": [
+  {
+   "member": "GetGuiInset",
+   "kind": "call",
+   "line": 266,
+   "in_function": "guiInsets"
+  }
+ ],
+ "other_services": {},
+ "service_connects": [],
+ "proximity_prompts": [],
+ "instances_created_by_class": {
+  "CanvasGroup": 1,
+  "Frame": 3,
+  "ScreenGui": 1,
+  "TextButton": 2
+ },
+ "public_api": [
+  {
+   "name": "start",
+   "kind": "function",
+   "params": [],
+   "line": 4
+  }
+ ],
+ "unresolved": [
+  {
+   "category": "names_assigned",
+   "field": "name",
+   "line": 87,
+   "detail": "name built at run time: \"Shade\"..i"
+  },
+  {
+   "category": "names_assigned",
+   "field": "name",
+   "line": 506,
+   "detail": "name built at run time: \"Objective\"..index"
+  }
+ ],
+ "contract_file": "OnboardingClient.json"
+}

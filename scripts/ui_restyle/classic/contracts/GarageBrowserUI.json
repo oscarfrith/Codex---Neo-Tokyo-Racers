@@ -1,0 +1,1256 @@
+{
+ "script": "ReplicatedStorage.Modules.Game.UI.GarageBrowserUI",
+ "class": "ModuleScript",
+ "source_file": "classic/sources/ReplicatedStorage.Modules.Game.UI.GarageBrowserUI.lua",
+ "source_lines": 130,
+ "included_because": [
+  "under ReplicatedStorage.Modules.Game.UI"
+ ],
+ "requires": [
+  {
+   "expr": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"UI\"):WaitForChild(\"RacingUIComponents\")",
+   "as": "Racing",
+   "line": 9,
+   "target": "ReplicatedStorage.Modules.Game.UI.RacingUIComponents"
+  },
+  {
+   "expr": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"UI\"):WaitForChild(\"GarageComponents\")",
+   "as": "Shared",
+   "line": 10,
+   "target": "ReplicatedStorage.Modules.Game.UI.GarageComponents"
+  }
+ ],
+ "remotes": {
+  "calls": [],
+  "listens": []
+ },
+ "bindables": {
+  "fires": [],
+  "connects": [],
+  "invokes": [],
+  "handlers": [],
+  "created": [],
+  "module_signal_fires": []
+ },
+ "attributes": {
+  "reads": [
+   {
+    "receiver": "o",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "line": 21,
+    "in_function": "clear",
+    "name": "GeneratedGarageUI"
+   },
+   {
+    "receiver": "navigationIcons",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement.NavigationIcons",
+    "receiver_kind": "config",
+    "wrapper_defined": "GarageBrowserUI:18",
+    "line": 39,
+    "in_function": "Browser.new",
+    "via": "wrapper navIcon()",
+    "name": "ExitIcon"
+   },
+   {
+    "receiver": "o",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "line": 77,
+    "in_function": "Browser:RenderEconomy",
+    "name": "GeneratedGarageUI"
+   },
+   {
+    "receiver": "child",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "line": 96,
+    "in_function": "Browser:Audit",
+    "name": "GeneratedGarageUI"
+   },
+   {
+    "receiver": "child",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "line": 98,
+    "in_function": "Browser:Audit",
+    "name": "CanonicalGarageCard"
+   }
+  ],
+  "writes": [
+   {
+    "receiver": "Shared.EconomyMetric(self.Cash,{Kind=\"Cash\",Text=Shared.FormatFullMoney(context.Cash or 0),Position=UDim2.fromOffset(12,0),Size=UDim2.new(1,-54,1,0),TextSize...",
+    "receiver_kind": "other",
+    "value": true,
+    "wrapper_defined": "GarageBrowserUI:22",
+    "line": 81,
+    "in_function": "Browser:RenderEconomy",
+    "via": "wrapper generated()",
+    "name": "GeneratedGarageUI",
+    "receiver_path": null
+   },
+   {
+    "receiver": "Instance.new(\"UITextSizeConstraint\")",
+    "receiver_kind": "other",
+    "value": true,
+    "wrapper_defined": "GarageBrowserUI:22",
+    "line": 81,
+    "in_function": "Browser:RenderEconomy",
+    "via": "wrapper generated()",
+    "name": "GeneratedGarageUI",
+    "receiver_path": null
+   },
+   {
+    "receiver": "Racing.Button(self.Cash,{Text=\"+\",Position=UDim2.new(1,-40,.5,-15),Size=UDim2.fromOffset(32,30),StrokeColor=Racing.Colour(\"ElectricBlue\")})",
+    "receiver_kind": "other",
+    "value": true,
+    "wrapper_defined": "GarageBrowserUI:22",
+    "line": 81,
+    "in_function": "Browser:RenderEconomy",
+    "via": "wrapper generated()",
+    "name": "GeneratedGarageUI",
+    "receiver_path": null
+   },
+   {
+    "receiver": "Instance.new(\"ImageLabel\")",
+    "receiver_kind": "other",
+    "value": true,
+    "wrapper_defined": "GarageBrowserUI:22",
+    "line": 82,
+    "in_function": "Browser:RenderEconomy",
+    "via": "wrapper generated()",
+    "name": "GeneratedGarageUI",
+    "receiver_path": null
+   },
+   {
+    "receiver": "Shared.EconomyMetric(self.Capacity,{Kind=\"GarageSpaces\",Text=context.CapacityText or \"0/0 Spaces\",Position=UDim2.fromOffset(42,0),Size=UDim2.new(1,-92,1,0),T...",
+    "receiver_kind": "other",
+    "value": true,
+    "wrapper_defined": "GarageBrowserUI:22",
+    "line": 82,
+    "in_function": "Browser:RenderEconomy",
+    "via": "wrapper generated()",
+    "name": "GeneratedGarageUI",
+    "receiver_path": null
+   },
+   {
+    "receiver": "Instance.new(\"UITextSizeConstraint\")",
+    "receiver_kind": "other",
+    "value": true,
+    "wrapper_defined": "GarageBrowserUI:22",
+    "line": 82,
+    "in_function": "Browser:RenderEconomy",
+    "via": "wrapper generated()",
+    "name": "GeneratedGarageUI",
+    "receiver_path": null
+   },
+   {
+    "receiver": "Racing.Button(self.Capacity,{Text=\"+\",Position=UDim2.new(1,-40,.5,-15),Size=UDim2.fromOffset(32,30),StrokeColor=Racing.Colour(\"ElectricBlue\")})",
+    "receiver_kind": "other",
+    "value": true,
+    "wrapper_defined": "GarageBrowserUI:22",
+    "line": 82,
+    "in_function": "Browser:RenderEconomy",
+    "via": "wrapper generated()",
+    "name": "GeneratedGarageUI",
+    "receiver_path": null
+   },
+   {
+    "receiver": "Racing.Button(self.CategoryList,{Text=\"ALL\",Size=UDim2.new(1,0,0,buttonH),Color=context.State.BrowseAll and Color3.fromRGB(94,32,75) or Racing.Colour(\"PanelS...",
+    "receiver_kind": "other",
+    "value": true,
+    "wrapper_defined": "GarageBrowserUI:22",
+    "line": 115,
+    "in_function": "Browser:Show",
+    "via": "wrapper generated()",
+    "name": "GeneratedGarageUI",
+    "receiver_path": null
+   },
+   {
+    "receiver": "Racing.Button(self.CategoryList,{Text=c.DisplayName or c.CategoryId,Size=UDim2.new(1,0,0,buttonH),Color=not context.State.BrowseAll and c.CategoryId==context...",
+    "receiver_kind": "other",
+    "value": true,
+    "wrapper_defined": "GarageBrowserUI:22",
+    "line": 115,
+    "in_function": "Browser:Show",
+    "via": "wrapper generated()",
+    "name": "GeneratedGarageUI",
+    "receiver_path": null
+   },
+   {
+    "receiver": "Shared.VehicleCard(self.Scroller,{DisplayName=row.Cockpit.DisplayName or row.CockpitId,Image=context.ResolveImage(row.Cockpit),Rating=tostring(overall.Tier o...",
+    "receiver_kind": "other",
+    "value": true,
+    "wrapper_defined": "GarageBrowserUI:22",
+    "line": 120,
+    "in_function": "Browser:Show",
+    "via": "wrapper generated()",
+    "name": "GeneratedGarageUI",
+    "receiver_path": null
+   }
+  ],
+  "listens": []
+ },
+ "player_attribute_writes": [],
+ "screenguis": {
+  "created": [],
+  "enabled_writes": []
+ },
+ "names": {
+  "assigned": [
+   {
+    "via": "property",
+    "receiver": "self.Root",
+    "class": null,
+    "line": 27,
+    "in_function": "Browser.new",
+    "name": "CanonicalGarageBrowser"
+   },
+   {
+    "via": "wrapper M.MetricCard()",
+    "callee": "Panel",
+    "class": null,
+    "wrapper_defined": "GarageComponents:70",
+    "line": 28,
+    "in_function": "Browser.new",
+    "name": "Header"
+   },
+   {
+    "via": "wrapper M.Panel()",
+    "callee": "Panel",
+    "class": null,
+    "wrapper_defined": "GarageComponents:66",
+    "line": 29,
+    "in_function": "Browser.new",
+    "name": "Categories"
+   },
+   {
+    "via": "wrapper M.Panel()",
+    "callee": "Panel",
+    "class": null,
+    "wrapper_defined": "GarageComponents:66",
+    "line": 31,
+    "in_function": "Browser.new",
+    "name": "Stats"
+   },
+   {
+    "via": "wrapper M.Panel()",
+    "callee": "Panel",
+    "class": null,
+    "wrapper_defined": "GarageComponents:66",
+    "line": 33,
+    "in_function": "Browser.new",
+    "name": "Cash"
+   },
+   {
+    "via": "wrapper M.Panel()",
+    "callee": "Panel",
+    "class": null,
+    "wrapper_defined": "GarageComponents:66",
+    "line": 33,
+    "in_function": "Browser.new",
+    "name": "Capacity"
+   },
+   {
+    "via": "property",
+    "receiver": "self.Scroller",
+    "class": null,
+    "line": 36,
+    "in_function": "Browser.new",
+    "name": "VehicleScroller"
+   },
+   {
+    "via": "wrapper arrow()",
+    "receiver": "b",
+    "class": "TextButton",
+    "wrapper_defined": "GarageBrowserUI:37",
+    "line": 38,
+    "in_function": "Browser.new",
+    "name": "Previous"
+   },
+   {
+    "via": "wrapper arrow()",
+    "receiver": "b",
+    "class": "TextButton",
+    "wrapper_defined": "GarageBrowserUI:37",
+    "line": 38,
+    "in_function": "Browser.new",
+    "name": "Next"
+   },
+   {
+    "via": "table_field",
+    "callee": "ActionButton",
+    "class": null,
+    "line": 39,
+    "in_function": "Browser.new",
+    "name": "Exit"
+   },
+   {
+    "via": "property",
+    "receiver": "self.CashValue",
+    "class": null,
+    "line": 81,
+    "in_function": "Browser:RenderEconomy",
+    "name": "CashValue"
+   }
+  ],
+  "looked_up": [
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 9,
+    "name": "Modules"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\")",
+    "receiver_path": "ReplicatedStorage.Modules",
+    "root": "ReplicatedStorage",
+    "line": 9,
+    "name": "Game"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game",
+    "root": "ReplicatedStorage",
+    "line": 9,
+    "name": "UI"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"UI\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game.UI",
+    "root": "ReplicatedStorage",
+    "line": 9,
+    "name": "RacingUIComponents"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 10,
+    "name": "Modules"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\")",
+    "receiver_path": "ReplicatedStorage.Modules",
+    "root": "ReplicatedStorage",
+    "line": 10,
+    "name": "Game"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game",
+    "root": "ReplicatedStorage",
+    "line": 10,
+    "name": "UI"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"UI\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game.UI",
+    "root": "ReplicatedStorage",
+    "line": 10,
+    "name": "GarageComponents"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 11,
+    "name": "Config"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\")",
+    "receiver_path": "ReplicatedStorage.Config",
+    "root": "ReplicatedStorage",
+    "line": 11,
+    "name": "UI"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\"):WaitForChild(\"UI\")",
+    "receiver_path": "ReplicatedStorage.Config.UI",
+    "root": "ReplicatedStorage",
+    "line": 11,
+    "name": "GarageReplacement"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 12,
+    "name": "Config"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\")",
+    "receiver_path": "ReplicatedStorage.Config",
+    "root": "ReplicatedStorage",
+    "line": 12,
+    "name": "UI"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\"):WaitForChild(\"UI\")",
+    "receiver_path": "ReplicatedStorage.Config.UI",
+    "root": "ReplicatedStorage",
+    "line": 12,
+    "name": "DesktopFreeRoamHud"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 13,
+    "name": "Config"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\")",
+    "receiver_path": "ReplicatedStorage.Config",
+    "root": "ReplicatedStorage",
+    "line": 13,
+    "name": "UI"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\"):WaitForChild(\"UI\").Racing",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing",
+    "root": "ReplicatedStorage",
+    "line": 13,
+    "name": "InRace"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 16,
+    "in_function": "asset",
+    "name": "Config"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\")",
+    "receiver_path": "ReplicatedStorage.Config",
+    "root": "ReplicatedStorage",
+    "line": 16,
+    "in_function": "asset",
+    "name": "UI"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\"):WaitForChild(\"UI\")",
+    "receiver_path": "ReplicatedStorage.Config.UI",
+    "root": "ReplicatedStorage",
+    "line": 16,
+    "in_function": "asset",
+    "name": "DesktopFreeRoamHud"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\"):WaitForChild(\"UI\"):WaitForChild(\"DesktopFreeRoamHud\")",
+    "receiver_path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud",
+    "root": "ReplicatedStorage",
+    "line": 16,
+    "in_function": "asset",
+    "name": "Assets"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 17,
+    "name": "Config"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\")",
+    "receiver_path": "ReplicatedStorage.Config",
+    "root": "ReplicatedStorage",
+    "line": 17,
+    "name": "UI"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\"):WaitForChild(\"UI\")",
+    "receiver_path": "ReplicatedStorage.Config.UI",
+    "root": "ReplicatedStorage",
+    "line": 17,
+    "name": "GarageReplacement"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\"):WaitForChild(\"UI\"):WaitForChild(\"GarageReplacement\")",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "root": "ReplicatedStorage",
+    "line": 17,
+    "name": "NavigationIcons"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 28,
+    "in_function": "Browser.new",
+    "via": "wrapper Components.Colour()",
+    "name": "Text",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 28,
+    "in_function": "Browser.new",
+    "via": "wrapper Components.Colour()",
+    "name": "Text",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "cfg",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "GarageBrowserUI:14",
+    "line": 32,
+    "in_function": "Browser.new",
+    "via": "wrapper N()",
+    "name": "EconomyHeight"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 33,
+    "in_function": "Browser.new",
+    "via": "wrapper Components.Colour()",
+    "name": "ElectricBlue",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 37,
+    "in_function": "arrow",
+    "via": "wrapper Components.Colour()",
+    "name": "PanelDeep",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 37,
+    "in_function": "arrow",
+    "via": "wrapper Components.Colour()",
+    "name": "Text",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 39,
+    "in_function": "Browser.new",
+    "via": "wrapper Components.Colour()",
+    "name": "Outline",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "cfg",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "GarageBrowserUI:14",
+    "line": 46,
+    "in_function": "Browser:Layout",
+    "via": "wrapper N()",
+    "name": "MobileMinScale"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "cfg",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "GarageBrowserUI:14",
+    "line": 46,
+    "in_function": "Browser:Layout",
+    "via": "wrapper N()",
+    "name": "DesktopMinScale"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "cfg",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "GarageBrowserUI:14",
+    "line": 53,
+    "in_function": "Browser:RefreshCarouselArrows",
+    "via": "wrapper N()",
+    "name": "CarouselEndTolerance"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "cfg",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "GarageBrowserUI:14",
+    "line": 63,
+    "in_function": "Browser:Scroll",
+    "via": "wrapper N()",
+    "name": "CardWidth"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "cfg",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "GarageBrowserUI:14",
+    "line": 74,
+    "in_function": "Browser:RenderStats",
+    "via": "wrapper N()",
+    "name": "StatReference"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 81,
+    "in_function": "Browser:RenderEconomy",
+    "via": "wrapper Components.Colour()",
+    "name": "ElectricBlue",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "f",
+    "receiver_path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud.Assets",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "GarageBrowserUI:16",
+    "line": 82,
+    "in_function": "Browser:RenderEconomy",
+    "via": "wrapper asset()",
+    "name": "GarageIcon"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 82,
+    "in_function": "Browser:RenderEconomy",
+    "via": "wrapper Components.Colour()",
+    "name": "Text",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 82,
+    "in_function": "Browser:RenderEconomy",
+    "via": "wrapper Components.Colour()",
+    "name": "ElectricBlue",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "child",
+    "receiver_path": null,
+    "root": null,
+    "line": 92,
+    "in_function": "Browser:Audit",
+    "name": "CanonicalGarageBrowser"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "self.Gui",
+    "receiver_path": null,
+    "root": null,
+    "line": 92,
+    "in_function": "Browser:Audit",
+    "name": "CanonicalGarageGui"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "cfg",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "GarageBrowserUI:14",
+    "line": 97,
+    "in_function": "Browser:Audit",
+    "via": "wrapper N()",
+    "name": "CarouselEndTolerance"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "cfg",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "GarageBrowserUI:14",
+    "line": 115,
+    "in_function": "Browser:Show",
+    "via": "wrapper N()",
+    "name": "CategoryButtonHeight"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 115,
+    "in_function": "Browser:Show",
+    "via": "wrapper Components.Colour()",
+    "name": "PanelSoft",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 115,
+    "in_function": "Browser:Show",
+    "via": "wrapper Components.Colour()",
+    "name": "PanelSoft",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "cfg",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "GarageBrowserUI:14",
+    "line": 120,
+    "in_function": "Browser:Show",
+    "via": "wrapper N()",
+    "name": "CardWidth"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "cfg",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "GarageBrowserUI:14",
+    "line": 120,
+    "in_function": "Browser:Show",
+    "via": "wrapper N()",
+    "name": "CardHeight"
+   }
+  ],
+  "text_compared": []
+ },
+ "run_service": {
+  "render_steps": [],
+  "connects": []
+ },
+ "context_actions": [],
+ "user_input_service": {
+  "connects": [],
+  "members_used": [
+   {
+    "member": "TouchEnabled",
+    "kind": "read",
+    "line": 46,
+    "in_function": "Browser:Layout"
+   },
+   {
+    "member": "TouchEnabled",
+    "kind": "read",
+    "line": 78,
+    "in_function": "Browser:RenderEconomy"
+   },
+   {
+    "member": "TouchEnabled",
+    "kind": "read",
+    "line": 122,
+    "in_function": "Browser:Show"
+   }
+  ]
+ },
+ "audio": {
+  "bridge_calls": [],
+  "ui_audio_attributes": []
+ },
+ "config": {
+  "paths": [
+   {
+    "path": "ReplicatedStorage.Config",
+    "line": 11
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI",
+    "line": 11
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud",
+    "line": 12
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud.Assets",
+    "line": 16
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud.Assets.<name>",
+    "line": 16
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "line": 11
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI.GarageReplacement.<name>",
+    "line": 14
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI.GarageReplacement.NavigationIcons",
+    "line": 17
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI.Racing",
+    "line": 13
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI.Racing.Colours",
+    "line": 28
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI.Racing.InRace",
+    "line": 13
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI.Racing.InRace.<name>",
+    "line": 15
+   }
+  ],
+  "attribute_reads": [
+   {
+    "receiver": "navigationIcons",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement.NavigationIcons",
+    "receiver_kind": "config",
+    "wrapper_defined": "GarageBrowserUI:18",
+    "line": 39,
+    "in_function": "Browser.new",
+    "via": "wrapper navIcon()",
+    "name": "ExitIcon",
+    "access": "read"
+   }
+  ],
+  "child_lookups": [
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 28,
+    "in_function": "Browser.new",
+    "via": "wrapper Components.Colour()",
+    "name": "Text",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 28,
+    "in_function": "Browser.new",
+    "via": "wrapper Components.Colour()",
+    "name": "Text",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "cfg",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "GarageBrowserUI:14",
+    "line": 32,
+    "in_function": "Browser.new",
+    "via": "wrapper N()",
+    "name": "EconomyHeight"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 33,
+    "in_function": "Browser.new",
+    "via": "wrapper Components.Colour()",
+    "name": "ElectricBlue",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 37,
+    "in_function": "arrow",
+    "via": "wrapper Components.Colour()",
+    "name": "PanelDeep",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 37,
+    "in_function": "arrow",
+    "via": "wrapper Components.Colour()",
+    "name": "Text",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 39,
+    "in_function": "Browser.new",
+    "via": "wrapper Components.Colour()",
+    "name": "Outline",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "cfg",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "GarageBrowserUI:14",
+    "line": 46,
+    "in_function": "Browser:Layout",
+    "via": "wrapper N()",
+    "name": "MobileMinScale"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "cfg",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "GarageBrowserUI:14",
+    "line": 46,
+    "in_function": "Browser:Layout",
+    "via": "wrapper N()",
+    "name": "DesktopMinScale"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "cfg",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "GarageBrowserUI:14",
+    "line": 53,
+    "in_function": "Browser:RefreshCarouselArrows",
+    "via": "wrapper N()",
+    "name": "CarouselEndTolerance"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "cfg",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "GarageBrowserUI:14",
+    "line": 63,
+    "in_function": "Browser:Scroll",
+    "via": "wrapper N()",
+    "name": "CardWidth"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "cfg",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "GarageBrowserUI:14",
+    "line": 74,
+    "in_function": "Browser:RenderStats",
+    "via": "wrapper N()",
+    "name": "StatReference"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 81,
+    "in_function": "Browser:RenderEconomy",
+    "via": "wrapper Components.Colour()",
+    "name": "ElectricBlue",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "f",
+    "receiver_path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud.Assets",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "GarageBrowserUI:16",
+    "line": 82,
+    "in_function": "Browser:RenderEconomy",
+    "via": "wrapper asset()",
+    "name": "GarageIcon"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 82,
+    "in_function": "Browser:RenderEconomy",
+    "via": "wrapper Components.Colour()",
+    "name": "Text",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 82,
+    "in_function": "Browser:RenderEconomy",
+    "via": "wrapper Components.Colour()",
+    "name": "ElectricBlue",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "cfg",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "GarageBrowserUI:14",
+    "line": 97,
+    "in_function": "Browser:Audit",
+    "via": "wrapper N()",
+    "name": "CarouselEndTolerance"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "cfg",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "GarageBrowserUI:14",
+    "line": 115,
+    "in_function": "Browser:Show",
+    "via": "wrapper N()",
+    "name": "CategoryButtonHeight"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 115,
+    "in_function": "Browser:Show",
+    "via": "wrapper Components.Colour()",
+    "name": "PanelSoft",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 115,
+    "in_function": "Browser:Show",
+    "via": "wrapper Components.Colour()",
+    "name": "PanelSoft",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "cfg",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "GarageBrowserUI:14",
+    "line": 120,
+    "in_function": "Browser:Show",
+    "via": "wrapper N()",
+    "name": "CardWidth"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "cfg",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "GarageBrowserUI:14",
+    "line": 120,
+    "in_function": "Browser:Show",
+    "via": "wrapper N()",
+    "name": "CardHeight"
+   }
+  ]
+ },
+ "startergui_core": [],
+ "gui_service": [],
+ "other_services": {},
+ "service_connects": [],
+ "proximity_prompts": [],
+ "instances_created_by_class": {
+  "Frame": 4,
+  "ImageLabel": 1,
+  "ScrollingFrame": 2,
+  "TextButton": 1,
+  "UIListLayout": 3,
+  "UIPadding": 3,
+  "UITextSizeConstraint": 2
+ },
+ "public_api": [
+  {
+   "name": "__index",
+   "kind": "field",
+   "line": 19,
+   "value": "Browser"
+  },
+  {
+   "name": "new",
+   "kind": "function",
+   "params": [],
+   "line": 25
+  },
+  {
+   "name": "Layout",
+   "kind": "function",
+   "params": [],
+   "line": 45
+  },
+  {
+   "name": "QueueCarouselUpdate",
+   "kind": "function",
+   "params": [],
+   "line": 49
+  },
+  {
+   "name": "RefreshCarouselArrows",
+   "kind": "function",
+   "params": [],
+   "line": 52
+  },
+  {
+   "name": "UpdateCarousel",
+   "kind": "function",
+   "params": [],
+   "line": 56
+  },
+  {
+   "name": "Scroll",
+   "kind": "function",
+   "params": [
+    "direction"
+   ],
+   "line": 63
+  },
+  {
+   "name": "Rows",
+   "kind": "function",
+   "params": [
+    "context"
+   ],
+   "line": 64
+  },
+  {
+   "name": "RenderStats",
+   "kind": "function",
+   "params": [
+    "row"
+   ],
+   "line": 73
+  },
+  {
+   "name": "RenderEconomy",
+   "kind": "function",
+   "params": [
+    "context"
+   ],
+   "line": 76
+  },
+  {
+   "name": "Audit",
+   "kind": "function",
+   "params": [
+    "selectedCard"
+   ],
+   "line": 85
+  },
+  {
+   "name": "CaptureScroll",
+   "kind": "function",
+   "params": [],
+   "line": 104
+  },
+  {
+   "name": "QueueScrollRestore",
+   "kind": "function",
+   "params": [
+    "context"
+   ],
+   "line": 107
+  },
+  {
+   "name": "Show",
+   "kind": "function",
+   "params": [
+    "context"
+   ],
+   "line": 113
+  },
+  {
+   "name": "Hide",
+   "kind": "function",
+   "params": [],
+   "line": 125
+  }
+ ],
+ "unresolved": [
+  {
+   "category": "lookups",
+   "line": 15,
+   "detail": "name comes from parameter of RN(); no call site found statically"
+  }
+ ],
+ "contract_file": "GarageBrowserUI.json"
+}

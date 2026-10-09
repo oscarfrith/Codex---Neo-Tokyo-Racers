@@ -1,0 +1,631 @@
+{
+ "script": "ReplicatedStorage.Modules.Game.Activities.JobClient",
+ "class": "ModuleScript",
+ "source_file": "classic/sources/ReplicatedStorage.Modules.Game.Activities.JobClient.lua",
+ "source_lines": 438,
+ "included_because": [
+  "client script that is UI-coupled: creates ProximityPrompt"
+ ],
+ "requires": [
+  {
+   "expr": "ReplicatedStorage:WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Activities\"):WaitForChild(\"JobRules\")",
+   "as": "JobRules",
+   "line": 16,
+   "target": "ReplicatedStorage.Modules.Game.Activities.JobRules"
+  },
+  {
+   "expr": "module",
+   "protected": true,
+   "as": "result",
+   "line": 85,
+   "in_function": "markers",
+   "target": "ReplicatedStorage.Modules.Game.UI.MapMarkers"
+  }
+ ],
+ "remotes": {
+  "calls": [],
+  "listens": []
+ },
+ "bindables": {
+  "fires": [],
+  "connects": [],
+  "invokes": [],
+  "handlers": [],
+  "created": [],
+  "module_signal_fires": []
+ },
+ "attributes": {
+  "reads": [
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "line": 54,
+    "in_function": "kindEnabled",
+    "name": "Enabled"
+   },
+   {
+    "receiver": "jobs",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "line": 54,
+    "in_function": "kindEnabled",
+    "name": "Enabled"
+   },
+   {
+    "receiver": "model",
+    "receiver_path": null,
+    "receiver_kind": "vehicle?",
+    "line": 64,
+    "in_function": "drivenRoot",
+    "name": "OwnerUserId"
+   },
+   {
+    "receiver": "model",
+    "receiver_path": null,
+    "receiver_kind": "vehicle?",
+    "line": 65,
+    "in_function": "drivenRoot",
+    "name": "OwnerUserId"
+   },
+   {
+    "receiver": "item",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "line": 125,
+    "in_function": "readEntry",
+    "name": "Kind"
+   },
+   {
+    "receiver": "item",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "line": 126,
+    "in_function": "readEntry",
+    "name": "Position"
+   },
+   {
+    "receiver": "item",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "line": 128,
+    "in_function": "readEntry",
+    "name": "Distance"
+   },
+   {
+    "receiver": "item",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "line": 129,
+    "in_function": "readEntry",
+    "name": "Estimate"
+   },
+   {
+    "receiver": "item",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "line": 130,
+    "in_function": "readEntry",
+    "name": "Label"
+   },
+   {
+    "receiver": "localPlayer",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "line": 426,
+    "in_function": "JobClient.Mount",
+    "name": "ActivityKind"
+   }
+  ],
+  "writes": [],
+  "listens": [
+   {
+    "receiver": "localPlayer",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "line": 424,
+    "in_function": "JobClient.Mount",
+    "name": "ActivityKind"
+   }
+  ]
+ },
+ "player_attribute_writes": [],
+ "screenguis": {
+  "created": [],
+  "enabled_writes": [
+   {
+    "receiver": "entry.Prompt",
+    "receiver_path": null,
+    "value": false,
+    "screengui_like": "unknown",
+    "reason": "",
+    "line": 144,
+    "in_function": "acceptOffer"
+   },
+   {
+    "receiver": "driverPrompt.Prompt",
+    "receiver_path": null,
+    "value": false,
+    "screengui_like": "unknown",
+    "reason": "",
+    "line": 189,
+    "in_function": "updateDriverPrompt"
+   },
+   {
+    "receiver": "prompt",
+    "receiver_path": null,
+    "value": false,
+    "screengui_like": "no",
+    "reason": "created here as ProximityPrompt",
+    "line": 205,
+    "in_function": "updateDriverPrompt",
+    "screengui_name": "JobPrompt"
+   },
+   {
+    "receiver": "driverPrompt.Prompt",
+    "receiver_path": null,
+    "value": true,
+    "screengui_like": "unknown",
+    "reason": "",
+    "line": 217,
+    "in_function": "updateDriverPrompt"
+   }
+  ]
+ },
+ "names": {
+  "assigned": [
+   {
+    "via": "property",
+    "receiver": "anchor",
+    "class": "Part",
+    "line": 159,
+    "in_function": "ensureProp",
+    "name": null,
+    "name_pattern": "JobOffer_*",
+    "name_expr": "\"JobOffer_\" .. entry.Id"
+   },
+   {
+    "via": "property",
+    "receiver": "attachment",
+    "class": "Attachment",
+    "line": 196,
+    "in_function": "updateDriverPrompt",
+    "name": "JobDriverPrompt"
+   },
+   {
+    "via": "property",
+    "receiver": "prompt",
+    "class": "ProximityPrompt",
+    "line": 199,
+    "in_function": "updateDriverPrompt",
+    "name": "JobPrompt"
+   },
+   {
+    "via": "property",
+    "receiver": "propsFolder",
+    "class": "Folder",
+    "line": 412,
+    "in_function": "JobClient.Mount",
+    "name": "ClientJobProps"
+   }
+  ],
+  "looked_up": [
+   {
+    "method": "WaitForChild",
+    "receiver": "ReplicatedStorage",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 16,
+    "name": "Modules"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "ReplicatedStorage:WaitForChild(\"Modules\")",
+    "receiver_path": "ReplicatedStorage.Modules",
+    "root": "ReplicatedStorage",
+    "line": 16,
+    "name": "Game"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "ReplicatedStorage:WaitForChild(\"Modules\"):WaitForChild(\"Game\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game",
+    "root": "ReplicatedStorage",
+    "line": 16,
+    "name": "Activities"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "ReplicatedStorage:WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Activities\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game.Activities",
+    "root": "ReplicatedStorage",
+    "line": 16,
+    "name": "JobRules"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "ReplicatedStorage",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 39,
+    "in_function": "configFolder",
+    "name": "Config"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "root",
+    "receiver_path": "ReplicatedStorage.Config",
+    "root": "ReplicatedStorage",
+    "line": 40,
+    "in_function": "configFolder",
+    "name": "Activities"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "activities",
+    "receiver_path": "ReplicatedStorage.Config.Activities",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "JobClient:41",
+    "line": 47,
+    "in_function": "refreshBoard",
+    "via": "wrapper configFolder()",
+    "name": "Jobs"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "activities",
+    "receiver_path": "ReplicatedStorage.Config.Activities",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "JobClient:41",
+    "line": 53,
+    "in_function": "kindEnabled",
+    "via": "wrapper configFolder()",
+    "name": "Jobs"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "seat",
+    "receiver_path": null,
+    "root": null,
+    "receiver_isa": [
+     "VehicleSeat"
+    ],
+    "line": 62,
+    "in_function": "drivenRoot",
+    "name": "DriverSeat"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "model",
+    "receiver_path": null,
+    "root": null,
+    "recursive": true,
+    "line": 66,
+    "in_function": "drivenRoot",
+    "name": "CockpitRoot_DoNotRename"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "character",
+    "receiver_path": "Players.LocalPlayer.Character",
+    "root": "Players",
+    "line": 73,
+    "in_function": "myPosition",
+    "name": "HumanoidRootPart"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "ReplicatedStorage",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 81,
+    "in_function": "markers",
+    "name": "Modules"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "ReplicatedStorage.Modules",
+    "receiver_path": "ReplicatedStorage.Modules",
+    "root": "ReplicatedStorage",
+    "line": 81,
+    "in_function": "markers",
+    "name": "Game"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "game_",
+    "receiver_path": "ReplicatedStorage.Modules.Game",
+    "root": "ReplicatedStorage",
+    "line": 82,
+    "in_function": "markers",
+    "name": "UI"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "ui",
+    "receiver_path": "ReplicatedStorage.Modules.Game.UI",
+    "root": "ReplicatedStorage",
+    "line": 83,
+    "in_function": "markers",
+    "name": "MapMarkers"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "activities",
+    "receiver_path": "ReplicatedStorage.Config.Activities",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "JobClient:52",
+    "line": 120,
+    "in_function": "offerVisible",
+    "via": "wrapper kindEnabled()",
+    "name": null,
+    "name_expr": "entry.Kind"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "ReplicatedStorage",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 386,
+    "in_function": "mirror",
+    "name": "ActivityState"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "stateFolder",
+    "receiver_path": "ReplicatedStorage.ActivityState",
+    "root": "ReplicatedStorage",
+    "line": 388,
+    "in_function": "mirror",
+    "name": "JobOffers"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "Workspace",
+    "receiver_path": "Workspace",
+    "root": "Workspace",
+    "line": 407,
+    "in_function": "JobClient.Mount",
+    "name": "World"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "world",
+    "receiver_path": "Workspace.World",
+    "root": "Workspace",
+    "line": 408,
+    "in_function": "JobClient.Mount",
+    "name": "Runtime"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "world",
+    "receiver_path": "Workspace.World",
+    "root": "Workspace",
+    "line": 408,
+    "in_function": "JobClient.Mount",
+    "name": "Runtime"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "runtime",
+    "receiver_path": "Workspace.World.Runtime",
+    "root": "Workspace",
+    "line": 409,
+    "in_function": "JobClient.Mount",
+    "name": "ClientJobProps"
+   }
+  ],
+  "text_compared": []
+ },
+ "run_service": {
+  "render_steps": [],
+  "connects": [
+   {
+    "signal": "Heartbeat",
+    "method": "Connect",
+    "line": 417,
+    "in_function": "JobClient.Mount",
+    "callback": "function(dt) elapsed += dt if elapsed < POLL_SE..."
+   }
+  ]
+ },
+ "context_actions": [],
+ "user_input_service": {
+  "connects": [],
+  "members_used": []
+ },
+ "audio": {
+  "bridge_calls": [],
+  "ui_audio_attributes": []
+ },
+ "config": {
+  "paths": [
+   {
+    "path": "ReplicatedStorage.Config",
+    "line": 39
+   },
+   {
+    "path": "ReplicatedStorage.Config.Activities",
+    "line": 40
+   }
+  ],
+  "attribute_reads": [
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "line": 54,
+    "in_function": "kindEnabled",
+    "name": "Enabled",
+    "access": "read"
+   }
+  ],
+  "child_lookups": [
+   {
+    "method": "FindFirstChild",
+    "receiver": "activities",
+    "receiver_path": "ReplicatedStorage.Config.Activities",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "JobClient:41",
+    "line": 47,
+    "in_function": "refreshBoard",
+    "via": "wrapper configFolder()",
+    "name": "Jobs"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "activities",
+    "receiver_path": "ReplicatedStorage.Config.Activities",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "JobClient:41",
+    "line": 53,
+    "in_function": "kindEnabled",
+    "via": "wrapper configFolder()",
+    "name": "Jobs"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "activities",
+    "receiver_path": "ReplicatedStorage.Config.Activities",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "JobClient:52",
+    "line": 120,
+    "in_function": "offerVisible",
+    "via": "wrapper kindEnabled()",
+    "name": null,
+    "name_expr": "entry.Kind"
+   }
+  ]
+ },
+ "startergui_core": [],
+ "gui_service": [],
+ "other_services": {},
+ "service_connects": [],
+ "proximity_prompts": [
+  {
+   "variable": "prompt",
+   "class": "ProximityPrompt",
+   "line": 198,
+   "factory": null,
+   "adopts_existing": false,
+   "properties": {
+    "Name": "JobPrompt",
+    "KeyboardKeyCode": {
+     "expr": "Enum.KeyCode.E"
+    },
+    "HoldDuration": 0,
+    "RequiresLineOfSight": false,
+    "Exclusivity": {
+     "expr": "Enum.ProximityPromptExclusivity.AlwaysShow"
+    },
+    "MaxActivationDistance": 30,
+    "Enabled": false,
+    "Parent": {
+     "expr": "attachment"
+    }
+   },
+   "writes": [
+    {
+     "property": "Name",
+     "value": "JobPrompt",
+     "line": 199
+    },
+    {
+     "property": "KeyboardKeyCode",
+     "value": {
+      "expr": "Enum.KeyCode.E"
+     },
+     "line": 200
+    },
+    {
+     "property": "HoldDuration",
+     "value": 0,
+     "line": 201
+    },
+    {
+     "property": "RequiresLineOfSight",
+     "value": false,
+     "line": 202
+    },
+    {
+     "property": "Exclusivity",
+     "value": {
+      "expr": "Enum.ProximityPromptExclusivity.AlwaysShow"
+     },
+     "line": 203
+    },
+    {
+     "property": "MaxActivationDistance",
+     "value": 30,
+     "line": 204
+    },
+    {
+     "property": "Enabled",
+     "value": false,
+     "line": 205
+    },
+    {
+     "property": "Parent",
+     "value": {
+      "expr": "attachment"
+     },
+     "line": 206
+    }
+   ]
+  }
+ ],
+ "instances_created_by_class": {
+  "Attachment": 1,
+  "Folder": 1,
+  "Part": 1,
+  "ProximityPrompt": 1
+ },
+ "public_api": [
+  {
+   "name": "RegisterKind",
+   "kind": "function",
+   "params": [
+    "spec"
+   ],
+   "line": 396
+  },
+  {
+   "name": "Mount",
+   "kind": "function",
+   "params": [
+    "context"
+   ],
+   "line": 402
+  },
+  {
+   "name": "OnEvent",
+   "kind": "function",
+   "params": [
+    "kind",
+    "payload"
+   ],
+   "line": 430
+  }
+ ],
+ "unresolved": [
+  {
+   "category": "attribute_reads",
+   "line": 48,
+   "detail": "name comes from parameter of anonymous function(); no call site found statically"
+  },
+  {
+   "category": "lookups",
+   "field": "name",
+   "line": 120,
+   "detail": "not a literal: entry.Kind"
+  },
+  {
+   "category": "names_assigned",
+   "field": "name",
+   "line": 159,
+   "detail": "name built at run time: \"JobOffer_\" .. entry.Id"
+  }
+ ],
+ "contract_file": "JobClient.json"
+}

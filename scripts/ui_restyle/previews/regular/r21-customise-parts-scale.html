@@ -1,0 +1,18 @@
+<!doctype html><html><head><meta charset="utf-8"><title>r21 Customise Parts in Barlow, three scales</title>
+<meta name="render-sizes" content="1280x720 1920x1080 2560x1440">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,500;0,600;1,600;1,800;1,900&family=Barlow+Condensed:ital,wght@1,800&display=block">
+<link rel="stylesheet" href="../shared/pulse.css"><script src="../shared/pulse.js"></script></head><body><script>
+const slots = [["01","BULL NOSE","FRONT BODY","nose"],["02","STANDARD","REAR BODY",""],["03","STANDARD","FRONT ENGINE","eng"],["04","STANDARD","REAR ENGINE","eng"],
+  ["05","STANDARD","DRIFT THRUSTERS",""],["06","STANDARD","OVERDRIVE",""],["07","SPINE WING","WING","wing"]];
+P.page(`
+  ${P.scene("garage")}<div class="scrim-garage"></div>
+  ${P.title("CUSTOMISE")}
+  ${P.tabs([{l:"PARTS",i:"wrench",on:1},{l:"UPGRADES",i:"upgrade"},{l:"PAINT",i:"brush"}])}
+  ${P.status({garage:"3 / 4"})}
+  ${P.statpanel({name:"STINGER",badge:"<span>D</span><span>316</span>",sub:[["EXOTIC &middot; TIER D","7 of 7 parts fitted"]],
+     stats:[["SPEED",80],["ACCEL",74],["HANDLING",63],["DRIFT",61],["BRAKING",62],["BOOST",61]]})}
+  ${P.railhead("PARTS 7/7",`<div class="t-label c-2 shadow">WING &middot; SPINE WING STANDARD</div>`)}
+  <div class="rail inset">${slots.map((s,i)=>P.tile({t7:1,idx:s[0],corner:{t:"FITTED"},sub:s[1],name:s[2],vis:P.sil(s[3]),sel:i===6,two:s[2].length>12})).join("")}</div>
+  ${P.btnrow([P.btn("BACK","back"),P.btn("DRIVE","wheel","main")])}
+`);
+</script></body></html>

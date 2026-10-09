@@ -1,0 +1,3467 @@
+{
+ "generated_by": "scripts/ui_restyle/tools/extract_contracts.py",
+ "meaning": "Attributes on the player, PlayerGui or character, with every writer and reader in all 221 scripts. `receiver_certain` is true when the receiver resolves to Players.LocalPlayer (or below); false when the tool only matched the variable name (player, owner, character ...). reader_scripts joins reads and changed-signal listeners.",
+ "attributes": {
+  "player:ActivityId": {
+   "attribute": "ActivityId",
+   "on": "player",
+   "writers": [
+    {
+     "script": "ServerStorage.Modules.Game.Activities.ActivityService",
+     "line": 263,
+     "receiver": "player",
+     "side": "server",
+     "receiver_certain": false,
+     "value": {
+      "expr": "record and record.Id or \"\""
+     },
+     "via": "wrapper Service.Cancel()"
+    },
+    {
+     "script": "ServerStorage.Modules.Game.Activities.ActivityService",
+     "line": 295,
+     "receiver": "player",
+     "side": "server",
+     "receiver_certain": false,
+     "value": {
+      "expr": "record and record.Id or \"\""
+     },
+     "via": "wrapper track()"
+    },
+    {
+     "script": "ServerStorage.Modules.Game.Activities.DuelService",
+     "line": 447,
+     "receiver": "racer.Player",
+     "side": "server",
+     "receiver_certain": false,
+     "value": {
+      "expr": "record and record.Id or \"\""
+     },
+     "via": "wrapper Service.End()"
+    }
+   ],
+   "readers": [],
+   "listeners": [],
+   "writer_scripts": [
+    "ServerStorage.Modules.Game.Activities.ActivityService",
+    "ServerStorage.Modules.Game.Activities.DuelService"
+   ],
+   "reader_scripts": []
+  },
+  "player:ActivityKind": {
+   "attribute": "ActivityKind",
+   "on": "player",
+   "writers": [
+    {
+     "script": "ServerStorage.Modules.Game.Activities.ActivityService",
+     "line": 263,
+     "receiver": "player",
+     "side": "server",
+     "receiver_certain": false,
+     "value": {
+      "expr": "record and record.Kind or \"\""
+     },
+     "via": "wrapper Service.Cancel()"
+    },
+    {
+     "script": "ServerStorage.Modules.Game.Activities.ActivityService",
+     "line": 295,
+     "receiver": "player",
+     "side": "server",
+     "receiver_certain": false,
+     "value": {
+      "expr": "record and record.Kind or \"\""
+     },
+     "via": "wrapper track()"
+    },
+    {
+     "script": "ServerStorage.Modules.Game.Activities.DuelService",
+     "line": 447,
+     "receiver": "racer.Player",
+     "side": "server",
+     "receiver_certain": false,
+     "value": {
+      "expr": "record and record.Kind or \"\""
+     },
+     "via": "wrapper Service.End()"
+    }
+   ],
+   "readers": [
+    {
+     "script": "ReplicatedStorage.Modules.Game.Activities.DuelClientView",
+     "line": 70,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true,
+     "via": "wrapper playerFree()"
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.Activities.DuelClientView",
+     "line": 84,
+     "receiver": "other.Owner",
+     "side": "client",
+     "receiver_certain": false,
+     "via": "wrapper playerFree()"
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.Activities.JobClient",
+     "line": 426,
+     "receiver": "localPlayer",
+     "side": "client",
+     "receiver_certain": true
+    }
+   ],
+   "listeners": [
+    {
+     "script": "ReplicatedStorage.Modules.Game.Activities.JobClient",
+     "line": 424,
+     "receiver": "localPlayer",
+     "side": "client",
+     "receiver_certain": true
+    }
+   ],
+   "writer_scripts": [
+    "ServerStorage.Modules.Game.Activities.ActivityService",
+    "ServerStorage.Modules.Game.Activities.DuelService"
+   ],
+   "reader_scripts": [
+    "ReplicatedStorage.Modules.Game.Activities.DuelClientView",
+    "ReplicatedStorage.Modules.Game.Activities.JobClient"
+   ]
+  },
+  "player:DealershipIntroObjectiveComplete": {
+   "attribute": "DealershipIntroObjectiveComplete",
+   "on": "player",
+   "writers": [
+    {
+     "script": "ReplicatedStorage.Modules.Game.Dealership.DealershipIntroClient",
+     "line": 572,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true,
+     "value": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.Dealership.DealershipIntroClient",
+     "line": 588,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true,
+     "value": true
+    }
+   ],
+   "readers": [
+    {
+     "script": "ReplicatedStorage.Modules.Game.Dealership.DealershipIntroClient",
+     "line": 550,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.Dealership.DealershipIntroClient",
+     "line": 584,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    }
+   ],
+   "listeners": [],
+   "writer_scripts": [
+    "ReplicatedStorage.Modules.Game.Dealership.DealershipIntroClient"
+   ],
+   "reader_scripts": [
+    "ReplicatedStorage.Modules.Game.Dealership.DealershipIntroClient"
+   ]
+  },
+  "player:DisplaySpaceId": {
+   "attribute": "DisplaySpaceId",
+   "on": "player",
+   "writers": [],
+   "readers": [
+    {
+     "script": "ServerStorage.Modules.Game.Garage.OwnedGarageDisplay",
+     "line": 86,
+     "receiver": "other",
+     "side": "server",
+     "receiver_certain": false
+    }
+   ],
+   "listeners": [],
+   "writer_scripts": [],
+   "reader_scripts": [
+    "ServerStorage.Modules.Game.Garage.OwnedGarageDisplay"
+   ]
+  },
+  "player:DriveCashAcceptedStuds": {
+   "attribute": "DriveCashAcceptedStuds",
+   "on": "player",
+   "writers": [
+    {
+     "script": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+     "line": 271,
+     "receiver": "player",
+     "side": "server",
+     "receiver_certain": false,
+     "value": {
+      "expr": "math.floor(state.AcceptedStuds*10+0.5)/10"
+     }
+    },
+    {
+     "script": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+     "line": 462,
+     "receiver": "player",
+     "side": "server",
+     "receiver_certain": false,
+     "value": null,
+     "via": "wrapper clearTelemetry()"
+    }
+   ],
+   "readers": [
+    {
+     "script": "ReplicatedStorage.Modules.Game.Development.DriveToEarnCashTelemetryClient",
+     "line": 69,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true,
+     "via": "wrapper value()"
+    }
+   ],
+   "listeners": [],
+   "writer_scripts": [
+    "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer"
+   ],
+   "reader_scripts": [
+    "ReplicatedStorage.Modules.Game.Development.DriveToEarnCashTelemetryClient"
+   ]
+  },
+  "player:DriveCashAccumulatedUngranted": {
+   "attribute": "DriveCashAccumulatedUngranted",
+   "on": "player",
+   "writers": [
+    {
+     "script": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+     "line": 273,
+     "receiver": "player",
+     "side": "server",
+     "receiver_certain": false,
+     "value": {
+      "expr": "math.floor(state.AccumulatedCash*1000+0.5)/1000"
+     }
+    },
+    {
+     "script": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+     "line": 462,
+     "receiver": "player",
+     "side": "server",
+     "receiver_certain": false,
+     "value": null,
+     "via": "wrapper clearTelemetry()"
+    }
+   ],
+   "readers": [
+    {
+     "script": "ReplicatedStorage.Modules.Game.Development.DriveToEarnCashTelemetryClient",
+     "line": 71,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true,
+     "via": "wrapper value()"
+    }
+   ],
+   "listeners": [],
+   "writer_scripts": [
+    "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer"
+   ],
+   "reader_scripts": [
+    "ReplicatedStorage.Modules.Game.Development.DriveToEarnCashTelemetryClient"
+   ]
+  },
+  "player:DriveCashCapUsage": {
+   "attribute": "DriveCashCapUsage",
+   "on": "player",
+   "writers": [
+    {
+     "script": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+     "line": 277,
+     "receiver": "player",
+     "side": "server",
+     "receiver_certain": false,
+     "value": {
+      "expr": "cap>0 and math.floor((capUsed/cap)*1000+0.5)/10 or 0"
+     }
+    },
+    {
+     "script": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+     "line": 462,
+     "receiver": "player",
+     "side": "server",
+     "receiver_certain": false,
+     "value": null,
+     "via": "wrapper clearTelemetry()"
+    }
+   ],
+   "readers": [
+    {
+     "script": "ReplicatedStorage.Modules.Game.Development.DriveToEarnCashTelemetryClient",
+     "line": 75,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true,
+     "via": "wrapper value()"
+    }
+   ],
+   "listeners": [],
+   "writer_scripts": [
+    "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer"
+   ],
+   "reader_scripts": [
+    "ReplicatedStorage.Modules.Game.Development.DriveToEarnCashTelemetryClient"
+   ]
+  },
+  "player:DriveCashCapUsed": {
+   "attribute": "DriveCashCapUsed",
+   "on": "player",
+   "writers": [
+    {
+     "script": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+     "line": 278,
+     "receiver": "player",
+     "side": "server",
+     "receiver_certain": false,
+     "value": {
+      "expr": "capUsed"
+     }
+    },
+    {
+     "script": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+     "line": 462,
+     "receiver": "player",
+     "side": "server",
+     "receiver_certain": false,
+     "value": null,
+     "via": "wrapper clearTelemetry()"
+    }
+   ],
+   "readers": [
+    {
+     "script": "ReplicatedStorage.Modules.Game.Development.DriveToEarnCashTelemetryClient",
+     "line": 75,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true,
+     "via": "wrapper value()"
+    }
+   ],
+   "listeners": [],
+   "writer_scripts": [
+    "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer"
+   ],
+   "reader_scripts": [
+    "ReplicatedStorage.Modules.Game.Development.DriveToEarnCashTelemetryClient"
+   ]
+  },
+  "player:DriveCashCurrentHourly": {
+   "attribute": "DriveCashCurrentHourly",
+   "on": "player",
+   "writers": [
+    {
+     "script": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+     "line": 275,
+     "receiver": "player",
+     "side": "server",
+     "receiver_certain": false,
+     "value": {
+      "expr": "math.floor(currentHourly+0.5)"
+     }
+    },
+    {
+     "script": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+     "line": 462,
+     "receiver": "player",
+     "side": "server",
+     "receiver_certain": false,
+     "value": null,
+     "via": "wrapper clearTelemetry()"
+    }
+   ],
+   "readers": [
+    {
+     "script": "ReplicatedStorage.Modules.Game.Development.DriveToEarnCashTelemetryClient",
+     "line": 73,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true,
+     "via": "wrapper value()"
+    }
+   ],
+   "listeners": [],
+   "writer_scripts": [
+    "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer"
+   ],
+   "reader_scripts": [
+    "ReplicatedStorage.Modules.Game.Development.DriveToEarnCashTelemetryClient"
+   ]
+  },
+  "player:DriveCashGranted": {
+   "attribute": "DriveCashGranted",
+   "on": "player",
+   "writers": [
+    {
+     "script": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+     "line": 274,
+     "receiver": "player",
+     "side": "server",
+     "receiver_certain": false,
+     "value": {
+      "expr": "state.GrantedCash"
+     }
+    },
+    {
+     "script": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+     "line": 462,
+     "receiver": "player",
+     "side": "server",
+     "receiver_certain": false,
+     "value": null,
+     "via": "wrapper clearTelemetry()"
+    }
+   ],
+   "readers": [
+    {
+     "script": "ReplicatedStorage.Modules.Game.Development.DriveToEarnCashTelemetryClient",
+     "line": 72,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true,
+     "via": "wrapper value()"
+    }
+   ],
+   "listeners": [],
+   "writer_scripts": [
+    "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer"
+   ],
+   "reader_scripts": [
+    "ReplicatedStorage.Modules.Game.Development.DriveToEarnCashTelemetryClient"
+   ]
+  },
+  "player:DriveCashLastReason": {
+   "attribute": "DriveCashLastReason",
+   "on": "player",
+   "writers": [
+    {
+     "script": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+     "line": 281,
+     "receiver": "player",
+     "side": "server",
+     "receiver_certain": false,
+     "value": {
+      "expr": "state.LastReason"
+     }
+    },
+    {
+     "script": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+     "line": 462,
+     "receiver": "player",
+     "side": "server",
+     "receiver_certain": false,
+     "value": null,
+     "via": "wrapper clearTelemetry()"
+    }
+   ],
+   "readers": [
+    {
+     "script": "ReplicatedStorage.Modules.Game.Development.DriveToEarnCashTelemetryClient",
+     "line": 76,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true,
+     "via": "wrapper value()"
+    }
+   ],
+   "listeners": [],
+   "writer_scripts": [
+    "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer"
+   ],
+   "reader_scripts": [
+    "ReplicatedStorage.Modules.Game.Development.DriveToEarnCashTelemetryClient"
+   ]
+  },
+  "player:DriveCashProjectedHourly": {
+   "attribute": "DriveCashProjectedHourly",
+   "on": "player",
+   "writers": [
+    {
+     "script": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+     "line": 276,
+     "receiver": "player",
+     "side": "server",
+     "receiver_certain": false,
+     "value": {
+      "expr": "math.floor(projectedHourly+0.5)"
+     }
+    },
+    {
+     "script": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+     "line": 462,
+     "receiver": "player",
+     "side": "server",
+     "receiver_certain": false,
+     "value": null,
+     "via": "wrapper clearTelemetry()"
+    }
+   ],
+   "readers": [
+    {
+     "script": "ReplicatedStorage.Modules.Game.Development.DriveToEarnCashTelemetryClient",
+     "line": 74,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true,
+     "via": "wrapper value()"
+    }
+   ],
+   "listeners": [],
+   "writer_scripts": [
+    "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer"
+   ],
+   "reader_scripts": [
+    "ReplicatedStorage.Modules.Game.Development.DriveToEarnCashTelemetryClient"
+   ]
+  },
+  "player:DriveCashRejectedStudsByReason": {
+   "attribute": "DriveCashRejectedStudsByReason",
+   "on": "player",
+   "writers": [
+    {
+     "script": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+     "line": 272,
+     "receiver": "player",
+     "side": "server",
+     "receiver_certain": false,
+     "value": {
+      "expr": "string.sub(rejectionSummary(state),1,900)"
+     }
+    },
+    {
+     "script": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+     "line": 462,
+     "receiver": "player",
+     "side": "server",
+     "receiver_certain": false,
+     "value": null,
+     "via": "wrapper clearTelemetry()"
+    }
+   ],
+   "readers": [
+    {
+     "script": "ReplicatedStorage.Modules.Game.Development.DriveToEarnCashTelemetryClient",
+     "line": 70,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true,
+     "via": "wrapper value()"
+    }
+   ],
+   "listeners": [],
+   "writer_scripts": [
+    "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer"
+   ],
+   "reader_scripts": [
+    "ReplicatedStorage.Modules.Game.Development.DriveToEarnCashTelemetryClient"
+   ]
+  },
+  "player:DriveCashSessionIdentity": {
+   "attribute": "DriveCashSessionIdentity",
+   "on": "player",
+   "writers": [
+    {
+     "script": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+     "line": 280,
+     "receiver": "player",
+     "side": "server",
+     "receiver_certain": false,
+     "value": {
+      "expr": "string.sub(state.LastSessionIdentity,1,240)"
+     }
+    },
+    {
+     "script": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+     "line": 462,
+     "receiver": "player",
+     "side": "server",
+     "receiver_certain": false,
+     "value": null,
+     "via": "wrapper clearTelemetry()"
+    }
+   ],
+   "readers": [
+    {
+     "script": "ReplicatedStorage.Modules.Game.Development.DriveToEarnCashTelemetryClient",
+     "line": 79,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true,
+     "via": "wrapper value()"
+    }
+   ],
+   "listeners": [],
+   "writer_scripts": [
+    "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer"
+   ],
+   "reader_scripts": [
+    "ReplicatedStorage.Modules.Game.Development.DriveToEarnCashTelemetryClient"
+   ]
+  },
+  "player:DriveCashTelemetryRevision": {
+   "attribute": "DriveCashTelemetryRevision",
+   "on": "player",
+   "writers": [
+    {
+     "script": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+     "line": 270,
+     "receiver": "player",
+     "side": "server",
+     "receiver_certain": false,
+     "value": {
+      "expr": "REVISION"
+     }
+    },
+    {
+     "script": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+     "line": 462,
+     "receiver": "player",
+     "side": "server",
+     "receiver_certain": false,
+     "value": null,
+     "via": "wrapper clearTelemetry()"
+    }
+   ],
+   "readers": [],
+   "listeners": [],
+   "writer_scripts": [
+    "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer"
+   ],
+   "reader_scripts": []
+  },
+  "player:DriveCashVehicleIdentity": {
+   "attribute": "DriveCashVehicleIdentity",
+   "on": "player",
+   "writers": [
+    {
+     "script": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+     "line": 279,
+     "receiver": "player",
+     "side": "server",
+     "receiver_certain": false,
+     "value": {
+      "expr": "string.sub(state.LastVehicleIdentity,1,240)"
+     }
+    },
+    {
+     "script": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+     "line": 462,
+     "receiver": "player",
+     "side": "server",
+     "receiver_certain": false,
+     "value": null,
+     "via": "wrapper clearTelemetry()"
+    }
+   ],
+   "readers": [
+    {
+     "script": "ReplicatedStorage.Modules.Game.Development.DriveToEarnCashTelemetryClient",
+     "line": 78,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true,
+     "via": "wrapper value()"
+    }
+   ],
+   "listeners": [],
+   "writer_scripts": [
+    "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer"
+   ],
+   "reader_scripts": [
+    "ReplicatedStorage.Modules.Game.Development.DriveToEarnCashTelemetryClient"
+   ]
+  },
+  "player:DriveInCustomisationActive": {
+   "attribute": "DriveInCustomisationActive",
+   "on": "player",
+   "writers": [],
+   "readers": [
+    {
+     "script": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+     "line": 429,
+     "receiver": "player",
+     "side": "server",
+     "receiver_certain": false,
+     "via": "wrapper processPlayer()"
+    }
+   ],
+   "listeners": [],
+   "writer_scripts": [],
+   "reader_scripts": [
+    "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer"
+   ]
+  },
+  "player:DrivingControlsOpen": {
+   "attribute": "DrivingControlsOpen",
+   "on": "player",
+   "writers": [
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+     "line": 434,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true,
+     "value": false
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+     "line": 470,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true,
+     "value": {
+      "expr": "name==\"Controls\""
+     }
+    }
+   ],
+   "readers": [
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+     "line": 340,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+     "line": 458,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.FullMapUI",
+     "line": 454,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true,
+     "via": "literal list"
+    }
+   ],
+   "listeners": [
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+     "line": 741,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    }
+   ],
+   "writer_scripts": [
+    "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI"
+   ],
+   "reader_scripts": [
+    "ReplicatedStorage.Modules.Game.UI.FullMapUI",
+    "ReplicatedStorage.Modules.Game.UI.OnboardingClient"
+   ]
+  },
+  "player:FirstDrivePresentationPending": {
+   "attribute": "FirstDrivePresentationPending",
+   "on": "player",
+   "writers": [
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+     "line": 459,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true,
+     "value": false
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+     "line": 990,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true,
+     "value": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+     "line": 689,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true,
+     "value": false
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+     "line": 692,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true,
+     "value": true
+    }
+   ],
+   "readers": [
+    {
+     "script": "ReplicatedStorage.Modules.Game.Audio.ContextAudioClient",
+     "line": 230,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.Audio.VehicleAudioClient",
+     "line": 445,
+     "receiver": "localPlayer",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.Audio.VehicleAudioClient",
+     "line": 1203,
+     "receiver": "localPlayer",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.Audio.VehicleAudioClient",
+     "line": 1212,
+     "receiver": "localPlayer",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+     "line": 339,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.FullMapUI",
+     "line": 454,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true,
+     "via": "literal list"
+    }
+   ],
+   "listeners": [
+    {
+     "script": "ReplicatedStorage.Modules.Game.Audio.ContextAudioClient",
+     "line": 254,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true,
+     "via": "literal list"
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+     "line": 740,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    }
+   ],
+   "writer_scripts": [
+    "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+    "ReplicatedStorage.Modules.Game.UI.OnboardingClient"
+   ],
+   "reader_scripts": [
+    "ReplicatedStorage.Modules.Game.Audio.ContextAudioClient",
+    "ReplicatedStorage.Modules.Game.Audio.VehicleAudioClient",
+    "ReplicatedStorage.Modules.Game.UI.FullMapUI",
+    "ReplicatedStorage.Modules.Game.UI.OnboardingClient"
+   ]
+  },
+  "player:FreeRoamHudTeleporting": {
+   "attribute": "FreeRoamHudTeleporting",
+   "on": "player",
+   "writers": [],
+   "readers": [
+    {
+     "script": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+     "line": 429,
+     "receiver": "player",
+     "side": "server",
+     "receiver_certain": false,
+     "via": "wrapper processPlayer()"
+    }
+   ],
+   "listeners": [],
+   "writer_scripts": [],
+   "reader_scripts": [
+    "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer"
+   ]
+  },
+  "player:FullMapOpen": {
+   "attribute": "FullMapOpen",
+   "on": "player",
+   "writers": [
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.FullMapUI",
+     "line": 496,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true,
+     "value": false
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.FullMapUI",
+     "line": 520,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true,
+     "value": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.FullMapUI",
+     "line": 848,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true,
+     "value": false
+    }
+   ],
+   "readers": [
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+     "line": 1116,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+     "line": 1352,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI",
+     "line": 330,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI",
+     "line": 331,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+     "line": 334,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.Activities.ActivityClient",
+     "line": 75,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    }
+   ],
+   "listeners": [
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+     "line": 1351,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI",
+     "line": 331,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+     "line": 742,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.Activities.ActivityClient",
+     "line": 76,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    }
+   ],
+   "writer_scripts": [
+    "ReplicatedStorage.Modules.Game.UI.FullMapUI"
+   ],
+   "reader_scripts": [
+    "ReplicatedStorage.Modules.Game.Activities.ActivityClient",
+    "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+    "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI",
+    "ReplicatedStorage.Modules.Game.UI.OnboardingClient"
+   ]
+  },
+  "player:GarageEntryMode": {
+   "attribute": "GarageEntryMode",
+   "on": "player",
+   "writers": [
+    {
+     "script": "ReplicatedStorage.Modules.Game.Garage.GarageUI",
+     "line": 186,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true,
+     "value": null
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.Garage.GarageUI",
+     "line": 187,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true,
+     "value": null
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.Garage.GarageUI",
+     "line": 195,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true,
+     "value": null
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.Garage.GarageUI",
+     "line": 684,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true,
+     "value": null
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.Garage.GarageUI",
+     "line": 689,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true,
+     "value": null
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.Dealership.GarageEntranceClient",
+     "line": 190,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true,
+     "value": {
+      "expr": "definition.Mode"
+     }
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.Dealership.GarageEntranceClient",
+     "line": 197,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true,
+     "value": null
+    }
+   ],
+   "readers": [
+    {
+     "script": "ReplicatedStorage.Modules.Game.Dealership.GarageEntranceClient",
+     "line": 130,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    }
+   ],
+   "listeners": [
+    {
+     "script": "ReplicatedStorage.Modules.Game.Dealership.GarageEntranceClient",
+     "line": 206,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    }
+   ],
+   "writer_scripts": [
+    "ReplicatedStorage.Modules.Game.Dealership.GarageEntranceClient",
+    "ReplicatedStorage.Modules.Game.Garage.GarageUI"
+   ],
+   "reader_scripts": [
+    "ReplicatedStorage.Modules.Game.Dealership.GarageEntranceClient"
+   ]
+  },
+  "player:GarageSessionActive": {
+   "attribute": "GarageSessionActive",
+   "on": "player",
+   "writers": [],
+   "readers": [
+    {
+     "script": "ReplicatedStorage.Modules.Game.Audio.ContextAudioClient",
+     "line": 120,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.Vehicles.VehicleVFXClient",
+     "line": 1049,
+     "receiver": "LOCAL_PLAYER",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.Vehicles.CharacterSprintClient",
+     "line": 128,
+     "receiver": "PLAYER",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+     "line": 380,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI",
+     "line": 330,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+     "line": 471,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.FreeRoamMapPlayerMarkers",
+     "line": 230,
+     "receiver": "record.Player",
+     "side": "client",
+     "receiver_certain": false,
+     "via": "wrapper playerAllowsMarker()"
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI",
+     "line": 90,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI",
+     "line": 174,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.FullMapUI",
+     "line": 454,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true,
+     "via": "literal list"
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.Garage.GaragePreviewPresentationClient",
+     "line": 90,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.Garage.ThrustPreviewClient",
+     "line": 28,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.World.LightingClient",
+     "line": 140,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.Activities.PassengerClientView",
+     "line": 133,
+     "receiver": "owner",
+     "side": "client",
+     "receiver_certain": false
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.Activities.DuelClientView",
+     "line": 70,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true,
+     "via": "wrapper playerFree()"
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.Activities.DuelClientView",
+     "line": 84,
+     "receiver": "other.Owner",
+     "side": "client",
+     "receiver_certain": false,
+     "via": "wrapper playerFree()"
+    },
+    {
+     "script": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+     "line": 429,
+     "receiver": "player",
+     "side": "server",
+     "receiver_certain": false,
+     "via": "wrapper processPlayer()"
+    },
+    {
+     "script": "ServerStorage.Modules.Game.Activities.ActivityService",
+     "line": 251,
+     "receiver": "player",
+     "side": "server",
+     "receiver_certain": false,
+     "via": "wrapper blockedReason()"
+    },
+    {
+     "script": "ServerStorage.Modules.Game.Activities.PassengerService",
+     "line": 147,
+     "receiver": "owner",
+     "side": "server",
+     "receiver_certain": false,
+     "via": "wrapper vehicleBlocked()"
+    },
+    {
+     "script": "ServerStorage.Modules.Game.Activities.PassengerService",
+     "line": 255,
+     "receiver": "owner",
+     "side": "server",
+     "receiver_certain": false,
+     "via": "wrapper validateRide()"
+    },
+    {
+     "script": "ServerStorage.Modules.Game.Activities.PassengerService",
+     "line": 263,
+     "receiver": "owner",
+     "side": "server",
+     "receiver_certain": false,
+     "via": "wrapper validateRide()"
+    }
+   ],
+   "listeners": [
+    {
+     "script": "ReplicatedStorage.Modules.Game.Audio.ContextAudioClient",
+     "line": 254,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true,
+     "via": "literal list"
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.FreeRoamMapPlayerMarkers",
+     "line": 367,
+     "receiver": "otherPlayer",
+     "side": "client",
+     "receiver_certain": false,
+     "via": "wrapper Module:_addPlayer()"
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.Garage.GaragePreviewPresentationClient",
+     "line": 309,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ServerStorage.Modules.Game.Activities.PassengerService",
+     "line": 162,
+     "receiver": "owner",
+     "side": "server",
+     "receiver_certain": false,
+     "via": "literal list"
+    }
+   ],
+   "writer_scripts": [],
+   "reader_scripts": [
+    "ReplicatedStorage.Modules.Game.Activities.DuelClientView",
+    "ReplicatedStorage.Modules.Game.Activities.PassengerClientView",
+    "ReplicatedStorage.Modules.Game.Audio.ContextAudioClient",
+    "ReplicatedStorage.Modules.Game.Garage.GaragePreviewPresentationClient",
+    "ReplicatedStorage.Modules.Game.Garage.ThrustPreviewClient",
+    "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+    "ReplicatedStorage.Modules.Game.UI.FreeRoamMapPlayerMarkers",
+    "ReplicatedStorage.Modules.Game.UI.FullMapUI",
+    "ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI",
+    "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI",
+    "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+    "ReplicatedStorage.Modules.Game.Vehicles.CharacterSprintClient",
+    "ReplicatedStorage.Modules.Game.Vehicles.VehicleVFXClient",
+    "ReplicatedStorage.Modules.Game.World.LightingClient",
+    "ServerStorage.Modules.Game.Activities.ActivityService",
+    "ServerStorage.Modules.Game.Activities.PassengerService",
+    "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer"
+   ]
+  },
+  "player:GarageSessionMode": {
+   "attribute": "GarageSessionMode",
+   "on": "player",
+   "writers": [],
+   "readers": [
+    {
+     "script": "ReplicatedStorage.Modules.Game.Audio.ContextAudioClient",
+     "line": 121,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+     "line": 471,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    }
+   ],
+   "listeners": [
+    {
+     "script": "ReplicatedStorage.Modules.Game.Audio.ContextAudioClient",
+     "line": 254,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true,
+     "via": "literal list"
+    }
+   ],
+   "writer_scripts": [],
+   "reader_scripts": [
+    "ReplicatedStorage.Modules.Game.Audio.ContextAudioClient",
+    "ReplicatedStorage.Modules.Game.UI.OnboardingClient"
+   ]
+  },
+  "player:LastRaceRewardAmount": {
+   "attribute": "LastRaceRewardAmount",
+   "on": "player",
+   "writers": [
+    {
+     "script": "ServerStorage.Modules.Game.Garage.GarageServer",
+     "line": 298,
+     "receiver": "player",
+     "side": "server",
+     "receiver_certain": false,
+     "value": {
+      "expr": "result.Amount"
+     }
+    }
+   ],
+   "readers": [],
+   "listeners": [],
+   "writer_scripts": [
+    "ServerStorage.Modules.Game.Garage.GarageServer"
+   ],
+   "reader_scripts": []
+  },
+  "player:LastRaceRewardEventId": {
+   "attribute": "LastRaceRewardEventId",
+   "on": "player",
+   "writers": [
+    {
+     "script": "ServerStorage.Modules.Game.Garage.GarageServer",
+     "line": 300,
+     "receiver": "player",
+     "side": "server",
+     "receiver_certain": false,
+     "value": {
+      "expr": "tostring(payload.EventId or \"\")"
+     }
+    }
+   ],
+   "readers": [],
+   "listeners": [],
+   "writer_scripts": [
+    "ServerStorage.Modules.Game.Garage.GarageServer"
+   ],
+   "reader_scripts": []
+  },
+  "player:LastRaceRewardRunId": {
+   "attribute": "LastRaceRewardRunId",
+   "on": "player",
+   "writers": [
+    {
+     "script": "ServerStorage.Modules.Game.Garage.GarageServer",
+     "line": 299,
+     "receiver": "player",
+     "side": "server",
+     "receiver_certain": false,
+     "value": {
+      "expr": "tostring(payload.RunId or \"\")"
+     }
+    }
+   ],
+   "readers": [],
+   "listeners": [],
+   "writer_scripts": [
+    "ServerStorage.Modules.Game.Garage.GarageServer"
+   ],
+   "reader_scripts": []
+  },
+  "player:LastRacingEventId": {
+   "attribute": "LastRacingEventId",
+   "on": "player",
+   "writers": [
+    {
+     "script": "ReplicatedStorage.Modules.Game.Racing.RaceQueueClient",
+     "line": 44,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true,
+     "value": {
+      "expr": "tostring(payload.EventId or \"\")"
+     }
+    }
+   ],
+   "readers": [
+    {
+     "script": "ReplicatedStorage.Modules.Game.Racing.RaceTimeTrialResultCoachClient",
+     "line": 193,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    }
+   ],
+   "listeners": [],
+   "writer_scripts": [
+    "ReplicatedStorage.Modules.Game.Racing.RaceQueueClient"
+   ],
+   "reader_scripts": [
+    "ReplicatedStorage.Modules.Game.Racing.RaceTimeTrialResultCoachClient"
+   ]
+  },
+  "player:LastRacingVehicleId": {
+   "attribute": "LastRacingVehicleId",
+   "on": "player",
+   "writers": [
+    {
+     "script": "ReplicatedStorage.Modules.Game.Racing.RaceQueueClient",
+     "line": 44,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true,
+     "value": {
+      "expr": "tostring(payload.VehicleId or \"\")"
+     }
+    }
+   ],
+   "readers": [
+    {
+     "script": "ReplicatedStorage.Modules.Game.Racing.RaceTimeTrialResultCoachClient",
+     "line": 193,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    }
+   ],
+   "listeners": [],
+   "writer_scripts": [
+    "ReplicatedStorage.Modules.Game.Racing.RaceQueueClient"
+   ],
+   "reader_scripts": [
+    "ReplicatedStorage.Modules.Game.Racing.RaceTimeTrialResultCoachClient"
+   ]
+  },
+  "player:MinimapMode": {
+   "attribute": "MinimapMode",
+   "on": "player",
+   "writers": [
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+     "line": 634,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true,
+     "value": {
+      "expr": "option"
+     }
+    }
+   ],
+   "readers": [
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+     "line": 632,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+     "line": 1211,
+     "receiver": "localPlayer",
+     "side": "client",
+     "receiver_certain": true,
+     "via": "wrapper Module.ResolveRotation()"
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI",
+     "line": 459,
+     "receiver": "localPlayer",
+     "side": "client",
+     "receiver_certain": true,
+     "via": "wrapper Module.ResolveRotation()"
+    }
+   ],
+   "listeners": [],
+   "writer_scripts": [
+    "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI"
+   ],
+   "reader_scripts": [
+    "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+    "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI"
+   ]
+  },
+  "player:MobileControlMode": {
+   "attribute": "MobileControlMode",
+   "on": "player",
+   "writers": [
+    {
+     "script": "ReplicatedStorage.Modules.Game.Vehicles.MobileDriveControlsClient",
+     "line": 166,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true,
+     "value": "Arrows"
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.Vehicles.MobileDriveControlsClient",
+     "line": 173,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true,
+     "value": {
+      "expr": "A(\"DefaultControlMode\",\"Arrows\")"
+     }
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI",
+     "line": 201,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true,
+     "value": {
+      "expr": "option"
+     }
+    }
+   ],
+   "readers": [
+    {
+     "script": "ReplicatedStorage.Modules.Game.Vehicles.MobileDriveControlsClient",
+     "line": 153,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.Vehicles.MobileDriveControlsClient",
+     "line": 172,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.Vehicles.MobileDriveControlsClient",
+     "line": 173,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.Vehicles.MobileDriveControlsClient",
+     "line": 174,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI",
+     "line": 200,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    }
+   ],
+   "listeners": [
+    {
+     "script": "ReplicatedStorage.Modules.Game.Vehicles.MobileDriveControlsClient",
+     "line": 172,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    }
+   ],
+   "writer_scripts": [
+    "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI",
+    "ReplicatedStorage.Modules.Game.Vehicles.MobileDriveControlsClient"
+   ],
+   "reader_scripts": [
+    "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI",
+    "ReplicatedStorage.Modules.Game.Vehicles.MobileDriveControlsClient"
+   ]
+  },
+  "player:MobileFreeRoamCarMenuOpen": {
+   "attribute": "MobileFreeRoamCarMenuOpen",
+   "on": "player",
+   "writers": [
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI",
+     "line": 168,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true,
+     "value": false
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI",
+     "line": 284,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true,
+     "value": {
+      "expr": "carMenuOpen"
+     }
+    }
+   ],
+   "readers": [
+    {
+     "script": "ReplicatedStorage.Modules.Game.Vehicles.MobileDriveControlsClient",
+     "line": 197,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+     "line": 473,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.FullMapUI",
+     "line": 454,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true,
+     "via": "literal list"
+    }
+   ],
+   "listeners": [],
+   "writer_scripts": [
+    "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI"
+   ],
+   "reader_scripts": [
+    "ReplicatedStorage.Modules.Game.UI.FullMapUI",
+    "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+    "ReplicatedStorage.Modules.Game.Vehicles.MobileDriveControlsClient"
+   ]
+  },
+  "player:MobileMajorMenuOpen": {
+   "attribute": "MobileMajorMenuOpen",
+   "on": "player",
+   "writers": [
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI",
+     "line": 187,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true,
+     "value": false
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI",
+     "line": 188,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true,
+     "value": false
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI",
+     "line": 190,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true,
+     "value": true
+    }
+   ],
+   "readers": [
+    {
+     "script": "ReplicatedStorage.Modules.Game.Vehicles.MobileDriveControlsClient",
+     "line": 197,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+     "line": 474,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI",
+     "line": 273,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.FullMapUI",
+     "line": 454,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true,
+     "via": "literal list"
+    }
+   ],
+   "listeners": [
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI",
+     "line": 276,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    }
+   ],
+   "writer_scripts": [
+    "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI"
+   ],
+   "reader_scripts": [
+    "ReplicatedStorage.Modules.Game.UI.FullMapUI",
+    "ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI",
+    "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+    "ReplicatedStorage.Modules.Game.Vehicles.MobileDriveControlsClient"
+   ]
+  },
+  "player:OnboardingStage": {
+   "attribute": "OnboardingStage",
+   "on": "player",
+   "writers": [],
+   "readers": [
+    {
+     "script": "ServerStorage.Modules.Game.Player.OnboardingServer",
+     "line": 103,
+     "receiver": "player",
+     "side": "server",
+     "receiver_certain": false,
+     "via": "wrapper checkVehicle()"
+    }
+   ],
+   "listeners": [],
+   "writer_scripts": [],
+   "reader_scripts": [
+    "ServerStorage.Modules.Game.Player.OnboardingServer"
+   ]
+  },
+  "player:OwnedGarageDisplay": {
+   "attribute": "OwnedGarageDisplay",
+   "on": "player",
+   "writers": [],
+   "readers": [
+    {
+     "script": "ServerStorage.Modules.Game.Garage.OwnedGarageDisplay",
+     "line": 86,
+     "receiver": "other",
+     "side": "server",
+     "receiver_certain": false
+    }
+   ],
+   "listeners": [],
+   "writer_scripts": [],
+   "reader_scripts": [
+    "ServerStorage.Modules.Game.Garage.OwnedGarageDisplay"
+   ]
+  },
+  "player:OwnedGarageInside": {
+   "attribute": "OwnedGarageInside",
+   "on": "player",
+   "writers": [
+    {
+     "script": "ServerStorage.Modules.Game.Garage.OwnedGarageManagement",
+     "line": 410,
+     "receiver": "player",
+     "side": "server",
+     "receiver_certain": false,
+     "value": {
+      "expr": "session~=nil"
+     },
+     "via": "wrapper watchCharacter()"
+    },
+    {
+     "script": "ServerStorage.Modules.Game.Garage.OwnedGarageManagement",
+     "line": 410,
+     "receiver": "player",
+     "side": "server",
+     "receiver_certain": false,
+     "value": {
+      "expr": "session~=nil"
+     },
+     "via": "wrapper watchCharacter()"
+    }
+   ],
+   "readers": [
+    {
+     "script": "ReplicatedStorage.Modules.Game.Audio.ContextAudioClient",
+     "line": 117,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.OwnedGarageBrowserUI",
+     "line": 123,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.OwnedGarageBrowserUI",
+     "line": 129,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+     "line": 1132,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI",
+     "line": 125,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI",
+     "line": 347,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI",
+     "line": 400,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+     "line": 613,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+     "line": 662,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.FreeRoamMapPlayerMarkers",
+     "line": 230,
+     "receiver": "record.Player",
+     "side": "client",
+     "receiver_certain": false,
+     "via": "wrapper playerAllowsMarker()"
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI",
+     "line": 10,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI",
+     "line": 154,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI",
+     "line": 206,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI",
+     "line": 239,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI",
+     "line": 257,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI",
+     "line": 273,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.GarageInteriorTransitionUI",
+     "line": 8,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.GarageInteriorTransitionUI",
+     "line": 9,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.FullMapUI",
+     "line": 454,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true,
+     "via": "literal list"
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.Garage.PreviewCameraClient",
+     "line": 40,
+     "receiver": "localPlayer",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.World.OwnedGarageEnvironmentLightingClient",
+     "line": 23,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.World.OwnedGarageEnvironmentLightingClient",
+     "line": 141,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.World.LightingClient",
+     "line": 137,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.Activities.PassengerClientView",
+     "line": 134,
+     "receiver": "owner",
+     "side": "client",
+     "receiver_certain": false
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.Activities.DuelClientView",
+     "line": 70,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true,
+     "via": "wrapper playerFree()"
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.Activities.DuelClientView",
+     "line": 84,
+     "receiver": "other.Owner",
+     "side": "client",
+     "receiver_certain": false,
+     "via": "wrapper playerFree()"
+    },
+    {
+     "script": "ServerStorage.Modules.Game.Garage.OwnedGarageManagement",
+     "line": 118,
+     "receiver": "owner",
+     "side": "server",
+     "receiver_certain": false,
+     "via": "wrapper ownerVisitState()"
+    },
+    {
+     "script": "ServerStorage.Modules.Game.Garage.OwnedGarageManagement",
+     "line": 120,
+     "receiver": "owner",
+     "side": "server",
+     "receiver_certain": false,
+     "via": "wrapper ownerVisitState()"
+    },
+    {
+     "script": "ServerStorage.Modules.Game.Garage.OwnedGarageManagement",
+     "line": 124,
+     "receiver": "owner",
+     "side": "server",
+     "receiver_certain": false,
+     "via": "wrapper ownerVisitState()"
+    },
+    {
+     "script": "ServerStorage.Modules.Game.Garage.OwnedGarageManagement",
+     "line": 126,
+     "receiver": "owner",
+     "side": "server",
+     "receiver_certain": false
+    },
+    {
+     "script": "ServerStorage.Modules.Game.Garage.OwnedGarageManagement",
+     "line": 131,
+     "receiver": "owner",
+     "side": "server",
+     "receiver_certain": false
+    },
+    {
+     "script": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+     "line": 429,
+     "receiver": "player",
+     "side": "server",
+     "receiver_certain": false,
+     "via": "wrapper processPlayer()"
+    },
+    {
+     "script": "ServerStorage.Modules.Game.Activities.ActivityService",
+     "line": 251,
+     "receiver": "player",
+     "side": "server",
+     "receiver_certain": false,
+     "via": "wrapper blockedReason()"
+    },
+    {
+     "script": "ServerStorage.Modules.Game.Activities.PassengerService",
+     "line": 147,
+     "receiver": "owner",
+     "side": "server",
+     "receiver_certain": false,
+     "via": "wrapper vehicleBlocked()"
+    },
+    {
+     "script": "ServerStorage.Modules.Game.Activities.PassengerService",
+     "line": 255,
+     "receiver": "owner",
+     "side": "server",
+     "receiver_certain": false,
+     "via": "wrapper validateRide()"
+    },
+    {
+     "script": "ServerStorage.Modules.Game.Activities.PassengerService",
+     "line": 263,
+     "receiver": "owner",
+     "side": "server",
+     "receiver_certain": false,
+     "via": "wrapper validateRide()"
+    }
+   ],
+   "listeners": [
+    {
+     "script": "ReplicatedStorage.Modules.Game.Audio.ContextAudioClient",
+     "line": 254,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true,
+     "via": "literal list"
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.OwnedGarageBrowserUI",
+     "line": 129,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI",
+     "line": 126,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true,
+     "via": "literal list"
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.FreeRoamMapPlayerMarkers",
+     "line": 367,
+     "receiver": "otherPlayer",
+     "side": "client",
+     "receiver_certain": false,
+     "via": "wrapper Module:_addPlayer()"
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI",
+     "line": 256,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI",
+     "line": 276,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.GarageInteriorTransitionUI",
+     "line": 8,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.World.OwnedGarageEnvironmentLightingClient",
+     "line": 28,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.World.OwnedGarageEnvironmentLightingClient",
+     "line": 172,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ServerStorage.Modules.Game.Activities.PassengerService",
+     "line": 162,
+     "receiver": "owner",
+     "side": "server",
+     "receiver_certain": false,
+     "via": "literal list"
+    }
+   ],
+   "writer_scripts": [
+    "ServerStorage.Modules.Game.Garage.OwnedGarageManagement"
+   ],
+   "reader_scripts": [
+    "ReplicatedStorage.Modules.Game.Activities.DuelClientView",
+    "ReplicatedStorage.Modules.Game.Activities.PassengerClientView",
+    "ReplicatedStorage.Modules.Game.Audio.ContextAudioClient",
+    "ReplicatedStorage.Modules.Game.Garage.PreviewCameraClient",
+    "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+    "ReplicatedStorage.Modules.Game.UI.FreeRoamMapPlayerMarkers",
+    "ReplicatedStorage.Modules.Game.UI.FullMapUI",
+    "ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI",
+    "ReplicatedStorage.Modules.Game.UI.GarageInteriorTransitionUI",
+    "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI",
+    "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+    "ReplicatedStorage.Modules.Game.UI.OwnedGarageBrowserUI",
+    "ReplicatedStorage.Modules.Game.World.LightingClient",
+    "ReplicatedStorage.Modules.Game.World.OwnedGarageEnvironmentLightingClient",
+    "ServerStorage.Modules.Game.Activities.ActivityService",
+    "ServerStorage.Modules.Game.Activities.PassengerService",
+    "ServerStorage.Modules.Game.Garage.OwnedGarageManagement",
+    "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer"
+   ]
+  },
+  "player:OwnedGarageOwnerUserId": {
+   "attribute": "OwnedGarageOwnerUserId",
+   "on": "player",
+   "writers": [
+    {
+     "script": "ServerStorage.Modules.Game.Garage.OwnedGarageManagement",
+     "line": 410,
+     "receiver": "player",
+     "side": "server",
+     "receiver_certain": false,
+     "value": {
+      "expr": "session and player.UserId or nil"
+     },
+     "via": "wrapper watchCharacter()"
+    },
+    {
+     "script": "ServerStorage.Modules.Game.Garage.OwnedGarageManagement",
+     "line": 410,
+     "receiver": "player",
+     "side": "server",
+     "receiver_certain": false,
+     "value": {
+      "expr": "session and player.UserId or nil"
+     },
+     "via": "wrapper watchCharacter()"
+    }
+   ],
+   "readers": [],
+   "listeners": [],
+   "writer_scripts": [
+    "ServerStorage.Modules.Game.Garage.OwnedGarageManagement"
+   ],
+   "reader_scripts": []
+  },
+  "player:OwnedGaragePropertyId": {
+   "attribute": "OwnedGaragePropertyId",
+   "on": "player",
+   "writers": [
+    {
+     "script": "ServerStorage.Modules.Game.Garage.OwnedGarageManagement",
+     "line": 410,
+     "receiver": "player",
+     "side": "server",
+     "receiver_certain": false,
+     "value": {
+      "expr": "session and session.PropertyId or nil"
+     },
+     "via": "wrapper watchCharacter()"
+    },
+    {
+     "script": "ServerStorage.Modules.Game.Garage.OwnedGarageManagement",
+     "line": 410,
+     "receiver": "player",
+     "side": "server",
+     "receiver_certain": false,
+     "value": {
+      "expr": "session and session.PropertyId or nil"
+     },
+     "via": "wrapper watchCharacter()"
+    }
+   ],
+   "readers": [],
+   "listeners": [],
+   "writer_scripts": [
+    "ServerStorage.Modules.Game.Garage.OwnedGarageManagement"
+   ],
+   "reader_scripts": []
+  },
+  "player:OwnedGarageVisitor": {
+   "attribute": "OwnedGarageVisitor",
+   "on": "player",
+   "writers": [
+    {
+     "script": "ServerStorage.Modules.Game.Garage.OwnedGarageManagement",
+     "line": 410,
+     "receiver": "player",
+     "side": "server",
+     "receiver_certain": false,
+     "value": null,
+     "via": "wrapper watchCharacter()"
+    }
+   ],
+   "readers": [
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.OwnedGarageBrowserUI",
+     "line": 124,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI",
+     "line": 273,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ServerStorage.Modules.Game.Garage.OwnedGarageManagement",
+     "line": 118,
+     "receiver": "owner",
+     "side": "server",
+     "receiver_certain": false,
+     "via": "wrapper ownerVisitState()"
+    },
+    {
+     "script": "ServerStorage.Modules.Game.Garage.OwnedGarageManagement",
+     "line": 120,
+     "receiver": "owner",
+     "side": "server",
+     "receiver_certain": false,
+     "via": "wrapper ownerVisitState()"
+    },
+    {
+     "script": "ServerStorage.Modules.Game.Garage.OwnedGarageManagement",
+     "line": 124,
+     "receiver": "owner",
+     "side": "server",
+     "receiver_certain": false,
+     "via": "wrapper ownerVisitState()"
+    }
+   ],
+   "listeners": [
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI",
+     "line": 276,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    }
+   ],
+   "writer_scripts": [
+    "ServerStorage.Modules.Game.Garage.OwnedGarageManagement"
+   ],
+   "reader_scripts": [
+    "ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI",
+    "ReplicatedStorage.Modules.Game.UI.OwnedGarageBrowserUI",
+    "ServerStorage.Modules.Game.Garage.OwnedGarageManagement"
+   ]
+  },
+  "player:PassengerAccess": {
+   "attribute": "PassengerAccess",
+   "on": "player",
+   "writers": [
+    {
+     "script": "ServerStorage.Modules.Game.Activities.ActivityService",
+     "line": 295,
+     "receiver": "player",
+     "side": "server",
+     "receiver_certain": false,
+     "value": {
+      "expr": "settings.PassengerAccess"
+     },
+     "via": "wrapper track()"
+    }
+   ],
+   "readers": [
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+     "line": 598,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+     "line": 607,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI",
+     "line": 207,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.Activities.PassengerClientView",
+     "line": 136,
+     "receiver": "owner",
+     "side": "client",
+     "receiver_certain": false,
+     "via": "wrapper accessAllows()"
+    },
+    {
+     "script": "ServerStorage.Modules.Game.Activities.PassengerService",
+     "line": 259,
+     "receiver": "owner",
+     "side": "server",
+     "receiver_certain": false,
+     "via": "wrapper accessAllows()"
+    },
+    {
+     "script": "ServerStorage.Modules.Game.Activities.PassengerService",
+     "line": 318,
+     "receiver": "owner",
+     "side": "server",
+     "receiver_certain": false,
+     "via": "wrapper accessAllows()"
+    }
+   ],
+   "listeners": [
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+     "line": 617,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    }
+   ],
+   "writer_scripts": [
+    "ServerStorage.Modules.Game.Activities.ActivityService"
+   ],
+   "reader_scripts": [
+    "ReplicatedStorage.Modules.Game.Activities.PassengerClientView",
+    "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+    "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI",
+    "ServerStorage.Modules.Game.Activities.PassengerService"
+   ]
+  },
+  "player:PersistencePhase19ModuleSyncCount": {
+   "attribute": "PersistencePhase19ModuleSyncCount",
+   "on": "player",
+   "writers": [
+    {
+     "script": "ServerStorage.Modules.Game.Garage.GarageServer",
+     "line": 407,
+     "receiver": "player",
+     "side": "server",
+     "receiver_certain": false,
+     "value": {
+      "expr": "syncCount or 0"
+     }
+    }
+   ],
+   "readers": [],
+   "listeners": [],
+   "writer_scripts": [
+    "ServerStorage.Modules.Game.Garage.GarageServer"
+   ],
+   "reader_scripts": []
+  },
+  "player:PersistencePhase19Synced": {
+   "attribute": "PersistencePhase19Synced",
+   "on": "player",
+   "writers": [
+    {
+     "script": "ServerStorage.Modules.Game.Garage.GarageServer",
+     "line": 405,
+     "receiver": "player",
+     "side": "server",
+     "receiver_certain": false,
+     "value": true
+    }
+   ],
+   "readers": [],
+   "listeners": [],
+   "writer_scripts": [
+    "ServerStorage.Modules.Game.Garage.GarageServer"
+   ],
+   "reader_scripts": []
+  },
+  "player:PersistencePhase19VehicleId": {
+   "attribute": "PersistencePhase19VehicleId",
+   "on": "player",
+   "writers": [
+    {
+     "script": "ServerStorage.Modules.Game.Garage.GarageServer",
+     "line": 406,
+     "receiver": "player",
+     "side": "server",
+     "receiver_certain": false,
+     "value": {
+      "expr": "tostring(vehicleId or \"\")"
+     }
+    }
+   ],
+   "readers": [],
+   "listeners": [],
+   "writer_scripts": [
+    "ServerStorage.Modules.Game.Garage.GarageServer"
+   ],
+   "reader_scripts": []
+  },
+  "player:PersistencePhase20ModuleSyncCount": {
+   "attribute": "PersistencePhase20ModuleSyncCount",
+   "on": "player",
+   "writers": [
+    {
+     "script": "ServerStorage.Modules.Game.Garage.GarageServer",
+     "line": 410,
+     "receiver": "player",
+     "side": "server",
+     "receiver_certain": false,
+     "value": {
+      "expr": "syncCount or 0"
+     }
+    }
+   ],
+   "readers": [],
+   "listeners": [],
+   "writer_scripts": [
+    "ServerStorage.Modules.Game.Garage.GarageServer"
+   ],
+   "reader_scripts": []
+  },
+  "player:PersistencePhase20RuntimeModule": {
+   "attribute": "PersistencePhase20RuntimeModule",
+   "on": "player",
+   "writers": [
+    {
+     "script": "ServerStorage.Modules.Game.Garage.GarageServer",
+     "line": 408,
+     "receiver": "player",
+     "side": "server",
+     "receiver_certain": false,
+     "value": "GarageProfileRuntime"
+    }
+   ],
+   "readers": [],
+   "listeners": [],
+   "writer_scripts": [
+    "ServerStorage.Modules.Game.Garage.GarageServer"
+   ],
+   "reader_scripts": []
+  },
+  "player:PersistencePhase20VehicleId": {
+   "attribute": "PersistencePhase20VehicleId",
+   "on": "player",
+   "writers": [
+    {
+     "script": "ServerStorage.Modules.Game.Garage.GarageServer",
+     "line": 409,
+     "receiver": "player",
+     "side": "server",
+     "receiver_certain": false,
+     "value": {
+      "expr": "tostring(vehicleId or \"\")"
+     }
+    }
+   ],
+   "readers": [],
+   "listeners": [],
+   "writer_scripts": [
+    "ServerStorage.Modules.Game.Garage.GarageServer"
+   ],
+   "reader_scripts": []
+  },
+  "player:Phase21InPrivateGarage": {
+   "attribute": "Phase21InPrivateGarage",
+   "on": "player",
+   "writers": [],
+   "readers": [
+    {
+     "script": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+     "line": 429,
+     "receiver": "player",
+     "side": "server",
+     "receiver_certain": false,
+     "via": "wrapper processPlayer()"
+    }
+   ],
+   "listeners": [],
+   "writer_scripts": [],
+   "reader_scripts": [
+    "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer"
+   ]
+  },
+  "player:ProfileDataStoreEnabled": {
+   "attribute": "ProfileDataStoreEnabled",
+   "on": "player",
+   "writers": [
+    {
+     "script": "ServerStorage.Modules.Game.Player.ProfileServer",
+     "line": 561,
+     "receiver": "player",
+     "side": "server",
+     "receiver_certain": false,
+     "value": {
+      "expr": "dataStoreEnabled()"
+     },
+     "via": "wrapper loadProfile()"
+    }
+   ],
+   "readers": [],
+   "listeners": [],
+   "writer_scripts": [
+    "ServerStorage.Modules.Game.Player.ProfileServer"
+   ],
+   "reader_scripts": []
+  },
+  "player:ProfileSchemaVersion": {
+   "attribute": "ProfileSchemaVersion",
+   "on": "player",
+   "writers": [
+    {
+     "script": "ServerStorage.Modules.Game.Player.ProfileServer",
+     "line": 561,
+     "receiver": "player",
+     "side": "server",
+     "receiver_certain": false,
+     "value": {
+      "expr": "schema.SchemaVersion"
+     },
+     "via": "wrapper loadProfile()"
+    }
+   ],
+   "readers": [],
+   "listeners": [],
+   "writer_scripts": [
+    "ServerStorage.Modules.Game.Player.ProfileServer"
+   ],
+   "reader_scripts": []
+  },
+  "player:ProfileServiceLoaded": {
+   "attribute": "ProfileServiceLoaded",
+   "on": "player",
+   "writers": [
+    {
+     "script": "ServerStorage.Modules.Game.Player.ProfileServer",
+     "line": 561,
+     "receiver": "player",
+     "side": "server",
+     "receiver_certain": false,
+     "value": true,
+     "via": "wrapper loadProfile()"
+    },
+    {
+     "script": "ServerStorage.Modules.Game.Player.ProfileServer",
+     "line": 561,
+     "receiver": "player",
+     "side": "server",
+     "receiver_certain": false,
+     "value": false,
+     "via": "wrapper loadProfile()"
+    },
+    {
+     "script": "ServerStorage.Modules.Game.Player.ProfileServer",
+     "line": 572,
+     "receiver": "session.Player",
+     "side": "server",
+     "receiver_certain": false,
+     "value": false
+    }
+   ],
+   "readers": [
+    {
+     "script": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+     "line": 429,
+     "receiver": "player",
+     "side": "server",
+     "receiver_certain": false,
+     "via": "wrapper processPlayer()"
+    }
+   ],
+   "listeners": [],
+   "writer_scripts": [
+    "ServerStorage.Modules.Game.Player.ProfileServer"
+   ],
+   "reader_scripts": [
+    "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer"
+   ]
+  },
+  "player:ProfileSessionGeneration": {
+   "attribute": "ProfileSessionGeneration",
+   "on": "player",
+   "writers": [
+    {
+     "script": "ServerStorage.Modules.Game.Player.ProfileServer",
+     "line": 561,
+     "receiver": "player",
+     "side": "server",
+     "receiver_certain": false,
+     "value": {
+      "expr": "generation"
+     },
+     "via": "wrapper loadProfile()"
+    }
+   ],
+   "readers": [
+    {
+     "script": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+     "line": 429,
+     "receiver": "player",
+     "side": "server",
+     "receiver_certain": false,
+     "via": "wrapper processPlayer()"
+    }
+   ],
+   "listeners": [],
+   "writer_scripts": [
+    "ServerStorage.Modules.Game.Player.ProfileServer"
+   ],
+   "reader_scripts": [
+    "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer"
+   ]
+  },
+  "player:ProfileSessionId": {
+   "attribute": "ProfileSessionId",
+   "on": "player",
+   "writers": [
+    {
+     "script": "ServerStorage.Modules.Game.Player.ProfileServer",
+     "line": 561,
+     "receiver": "player",
+     "side": "server",
+     "receiver_certain": false,
+     "value": {
+      "expr": "session.SessionId"
+     },
+     "via": "wrapper loadProfile()"
+    }
+   ],
+   "readers": [
+    {
+     "script": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+     "line": 429,
+     "receiver": "player",
+     "side": "server",
+     "receiver_certain": false,
+     "via": "wrapper processPlayer()"
+    }
+   ],
+   "listeners": [],
+   "writer_scripts": [
+    "ServerStorage.Modules.Game.Player.ProfileServer"
+   ],
+   "reader_scripts": [
+    "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer"
+   ]
+  },
+  "player:RaceBrowserTeleporting": {
+   "attribute": "RaceBrowserTeleporting",
+   "on": "player",
+   "writers": [],
+   "readers": [
+    {
+     "script": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+     "line": 429,
+     "receiver": "player",
+     "side": "server",
+     "receiver_certain": false,
+     "via": "wrapper processPlayer()"
+    }
+   ],
+   "listeners": [],
+   "writer_scripts": [],
+   "reader_scripts": [
+    "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer"
+   ]
+  },
+  "player:RaceQueueActive": {
+   "attribute": "RaceQueueActive",
+   "on": "player",
+   "writers": [
+    {
+     "script": "ServerStorage.Modules.Game.Racing.MatchmakingServer",
+     "line": 865,
+     "receiver": "player",
+     "side": "server",
+     "receiver_certain": false,
+     "value": false
+    },
+    {
+     "script": "ServerStorage.Modules.Game.Racing.MatchmakingServer",
+     "line": 1101,
+     "receiver": "player",
+     "side": "server",
+     "receiver_certain": false,
+     "value": false,
+     "via": "wrapper removeFromQueue()"
+    }
+   ],
+   "readers": [
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.FullMapUI",
+     "line": 454,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true,
+     "via": "literal list"
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.Racing.RaceLifecyclePresentationClient",
+     "line": 103,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.Racing.RaceLifecyclePresentationClient",
+     "line": 254,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.Racing.RaceLifecyclePresentationClient",
+     "line": 264,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.Racing.RaceLifecyclePresentationClient",
+     "line": 271,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.Racing.RaceQueueClient",
+     "line": 44,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.Activities.ActivityClient",
+     "line": 245,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.Activities.PassengerClientView",
+     "line": 132,
+     "receiver": "owner",
+     "side": "client",
+     "receiver_certain": false
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.Activities.DuelClientView",
+     "line": 70,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true,
+     "via": "wrapper playerFree()"
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.Activities.DuelClientView",
+     "line": 84,
+     "receiver": "other.Owner",
+     "side": "client",
+     "receiver_certain": false,
+     "via": "wrapper playerFree()"
+    },
+    {
+     "script": "ServerStorage.Modules.Game.Activities.ActivityService",
+     "line": 251,
+     "receiver": "player",
+     "side": "server",
+     "receiver_certain": false,
+     "via": "wrapper blockedReason()"
+    },
+    {
+     "script": "ServerStorage.Modules.Game.Activities.PassengerService",
+     "line": 147,
+     "receiver": "owner",
+     "side": "server",
+     "receiver_certain": false,
+     "via": "wrapper vehicleBlocked()"
+    },
+    {
+     "script": "ServerStorage.Modules.Game.Activities.PassengerService",
+     "line": 255,
+     "receiver": "owner",
+     "side": "server",
+     "receiver_certain": false,
+     "via": "wrapper validateRide()"
+    },
+    {
+     "script": "ServerStorage.Modules.Game.Activities.PassengerService",
+     "line": 263,
+     "receiver": "owner",
+     "side": "server",
+     "receiver_certain": false,
+     "via": "wrapper validateRide()"
+    }
+   ],
+   "listeners": [
+    {
+     "script": "ReplicatedStorage.Modules.Game.Racing.RaceLifecyclePresentationClient",
+     "line": 263,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ServerStorage.Modules.Game.Activities.PassengerService",
+     "line": 162,
+     "receiver": "owner",
+     "side": "server",
+     "receiver_certain": false,
+     "via": "literal list"
+    }
+   ],
+   "writer_scripts": [
+    "ServerStorage.Modules.Game.Racing.MatchmakingServer"
+   ],
+   "reader_scripts": [
+    "ReplicatedStorage.Modules.Game.Activities.ActivityClient",
+    "ReplicatedStorage.Modules.Game.Activities.DuelClientView",
+    "ReplicatedStorage.Modules.Game.Activities.PassengerClientView",
+    "ReplicatedStorage.Modules.Game.Racing.RaceLifecyclePresentationClient",
+    "ReplicatedStorage.Modules.Game.Racing.RaceQueueClient",
+    "ReplicatedStorage.Modules.Game.UI.FullMapUI",
+    "ServerStorage.Modules.Game.Activities.ActivityService",
+    "ServerStorage.Modules.Game.Activities.PassengerService"
+   ]
+  },
+  "player:RaceSessionActive": {
+   "attribute": "RaceSessionActive",
+   "on": "player",
+   "writers": [],
+   "readers": [
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+     "line": 472,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.FreeRoamMapPlayerMarkers",
+     "line": 230,
+     "receiver": "record.Player",
+     "side": "client",
+     "receiver_certain": false,
+     "via": "wrapper playerAllowsMarker()"
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI",
+     "line": 90,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI",
+     "line": 174,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.FullMapUI",
+     "line": 454,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true,
+     "via": "literal list"
+    }
+   ],
+   "listeners": [
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.FreeRoamMapPlayerMarkers",
+     "line": 367,
+     "receiver": "otherPlayer",
+     "side": "client",
+     "receiver_certain": false,
+     "via": "wrapper Module:_addPlayer()"
+    }
+   ],
+   "writer_scripts": [],
+   "reader_scripts": [
+    "ReplicatedStorage.Modules.Game.UI.FreeRoamMapPlayerMarkers",
+    "ReplicatedStorage.Modules.Game.UI.FullMapUI",
+    "ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI",
+    "ReplicatedStorage.Modules.Game.UI.OnboardingClient"
+   ]
+  },
+  "player:Rank": {
+   "attribute": "Rank",
+   "on": "player",
+   "writers": [
+    {
+     "script": "ServerStorage.Modules.Game.Activities.ProgressionService",
+     "line": 152,
+     "receiver": "player",
+     "side": "server",
+     "receiver_certain": false,
+     "value": {
+      "expr": "progression.Rank"
+     },
+     "via": "wrapper track()"
+    }
+   ],
+   "readers": [
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+     "line": 920,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI",
+     "line": 125,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    }
+   ],
+   "listeners": [
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+     "line": 926,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true,
+     "via": "literal list"
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI",
+     "line": 126,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true,
+     "via": "literal list"
+    }
+   ],
+   "writer_scripts": [
+    "ServerStorage.Modules.Game.Activities.ProgressionService"
+   ],
+   "reader_scripts": [
+    "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+    "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI"
+   ]
+  },
+  "player:StartScreenActive": {
+   "attribute": "StartScreenActive",
+   "on": "player",
+   "writers": [
+    {
+     "script": "ReplicatedFirst.Loading.InitialLoadingAndStartScreenClient",
+     "line": 52,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true,
+     "value": true
+    },
+    {
+     "script": "ReplicatedFirst.Loading.InitialLoadingAndStartScreenClient",
+     "line": 82,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true,
+     "value": false
+    },
+    {
+     "script": "ReplicatedFirst.Loading.InitialLoadingAndStartScreenClient",
+     "line": 297,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true,
+     "value": false
+    }
+   ],
+   "readers": [
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+     "line": 330,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.Racing.RaceLifecyclePresentationClient",
+     "line": 102,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer",
+     "line": 429,
+     "receiver": "player",
+     "side": "server",
+     "receiver_certain": false,
+     "via": "wrapper processPlayer()"
+    }
+   ],
+   "listeners": [
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+     "line": 739,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.Racing.RaceLifecyclePresentationClient",
+     "line": 262,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    }
+   ],
+   "writer_scripts": [
+    "ReplicatedFirst.Loading.InitialLoadingAndStartScreenClient"
+   ],
+   "reader_scripts": [
+    "ReplicatedStorage.Modules.Game.Racing.RaceLifecyclePresentationClient",
+    "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+    "ServerStorage.Modules.Game.Vehicles.DriveRewardsServer"
+   ]
+  },
+  "player:StudioVehicleSandboxActive": {
+   "attribute": "StudioVehicleSandboxActive",
+   "on": "player",
+   "writers": [
+    {
+     "script": "ServerStorage.Modules.Game.Player.ProfileServer",
+     "line": 561,
+     "receiver": "player",
+     "side": "server",
+     "receiver_certain": false,
+     "value": true,
+     "via": "wrapper loadProfile()"
+    },
+    {
+     "script": "ServerStorage.Modules.Game.Player.ProfileServer",
+     "line": 561,
+     "receiver": "player",
+     "side": "server",
+     "receiver_certain": false,
+     "value": null,
+     "via": "wrapper loadProfile()"
+    }
+   ],
+   "readers": [],
+   "listeners": [],
+   "writer_scripts": [
+    "ServerStorage.Modules.Game.Player.ProfileServer"
+   ],
+   "reader_scripts": []
+  },
+  "player:TimeTrialPBLastError": {
+   "attribute": "TimeTrialPBLastError",
+   "on": "player",
+   "writers": [
+    {
+     "script": "ServerStorage.Modules.Game.Racing.PersonalBestServer",
+     "line": 388,
+     "receiver": "player",
+     "side": "server",
+     "receiver_certain": false,
+     "value": "",
+     "via": "wrapper savePlayer()"
+    },
+    {
+     "script": "ServerStorage.Modules.Game.Racing.PersonalBestServer",
+     "line": 388,
+     "receiver": "player",
+     "side": "server",
+     "receiver_certain": false,
+     "value": {
+      "expr": "session.LastError"
+     },
+     "via": "wrapper savePlayer()"
+    }
+   ],
+   "readers": [],
+   "listeners": [],
+   "writer_scripts": [
+    "ServerStorage.Modules.Game.Racing.PersonalBestServer"
+   ],
+   "reader_scripts": []
+  },
+  "player:TimeTrialPBLastSaveUnix": {
+   "attribute": "TimeTrialPBLastSaveUnix",
+   "on": "player",
+   "writers": [
+    {
+     "script": "ServerStorage.Modules.Game.Racing.PersonalBestServer",
+     "line": 388,
+     "receiver": "player",
+     "side": "server",
+     "receiver_certain": false,
+     "value": {
+      "expr": "session.LastSaveUnix"
+     },
+     "via": "wrapper savePlayer()"
+    }
+   ],
+   "readers": [],
+   "listeners": [],
+   "writer_scripts": [
+    "ServerStorage.Modules.Game.Racing.PersonalBestServer"
+   ],
+   "reader_scripts": []
+  },
+  "player:VehicleId": {
+   "attribute": "VehicleId",
+   "on": "player",
+   "writers": [],
+   "readers": [
+    {
+     "script": "ServerStorage.Modules.Game.Garage.OwnedGarageDisplay",
+     "line": 86,
+     "receiver": "other",
+     "side": "server",
+     "receiver_certain": false
+    }
+   ],
+   "listeners": [],
+   "writer_scripts": [],
+   "reader_scripts": [
+    "ServerStorage.Modules.Game.Garage.OwnedGarageDisplay"
+   ]
+  },
+  "player:XpForNext": {
+   "attribute": "XpForNext",
+   "on": "player",
+   "writers": [
+    {
+     "script": "ServerStorage.Modules.Game.Activities.ProgressionService",
+     "line": 152,
+     "receiver": "player",
+     "side": "server",
+     "receiver_certain": false,
+     "value": {
+      "expr": "progression.Rank >= s.MaxRank and 0 or Rules.XpForRank(progression.Rank, s)"
+     },
+     "via": "wrapper track()"
+    }
+   ],
+   "readers": [
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+     "line": 920,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI",
+     "line": 125,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    }
+   ],
+   "listeners": [
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+     "line": 926,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true,
+     "via": "literal list"
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI",
+     "line": 126,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true,
+     "via": "literal list"
+    }
+   ],
+   "writer_scripts": [
+    "ServerStorage.Modules.Game.Activities.ProgressionService"
+   ],
+   "reader_scripts": [
+    "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+    "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI"
+   ]
+  },
+  "player:XpIntoRank": {
+   "attribute": "XpIntoRank",
+   "on": "player",
+   "writers": [
+    {
+     "script": "ServerStorage.Modules.Game.Activities.ProgressionService",
+     "line": 152,
+     "receiver": "player",
+     "side": "server",
+     "receiver_certain": false,
+     "value": {
+      "expr": "progression.Xp"
+     },
+     "via": "wrapper track()"
+    }
+   ],
+   "readers": [
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+     "line": 920,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI",
+     "line": 125,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true
+    }
+   ],
+   "listeners": [
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+     "line": 926,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true,
+     "via": "literal list"
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI",
+     "line": 126,
+     "receiver": "player",
+     "side": "client",
+     "receiver_certain": true,
+     "via": "literal list"
+    }
+   ],
+   "writer_scripts": [
+    "ServerStorage.Modules.Game.Activities.ProgressionService"
+   ],
+   "reader_scripts": [
+    "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+    "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI"
+   ]
+  },
+  "playerGui:OwnedGarageInteriorMode": {
+   "attribute": "OwnedGarageInteriorMode",
+   "on": "playerGui",
+   "writers": [
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI",
+     "line": 10,
+     "receiver": "playerGui",
+     "side": "client",
+     "receiver_certain": true,
+     "value": {
+      "expr": "player:GetAttribute(\"OwnedGarageInside\")==true"
+     }
+    }
+   ],
+   "readers": [],
+   "listeners": [],
+   "writer_scripts": [
+    "ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI"
+   ],
+   "reader_scripts": []
+  },
+  "playerGui:OwnedGarageManagementOpen": {
+   "attribute": "OwnedGarageManagementOpen",
+   "on": "playerGui",
+   "writers": [
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.OwnedGarageWorkspaceUI",
+     "line": 35,
+     "receiver": "playerGui",
+     "side": "client",
+     "receiver_certain": true,
+     "value": {
+      "expr": "open==true"
+     }
+    }
+   ],
+   "readers": [
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+     "line": 1125,
+     "receiver": "playerGui",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI",
+     "line": 330,
+     "receiver": "playerGui",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+     "line": 470,
+     "receiver": "playerGui",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+     "line": 662,
+     "receiver": "playerGui",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI",
+     "line": 88,
+     "receiver": "playerGui",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI",
+     "line": 206,
+     "receiver": "playerGui",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI",
+     "line": 240,
+     "receiver": "playerGui",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI",
+     "line": 263,
+     "receiver": "playerGui",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI",
+     "line": 273,
+     "receiver": "playerGui",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.FullMapUI",
+     "line": 456,
+     "receiver": "playerGui",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.Garage.PreviewCameraClient",
+     "line": 41,
+     "receiver": "playerGui",
+     "side": "client",
+     "receiver_certain": true
+    }
+   ],
+   "listeners": [
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI",
+     "line": 262,
+     "receiver": "playerGui",
+     "side": "client",
+     "receiver_certain": true
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI",
+     "line": 276,
+     "receiver": "playerGui",
+     "side": "client",
+     "receiver_certain": true
+    }
+   ],
+   "writer_scripts": [
+    "ReplicatedStorage.Modules.Game.UI.OwnedGarageWorkspaceUI"
+   ],
+   "reader_scripts": [
+    "ReplicatedStorage.Modules.Game.Garage.PreviewCameraClient",
+    "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+    "ReplicatedStorage.Modules.Game.UI.FullMapUI",
+    "ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI",
+    "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI",
+    "ReplicatedStorage.Modules.Game.UI.OnboardingClient"
+   ]
+  }
+ }
+}

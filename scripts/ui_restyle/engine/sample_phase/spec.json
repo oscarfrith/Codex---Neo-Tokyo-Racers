@@ -1,0 +1,48 @@
+{
+ "_note": "Sample phase for the engine tests and golden files. installable=false makes APPLY and ROLLBACK refuse; AUDIT is safe to run in Studio.",
+ "phase": "sample_phase",
+ "installable": false,
+ "classicVerify": true,
+ "ops": [
+  {
+   "id": "probe",
+   "kind": "create",
+   "class": "ModuleScript",
+   "path": [
+    "ReplicatedStorage",
+    "Modules",
+    "Game",
+    "UI",
+    "UIRestyleSampleProbe"
+   ],
+   "after": "after/UIRestyleSampleProbe.lua",
+   "attributes": {
+    "Purpose": "engine sample"
+   }
+  },
+  {
+   "id": "note",
+   "kind": "attribute",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "UI"
+   ],
+   "key": "UIRestyleSampleNote",
+   "before": null,
+   "after": "sample"
+  },
+  {
+   "id": "clientbase",
+   "kind": "source",
+   "class": "LocalScript",
+   "path": [
+    "StarterPlayer",
+    "StarterPlayerScripts",
+    "ClientBase"
+   ],
+   "before": "before/ClientBase.lua",
+   "after": "after/ClientBase.lua"
+  }
+ ]
+}

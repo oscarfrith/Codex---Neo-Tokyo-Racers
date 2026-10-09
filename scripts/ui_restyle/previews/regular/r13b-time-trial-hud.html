@@ -1,0 +1,18 @@
+<!doctype html><html><head><meta charset="utf-8"><title>r13b In-race HUD: time trial</title><script src="../shared/boot.js"></script></head><body><script>
+const laps = [["PB","PERSONAL BEST","01:03.275",0,1],["1","LAP 1","01:04.611"],["2","LAP 2","01:02.863",1],["3","LAP 3","--:--.---"]];
+P.page(`
+  ${P.scene("race")}<div class="scrim-hud"></div>
+  <div class="abs" style="left:58px;top:50px">
+    <div class="t-status c-2 shadow">LAP</div>
+    <div class="flex" style="align-items:flex-end;margin-top:12px"><div class="num shadow" style="font-size:190px">3</div><div class="t-status c-2 shadow" style="margin:0 0 8px 14px">/ 3</div></div>
+  </div>
+  <div class="panel flush abs" style="left:58px;top:250px;border:0;border-left:5px solid var(--cyan);padding:14px 22px 14px 20px"><span class="flex ac g12"><span class="tier sm">C</span><span class="t-status">TIER C &middot; GOLD PACE</span></span></div>
+  ${P.timer("CURRENT LAP","00:41.228","LAP 2 &nbsp;-0.412","cyan",17,11)}
+  <div class="abs col g4" style="right:58px;top:58px;width:460px">
+    ${laps.map(r => `<div class="row ${r[3] ? "you" : ""}" style="min-height:52px;padding:0 18px 0 0;${r[4] ? "margin-bottom:8px" : ""}"><span class="t-value" style="width:52px;height:52px;display:flex;align-items:center;justify-content:center;${r[3] ? "background:var(--pink);color:var(--white)" : "background:rgba(243,240,255,.14)"}">${r[0]}</span><span class="t-value grow ${r[4] ? "c-2" : ""}">${r[1]}${r[3] ? ` <span class="t-label">&middot; BEST</span>` : ""}</span><span class="t-value">${r[2]}</span></div>`).join("")}
+  </div>
+  ${P.routeMap("loop","SHOWROOM LOOP")}
+  ${P.gauge(204,62)}
+  ${P.raceButtons()}
+`);
+</script></body></html>

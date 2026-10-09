@@ -1,0 +1,513 @@
+{
+ "script": "ReplicatedStorage.Modules.Game.Garage.ThrustPreviewClient",
+ "class": "ModuleScript",
+ "source_file": "classic/sources/ReplicatedStorage.Modules.Game.Garage.ThrustPreviewClient.lua",
+ "source_lines": 82,
+ "included_because": [
+  "ClientBase entry 'ThrustPreviewClient'"
+ ],
+ "requires": [
+  {
+   "expr": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Vehicles\"):WaitForChild(\"VehicleCosmeticCatalog\")",
+   "as": "VehicleCosmetics",
+   "line": 16,
+   "in_function": "Client.start",
+   "target": "ReplicatedStorage.Modules.Game.Vehicles.VehicleCosmeticCatalog"
+  },
+  {
+   "expr": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Vehicles\"):WaitForChild(\"VehiclePreviewVFXClient\")",
+   "as": "controllerModule",
+   "line": 20,
+   "in_function": "Client.start",
+   "target": "ReplicatedStorage.Modules.Game.Vehicles.VehiclePreviewVFXClient"
+  },
+  {
+   "expr": "module",
+   "protected": true,
+   "as": "result",
+   "line": 27,
+   "in_function": "Client.start",
+   "target": "Players.LocalPlayer.PlayerScripts.PlayerModule"
+  }
+ ],
+ "remotes": {
+  "calls": [],
+  "listens": []
+ },
+ "bindables": {
+  "fires": [],
+  "connects": [],
+  "invokes": [],
+  "handlers": [],
+  "created": [],
+  "module_signal_fires": []
+ },
+ "attributes": {
+  "reads": [
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "line": 28,
+    "in_function": "garageOpen",
+    "name": "GarageSessionActive"
+   },
+   {
+    "receiver": "vehicle",
+    "receiver_path": null,
+    "receiver_kind": "vehicle?",
+    "line": 31,
+    "in_function": "getPlayerVehicle",
+    "name": "OwnerUserId"
+   },
+   {
+    "receiver": "current",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "line": 34,
+    "in_function": "hasChannel",
+    "name": "PaintChannel"
+   },
+   {
+    "receiver": "current",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "line": 37,
+    "in_function": "insideRuntimeHost",
+    "name": "VFXRuntimeHost"
+   },
+   {
+    "receiver": "object",
+    "receiver_kind": "other",
+    "wrapper_defined": "VehicleCosmeticCatalog:77",
+    "line": 55,
+    "in_function": "applyPreviewEffects",
+    "via": "wrapper Catalog.IsProtectedVehicleLight()",
+    "name": "LightChannel",
+    "receiver_path": null
+   },
+   {
+    "receiver": "object",
+    "receiver_kind": "other",
+    "wrapper_defined": "VehicleCosmeticCatalog:77",
+    "line": 55,
+    "in_function": "applyPreviewEffects",
+    "via": "wrapper Catalog.IsProtectedVehicleLight()",
+    "name": "VehicleCosmeticId",
+    "receiver_path": null
+   },
+   {
+    "receiver": "root",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "line": 60,
+    "in_function": "refreshTargets",
+    "name": "ThrustColor"
+   },
+   {
+    "receiver": "root",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "line": 60,
+    "in_function": "refreshTargets",
+    "name": "ForceThrustPreview"
+   },
+   {
+    "receiver": "root",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "line": 60,
+    "in_function": "refreshTargets",
+    "name": "PreviewVFXMode"
+   },
+   {
+    "receiver": "playerVehicle",
+    "receiver_path": null,
+    "receiver_kind": "vehicle?",
+    "line": 66,
+    "in_function": "refreshTargets",
+    "name": "ThrustColor"
+   },
+   {
+    "receiver": "camera",
+    "receiver_path": "Workspace.CurrentCamera",
+    "receiver_kind": "workspace",
+    "line": 68,
+    "in_function": "forceDriveCamera",
+    "name": "DrivingCameraManaged"
+   },
+   {
+    "receiver": "cfg",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "receiver_kind": "config",
+    "wrapper_defined": "ThrustPreviewClient:26",
+    "line": 73,
+    "in_function": "Client.start",
+    "via": "wrapper number()",
+    "name": "ThrustTargetPollSeconds"
+   }
+  ],
+  "writes": [],
+  "listens": []
+ },
+ "player_attribute_writes": [],
+ "screenguis": {
+  "created": [],
+  "enabled_writes": [
+   {
+    "receiver": "touch",
+    "receiver_path": "Players.LocalPlayer.PlayerGui.TouchGui",
+    "value": {
+     "expr": "enabled"
+    },
+    "screengui_like": "yes",
+    "reason": "child of PlayerGui",
+    "line": 30,
+    "in_function": "setRobloxTouchControls",
+    "screengui_name": "TouchGui"
+   }
+  ]
+ },
+ "names": {
+  "assigned": [],
+  "looked_up": [
+   {
+    "method": "WaitForChild",
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 14,
+    "in_function": "Client.start",
+    "name": "PlayerGui"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 16,
+    "in_function": "Client.start",
+    "name": "Modules"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\")",
+    "receiver_path": "ReplicatedStorage.Modules",
+    "root": "ReplicatedStorage",
+    "line": 16,
+    "in_function": "Client.start",
+    "name": "Game"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game",
+    "root": "ReplicatedStorage",
+    "line": 16,
+    "in_function": "Client.start",
+    "name": "Vehicles"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Vehicles\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game.Vehicles",
+    "root": "ReplicatedStorage",
+    "line": 16,
+    "in_function": "Client.start",
+    "name": "VehicleCosmeticCatalog"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 17,
+    "in_function": "Client.start",
+    "name": "Assets"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Assets\")",
+    "receiver_path": "ReplicatedStorage.Assets",
+    "root": "ReplicatedStorage",
+    "line": 17,
+    "in_function": "Client.start",
+    "name": "VFX"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Assets\"):WaitForChild(\"VFX\")",
+    "receiver_path": "ReplicatedStorage.Assets.VFX",
+    "root": "ReplicatedStorage",
+    "line": 17,
+    "in_function": "Client.start",
+    "name": "VehicleTemplates"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 18,
+    "in_function": "Client.start",
+    "name": "Config"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\")",
+    "receiver_path": "ReplicatedStorage.Config",
+    "root": "ReplicatedStorage",
+    "line": 18,
+    "in_function": "Client.start",
+    "name": "UI"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\"):WaitForChild(\"UI\")",
+    "receiver_path": "ReplicatedStorage.Config.UI",
+    "root": "ReplicatedStorage",
+    "line": 18,
+    "in_function": "Client.start",
+    "name": "GarageReplacement"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 20,
+    "in_function": "Client.start",
+    "name": "Modules"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\")",
+    "receiver_path": "ReplicatedStorage.Modules",
+    "root": "ReplicatedStorage",
+    "line": 20,
+    "in_function": "Client.start",
+    "name": "Game"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game",
+    "root": "ReplicatedStorage",
+    "line": 20,
+    "in_function": "Client.start",
+    "name": "Vehicles"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Vehicles\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game.Vehicles",
+    "root": "ReplicatedStorage",
+    "line": 20,
+    "in_function": "Client.start",
+    "name": "VehiclePreviewVFXClient"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 27,
+    "in_function": "Client.start",
+    "name": "PlayerScripts"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "scripts",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts",
+    "root": "Players",
+    "line": 27,
+    "in_function": "Client.start",
+    "name": "PlayerModule"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "playerGui",
+    "receiver_path": "Players.LocalPlayer.PlayerGui",
+    "root": "Players",
+    "line": 29,
+    "in_function": "driveOpen",
+    "name": "DriveHUD"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "playerGui",
+    "receiver_path": "Players.LocalPlayer.PlayerGui",
+    "root": "Players",
+    "line": 30,
+    "in_function": "setRobloxTouchControls",
+    "name": "TouchGui"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "game:GetService(\"Workspace\")",
+    "receiver_path": "Workspace",
+    "root": "Workspace",
+    "line": 31,
+    "in_function": "getPlayerVehicle",
+    "name": "World"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Workspace\")",
+    "receiver_path": "Workspace",
+    "root": "Workspace",
+    "line": 31,
+    "in_function": "getPlayerVehicle",
+    "name": "World"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "game:GetService(\"Workspace\"):WaitForChild(\"World\")",
+    "receiver_path": "Workspace.World",
+    "root": "Workspace",
+    "line": 31,
+    "in_function": "getPlayerVehicle",
+    "name": "Runtime"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Workspace\")",
+    "receiver_path": "Workspace",
+    "root": "Workspace",
+    "line": 31,
+    "in_function": "getPlayerVehicle",
+    "name": "World"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Workspace\"):WaitForChild(\"World\")",
+    "receiver_path": "Workspace.World",
+    "root": "Workspace",
+    "line": 31,
+    "in_function": "getPlayerVehicle",
+    "name": "Runtime"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "game:GetService(\"Workspace\"):WaitForChild(\"World\"):WaitForChild(\"Runtime\")",
+    "receiver_path": "Workspace.World.Runtime",
+    "root": "Workspace",
+    "line": 31,
+    "in_function": "getPlayerVehicle",
+    "name": "PlayerVehicles"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "Workspace",
+    "receiver_path": "Workspace",
+    "root": "Workspace",
+    "line": 32,
+    "in_function": "getPreviewRoot",
+    "name": "ClientOnly"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "client",
+    "receiver_path": "Workspace.ClientOnly",
+    "root": "Workspace",
+    "line": 32,
+    "in_function": "getPreviewRoot",
+    "name": "VehiclePreview"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "Workspace",
+    "receiver_path": "Workspace",
+    "root": "Workspace",
+    "line": 32,
+    "in_function": "getPreviewRoot",
+    "name": "LocalVehiclePreview"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "vehicle",
+    "receiver_path": null,
+    "root": null,
+    "recursive": true,
+    "line": 68,
+    "in_function": "forceDriveCamera",
+    "name": "DriverSeat"
+   }
+  ],
+  "text_compared": []
+ },
+ "run_service": {
+  "render_steps": [],
+  "connects": [
+   {
+    "signal": "RenderStepped",
+    "method": "Connect",
+    "line": 70,
+    "in_function": "Client.start",
+    "callback": "function(dt) if UserInputService.TouchEnabled t..."
+   }
+  ]
+ },
+ "context_actions": [],
+ "user_input_service": {
+  "connects": [],
+  "members_used": [
+   {
+    "member": "TouchEnabled",
+    "kind": "read",
+    "line": 71,
+    "in_function": "Client.start"
+   }
+  ]
+ },
+ "audio": {
+  "bridge_calls": [],
+  "ui_audio_attributes": []
+ },
+ "config": {
+  "paths": [
+   {
+    "path": "ReplicatedStorage.Config",
+    "line": 18
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI",
+    "line": 18
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "line": 18
+   }
+  ],
+  "attribute_reads": [
+   {
+    "receiver": "cfg",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "receiver_kind": "config",
+    "wrapper_defined": "ThrustPreviewClient:26",
+    "line": 73,
+    "in_function": "Client.start",
+    "via": "wrapper number()",
+    "name": "ThrustTargetPollSeconds",
+    "access": "read"
+   }
+  ],
+  "child_lookups": []
+ },
+ "startergui_core": [],
+ "gui_service": [],
+ "other_services": {},
+ "service_connects": [],
+ "proximity_prompts": [],
+ "instances_created_by_class": {},
+ "public_api": [
+  {
+   "name": "start",
+   "kind": "function",
+   "params": [],
+   "line": 4
+  }
+ ],
+ "unresolved": [],
+ "contract_file": "ThrustPreviewClient.json"
+}

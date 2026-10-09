@@ -1,0 +1,17 @@
+<!doctype html><html><head><meta charset="utf-8"><title>r06 Owned-garage desk</title><script src="../shared/boot.js"></script></head><body><script>
+const big = (n) => `<i class="ic ${n}" style="font-size:84px;color:rgba(243,240,255,.5)"></i>`;
+const bigSel = (n) => `<i class="ic ${n}" style="font-size:84px"></i>`;
+P.page(`
+  ${P.scene("garage","3D SCENE &middot; YOUR GARAGE INTERIOR")}<div class="scrim-garage"></div>
+  ${P.title("GARAGE MANAGEMENT")}
+  <div class="tabs"><div class="t-tab c-2 shadow" style="height:46px;display:flex;align-items:center">KANDA TWO-BAY</div></div>
+  ${P.status({garage:"1 / 2",plus:1})}
+  ${P.railhead("MANAGE 1/3",`<div class="t-label c-2 shadow">CHOOSE WHICH VEHICLES STAND IN YOUR DISPLAY SPACES</div>`)}
+  <div class="rail">
+    ${P.tile({idx:"01",vis:bigSel("car"),sub:"1 / 2 SPACES FILLED",name:"DISPLAY CARS",sel:1})}
+    ${P.tile({idx:"02",vis:big("wrench"),sub:"STRUCTURE &middot; DECORATIONS &middot; LIGHTING",name:"BUILD GARAGE",w:400})}
+    ${P.tile({idx:"03",vis:big("brush"),sub:"STRUCTURE &middot; DECORATIONS &middot; LIGHTING",name:"STYLE GARAGE",w:400})}
+  </div>
+  ${P.btnrow([P.btn("EXIT","exit"),P.btn("NEXT","right","main")])}
+`);
+</script></body></html>

@@ -1,0 +1,31 @@
+<!doctype html><html><head><meta charset="utf-8"><title>r11 Race entry: records</title><script src="../shared/boot.js"></script></head><body><script>
+const tiers = ["E","D","C","B","A","S"];
+const board = [["1","NEONRIDER","00:57.412","SERAPH"],["2","CYBERWAVE","00:57.980","SERAPH"],["3","NIGHTDRIFT","00:58.204","ROSSO"],["4","KOBAYASHI_R","00:58.911","AURORA"],["5","PULSEHEAD","00:59.340","AURORA"],
+  ["6","VANTA","01:00.027","ENDURA"],["7","OSCAR","01:02.000","STINGER",1],["8","LOWLIGHT","01:02.618","AURORA"],["9","MIRA_K","01:03.090","ZEPHYR"],["10","HALCYON","01:03.777","AURORA"]];
+const trow = (r) => `<div class="row ${r[4] ? "you" : "bare"}" style="min-height:52px;${r[4] ? "border-left:8px solid var(--pink);padding-left:12px" : ""}"><span class="t-value" style="width:54px">${r[0]}</span><span class="t-value grow">${r[1]}</span><span class="t-value" style="width:170px">${r[2]}</span><span class="t-label c-2" style="width:150px;text-align:right">${r[3]}</span></div>`;
+const medal = (k, name, time, yours) => `<div class="row bare" style="min-height:50px;padding:0">${P.medal(k)}<span class="t-value ${yours ? "" : "c-2"} grow">${name}${yours ? ` <span class="c-pink">&middot; YOURS</span>` : ""}</span><span class="t-value ${yours ? "" : "c-2"}">${time}</span></div>`;
+P.page(`
+  ${P.scene("city")}<div class="scrim-menu"></div>
+  ${P.title("SHOWROOM LOOP","RECORDS")}
+  ${P.tabs([{l:"TIME TRIAL",on:1},{l:"RACE"}])}
+  ${P.status({tier:"S",rating:939,cash:"$3,613,709"})}
+  <div class="abs flex g8" style="left:100px;top:204px">${tiers.map(t => `<div class="btn ${t === "C" ? "focus" : ""} ${t === "A" || t === "S" ? "dis" : ""}" style="width:100px;height:66px;padding:0;font-size:var(--fs-status)">${t}</div>`).join("")}</div>
+  <div class="abs col" style="left:100px;top:290px;width:800px;gap:10px">
+    <div class="panel flex ac g24" style="height:176px">
+      <div style="width:120px;height:120px;background:#221f3a;display:flex;align-items:center;justify-content:center" class="t-sect c-muted">?</div>
+      <div class="grow"><div class="t-label c-2">WORLD RECORD &middot; TIER C</div><div class="num" style="font-size:76px;margin:14px 0 10px">00:57.412</div><div class="t-value">NEONRIDER <span class="c-2">&middot; SERAPH</span></div></div>
+    </div>
+    <div class="panel" style="padding:12px 22px">${medal("plat","PLATINUM","00:58.000")}${medal("","GOLD","01:02.000",1)}${medal("silver","SILVER","01:08.000")}<div style="margin-bottom:-2px">${medal("bronze","BRONZE","01:15.000")}</div></div>
+    <div class="panel flex ac jb" style="height:176px">
+      <div><div class="t-label c-2">YOUR RECORD &middot; STINGER</div><div class="num" style="font-size:76px;margin:14px 0 10px">01:02.000</div><div class="t-value c-2">RANK 7 OF 214</div></div>
+      <div class="flex ac g12">${P.medal("")}<span class="t-status">GOLD</span></div>
+    </div>
+  </div>
+  <div class="panel abs" style="left:912px;top:290px;width:908px;height:634px;padding:14px 22px;overflow:hidden">
+    <div class="row bare" style="min-height:44px;border-bottom:0"><span class="t-label c-muted" style="width:54px">#</span><span class="t-label c-muted grow">GLOBAL TOP 20</span><span class="t-label c-muted" style="width:170px">TIME</span><span class="t-label c-muted" style="width:150px;text-align:right">VEHICLE</span></div>
+    <div class="hairline"></div>
+    ${board.map(trow).join("")}
+  </div>
+  ${P.btnrow([P.btn("BACK","back"),P.btn("CHOOSE VEHICLE","car","main")])}
+`);
+</script></body></html>

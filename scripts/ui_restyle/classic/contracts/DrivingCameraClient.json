@@ -1,0 +1,1204 @@
+{
+ "script": "ReplicatedStorage.Modules.Game.Vehicles.DrivingCameraClient",
+ "class": "ModuleScript",
+ "source_file": "classic/sources/ReplicatedStorage.Modules.Game.Vehicles.DrivingCameraClient.lua",
+ "source_lines": 787,
+ "included_because": [
+  "client script that is UI-coupled: references PlayerGui; creates CanvasGroup, Frame, ScreenGui"
+ ],
+ "requires": [
+  {
+   "expr": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Core\"):WaitForChild(\"CameraService\")",
+   "as": "CameraService",
+   "line": 15,
+   "target": "ReplicatedStorage.Modules.Core.CameraService"
+  }
+ ],
+ "remotes": {
+  "calls": [],
+  "listens": []
+ },
+ "bindables": {
+  "fires": [],
+  "connects": [],
+  "invokes": [],
+  "handlers": [],
+  "created": [],
+  "module_signal_fires": []
+ },
+ "attributes": {
+  "reads": [
+   {
+    "receiver": "context.Vehicle",
+    "receiver_path": null,
+    "receiver_kind": "vehicle?",
+    "line": 232,
+    "in_function": "resetChase",
+    "name": "FeelImpactRevision"
+   },
+   {
+    "receiver": "context.Vehicle",
+    "receiver_path": null,
+    "receiver_kind": "vehicle?",
+    "line": 233,
+    "in_function": "resetChase",
+    "name": "FeelLandRevision"
+   },
+   {
+    "receiver": "cam",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "line": 473,
+    "in_function": "updateChase",
+    "name": "DrivingCameraManaged"
+   },
+   {
+    "receiver": "vehicle",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "DrivingCameraClient:448",
+    "line": 497,
+    "in_function": "updateChase",
+    "via": "wrapper chaseEvents()",
+    "name": "FeelLandStrength",
+    "receiver_path": null
+   },
+   {
+    "receiver": "vehicle",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "DrivingCameraClient:445",
+    "line": 497,
+    "in_function": "updateChase",
+    "via": "wrapper chaseEvents()",
+    "name": "FeelLandRevision",
+    "receiver_path": null
+   },
+   {
+    "receiver": "vehicle",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "DrivingCameraClient:436",
+    "line": 497,
+    "in_function": "updateChase",
+    "via": "wrapper chaseEvents()",
+    "name": "FeelImpactStrength",
+    "receiver_path": null
+   },
+   {
+    "receiver": "vehicle",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "DrivingCameraClient:433",
+    "line": 497,
+    "in_function": "updateChase",
+    "via": "wrapper chaseEvents()",
+    "name": "FeelImpactRevision",
+    "receiver_path": null
+   },
+   {
+    "receiver": "tools",
+    "receiver_path": "ReplicatedStorage.Config.Development.ClientTools",
+    "receiver_kind": "config",
+    "line": 653,
+    "in_function": "trailerToolsEnabled",
+    "name": "TrailerVehicleCameraEnabled"
+   },
+   {
+    "receiver": "ownedCamera",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "line": 769,
+    "in_function": "Controller.Stop",
+    "name": "DrivingCameraOwner"
+   }
+  ],
+  "writes": [
+   {
+    "receiver": "cam",
+    "receiver_kind": "other",
+    "value": {
+     "expr": "CHASE_OWNER"
+    },
+    "wrapper_defined": "DrivingCameraClient:201",
+    "line": 473,
+    "in_function": "updateChase",
+    "via": "wrapper takeScriptedCamera()",
+    "name": "DrivingCameraOwner",
+    "receiver_path": null
+   },
+   {
+    "receiver": "cam",
+    "receiver_kind": "other",
+    "value": true,
+    "wrapper_defined": "DrivingCameraClient:200",
+    "line": 473,
+    "in_function": "updateChase",
+    "via": "wrapper takeScriptedCamera()",
+    "name": "DrivingCameraManaged",
+    "receiver_path": null
+   },
+   {
+    "receiver": "cam",
+    "receiver_kind": "other",
+    "value": {
+     "expr": "currentFov"
+    },
+    "wrapper_defined": "DrivingCameraClient:125",
+    "line": 613,
+    "in_function": "updateChase",
+    "via": "wrapper publishDebug()",
+    "name": "CameraCurrentFov",
+    "receiver_path": null
+   },
+   {
+    "receiver": "cam",
+    "receiver_kind": "other",
+    "value": {
+     "expr": "targetFov"
+    },
+    "wrapper_defined": "DrivingCameraClient:124",
+    "line": 613,
+    "in_function": "updateChase",
+    "via": "wrapper publishDebug()",
+    "name": "CameraTargetFov",
+    "receiver_path": null
+   },
+   {
+    "receiver": "cam",
+    "receiver_kind": "other",
+    "value": {
+     "expr": "currentDistance"
+    },
+    "wrapper_defined": "DrivingCameraClient:123",
+    "line": 613,
+    "in_function": "updateChase",
+    "via": "wrapper publishDebug()",
+    "name": "CameraCurrentDistance",
+    "receiver_path": null
+   },
+   {
+    "receiver": "cam",
+    "receiver_kind": "other",
+    "value": {
+     "expr": "targetDistance"
+    },
+    "wrapper_defined": "DrivingCameraClient:122",
+    "line": 613,
+    "in_function": "updateChase",
+    "via": "wrapper publishDebug()",
+    "name": "CameraTargetDistance",
+    "receiver_path": null
+   },
+   {
+    "receiver": "cam",
+    "receiver_kind": "other",
+    "value": {
+     "expr": "speed"
+    },
+    "wrapper_defined": "DrivingCameraClient:121",
+    "line": 613,
+    "in_function": "updateChase",
+    "via": "wrapper publishDebug()",
+    "name": "CameraSpeedMph",
+    "receiver_path": null
+   },
+   {
+    "receiver": "cam",
+    "receiver_kind": "other",
+    "value": {
+     "expr": "chaseMode and CHASE_OWNER or OWNER"
+    },
+    "wrapper_defined": "DrivingCameraClient:120",
+    "line": 613,
+    "in_function": "updateChase",
+    "via": "wrapper publishDebug()",
+    "name": "CameraMode",
+    "receiver_path": null
+   },
+   {
+    "receiver": "cam",
+    "receiver_kind": "other",
+    "value": null,
+    "wrapper_defined": "DrivingCameraClient:115",
+    "line": 613,
+    "in_function": "updateChase",
+    "via": "wrapper publishDebug()",
+    "receiver_path": null,
+    "name": "CameraMode"
+   },
+   {
+    "receiver": "cam",
+    "receiver_kind": "other",
+    "value": null,
+    "wrapper_defined": "DrivingCameraClient:115",
+    "line": 613,
+    "in_function": "updateChase",
+    "via": "wrapper publishDebug()",
+    "receiver_path": null,
+    "name": "CameraSpeedMph"
+   },
+   {
+    "receiver": "cam",
+    "receiver_kind": "other",
+    "value": null,
+    "wrapper_defined": "DrivingCameraClient:115",
+    "line": 613,
+    "in_function": "updateChase",
+    "via": "wrapper publishDebug()",
+    "receiver_path": null,
+    "name": "CameraTargetDistance"
+   },
+   {
+    "receiver": "cam",
+    "receiver_kind": "other",
+    "value": null,
+    "wrapper_defined": "DrivingCameraClient:115",
+    "line": 613,
+    "in_function": "updateChase",
+    "via": "wrapper publishDebug()",
+    "receiver_path": null,
+    "name": "CameraCurrentDistance"
+   },
+   {
+    "receiver": "cam",
+    "receiver_kind": "other",
+    "value": null,
+    "wrapper_defined": "DrivingCameraClient:115",
+    "line": 613,
+    "in_function": "updateChase",
+    "via": "wrapper publishDebug()",
+    "receiver_path": null,
+    "name": "CameraTargetFov"
+   },
+   {
+    "receiver": "cam",
+    "receiver_kind": "other",
+    "value": null,
+    "wrapper_defined": "DrivingCameraClient:115",
+    "line": 613,
+    "in_function": "updateChase",
+    "via": "wrapper publishDebug()",
+    "receiver_path": null,
+    "name": "CameraCurrentFov"
+   },
+   {
+    "receiver": "ownedCamera",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "value": null,
+    "line": 626,
+    "in_function": "suspend",
+    "name": "DrivingCameraManaged"
+   },
+   {
+    "receiver": "ownedCamera",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "value": null,
+    "line": 627,
+    "in_function": "suspend",
+    "name": "DrivingCameraOwner"
+   },
+   {
+    "receiver": "cam",
+    "receiver_kind": "other",
+    "value": {
+     "expr": "CHASE_OWNER"
+    },
+    "wrapper_defined": "DrivingCameraClient:201",
+    "line": 640,
+    "in_function": "resume",
+    "via": "wrapper takeScriptedCamera()",
+    "name": "DrivingCameraOwner",
+    "receiver_path": null
+   },
+   {
+    "receiver": "cam",
+    "receiver_kind": "other",
+    "value": true,
+    "wrapper_defined": "DrivingCameraClient:200",
+    "line": 640,
+    "in_function": "resume",
+    "via": "wrapper takeScriptedCamera()",
+    "name": "DrivingCameraManaged",
+    "receiver_path": null
+   },
+   {
+    "receiver": "cam",
+    "receiver_kind": "other",
+    "value": {
+     "expr": "OWNER"
+    },
+    "wrapper_defined": "DrivingCameraClient:167",
+    "line": 642,
+    "in_function": "resume",
+    "via": "wrapper takeDefaultCamera()",
+    "name": "DrivingCameraOwner",
+    "receiver_path": null
+   },
+   {
+    "receiver": "cam",
+    "receiver_kind": "other",
+    "value": true,
+    "wrapper_defined": "DrivingCameraClient:166",
+    "line": 642,
+    "in_function": "resume",
+    "via": "wrapper takeDefaultCamera()",
+    "name": "DrivingCameraManaged",
+    "receiver_path": null
+   },
+   {
+    "receiver": "cam",
+    "receiver_kind": "other",
+    "value": {
+     "expr": "OWNER"
+    },
+    "wrapper_defined": "DrivingCameraClient:167",
+    "line": 684,
+    "in_function": "update",
+    "via": "wrapper takeDefaultCamera()",
+    "name": "DrivingCameraOwner",
+    "receiver_path": null
+   },
+   {
+    "receiver": "cam",
+    "receiver_kind": "other",
+    "value": true,
+    "wrapper_defined": "DrivingCameraClient:166",
+    "line": 684,
+    "in_function": "update",
+    "via": "wrapper takeDefaultCamera()",
+    "name": "DrivingCameraManaged",
+    "receiver_path": null
+   },
+   {
+    "receiver": "cam",
+    "receiver_kind": "other",
+    "value": {
+     "expr": "currentFov"
+    },
+    "wrapper_defined": "DrivingCameraClient:125",
+    "line": 714,
+    "in_function": "update",
+    "via": "wrapper publishDebug()",
+    "name": "CameraCurrentFov",
+    "receiver_path": null
+   },
+   {
+    "receiver": "cam",
+    "receiver_kind": "other",
+    "value": {
+     "expr": "targetFov"
+    },
+    "wrapper_defined": "DrivingCameraClient:124",
+    "line": 714,
+    "in_function": "update",
+    "via": "wrapper publishDebug()",
+    "name": "CameraTargetFov",
+    "receiver_path": null
+   },
+   {
+    "receiver": "cam",
+    "receiver_kind": "other",
+    "value": {
+     "expr": "currentDistance"
+    },
+    "wrapper_defined": "DrivingCameraClient:123",
+    "line": 714,
+    "in_function": "update",
+    "via": "wrapper publishDebug()",
+    "name": "CameraCurrentDistance",
+    "receiver_path": null
+   },
+   {
+    "receiver": "cam",
+    "receiver_kind": "other",
+    "value": {
+     "expr": "targetDistance"
+    },
+    "wrapper_defined": "DrivingCameraClient:122",
+    "line": 714,
+    "in_function": "update",
+    "via": "wrapper publishDebug()",
+    "name": "CameraTargetDistance",
+    "receiver_path": null
+   },
+   {
+    "receiver": "cam",
+    "receiver_kind": "other",
+    "value": {
+     "expr": "speed"
+    },
+    "wrapper_defined": "DrivingCameraClient:121",
+    "line": 714,
+    "in_function": "update",
+    "via": "wrapper publishDebug()",
+    "name": "CameraSpeedMph",
+    "receiver_path": null
+   },
+   {
+    "receiver": "cam",
+    "receiver_kind": "other",
+    "value": {
+     "expr": "chaseMode and CHASE_OWNER or OWNER"
+    },
+    "wrapper_defined": "DrivingCameraClient:120",
+    "line": 714,
+    "in_function": "update",
+    "via": "wrapper publishDebug()",
+    "name": "CameraMode",
+    "receiver_path": null
+   },
+   {
+    "receiver": "cam",
+    "receiver_kind": "other",
+    "value": null,
+    "wrapper_defined": "DrivingCameraClient:115",
+    "line": 714,
+    "in_function": "update",
+    "via": "wrapper publishDebug()",
+    "receiver_path": null,
+    "name": "CameraMode"
+   },
+   {
+    "receiver": "cam",
+    "receiver_kind": "other",
+    "value": null,
+    "wrapper_defined": "DrivingCameraClient:115",
+    "line": 714,
+    "in_function": "update",
+    "via": "wrapper publishDebug()",
+    "receiver_path": null,
+    "name": "CameraSpeedMph"
+   },
+   {
+    "receiver": "cam",
+    "receiver_kind": "other",
+    "value": null,
+    "wrapper_defined": "DrivingCameraClient:115",
+    "line": 714,
+    "in_function": "update",
+    "via": "wrapper publishDebug()",
+    "receiver_path": null,
+    "name": "CameraTargetDistance"
+   },
+   {
+    "receiver": "cam",
+    "receiver_kind": "other",
+    "value": null,
+    "wrapper_defined": "DrivingCameraClient:115",
+    "line": 714,
+    "in_function": "update",
+    "via": "wrapper publishDebug()",
+    "receiver_path": null,
+    "name": "CameraCurrentDistance"
+   },
+   {
+    "receiver": "cam",
+    "receiver_kind": "other",
+    "value": null,
+    "wrapper_defined": "DrivingCameraClient:115",
+    "line": 714,
+    "in_function": "update",
+    "via": "wrapper publishDebug()",
+    "receiver_path": null,
+    "name": "CameraTargetFov"
+   },
+   {
+    "receiver": "cam",
+    "receiver_kind": "other",
+    "value": null,
+    "wrapper_defined": "DrivingCameraClient:115",
+    "line": 714,
+    "in_function": "update",
+    "via": "wrapper publishDebug()",
+    "receiver_path": null,
+    "name": "CameraCurrentFov"
+   },
+   {
+    "receiver": "cam",
+    "receiver_kind": "other",
+    "value": {
+     "expr": "CHASE_OWNER"
+    },
+    "wrapper_defined": "DrivingCameraClient:201",
+    "line": 745,
+    "in_function": "Controller.Start",
+    "via": "wrapper takeScriptedCamera()",
+    "name": "DrivingCameraOwner",
+    "receiver_path": null
+   },
+   {
+    "receiver": "cam",
+    "receiver_kind": "other",
+    "value": true,
+    "wrapper_defined": "DrivingCameraClient:200",
+    "line": 745,
+    "in_function": "Controller.Start",
+    "via": "wrapper takeScriptedCamera()",
+    "name": "DrivingCameraManaged",
+    "receiver_path": null
+   },
+   {
+    "receiver": "cam",
+    "receiver_kind": "other",
+    "value": {
+     "expr": "OWNER"
+    },
+    "wrapper_defined": "DrivingCameraClient:167",
+    "line": 750,
+    "in_function": "Controller.Start",
+    "via": "wrapper takeDefaultCamera()",
+    "name": "DrivingCameraOwner",
+    "receiver_path": null
+   },
+   {
+    "receiver": "cam",
+    "receiver_kind": "other",
+    "value": true,
+    "wrapper_defined": "DrivingCameraClient:166",
+    "line": 750,
+    "in_function": "Controller.Start",
+    "via": "wrapper takeDefaultCamera()",
+    "name": "DrivingCameraManaged",
+    "receiver_path": null
+   },
+   {
+    "receiver": "ownedCamera",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "value": null,
+    "line": 771,
+    "in_function": "Controller.Stop",
+    "name": "DrivingCameraManaged"
+   },
+   {
+    "receiver": "ownedCamera",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "value": null,
+    "line": 772,
+    "in_function": "Controller.Stop",
+    "name": "DrivingCameraOwner"
+   },
+   {
+    "receiver": "ownedCamera",
+    "receiver_kind": "other",
+    "value": null,
+    "wrapper_defined": "DrivingCameraClient:110",
+    "line": 773,
+    "in_function": "Controller.Stop",
+    "via": "wrapper clearDebug()",
+    "receiver_path": null,
+    "name": "CameraMode"
+   },
+   {
+    "receiver": "ownedCamera",
+    "receiver_kind": "other",
+    "value": null,
+    "wrapper_defined": "DrivingCameraClient:110",
+    "line": 773,
+    "in_function": "Controller.Stop",
+    "via": "wrapper clearDebug()",
+    "receiver_path": null,
+    "name": "CameraSpeedMph"
+   },
+   {
+    "receiver": "ownedCamera",
+    "receiver_kind": "other",
+    "value": null,
+    "wrapper_defined": "DrivingCameraClient:110",
+    "line": 773,
+    "in_function": "Controller.Stop",
+    "via": "wrapper clearDebug()",
+    "receiver_path": null,
+    "name": "CameraTargetDistance"
+   },
+   {
+    "receiver": "ownedCamera",
+    "receiver_kind": "other",
+    "value": null,
+    "wrapper_defined": "DrivingCameraClient:110",
+    "line": 773,
+    "in_function": "Controller.Stop",
+    "via": "wrapper clearDebug()",
+    "receiver_path": null,
+    "name": "CameraCurrentDistance"
+   },
+   {
+    "receiver": "ownedCamera",
+    "receiver_kind": "other",
+    "value": null,
+    "wrapper_defined": "DrivingCameraClient:110",
+    "line": 773,
+    "in_function": "Controller.Stop",
+    "via": "wrapper clearDebug()",
+    "receiver_path": null,
+    "name": "CameraTargetFov"
+   },
+   {
+    "receiver": "ownedCamera",
+    "receiver_kind": "other",
+    "value": null,
+    "wrapper_defined": "DrivingCameraClient:110",
+    "line": 773,
+    "in_function": "Controller.Stop",
+    "via": "wrapper clearDebug()",
+    "receiver_path": null,
+    "name": "CameraCurrentFov"
+   }
+  ],
+  "listens": [
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "line": 668,
+    "in_function": "connectCompatibilityKeys",
+    "name": "ApplyInitialLookAngle",
+    "via": "literal list"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "line": 668,
+    "in_function": "connectCompatibilityKeys",
+    "name": "DefaultPitchDegrees",
+    "via": "literal list"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "line": 668,
+    "in_function": "connectCompatibilityKeys",
+    "name": "DefaultYawDegrees",
+    "via": "literal list"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "line": 668,
+    "in_function": "connectCompatibilityKeys",
+    "name": "DefaultHeightStuds",
+    "via": "literal list"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "line": 668,
+    "in_function": "connectCompatibilityKeys",
+    "name": "LookAheadStuds",
+    "via": "literal list"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "line": 668,
+    "in_function": "connectCompatibilityKeys",
+    "name": "LookTargetHeightStuds",
+    "via": "literal list"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "line": 668,
+    "in_function": "connectCompatibilityKeys",
+    "name": "InitialLookApplyFrames",
+    "via": "literal list"
+   }
+  ]
+ },
+ "player_attribute_writes": [],
+ "screenguis": {
+  "created": [
+   {
+    "variable": "gui",
+    "class": "ScreenGui",
+    "line": 366,
+    "factory": null,
+    "adopts_existing": false,
+    "Name": "DrivingSpeedEffect",
+    "DisplayOrder": -10,
+    "ResetOnSpawn": false,
+    "IgnoreGuiInset": true,
+    "Enabled": false,
+    "Parent": {
+     "expr": "playerGui"
+    },
+    "enabled_writes": [
+     {
+      "property": "Enabled",
+      "value": false,
+      "line": 371
+     }
+    ],
+    "property_lines": {
+     "Name": 367,
+     "IgnoreGuiInset": 368,
+     "ResetOnSpawn": 369,
+     "DisplayOrder": 370,
+     "Enabled": 371,
+     "Parent": 399
+    }
+   }
+  ],
+  "enabled_writes": [
+   {
+    "receiver": "gui",
+    "receiver_path": null,
+    "value": false,
+    "screengui_like": "yes",
+    "reason": "created here as ScreenGui",
+    "line": 371,
+    "in_function": "buildSpeedLines",
+    "screengui_name": "DrivingSpeedEffect"
+   },
+   {
+    "receiver": "speedLines.Gui",
+    "receiver_path": null,
+    "value": false,
+    "screengui_like": "unknown",
+    "reason": "",
+    "line": 409,
+    "in_function": "updateSpeedLines"
+   },
+   {
+    "receiver": "speedLines.Gui",
+    "receiver_path": null,
+    "value": true,
+    "screengui_like": "unknown",
+    "reason": "",
+    "line": 413,
+    "in_function": "updateSpeedLines"
+   },
+   {
+    "receiver": "speedLines.Gui",
+    "receiver_path": null,
+    "value": false,
+    "screengui_like": "unknown",
+    "reason": "",
+    "line": 623,
+    "in_function": "suspend"
+   }
+  ]
+ },
+ "names": {
+  "assigned": [
+   {
+    "via": "property",
+    "receiver": "gui",
+    "class": "ScreenGui",
+    "line": 367,
+    "in_function": "buildSpeedLines",
+    "name": "DrivingSpeedEffect"
+   },
+   {
+    "via": "property",
+    "receiver": "group",
+    "class": "CanvasGroup",
+    "line": 373,
+    "in_function": "buildSpeedLines",
+    "name": "Lines"
+   },
+   {
+    "via": "property",
+    "receiver": "line",
+    "class": "Frame",
+    "line": 387,
+    "in_function": "buildSpeedLines",
+    "name": "Line"
+   }
+  ],
+  "looked_up": [
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 15,
+    "name": "Modules"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\")",
+    "receiver_path": "ReplicatedStorage.Modules",
+    "root": "ReplicatedStorage",
+    "line": 15,
+    "name": "Core"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Core\")",
+    "receiver_path": "ReplicatedStorage.Modules.Core",
+    "root": "ReplicatedStorage",
+    "line": 15,
+    "name": "CameraService"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 35,
+    "in_function": "resolveFolder",
+    "name": "Config"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 36,
+    "in_function": "resolveFolder",
+    "name": "Config"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 37,
+    "in_function": "resolveFolder",
+    "name": "Config"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\")",
+    "receiver_path": "ReplicatedStorage.Config",
+    "root": "ReplicatedStorage",
+    "line": 37,
+    "in_function": "resolveFolder",
+    "name": "Vehicles"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\"):WaitForChild(\"Vehicles\")",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles",
+    "root": "ReplicatedStorage",
+    "line": 37,
+    "in_function": "resolveFolder",
+    "name": "Camera"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "ReplicatedStorage",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 651,
+    "in_function": "trailerToolsEnabled",
+    "name": "Config"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "ReplicatedStorage.Config",
+    "receiver_path": "ReplicatedStorage.Config",
+    "root": "ReplicatedStorage",
+    "line": 651,
+    "in_function": "trailerToolsEnabled",
+    "name": "Development"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "development",
+    "receiver_path": "ReplicatedStorage.Config.Development",
+    "root": "ReplicatedStorage",
+    "line": 652,
+    "in_function": "trailerToolsEnabled",
+    "name": "ClientTools"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "newContext.Vehicle",
+    "root": null,
+    "recursive": true,
+    "wrapper_defined": "DrivingCameraClient:86",
+    "line": 725,
+    "in_function": "Controller.Start",
+    "via": "wrapper resolveSubject()",
+    "name": "DriverSeat",
+    "receiver_path": null,
+    "receiver_kind": "vehicle?"
+   }
+  ],
+  "text_compared": []
+ },
+ "run_service": {
+  "render_steps": [
+   {
+    "method": "BindToRenderStep",
+    "priority_expr": "Enum.RenderPriority.Camera.Value + 1",
+    "priority": 201,
+    "callback": "updateChase",
+    "line": 748,
+    "in_function": "Controller.Start",
+    "name": "VehicleCamera"
+   },
+   {
+    "method": "BindToRenderStep",
+    "priority_expr": "Enum.RenderPriority.Camera.Value - 1",
+    "priority": 199,
+    "callback": "updateInitialLook",
+    "line": 752,
+    "in_function": "Controller.Start",
+    "name": "VehicleCameraInitialFraming"
+   },
+   {
+    "method": "BindToRenderStep",
+    "priority_expr": "Enum.RenderPriority.Camera.Value + 2",
+    "priority": 202,
+    "callback": "update",
+    "line": 753,
+    "in_function": "Controller.Start",
+    "name": "VehicleCamera"
+   },
+   {
+    "method": "UnbindFromRenderStep",
+    "line": 759,
+    "in_function": "Controller.Stop",
+    "name": "VehicleCameraInitialFraming"
+   },
+   {
+    "method": "UnbindFromRenderStep",
+    "line": 760,
+    "in_function": "Controller.Stop",
+    "name": "VehicleCamera"
+   }
+  ],
+  "connects": []
+ },
+ "context_actions": [],
+ "user_input_service": {
+  "connects": [
+   {
+    "signal": "InputBegan",
+    "method": "Connect",
+    "line": 295,
+    "in_function": "connectChaseInput"
+   },
+   {
+    "signal": "InputEnded",
+    "method": "Connect",
+    "line": 311,
+    "in_function": "connectChaseInput"
+   },
+   {
+    "signal": "WindowFocusReleased",
+    "method": "Connect",
+    "line": 321,
+    "in_function": "connectChaseInput"
+   },
+   {
+    "signal": "InputChanged",
+    "method": "Connect",
+    "line": 325,
+    "in_function": "connectChaseInput"
+   },
+   {
+    "signal": "InputBegan",
+    "method": "Connect",
+    "line": 656,
+    "in_function": "connectCompatibilityKeys"
+   }
+  ],
+  "members_used": [
+   {
+    "member": "MouseBehavior",
+    "kind": "write",
+    "line": 210,
+    "in_function": "releaseMouse",
+    "value": "Enum.MouseBehavior.Default"
+   },
+   {
+    "member": "InputBegan",
+    "kind": "connect",
+    "line": 295,
+    "in_function": "connectChaseInput"
+   },
+   {
+    "member": "MouseBehavior",
+    "kind": "write",
+    "line": 300,
+    "in_function": "connectChaseInput",
+    "value": "Enum.MouseBehavior.LockCurrentPosition"
+   },
+   {
+    "member": "InputEnded",
+    "kind": "connect",
+    "line": 311,
+    "in_function": "connectChaseInput"
+   },
+   {
+    "member": "WindowFocusReleased",
+    "kind": "connect",
+    "line": 321,
+    "in_function": "connectChaseInput"
+   },
+   {
+    "member": "InputChanged",
+    "kind": "connect",
+    "line": 325,
+    "in_function": "connectChaseInput"
+   },
+   {
+    "member": "TouchEnabled",
+    "kind": "read",
+    "line": 381,
+    "in_function": "buildSpeedLines"
+   },
+   {
+    "member": "KeyboardEnabled",
+    "kind": "read",
+    "line": 381,
+    "in_function": "buildSpeedLines"
+   },
+   {
+    "member": "InputBegan",
+    "kind": "connect",
+    "line": 656,
+    "in_function": "connectCompatibilityKeys"
+   }
+  ]
+ },
+ "audio": {
+  "bridge_calls": [],
+  "ui_audio_attributes": []
+ },
+ "config": {
+  "paths": [
+   {
+    "path": "ReplicatedStorage.Config",
+    "line": 35
+   },
+   {
+    "path": "ReplicatedStorage.Config.Development",
+    "line": 651
+   },
+   {
+    "path": "ReplicatedStorage.Config.Development.ClientTools",
+    "line": 652
+   },
+   {
+    "path": "ReplicatedStorage.Config.Vehicles",
+    "line": 37
+   },
+   {
+    "path": "ReplicatedStorage.Config.Vehicles.Camera",
+    "line": 38
+   }
+  ],
+  "attribute_reads": [
+   {
+    "receiver": "tools",
+    "receiver_path": "ReplicatedStorage.Config.Development.ClientTools",
+    "receiver_kind": "config",
+    "line": 653,
+    "in_function": "trailerToolsEnabled",
+    "name": "TrailerVehicleCameraEnabled",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "line": 668,
+    "in_function": "connectCompatibilityKeys",
+    "name": "ApplyInitialLookAngle",
+    "via": "literal list",
+    "access": "listen"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "line": 668,
+    "in_function": "connectCompatibilityKeys",
+    "name": "DefaultPitchDegrees",
+    "via": "literal list",
+    "access": "listen"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "line": 668,
+    "in_function": "connectCompatibilityKeys",
+    "name": "DefaultYawDegrees",
+    "via": "literal list",
+    "access": "listen"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "line": 668,
+    "in_function": "connectCompatibilityKeys",
+    "name": "DefaultHeightStuds",
+    "via": "literal list",
+    "access": "listen"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "line": 668,
+    "in_function": "connectCompatibilityKeys",
+    "name": "LookAheadStuds",
+    "via": "literal list",
+    "access": "listen"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "line": 668,
+    "in_function": "connectCompatibilityKeys",
+    "name": "LookTargetHeightStuds",
+    "via": "literal list",
+    "access": "listen"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "line": 668,
+    "in_function": "connectCompatibilityKeys",
+    "name": "InitialLookApplyFrames",
+    "via": "literal list",
+    "access": "listen"
+   }
+  ],
+  "child_lookups": []
+ },
+ "startergui_core": [],
+ "gui_service": [],
+ "other_services": {},
+ "service_connects": [],
+ "proximity_prompts": [],
+ "instances_created_by_class": {
+  "CanvasGroup": 1,
+  "Frame": 1,
+  "ScreenGui": 1,
+  "UIGradient": 1
+ },
+ "public_api": [
+  {
+   "name": "Start",
+   "kind": "function",
+   "params": [
+    "newContext"
+   ],
+   "line": 717
+  },
+  {
+   "name": "Stop",
+   "kind": "function",
+   "params": [],
+   "line": 757
+  }
+ ],
+ "unresolved": [],
+ "contract_file": "DrivingCameraClient.json"
+}

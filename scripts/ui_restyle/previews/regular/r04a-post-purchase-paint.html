@@ -1,0 +1,12 @@
+<!doctype html><html><head><meta charset="utf-8"><title>r04a Post-purchase Paint Vehicle page</title><script src="../shared/boot.js"></script></head><body><script>
+P.page(`
+  ${P.scene("dealer","3D SCENE &middot; THE VEHICLE JUST BOUGHT")}<div class="scrim-garage"></div>
+  ${P.title("PAINT VEHICLE")}
+  <div class="tabs"><div class="t-tab c-2 shadow" style="height:46px;display:flex;align-items:center">ZEPHYR &middot; PURCHASED &middot; CHOOSE ITS COLOURS</div></div>
+  ${P.status({garage:"2 / 2",plus:1,rank:1,cash:"$850,000"})}
+  ${P.paintPanel(["PRIMARY","SECONDARY","DETAIL"],0,214)}
+  ${P.statpanel({name:"ZEPHYR",badge:"<span>D</span><span>390</span>",sub:[["EXOTIC &middot; PERFORMANCE",""]],
+     stats:[["SPEED",77],["ACCEL",74],["HANDLING",74],["DRIFT",72],["BRAKING",73],["BOOST",72]]})}
+  ${P.btnrow([P.btn("CUSTOMISE","wrench","main")])}
+`);
+</script></body></html>

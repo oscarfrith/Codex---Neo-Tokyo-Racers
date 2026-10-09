@@ -1,6 +1,8 @@
 # UI restyle (Pulse Racers): working folder
 
-**Status, 2026-10-09:** design phase complete; recommendations put to Oscar; awaiting his decisions. Nothing is installed. No game script, config or asset in Studio has been changed, and no build is approved.
+**Status, 2026-10-09:** Oscar approved the plan ("happy with all recommendations"). `CONTRACT.md` is the binding programme contract. **Phase 0 has been run and waits at its gate** for Oscar (results: `phase0/RESULTS.md`; preview images were converted to JPG after rendering). Nothing is installed: no game script, config or asset in Studio has been changed. Phase 0 opens the Studio no-save sandbox for its Play sessions (one Edit attribute write, restored after each session) and creates only transient Play-session instances.
+
+Decided: Pulse is a second UI set beside Classic; Classic stays installed as the backup and is removed once Pulse is confirmed complete (Phase 10, on Oscar's go); typeface Barlow; no live kill switch or preview list (unreleased prototype). Oscar's sign-off blocks at Phases 0, 1, 7, 8, 9 and 10.
 
 ## What Oscar asked for (2026-10-08)
 
@@ -10,15 +12,30 @@ Build the UI shown in the previews, improved to scale and align better and to be
 
 | Path | What it is |
 |---|---|
-| `../../docs/design/pulse-racers-ui-style-sheet.md` | The visual target. Design, not approved. It has known errors (listed at its top). |
+| `CONTRACT.md` | **The programme contract.** Switch, kit, scaling, type, budgets, core UI, phases 0 to 10, delivery and test route. Supersedes `design/recommended-plan.md`. |
+| `../../docs/design/pulse-racers-ui-style-sheet.md` | The visual target, v2. Awaiting Oscar's approval at the Phase 0 gate. Points here for mechanics. |
 | `../../assets/ui/mockups/pulse_restyle/` | The ten mockup frames Oscar reviewed. |
 | `audit/*.md` | Read-only audit of every UI owner in live v3 source, one file per group, with line references. Also project delivery rules, Roblox platform research and fonts/assets. `critic.md` lists gaps, contradictions and open questions. |
 | `audit/structured-summaries.json` | The same audit as short structured summaries (defects, risks, seams) per group. |
 | `design/proposal-*.md` | Three independent build proposals (safest backup, most cohesive, quality and speed). |
 | `design/review-*.md` | Three adversarial reviews of the proposals (rules and regression, platform and performance, completeness and UX). |
-| `design/recommended-plan.md` | The synthesised plan: switch, kit, scaling, budgets, phases, delivery route. **Read with `fact-check.md`**, which lists ten corrections not yet folded in. |
-| `design/fact-check.md` | The plan's key claims checked against live v3 source: 20 confirmed, 3 partly, 1 wrong, plus ten plan errors to fix when the contract is written. |
+| `design/recommended-plan.md` | The synthesised plan as put to Oscar. **Superseded by `CONTRACT.md`**; kept as the record. Do not build from it. |
+| `design/fact-check.md` | The plan's key claims checked against live v3 source. Its ten corrections are folded into the contract (appendix D). |
 | `workflows/*.js` | The two agent workflows that produced the audit and the design pass. |
+
+Added by Phase 0:
+
+| Path | What it is |
+|---|---|
+| `classic/` | Classic source record: every script source, the manifest with hashes and the typed `Config.UI` dump. The proof baseline that Classic is unchanged. |
+| `engine/` | The programme's installer engine and its mock tests. Not run against Studio until Phase 1. |
+| `probes/` | Read-only client probes (instance census, churn, writes, layout lint, performance sample). |
+| `spike/` | The throwaway Play-only harness for the unverified engine behaviours, and its results. |
+| `previews/` | Preview frames for screens the mockups do not cover and for each phone composition. |
+| `assets/` | Offline asset generators, the contact sheet and, after upload, `uploaded_assets.json`. |
+| `tools/` | Build and capture helpers (local source server, contract extractor). |
+
+Each later phase adds one sub-folder with its own `CONTRACT.md`, before and after sources, build script, installer outputs and `verification.json`.
 
 Paths inside the notes point at a session scratch folder; the files were copied here unchanged.
 
@@ -40,6 +57,6 @@ Play sessions in v3 used Oscar's real profile: Cash rose by $13 from a short dri
 
 ## To resume
 
-1. Get Oscar's answers to the decisions in `design/recommended-plan.md` (approach and phases, look and uploads, Roblox core UI and navigation, test mode). Do not build before he answers.
-2. Fold the ten fact-check corrections into the plan, correct the style sheet, and write `CONTRACT.md` here.
-3. Phase 0: rendering spike, preview frames for the screens the mockups do not cover, asset contact sheet. Nothing installed.
+1. Read `CONTRACT.md` (sections 0, 9 and 10 first), then `docs/00_START_HERE.md` for the current step.
+2. Finish Phase 0: spike results, Classic record taken twice, baselines, preview frames, contact sheet. Check the sandbox attribute is back at its earlier value.
+3. Phase 0 gate: Oscar approves style sheet v2, the previews and the asset batch. Phase 1 (High-Risk) does not start before that.

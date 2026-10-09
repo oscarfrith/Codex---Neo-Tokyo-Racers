@@ -1,0 +1,1027 @@
+{
+ "script": "ReplicatedFirst.Loading.InitialLoadingAndStartScreenClient",
+ "class": "LocalScript",
+ "source_file": "classic/sources/ReplicatedFirst.Loading.InitialLoadingAndStartScreenClient.lua",
+ "source_lines": 329,
+ "included_because": [
+  "under ReplicatedFirst.Loading"
+ ],
+ "requires": [
+  {
+   "expr": "game:GetService(\"ReplicatedFirst\"):WaitForChild(\"Loading\"):WaitForChild(\"LoadingTransitionRuntime\")",
+   "as": "Runtime",
+   "line": 21,
+   "target": "ReplicatedFirst.Loading.LoadingTransitionRuntime"
+  },
+  {
+   "expr": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"UI\"):WaitForChild(\"RacingUIComponents\")",
+   "as": "UI",
+   "line": 22,
+   "target": "ReplicatedStorage.Modules.Game.UI.RacingUIComponents"
+  }
+ ],
+ "remotes": {
+  "calls": [
+   {
+    "method": "InvokeServer",
+    "receiver": "remote",
+    "arg_count": 1,
+    "line": 316,
+    "remote": "ReplicatedStorage.Remotes.UI.FreeRoamHudTeleportInvoke",
+    "action": "TeleportToDealership"
+   }
+  ],
+  "listens": []
+ },
+ "bindables": {
+  "fires": [
+   {
+    "receiver": "exited",
+    "created_here": false,
+    "lookup": "Players.LocalPlayer.PlayerScripts.Runtime.UI",
+    "arg_count": 0,
+    "line": 319,
+    "name": "FreeRoamVehicleExited"
+   }
+  ],
+  "connects": [],
+  "invokes": [],
+  "handlers": [],
+  "created": [],
+  "module_signal_fires": []
+ },
+ "attributes": {
+  "reads": [
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.LoadingSystem",
+    "receiver_kind": "config",
+    "line": 15,
+    "name": "StartScreenEnabled"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.LoadingSystem",
+    "receiver_kind": "config",
+    "line": 26,
+    "name": "TimeoutSeconds"
+   },
+   {
+    "receiver": "artwork",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "line": 30,
+    "name": "StartScreenEligible"
+   },
+   {
+    "receiver": "artwork",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "line": 31,
+    "name": "Enabled"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.LoadingSystem",
+    "receiver_kind": "config",
+    "line": 60,
+    "name": "StartScreenLoadTimeoutSeconds"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.LoadingSystem",
+    "receiver_kind": "config",
+    "line": 68,
+    "name": "StartScreenLoadTimeoutSeconds"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.LoadingSystem",
+    "receiver_kind": "config",
+    "line": 89,
+    "name": "MinimumVisibleSeconds"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.LoadingSystem",
+    "receiver_kind": "config",
+    "line": 90,
+    "name": "CompletionFillSeconds"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.LoadingSystem",
+    "receiver_kind": "config",
+    "line": 109,
+    "name": "ReadyHoldSeconds"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.LoadingSystem",
+    "receiver_kind": "config",
+    "line": 161,
+    "name": "StartScreenPlayText"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.LoadingSystem",
+    "receiver_kind": "config",
+    "line": 162,
+    "name": "StartScreenShopText"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.LoadingSystem",
+    "receiver_kind": "config",
+    "line": 216,
+    "name": "StartScreenPlayIconAssetId"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.LoadingSystem",
+    "receiver_kind": "config",
+    "line": 217,
+    "name": "StartScreenShopIconAssetId"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.LoadingSystem",
+    "receiver_kind": "config",
+    "wrapper_defined": "InitialLoadingAndStartScreenClient:232",
+    "line": 249,
+    "in_function": "updateLayout",
+    "via": "wrapper positionMenu()",
+    "name": "StartScreenButtonYScalePortrait"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.LoadingSystem",
+    "receiver_kind": "config",
+    "wrapper_defined": "InitialLoadingAndStartScreenClient:232",
+    "line": 256,
+    "in_function": "updateLayout",
+    "via": "wrapper positionMenu()",
+    "name": "StartScreenButtonYScaleLandscapePhone"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.LoadingSystem",
+    "receiver_kind": "config",
+    "wrapper_defined": "InitialLoadingAndStartScreenClient:232",
+    "line": 263,
+    "in_function": "updateLayout",
+    "via": "wrapper positionMenu()",
+    "name": "StartScreenButtonYScalePortrait"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.LoadingSystem",
+    "receiver_kind": "config",
+    "wrapper_defined": "InitialLoadingAndStartScreenClient:232",
+    "line": 270,
+    "in_function": "updateLayout",
+    "via": "wrapper positionMenu()",
+    "name": "StartScreenButtonYScaleDesktop"
+   }
+  ],
+  "writes": [
+   {
+    "receiver": "artwork",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "value": false,
+    "line": 33,
+    "name": "Enabled"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.LoadingSystem",
+    "receiver_kind": "config",
+    "value": 86400,
+    "line": 36,
+    "name": "TimeoutSeconds"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.LoadingSystem",
+    "receiver_kind": "config",
+    "value": {
+     "expr": "originalTimeout"
+    },
+    "line": 40,
+    "name": "TimeoutSeconds"
+   },
+   {
+    "receiver": "artwork",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "value": {
+     "expr": "snapshot.Value"
+    },
+    "line": 43,
+    "name": "Enabled"
+   },
+   {
+    "receiver": "artwork",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "value": null,
+    "line": 44,
+    "name": "Enabled"
+   },
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "value": true,
+    "line": 52,
+    "name": "StartScreenActive"
+   },
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "value": false,
+    "line": 82,
+    "name": "StartScreenActive"
+   },
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "value": false,
+    "line": 297,
+    "in_function": "release",
+    "name": "StartScreenActive"
+   }
+  ],
+  "listens": [
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.LoadingSystem",
+    "receiver_kind": "config",
+    "line": 279,
+    "name": "StartScreenButtonYScaleDesktop",
+    "via": "literal list"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.LoadingSystem",
+    "receiver_kind": "config",
+    "line": 279,
+    "name": "StartScreenButtonYScaleLandscapePhone",
+    "via": "literal list"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.LoadingSystem",
+    "receiver_kind": "config",
+    "line": 279,
+    "name": "StartScreenButtonYScalePortrait",
+    "via": "literal list"
+   }
+  ]
+ },
+ "player_attribute_writes": [
+  {
+   "receiver": "player",
+   "receiver_path": "Players.LocalPlayer",
+   "receiver_kind": "player",
+   "value": true,
+   "line": 52,
+   "name": "StartScreenActive"
+  },
+  {
+   "receiver": "player",
+   "receiver_path": "Players.LocalPlayer",
+   "receiver_kind": "player",
+   "value": false,
+   "line": 82,
+   "name": "StartScreenActive"
+  },
+  {
+   "receiver": "player",
+   "receiver_path": "Players.LocalPlayer",
+   "receiver_kind": "player",
+   "value": false,
+   "line": 297,
+   "in_function": "release",
+   "name": "StartScreenActive"
+  }
+ ],
+ "screenguis": {
+  "created": [],
+  "enabled_writes": []
+ },
+ "names": {
+  "assigned": [
+   {
+    "via": "property",
+    "receiver": "overlay",
+    "class": null,
+    "line": 99,
+    "name": "StartScreenCompletionFill"
+   },
+   {
+    "via": "property",
+    "receiver": "menu",
+    "class": "Frame",
+    "line": 114,
+    "name": "StartScreenActions"
+   },
+   {
+    "via": "property",
+    "receiver": "actions",
+    "class": "Frame",
+    "line": 124,
+    "name": "Buttons"
+   },
+   {
+    "via": "table_field",
+    "callee": "Button",
+    "class": null,
+    "line": 140,
+    "name": "Play"
+   },
+   {
+    "via": "table_field",
+    "callee": "Button",
+    "class": null,
+    "line": 149,
+    "name": "Shop"
+   },
+   {
+    "via": "property",
+    "receiver": "content",
+    "class": "Frame",
+    "line": 166,
+    "in_function": "decorateButton",
+    "name": "Content"
+   },
+   {
+    "via": "property",
+    "receiver": "icon",
+    "class": "ImageLabel",
+    "line": 186,
+    "in_function": "decorateButton",
+    "name": "Icon"
+   },
+   {
+    "via": "property",
+    "receiver": "label",
+    "class": "TextLabel",
+    "line": 198,
+    "in_function": "decorateButton",
+    "name": "Label"
+   }
+  ],
+  "looked_up": [
+   {
+    "method": "WaitForChild",
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 9,
+    "name": "PlayerGui"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 10,
+    "name": "PlayerScripts"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedFirst\")",
+    "receiver_path": "ReplicatedFirst",
+    "root": "ReplicatedFirst",
+    "line": 11,
+    "name": "Loading"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 13,
+    "name": "Config"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\")",
+    "receiver_path": "ReplicatedStorage.Config",
+    "root": "ReplicatedStorage",
+    "line": 13,
+    "name": "UI"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\"):WaitForChild(\"UI\")",
+    "receiver_path": "ReplicatedStorage.Config.UI",
+    "root": "ReplicatedStorage",
+    "line": 13,
+    "name": "LoadingSystem"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "playerScripts",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts",
+    "root": "Players",
+    "line": 20,
+    "name": "Runtime"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "playerScripts:WaitForChild(\"Runtime\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime",
+    "root": "Players",
+    "line": 20,
+    "name": "UI"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedFirst\")",
+    "receiver_path": "ReplicatedFirst",
+    "root": "ReplicatedFirst",
+    "line": 21,
+    "name": "Loading"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedFirst\"):WaitForChild(\"Loading\")",
+    "receiver_path": "ReplicatedFirst.Loading",
+    "root": "ReplicatedFirst",
+    "line": 21,
+    "name": "LoadingTransitionRuntime"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 22,
+    "name": "Modules"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\")",
+    "receiver_path": "ReplicatedStorage.Modules",
+    "root": "ReplicatedStorage",
+    "line": 22,
+    "name": "Game"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game",
+    "root": "ReplicatedStorage",
+    "line": 22,
+    "name": "UI"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"UI\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game.UI",
+    "root": "ReplicatedStorage",
+    "line": 22,
+    "name": "RacingUIComponents"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 28,
+    "name": "Config"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\")",
+    "receiver_path": "ReplicatedStorage.Config",
+    "root": "ReplicatedStorage",
+    "line": 28,
+    "name": "UI"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\"):WaitForChild(\"UI\")",
+    "receiver_path": "ReplicatedStorage.Config.UI",
+    "root": "ReplicatedStorage",
+    "line": 28,
+    "name": "LoadingSystem"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\"):WaitForChild(\"UI\"):WaitForChild(\"LoadingSystem\")",
+    "receiver_path": "ReplicatedStorage.Config.UI.LoadingSystem",
+    "root": "ReplicatedStorage",
+    "line": 28,
+    "name": "Artworks"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "game:GetService(\"Workspace\")",
+    "receiver_path": "Workspace",
+    "root": "Workspace",
+    "line": 62,
+    "name": "World"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "player.Character",
+    "receiver_path": "Players.LocalPlayer.Character",
+    "root": "Players",
+    "line": 63,
+    "name": "HumanoidRootPart"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "game:GetService(\"Workspace\")",
+    "receiver_path": "Workspace",
+    "root": "Workspace",
+    "line": 66,
+    "name": "World"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "player.Character",
+    "receiver_path": "Players.LocalPlayer.Character",
+    "root": "Players",
+    "line": 67,
+    "name": "HumanoidRootPart"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "playerGui",
+    "receiver_path": "Players.LocalPlayer.PlayerGui",
+    "root": "Players",
+    "line": 78,
+    "name": "LoadingSafeContent"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "safeGui",
+    "receiver_path": "Players.LocalPlayer.PlayerGui.LoadingSafeContent",
+    "root": "Players",
+    "line": 79,
+    "name": "SafeRoot"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "safeRoot",
+    "receiver_path": "Players.LocalPlayer.PlayerGui.LoadingSafeContent.SafeRoot",
+    "root": "Players",
+    "line": 87,
+    "name": "Status"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "safeRoot",
+    "receiver_path": "Players.LocalPlayer.PlayerGui.LoadingSafeContent.SafeRoot",
+    "root": "Players",
+    "line": 88,
+    "name": "ProgressTrack"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "track",
+    "receiver_path": "Players.LocalPlayer.PlayerGui.LoadingSafeContent.SafeRoot.ProgressTrack",
+    "root": "Players",
+    "line": 96,
+    "name": "ProgressFill"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 143,
+    "via": "wrapper Components.Colour()",
+    "name": "PanelBlue",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 144,
+    "via": "wrapper Components.Colour()",
+    "name": "Telemetry",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 145,
+    "via": "wrapper Components.Colour()",
+    "name": "Telemetry",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 152,
+    "via": "wrapper Components.Colour()",
+    "name": "PanelSoft",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 153,
+    "via": "wrapper Components.Colour()",
+    "name": "ElectricBlue",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 154,
+    "via": "wrapper Components.Colour()",
+    "name": "Telemetry",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 205,
+    "in_function": "decorateButton",
+    "via": "wrapper Components.Colour()",
+    "name": "Text",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 315,
+    "name": "Remotes"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Remotes\")",
+    "receiver_path": "ReplicatedStorage.Remotes",
+    "root": "ReplicatedStorage",
+    "line": 315,
+    "name": "UI"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Remotes\"):WaitForChild(\"UI\")",
+    "receiver_path": "ReplicatedStorage.Remotes.UI",
+    "root": "ReplicatedStorage",
+    "line": 315,
+    "name": "FreeRoamHudTeleportInvoke"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "uiFolder",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime.UI",
+    "root": "Players",
+    "line": 318,
+    "name": "FreeRoamVehicleExited"
+   }
+  ],
+  "text_compared": []
+ },
+ "run_service": {
+  "render_steps": [],
+  "connects": []
+ },
+ "context_actions": [],
+ "user_input_service": {
+  "connects": [],
+  "members_used": [
+   {
+    "member": "TouchEnabled",
+    "kind": "read",
+    "line": 242,
+    "in_function": "updateLayout"
+   }
+  ]
+ },
+ "audio": {
+  "bridge_calls": [],
+  "ui_audio_attributes": []
+ },
+ "config": {
+  "paths": [
+   {
+    "path": "ReplicatedStorage.Config",
+    "line": 13
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI",
+    "line": 13
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI.LoadingSystem",
+    "line": 13
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI.LoadingSystem.Artworks",
+    "line": 28
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI.Racing.Colours",
+    "line": 143
+   }
+  ],
+  "attribute_reads": [
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.LoadingSystem",
+    "receiver_kind": "config",
+    "line": 15,
+    "name": "StartScreenEnabled",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.LoadingSystem",
+    "receiver_kind": "config",
+    "line": 26,
+    "name": "TimeoutSeconds",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.LoadingSystem",
+    "receiver_kind": "config",
+    "line": 60,
+    "name": "StartScreenLoadTimeoutSeconds",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.LoadingSystem",
+    "receiver_kind": "config",
+    "line": 68,
+    "name": "StartScreenLoadTimeoutSeconds",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.LoadingSystem",
+    "receiver_kind": "config",
+    "line": 89,
+    "name": "MinimumVisibleSeconds",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.LoadingSystem",
+    "receiver_kind": "config",
+    "line": 90,
+    "name": "CompletionFillSeconds",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.LoadingSystem",
+    "receiver_kind": "config",
+    "line": 109,
+    "name": "ReadyHoldSeconds",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.LoadingSystem",
+    "receiver_kind": "config",
+    "line": 161,
+    "name": "StartScreenPlayText",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.LoadingSystem",
+    "receiver_kind": "config",
+    "line": 162,
+    "name": "StartScreenShopText",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.LoadingSystem",
+    "receiver_kind": "config",
+    "line": 216,
+    "name": "StartScreenPlayIconAssetId",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.LoadingSystem",
+    "receiver_kind": "config",
+    "line": 217,
+    "name": "StartScreenShopIconAssetId",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.LoadingSystem",
+    "receiver_kind": "config",
+    "wrapper_defined": "InitialLoadingAndStartScreenClient:232",
+    "line": 249,
+    "in_function": "updateLayout",
+    "via": "wrapper positionMenu()",
+    "name": "StartScreenButtonYScalePortrait",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.LoadingSystem",
+    "receiver_kind": "config",
+    "wrapper_defined": "InitialLoadingAndStartScreenClient:232",
+    "line": 256,
+    "in_function": "updateLayout",
+    "via": "wrapper positionMenu()",
+    "name": "StartScreenButtonYScaleLandscapePhone",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.LoadingSystem",
+    "receiver_kind": "config",
+    "wrapper_defined": "InitialLoadingAndStartScreenClient:232",
+    "line": 263,
+    "in_function": "updateLayout",
+    "via": "wrapper positionMenu()",
+    "name": "StartScreenButtonYScalePortrait",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.LoadingSystem",
+    "receiver_kind": "config",
+    "wrapper_defined": "InitialLoadingAndStartScreenClient:232",
+    "line": 270,
+    "in_function": "updateLayout",
+    "via": "wrapper positionMenu()",
+    "name": "StartScreenButtonYScaleDesktop",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.LoadingSystem",
+    "receiver_kind": "config",
+    "value": 86400,
+    "line": 36,
+    "name": "TimeoutSeconds",
+    "access": "write"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.LoadingSystem",
+    "receiver_kind": "config",
+    "value": {
+     "expr": "originalTimeout"
+    },
+    "line": 40,
+    "name": "TimeoutSeconds",
+    "access": "write"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.LoadingSystem",
+    "receiver_kind": "config",
+    "line": 279,
+    "name": "StartScreenButtonYScaleDesktop",
+    "via": "literal list",
+    "access": "listen"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.LoadingSystem",
+    "receiver_kind": "config",
+    "line": 279,
+    "name": "StartScreenButtonYScaleLandscapePhone",
+    "via": "literal list",
+    "access": "listen"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.LoadingSystem",
+    "receiver_kind": "config",
+    "line": 279,
+    "name": "StartScreenButtonYScalePortrait",
+    "via": "literal list",
+    "access": "listen"
+   }
+  ],
+  "child_lookups": [
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 143,
+    "via": "wrapper Components.Colour()",
+    "name": "PanelBlue",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 144,
+    "via": "wrapper Components.Colour()",
+    "name": "Telemetry",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 145,
+    "via": "wrapper Components.Colour()",
+    "name": "Telemetry",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 152,
+    "via": "wrapper Components.Colour()",
+    "name": "PanelSoft",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 153,
+    "via": "wrapper Components.Colour()",
+    "name": "ElectricBlue",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 154,
+    "via": "wrapper Components.Colour()",
+    "name": "Telemetry",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 205,
+    "in_function": "decorateButton",
+    "via": "wrapper Components.Colour()",
+    "name": "Text",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   }
+  ]
+ },
+ "startergui_core": [],
+ "gui_service": [],
+ "other_services": {},
+ "service_connects": [],
+ "proximity_prompts": [],
+ "instances_created_by_class": {
+  "Frame": 3,
+  "ImageLabel": 1,
+  "TextLabel": 1,
+  "UIListLayout": 2
+ },
+ "public_api": [],
+ "unresolved": [],
+ "contract_file": "InitialLoadingAndStartScreenClient.json"
+}

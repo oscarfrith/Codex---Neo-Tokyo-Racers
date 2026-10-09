@@ -1,0 +1,107 @@
+{
+ "script": "ReplicatedStorage.Modules.Game.UI.GarageModuleCardViewModel",
+ "class": "ModuleScript",
+ "source_file": "classic/sources/ReplicatedStorage.Modules.Game.UI.GarageModuleCardViewModel.lua",
+ "source_lines": 72,
+ "included_because": [
+  "under ReplicatedStorage.Modules.Game.UI"
+ ],
+ "requires": [],
+ "remotes": {
+  "calls": [],
+  "listens": []
+ },
+ "bindables": {
+  "fires": [],
+  "connects": [],
+  "invokes": [],
+  "handlers": [],
+  "created": [],
+  "module_signal_fires": []
+ },
+ "attributes": {
+  "reads": [],
+  "writes": [],
+  "listens": []
+ },
+ "player_attribute_writes": [],
+ "screenguis": {
+  "created": [],
+  "enabled_writes": []
+ },
+ "names": {
+  "assigned": [],
+  "looked_up": [],
+  "text_compared": []
+ },
+ "run_service": {
+  "render_steps": [],
+  "connects": []
+ },
+ "context_actions": [],
+ "user_input_service": {
+  "connects": [],
+  "members_used": []
+ },
+ "audio": {
+  "bridge_calls": [],
+  "ui_audio_attributes": []
+ },
+ "config": {
+  "paths": [],
+  "attribute_reads": [],
+  "child_lookups": []
+ },
+ "startergui_core": [],
+ "gui_service": [],
+ "other_services": {},
+ "service_connects": [],
+ "proximity_prompts": [],
+ "instances_created_by_class": {},
+ "public_api": [
+  {
+   "name": "Variant",
+   "kind": "function",
+   "params": [
+    "module"
+   ],
+   "line": 6
+  },
+  {
+   "name": "Rating",
+   "kind": "function",
+   "params": [
+    "module",
+    "instance",
+    "resolver"
+   ],
+   "line": 17
+  },
+  {
+   "name": "CardText",
+   "kind": "function",
+   "params": [
+    "row"
+   ],
+   "line": 24
+  },
+  {
+   "name": "Owned",
+   "kind": "function",
+   "params": [
+    "context"
+   ],
+   "line": 31
+  },
+  {
+   "name": "Shop",
+   "kind": "function",
+   "params": [
+    "context"
+   ],
+   "line": 54
+  }
+ ],
+ "unresolved": [],
+ "contract_file": "GarageModuleCardViewModel.json"
+}

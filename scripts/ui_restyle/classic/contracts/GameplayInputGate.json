@@ -1,0 +1,148 @@
+{
+ "script": "ReplicatedStorage.Modules.Game.Vehicles.GameplayInputGate",
+ "class": "ModuleScript",
+ "source_file": "classic/sources/ReplicatedStorage.Modules.Game.Vehicles.GameplayInputGate.lua",
+ "source_lines": 133,
+ "included_because": [
+  "client script that is UI-coupled: references PlayerScripts"
+ ],
+ "requires": [
+  {
+   "expr": "game:GetService(\"ReplicatedStorage\").Modules.Game.Vehicles.MobileDriveInputState",
+   "line": 27,
+   "in_function": "mobileState",
+   "target": "ReplicatedStorage.Modules.Game.Vehicles.MobileDriveInputState"
+  },
+  {
+   "expr": "playerModule",
+   "protected": true,
+   "as": "module",
+   "line": 40,
+   "in_function": "resolveControls",
+   "target": "Players.LocalPlayer.PlayerScripts.PlayerModule"
+  }
+ ],
+ "remotes": {
+  "calls": [],
+  "listens": []
+ },
+ "bindables": {
+  "fires": [],
+  "connects": [],
+  "invokes": [],
+  "handlers": [],
+  "created": [],
+  "module_signal_fires": []
+ },
+ "attributes": {
+  "reads": [],
+  "writes": [],
+  "listens": []
+ },
+ "player_attribute_writes": [],
+ "screenguis": {
+  "created": [],
+  "enabled_writes": []
+ },
+ "names": {
+  "assigned": [],
+  "looked_up": [
+   {
+    "method": "FindFirstChild",
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 37,
+    "in_function": "resolveControls",
+    "name": "PlayerScripts"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "playerScripts",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts",
+    "root": "Players",
+    "line": 38,
+    "in_function": "resolveControls",
+    "name": "PlayerModule"
+   }
+  ],
+  "text_compared": []
+ },
+ "run_service": {
+  "render_steps": [],
+  "connects": []
+ },
+ "context_actions": [],
+ "user_input_service": {
+  "connects": [],
+  "members_used": [
+   {
+    "member": "IsKeyDown",
+    "kind": "call",
+    "line": 67,
+    "in_function": "inputsNeutral"
+   },
+   {
+    "member": "GetGamepadState",
+    "kind": "call",
+    "line": 69,
+    "in_function": "inputsNeutral"
+   }
+  ]
+ },
+ "audio": {
+  "bridge_calls": [],
+  "ui_audio_attributes": []
+ },
+ "config": {
+  "paths": [],
+  "attribute_reads": [],
+  "child_lookups": []
+ },
+ "startergui_core": [],
+ "gui_service": [],
+ "other_services": {},
+ "service_connects": [],
+ "proximity_prompts": [],
+ "instances_created_by_class": {},
+ "public_api": [
+  {
+   "name": "Acquire",
+   "kind": "function",
+   "params": [
+    "owner",
+    "generation"
+   ],
+   "line": 97
+  },
+  {
+   "name": "Release",
+   "kind": "function",
+   "params": [
+    "token",
+    "requireNeutral"
+   ],
+   "line": 107
+  },
+  {
+   "name": "IsLocked",
+   "kind": "function",
+   "params": [],
+   "line": 120
+  },
+  {
+   "name": "ResetMobileState",
+   "kind": "function",
+   "params": [],
+   "line": 124
+  },
+  {
+   "name": "ActiveCount",
+   "kind": "function",
+   "params": [],
+   "line": 128
+  }
+ ],
+ "unresolved": [],
+ "contract_file": "GameplayInputGate.json"
+}

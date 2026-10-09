@@ -1,0 +1,1562 @@
+{
+ "generated_by": "scripts/ui_restyle/tools/extract_contracts.py",
+ "meaning": "Every ScreenGui (and BillboardGui / SurfaceGui) a script creates, with the properties set on it in source, and every `.Enabled =` write whose receiver is, or may be, a ScreenGui. Values that are not literals are given as {\"expr\": source text}.",
+ "screenguis": [
+  {
+   "variable": "backgroundGui",
+   "class": "ScreenGui",
+   "line": 31,
+   "factory": "new",
+   "adopts_existing": false,
+   "Name": "LoadingBackground",
+   "DisplayOrder": {
+    "expr": "displayOrder"
+   },
+   "ResetOnSpawn": false,
+   "IgnoreGuiInset": true,
+   "ScreenInsets": {
+    "expr": "Enum.ScreenInsets.None"
+   },
+   "ZIndexBehavior": {
+    "expr": "Enum.ZIndexBehavior.Sibling"
+   },
+   "Enabled": false,
+   "Parent": {
+    "expr": "playerGui"
+   },
+   "enabled_writes": [],
+   "property_lines": {
+    "Name": 31,
+    "IgnoreGuiInset": 31,
+    "ResetOnSpawn": 31,
+    "DisplayOrder": 31,
+    "ZIndexBehavior": 31,
+    "Enabled": 31,
+    "ScreenInsets": 32
+   },
+   "script": "ReplicatedFirst.Loading.LoadingScreenView",
+   "looked_up_by": []
+  },
+  {
+   "variable": "safeGui",
+   "class": "ScreenGui",
+   "line": 40,
+   "factory": "new",
+   "adopts_existing": false,
+   "Name": "LoadingSafeContent",
+   "DisplayOrder": {
+    "expr": "displayOrder + 1"
+   },
+   "ResetOnSpawn": false,
+   "IgnoreGuiInset": true,
+   "ScreenInsets": {
+    "expr": "Enum.ScreenInsets.CoreUISafeInsets"
+   },
+   "ZIndexBehavior": {
+    "expr": "Enum.ZIndexBehavior.Sibling"
+   },
+   "Enabled": false,
+   "Parent": {
+    "expr": "playerGui"
+   },
+   "enabled_writes": [],
+   "property_lines": {
+    "Name": 40,
+    "IgnoreGuiInset": 40,
+    "ResetOnSpawn": 40,
+    "DisplayOrder": 40,
+    "ZIndexBehavior": 40,
+    "Enabled": 40,
+    "ScreenInsets": 41
+   },
+   "script": "ReplicatedFirst.Loading.LoadingScreenView",
+   "looked_up_by": [
+    {
+     "script": "ReplicatedFirst.Loading.InitialLoadingAndStartScreenClient",
+     "line": 78,
+     "method": "WaitForChild"
+    }
+   ]
+  },
+  {
+   "variable": "gui",
+   "class": "ScreenGui",
+   "line": 73,
+   "factory": "new",
+   "adopts_existing": false,
+   "Name": "ActivityHud",
+   "DisplayOrder": 84,
+   "ResetOnSpawn": false,
+   "IgnoreGuiInset": true,
+   "ZIndexBehavior": {
+    "expr": "Enum.ZIndexBehavior.Sibling"
+   },
+   "Enabled": {
+    "expr": "player:GetAttribute(\"FullMapOpen\") ~= true"
+   },
+   "Parent": {
+    "expr": "playerGui"
+   },
+   "enabled_writes": [
+    {
+     "property": "Enabled",
+     "value": {
+      "expr": "player:GetAttribute(\"FullMapOpen\") ~= true"
+     },
+     "line": 75
+    }
+   ],
+   "property_lines": {
+    "Name": 73,
+    "IgnoreGuiInset": 73,
+    "ResetOnSpawn": 73,
+    "DisplayOrder": 73,
+    "ZIndexBehavior": 73,
+    "Enabled": 75
+   },
+   "script": "ReplicatedStorage.Modules.Game.Activities.ActivityClient",
+   "looked_up_by": []
+  },
+  {
+   "variable": "gui",
+   "class": "ScreenGui",
+   "line": 173,
+   "factory": null,
+   "adopts_existing": false,
+   "Name": "DealershipIntroObjective",
+   "DisplayOrder": 18,
+   "ResetOnSpawn": false,
+   "IgnoreGuiInset": true,
+   "ZIndexBehavior": {
+    "expr": "Enum.ZIndexBehavior.Sibling"
+   },
+   "Parent": {
+    "expr": "playerGui"
+   },
+   "enabled_writes": [],
+   "property_lines": {
+    "Name": 174,
+    "ResetOnSpawn": 175,
+    "IgnoreGuiInset": 176,
+    "ZIndexBehavior": 177,
+    "DisplayOrder": 178,
+    "Parent": 179
+   },
+   "script": "ReplicatedStorage.Modules.Game.Dealership.DealershipIntroClient",
+   "looked_up_by": []
+  },
+  {
+   "variable": "statusGui",
+   "class": "ScreenGui",
+   "line": 70,
+   "factory": null,
+   "adopts_existing": false,
+   "Name": "GarageEntranceStatus",
+   "DisplayOrder": 90,
+   "ResetOnSpawn": false,
+   "IgnoreGuiInset": true,
+   "Parent": {
+    "expr": "player.PlayerGui"
+   },
+   "enabled_writes": [],
+   "property_lines": {
+    "Name": 71,
+    "ResetOnSpawn": 72,
+    "IgnoreGuiInset": 73,
+    "DisplayOrder": 74,
+    "Parent": 75
+   },
+   "script": "ReplicatedStorage.Modules.Game.Dealership.GarageEntranceClient",
+   "looked_up_by": []
+  },
+  {
+   "variable": "gui",
+   "class": "ScreenGui",
+   "line": 23,
+   "factory": null,
+   "adopts_existing": false,
+   "Name": "DriveToEarnCashTelemetry",
+   "DisplayOrder": 2000,
+   "ResetOnSpawn": false,
+   "IgnoreGuiInset": false,
+   "Enabled": false,
+   "Parent": {
+    "expr": "playerGui"
+   },
+   "enabled_writes": [
+    {
+     "property": "Enabled",
+     "value": false,
+     "line": 59
+    },
+    {
+     "property": "Enabled",
+     "value": true,
+     "line": 62
+    }
+   ],
+   "property_lines": {
+    "Name": 24,
+    "ResetOnSpawn": 25,
+    "IgnoreGuiInset": 26,
+    "DisplayOrder": 27,
+    "Parent": 28,
+    "Enabled": 59
+   },
+   "script": "ReplicatedStorage.Modules.Game.Development.DriveToEarnCashTelemetryClient",
+   "looked_up_by": []
+  },
+  {
+   "variable": "gui",
+   "class": "ScreenGui",
+   "line": 459,
+   "factory": null,
+   "adopts_existing": false,
+   "Name": "RaceBrowser",
+   "DisplayOrder": 170,
+   "ResetOnSpawn": false,
+   "IgnoreGuiInset": true,
+   "Parent": {
+    "expr": "playerGui"
+   },
+   "enabled_writes": [],
+   "property_lines": {
+    "Name": 460,
+    "IgnoreGuiInset": 461,
+    "ResetOnSpawn": 462,
+    "DisplayOrder": 463,
+    "Parent": 464
+   },
+   "script": "ReplicatedStorage.Modules.Game.Racing.RaceBrowserClient",
+   "looked_up_by": [
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+     "line": 211,
+     "method": "FindFirstChild"
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+     "line": 469,
+     "method": "FindFirstChild"
+    }
+   ]
+  },
+  {
+   "variable": "gui",
+   "class": "ScreenGui",
+   "line": 20,
+   "factory": null,
+   "adopts_existing": false,
+   "Name": "RaceCountdown",
+   "DisplayOrder": 205,
+   "ResetOnSpawn": false,
+   "IgnoreGuiInset": true,
+   "Parent": {
+    "expr": "playerGui"
+   },
+   "enabled_writes": [],
+   "property_lines": {
+    "Name": 20,
+    "IgnoreGuiInset": 20,
+    "ResetOnSpawn": 20,
+    "DisplayOrder": 20,
+    "Parent": 20
+   },
+   "script": "ReplicatedStorage.Modules.Game.Racing.RaceCountdownPresentationClient",
+   "looked_up_by": []
+  },
+  {
+   "variable": "gui",
+   "class": "ScreenGui",
+   "line": 827,
+   "factory": null,
+   "adopts_existing": false,
+   "Name": "RaceEntryPresentation",
+   "DisplayOrder": 180,
+   "ResetOnSpawn": false,
+   "IgnoreGuiInset": true,
+   "Parent": {
+    "expr": "playerGui"
+   },
+   "enabled_writes": [],
+   "property_lines": {
+    "Name": 828,
+    "IgnoreGuiInset": 829,
+    "ResetOnSpawn": 830,
+    "DisplayOrder": 831,
+    "Parent": 832
+   },
+   "script": "ReplicatedStorage.Modules.Game.Racing.RaceEntryPresentationClient",
+   "looked_up_by": [
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+     "line": 212,
+     "method": "FindFirstChild"
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+     "line": 469,
+     "method": "FindFirstChild"
+    }
+   ]
+  },
+  {
+   "variable": "gui",
+   "class": "ScreenGui",
+   "line": 30,
+   "factory": null,
+   "adopts_existing": false,
+   "Name": "RaceQueueBanner",
+   "DisplayOrder": 190,
+   "ResetOnSpawn": false,
+   "IgnoreGuiInset": true,
+   "Parent": {
+    "expr": "playerGui"
+   },
+   "enabled_writes": [],
+   "property_lines": {
+    "Name": 30,
+    "IgnoreGuiInset": 30,
+    "ResetOnSpawn": 30,
+    "DisplayOrder": 30,
+    "Parent": 30
+   },
+   "script": "ReplicatedStorage.Modules.Game.Racing.RaceQueueClient",
+   "looked_up_by": []
+  },
+  {
+   "variable": "gui",
+   "class": "BillboardGui",
+   "line": 137,
+   "factory": null,
+   "adopts_existing": false,
+   "Name": {
+    "expr": "name"
+   },
+   "Parent": {
+    "expr": "ensureRenderRoot()"
+   },
+   "enabled_writes": [],
+   "property_lines": {
+    "Name": 138,
+    "Parent": 144
+   },
+   "script": "ReplicatedStorage.Modules.Game.Racing.RaceRouteGuideClient"
+  },
+  {
+   "variable": "guideGui",
+   "class": "ScreenGui",
+   "line": 271,
+   "factory": null,
+   "adopts_existing": false,
+   "Name": "RaceRouteGuide_Phase5",
+   "DisplayOrder": 78,
+   "ResetOnSpawn": false,
+   "IgnoreGuiInset": true,
+   "Parent": {
+    "expr": "playerGui"
+   },
+   "enabled_writes": [],
+   "property_lines": {
+    "Name": 272,
+    "IgnoreGuiInset": 273,
+    "ResetOnSpawn": 274,
+    "DisplayOrder": 275,
+    "Parent": 276
+   },
+   "script": "ReplicatedStorage.Modules.Game.Racing.RaceRouteGuideClient",
+   "looked_up_by": []
+  },
+  {
+   "variable": "gui",
+   "class": "ScreenGui",
+   "line": 80,
+   "factory": null,
+   "adopts_existing": false,
+   "Name": "SharedInRaceHUD",
+   "DisplayOrder": 155,
+   "ResetOnSpawn": false,
+   "IgnoreGuiInset": true,
+   "ScreenInsets": {
+    "expr": "Enum.ScreenInsets.None"
+   },
+   "ZIndexBehavior": {
+    "expr": "Enum.ZIndexBehavior.Global"
+   },
+   "ClipToDeviceSafeArea": false,
+   "Parent": {
+    "expr": "playerGui"
+   },
+   "enabled_writes": [],
+   "property_lines": {
+    "Name": 80,
+    "IgnoreGuiInset": 80,
+    "ResetOnSpawn": 80,
+    "DisplayOrder": 80,
+    "ZIndexBehavior": 80,
+    "ScreenInsets": 80,
+    "ClipToDeviceSafeArea": 80,
+    "Parent": 80
+   },
+   "script": "ReplicatedStorage.Modules.Game.Racing.RaceSessionPresentationClient",
+   "looked_up_by": []
+  },
+  {
+   "variable": "gui",
+   "class": "ScreenGui",
+   "line": 202,
+   "factory": null,
+   "adopts_existing": false,
+   "Name": "UnifiedRaceResults",
+   "DisplayOrder": 220,
+   "ResetOnSpawn": false,
+   "IgnoreGuiInset": true,
+   "Parent": {
+    "expr": "playerGui"
+   },
+   "enabled_writes": [],
+   "property_lines": {
+    "Name": 202,
+    "IgnoreGuiInset": 202,
+    "ResetOnSpawn": 202,
+    "DisplayOrder": 202,
+    "Parent": 202
+   },
+   "script": "ReplicatedStorage.Modules.Game.Racing.RaceTimeTrialResultCoachClient",
+   "looked_up_by": []
+  },
+  {
+   "variable": "gui",
+   "class": "ScreenGui",
+   "line": 40,
+   "factory": null,
+   "adopts_existing": false,
+   "Name": "RaceTransitionFade_Phase8H",
+   "DisplayOrder": 210,
+   "ResetOnSpawn": false,
+   "IgnoreGuiInset": true,
+   "Enabled": true,
+   "Parent": {
+    "expr": "playerGui"
+   },
+   "enabled_writes": [
+    {
+     "property": "Enabled",
+     "value": true,
+     "line": 45
+    }
+   ],
+   "property_lines": {
+    "Name": 41,
+    "IgnoreGuiInset": 42,
+    "ResetOnSpawn": 43,
+    "DisplayOrder": 44,
+    "Enabled": 45,
+    "Parent": 46
+   },
+   "script": "ReplicatedStorage.Modules.Game.Racing.RaceTransitionClient",
+   "looked_up_by": []
+  },
+  {
+   "variable": "gui",
+   "class": "ScreenGui",
+   "line": 1041,
+   "factory": "new",
+   "adopts_existing": false,
+   "Name": "DesktopFreeRoamHud",
+   "DisplayOrder": 85,
+   "ResetOnSpawn": false,
+   "IgnoreGuiInset": true,
+   "ZIndexBehavior": {
+    "expr": "Enum.ZIndexBehavior.Sibling"
+   },
+   "Enabled": false,
+   "Parent": {
+    "expr": "playerGui"
+   },
+   "enabled_writes": [
+    {
+     "property": "Enabled",
+     "value": false,
+     "line": 1114
+    },
+    {
+     "property": "Enabled",
+     "value": false,
+     "line": 1116
+    },
+    {
+     "property": "Enabled",
+     "value": true,
+     "line": 1117
+    },
+    {
+     "property": "Enabled",
+     "value": {
+      "expr": "enabled"
+     },
+     "line": 1128
+    },
+    {
+     "property": "Enabled",
+     "value": true,
+     "line": 1346
+    }
+   ],
+   "property_lines": {
+    "Name": 1041,
+    "IgnoreGuiInset": 1041,
+    "ResetOnSpawn": 1041,
+    "DisplayOrder": 1041,
+    "ZIndexBehavior": 1041,
+    "Enabled": 1114
+   },
+   "script": "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+   "looked_up_by": [
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+     "line": 459,
+     "method": "FindFirstChild"
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.FullMapUI",
+     "line": 466,
+     "method": "FindFirstChild"
+    }
+   ]
+  },
+  {
+   "variable": "gui",
+   "class": "ScreenGui",
+   "line": 112,
+   "factory": "new",
+   "adopts_existing": false,
+   "Name": "FullMap",
+   "DisplayOrder": {
+    "expr": "math.floor(cfg(\"DisplayOrder\", 90, 1, 1000))"
+   },
+   "ResetOnSpawn": false,
+   "IgnoreGuiInset": true,
+   "ZIndexBehavior": {
+    "expr": "Enum.ZIndexBehavior.Sibling"
+   },
+   "Enabled": false,
+   "Parent": {
+    "expr": "playerGui"
+   },
+   "enabled_writes": [
+    {
+     "property": "Enabled",
+     "value": false,
+     "line": 501
+    },
+    {
+     "property": "Enabled",
+     "value": false,
+     "line": 504
+    },
+    {
+     "property": "Enabled",
+     "value": true,
+     "line": 525
+    }
+   ],
+   "property_lines": {
+    "Name": 112,
+    "IgnoreGuiInset": 112,
+    "ResetOnSpawn": 112,
+    "Enabled": 112,
+    "DisplayOrder": 113,
+    "ZIndexBehavior": 113
+   },
+   "script": "ReplicatedStorage.Modules.Game.UI.FullMapUI",
+   "looked_up_by": []
+  },
+  {
+   "variable": "gui",
+   "class": "ScreenGui",
+   "line": 300,
+   "factory": null,
+   "adopts_existing": false,
+   "Name": "CanonicalGarageGui",
+   "DisplayOrder": 40,
+   "ResetOnSpawn": false,
+   "IgnoreGuiInset": true,
+   "ZIndexBehavior": {
+    "expr": "Enum.ZIndexBehavior.Sibling"
+   },
+   "Enabled": true,
+   "Parent": {
+    "expr": "playerGui"
+   },
+   "enabled_writes": [
+    {
+     "property": "Enabled",
+     "value": true,
+     "line": 301
+    }
+   ],
+   "property_lines": {
+    "Name": 300,
+    "Parent": 300,
+    "ResetOnSpawn": 301,
+    "IgnoreGuiInset": 301,
+    "ZIndexBehavior": 301,
+    "DisplayOrder": 301,
+    "Enabled": 301
+   },
+   "script": "ReplicatedStorage.Modules.Game.UI.GarageComponents",
+   "looked_up_by": [
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.GarageWorkspaceUI",
+     "line": 325,
+     "method": "NameCompare"
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+     "line": 143,
+     "method": "FindFirstChild"
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.GarageBrowserUI",
+     "line": 92,
+     "method": "NameCompare"
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.Garage.GaragePreviewPresentationClient",
+     "line": 78,
+     "method": "FindFirstChild"
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.Garage.GarageUI",
+     "line": 142,
+     "method": "FindFirstChild"
+    }
+   ]
+  },
+  {
+   "variable": "gui",
+   "class": "ScreenGui",
+   "line": 11,
+   "factory": null,
+   "adopts_existing": false,
+   "Name": "OwnedGarageInteriorHUD",
+   "DisplayOrder": 58,
+   "ResetOnSpawn": false,
+   "IgnoreGuiInset": false,
+   "ZIndexBehavior": {
+    "expr": "Enum.ZIndexBehavior.Sibling"
+   },
+   "Parent": {
+    "expr": "playerGui"
+   },
+   "enabled_writes": [],
+   "property_lines": {
+    "Name": 11,
+    "ResetOnSpawn": 11,
+    "IgnoreGuiInset": 11,
+    "ZIndexBehavior": 11,
+    "DisplayOrder": 11,
+    "Parent": 11
+   },
+   "script": "ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI",
+   "looked_up_by": []
+  },
+  {
+   "variable": "gui",
+   "class": "ScreenGui",
+   "line": 75,
+   "factory": "new",
+   "adopts_existing": false,
+   "Name": "MobileFreeRoamHud_Phase1",
+   "DisplayOrder": 88,
+   "ResetOnSpawn": false,
+   "IgnoreGuiInset": true,
+   "ZIndexBehavior": {
+    "expr": "Enum.ZIndexBehavior.Sibling"
+   },
+   "Enabled": {
+    "expr": "not hidden"
+   },
+   "Parent": {
+    "expr": "playerGui"
+   },
+   "enabled_writes": [
+    {
+     "property": "Enabled",
+     "value": {
+      "expr": "not hidden"
+     },
+     "line": 398
+    }
+   ],
+   "property_lines": {
+    "Name": 75,
+    "IgnoreGuiInset": 75,
+    "ResetOnSpawn": 75,
+    "DisplayOrder": 75,
+    "ZIndexBehavior": 75,
+    "Enabled": 398
+   },
+   "script": "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI",
+   "looked_up_by": [
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.FullMapUI",
+     "line": 466,
+     "method": "FindFirstChild"
+    }
+   ]
+  },
+  {
+   "variable": "gui",
+   "class": "ScreenGui",
+   "line": 82,
+   "factory": null,
+   "adopts_existing": false,
+   "Name": "Onboarding",
+   "DisplayOrder": {
+    "expr": "math.max(1,(tonumber(loadingConfig:GetAttribute(\"DisplayOrder\")) or 1000)-10)"
+   },
+   "ResetOnSpawn": false,
+   "IgnoreGuiInset": true,
+   "ScreenInsets": {
+    "expr": "Enum.ScreenInsets.None"
+   },
+   "ZIndexBehavior": {
+    "expr": "Enum.ZIndexBehavior.Sibling"
+   },
+   "Enabled": false,
+   "ClipToDeviceSafeArea": false,
+   "Parent": {
+    "expr": "playerGui"
+   },
+   "enabled_writes": [
+    {
+     "property": "Enabled",
+     "value": false,
+     "line": 730
+    },
+    {
+     "property": "Enabled",
+     "value": true,
+     "line": 734
+    }
+   ],
+   "property_lines": {
+    "Name": 82,
+    "IgnoreGuiInset": 82,
+    "ResetOnSpawn": 82,
+    "DisplayOrder": 82,
+    "ZIndexBehavior": 82,
+    "ScreenInsets": 83,
+    "ClipToDeviceSafeArea": 83,
+    "Parent": 83,
+    "Enabled": 730
+   },
+   "script": "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+   "looked_up_by": []
+  },
+  {
+   "variable": "gui",
+   "class": "ScreenGui",
+   "line": 11,
+   "factory": null,
+   "adopts_existing": false,
+   "Name": "OwnedGarageBrowser",
+   "DisplayOrder": 171,
+   "ResetOnSpawn": false,
+   "IgnoreGuiInset": true,
+   "Parent": {
+    "expr": "playerGui"
+   },
+   "enabled_writes": [],
+   "property_lines": {
+    "Name": 11,
+    "IgnoreGuiInset": 11,
+    "ResetOnSpawn": 11,
+    "DisplayOrder": 11,
+    "Parent": 11
+   },
+   "script": "ReplicatedStorage.Modules.Game.UI.OwnedGarageBrowserUI",
+   "looked_up_by": [
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+     "line": 216,
+     "method": "FindFirstChild"
+    },
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.OnboardingClient",
+     "line": 469,
+     "method": "FindFirstChild"
+    }
+   ]
+  },
+  {
+   "variable": "gui",
+   "class": "ScreenGui",
+   "line": 328,
+   "factory": null,
+   "adopts_existing": false,
+   "Name": "SharedConfirmationOverlay",
+   "DisplayOrder": 1250,
+   "ResetOnSpawn": false,
+   "IgnoreGuiInset": true,
+   "ScreenInsets": {
+    "expr": "Enum.ScreenInsets.None"
+   },
+   "ZIndexBehavior": {
+    "expr": "Enum.ZIndexBehavior.Global"
+   },
+   "ClipToDeviceSafeArea": false,
+   "Parent": {
+    "expr": "playerGui"
+   },
+   "enabled_writes": [],
+   "property_lines": {
+    "Name": 329,
+    "ResetOnSpawn": 330,
+    "IgnoreGuiInset": 331,
+    "DisplayOrder": 332,
+    "ZIndexBehavior": 333,
+    "ScreenInsets": 334,
+    "ClipToDeviceSafeArea": 335,
+    "Parent": 336
+   },
+   "script": "ReplicatedStorage.Modules.Game.UI.ResponsiveUIFoundation",
+   "looked_up_by": []
+  },
+  {
+   "variable": "gui",
+   "class": "ScreenGui",
+   "line": 449,
+   "factory": null,
+   "adopts_existing": false,
+   "Name": "SharedTopNotification",
+   "DisplayOrder": 1100,
+   "ResetOnSpawn": false,
+   "IgnoreGuiInset": true,
+   "Parent": {
+    "expr": "playerGui"
+   },
+   "enabled_writes": [],
+   "property_lines": {
+    "Name": 450,
+    "ResetOnSpawn": 451,
+    "IgnoreGuiInset": 452,
+    "DisplayOrder": 453,
+    "Parent": 454
+   },
+   "script": "ReplicatedStorage.Modules.Game.UI.ResponsiveUIFoundation",
+   "looked_up_by": [
+    {
+     "script": "ReplicatedStorage.Modules.Game.UI.SharedTopNotificationUI",
+     "line": 17,
+     "method": "FindFirstChild"
+    }
+   ]
+  },
+  {
+   "variable": "gui",
+   "class": "ScreenGui",
+   "line": 366,
+   "factory": null,
+   "adopts_existing": false,
+   "Name": "DrivingSpeedEffect",
+   "DisplayOrder": -10,
+   "ResetOnSpawn": false,
+   "IgnoreGuiInset": true,
+   "Enabled": false,
+   "Parent": {
+    "expr": "playerGui"
+   },
+   "enabled_writes": [
+    {
+     "property": "Enabled",
+     "value": false,
+     "line": 371
+    }
+   ],
+   "property_lines": {
+    "Name": 367,
+    "IgnoreGuiInset": 368,
+    "ResetOnSpawn": 369,
+    "DisplayOrder": 370,
+    "Enabled": 371,
+    "Parent": 399
+   },
+   "script": "ReplicatedStorage.Modules.Game.Vehicles.DrivingCameraClient",
+   "looked_up_by": []
+  },
+  {
+   "variable": "gui",
+   "class": "ScreenGui",
+   "line": 42,
+   "factory": "new",
+   "adopts_existing": false,
+   "Name": "MobileDriveControls_Phase1",
+   "DisplayOrder": 96,
+   "ResetOnSpawn": false,
+   "IgnoreGuiInset": true,
+   "ZIndexBehavior": {
+    "expr": "Enum.ZIndexBehavior.Sibling"
+   },
+   "Parent": {
+    "expr": "playerGui"
+   },
+   "enabled_writes": [],
+   "property_lines": {
+    "Name": 42,
+    "IgnoreGuiInset": 42,
+    "ResetOnSpawn": 42,
+    "DisplayOrder": 42,
+    "ZIndexBehavior": 42
+   },
+   "script": "ReplicatedStorage.Modules.Game.Vehicles.MobileDriveControlsClient",
+   "looked_up_by": []
+  }
+ ],
+ "enabled_writes": [
+  {
+   "receiver": "self.BackgroundGui",
+   "receiver_path": null,
+   "value": true,
+   "screengui_like": "unknown",
+   "reason": "",
+   "line": 243,
+   "in_function": "View:Show",
+   "script": "ReplicatedFirst.Loading.LoadingScreenView"
+  },
+  {
+   "receiver": "self.SafeGui",
+   "receiver_path": null,
+   "value": true,
+   "screengui_like": "unknown",
+   "reason": "",
+   "line": 244,
+   "in_function": "View:Show",
+   "script": "ReplicatedFirst.Loading.LoadingScreenView"
+  },
+  {
+   "receiver": "self.BackgroundGui",
+   "receiver_path": null,
+   "value": false,
+   "screengui_like": "unknown",
+   "reason": "",
+   "line": 303,
+   "in_function": "View:Hide",
+   "script": "ReplicatedFirst.Loading.LoadingScreenView"
+  },
+  {
+   "receiver": "self.SafeGui",
+   "receiver_path": null,
+   "value": false,
+   "screengui_like": "unknown",
+   "reason": "",
+   "line": 304,
+   "in_function": "View:Hide",
+   "script": "ReplicatedFirst.Loading.LoadingScreenView"
+  },
+  {
+   "receiver": "gui",
+   "receiver_path": null,
+   "value": {
+    "expr": "player:GetAttribute(\"FullMapOpen\") ~= true"
+   },
+   "screengui_like": "yes",
+   "reason": "created here as ScreenGui",
+   "line": 75,
+   "in_function": "syncFullMap",
+   "screengui_name": "ActivityHud",
+   "script": "ReplicatedStorage.Modules.Game.Activities.ActivityClient"
+  },
+  {
+   "receiver": "entry.Prompt",
+   "receiver_path": null,
+   "value": false,
+   "screengui_like": "unknown",
+   "reason": "",
+   "line": 144,
+   "in_function": "acceptOffer",
+   "script": "ReplicatedStorage.Modules.Game.Activities.JobClient"
+  },
+  {
+   "receiver": "driverPrompt.Prompt",
+   "receiver_path": null,
+   "value": false,
+   "screengui_like": "unknown",
+   "reason": "",
+   "line": 189,
+   "in_function": "updateDriverPrompt",
+   "script": "ReplicatedStorage.Modules.Game.Activities.JobClient"
+  },
+  {
+   "receiver": "driverPrompt.Prompt",
+   "receiver_path": null,
+   "value": true,
+   "screengui_like": "unknown",
+   "reason": "",
+   "line": 217,
+   "in_function": "updateDriverPrompt",
+   "script": "ReplicatedStorage.Modules.Game.Activities.JobClient"
+  },
+  {
+   "receiver": "config",
+   "receiver_path": null,
+   "value": {
+    "expr": "enabled ~= false"
+   },
+   "screengui_like": "unknown",
+   "reason": "",
+   "line": 98,
+   "in_function": "JobRules.ReadConfig",
+   "script": "ReplicatedStorage.Modules.Game.Activities.JobRules"
+  },
+  {
+   "receiver": "ensurePrompt(seat, owner)",
+   "receiver_path": null,
+   "value": {
+    "expr": "not busy"
+   },
+   "screengui_like": "unknown",
+   "reason": "",
+   "line": 138,
+   "in_function": "refresh",
+   "script": "ReplicatedStorage.Modules.Game.Activities.PassengerClientView"
+  },
+  {
+   "receiver": "prompts[seat].Prompt",
+   "receiver_path": null,
+   "value": false,
+   "screengui_like": "unknown",
+   "reason": "",
+   "line": 140,
+   "in_function": "refresh",
+   "script": "ReplicatedStorage.Modules.Game.Activities.PassengerClientView"
+  },
+  {
+   "receiver": "beam.Aura",
+   "receiver_path": null,
+   "value": {
+    "expr": "visible"
+   },
+   "screengui_like": "unknown",
+   "reason": "",
+   "line": 350,
+   "in_function": "setBeamVisible",
+   "script": "ReplicatedStorage.Modules.Game.Dealership.DealershipIntroClient"
+  },
+  {
+   "receiver": "beam.Core",
+   "receiver_path": null,
+   "value": {
+    "expr": "visible"
+   },
+   "screengui_like": "unknown",
+   "reason": "",
+   "line": 351,
+   "in_function": "setBeamVisible",
+   "script": "ReplicatedStorage.Modules.Game.Dealership.DealershipIntroClient"
+  },
+  {
+   "receiver": "objectiveGui",
+   "receiver_path": null,
+   "value": false,
+   "screengui_like": "unknown",
+   "reason": "",
+   "line": 624,
+   "in_function": "cleanup",
+   "script": "ReplicatedStorage.Modules.Game.Dealership.DealershipIntroClient"
+  },
+  {
+   "receiver": "entry.Prompt",
+   "receiver_path": null,
+   "value": {
+    "expr": "enabled"
+   },
+   "screengui_like": "unknown",
+   "reason": "",
+   "line": 140,
+   "in_function": "refreshPromptAvailability",
+   "script": "ReplicatedStorage.Modules.Game.Dealership.GarageEntranceClient"
+  },
+  {
+   "receiver": "gui",
+   "receiver_path": null,
+   "value": false,
+   "screengui_like": "yes",
+   "reason": "created here as ScreenGui",
+   "line": 59,
+   "in_function": "update",
+   "screengui_name": "DriveToEarnCashTelemetry",
+   "script": "ReplicatedStorage.Modules.Game.Development.DriveToEarnCashTelemetryClient"
+  },
+  {
+   "receiver": "gui",
+   "receiver_path": null,
+   "value": true,
+   "screengui_like": "yes",
+   "reason": "created here as ScreenGui",
+   "line": 62,
+   "in_function": "update",
+   "screengui_name": "DriveToEarnCashTelemetry",
+   "script": "ReplicatedStorage.Modules.Game.Development.DriveToEarnCashTelemetryClient"
+  },
+  {
+   "receiver": "child",
+   "receiver_path": null,
+   "value": false,
+   "screengui_like": "yes",
+   "reason": "IsA(ScreenGui) guard in the same function",
+   "line": 51,
+   "in_function": "setPlayerGuiEnabled",
+   "script": "ReplicatedStorage.Modules.Game.Development.TrailerModeClient"
+  },
+  {
+   "receiver": "gui",
+   "receiver_path": null,
+   "value": {
+    "expr": "wasEnabled"
+   },
+   "screengui_like": "unknown",
+   "reason": "",
+   "line": 57,
+   "in_function": "setPlayerGuiEnabled",
+   "script": "ReplicatedStorage.Modules.Game.Development.TrailerModeClient"
+  },
+  {
+   "receiver": "touch",
+   "receiver_path": "Players.LocalPlayer.PlayerGui.TouchGui",
+   "value": {
+    "expr": "enabled"
+   },
+   "screengui_like": "yes",
+   "reason": "child of PlayerGui",
+   "line": 30,
+   "in_function": "setRobloxTouchControls",
+   "screengui_name": "TouchGui",
+   "script": "ReplicatedStorage.Modules.Game.Garage.ThrustPreviewClient"
+  },
+  {
+   "receiver": "child",
+   "receiver_path": null,
+   "value": false,
+   "screengui_like": "yes",
+   "reason": "IsA(ScreenGui) guard in the same function",
+   "line": 407,
+   "in_function": "suppress",
+   "script": "ReplicatedStorage.Modules.Game.Racing.RaceBrowserClient"
+  },
+  {
+   "receiver": "otherGui",
+   "receiver_path": null,
+   "value": {
+    "expr": "wasEnabled"
+   },
+   "screengui_like": "unknown",
+   "reason": "",
+   "line": 410,
+   "in_function": "setOpen",
+   "script": "ReplicatedStorage.Modules.Game.Racing.RaceBrowserClient"
+  },
+  {
+   "receiver": "item",
+   "receiver_path": null,
+   "value": false,
+   "screengui_like": "yes",
+   "reason": "IsA(ScreenGui) guard in the same function",
+   "line": 353,
+   "in_function": "suppress",
+   "script": "ReplicatedStorage.Modules.Game.Racing.RaceEntryPresentationClient"
+  },
+  {
+   "receiver": "item",
+   "receiver_path": null,
+   "value": {
+    "expr": "enabled"
+   },
+   "screengui_like": "yes",
+   "reason": "IsA(ScreenGui) guard in the same function",
+   "line": 357,
+   "in_function": "suppressOthers",
+   "script": "ReplicatedStorage.Modules.Game.Racing.RaceEntryPresentationClient"
+  },
+  {
+   "receiver": "other",
+   "receiver_path": "Players.LocalPlayer.PlayerGui.<name>",
+   "value": false,
+   "screengui_like": "yes",
+   "reason": "child of PlayerGui",
+   "line": 123,
+   "in_function": "suppress",
+   "screengui_name": "<name>",
+   "script": "ReplicatedStorage.Modules.Game.Racing.RaceSessionPresentationClient"
+  },
+  {
+   "receiver": "other",
+   "receiver_path": "Players.LocalPlayer.PlayerGui.RaceQueue_Phase8",
+   "value": false,
+   "screengui_like": "yes",
+   "reason": "child of PlayerGui",
+   "line": 99,
+   "in_function": "setSuppressed",
+   "screengui_name": "RaceQueue_Phase8",
+   "script": "ReplicatedStorage.Modules.Game.Racing.RaceTimeTrialResultCoachClient"
+  },
+  {
+   "receiver": "other",
+   "receiver_path": "Players.LocalPlayer.PlayerGui.RaceQueue_Phase8",
+   "value": {
+    "expr": "suppressed[other]"
+   },
+   "screengui_like": "yes",
+   "reason": "child of PlayerGui",
+   "line": 99,
+   "in_function": "setSuppressed",
+   "screengui_name": "RaceQueue_Phase8",
+   "script": "ReplicatedStorage.Modules.Game.Racing.RaceTimeTrialResultCoachClient"
+  },
+  {
+   "receiver": "gui",
+   "receiver_path": null,
+   "value": true,
+   "screengui_like": "yes",
+   "reason": "created here as ScreenGui",
+   "line": 45,
+   "in_function": "Client.start",
+   "screengui_name": "RaceTransitionFade_Phase8H",
+   "script": "ReplicatedStorage.Modules.Game.Racing.RaceTransitionClient"
+  },
+  {
+   "receiver": "guiObject",
+   "receiver_path": null,
+   "value": {
+    "expr": "original ~= false"
+   },
+   "screengui_like": "yes",
+   "reason": "IsA(ScreenGui) guard in the same function",
+   "line": 121,
+   "in_function": "setSessionActive",
+   "script": "ReplicatedStorage.Modules.Game.Racing.RaceTransitionClient"
+  },
+  {
+   "receiver": "gui",
+   "receiver_path": null,
+   "value": false,
+   "screengui_like": "yes",
+   "reason": "created here as ScreenGui",
+   "line": 1114,
+   "in_function": "updateRuntime",
+   "screengui_name": "DesktopFreeRoamHud",
+   "script": "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI"
+  },
+  {
+   "receiver": "gui",
+   "receiver_path": null,
+   "value": false,
+   "screengui_like": "yes",
+   "reason": "created here as ScreenGui",
+   "line": 1116,
+   "in_function": "updateRuntime",
+   "screengui_name": "DesktopFreeRoamHud",
+   "script": "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI"
+  },
+  {
+   "receiver": "gui",
+   "receiver_path": null,
+   "value": true,
+   "screengui_like": "yes",
+   "reason": "created here as ScreenGui",
+   "line": 1117,
+   "in_function": "updateRuntime",
+   "screengui_name": "DesktopFreeRoamHud",
+   "script": "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI"
+  },
+  {
+   "receiver": "gui",
+   "receiver_path": null,
+   "value": {
+    "expr": "enabled"
+   },
+   "screengui_like": "yes",
+   "reason": "created here as ScreenGui",
+   "line": 1128,
+   "in_function": "updateRuntime",
+   "screengui_name": "DesktopFreeRoamHud",
+   "script": "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI"
+  },
+  {
+   "receiver": "gui",
+   "receiver_path": null,
+   "value": true,
+   "screengui_like": "yes",
+   "reason": "created here as ScreenGui",
+   "line": 1346,
+   "in_function": "Client.start",
+   "screengui_name": "DesktopFreeRoamHud",
+   "script": "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI"
+  },
+  {
+   "receiver": "self",
+   "receiver_path": null,
+   "value": {
+    "expr": "self.Config:GetAttribute(\"Enabled\") ~= false"
+   },
+   "screengui_like": "unknown",
+   "reason": "",
+   "line": 192,
+   "in_function": "Module:_readConfig",
+   "script": "ReplicatedStorage.Modules.Game.UI.FreeRoamMapPlayerMarkers"
+  },
+  {
+   "receiver": "gui",
+   "receiver_path": null,
+   "value": false,
+   "screengui_like": "yes",
+   "reason": "created here as ScreenGui",
+   "line": 501,
+   "in_function": "close",
+   "screengui_name": "FullMap",
+   "script": "ReplicatedStorage.Modules.Game.UI.FullMapUI"
+  },
+  {
+   "receiver": "gui",
+   "receiver_path": null,
+   "value": false,
+   "screengui_like": "yes",
+   "reason": "created here as ScreenGui",
+   "line": 504,
+   "in_function": "close",
+   "screengui_name": "FullMap",
+   "script": "ReplicatedStorage.Modules.Game.UI.FullMapUI"
+  },
+  {
+   "receiver": "gui",
+   "receiver_path": null,
+   "value": true,
+   "screengui_like": "yes",
+   "reason": "created here as ScreenGui",
+   "line": 525,
+   "in_function": "open",
+   "screengui_name": "FullMap",
+   "script": "ReplicatedStorage.Modules.Game.UI.FullMapUI"
+  },
+  {
+   "receiver": "gui",
+   "receiver_path": null,
+   "value": true,
+   "screengui_like": "yes",
+   "reason": "created here as ScreenGui",
+   "line": 301,
+   "in_function": "M.CanonicalHost",
+   "screengui_name": "CanonicalGarageGui",
+   "script": "ReplicatedStorage.Modules.Game.UI.GarageComponents"
+  },
+  {
+   "receiver": "self",
+   "receiver_path": null,
+   "value": {
+    "expr": "not (folder and folder:GetAttribute(self.Surface .. \"Enabled\") == false)"
+   },
+   "screengui_like": "unknown",
+   "reason": "",
+   "line": 204,
+   "in_function": "Layer:_readConfig",
+   "script": "ReplicatedStorage.Modules.Game.UI.MapIconLayer"
+  },
+  {
+   "receiver": "gui",
+   "receiver_path": null,
+   "value": {
+    "expr": "not hidden"
+   },
+   "screengui_like": "yes",
+   "reason": "created here as ScreenGui",
+   "line": 398,
+   "in_function": "Client.start",
+   "screengui_name": "MobileFreeRoamHud_Phase1",
+   "script": "ReplicatedStorage.Modules.Game.UI.MobileFreeRoamHudUI"
+  },
+  {
+   "receiver": "gui",
+   "receiver_path": null,
+   "value": false,
+   "screengui_like": "yes",
+   "reason": "created here as ScreenGui",
+   "line": 730,
+   "in_function": "refreshLoadingGate",
+   "screengui_name": "Onboarding",
+   "script": "ReplicatedStorage.Modules.Game.UI.OnboardingClient"
+  },
+  {
+   "receiver": "gui",
+   "receiver_path": null,
+   "value": true,
+   "screengui_like": "yes",
+   "reason": "created here as ScreenGui",
+   "line": 734,
+   "in_function": "refreshLoadingGate",
+   "screengui_name": "Onboarding",
+   "script": "ReplicatedStorage.Modules.Game.UI.OnboardingClient"
+  },
+  {
+   "receiver": "beam.Aura",
+   "receiver_path": null,
+   "value": {
+    "expr": "shown"
+   },
+   "screengui_like": "unknown",
+   "reason": "",
+   "line": 62,
+   "in_function": "setBeamVisible",
+   "script": "ReplicatedStorage.Modules.Game.UI.OnboardingGuideTrailRenderer"
+  },
+  {
+   "receiver": "beam.Core",
+   "receiver_path": null,
+   "value": {
+    "expr": "shown"
+   },
+   "screengui_like": "unknown",
+   "reason": "",
+   "line": 62,
+   "in_function": "setBeamVisible",
+   "script": "ReplicatedStorage.Modules.Game.UI.OnboardingGuideTrailRenderer"
+  },
+  {
+   "receiver": "beam.Chevron",
+   "receiver_path": null,
+   "value": {
+    "expr": "shown"
+   },
+   "screengui_like": "unknown",
+   "reason": "",
+   "line": 62,
+   "in_function": "setBeamVisible",
+   "script": "ReplicatedStorage.Modules.Game.UI.OnboardingGuideTrailRenderer"
+  },
+  {
+   "receiver": "gui",
+   "receiver_path": null,
+   "value": false,
+   "screengui_like": "yes",
+   "reason": "created here as ScreenGui",
+   "line": 371,
+   "in_function": "buildSpeedLines",
+   "screengui_name": "DrivingSpeedEffect",
+   "script": "ReplicatedStorage.Modules.Game.Vehicles.DrivingCameraClient"
+  },
+  {
+   "receiver": "speedLines.Gui",
+   "receiver_path": null,
+   "value": false,
+   "screengui_like": "unknown",
+   "reason": "",
+   "line": 409,
+   "in_function": "updateSpeedLines",
+   "script": "ReplicatedStorage.Modules.Game.Vehicles.DrivingCameraClient"
+  },
+  {
+   "receiver": "speedLines.Gui",
+   "receiver_path": null,
+   "value": true,
+   "screengui_like": "unknown",
+   "reason": "",
+   "line": 413,
+   "in_function": "updateSpeedLines",
+   "script": "ReplicatedStorage.Modules.Game.Vehicles.DrivingCameraClient"
+  },
+  {
+   "receiver": "speedLines.Gui",
+   "receiver_path": null,
+   "value": false,
+   "screengui_like": "unknown",
+   "reason": "",
+   "line": 623,
+   "in_function": "suspend",
+   "script": "ReplicatedStorage.Modules.Game.Vehicles.DrivingCameraClient"
+  },
+  {
+   "receiver": "object",
+   "receiver_path": null,
+   "value": {
+    "expr": "unlocked"
+   },
+   "screengui_like": "unknown",
+   "reason": "",
+   "line": 113,
+   "in_function": "Catalog.ApplyPresentation",
+   "script": "ReplicatedStorage.Modules.Game.Vehicles.VehicleCosmeticCatalog"
+  },
+  {
+   "receiver": "object",
+   "receiver_path": null,
+   "value": {
+    "expr": "saved.Enabled"
+   },
+   "screengui_like": "unknown",
+   "reason": "",
+   "line": 443,
+   "in_function": "restoreFlash",
+   "script": "ReplicatedStorage.Modules.Game.Vehicles.VehiclePreviewVFXClient"
+  },
+  {
+   "receiver": "record.Object",
+   "receiver_path": null,
+   "value": false,
+   "screengui_like": "unknown",
+   "reason": "",
+   "line": 1838,
+   "in_function": "VehicleVFXController:Destroy",
+   "script": "ReplicatedStorage.Modules.Game.Vehicles.VehiclePreviewVFXClient"
+  },
+  {
+   "receiver": "object",
+   "receiver_path": null,
+   "value": {
+    "expr": "enabled"
+   },
+   "screengui_like": "unknown",
+   "reason": "",
+   "line": 202,
+   "in_function": "setEnabled",
+   "script": "ReplicatedStorage.Modules.Game.Vehicles.VehicleVFXClient"
+  },
+  {
+   "receiver": "touchGui",
+   "receiver_path": "Players.LocalPlayer.PlayerGui.TouchGui",
+   "value": {
+    "expr": "enabled"
+   },
+   "screengui_like": "yes",
+   "reason": "child of PlayerGui",
+   "line": 1061,
+   "in_function": "setRobloxTouchControls",
+   "screengui_name": "TouchGui",
+   "script": "ReplicatedStorage.Modules.Game.Vehicles.VehicleVFXClient"
+  },
+  {
+   "receiver": "config",
+   "receiver_path": null,
+   "value": {
+    "expr": "enabled ~= false"
+   },
+   "screengui_like": "unknown",
+   "reason": "",
+   "line": 49,
+   "in_function": "CourierRules.ReadConfig",
+   "script": "ServerStorage.Modules.Game.Activities.CourierRules"
+  },
+  {
+   "receiver": "config",
+   "receiver_path": null,
+   "value": {
+    "expr": "enabled ~= false"
+   },
+   "screengui_like": "unknown",
+   "reason": "",
+   "line": 53,
+   "in_function": "TaxiRules.ReadConfig",
+   "script": "ServerStorage.Modules.Game.Activities.TaxiRules"
+  }
+ ]
+}

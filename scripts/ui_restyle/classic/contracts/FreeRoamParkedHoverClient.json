@@ -1,0 +1,2042 @@
+{
+ "script": "ReplicatedStorage.Modules.Game.Vehicles.FreeRoamParkedHoverClient",
+ "class": "ModuleScript",
+ "source_file": "classic/sources/ReplicatedStorage.Modules.Game.Vehicles.FreeRoamParkedHoverClient.lua",
+ "source_lines": 623,
+ "included_because": [
+  "ClientBase entry 'FreeRoamParkedHoverClient'"
+ ],
+ "requires": [
+  {
+   "expr": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Vehicles\"):WaitForChild(\"DriveTuning\")",
+   "as": "DriveTuning",
+   "line": 13,
+   "in_function": "Client.start",
+   "target": "ReplicatedStorage.Modules.Game.Vehicles.DriveTuning"
+  }
+ ],
+ "remotes": {
+  "calls": [],
+  "listens": []
+ },
+ "bindables": {
+  "fires": [
+   {
+    "receiver": "event",
+    "created_here": false,
+    "lookup": "Players.LocalPlayer.PlayerScripts.Runtime.UI",
+    "arg_count": 0,
+    "line": 265,
+    "in_function": "fireSpawned",
+    "name": "FreeRoamVehicleSpawned"
+   }
+  ],
+  "connects": [],
+  "invokes": [],
+  "handlers": [],
+  "created": [],
+  "module_signal_fires": []
+ },
+ "attributes": {
+  "reads": [
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.<folderName>",
+    "receiver_kind": "config",
+    "wrapper_defined": "FreeRoamParkedHoverClient:43",
+    "line": 49,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseBool()",
+    "name": "SettleEnabled"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.<folderName>",
+    "receiver_kind": "config",
+    "wrapper_defined": "FreeRoamParkedHoverClient:37",
+    "line": 50,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "SettleRestScale"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.<folderName>",
+    "receiver_kind": "config",
+    "wrapper_defined": "FreeRoamParkedHoverClient:37",
+    "line": 51,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "SettleStartMph"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.<folderName>",
+    "receiver_kind": "config",
+    "wrapper_defined": "FreeRoamParkedHoverClient:37",
+    "line": 52,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "SettleFullHeightMph"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.<folderName>",
+    "receiver_kind": "config",
+    "wrapper_defined": "FreeRoamParkedHoverClient:37",
+    "line": 53,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "SettleFrequencyHz"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.<folderName>",
+    "receiver_kind": "config",
+    "wrapper_defined": "FreeRoamParkedHoverClient:37",
+    "line": 54,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "SettleDamping"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.<folderName>",
+    "receiver_kind": "config",
+    "wrapper_defined": "FreeRoamParkedHoverClient:43",
+    "line": 55,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseBool()",
+    "name": "BankLiftEnabled"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.<folderName>",
+    "receiver_kind": "config",
+    "wrapper_defined": "FreeRoamParkedHoverClient:37",
+    "line": 56,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "BankLiftMaxStuds"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.<folderName>",
+    "receiver_kind": "config",
+    "wrapper_defined": "FreeRoamParkedHoverClient:37",
+    "line": 57,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "BankLiftRiseHz"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.<folderName>",
+    "receiver_kind": "config",
+    "wrapper_defined": "FreeRoamParkedHoverClient:37",
+    "line": 58,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "BankLiftFallHz"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.<folderName>",
+    "receiver_kind": "config",
+    "wrapper_defined": "FreeRoamParkedHoverClient:37",
+    "line": 59,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "MinEdgeClearanceStuds"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.<folderName>",
+    "receiver_kind": "config",
+    "wrapper_defined": "FreeRoamParkedHoverClient:37",
+    "line": 60,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "LeanSpringCompensation"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.<folderName>",
+    "receiver_kind": "config",
+    "wrapper_defined": "FreeRoamParkedHoverClient:37",
+    "line": 61,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "ParkedExitDipStuds"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.<folderName>",
+    "receiver_kind": "config",
+    "wrapper_defined": "FreeRoamParkedHoverClient:43",
+    "line": 62,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseBool()",
+    "name": "ParkedAnchoredPresentationEnabled"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.<folderName>",
+    "receiver_kind": "config",
+    "wrapper_defined": "FreeRoamParkedHoverClient:43",
+    "line": 63,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseBool()",
+    "name": "WobbleEnabled"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.<folderName>",
+    "receiver_kind": "config",
+    "wrapper_defined": "FreeRoamParkedHoverClient:43",
+    "line": 63,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseBool()",
+    "name": "ParkedWobbleEnabled"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.<folderName>",
+    "receiver_kind": "config",
+    "wrapper_defined": "FreeRoamParkedHoverClient:37",
+    "line": 64,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "WobbleFadeOutMph"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.<folderName>",
+    "receiver_kind": "config",
+    "wrapper_defined": "FreeRoamParkedHoverClient:37",
+    "line": 65,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "WobbleAmountDegrees"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.<folderName>",
+    "receiver_kind": "config",
+    "wrapper_defined": "FreeRoamParkedHoverClient:37",
+    "line": 66,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "WobbleSpeed"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.<folderName>",
+    "receiver_kind": "config",
+    "wrapper_defined": "FreeRoamParkedHoverClient:37",
+    "line": 67,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "WobbleRandomiseAmount"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.<folderName>",
+    "receiver_kind": "config",
+    "wrapper_defined": "FreeRoamParkedHoverClient:37",
+    "line": 68,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "WobblePitchMultiplier"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.<folderName>",
+    "receiver_kind": "config",
+    "wrapper_defined": "FreeRoamParkedHoverClient:37",
+    "line": 69,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "WobbleRollMultiplier"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.<folderName>",
+    "receiver_kind": "config",
+    "wrapper_defined": "FreeRoamParkedHoverClient:37",
+    "line": 70,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "WobbleSmoothing"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.<folderName>",
+    "receiver_kind": "config",
+    "wrapper_defined": "FreeRoamParkedHoverClient:37",
+    "line": 71,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "WobbleDetailAmount"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.<folderName>",
+    "receiver_kind": "config",
+    "wrapper_defined": "FreeRoamParkedHoverClient:37",
+    "line": 72,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "WobbleBobStuds"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.<folderName>",
+    "receiver_kind": "config",
+    "wrapper_defined": "FreeRoamParkedHoverClient:37",
+    "line": 73,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "WobbleYawDegrees"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.<folderName>",
+    "receiver_kind": "config",
+    "wrapper_defined": "FreeRoamParkedHoverClient:37",
+    "line": 74,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "WobbleRestBoost"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.<folderName>",
+    "receiver_kind": "config",
+    "wrapper_defined": "FreeRoamParkedHoverClient:37",
+    "line": 75,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "WobbleRestMph"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.<folderName>",
+    "receiver_kind": "config",
+    "wrapper_defined": "FreeRoamParkedHoverClient:37",
+    "line": 76,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "ParkedWobbleScale"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.<folderName>",
+    "receiver_kind": "config",
+    "wrapper_defined": "FreeRoamParkedHoverClient:37",
+    "line": 77,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "ParkedWobbleSpeedScale"
+   },
+   {
+    "receiver": "vehicle",
+    "receiver_path": null,
+    "receiver_kind": "vehicle?",
+    "line": 231,
+    "in_function": "playerVehicle",
+    "name": "OwnerUserId"
+   },
+   {
+    "receiver": "current",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "line": 250,
+    "in_function": "ownerVehicleFromInstance",
+    "name": "OwnerUserId"
+   },
+   {
+    "receiver": "vehicle",
+    "receiver_path": null,
+    "receiver_kind": "vehicle?",
+    "line": 275,
+    "in_function": "watchPromptReentry",
+    "name": "OwnerUserId"
+   },
+   {
+    "receiver": "INTERACTION_SETTINGS",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.Authoring.VehicleInteractions",
+    "receiver_kind": "config",
+    "wrapper_defined": "FreeRoamParkedHoverClient:24",
+    "line": 397,
+    "in_function": "start",
+    "via": "wrapper interactionNumber()",
+    "name": "ExitCoastDragPerSecond"
+   },
+   {
+    "receiver": "vehicle",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "FreeRoamParkedHoverClient:479",
+    "line": 600,
+    "in_function": "Client.start",
+    "via": "wrapper updateAnchoredPresentation()",
+    "name": "DriverUserId",
+    "receiver_path": null
+   },
+   {
+    "receiver": "vehicle",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "FreeRoamParkedHoverClient:479",
+    "line": 600,
+    "in_function": "Client.start",
+    "via": "wrapper updateAnchoredPresentation()",
+    "name": "ParkedShowcase",
+    "receiver_path": null
+   },
+   {
+    "receiver": "vehicle",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "FreeRoamParkedHoverClient:290",
+    "line": 606,
+    "in_function": "Client.start",
+    "via": "wrapper shouldHover()",
+    "name": "DriverUserId",
+    "receiver_path": null
+   },
+   {
+    "receiver": "vehicle",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "FreeRoamParkedHoverClient:289",
+    "line": 606,
+    "in_function": "Client.start",
+    "via": "wrapper shouldHover()",
+    "name": "ParkedFixed",
+    "receiver_path": null
+   },
+   {
+    "receiver": "vehicle",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "FreeRoamParkedHoverClient:288",
+    "line": 606,
+    "in_function": "Client.start",
+    "via": "wrapper shouldHover()",
+    "name": "ParkedShowcase",
+    "receiver_path": null
+   },
+   {
+    "receiver": "vehicle",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "FreeRoamParkedHoverClient:287",
+    "line": 606,
+    "in_function": "Client.start",
+    "via": "wrapper shouldHover()",
+    "name": "OwnerUserId",
+    "receiver_path": null
+   },
+   {
+    "receiver": "vehicle",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "FreeRoamParkedHoverClient:394",
+    "line": 607,
+    "in_function": "Client.start",
+    "via": "wrapper start()",
+    "name": "ExitCoasting",
+    "receiver_path": null
+   },
+   {
+    "receiver": "vehicle",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "FreeRoamParkedHoverClient:319",
+    "line": 607,
+    "in_function": "Client.start",
+    "via": "wrapper start()",
+    "name": "DriverUserId",
+    "receiver_path": null
+   },
+   {
+    "receiver": "vehicle",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "FreeRoamParkedHoverClient:319",
+    "line": 607,
+    "in_function": "Client.start",
+    "via": "wrapper start()",
+    "name": "ParkedFixed",
+    "receiver_path": null
+   },
+   {
+    "receiver": "vehicle",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "FreeRoamParkedHoverClient:319",
+    "line": 607,
+    "in_function": "Client.start",
+    "via": "wrapper start()",
+    "name": "ParkedShowcase",
+    "receiver_path": null
+   },
+   {
+    "receiver": "vehicle",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "FreeRoamParkedHoverClient:319",
+    "line": 607,
+    "in_function": "Client.start",
+    "via": "wrapper start()",
+    "name": "OwnerUserId",
+    "receiver_path": null
+   },
+   {
+    "receiver": "vehicle",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "FreeRoamParkedHoverClient:579",
+    "line": 610,
+    "in_function": "Client.start",
+    "via": "wrapper trackFreeHeight()",
+    "name": "DriverUserId",
+    "receiver_path": null
+   },
+   {
+    "receiver": "vehicle",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "FreeRoamParkedHoverClient:579",
+    "line": 610,
+    "in_function": "Client.start",
+    "via": "wrapper trackFreeHeight()",
+    "name": "ParkedShowcase",
+    "receiver_path": null
+   },
+   {
+    "receiver": "vehicleKey",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "FreeRoamParkedHoverClient:290",
+    "line": 612,
+    "in_function": "Client.start",
+    "via": "wrapper shouldHover()",
+    "name": "DriverUserId",
+    "receiver_path": null
+   },
+   {
+    "receiver": "vehicleKey",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "FreeRoamParkedHoverClient:289",
+    "line": 612,
+    "in_function": "Client.start",
+    "via": "wrapper shouldHover()",
+    "name": "ParkedFixed",
+    "receiver_path": null
+   },
+   {
+    "receiver": "vehicleKey",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "FreeRoamParkedHoverClient:288",
+    "line": 612,
+    "in_function": "Client.start",
+    "via": "wrapper shouldHover()",
+    "name": "ParkedShowcase",
+    "receiver_path": null
+   },
+   {
+    "receiver": "vehicleKey",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "FreeRoamParkedHoverClient:287",
+    "line": 612,
+    "in_function": "Client.start",
+    "via": "wrapper shouldHover()",
+    "name": "OwnerUserId",
+    "receiver_path": null
+   }
+  ],
+  "writes": [
+   {
+    "receiver": "vehicle",
+    "receiver_path": null,
+    "receiver_kind": "vehicle?",
+    "value": false,
+    "line": 277,
+    "in_function": "watchPromptReentry",
+    "name": "ParkedShowcase"
+   }
+  ],
+  "listens": []
+ },
+ "player_attribute_writes": [],
+ "screenguis": {
+  "created": [],
+  "enabled_writes": []
+ },
+ "names": {
+  "assigned": [
+   {
+    "via": "wrapper makeAttachment()",
+    "receiver": "attachment",
+    "class": "Attachment",
+    "wrapper_defined": "FreeRoamParkedHoverClient:312",
+    "line": 327,
+    "in_function": "start",
+    "name": "ParkedHoverCenterAttachment"
+   },
+   {
+    "via": "property",
+    "receiver": "align",
+    "class": "AlignOrientation",
+    "line": 329,
+    "in_function": "start",
+    "name": "ParkedHoverAlign"
+   },
+   {
+    "via": "wrapper makeAttachment()",
+    "receiver": "attachment",
+    "class": "Attachment",
+    "wrapper_defined": "FreeRoamParkedHoverClient:312",
+    "line": 346,
+    "in_function": "start",
+    "name": null,
+    "name_pattern": "ParkedHoverCornerAttachment*",
+    "name_expr": "\"ParkedHoverCornerAttachment\" .. index"
+   },
+   {
+    "via": "property",
+    "receiver": "force",
+    "class": "VectorForce",
+    "line": 348,
+    "in_function": "start",
+    "name": null,
+    "name_pattern": "ParkedHoverCornerForce*",
+    "name_expr": "\"ParkedHoverCornerForce\" .. index"
+   },
+   {
+    "via": "property",
+    "receiver": "coastDrag",
+    "class": "VectorForce",
+    "line": 358,
+    "in_function": "start",
+    "name": "ParkedHoverCoastDrag"
+   }
+  ],
+  "looked_up": [
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 13,
+    "in_function": "Client.start",
+    "name": "Modules"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\")",
+    "receiver_path": "ReplicatedStorage.Modules",
+    "root": "ReplicatedStorage",
+    "line": 13,
+    "in_function": "Client.start",
+    "name": "Game"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game",
+    "root": "ReplicatedStorage",
+    "line": 13,
+    "in_function": "Client.start",
+    "name": "Vehicles"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Vehicles\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game.Vehicles",
+    "root": "ReplicatedStorage",
+    "line": 13,
+    "in_function": "Client.start",
+    "name": "DriveTuning"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 22,
+    "in_function": "Client.start",
+    "name": "Config"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\")",
+    "receiver_path": "ReplicatedStorage.Config",
+    "root": "ReplicatedStorage",
+    "line": 22,
+    "in_function": "Client.start",
+    "name": "Vehicles"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\"):WaitForChild(\"Vehicles\")",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles",
+    "root": "ReplicatedStorage",
+    "line": 22,
+    "in_function": "Client.start",
+    "name": "Authoring"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\"):WaitForChild(\"Vehicles\"):WaitForChild(\"Authoring\")",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.Authoring",
+    "root": "ReplicatedStorage",
+    "line": 22,
+    "in_function": "Client.start",
+    "name": "VehicleInteractions"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 31,
+    "in_function": "Client.start",
+    "name": "Config"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\")",
+    "receiver_path": "ReplicatedStorage.Config",
+    "root": "ReplicatedStorage",
+    "line": 31,
+    "in_function": "Client.start",
+    "name": "Vehicles"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "VEHICLE_CONFIG",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "FreeRoamParkedHoverClient:42",
+    "line": 49,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseBool()",
+    "name": "HoverPose"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "VEHICLE_CONFIG",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "FreeRoamParkedHoverClient:36",
+    "line": 50,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "HoverPose"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "VEHICLE_CONFIG",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "FreeRoamParkedHoverClient:36",
+    "line": 51,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "HoverPose"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "VEHICLE_CONFIG",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "FreeRoamParkedHoverClient:36",
+    "line": 52,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "HoverPose"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "VEHICLE_CONFIG",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "FreeRoamParkedHoverClient:36",
+    "line": 53,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "HoverPose"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "VEHICLE_CONFIG",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "FreeRoamParkedHoverClient:36",
+    "line": 54,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "HoverPose"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "VEHICLE_CONFIG",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "FreeRoamParkedHoverClient:42",
+    "line": 55,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseBool()",
+    "name": "HoverPose"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "VEHICLE_CONFIG",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "FreeRoamParkedHoverClient:36",
+    "line": 56,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "HoverPose"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "VEHICLE_CONFIG",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "FreeRoamParkedHoverClient:36",
+    "line": 57,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "HoverPose"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "VEHICLE_CONFIG",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "FreeRoamParkedHoverClient:36",
+    "line": 58,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "HoverPose"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "VEHICLE_CONFIG",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "FreeRoamParkedHoverClient:36",
+    "line": 59,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "HoverPose"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "VEHICLE_CONFIG",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "FreeRoamParkedHoverClient:36",
+    "line": 60,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "HoverPose"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "VEHICLE_CONFIG",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "FreeRoamParkedHoverClient:36",
+    "line": 61,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "HoverPose"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "VEHICLE_CONFIG",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "FreeRoamParkedHoverClient:42",
+    "line": 62,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseBool()",
+    "name": "HoverPose"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "VEHICLE_CONFIG",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "FreeRoamParkedHoverClient:42",
+    "line": 63,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseBool()",
+    "name": "HoverWobble"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "VEHICLE_CONFIG",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "FreeRoamParkedHoverClient:42",
+    "line": 63,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseBool()",
+    "name": "HoverWobble"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "VEHICLE_CONFIG",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "FreeRoamParkedHoverClient:36",
+    "line": 64,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "HoverWobble"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "VEHICLE_CONFIG",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "FreeRoamParkedHoverClient:36",
+    "line": 65,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "HoverWobble"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "VEHICLE_CONFIG",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "FreeRoamParkedHoverClient:36",
+    "line": 66,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "HoverWobble"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "VEHICLE_CONFIG",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "FreeRoamParkedHoverClient:36",
+    "line": 67,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "HoverWobble"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "VEHICLE_CONFIG",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "FreeRoamParkedHoverClient:36",
+    "line": 68,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "HoverWobble"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "VEHICLE_CONFIG",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "FreeRoamParkedHoverClient:36",
+    "line": 69,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "HoverWobble"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "VEHICLE_CONFIG",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "FreeRoamParkedHoverClient:36",
+    "line": 70,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "HoverWobble"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "VEHICLE_CONFIG",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "FreeRoamParkedHoverClient:36",
+    "line": 71,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "HoverWobble"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "VEHICLE_CONFIG",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "FreeRoamParkedHoverClient:36",
+    "line": 72,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "HoverWobble"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "VEHICLE_CONFIG",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "FreeRoamParkedHoverClient:36",
+    "line": 73,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "HoverWobble"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "VEHICLE_CONFIG",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "FreeRoamParkedHoverClient:36",
+    "line": 74,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "HoverWobble"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "VEHICLE_CONFIG",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "FreeRoamParkedHoverClient:36",
+    "line": 75,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "HoverWobble"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "VEHICLE_CONFIG",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "FreeRoamParkedHoverClient:36",
+    "line": 76,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "HoverWobble"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "VEHICLE_CONFIG",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "FreeRoamParkedHoverClient:36",
+    "line": 77,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "HoverWobble"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "game:GetService(\"Workspace\")",
+    "receiver_path": "Workspace",
+    "root": "Workspace",
+    "line": 222,
+    "in_function": "vehiclesRoot",
+    "name": "World"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Workspace\")",
+    "receiver_path": "Workspace",
+    "root": "Workspace",
+    "line": 223,
+    "in_function": "vehiclesRoot",
+    "name": "World"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "game:GetService(\"Workspace\"):WaitForChild(\"World\")",
+    "receiver_path": "Workspace.World",
+    "root": "Workspace",
+    "line": 223,
+    "in_function": "vehiclesRoot",
+    "name": "Runtime"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Workspace\")",
+    "receiver_path": "Workspace",
+    "root": "Workspace",
+    "line": 224,
+    "in_function": "vehiclesRoot",
+    "name": "World"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Workspace\"):WaitForChild(\"World\")",
+    "receiver_path": "Workspace.World",
+    "root": "Workspace",
+    "line": 224,
+    "in_function": "vehiclesRoot",
+    "name": "Runtime"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "game:GetService(\"Workspace\"):WaitForChild(\"World\"):WaitForChild(\"Runtime\")",
+    "receiver_path": "Workspace.World.Runtime",
+    "root": "Workspace",
+    "line": 224,
+    "in_function": "vehiclesRoot",
+    "name": "PlayerVehicles"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "vehicle",
+    "receiver_path": null,
+    "root": null,
+    "recursive": true,
+    "line": 232,
+    "in_function": "playerVehicle",
+    "name": "CockpitRoot_DoNotRename"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 259,
+    "in_function": "fireSpawned",
+    "name": "PlayerScripts"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 260,
+    "in_function": "fireSpawned",
+    "name": "PlayerScripts"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts",
+    "root": "Players",
+    "line": 260,
+    "in_function": "fireSpawned",
+    "name": "Runtime"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 261,
+    "in_function": "fireSpawned",
+    "name": "PlayerScripts"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts",
+    "root": "Players",
+    "line": 261,
+    "in_function": "fireSpawned",
+    "name": "Runtime"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 262,
+    "in_function": "fireSpawned",
+    "name": "PlayerScripts"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts",
+    "root": "Players",
+    "line": 262,
+    "in_function": "fireSpawned",
+    "name": "Runtime"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"Runtime\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime",
+    "root": "Players",
+    "line": 262,
+    "in_function": "fireSpawned",
+    "name": "UI"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 263,
+    "in_function": "fireSpawned",
+    "name": "PlayerScripts"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts",
+    "root": "Players",
+    "line": 263,
+    "in_function": "fireSpawned",
+    "name": "Runtime"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"Runtime\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime",
+    "root": "Players",
+    "line": 263,
+    "in_function": "fireSpawned",
+    "name": "UI"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"Runtime\"):WaitForChild(\"UI\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime.UI",
+    "root": "Players",
+    "line": 263,
+    "in_function": "fireSpawned",
+    "name": "FreeRoamVehicleSpawned"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "vehicle",
+    "root": null,
+    "recursive": true,
+    "wrapper_defined": "FreeRoamParkedHoverClient:525",
+    "line": 600,
+    "in_function": "Client.start",
+    "via": "wrapper updateAnchoredPresentation()",
+    "name": "DriverSeat",
+    "receiver_path": null,
+    "receiver_kind": "vehicle?"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "vehicle",
+    "root": null,
+    "recursive": true,
+    "wrapper_defined": "FreeRoamParkedHoverClient:501",
+    "line": 600,
+    "in_function": "Client.start",
+    "via": "wrapper updateAnchoredPresentation()",
+    "name": "DriverSeat",
+    "receiver_path": null,
+    "receiver_kind": "vehicle?"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "vehicle",
+    "root": null,
+    "recursive": true,
+    "wrapper_defined": "FreeRoamParkedHoverClient:291",
+    "line": 606,
+    "in_function": "Client.start",
+    "via": "wrapper shouldHover()",
+    "name": "DriverSeat",
+    "receiver_path": null,
+    "receiver_kind": "vehicle?"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "vehicle",
+    "root": null,
+    "recursive": true,
+    "wrapper_defined": "FreeRoamParkedHoverClient:319",
+    "line": 607,
+    "in_function": "Client.start",
+    "via": "wrapper start()",
+    "name": "DriverSeat",
+    "receiver_path": null,
+    "receiver_kind": "vehicle?"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "vehicleKey",
+    "root": null,
+    "recursive": true,
+    "wrapper_defined": "FreeRoamParkedHoverClient:291",
+    "line": 612,
+    "in_function": "Client.start",
+    "via": "wrapper shouldHover()",
+    "name": "DriverSeat",
+    "receiver_path": null,
+    "receiver_kind": "vehicle?"
+   }
+  ],
+  "text_compared": []
+ },
+ "run_service": {
+  "render_steps": [],
+  "connects": [
+   {
+    "signal": "Heartbeat",
+    "method": "Connect",
+    "line": 388,
+    "in_function": "start",
+    "callback": "function(dt) if not shouldHover(vehicle) or not..."
+   },
+   {
+    "signal": "PreRender",
+    "method": "Connect",
+    "line": 589,
+    "in_function": "Client.start",
+    "callback": "function(dt) local vehicle = ownVehicle if not ..."
+   },
+   {
+    "signal": "Heartbeat",
+    "method": "Connect",
+    "line": 603,
+    "in_function": "Client.start",
+    "callback": "function() watchPromptReentry() local vehicle =..."
+   }
+  ]
+ },
+ "context_actions": [],
+ "user_input_service": {
+  "connects": [],
+  "members_used": []
+ },
+ "audio": {
+  "bridge_calls": [],
+  "ui_audio_attributes": []
+ },
+ "config": {
+  "paths": [
+   {
+    "path": "ReplicatedStorage.Config",
+    "line": 22
+   },
+   {
+    "path": "ReplicatedStorage.Config.Vehicles",
+    "line": 31
+   },
+   {
+    "path": "ReplicatedStorage.Config.Vehicles.<folderName>",
+    "line": 36
+   },
+   {
+    "path": "ReplicatedStorage.Config.Vehicles.Authoring",
+    "line": 22
+   },
+   {
+    "path": "ReplicatedStorage.Config.Vehicles.Authoring.VehicleInteractions",
+    "line": 22
+   }
+  ],
+  "attribute_reads": [
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.<folderName>",
+    "receiver_kind": "config",
+    "wrapper_defined": "FreeRoamParkedHoverClient:43",
+    "line": 49,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseBool()",
+    "name": "SettleEnabled",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.<folderName>",
+    "receiver_kind": "config",
+    "wrapper_defined": "FreeRoamParkedHoverClient:37",
+    "line": 50,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "SettleRestScale",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.<folderName>",
+    "receiver_kind": "config",
+    "wrapper_defined": "FreeRoamParkedHoverClient:37",
+    "line": 51,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "SettleStartMph",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.<folderName>",
+    "receiver_kind": "config",
+    "wrapper_defined": "FreeRoamParkedHoverClient:37",
+    "line": 52,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "SettleFullHeightMph",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.<folderName>",
+    "receiver_kind": "config",
+    "wrapper_defined": "FreeRoamParkedHoverClient:37",
+    "line": 53,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "SettleFrequencyHz",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.<folderName>",
+    "receiver_kind": "config",
+    "wrapper_defined": "FreeRoamParkedHoverClient:37",
+    "line": 54,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "SettleDamping",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.<folderName>",
+    "receiver_kind": "config",
+    "wrapper_defined": "FreeRoamParkedHoverClient:43",
+    "line": 55,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseBool()",
+    "name": "BankLiftEnabled",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.<folderName>",
+    "receiver_kind": "config",
+    "wrapper_defined": "FreeRoamParkedHoverClient:37",
+    "line": 56,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "BankLiftMaxStuds",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.<folderName>",
+    "receiver_kind": "config",
+    "wrapper_defined": "FreeRoamParkedHoverClient:37",
+    "line": 57,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "BankLiftRiseHz",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.<folderName>",
+    "receiver_kind": "config",
+    "wrapper_defined": "FreeRoamParkedHoverClient:37",
+    "line": 58,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "BankLiftFallHz",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.<folderName>",
+    "receiver_kind": "config",
+    "wrapper_defined": "FreeRoamParkedHoverClient:37",
+    "line": 59,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "MinEdgeClearanceStuds",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.<folderName>",
+    "receiver_kind": "config",
+    "wrapper_defined": "FreeRoamParkedHoverClient:37",
+    "line": 60,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "LeanSpringCompensation",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.<folderName>",
+    "receiver_kind": "config",
+    "wrapper_defined": "FreeRoamParkedHoverClient:37",
+    "line": 61,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "ParkedExitDipStuds",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.<folderName>",
+    "receiver_kind": "config",
+    "wrapper_defined": "FreeRoamParkedHoverClient:43",
+    "line": 62,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseBool()",
+    "name": "ParkedAnchoredPresentationEnabled",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.<folderName>",
+    "receiver_kind": "config",
+    "wrapper_defined": "FreeRoamParkedHoverClient:43",
+    "line": 63,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseBool()",
+    "name": "WobbleEnabled",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.<folderName>",
+    "receiver_kind": "config",
+    "wrapper_defined": "FreeRoamParkedHoverClient:43",
+    "line": 63,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseBool()",
+    "name": "ParkedWobbleEnabled",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.<folderName>",
+    "receiver_kind": "config",
+    "wrapper_defined": "FreeRoamParkedHoverClient:37",
+    "line": 64,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "WobbleFadeOutMph",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.<folderName>",
+    "receiver_kind": "config",
+    "wrapper_defined": "FreeRoamParkedHoverClient:37",
+    "line": 65,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "WobbleAmountDegrees",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.<folderName>",
+    "receiver_kind": "config",
+    "wrapper_defined": "FreeRoamParkedHoverClient:37",
+    "line": 66,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "WobbleSpeed",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.<folderName>",
+    "receiver_kind": "config",
+    "wrapper_defined": "FreeRoamParkedHoverClient:37",
+    "line": 67,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "WobbleRandomiseAmount",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.<folderName>",
+    "receiver_kind": "config",
+    "wrapper_defined": "FreeRoamParkedHoverClient:37",
+    "line": 68,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "WobblePitchMultiplier",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.<folderName>",
+    "receiver_kind": "config",
+    "wrapper_defined": "FreeRoamParkedHoverClient:37",
+    "line": 69,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "WobbleRollMultiplier",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.<folderName>",
+    "receiver_kind": "config",
+    "wrapper_defined": "FreeRoamParkedHoverClient:37",
+    "line": 70,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "WobbleSmoothing",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.<folderName>",
+    "receiver_kind": "config",
+    "wrapper_defined": "FreeRoamParkedHoverClient:37",
+    "line": 71,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "WobbleDetailAmount",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.<folderName>",
+    "receiver_kind": "config",
+    "wrapper_defined": "FreeRoamParkedHoverClient:37",
+    "line": 72,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "WobbleBobStuds",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.<folderName>",
+    "receiver_kind": "config",
+    "wrapper_defined": "FreeRoamParkedHoverClient:37",
+    "line": 73,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "WobbleYawDegrees",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.<folderName>",
+    "receiver_kind": "config",
+    "wrapper_defined": "FreeRoamParkedHoverClient:37",
+    "line": 74,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "WobbleRestBoost",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.<folderName>",
+    "receiver_kind": "config",
+    "wrapper_defined": "FreeRoamParkedHoverClient:37",
+    "line": 75,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "WobbleRestMph",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.<folderName>",
+    "receiver_kind": "config",
+    "wrapper_defined": "FreeRoamParkedHoverClient:37",
+    "line": 76,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "ParkedWobbleScale",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.<folderName>",
+    "receiver_kind": "config",
+    "wrapper_defined": "FreeRoamParkedHoverClient:37",
+    "line": 77,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "ParkedWobbleSpeedScale",
+    "access": "read"
+   },
+   {
+    "receiver": "INTERACTION_SETTINGS",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.Authoring.VehicleInteractions",
+    "receiver_kind": "config",
+    "wrapper_defined": "FreeRoamParkedHoverClient:24",
+    "line": 397,
+    "in_function": "start",
+    "via": "wrapper interactionNumber()",
+    "name": "ExitCoastDragPerSecond",
+    "access": "read"
+   }
+  ],
+  "child_lookups": [
+   {
+    "method": "FindFirstChild",
+    "receiver": "VEHICLE_CONFIG",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "FreeRoamParkedHoverClient:42",
+    "line": 49,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseBool()",
+    "name": "HoverPose"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "VEHICLE_CONFIG",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "FreeRoamParkedHoverClient:36",
+    "line": 50,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "HoverPose"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "VEHICLE_CONFIG",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "FreeRoamParkedHoverClient:36",
+    "line": 51,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "HoverPose"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "VEHICLE_CONFIG",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "FreeRoamParkedHoverClient:36",
+    "line": 52,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "HoverPose"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "VEHICLE_CONFIG",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "FreeRoamParkedHoverClient:36",
+    "line": 53,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "HoverPose"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "VEHICLE_CONFIG",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "FreeRoamParkedHoverClient:36",
+    "line": 54,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "HoverPose"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "VEHICLE_CONFIG",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "FreeRoamParkedHoverClient:42",
+    "line": 55,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseBool()",
+    "name": "HoverPose"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "VEHICLE_CONFIG",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "FreeRoamParkedHoverClient:36",
+    "line": 56,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "HoverPose"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "VEHICLE_CONFIG",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "FreeRoamParkedHoverClient:36",
+    "line": 57,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "HoverPose"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "VEHICLE_CONFIG",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "FreeRoamParkedHoverClient:36",
+    "line": 58,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "HoverPose"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "VEHICLE_CONFIG",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "FreeRoamParkedHoverClient:36",
+    "line": 59,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "HoverPose"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "VEHICLE_CONFIG",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "FreeRoamParkedHoverClient:36",
+    "line": 60,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "HoverPose"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "VEHICLE_CONFIG",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "FreeRoamParkedHoverClient:36",
+    "line": 61,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "HoverPose"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "VEHICLE_CONFIG",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "FreeRoamParkedHoverClient:42",
+    "line": 62,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseBool()",
+    "name": "HoverPose"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "VEHICLE_CONFIG",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "FreeRoamParkedHoverClient:42",
+    "line": 63,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseBool()",
+    "name": "HoverWobble"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "VEHICLE_CONFIG",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "FreeRoamParkedHoverClient:42",
+    "line": 63,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseBool()",
+    "name": "HoverWobble"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "VEHICLE_CONFIG",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "FreeRoamParkedHoverClient:36",
+    "line": 64,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "HoverWobble"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "VEHICLE_CONFIG",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "FreeRoamParkedHoverClient:36",
+    "line": 65,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "HoverWobble"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "VEHICLE_CONFIG",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "FreeRoamParkedHoverClient:36",
+    "line": 66,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "HoverWobble"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "VEHICLE_CONFIG",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "FreeRoamParkedHoverClient:36",
+    "line": 67,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "HoverWobble"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "VEHICLE_CONFIG",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "FreeRoamParkedHoverClient:36",
+    "line": 68,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "HoverWobble"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "VEHICLE_CONFIG",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "FreeRoamParkedHoverClient:36",
+    "line": 69,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "HoverWobble"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "VEHICLE_CONFIG",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "FreeRoamParkedHoverClient:36",
+    "line": 70,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "HoverWobble"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "VEHICLE_CONFIG",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "FreeRoamParkedHoverClient:36",
+    "line": 71,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "HoverWobble"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "VEHICLE_CONFIG",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "FreeRoamParkedHoverClient:36",
+    "line": 72,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "HoverWobble"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "VEHICLE_CONFIG",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "FreeRoamParkedHoverClient:36",
+    "line": 73,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "HoverWobble"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "VEHICLE_CONFIG",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "FreeRoamParkedHoverClient:36",
+    "line": 74,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "HoverWobble"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "VEHICLE_CONFIG",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "FreeRoamParkedHoverClient:36",
+    "line": 75,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "HoverWobble"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "VEHICLE_CONFIG",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "FreeRoamParkedHoverClient:36",
+    "line": 76,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "HoverWobble"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "VEHICLE_CONFIG",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "FreeRoamParkedHoverClient:36",
+    "line": 77,
+    "in_function": "refreshPoseConfig",
+    "via": "wrapper poseNumber()",
+    "name": "HoverWobble"
+   }
+  ]
+ },
+ "startergui_core": [],
+ "gui_service": [],
+ "other_services": {},
+ "service_connects": [],
+ "proximity_prompts": [],
+ "instances_created_by_class": {
+  "AlignOrientation": 1,
+  "Attachment": 1,
+  "VectorForce": 2
+ },
+ "public_api": [
+  {
+   "name": "start",
+   "kind": "function",
+   "params": [],
+   "line": 4
+  }
+ ],
+ "unresolved": [
+  {
+   "category": "names_assigned",
+   "field": "name",
+   "line": 346,
+   "detail": "name built at run time: \"ParkedHoverCornerAttachment\" .. index"
+  },
+  {
+   "category": "names_assigned",
+   "field": "name",
+   "line": 348,
+   "detail": "name built at run time: \"ParkedHoverCornerForce\" .. index"
+  }
+ ],
+ "contract_file": "FreeRoamParkedHoverClient.json"
+}

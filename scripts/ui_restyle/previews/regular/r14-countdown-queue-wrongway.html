@@ -1,0 +1,28 @@
+<!doctype html><html><head><meta charset="utf-8"><title>r14 Countdown, queue banner, wrong-way</title><script src="../shared/boot.js"></script></head><body><script>
+const band = (i, label, note, html) => `<div class="abs" style="left:0;top:${i * 360}px;width:1920px;height:${i === 2 ? 360 : 356}px;overflow:hidden">
+  <div class="scene" style="background-image:url(../shared/bg/race.jpg);background-position:center ${30 + i * 20}%"></div><div class="abs" style="inset:0;background:rgba(7,6,13,.25)"></div>
+  <div class="abs" style="left:58px;top:26px;width:420px"><div class="sheetlabel">${label}</div><div class="note" style="margin-top:8px">${note}</div></div>${html}</div>`;
+const cd = (x, top, n, small) => `<div class="abs col" style="left:${x}px;top:34px;width:300px;align-items:center;display:flex">
+    <div class="t-status shadow ${small ? "c-2" : ""}">${top}</div><div class="num shadow ${n === "GO!" ? "c-cyan" : ""}" style="font-size:${n === "GO!" ? 230 : 290}px;line-height:.82;margin-top:16px">${n}</div></div>`;
+P.page(`
+  ${band(0,"COUNTDOWN","Centre of the screen. GET READY with 5 to 1, then GO! for 0.85 s. Number is BigNumber sprites; no panel behind it.",
+     cd(650,"GET READY","3") + cd(1010,"&nbsp;","GO!",1) + `<div class="abs note" style="left:1340px;top:250px">two states shown side by side</div>`)}
+  ${band(1,"QUEUE BANNER","Top-centre slot. Event, status, players and time left; LEAVE is the only button (danger).",
+     `<div class="panel abs flex ac" style="left:50%;transform:translateX(-50%);top:58px;width:900px;height:112px;padding:0 20px 0 26px;gap:26px">
+        <div class="grow"><div class="t-label c-cyan">JOINING QUEUE</div><div class="t-tile" style="margin-top:8px">SHIFTED CANAL SPRINT</div></div>
+        <div style="text-align:center"><div class="t-label c-2">PLAYERS</div><div class="t-status" style="margin-top:8px">2 / 6</div></div>
+        <div style="text-align:center;width:90px"><div class="t-label c-2">STARTS IN</div><div class="t-status" style="margin-top:8px">25s</div></div>
+        ${P.btn("LEAVE","exit","md danger")}
+      </div>
+      <div class="panel abs flex ac" style="left:50%;transform:translateX(-50%);top:206px;width:900px;height:112px;padding:0 20px 0 26px;gap:26px">
+        <div class="grow"><div class="t-label c-2">WAITING FOR PLAYERS &middot; NEEDS 2</div><div class="t-tile" style="margin-top:8px">SHIFTED CANAL SPRINT</div></div>
+        <div style="text-align:center"><div class="t-label c-2">PLAYERS</div><div class="t-status" style="margin-top:8px">1 / 6</div></div>
+        <div style="text-align:center;width:90px"><div class="t-label c-2">STARTS IN</div><div class="t-status c-muted" style="margin-top:8px">--</div></div>
+        ${P.btn("LEAVE","exit","md danger focus")}
+      </div>`)}
+  ${band(2,"WRONG WAY &middot; RESETTING","Wrong-way prompt under the timer: the one use of Danger red outside buttons. The reset fade keeps its plain label.",
+     `<div class="abs flex ac g12" style="left:50%;transform:translateX(-50%);top:120px;height:72px;padding:0 34px 0 26px;background:var(--danger)"><i class="ic warn" style="font-size:38px"></i><span class="t-btn">WRONG WAY</span></div>
+      <div class="abs t-sect shadow" style="left:1380px;top:126px">RESETTING</div>`)}
+  <div class="divider" style="left:0;right:0;top:356px;height:4px;width:auto;bottom:auto"></div><div class="divider" style="left:0;right:0;top:716px;height:4px;width:auto;bottom:auto"></div>
+`);
+</script></body></html>

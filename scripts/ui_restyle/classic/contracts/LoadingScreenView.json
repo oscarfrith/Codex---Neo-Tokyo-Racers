@@ -1,0 +1,1034 @@
+{
+ "script": "ReplicatedFirst.Loading.LoadingScreenView",
+ "class": "ModuleScript",
+ "source_file": "classic/sources/ReplicatedFirst.Loading.LoadingScreenView.lua",
+ "source_lines": 314,
+ "included_because": [
+  "under ReplicatedFirst.Loading"
+ ],
+ "requires": [],
+ "remotes": {
+  "calls": [],
+  "listens": []
+ },
+ "bindables": {
+  "fires": [],
+  "connects": [],
+  "invokes": [],
+  "handlers": [],
+  "created": [],
+  "module_signal_fires": []
+ },
+ "attributes": {
+  "reads": [
+   {
+    "receiver": "self.Config",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "line": 145,
+    "in_function": "View:SetArtwork",
+    "name": "GridOverlapPixels"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "line": 159,
+    "in_function": "View:SetArtwork",
+    "name": "GridPreloadAttempts"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "line": 160,
+    "in_function": "View:SetArtwork",
+    "name": "GridPreloadRetrySeconds"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "line": 185,
+    "in_function": "View:SetArtwork",
+    "name": "GridPromotionWaitSeconds"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "line": 240,
+    "in_function": "View:Show",
+    "name": "MotionStartScale"
+   },
+   {
+    "receiver": "TweenInfo.new(math.max(0.03, tonumber(duration) or 0.18), Enum.EasingStyle.Quad, Enum.EasingDirection.Out)",
+    "receiver_kind": "other",
+    "wrapper_defined": "LoadingScreenView:30",
+    "line": 255,
+    "in_function": "View:SetProgress",
+    "via": "wrapper View.Create()",
+    "name": "DisplayOrder",
+    "receiver_path": null
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "line": 268,
+    "in_function": "View:StartMotion",
+    "name": "MotionStartScale"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "line": 269,
+    "in_function": "View:StartMotion",
+    "name": "MotionEndScale"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "line": 270,
+    "in_function": "View:StartMotion",
+    "name": "MotionTravelPercent"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "line": 271,
+    "in_function": "View:StartMotion",
+    "name": "MotionDurationSeconds"
+   },
+   {
+    "receiver": "TweenInfo.new(math.max(1, duration), Enum.EasingStyle.Sine, Enum.EasingDirection.Out, -1, true)",
+    "receiver_kind": "other",
+    "wrapper_defined": "LoadingScreenView:30",
+    "line": 278,
+    "in_function": "View:StartMotion",
+    "via": "wrapper View.Create()",
+    "name": "DisplayOrder",
+    "receiver_path": null
+   },
+   {
+    "receiver": "info",
+    "receiver_kind": "other",
+    "wrapper_defined": "LoadingScreenView:30",
+    "line": 288,
+    "in_function": "View:FadeOut",
+    "via": "wrapper View.Create()",
+    "name": "DisplayOrder",
+    "receiver_path": null
+   },
+   {
+    "receiver": "info",
+    "receiver_kind": "other",
+    "wrapper_defined": "LoadingScreenView:30",
+    "line": 289,
+    "in_function": "View:FadeOut",
+    "via": "wrapper View.Create()",
+    "name": "DisplayOrder",
+    "receiver_path": null
+   },
+   {
+    "receiver": "info",
+    "receiver_kind": "other",
+    "wrapper_defined": "LoadingScreenView:30",
+    "line": 290,
+    "in_function": "View:FadeOut",
+    "via": "wrapper View.Create()",
+    "name": "DisplayOrder",
+    "receiver_path": null
+   },
+   {
+    "receiver": "info",
+    "receiver_kind": "other",
+    "wrapper_defined": "LoadingScreenView:30",
+    "line": 291,
+    "in_function": "View:FadeOut",
+    "via": "wrapper View.Create()",
+    "name": "DisplayOrder",
+    "receiver_path": null
+   },
+   {
+    "receiver": "info",
+    "receiver_kind": "other",
+    "wrapper_defined": "LoadingScreenView:30",
+    "line": 292,
+    "in_function": "View:FadeOut",
+    "via": "wrapper View.Create()",
+    "name": "DisplayOrder",
+    "receiver_path": null
+   },
+   {
+    "receiver": "info",
+    "receiver_kind": "other",
+    "wrapper_defined": "LoadingScreenView:30",
+    "line": 294,
+    "in_function": "View:FadeOut",
+    "via": "wrapper View.Create()",
+    "name": "DisplayOrder",
+    "receiver_path": null
+   }
+  ],
+  "writes": [],
+  "listens": []
+ },
+ "player_attribute_writes": [],
+ "screenguis": {
+  "created": [
+   {
+    "variable": "backgroundGui",
+    "class": "ScreenGui",
+    "line": 31,
+    "factory": "new",
+    "adopts_existing": false,
+    "Name": "LoadingBackground",
+    "DisplayOrder": {
+     "expr": "displayOrder"
+    },
+    "ResetOnSpawn": false,
+    "IgnoreGuiInset": true,
+    "ScreenInsets": {
+     "expr": "Enum.ScreenInsets.None"
+    },
+    "ZIndexBehavior": {
+     "expr": "Enum.ZIndexBehavior.Sibling"
+    },
+    "Enabled": false,
+    "Parent": {
+     "expr": "playerGui"
+    },
+    "enabled_writes": [],
+    "property_lines": {
+     "Name": 31,
+     "IgnoreGuiInset": 31,
+     "ResetOnSpawn": 31,
+     "DisplayOrder": 31,
+     "ZIndexBehavior": 31,
+     "Enabled": 31,
+     "ScreenInsets": 32
+    }
+   },
+   {
+    "variable": "safeGui",
+    "class": "ScreenGui",
+    "line": 40,
+    "factory": "new",
+    "adopts_existing": false,
+    "Name": "LoadingSafeContent",
+    "DisplayOrder": {
+     "expr": "displayOrder + 1"
+    },
+    "ResetOnSpawn": false,
+    "IgnoreGuiInset": true,
+    "ScreenInsets": {
+     "expr": "Enum.ScreenInsets.CoreUISafeInsets"
+    },
+    "ZIndexBehavior": {
+     "expr": "Enum.ZIndexBehavior.Sibling"
+    },
+    "Enabled": false,
+    "Parent": {
+     "expr": "playerGui"
+    },
+    "enabled_writes": [],
+    "property_lines": {
+     "Name": 40,
+     "IgnoreGuiInset": 40,
+     "ResetOnSpawn": 40,
+     "DisplayOrder": 40,
+     "ZIndexBehavior": 40,
+     "Enabled": 40,
+     "ScreenInsets": 41
+    }
+   }
+  ],
+  "enabled_writes": [
+   {
+    "receiver": "self.BackgroundGui",
+    "receiver_path": null,
+    "value": true,
+    "screengui_like": "unknown",
+    "reason": "",
+    "line": 243,
+    "in_function": "View:Show"
+   },
+   {
+    "receiver": "self.SafeGui",
+    "receiver_path": null,
+    "value": true,
+    "screengui_like": "unknown",
+    "reason": "",
+    "line": 244,
+    "in_function": "View:Show"
+   },
+   {
+    "receiver": "self.BackgroundGui",
+    "receiver_path": null,
+    "value": false,
+    "screengui_like": "unknown",
+    "reason": "",
+    "line": 303,
+    "in_function": "View:Hide"
+   },
+   {
+    "receiver": "self.SafeGui",
+    "receiver_path": null,
+    "value": false,
+    "screengui_like": "unknown",
+    "reason": "",
+    "line": 304,
+    "in_function": "View:Hide"
+   }
+  ]
+ },
+ "names": {
+  "assigned": [
+   {
+    "via": "table_field",
+    "callee": "new",
+    "class": "ScreenGui",
+    "line": 31,
+    "in_function": "View.Create",
+    "name": "LoadingBackground"
+   },
+   {
+    "via": "table_field",
+    "callee": "new",
+    "class": "Frame",
+    "line": 33,
+    "in_function": "View.Create",
+    "name": "BlackBacking"
+   },
+   {
+    "via": "table_field",
+    "callee": "new",
+    "class": "Frame",
+    "line": 34,
+    "in_function": "View.Create",
+    "name": "ArtworkClip"
+   },
+   {
+    "via": "table_field",
+    "callee": "new",
+    "class": "Frame",
+    "line": 35,
+    "in_function": "View.Create",
+    "name": "ArtworkMotion"
+   },
+   {
+    "via": "table_field",
+    "callee": "new",
+    "class": "ImageLabel",
+    "line": 36,
+    "in_function": "View.Create",
+    "name": "SingleArtwork"
+   },
+   {
+    "via": "table_field",
+    "callee": "new",
+    "class": "Frame",
+    "line": 37,
+    "in_function": "View.Create",
+    "name": "GridArtwork"
+   },
+   {
+    "via": "table_field",
+    "callee": "new",
+    "class": "TextButton",
+    "line": 38,
+    "in_function": "View.Create",
+    "name": "InputBlocker"
+   },
+   {
+    "via": "table_field",
+    "callee": "new",
+    "class": "ScreenGui",
+    "line": 40,
+    "in_function": "View.Create",
+    "name": "LoadingSafeContent"
+   },
+   {
+    "via": "table_field",
+    "callee": "new",
+    "class": "Frame",
+    "line": 42,
+    "in_function": "View.Create",
+    "name": "SafeRoot"
+   },
+   {
+    "via": "table_field",
+    "callee": "new",
+    "class": "TextLabel",
+    "line": 43,
+    "in_function": "View.Create",
+    "name": "Status"
+   },
+   {
+    "via": "property",
+    "receiver": "statusConstraint",
+    "class": null,
+    "line": 45,
+    "in_function": "View.Create",
+    "name": "StatusWidthConstraint"
+   },
+   {
+    "via": "table_field",
+    "callee": "new",
+    "class": "Frame",
+    "line": 46,
+    "in_function": "View.Create",
+    "name": "ProgressTrack"
+   },
+   {
+    "via": "table_field",
+    "callee": "new",
+    "class": "Frame",
+    "line": 49,
+    "in_function": "View.Create",
+    "name": "ProgressFill"
+   },
+   {
+    "via": "table_field",
+    "callee": "new",
+    "class": "ImageLabel",
+    "line": 86,
+    "in_function": "View:_EnsureGridImages",
+    "name": "Tile"
+   },
+   {
+    "via": "property",
+    "receiver": "image",
+    "class": null,
+    "line": 148,
+    "in_function": "View:SetArtwork",
+    "name": null,
+    "name_expr": "tostring(tile.Name or (\"Tile%02d\"):format(index))"
+   }
+  ],
+  "looked_up": [
+   {
+    "method": "FindFirstChild",
+    "receiver": "{ Size = UDim2.fromScale(value, 1) }",
+    "root": null,
+    "wrapper_defined": "LoadingScreenView:51",
+    "line": 255,
+    "in_function": "View:SetProgress",
+    "via": "wrapper View.Create()",
+    "name": "ElectricBlue",
+    "receiver_path": null,
+    "receiver_kind": "other"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "{ Size = UDim2.fromScale(value, 1) }",
+    "root": null,
+    "wrapper_defined": "LoadingScreenView:49",
+    "line": 255,
+    "in_function": "View:SetProgress",
+    "via": "wrapper View.Create()",
+    "name": "Telemetry",
+    "receiver_path": null,
+    "receiver_kind": "other"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "{ Size = UDim2.fromScale(value, 1) }",
+    "root": null,
+    "wrapper_defined": "LoadingScreenView:46",
+    "line": 255,
+    "in_function": "View:SetProgress",
+    "via": "wrapper View.Create()",
+    "name": "PanelSoft",
+    "receiver_path": null,
+    "receiver_kind": "other"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "{ Size = UDim2.fromScale(value, 1) }",
+    "root": null,
+    "wrapper_defined": "LoadingScreenView:43",
+    "line": 255,
+    "in_function": "View:SetProgress",
+    "via": "wrapper View.Create()",
+    "name": "Text",
+    "receiver_path": null,
+    "receiver_kind": "other"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "{ Position = UDim2.fromScale(targetX, targetY), Size = UDim2.fromScale(endScale, endScale) }",
+    "root": null,
+    "wrapper_defined": "LoadingScreenView:51",
+    "line": 278,
+    "in_function": "View:StartMotion",
+    "via": "wrapper View.Create()",
+    "name": "ElectricBlue",
+    "receiver_path": null,
+    "receiver_kind": "other"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "{ Position = UDim2.fromScale(targetX, targetY), Size = UDim2.fromScale(endScale, endScale) }",
+    "root": null,
+    "wrapper_defined": "LoadingScreenView:49",
+    "line": 278,
+    "in_function": "View:StartMotion",
+    "via": "wrapper View.Create()",
+    "name": "Telemetry",
+    "receiver_path": null,
+    "receiver_kind": "other"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "{ Position = UDim2.fromScale(targetX, targetY), Size = UDim2.fromScale(endScale, endScale) }",
+    "root": null,
+    "wrapper_defined": "LoadingScreenView:46",
+    "line": 278,
+    "in_function": "View:StartMotion",
+    "via": "wrapper View.Create()",
+    "name": "PanelSoft",
+    "receiver_path": null,
+    "receiver_kind": "other"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "{ Position = UDim2.fromScale(targetX, targetY), Size = UDim2.fromScale(endScale, endScale) }",
+    "root": null,
+    "wrapper_defined": "LoadingScreenView:43",
+    "line": 278,
+    "in_function": "View:StartMotion",
+    "via": "wrapper View.Create()",
+    "name": "Text",
+    "receiver_path": null,
+    "receiver_kind": "other"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "{ BackgroundTransparency = 1 }",
+    "root": null,
+    "wrapper_defined": "LoadingScreenView:51",
+    "line": 288,
+    "in_function": "View:FadeOut",
+    "via": "wrapper View.Create()",
+    "name": "ElectricBlue",
+    "receiver_path": null,
+    "receiver_kind": "other"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "{ BackgroundTransparency = 1 }",
+    "root": null,
+    "wrapper_defined": "LoadingScreenView:49",
+    "line": 288,
+    "in_function": "View:FadeOut",
+    "via": "wrapper View.Create()",
+    "name": "Telemetry",
+    "receiver_path": null,
+    "receiver_kind": "other"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "{ BackgroundTransparency = 1 }",
+    "root": null,
+    "wrapper_defined": "LoadingScreenView:46",
+    "line": 288,
+    "in_function": "View:FadeOut",
+    "via": "wrapper View.Create()",
+    "name": "PanelSoft",
+    "receiver_path": null,
+    "receiver_kind": "other"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "{ BackgroundTransparency = 1 }",
+    "root": null,
+    "wrapper_defined": "LoadingScreenView:43",
+    "line": 288,
+    "in_function": "View:FadeOut",
+    "via": "wrapper View.Create()",
+    "name": "Text",
+    "receiver_path": null,
+    "receiver_kind": "other"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "{ ImageTransparency = 1 }",
+    "root": null,
+    "wrapper_defined": "LoadingScreenView:51",
+    "line": 289,
+    "in_function": "View:FadeOut",
+    "via": "wrapper View.Create()",
+    "name": "ElectricBlue",
+    "receiver_path": null,
+    "receiver_kind": "other"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "{ ImageTransparency = 1 }",
+    "root": null,
+    "wrapper_defined": "LoadingScreenView:49",
+    "line": 289,
+    "in_function": "View:FadeOut",
+    "via": "wrapper View.Create()",
+    "name": "Telemetry",
+    "receiver_path": null,
+    "receiver_kind": "other"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "{ ImageTransparency = 1 }",
+    "root": null,
+    "wrapper_defined": "LoadingScreenView:46",
+    "line": 289,
+    "in_function": "View:FadeOut",
+    "via": "wrapper View.Create()",
+    "name": "PanelSoft",
+    "receiver_path": null,
+    "receiver_kind": "other"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "{ ImageTransparency = 1 }",
+    "root": null,
+    "wrapper_defined": "LoadingScreenView:43",
+    "line": 289,
+    "in_function": "View:FadeOut",
+    "via": "wrapper View.Create()",
+    "name": "Text",
+    "receiver_path": null,
+    "receiver_kind": "other"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "{ TextTransparency = 1 }",
+    "root": null,
+    "wrapper_defined": "LoadingScreenView:51",
+    "line": 290,
+    "in_function": "View:FadeOut",
+    "via": "wrapper View.Create()",
+    "name": "ElectricBlue",
+    "receiver_path": null,
+    "receiver_kind": "other"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "{ TextTransparency = 1 }",
+    "root": null,
+    "wrapper_defined": "LoadingScreenView:49",
+    "line": 290,
+    "in_function": "View:FadeOut",
+    "via": "wrapper View.Create()",
+    "name": "Telemetry",
+    "receiver_path": null,
+    "receiver_kind": "other"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "{ TextTransparency = 1 }",
+    "root": null,
+    "wrapper_defined": "LoadingScreenView:46",
+    "line": 290,
+    "in_function": "View:FadeOut",
+    "via": "wrapper View.Create()",
+    "name": "PanelSoft",
+    "receiver_path": null,
+    "receiver_kind": "other"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "{ TextTransparency = 1 }",
+    "root": null,
+    "wrapper_defined": "LoadingScreenView:43",
+    "line": 290,
+    "in_function": "View:FadeOut",
+    "via": "wrapper View.Create()",
+    "name": "Text",
+    "receiver_path": null,
+    "receiver_kind": "other"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "{ BackgroundTransparency = 1 }",
+    "root": null,
+    "wrapper_defined": "LoadingScreenView:51",
+    "line": 291,
+    "in_function": "View:FadeOut",
+    "via": "wrapper View.Create()",
+    "name": "ElectricBlue",
+    "receiver_path": null,
+    "receiver_kind": "other"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "{ BackgroundTransparency = 1 }",
+    "root": null,
+    "wrapper_defined": "LoadingScreenView:49",
+    "line": 291,
+    "in_function": "View:FadeOut",
+    "via": "wrapper View.Create()",
+    "name": "Telemetry",
+    "receiver_path": null,
+    "receiver_kind": "other"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "{ BackgroundTransparency = 1 }",
+    "root": null,
+    "wrapper_defined": "LoadingScreenView:46",
+    "line": 291,
+    "in_function": "View:FadeOut",
+    "via": "wrapper View.Create()",
+    "name": "PanelSoft",
+    "receiver_path": null,
+    "receiver_kind": "other"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "{ BackgroundTransparency = 1 }",
+    "root": null,
+    "wrapper_defined": "LoadingScreenView:43",
+    "line": 291,
+    "in_function": "View:FadeOut",
+    "via": "wrapper View.Create()",
+    "name": "Text",
+    "receiver_path": null,
+    "receiver_kind": "other"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "{ BackgroundTransparency = 1 }",
+    "root": null,
+    "wrapper_defined": "LoadingScreenView:51",
+    "line": 292,
+    "in_function": "View:FadeOut",
+    "via": "wrapper View.Create()",
+    "name": "ElectricBlue",
+    "receiver_path": null,
+    "receiver_kind": "other"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "{ BackgroundTransparency = 1 }",
+    "root": null,
+    "wrapper_defined": "LoadingScreenView:49",
+    "line": 292,
+    "in_function": "View:FadeOut",
+    "via": "wrapper View.Create()",
+    "name": "Telemetry",
+    "receiver_path": null,
+    "receiver_kind": "other"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "{ BackgroundTransparency = 1 }",
+    "root": null,
+    "wrapper_defined": "LoadingScreenView:46",
+    "line": 292,
+    "in_function": "View:FadeOut",
+    "via": "wrapper View.Create()",
+    "name": "PanelSoft",
+    "receiver_path": null,
+    "receiver_kind": "other"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "{ BackgroundTransparency = 1 }",
+    "root": null,
+    "wrapper_defined": "LoadingScreenView:43",
+    "line": 292,
+    "in_function": "View:FadeOut",
+    "via": "wrapper View.Create()",
+    "name": "Text",
+    "receiver_path": null,
+    "receiver_kind": "other"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "{ ImageTransparency = 1 }",
+    "root": null,
+    "wrapper_defined": "LoadingScreenView:51",
+    "line": 294,
+    "in_function": "View:FadeOut",
+    "via": "wrapper View.Create()",
+    "name": "ElectricBlue",
+    "receiver_path": null,
+    "receiver_kind": "other"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "{ ImageTransparency = 1 }",
+    "root": null,
+    "wrapper_defined": "LoadingScreenView:49",
+    "line": 294,
+    "in_function": "View:FadeOut",
+    "via": "wrapper View.Create()",
+    "name": "Telemetry",
+    "receiver_path": null,
+    "receiver_kind": "other"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "{ ImageTransparency = 1 }",
+    "root": null,
+    "wrapper_defined": "LoadingScreenView:46",
+    "line": 294,
+    "in_function": "View:FadeOut",
+    "via": "wrapper View.Create()",
+    "name": "PanelSoft",
+    "receiver_path": null,
+    "receiver_kind": "other"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "{ ImageTransparency = 1 }",
+    "root": null,
+    "wrapper_defined": "LoadingScreenView:43",
+    "line": 294,
+    "in_function": "View:FadeOut",
+    "via": "wrapper View.Create()",
+    "name": "Text",
+    "receiver_path": null,
+    "receiver_kind": "other"
+   }
+  ],
+  "text_compared": []
+ },
+ "run_service": {
+  "render_steps": [],
+  "connects": []
+ },
+ "context_actions": [],
+ "user_input_service": {
+  "connects": [],
+  "members_used": []
+ },
+ "audio": {
+  "bridge_calls": [],
+  "ui_audio_attributes": []
+ },
+ "config": {
+  "paths": [],
+  "attribute_reads": [
+   {
+    "receiver": "self.Config",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "line": 145,
+    "in_function": "View:SetArtwork",
+    "name": "GridOverlapPixels",
+    "access": "read"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "line": 159,
+    "in_function": "View:SetArtwork",
+    "name": "GridPreloadAttempts",
+    "access": "read"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "line": 160,
+    "in_function": "View:SetArtwork",
+    "name": "GridPreloadRetrySeconds",
+    "access": "read"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "line": 185,
+    "in_function": "View:SetArtwork",
+    "name": "GridPromotionWaitSeconds",
+    "access": "read"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "line": 240,
+    "in_function": "View:Show",
+    "name": "MotionStartScale",
+    "access": "read"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "line": 268,
+    "in_function": "View:StartMotion",
+    "name": "MotionStartScale",
+    "access": "read"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "line": 269,
+    "in_function": "View:StartMotion",
+    "name": "MotionEndScale",
+    "access": "read"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "line": 270,
+    "in_function": "View:StartMotion",
+    "name": "MotionTravelPercent",
+    "access": "read"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "line": 271,
+    "in_function": "View:StartMotion",
+    "name": "MotionDurationSeconds",
+    "access": "read"
+   }
+  ],
+  "child_lookups": []
+ },
+ "startergui_core": [],
+ "gui_service": [],
+ "other_services": {},
+ "service_connects": [],
+ "proximity_prompts": [],
+ "instances_created_by_class": {
+  "Frame": 7,
+  "ImageLabel": 3,
+  "ScreenGui": 2,
+  "TextButton": 1,
+  "TextLabel": 1,
+  "UICorner": 2,
+  "UIGradient": 1
+ },
+ "public_api": [
+  {
+   "name": "__index",
+   "kind": "field",
+   "line": 6,
+   "value": "View"
+  },
+  {
+   "name": "Create",
+   "kind": "function",
+   "params": [
+    "playerGui",
+    "config",
+    "colours"
+   ],
+   "line": 20
+  },
+  {
+   "name": "_UpdateCompositeCover",
+   "kind": "function",
+   "params": [],
+   "line": 70
+  },
+  {
+   "name": "_EnsureGridImages",
+   "kind": "function",
+   "params": [
+    "count"
+   ],
+   "line": 83
+  },
+  {
+   "name": "SetArtwork",
+   "kind": "function",
+   "params": [
+    "entry"
+   ],
+   "line": 126
+  },
+  {
+   "name": "Warm",
+   "kind": "function",
+   "params": [
+    "entries",
+    "limit"
+   ],
+   "line": 207
+  },
+  {
+   "name": "Show",
+   "kind": "function",
+   "params": [
+    "statusText"
+   ],
+   "line": 228
+  },
+  {
+   "name": "SetStatus",
+   "kind": "function",
+   "params": [
+    "text"
+   ],
+   "line": 248
+  },
+  {
+   "name": "SetProgress",
+   "kind": "function",
+   "params": [
+    "value",
+    "duration"
+   ],
+   "line": 252
+  },
+  {
+   "name": "SetProgressImmediate",
+   "kind": "function",
+   "params": [
+    "value"
+   ],
+   "line": 259
+  },
+  {
+   "name": "StartMotion",
+   "kind": "function",
+   "params": [
+    "enabled"
+   ],
+   "line": 265
+  },
+  {
+   "name": "FadeOut",
+   "kind": "function",
+   "params": [
+    "duration"
+   ],
+   "line": 282
+  },
+  {
+   "name": "Hide",
+   "kind": "function",
+   "params": [],
+   "line": 299
+  },
+  {
+   "name": "Destroy",
+   "kind": "function",
+   "params": [],
+   "line": 307
+  }
+ ],
+ "unresolved": [
+  {
+   "category": "names_assigned",
+   "field": "name",
+   "line": 148,
+   "detail": "not a literal: tostring(tile.Name or (\"Tile%02d\"):format(index))"
+  }
+ ],
+ "contract_file": "LoadingScreenView.json"
+}

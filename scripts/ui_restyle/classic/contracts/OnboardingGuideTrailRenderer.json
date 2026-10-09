@@ -1,0 +1,1108 @@
+{
+ "script": "ReplicatedStorage.Modules.Game.UI.OnboardingGuideTrailRenderer",
+ "class": "ModuleScript",
+ "source_file": "classic/sources/ReplicatedStorage.Modules.Game.UI.OnboardingGuideTrailRenderer.lua",
+ "source_lines": 139,
+ "included_because": [
+  "under ReplicatedStorage.Modules.Game.UI"
+ ],
+ "requires": [],
+ "remotes": {
+  "calls": [],
+  "listens": []
+ },
+ "bindables": {
+  "fires": [],
+  "connects": [],
+  "invokes": [],
+  "handlers": [],
+  "created": [],
+  "module_signal_fires": []
+ },
+ "attributes": {
+  "reads": [
+   {
+    "receiver": "self.Config",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "line": 76,
+    "in_function": "Renderer:EnsureFolder",
+    "name": "TutorialGold"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "OnboardingGuideTrailRenderer:43",
+    "line": 77,
+    "in_function": "Renderer:EnsureFolder",
+    "via": "wrapper createBeam()",
+    "name": "GuideTrailChevronTexture",
+    "receiver_path": null
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "OnboardingGuideTrailRenderer:44",
+    "line": 77,
+    "in_function": "Renderer:EnsureFolder",
+    "via": "wrapper createBeam()",
+    "name": "GuideTrailChevronBeamEnabled",
+    "receiver_path": null
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "OnboardingGuideTrailRenderer:37",
+    "line": 77,
+    "in_function": "Renderer:EnsureFolder",
+    "via": "wrapper createBeam()",
+    "name": "GuideTrailBeamEnabled",
+    "receiver_path": null
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "OnboardingGuideTrailRenderer:45",
+    "line": 77,
+    "in_function": "Renderer:EnsureFolder",
+    "via": "wrapper createBeam()",
+    "name": "GuideTrailChevronZOffset",
+    "receiver_path": null
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "OnboardingGuideTrailRenderer:45",
+    "line": 77,
+    "in_function": "Renderer:EnsureFolder",
+    "via": "wrapper createBeam()",
+    "name": "GuideTrailChevronTextureSpeed",
+    "receiver_path": null
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "OnboardingGuideTrailRenderer:45",
+    "line": 77,
+    "in_function": "Renderer:EnsureFolder",
+    "via": "wrapper createBeam()",
+    "name": "GuideTrailChevronTextureLength",
+    "receiver_path": null
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "OnboardingGuideTrailRenderer:45",
+    "line": 77,
+    "in_function": "Renderer:EnsureFolder",
+    "via": "wrapper createBeam()",
+    "name": "GuideTrailChevronBrightness",
+    "receiver_path": null
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "OnboardingGuideTrailRenderer:45",
+    "line": 77,
+    "in_function": "Renderer:EnsureFolder",
+    "via": "wrapper createBeam()",
+    "name": "GuideTrailChevronWidth",
+    "receiver_path": null
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "OnboardingGuideTrailRenderer:45",
+    "line": 77,
+    "in_function": "Renderer:EnsureFolder",
+    "via": "wrapper createBeam()",
+    "name": "GuideTrailChevronTransparency",
+    "receiver_path": null
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "OnboardingGuideTrailRenderer:42",
+    "line": 77,
+    "in_function": "Renderer:EnsureFolder",
+    "via": "wrapper createBeam()",
+    "name": "GuideTrailBeamCoreWidth",
+    "receiver_path": null
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "OnboardingGuideTrailRenderer:42",
+    "line": 77,
+    "in_function": "Renderer:EnsureFolder",
+    "via": "wrapper createBeam()",
+    "name": "GuideTrailBeamCoreTransparency",
+    "receiver_path": null
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "OnboardingGuideTrailRenderer:41",
+    "line": 77,
+    "in_function": "Renderer:EnsureFolder",
+    "via": "wrapper createBeam()",
+    "name": "GuideTrailBeamWidth",
+    "receiver_path": null
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "OnboardingGuideTrailRenderer:41",
+    "line": 77,
+    "in_function": "Renderer:EnsureFolder",
+    "via": "wrapper createBeam()",
+    "name": "GuideTrailBeamTransparency",
+    "receiver_path": null
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "OnboardingGuideTrailRenderer:12",
+    "line": 79,
+    "in_function": "Renderer:EnsureFolder",
+    "via": "wrapper boolean()",
+    "name": "GuideTrailPartArrowsEnabled",
+    "receiver_path": null
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "OnboardingGuideTrailRenderer:8",
+    "line": 81,
+    "in_function": "Renderer:EnsureFolder",
+    "via": "wrapper number()",
+    "name": "GuideTrailMaximumArrows",
+    "receiver_path": null
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "OnboardingGuideTrailRenderer:55",
+    "line": 82,
+    "in_function": "Renderer:EnsureFolder",
+    "via": "wrapper createArrow()",
+    "name": "GuideTrailShaftEnabled",
+    "receiver_path": null
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "OnboardingGuideTrailRenderer:53",
+    "line": 82,
+    "in_function": "Renderer:EnsureFolder",
+    "via": "wrapper createArrow()",
+    "name": "GuideTrailHeadLength",
+    "receiver_path": null
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "OnboardingGuideTrailRenderer:53",
+    "line": 82,
+    "in_function": "Renderer:EnsureFolder",
+    "via": "wrapper createArrow()",
+    "name": "GuideTrailHeadWidth",
+    "receiver_path": null
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "OnboardingGuideTrailRenderer:52",
+    "line": 82,
+    "in_function": "Renderer:EnsureFolder",
+    "via": "wrapper createArrow()",
+    "name": "GuideTrailShaftLength",
+    "receiver_path": null
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "OnboardingGuideTrailRenderer:52",
+    "line": 82,
+    "in_function": "Renderer:EnsureFolder",
+    "via": "wrapper createArrow()",
+    "name": "GuideTrailArrowWidth",
+    "receiver_path": null
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "OnboardingGuideTrailRenderer:50",
+    "line": 82,
+    "in_function": "Renderer:EnsureFolder",
+    "via": "wrapper createArrow()",
+    "name": "GuideTrailTransparency",
+    "receiver_path": null
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "OnboardingGuideTrailRenderer:50",
+    "line": 82,
+    "in_function": "Renderer:EnsureFolder",
+    "via": "wrapper createArrow()",
+    "name": "GuideTrailArrowScale",
+    "receiver_path": null
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "OnboardingGuideTrailRenderer:8",
+    "line": 104,
+    "in_function": "Renderer:Update",
+    "via": "wrapper number()",
+    "name": "GuideTrailMinimumDistance",
+    "receiver_path": null
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "OnboardingGuideTrailRenderer:8",
+    "line": 110,
+    "in_function": "Renderer:Update",
+    "via": "wrapper number()",
+    "name": "GuideTrailStartOffset",
+    "receiver_path": null
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "OnboardingGuideTrailRenderer:8",
+    "line": 110,
+    "in_function": "Renderer:Update",
+    "via": "wrapper number()",
+    "name": "GuideTrailEndOffset",
+    "receiver_path": null
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "OnboardingGuideTrailRenderer:8",
+    "line": 111,
+    "in_function": "Renderer:Update",
+    "via": "wrapper number()",
+    "name": "GuideTrailSpacing",
+    "receiver_path": null
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "OnboardingGuideTrailRenderer:8",
+    "line": 114,
+    "in_function": "Renderer:Update",
+    "via": "wrapper number()",
+    "name": "GuideTrailHeightOffset",
+    "receiver_path": null
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "OnboardingGuideTrailRenderer:8",
+    "line": 115,
+    "in_function": "Renderer:Update",
+    "via": "wrapper number()",
+    "name": "GuideTrailBeamStartHeightOffset",
+    "receiver_path": null
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "OnboardingGuideTrailRenderer:8",
+    "line": 117,
+    "in_function": "Renderer:Update",
+    "via": "wrapper number()",
+    "name": "GuideTrailPulseSpeed",
+    "receiver_path": null
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "OnboardingGuideTrailRenderer:8",
+    "line": 117,
+    "in_function": "Renderer:Update",
+    "via": "wrapper number()",
+    "name": "GuideTrailPulseAmplitude",
+    "receiver_path": null
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "OnboardingGuideTrailRenderer:8",
+    "line": 117,
+    "in_function": "Renderer:Update",
+    "via": "wrapper number()",
+    "name": "GuideTrailArrowScale",
+    "receiver_path": null
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "OnboardingGuideTrailRenderer:8",
+    "line": 118,
+    "in_function": "Renderer:Update",
+    "via": "wrapper number()",
+    "name": "GuideTrailShaftLength",
+    "receiver_path": null
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "OnboardingGuideTrailRenderer:8",
+    "line": 119,
+    "in_function": "Renderer:Update",
+    "via": "wrapper number()",
+    "name": "GuideTrailShaftLength",
+    "receiver_path": null
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "OnboardingGuideTrailRenderer:8",
+    "line": 119,
+    "in_function": "Renderer:Update",
+    "via": "wrapper number()",
+    "name": "GuideTrailHeadLength",
+    "receiver_path": null
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "OnboardingGuideTrailRenderer:8",
+    "line": 120,
+    "in_function": "Renderer:Update",
+    "via": "wrapper number()",
+    "name": "GuideTrailHeadWidth",
+    "receiver_path": null
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "line": 121,
+    "in_function": "Renderer:Update",
+    "name": "TutorialGold"
+   }
+  ],
+  "writes": [],
+  "listens": []
+ },
+ "player_attribute_writes": [],
+ "screenguis": {
+  "created": [],
+  "enabled_writes": [
+   {
+    "receiver": "aura",
+    "receiver_path": null,
+    "value": false,
+    "screengui_like": "no",
+    "reason": "created here as Beam",
+    "line": 41,
+    "in_function": "createBeam",
+    "screengui_name": "AuraBeam"
+   },
+   {
+    "receiver": "core",
+    "receiver_path": null,
+    "value": false,
+    "screengui_like": "no",
+    "reason": "created here as Beam",
+    "line": 42,
+    "in_function": "createBeam",
+    "screengui_name": "CoreBeam"
+   },
+   {
+    "receiver": "chevron",
+    "receiver_path": null,
+    "value": false,
+    "screengui_like": "no",
+    "reason": "created here as Beam",
+    "line": 45,
+    "in_function": "createBeam",
+    "screengui_name": "ChevronBeam"
+   },
+   {
+    "receiver": "beam.Aura",
+    "receiver_path": null,
+    "value": {
+     "expr": "shown"
+    },
+    "screengui_like": "unknown",
+    "reason": "",
+    "line": 62,
+    "in_function": "setBeamVisible"
+   },
+   {
+    "receiver": "beam.Core",
+    "receiver_path": null,
+    "value": {
+     "expr": "shown"
+    },
+    "screengui_like": "unknown",
+    "reason": "",
+    "line": 62,
+    "in_function": "setBeamVisible"
+   },
+   {
+    "receiver": "beam.Chevron",
+    "receiver_path": null,
+    "value": {
+     "expr": "shown"
+    },
+    "screengui_like": "unknown",
+    "reason": "",
+    "line": 62,
+    "in_function": "setBeamVisible"
+   }
+  ]
+ },
+ "names": {
+  "assigned": [
+   {
+    "via": "property",
+    "receiver": "attachment",
+    "class": "Attachment",
+    "line": 33,
+    "in_function": "makeBeamAnchor",
+    "name": "Attachment"
+   },
+   {
+    "via": "property",
+    "receiver": "folder",
+    "class": "Folder",
+    "line": 38,
+    "in_function": "createBeam",
+    "name": "DynamicBeam"
+   },
+   {
+    "via": "wrapper makeBeamAnchor()",
+    "receiver": "object",
+    "class": "Part",
+    "wrapper_defined": "OnboardingGuideTrailRenderer:32",
+    "line": 39,
+    "in_function": "createBeam",
+    "name": "BeamStart"
+   },
+   {
+    "via": "wrapper makeBeamAnchor()",
+    "receiver": "object",
+    "class": "Part",
+    "wrapper_defined": "OnboardingGuideTrailRenderer:32",
+    "line": 40,
+    "in_function": "createBeam",
+    "name": "BeamEnd"
+   },
+   {
+    "via": "property",
+    "receiver": "aura",
+    "class": "Beam",
+    "line": 41,
+    "in_function": "createBeam",
+    "name": "AuraBeam"
+   },
+   {
+    "via": "property",
+    "receiver": "core",
+    "class": "Beam",
+    "line": 42,
+    "in_function": "createBeam",
+    "name": "CoreBeam"
+   },
+   {
+    "via": "property",
+    "receiver": "chevron",
+    "class": "Beam",
+    "line": 45,
+    "in_function": "createBeam",
+    "name": "ChevronBeam"
+   },
+   {
+    "via": "property",
+    "receiver": "model",
+    "class": "Model",
+    "line": 51,
+    "in_function": "createArrow",
+    "name": null,
+    "name_expr": "string.format(\"DynamicArrow_%02d\",index)"
+   },
+   {
+    "via": "wrapper makeArrowPart()",
+    "receiver": "object",
+    "class": "Part",
+    "wrapper_defined": "OnboardingGuideTrailRenderer:26",
+    "line": 52,
+    "in_function": "createArrow",
+    "name": "Shaft"
+   },
+   {
+    "via": "wrapper makeArrowPart()",
+    "receiver": "object",
+    "class": "Part",
+    "wrapper_defined": "OnboardingGuideTrailRenderer:26",
+    "line": 53,
+    "in_function": "createArrow",
+    "name": "HeadLeft"
+   },
+   {
+    "via": "wrapper makeArrowPart()",
+    "receiver": "object",
+    "class": "Part",
+    "wrapper_defined": "OnboardingGuideTrailRenderer:26",
+    "line": 54,
+    "in_function": "createArrow",
+    "name": "HeadRight"
+   },
+   {
+    "via": "property",
+    "receiver": "client",
+    "class": "Folder",
+    "line": 73,
+    "in_function": "Renderer:EnsureFolder",
+    "name": "ClientOnly"
+   },
+   {
+    "via": "property",
+    "receiver": "self.Folder",
+    "class": null,
+    "line": 75,
+    "in_function": "Renderer:EnsureFolder",
+    "name": "OnboardingGuideTrail"
+   }
+  ],
+  "looked_up": [
+   {
+    "method": "FindFirstChild",
+    "receiver": "workspace",
+    "receiver_path": "Workspace",
+    "root": "Workspace",
+    "line": 72,
+    "in_function": "Renderer:EnsureFolder",
+    "name": "ClientOnly"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "client",
+    "receiver_path": null,
+    "root": null,
+    "line": 74,
+    "in_function": "Renderer:EnsureFolder",
+    "name": "OnboardingGuideTrail"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "character",
+    "receiver_path": "Players.LocalPlayer.Character",
+    "root": "Players",
+    "line": 101,
+    "in_function": "Renderer:Update",
+    "name": "HumanoidRootPart"
+   }
+  ],
+  "text_compared": []
+ },
+ "run_service": {
+  "render_steps": [],
+  "connects": [
+   {
+    "signal": "RenderStepped",
+    "method": "Connect",
+    "line": 67,
+    "in_function": "Renderer.new",
+    "callback": "function(dt) self:Update(dt) end"
+   }
+  ]
+ },
+ "context_actions": [],
+ "user_input_service": {
+  "connects": [],
+  "members_used": []
+ },
+ "audio": {
+  "bridge_calls": [],
+  "ui_audio_attributes": []
+ },
+ "config": {
+  "paths": [],
+  "attribute_reads": [
+   {
+    "receiver": "self.Config",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "line": 76,
+    "in_function": "Renderer:EnsureFolder",
+    "name": "TutorialGold",
+    "access": "read"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "OnboardingGuideTrailRenderer:43",
+    "line": 77,
+    "in_function": "Renderer:EnsureFolder",
+    "via": "wrapper createBeam()",
+    "name": "GuideTrailChevronTexture",
+    "receiver_path": null,
+    "access": "read"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "OnboardingGuideTrailRenderer:44",
+    "line": 77,
+    "in_function": "Renderer:EnsureFolder",
+    "via": "wrapper createBeam()",
+    "name": "GuideTrailChevronBeamEnabled",
+    "receiver_path": null,
+    "access": "read"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "OnboardingGuideTrailRenderer:37",
+    "line": 77,
+    "in_function": "Renderer:EnsureFolder",
+    "via": "wrapper createBeam()",
+    "name": "GuideTrailBeamEnabled",
+    "receiver_path": null,
+    "access": "read"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "OnboardingGuideTrailRenderer:45",
+    "line": 77,
+    "in_function": "Renderer:EnsureFolder",
+    "via": "wrapper createBeam()",
+    "name": "GuideTrailChevronZOffset",
+    "receiver_path": null,
+    "access": "read"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "OnboardingGuideTrailRenderer:45",
+    "line": 77,
+    "in_function": "Renderer:EnsureFolder",
+    "via": "wrapper createBeam()",
+    "name": "GuideTrailChevronTextureSpeed",
+    "receiver_path": null,
+    "access": "read"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "OnboardingGuideTrailRenderer:45",
+    "line": 77,
+    "in_function": "Renderer:EnsureFolder",
+    "via": "wrapper createBeam()",
+    "name": "GuideTrailChevronTextureLength",
+    "receiver_path": null,
+    "access": "read"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "OnboardingGuideTrailRenderer:45",
+    "line": 77,
+    "in_function": "Renderer:EnsureFolder",
+    "via": "wrapper createBeam()",
+    "name": "GuideTrailChevronBrightness",
+    "receiver_path": null,
+    "access": "read"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "OnboardingGuideTrailRenderer:45",
+    "line": 77,
+    "in_function": "Renderer:EnsureFolder",
+    "via": "wrapper createBeam()",
+    "name": "GuideTrailChevronWidth",
+    "receiver_path": null,
+    "access": "read"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "OnboardingGuideTrailRenderer:45",
+    "line": 77,
+    "in_function": "Renderer:EnsureFolder",
+    "via": "wrapper createBeam()",
+    "name": "GuideTrailChevronTransparency",
+    "receiver_path": null,
+    "access": "read"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "OnboardingGuideTrailRenderer:42",
+    "line": 77,
+    "in_function": "Renderer:EnsureFolder",
+    "via": "wrapper createBeam()",
+    "name": "GuideTrailBeamCoreWidth",
+    "receiver_path": null,
+    "access": "read"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "OnboardingGuideTrailRenderer:42",
+    "line": 77,
+    "in_function": "Renderer:EnsureFolder",
+    "via": "wrapper createBeam()",
+    "name": "GuideTrailBeamCoreTransparency",
+    "receiver_path": null,
+    "access": "read"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "OnboardingGuideTrailRenderer:41",
+    "line": 77,
+    "in_function": "Renderer:EnsureFolder",
+    "via": "wrapper createBeam()",
+    "name": "GuideTrailBeamWidth",
+    "receiver_path": null,
+    "access": "read"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "OnboardingGuideTrailRenderer:41",
+    "line": 77,
+    "in_function": "Renderer:EnsureFolder",
+    "via": "wrapper createBeam()",
+    "name": "GuideTrailBeamTransparency",
+    "receiver_path": null,
+    "access": "read"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "OnboardingGuideTrailRenderer:12",
+    "line": 79,
+    "in_function": "Renderer:EnsureFolder",
+    "via": "wrapper boolean()",
+    "name": "GuideTrailPartArrowsEnabled",
+    "receiver_path": null,
+    "access": "read"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "OnboardingGuideTrailRenderer:8",
+    "line": 81,
+    "in_function": "Renderer:EnsureFolder",
+    "via": "wrapper number()",
+    "name": "GuideTrailMaximumArrows",
+    "receiver_path": null,
+    "access": "read"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "OnboardingGuideTrailRenderer:55",
+    "line": 82,
+    "in_function": "Renderer:EnsureFolder",
+    "via": "wrapper createArrow()",
+    "name": "GuideTrailShaftEnabled",
+    "receiver_path": null,
+    "access": "read"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "OnboardingGuideTrailRenderer:53",
+    "line": 82,
+    "in_function": "Renderer:EnsureFolder",
+    "via": "wrapper createArrow()",
+    "name": "GuideTrailHeadLength",
+    "receiver_path": null,
+    "access": "read"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "OnboardingGuideTrailRenderer:53",
+    "line": 82,
+    "in_function": "Renderer:EnsureFolder",
+    "via": "wrapper createArrow()",
+    "name": "GuideTrailHeadWidth",
+    "receiver_path": null,
+    "access": "read"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "OnboardingGuideTrailRenderer:52",
+    "line": 82,
+    "in_function": "Renderer:EnsureFolder",
+    "via": "wrapper createArrow()",
+    "name": "GuideTrailShaftLength",
+    "receiver_path": null,
+    "access": "read"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "OnboardingGuideTrailRenderer:52",
+    "line": 82,
+    "in_function": "Renderer:EnsureFolder",
+    "via": "wrapper createArrow()",
+    "name": "GuideTrailArrowWidth",
+    "receiver_path": null,
+    "access": "read"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "OnboardingGuideTrailRenderer:50",
+    "line": 82,
+    "in_function": "Renderer:EnsureFolder",
+    "via": "wrapper createArrow()",
+    "name": "GuideTrailTransparency",
+    "receiver_path": null,
+    "access": "read"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "OnboardingGuideTrailRenderer:50",
+    "line": 82,
+    "in_function": "Renderer:EnsureFolder",
+    "via": "wrapper createArrow()",
+    "name": "GuideTrailArrowScale",
+    "receiver_path": null,
+    "access": "read"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "OnboardingGuideTrailRenderer:8",
+    "line": 104,
+    "in_function": "Renderer:Update",
+    "via": "wrapper number()",
+    "name": "GuideTrailMinimumDistance",
+    "receiver_path": null,
+    "access": "read"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "OnboardingGuideTrailRenderer:8",
+    "line": 110,
+    "in_function": "Renderer:Update",
+    "via": "wrapper number()",
+    "name": "GuideTrailStartOffset",
+    "receiver_path": null,
+    "access": "read"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "OnboardingGuideTrailRenderer:8",
+    "line": 110,
+    "in_function": "Renderer:Update",
+    "via": "wrapper number()",
+    "name": "GuideTrailEndOffset",
+    "receiver_path": null,
+    "access": "read"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "OnboardingGuideTrailRenderer:8",
+    "line": 111,
+    "in_function": "Renderer:Update",
+    "via": "wrapper number()",
+    "name": "GuideTrailSpacing",
+    "receiver_path": null,
+    "access": "read"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "OnboardingGuideTrailRenderer:8",
+    "line": 114,
+    "in_function": "Renderer:Update",
+    "via": "wrapper number()",
+    "name": "GuideTrailHeightOffset",
+    "receiver_path": null,
+    "access": "read"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "OnboardingGuideTrailRenderer:8",
+    "line": 115,
+    "in_function": "Renderer:Update",
+    "via": "wrapper number()",
+    "name": "GuideTrailBeamStartHeightOffset",
+    "receiver_path": null,
+    "access": "read"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "OnboardingGuideTrailRenderer:8",
+    "line": 117,
+    "in_function": "Renderer:Update",
+    "via": "wrapper number()",
+    "name": "GuideTrailPulseSpeed",
+    "receiver_path": null,
+    "access": "read"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "OnboardingGuideTrailRenderer:8",
+    "line": 117,
+    "in_function": "Renderer:Update",
+    "via": "wrapper number()",
+    "name": "GuideTrailPulseAmplitude",
+    "receiver_path": null,
+    "access": "read"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "OnboardingGuideTrailRenderer:8",
+    "line": 117,
+    "in_function": "Renderer:Update",
+    "via": "wrapper number()",
+    "name": "GuideTrailArrowScale",
+    "receiver_path": null,
+    "access": "read"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "OnboardingGuideTrailRenderer:8",
+    "line": 118,
+    "in_function": "Renderer:Update",
+    "via": "wrapper number()",
+    "name": "GuideTrailShaftLength",
+    "receiver_path": null,
+    "access": "read"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "OnboardingGuideTrailRenderer:8",
+    "line": 119,
+    "in_function": "Renderer:Update",
+    "via": "wrapper number()",
+    "name": "GuideTrailShaftLength",
+    "receiver_path": null,
+    "access": "read"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "OnboardingGuideTrailRenderer:8",
+    "line": 119,
+    "in_function": "Renderer:Update",
+    "via": "wrapper number()",
+    "name": "GuideTrailHeadLength",
+    "receiver_path": null,
+    "access": "read"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_kind": "config?",
+    "wrapper_defined": "OnboardingGuideTrailRenderer:8",
+    "line": 120,
+    "in_function": "Renderer:Update",
+    "via": "wrapper number()",
+    "name": "GuideTrailHeadWidth",
+    "receiver_path": null,
+    "access": "read"
+   },
+   {
+    "receiver": "self.Config",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "line": 121,
+    "in_function": "Renderer:Update",
+    "name": "TutorialGold",
+    "access": "read"
+   }
+  ],
+  "child_lookups": []
+ },
+ "startergui_core": [],
+ "gui_service": [],
+ "other_services": {},
+ "service_connects": [],
+ "proximity_prompts": [],
+ "instances_created_by_class": {
+  "Attachment": 1,
+  "Beam": 3,
+  "Folder": 3,
+  "Model": 1,
+  "Part": 2
+ },
+ "public_api": [
+  {
+   "name": "__index",
+   "kind": "field",
+   "line": 5,
+   "value": "Renderer"
+  },
+  {
+   "name": "new",
+   "kind": "function",
+   "params": [
+    "config"
+   ],
+   "line": 64
+  },
+  {
+   "name": "EnsureFolder",
+   "kind": "function",
+   "params": [],
+   "line": 70
+  },
+  {
+   "name": "SetTarget",
+   "kind": "function",
+   "params": [
+    "target"
+   ],
+   "line": 87
+  },
+  {
+   "name": "Clear",
+   "kind": "function",
+   "params": [],
+   "line": 92
+  },
+  {
+   "name": "Update",
+   "kind": "function",
+   "params": [
+    "dt"
+   ],
+   "line": 98
+  },
+  {
+   "name": "Destroy",
+   "kind": "function",
+   "params": [],
+   "line": 135
+  }
+ ],
+ "unresolved": [
+  {
+   "category": "names_assigned",
+   "field": "name",
+   "line": 51,
+   "detail": "not a literal: string.format(\"DynamicArrow_%02d\",index)"
+  }
+ ],
+ "contract_file": "OnboardingGuideTrailRenderer.json"
+}

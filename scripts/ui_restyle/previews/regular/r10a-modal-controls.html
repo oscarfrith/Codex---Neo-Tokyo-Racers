@@ -1,0 +1,13 @@
+<!doctype html><html><head><meta charset="utf-8"><title>r10a Controls modal</title><script src="../shared/boot.js"></script></head><body><script>
+const row = (keys, label) => `<div class="fact" style="height:60px"><span class="flex g8" style="width:190px">${keys.map(k => P.key(k, k.length > 1)).join("")}</span><span class="t-value">${label}</span></div>`;
+P.page(`
+  ${P.freeroam({speed:0,dimmed:1})}
+  ${P.modal("CONTROLS", `
+    <div class="flex g32">
+      <div style="flex:1"><div class="t-label c-pink" style="margin-bottom:6px">DRIVING</div>
+        ${row(["W"],"ACCELERATE")}${row(["S"],"BRAKE / REVERSE")}${row(["A","D"],"STEER")}${row(["SPACE"],"DRIFT")}${row(["SHIFT"],"BOOST")}${row(["E"],"EXIT VEHICLE")}${row(["M"],"MAP")}</div>
+      <div style="flex:1"><div class="t-label c-pink" style="margin-bottom:6px">ON FOOT</div>
+        ${row(["W","A","S","D"],"MOVE")}${row(["SPACE"],"JUMP")}${row(["E"],"INTERACT")}${row(["M"],"MAP")}</div>
+    </div>`, [P.btn("DONE","tick","md main nochev")], "width:1040px")}
+`);
+</script></body></html>

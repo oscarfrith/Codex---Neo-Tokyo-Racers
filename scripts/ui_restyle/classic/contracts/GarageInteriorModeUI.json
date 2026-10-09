@@ -1,0 +1,1780 @@
+{
+ "script": "ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI",
+ "class": "ModuleScript",
+ "source_file": "classic/sources/ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI.lua",
+ "source_lines": 281,
+ "included_because": [
+  "under ReplicatedStorage.Modules.Game.UI",
+  "loaded by OwnedGarageClient from a literal name list (line 9)"
+ ],
+ "requires": [
+  {
+   "expr": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"UI\"):WaitForChild(\"RacingUIComponents\")",
+   "as": "UI",
+   "line": 5,
+   "in_function": "Controller.Start",
+   "target": "ReplicatedStorage.Modules.Game.UI.RacingUIComponents"
+  },
+  {
+   "expr": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"UI\"):WaitForChild(\"GarageComponents\")",
+   "as": "Shared",
+   "line": 5,
+   "in_function": "Controller.Start",
+   "target": "ReplicatedStorage.Modules.Game.UI.GarageComponents"
+  },
+  {
+   "expr": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"UI\"):WaitForChild(\"OwnedGarageWorkspaceUI\")",
+   "as": "ManagementWorkspace",
+   "line": 52,
+   "in_function": "Controller.Start",
+   "target": "ReplicatedStorage.Modules.Game.UI.OwnedGarageWorkspaceUI"
+  }
+ ],
+ "remotes": {
+  "calls": [
+   {
+    "method": "InvokeServer",
+    "receiver": "remote",
+    "arg_count": 2,
+    "wrapper_defined": "GarageInteriorModeUI:19",
+    "line": 27,
+    "in_function": "refresh",
+    "via": "wrapper call()",
+    "remote": "ReplicatedStorage.Remotes.Garage.OwnedGarageInvoke",
+    "action": "GetManagementState",
+    "payload_keys": []
+   },
+   {
+    "method": "InvokeServer",
+    "receiver": "remote",
+    "arg_count": 2,
+    "wrapper_defined": "GarageInteriorModeUI:31",
+    "line": 38,
+    "in_function": "openAccess",
+    "via": "wrapper mutate()",
+    "remote": "ReplicatedStorage.Remotes.Garage.OwnedGarageInvoke",
+    "action": "SetAccessMode",
+    "payload_keys": [
+     "AccessMode"
+    ]
+   },
+   {
+    "method": "InvokeServer",
+    "receiver": "remote",
+    "arg_count": 2,
+    "wrapper_defined": "GarageInteriorModeUI:31",
+    "line": 42,
+    "in_function": "openInvites",
+    "via": "wrapper mutate()",
+    "remote": "ReplicatedStorage.Remotes.Garage.OwnedGarageInvoke",
+    "action": "SetInvitation",
+    "payload_keys": [
+     "Action",
+     "TargetUserId"
+    ]
+   }
+  ],
+  "listens": [
+   {
+    "signal": "OnClientEvent",
+    "receiver": "push",
+    "method": "Connect",
+    "handler": "inline",
+    "handler_line": 277,
+    "handler_params": [
+     "message"
+    ],
+    "payload_fields_read": [
+     "Type",
+     "Message",
+     "Success"
+    ],
+    "literal_comparisons": {
+     "Type": [
+      "DriveOutResult",
+      "ManagementUpdated"
+     ]
+    },
+    "line": 277,
+    "in_function": "Controller.Start",
+    "remote": "ReplicatedStorage.Remotes.Garage.OwnedGarageEvent"
+   }
+  ]
+ },
+ "bindables": {
+  "fires": [],
+  "connects": [],
+  "invokes": [],
+  "handlers": [],
+  "created": [],
+  "module_signal_fires": []
+ },
+ "attributes": {
+  "reads": [
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "line": 10,
+    "in_function": "publish",
+    "name": "OwnedGarageInside"
+   },
+   {
+    "receiver": "accessIconsConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement.OwnedGarageIcons.Access",
+    "receiver_kind": "config",
+    "wrapper_defined": "GarageInteriorModeUI:9",
+    "line": 14,
+    "in_function": "Controller.Start",
+    "via": "wrapper accessIcon()",
+    "name": "Private"
+   },
+   {
+    "receiver": "settings",
+    "receiver_path": "ReplicatedStorage.Config.Garage.Interior",
+    "receiver_kind": "config",
+    "wrapper_defined": "GarageInteriorModeUI:9",
+    "line": 14,
+    "in_function": "Controller.Start",
+    "via": "wrapper accessIcon()",
+    "name": "InteriorHudPrivateIcon"
+   },
+   {
+    "receiver": "accessIconsConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement.OwnedGarageIcons.Access",
+    "receiver_kind": "config",
+    "wrapper_defined": "GarageInteriorModeUI:9",
+    "line": 15,
+    "in_function": "Controller.Start",
+    "via": "wrapper accessIcon()",
+    "name": "Invite"
+   },
+   {
+    "receiver": "settings",
+    "receiver_path": "ReplicatedStorage.Config.Garage.Interior",
+    "receiver_kind": "config",
+    "wrapper_defined": "GarageInteriorModeUI:9",
+    "line": 15,
+    "in_function": "Controller.Start",
+    "via": "wrapper accessIcon()",
+    "name": "InteriorHudInviteIcon"
+   },
+   {
+    "receiver": "toast",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "line": 18,
+    "in_function": "show",
+    "name": "Stamp"
+   },
+   {
+    "receiver": "settings",
+    "receiver_path": "ReplicatedStorage.Config.Garage.Interior",
+    "receiver_kind": "config",
+    "wrapper_defined": "GarageInteriorModeUI:9",
+    "line": 22,
+    "in_function": "accessVisual",
+    "via": "wrapper accessIcon()",
+    "name": null,
+    "name_expr": "accessIcons[mode] or \"\""
+   },
+   {
+    "receiver": "accessIconsConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement.OwnedGarageIcons.Access",
+    "receiver_kind": "config",
+    "wrapper_defined": "GarageInteriorModeUI:9",
+    "line": 24,
+    "in_function": "applyState",
+    "via": "wrapper accessIcon()",
+    "name": "Invite"
+   },
+   {
+    "receiver": "accessIconsConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement.OwnedGarageIcons.Access",
+    "receiver_kind": "config",
+    "wrapper_defined": "GarageInteriorModeUI:22",
+    "line": 24,
+    "in_function": "applyState",
+    "via": "wrapper accessVisual()",
+    "name": null,
+    "name_expr": "state.AccessMode or \"Private\""
+   },
+   {
+    "receiver": "settings",
+    "receiver_path": "ReplicatedStorage.Config.Garage.Interior",
+    "receiver_kind": "config",
+    "wrapper_defined": "GarageInteriorModeUI:9",
+    "line": 24,
+    "in_function": "applyState",
+    "via": "wrapper accessIcon()",
+    "name": "InteriorHudInviteIcon"
+   },
+   {
+    "receiver": "settings",
+    "receiver_path": "ReplicatedStorage.Config.Garage.Interior",
+    "receiver_kind": "config",
+    "wrapper_defined": "GarageInteriorModeUI:6",
+    "line": 29,
+    "in_function": "metrics",
+    "via": "wrapper number()",
+    "name": "InteriorHudTouchButtonHeight"
+   },
+   {
+    "receiver": "settings",
+    "receiver_path": "ReplicatedStorage.Config.Garage.Interior",
+    "receiver_kind": "config",
+    "wrapper_defined": "GarageInteriorModeUI:6",
+    "line": 29,
+    "in_function": "metrics",
+    "via": "wrapper number()",
+    "name": "InteriorHudButtonHeight"
+   },
+   {
+    "receiver": "settings",
+    "receiver_path": "ReplicatedStorage.Config.Garage.Interior",
+    "receiver_kind": "config",
+    "wrapper_defined": "GarageInteriorModeUI:6",
+    "line": 29,
+    "in_function": "metrics",
+    "via": "wrapper number()",
+    "name": "InteriorHudDropdownGap"
+   },
+   {
+    "receiver": "settings",
+    "receiver_path": "ReplicatedStorage.Config.Garage.Interior",
+    "receiver_kind": "config",
+    "wrapper_defined": "GarageInteriorModeUI:6",
+    "line": 29,
+    "in_function": "metrics",
+    "via": "wrapper number()",
+    "name": "InteriorHudDropdownRowGap"
+   },
+   {
+    "receiver": "settings",
+    "receiver_path": "ReplicatedStorage.Config.Garage.Interior",
+    "receiver_kind": "config",
+    "wrapper_defined": "GarageInteriorModeUI:6",
+    "line": 29,
+    "in_function": "metrics",
+    "via": "wrapper number()",
+    "name": "InteriorHudTouchDropdownRows"
+   },
+   {
+    "receiver": "settings",
+    "receiver_path": "ReplicatedStorage.Config.Garage.Interior",
+    "receiver_kind": "config",
+    "wrapper_defined": "GarageInteriorModeUI:6",
+    "line": 29,
+    "in_function": "metrics",
+    "via": "wrapper number()",
+    "name": "InteriorHudDropdownRows"
+   },
+   {
+    "receiver": "accessIconsConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement.OwnedGarageIcons.Access",
+    "receiver_kind": "config",
+    "wrapper_defined": "GarageInteriorModeUI:22",
+    "line": 37,
+    "in_function": "openAccess",
+    "via": "wrapper accessVisual()",
+    "name": null,
+    "name_expr": "mode"
+   },
+   {
+    "receiver": "accessIconsConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement.OwnedGarageIcons.Access",
+    "receiver_kind": "config",
+    "wrapper_defined": "GarageInteriorModeUI:9",
+    "line": 41,
+    "in_function": "openInvites",
+    "via": "wrapper accessIcon()",
+    "name": "Invite"
+   },
+   {
+    "receiver": "settings",
+    "receiver_path": "ReplicatedStorage.Config.Garage.Interior",
+    "receiver_kind": "config",
+    "wrapper_defined": "GarageInteriorModeUI:9",
+    "line": 41,
+    "in_function": "openInvites",
+    "via": "wrapper accessIcon()",
+    "name": "InteriorHudInviteIcon"
+   },
+   {
+    "receiver": "settings",
+    "receiver_path": "ReplicatedStorage.Config.Garage.Interior",
+    "receiver_kind": "config",
+    "line": 45,
+    "in_function": "layout",
+    "name": "InteriorHudTouchResponsiveScale"
+   },
+   {
+    "receiver": "settings",
+    "receiver_path": "ReplicatedStorage.Config.Garage.Interior",
+    "receiver_kind": "config",
+    "wrapper_defined": "GarageInteriorModeUI:6",
+    "line": 45,
+    "in_function": "layout",
+    "via": "wrapper number()",
+    "name": "InteriorHudTouchReferenceWidth"
+   },
+   {
+    "receiver": "settings",
+    "receiver_path": "ReplicatedStorage.Config.Garage.Interior",
+    "receiver_kind": "config",
+    "wrapper_defined": "GarageInteriorModeUI:6",
+    "line": 45,
+    "in_function": "layout",
+    "via": "wrapper number()",
+    "name": "InteriorHudTouchReferenceHeight"
+   },
+   {
+    "receiver": "settings",
+    "receiver_path": "ReplicatedStorage.Config.Garage.Interior",
+    "receiver_kind": "config",
+    "wrapper_defined": "GarageInteriorModeUI:6",
+    "line": 45,
+    "in_function": "layout",
+    "via": "wrapper number()",
+    "name": "InteriorHudTouchMinimumScale"
+   },
+   {
+    "receiver": "settings",
+    "receiver_path": "ReplicatedStorage.Config.Garage.Interior",
+    "receiver_kind": "config",
+    "wrapper_defined": "GarageInteriorModeUI:6",
+    "line": 45,
+    "in_function": "layout",
+    "via": "wrapper number()",
+    "name": "InteriorHudTouchMaximumScale"
+   },
+   {
+    "receiver": "settings",
+    "receiver_path": "ReplicatedStorage.Config.Garage.Interior",
+    "receiver_kind": "config",
+    "wrapper_defined": "GarageInteriorModeUI:6",
+    "line": 45,
+    "in_function": "layout",
+    "via": "wrapper number()",
+    "name": "InteriorHudMargin"
+   },
+   {
+    "receiver": "settings",
+    "receiver_path": "ReplicatedStorage.Config.Garage.Interior",
+    "receiver_kind": "config",
+    "wrapper_defined": "GarageInteriorModeUI:6",
+    "line": 45,
+    "in_function": "layout",
+    "via": "wrapper number()",
+    "name": "InteriorHudGap"
+   },
+   {
+    "receiver": "settings",
+    "receiver_path": "ReplicatedStorage.Config.Garage.Interior",
+    "receiver_kind": "config",
+    "wrapper_defined": "GarageInteriorModeUI:6",
+    "line": 45,
+    "in_function": "layout",
+    "via": "wrapper number()",
+    "name": "InteriorHudTouchButtonWidth"
+   },
+   {
+    "receiver": "settings",
+    "receiver_path": "ReplicatedStorage.Config.Garage.Interior",
+    "receiver_kind": "config",
+    "wrapper_defined": "GarageInteriorModeUI:6",
+    "line": 45,
+    "in_function": "layout",
+    "via": "wrapper number()",
+    "name": "InteriorHudButtonWidth"
+   },
+   {
+    "receiver": "settings",
+    "receiver_path": "ReplicatedStorage.Config.Garage.Interior",
+    "receiver_kind": "config",
+    "wrapper_defined": "GarageInteriorModeUI:6",
+    "line": 45,
+    "in_function": "layout",
+    "via": "wrapper number()",
+    "name": "InteriorHudTouchButtonHeight"
+   },
+   {
+    "receiver": "settings",
+    "receiver_path": "ReplicatedStorage.Config.Garage.Interior",
+    "receiver_kind": "config",
+    "wrapper_defined": "GarageInteriorModeUI:6",
+    "line": 45,
+    "in_function": "layout",
+    "via": "wrapper number()",
+    "name": "InteriorHudButtonHeight"
+   },
+   {
+    "receiver": "settings",
+    "receiver_path": "ReplicatedStorage.Config.Garage.Interior",
+    "receiver_kind": "config",
+    "line": 60,
+    "in_function": "cameraGuardConfigured",
+    "name": "MobileWalkingCameraGuardEnabled"
+   },
+   {
+    "receiver": "settings",
+    "receiver_path": "ReplicatedStorage.Config.Garage.Interior",
+    "receiver_kind": "config",
+    "line": 85,
+    "in_function": "queueTouchFollowRecovery",
+    "name": "MobileTouchCameraRecoveryEnabled"
+   },
+   {
+    "receiver": "playerGui",
+    "receiver_path": "Players.LocalPlayer.PlayerGui",
+    "receiver_kind": "playerGui",
+    "line": 88,
+    "in_function": "queueTouchFollowRecovery",
+    "name": "OwnedGarageManagementOpen"
+   },
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "line": 90,
+    "in_function": "queueTouchFollowRecovery",
+    "name": "GarageSessionActive"
+   },
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "line": 90,
+    "in_function": "queueTouchFollowRecovery",
+    "name": "RaceSessionActive"
+   },
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "line": 154,
+    "in_function": "beginProtectedTouch",
+    "name": "OwnedGarageInside"
+   },
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "line": 174,
+    "in_function": "beginProtectedTouch",
+    "name": "GarageSessionActive"
+   },
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "line": 174,
+    "in_function": "beginProtectedTouch",
+    "name": "RaceSessionActive"
+   },
+   {
+    "receiver": "playerGui",
+    "receiver_path": "Players.LocalPlayer.PlayerGui",
+    "receiver_kind": "playerGui",
+    "line": 206,
+    "in_function": "tryConfirmMovementTouch",
+    "name": "OwnedGarageManagementOpen"
+   },
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "line": 206,
+    "in_function": "tryConfirmMovementTouch",
+    "name": "OwnedGarageInside"
+   },
+   {
+    "receiver": "settings",
+    "receiver_path": "ReplicatedStorage.Config.Garage.Interior",
+    "receiver_kind": "config",
+    "wrapper_defined": "GarageInteriorModeUI:6",
+    "line": 207,
+    "in_function": "tryConfirmMovementTouch",
+    "via": "wrapper number()",
+    "name": "MobileThumbstickSemanticConfirmWindowSeconds"
+   },
+   {
+    "receiver": "settings",
+    "receiver_path": "ReplicatedStorage.Config.Garage.Interior",
+    "receiver_kind": "config",
+    "wrapper_defined": "GarageInteriorModeUI:6",
+    "line": 235,
+    "in_function": "beginPendingMovementTouch",
+    "via": "wrapper number()",
+    "name": "MobileThumbstickSemanticConfirmWindowSeconds"
+   },
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "line": 239,
+    "in_function": "Controller.Start",
+    "name": "OwnedGarageInside"
+   },
+   {
+    "receiver": "playerGui",
+    "receiver_path": "Players.LocalPlayer.PlayerGui",
+    "receiver_kind": "playerGui",
+    "line": 240,
+    "in_function": "Controller.Start",
+    "name": "OwnedGarageManagementOpen"
+   },
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "line": 257,
+    "in_function": "Controller.Start",
+    "name": "OwnedGarageInside"
+   },
+   {
+    "receiver": "playerGui",
+    "receiver_path": "Players.LocalPlayer.PlayerGui",
+    "receiver_kind": "playerGui",
+    "line": 263,
+    "in_function": "Controller.Start",
+    "name": "OwnedGarageManagementOpen"
+   },
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "line": 273,
+    "in_function": "update",
+    "name": "OwnedGarageInside"
+   },
+   {
+    "receiver": "playerGui",
+    "receiver_path": "Players.LocalPlayer.PlayerGui",
+    "receiver_kind": "playerGui",
+    "line": 273,
+    "in_function": "update",
+    "name": "OwnedGarageManagementOpen"
+   },
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "line": 273,
+    "in_function": "update",
+    "name": "MobileMajorMenuOpen"
+   },
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "line": 273,
+    "in_function": "update",
+    "name": "OwnedGarageVisitor"
+   }
+  ],
+  "writes": [
+   {
+    "receiver": "playerGui",
+    "receiver_path": "Players.LocalPlayer.PlayerGui",
+    "receiver_kind": "playerGui",
+    "value": {
+     "expr": "player:GetAttribute(\"OwnedGarageInside\")==true"
+    },
+    "line": 10,
+    "in_function": "publish",
+    "name": "OwnedGarageInteriorMode"
+   },
+   {
+    "receiver": "toast",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "value": {
+     "expr": "stamp"
+    },
+    "line": 18,
+    "in_function": "show",
+    "name": "Stamp"
+   }
+  ],
+  "listens": [
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "line": 256,
+    "in_function": "Controller.Start",
+    "name": "OwnedGarageInside"
+   },
+   {
+    "receiver": "playerGui",
+    "receiver_path": "Players.LocalPlayer.PlayerGui",
+    "receiver_kind": "playerGui",
+    "line": 262,
+    "in_function": "Controller.Start",
+    "name": "OwnedGarageManagementOpen"
+   },
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "line": 276,
+    "in_function": "Controller.Start",
+    "name": "OwnedGarageInside"
+   },
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "line": 276,
+    "in_function": "Controller.Start",
+    "name": "MobileMajorMenuOpen"
+   },
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "line": 276,
+    "in_function": "Controller.Start",
+    "name": "OwnedGarageVisitor"
+   },
+   {
+    "receiver": "playerGui",
+    "receiver_path": "Players.LocalPlayer.PlayerGui",
+    "receiver_kind": "playerGui",
+    "line": 276,
+    "in_function": "Controller.Start",
+    "name": "OwnedGarageManagementOpen"
+   }
+  ]
+ },
+ "player_attribute_writes": [
+  {
+   "receiver": "playerGui",
+   "receiver_path": "Players.LocalPlayer.PlayerGui",
+   "receiver_kind": "playerGui",
+   "value": {
+    "expr": "player:GetAttribute(\"OwnedGarageInside\")==true"
+   },
+   "line": 10,
+   "in_function": "publish",
+   "name": "OwnedGarageInteriorMode"
+  }
+ ],
+ "screenguis": {
+  "created": [
+   {
+    "variable": "gui",
+    "class": "ScreenGui",
+    "line": 11,
+    "factory": null,
+    "adopts_existing": false,
+    "Name": "OwnedGarageInteriorHUD",
+    "DisplayOrder": 58,
+    "ResetOnSpawn": false,
+    "IgnoreGuiInset": false,
+    "ZIndexBehavior": {
+     "expr": "Enum.ZIndexBehavior.Sibling"
+    },
+    "Parent": {
+     "expr": "playerGui"
+    },
+    "enabled_writes": [],
+    "property_lines": {
+     "Name": 11,
+     "ResetOnSpawn": 11,
+     "IgnoreGuiInset": 11,
+     "ZIndexBehavior": 11,
+     "DisplayOrder": 11,
+     "Parent": 11
+    }
+   }
+  ],
+  "enabled_writes": []
+ },
+ "names": {
+  "assigned": [
+   {
+    "via": "property",
+    "receiver": "gui",
+    "class": "ScreenGui",
+    "line": 11,
+    "in_function": "Controller.Start",
+    "name": "OwnedGarageInteriorHUD"
+   },
+   {
+    "via": "property",
+    "receiver": "root",
+    "class": "Frame",
+    "line": 12,
+    "in_function": "Controller.Start",
+    "name": "AccessControls"
+   },
+   {
+    "via": "property",
+    "receiver": "hudScale",
+    "class": "UIScale",
+    "line": 13,
+    "in_function": "Controller.Start",
+    "name": "ResponsiveScale"
+   },
+   {
+    "via": "table_field",
+    "callee": "ActionButton",
+    "class": null,
+    "line": 14,
+    "in_function": "Controller.Start",
+    "name": "Access"
+   },
+   {
+    "via": "table_field",
+    "callee": "ActionButton",
+    "class": null,
+    "line": 15,
+    "in_function": "Controller.Start",
+    "name": "Invite"
+   },
+   {
+    "via": "table_field",
+    "callee": "Label",
+    "class": null,
+    "line": 16,
+    "in_function": "Controller.Start",
+    "name": "GarageStatus"
+   }
+  ],
+  "looked_up": [
+   {
+    "method": "WaitForChild",
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 5,
+    "in_function": "Controller.Start",
+    "name": "PlayerGui"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 5,
+    "in_function": "Controller.Start",
+    "name": "Modules"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\")",
+    "receiver_path": "ReplicatedStorage.Modules",
+    "root": "ReplicatedStorage",
+    "line": 5,
+    "in_function": "Controller.Start",
+    "name": "Game"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game",
+    "root": "ReplicatedStorage",
+    "line": 5,
+    "in_function": "Controller.Start",
+    "name": "UI"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"UI\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game.UI",
+    "root": "ReplicatedStorage",
+    "line": 5,
+    "in_function": "Controller.Start",
+    "name": "RacingUIComponents"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 5,
+    "in_function": "Controller.Start",
+    "name": "Modules"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\")",
+    "receiver_path": "ReplicatedStorage.Modules",
+    "root": "ReplicatedStorage",
+    "line": 5,
+    "in_function": "Controller.Start",
+    "name": "Game"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game",
+    "root": "ReplicatedStorage",
+    "line": 5,
+    "in_function": "Controller.Start",
+    "name": "UI"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"UI\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game.UI",
+    "root": "ReplicatedStorage",
+    "line": 5,
+    "in_function": "Controller.Start",
+    "name": "GarageComponents"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 5,
+    "in_function": "Controller.Start",
+    "name": "Remotes"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Remotes\").Garage",
+    "receiver_path": "ReplicatedStorage.Remotes.Garage",
+    "root": "ReplicatedStorage",
+    "line": 5,
+    "in_function": "Controller.Start",
+    "name": "OwnedGarageInvoke"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 5,
+    "in_function": "Controller.Start",
+    "name": "Remotes"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Remotes\").Garage",
+    "receiver_path": "ReplicatedStorage.Remotes.Garage",
+    "root": "ReplicatedStorage",
+    "line": 5,
+    "in_function": "Controller.Start",
+    "name": "OwnedGarageEvent"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 5,
+    "in_function": "Controller.Start",
+    "name": "Config"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\")",
+    "receiver_path": "ReplicatedStorage.Config",
+    "root": "ReplicatedStorage",
+    "line": 5,
+    "in_function": "Controller.Start",
+    "name": "Garage"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\"):WaitForChild(\"Garage\")",
+    "receiver_path": "ReplicatedStorage.Config.Garage",
+    "root": "ReplicatedStorage",
+    "line": 5,
+    "in_function": "Controller.Start",
+    "name": "Interior"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 8,
+    "in_function": "Controller.Start",
+    "name": "Config"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\")",
+    "receiver_path": "ReplicatedStorage.Config",
+    "root": "ReplicatedStorage",
+    "line": 8,
+    "in_function": "Controller.Start",
+    "name": "UI"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\"):WaitForChild(\"UI\")",
+    "receiver_path": "ReplicatedStorage.Config.UI",
+    "root": "ReplicatedStorage",
+    "line": 8,
+    "in_function": "Controller.Start",
+    "name": "GarageReplacement"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\"):WaitForChild(\"UI\"):WaitForChild(\"GarageReplacement\")",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "root": "ReplicatedStorage",
+    "line": 8,
+    "in_function": "Controller.Start",
+    "name": "OwnedGarageIcons"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\"):WaitForChild(\"UI\"):WaitForChild(\"GarageReplacement\"):WaitForChild(\"OwnedGarageIcons\")",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement.OwnedGarageIcons",
+    "root": "ReplicatedStorage",
+    "line": 8,
+    "in_function": "Controller.Start",
+    "name": "Access"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "access",
+    "root": null,
+    "wrapper_defined": "GarageComponents:316",
+    "line": 14,
+    "in_function": "Controller.Start",
+    "via": "wrapper M.AttachDropdownChevron()",
+    "name": "DropdownChevron",
+    "receiver_path": null,
+    "receiver_kind": "other"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 14,
+    "in_function": "Controller.Start",
+    "via": "wrapper Components.Colour()",
+    "name": "PanelSoft",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 14,
+    "in_function": "Controller.Start",
+    "via": "wrapper Components.Colour()",
+    "name": "Outline",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "invite",
+    "root": null,
+    "wrapper_defined": "GarageComponents:316",
+    "line": 15,
+    "in_function": "Controller.Start",
+    "via": "wrapper M.AttachDropdownChevron()",
+    "name": "DropdownChevron",
+    "receiver_path": null,
+    "receiver_kind": "other"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 15,
+    "in_function": "Controller.Start",
+    "via": "wrapper Components.Colour()",
+    "name": "PanelBlue",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 15,
+    "in_function": "Controller.Start",
+    "via": "wrapper Components.Colour()",
+    "name": "Telemetry",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 16,
+    "in_function": "Controller.Start",
+    "via": "wrapper Components.Colour()",
+    "name": "PanelDeep",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "access",
+    "root": null,
+    "wrapper_defined": "GarageComponents:321",
+    "line": 17,
+    "in_function": "OnOpenChanged",
+    "via": "wrapper M.SetDropdownOpen()",
+    "name": "DropdownChevron",
+    "receiver_path": null,
+    "receiver_kind": "other"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "invite",
+    "root": null,
+    "wrapper_defined": "GarageComponents:321",
+    "line": 17,
+    "in_function": "OnOpenChanged",
+    "via": "wrapper M.SetDropdownOpen()",
+    "name": "DropdownChevron",
+    "receiver_path": null,
+    "receiver_kind": "other"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 18,
+    "in_function": "show",
+    "via": "wrapper Components.Colour()",
+    "name": "Telemetry",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 18,
+    "in_function": "show",
+    "via": "wrapper Components.Colour()",
+    "name": "Danger",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "access",
+    "root": null,
+    "wrapper_defined": "GarageComponents:57",
+    "line": 24,
+    "in_function": "applyState",
+    "via": "wrapper M.SetActionButton()",
+    "name": "ActionContent",
+    "receiver_path": null,
+    "receiver_kind": "other"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "invite",
+    "root": null,
+    "wrapper_defined": "GarageComponents:57",
+    "line": 24,
+    "in_function": "applyState",
+    "via": "wrapper M.SetActionButton()",
+    "name": "ActionContent",
+    "receiver_path": null,
+    "receiver_kind": "other"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 52,
+    "in_function": "Controller.Start",
+    "name": "Modules"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\")",
+    "receiver_path": "ReplicatedStorage.Modules",
+    "root": "ReplicatedStorage",
+    "line": 52,
+    "in_function": "Controller.Start",
+    "name": "Game"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game",
+    "root": "ReplicatedStorage",
+    "line": 52,
+    "in_function": "Controller.Start",
+    "name": "UI"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"UI\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game.UI",
+    "root": "ReplicatedStorage",
+    "line": 52,
+    "in_function": "Controller.Start",
+    "name": "OwnedGarageWorkspaceUI"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "character",
+    "receiver_path": "Players.LocalPlayer.Character",
+    "root": "Players",
+    "line": 67,
+    "in_function": "characterParts",
+    "name": "HumanoidRootPart"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "playerGui",
+    "receiver_path": "Players.LocalPlayer.PlayerGui",
+    "root": "Players",
+    "line": 115,
+    "in_function": "thumbstickObjects",
+    "name": "TouchGui"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "touchGui",
+    "receiver_path": "Players.LocalPlayer.PlayerGui.TouchGui",
+    "root": "Players",
+    "line": 116,
+    "in_function": "thumbstickObjects",
+    "name": "TouchControlFrame"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "controlsFrame",
+    "receiver_path": "Players.LocalPlayer.PlayerGui.TouchGui.TouchControlFrame",
+    "root": "Players",
+    "line": 117,
+    "in_function": "thumbstickObjects",
+    "name": "DynamicThumbstickFrame"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "thumb",
+    "receiver_path": "Players.LocalPlayer.PlayerGui.TouchGui.TouchControlFrame.DynamicThumbstickFrame",
+    "root": "Players",
+    "recursive": true,
+    "line": 118,
+    "in_function": "thumbstickObjects",
+    "name": "ThumbstickStart"
+   }
+  ],
+  "text_compared": []
+ },
+ "run_service": {
+  "render_steps": [
+   {
+    "method": "UnbindFromRenderStep",
+    "line": 71,
+    "in_function": "releaseCameraGuard",
+    "name": "OwnedGarageTouchCameraGuard"
+   },
+   {
+    "method": "BindToRenderStep",
+    "priority_expr": "Enum.RenderPriority.Camera.Value+1",
+    "priority": 201,
+    "callback": "function() if guardCamera~=Workspace.CurrentCamera then c...",
+    "line": 170,
+    "in_function": "beginProtectedTouch",
+    "name": "OwnedGarageTouchCameraGuard"
+   }
+  ],
+  "connects": []
+ },
+ "context_actions": [],
+ "user_input_service": {
+  "connects": [
+   {
+    "signal": "InputBegan",
+    "method": "Connect",
+    "line": 238,
+    "in_function": "Controller.Start"
+   },
+   {
+    "signal": "InputChanged",
+    "method": "Connect",
+    "line": 248,
+    "in_function": "Controller.Start"
+   },
+   {
+    "signal": "InputEnded",
+    "method": "Connect",
+    "line": 251,
+    "in_function": "Controller.Start"
+   }
+  ],
+  "members_used": [
+   {
+    "member": "TouchEnabled",
+    "kind": "read",
+    "line": 29,
+    "in_function": "metrics"
+   },
+   {
+    "member": "TouchEnabled",
+    "kind": "read",
+    "line": 45,
+    "in_function": "layout"
+   },
+   {
+    "member": "TouchEnabled",
+    "kind": "read",
+    "line": 61,
+    "in_function": "cameraGuardConfigured"
+   },
+   {
+    "member": "TouchEnabled",
+    "kind": "read",
+    "line": 85,
+    "in_function": "queueTouchFollowRecovery"
+   },
+   {
+    "member": "InputBegan",
+    "kind": "connect",
+    "line": 238,
+    "in_function": "Controller.Start"
+   },
+   {
+    "member": "InputChanged",
+    "kind": "connect",
+    "line": 248,
+    "in_function": "Controller.Start"
+   },
+   {
+    "member": "InputEnded",
+    "kind": "connect",
+    "line": 251,
+    "in_function": "Controller.Start"
+   }
+  ]
+ },
+ "audio": {
+  "bridge_calls": [],
+  "ui_audio_attributes": []
+ },
+ "config": {
+  "paths": [
+   {
+    "path": "ReplicatedStorage.Config",
+    "line": 5
+   },
+   {
+    "path": "ReplicatedStorage.Config.Garage",
+    "line": 5
+   },
+   {
+    "path": "ReplicatedStorage.Config.Garage.Interior",
+    "line": 5
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI",
+    "line": 8
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "line": 8
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI.GarageReplacement.OwnedGarageIcons",
+    "line": 8
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI.GarageReplacement.OwnedGarageIcons.Access",
+    "line": 8
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI.Racing.Colours",
+    "line": 14
+   }
+  ],
+  "attribute_reads": [
+   {
+    "receiver": "accessIconsConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement.OwnedGarageIcons.Access",
+    "receiver_kind": "config",
+    "wrapper_defined": "GarageInteriorModeUI:9",
+    "line": 14,
+    "in_function": "Controller.Start",
+    "via": "wrapper accessIcon()",
+    "name": "Private",
+    "access": "read"
+   },
+   {
+    "receiver": "settings",
+    "receiver_path": "ReplicatedStorage.Config.Garage.Interior",
+    "receiver_kind": "config",
+    "wrapper_defined": "GarageInteriorModeUI:9",
+    "line": 14,
+    "in_function": "Controller.Start",
+    "via": "wrapper accessIcon()",
+    "name": "InteriorHudPrivateIcon",
+    "access": "read"
+   },
+   {
+    "receiver": "accessIconsConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement.OwnedGarageIcons.Access",
+    "receiver_kind": "config",
+    "wrapper_defined": "GarageInteriorModeUI:9",
+    "line": 15,
+    "in_function": "Controller.Start",
+    "via": "wrapper accessIcon()",
+    "name": "Invite",
+    "access": "read"
+   },
+   {
+    "receiver": "settings",
+    "receiver_path": "ReplicatedStorage.Config.Garage.Interior",
+    "receiver_kind": "config",
+    "wrapper_defined": "GarageInteriorModeUI:9",
+    "line": 15,
+    "in_function": "Controller.Start",
+    "via": "wrapper accessIcon()",
+    "name": "InteriorHudInviteIcon",
+    "access": "read"
+   },
+   {
+    "receiver": "settings",
+    "receiver_path": "ReplicatedStorage.Config.Garage.Interior",
+    "receiver_kind": "config",
+    "wrapper_defined": "GarageInteriorModeUI:9",
+    "line": 22,
+    "in_function": "accessVisual",
+    "via": "wrapper accessIcon()",
+    "name": null,
+    "name_expr": "accessIcons[mode] or \"\"",
+    "access": "read"
+   },
+   {
+    "receiver": "accessIconsConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement.OwnedGarageIcons.Access",
+    "receiver_kind": "config",
+    "wrapper_defined": "GarageInteriorModeUI:9",
+    "line": 24,
+    "in_function": "applyState",
+    "via": "wrapper accessIcon()",
+    "name": "Invite",
+    "access": "read"
+   },
+   {
+    "receiver": "accessIconsConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement.OwnedGarageIcons.Access",
+    "receiver_kind": "config",
+    "wrapper_defined": "GarageInteriorModeUI:22",
+    "line": 24,
+    "in_function": "applyState",
+    "via": "wrapper accessVisual()",
+    "name": null,
+    "name_expr": "state.AccessMode or \"Private\"",
+    "access": "read"
+   },
+   {
+    "receiver": "settings",
+    "receiver_path": "ReplicatedStorage.Config.Garage.Interior",
+    "receiver_kind": "config",
+    "wrapper_defined": "GarageInteriorModeUI:9",
+    "line": 24,
+    "in_function": "applyState",
+    "via": "wrapper accessIcon()",
+    "name": "InteriorHudInviteIcon",
+    "access": "read"
+   },
+   {
+    "receiver": "settings",
+    "receiver_path": "ReplicatedStorage.Config.Garage.Interior",
+    "receiver_kind": "config",
+    "wrapper_defined": "GarageInteriorModeUI:6",
+    "line": 29,
+    "in_function": "metrics",
+    "via": "wrapper number()",
+    "name": "InteriorHudTouchButtonHeight",
+    "access": "read"
+   },
+   {
+    "receiver": "settings",
+    "receiver_path": "ReplicatedStorage.Config.Garage.Interior",
+    "receiver_kind": "config",
+    "wrapper_defined": "GarageInteriorModeUI:6",
+    "line": 29,
+    "in_function": "metrics",
+    "via": "wrapper number()",
+    "name": "InteriorHudButtonHeight",
+    "access": "read"
+   },
+   {
+    "receiver": "settings",
+    "receiver_path": "ReplicatedStorage.Config.Garage.Interior",
+    "receiver_kind": "config",
+    "wrapper_defined": "GarageInteriorModeUI:6",
+    "line": 29,
+    "in_function": "metrics",
+    "via": "wrapper number()",
+    "name": "InteriorHudDropdownGap",
+    "access": "read"
+   },
+   {
+    "receiver": "settings",
+    "receiver_path": "ReplicatedStorage.Config.Garage.Interior",
+    "receiver_kind": "config",
+    "wrapper_defined": "GarageInteriorModeUI:6",
+    "line": 29,
+    "in_function": "metrics",
+    "via": "wrapper number()",
+    "name": "InteriorHudDropdownRowGap",
+    "access": "read"
+   },
+   {
+    "receiver": "settings",
+    "receiver_path": "ReplicatedStorage.Config.Garage.Interior",
+    "receiver_kind": "config",
+    "wrapper_defined": "GarageInteriorModeUI:6",
+    "line": 29,
+    "in_function": "metrics",
+    "via": "wrapper number()",
+    "name": "InteriorHudTouchDropdownRows",
+    "access": "read"
+   },
+   {
+    "receiver": "settings",
+    "receiver_path": "ReplicatedStorage.Config.Garage.Interior",
+    "receiver_kind": "config",
+    "wrapper_defined": "GarageInteriorModeUI:6",
+    "line": 29,
+    "in_function": "metrics",
+    "via": "wrapper number()",
+    "name": "InteriorHudDropdownRows",
+    "access": "read"
+   },
+   {
+    "receiver": "accessIconsConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement.OwnedGarageIcons.Access",
+    "receiver_kind": "config",
+    "wrapper_defined": "GarageInteriorModeUI:22",
+    "line": 37,
+    "in_function": "openAccess",
+    "via": "wrapper accessVisual()",
+    "name": null,
+    "name_expr": "mode",
+    "access": "read"
+   },
+   {
+    "receiver": "accessIconsConfig",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement.OwnedGarageIcons.Access",
+    "receiver_kind": "config",
+    "wrapper_defined": "GarageInteriorModeUI:9",
+    "line": 41,
+    "in_function": "openInvites",
+    "via": "wrapper accessIcon()",
+    "name": "Invite",
+    "access": "read"
+   },
+   {
+    "receiver": "settings",
+    "receiver_path": "ReplicatedStorage.Config.Garage.Interior",
+    "receiver_kind": "config",
+    "wrapper_defined": "GarageInteriorModeUI:9",
+    "line": 41,
+    "in_function": "openInvites",
+    "via": "wrapper accessIcon()",
+    "name": "InteriorHudInviteIcon",
+    "access": "read"
+   },
+   {
+    "receiver": "settings",
+    "receiver_path": "ReplicatedStorage.Config.Garage.Interior",
+    "receiver_kind": "config",
+    "line": 45,
+    "in_function": "layout",
+    "name": "InteriorHudTouchResponsiveScale",
+    "access": "read"
+   },
+   {
+    "receiver": "settings",
+    "receiver_path": "ReplicatedStorage.Config.Garage.Interior",
+    "receiver_kind": "config",
+    "wrapper_defined": "GarageInteriorModeUI:6",
+    "line": 45,
+    "in_function": "layout",
+    "via": "wrapper number()",
+    "name": "InteriorHudTouchReferenceWidth",
+    "access": "read"
+   },
+   {
+    "receiver": "settings",
+    "receiver_path": "ReplicatedStorage.Config.Garage.Interior",
+    "receiver_kind": "config",
+    "wrapper_defined": "GarageInteriorModeUI:6",
+    "line": 45,
+    "in_function": "layout",
+    "via": "wrapper number()",
+    "name": "InteriorHudTouchReferenceHeight",
+    "access": "read"
+   },
+   {
+    "receiver": "settings",
+    "receiver_path": "ReplicatedStorage.Config.Garage.Interior",
+    "receiver_kind": "config",
+    "wrapper_defined": "GarageInteriorModeUI:6",
+    "line": 45,
+    "in_function": "layout",
+    "via": "wrapper number()",
+    "name": "InteriorHudTouchMinimumScale",
+    "access": "read"
+   },
+   {
+    "receiver": "settings",
+    "receiver_path": "ReplicatedStorage.Config.Garage.Interior",
+    "receiver_kind": "config",
+    "wrapper_defined": "GarageInteriorModeUI:6",
+    "line": 45,
+    "in_function": "layout",
+    "via": "wrapper number()",
+    "name": "InteriorHudTouchMaximumScale",
+    "access": "read"
+   },
+   {
+    "receiver": "settings",
+    "receiver_path": "ReplicatedStorage.Config.Garage.Interior",
+    "receiver_kind": "config",
+    "wrapper_defined": "GarageInteriorModeUI:6",
+    "line": 45,
+    "in_function": "layout",
+    "via": "wrapper number()",
+    "name": "InteriorHudMargin",
+    "access": "read"
+   },
+   {
+    "receiver": "settings",
+    "receiver_path": "ReplicatedStorage.Config.Garage.Interior",
+    "receiver_kind": "config",
+    "wrapper_defined": "GarageInteriorModeUI:6",
+    "line": 45,
+    "in_function": "layout",
+    "via": "wrapper number()",
+    "name": "InteriorHudGap",
+    "access": "read"
+   },
+   {
+    "receiver": "settings",
+    "receiver_path": "ReplicatedStorage.Config.Garage.Interior",
+    "receiver_kind": "config",
+    "wrapper_defined": "GarageInteriorModeUI:6",
+    "line": 45,
+    "in_function": "layout",
+    "via": "wrapper number()",
+    "name": "InteriorHudTouchButtonWidth",
+    "access": "read"
+   },
+   {
+    "receiver": "settings",
+    "receiver_path": "ReplicatedStorage.Config.Garage.Interior",
+    "receiver_kind": "config",
+    "wrapper_defined": "GarageInteriorModeUI:6",
+    "line": 45,
+    "in_function": "layout",
+    "via": "wrapper number()",
+    "name": "InteriorHudButtonWidth",
+    "access": "read"
+   },
+   {
+    "receiver": "settings",
+    "receiver_path": "ReplicatedStorage.Config.Garage.Interior",
+    "receiver_kind": "config",
+    "wrapper_defined": "GarageInteriorModeUI:6",
+    "line": 45,
+    "in_function": "layout",
+    "via": "wrapper number()",
+    "name": "InteriorHudTouchButtonHeight",
+    "access": "read"
+   },
+   {
+    "receiver": "settings",
+    "receiver_path": "ReplicatedStorage.Config.Garage.Interior",
+    "receiver_kind": "config",
+    "wrapper_defined": "GarageInteriorModeUI:6",
+    "line": 45,
+    "in_function": "layout",
+    "via": "wrapper number()",
+    "name": "InteriorHudButtonHeight",
+    "access": "read"
+   },
+   {
+    "receiver": "settings",
+    "receiver_path": "ReplicatedStorage.Config.Garage.Interior",
+    "receiver_kind": "config",
+    "line": 60,
+    "in_function": "cameraGuardConfigured",
+    "name": "MobileWalkingCameraGuardEnabled",
+    "access": "read"
+   },
+   {
+    "receiver": "settings",
+    "receiver_path": "ReplicatedStorage.Config.Garage.Interior",
+    "receiver_kind": "config",
+    "line": 85,
+    "in_function": "queueTouchFollowRecovery",
+    "name": "MobileTouchCameraRecoveryEnabled",
+    "access": "read"
+   },
+   {
+    "receiver": "settings",
+    "receiver_path": "ReplicatedStorage.Config.Garage.Interior",
+    "receiver_kind": "config",
+    "wrapper_defined": "GarageInteriorModeUI:6",
+    "line": 207,
+    "in_function": "tryConfirmMovementTouch",
+    "via": "wrapper number()",
+    "name": "MobileThumbstickSemanticConfirmWindowSeconds",
+    "access": "read"
+   },
+   {
+    "receiver": "settings",
+    "receiver_path": "ReplicatedStorage.Config.Garage.Interior",
+    "receiver_kind": "config",
+    "wrapper_defined": "GarageInteriorModeUI:6",
+    "line": 235,
+    "in_function": "beginPendingMovementTouch",
+    "via": "wrapper number()",
+    "name": "MobileThumbstickSemanticConfirmWindowSeconds",
+    "access": "read"
+   }
+  ],
+  "child_lookups": [
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 14,
+    "in_function": "Controller.Start",
+    "via": "wrapper Components.Colour()",
+    "name": "PanelSoft",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 14,
+    "in_function": "Controller.Start",
+    "via": "wrapper Components.Colour()",
+    "name": "Outline",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 15,
+    "in_function": "Controller.Start",
+    "via": "wrapper Components.Colour()",
+    "name": "PanelBlue",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 15,
+    "in_function": "Controller.Start",
+    "via": "wrapper Components.Colour()",
+    "name": "Telemetry",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 16,
+    "in_function": "Controller.Start",
+    "via": "wrapper Components.Colour()",
+    "name": "PanelDeep",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 18,
+    "in_function": "show",
+    "via": "wrapper Components.Colour()",
+    "name": "Telemetry",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 18,
+    "in_function": "show",
+    "via": "wrapper Components.Colour()",
+    "name": "Danger",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   }
+  ]
+ },
+ "startergui_core": [],
+ "gui_service": [],
+ "other_services": {},
+ "service_connects": [],
+ "proximity_prompts": [],
+ "instances_created_by_class": {
+  "Frame": 1,
+  "ScreenGui": 1,
+  "UIScale": 1
+ },
+ "public_api": [
+  {
+   "name": "Start",
+   "kind": "function",
+   "params": [],
+   "line": 3
+  }
+ ],
+ "unresolved": [
+  {
+   "category": "attribute_reads",
+   "field": "name",
+   "line": 22,
+   "detail": "not a literal: accessIcons[mode] or \"\""
+  },
+  {
+   "category": "attribute_reads",
+   "field": "name",
+   "line": 24,
+   "detail": "not a literal: state.AccessMode or \"Private\""
+  },
+  {
+   "category": "attribute_reads",
+   "field": "name",
+   "line": 37,
+   "detail": "not a literal: mode"
+  }
+ ],
+ "contract_file": "GarageInteriorModeUI.json"
+}

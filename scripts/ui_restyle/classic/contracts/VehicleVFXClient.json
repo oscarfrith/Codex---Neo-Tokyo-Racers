@@ -1,0 +1,2282 @@
+{
+ "script": "ReplicatedStorage.Modules.Game.Vehicles.VehicleVFXClient",
+ "class": "ModuleScript",
+ "source_file": "classic/sources/ReplicatedStorage.Modules.Game.Vehicles.VehicleVFXClient.lua",
+ "source_lines": 1189,
+ "included_because": [
+  "client script that is UI-coupled: references PlayerGui; references PlayerScripts"
+ ],
+ "requires": [
+  {
+   "expr": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Vehicles\"):WaitForChild(\"VehicleCosmeticCatalog\")",
+   "as": "VehicleCosmetics",
+   "line": 35,
+   "target": "ReplicatedStorage.Modules.Game.Vehicles.VehicleCosmeticCatalog"
+  },
+  {
+   "expr": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Vehicles\"):WaitForChild(\"VehiclePreviewVFXClient\")",
+   "as": "vfxControllerModule",
+   "line": 39,
+   "target": "ReplicatedStorage.Modules.Game.Vehicles.VehiclePreviewVFXClient"
+  },
+  {
+   "expr": "playerModule",
+   "protected": true,
+   "as": "module",
+   "line": 1089,
+   "in_function": "initControls",
+   "target": "Players.LocalPlayer.PlayerScripts.PlayerModule"
+  }
+ ],
+ "remotes": {
+  "calls": [],
+  "listens": [
+   {
+    "signal": "OnClientEvent",
+    "receiver": "event",
+    "method": "Connect",
+    "handler": "inline",
+    "handler_line": 1104,
+    "handler_params": [
+     "payload"
+    ],
+    "payload_fields_read": [
+     "Type",
+     "Active",
+     "Participants"
+    ],
+    "literal_comparisons": {
+     "Type": [
+      "RaceVisibilityUpdate",
+      "RaceExitedToStart",
+      "RaceEnded",
+      "RaceDNF",
+      "TimeTrialEnded",
+      "TimeTrialFinished"
+     ]
+    },
+    "line": 1104,
+    "in_function": "connectRaceVisibility",
+    "remote": "ReplicatedStorage.Remotes.Racing.RaceEvent"
+   }
+  ]
+ },
+ "bindables": {
+  "fires": [],
+  "connects": [],
+  "invokes": [],
+  "handlers": [],
+  "created": [],
+  "module_signal_fires": []
+ },
+ "attributes": {
+  "reads": [
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.StabiliserVFX",
+    "receiver_kind": "config",
+    "line": 102,
+    "in_function": "refreshFeelConfig",
+    "name": "FeelVFXEnabled",
+    "via": "literal list"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.StabiliserVFX",
+    "receiver_kind": "config",
+    "line": 102,
+    "in_function": "refreshFeelConfig",
+    "name": "FeelThrottleAttackSeconds",
+    "via": "literal list"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.StabiliserVFX",
+    "receiver_kind": "config",
+    "line": 102,
+    "in_function": "refreshFeelConfig",
+    "name": "FeelThrottleReleaseSeconds",
+    "via": "literal list"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.StabiliserVFX",
+    "receiver_kind": "config",
+    "line": 102,
+    "in_function": "refreshFeelConfig",
+    "name": "FeelThrottleCutoff",
+    "via": "literal list"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.StabiliserVFX",
+    "receiver_kind": "config",
+    "line": 102,
+    "in_function": "refreshFeelConfig",
+    "name": "FeelJetFloor",
+    "via": "literal list"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.StabiliserVFX",
+    "receiver_kind": "config",
+    "line": 102,
+    "in_function": "refreshFeelConfig",
+    "name": "FeelBoostPulsePeak",
+    "via": "literal list"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.StabiliserVFX",
+    "receiver_kind": "config",
+    "line": 102,
+    "in_function": "refreshFeelConfig",
+    "name": "FeelBoostPulseSeconds",
+    "via": "literal list"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.StabiliserVFX",
+    "receiver_kind": "config",
+    "line": 102,
+    "in_function": "refreshFeelConfig",
+    "name": "FeelDriftFloor",
+    "via": "literal list"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.StabiliserVFX",
+    "receiver_kind": "config",
+    "line": 102,
+    "in_function": "refreshFeelConfig",
+    "name": "FeelDriftSlipFull",
+    "via": "literal list"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.StabiliserVFX",
+    "receiver_kind": "config",
+    "line": 102,
+    "in_function": "refreshFeelConfig",
+    "name": "FeelDustFloor",
+    "via": "literal list"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.StabiliserVFX",
+    "receiver_kind": "config",
+    "line": 102,
+    "in_function": "refreshFeelConfig",
+    "name": "FeelDustSpeedGain",
+    "via": "literal list"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.StabiliserVFX",
+    "receiver_kind": "config",
+    "line": 102,
+    "in_function": "refreshFeelConfig",
+    "name": "FeelDustSpeedFullMph",
+    "via": "literal list"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.StabiliserVFX",
+    "receiver_kind": "config",
+    "line": 102,
+    "in_function": "refreshFeelConfig",
+    "name": "FeelDustSquashGain",
+    "via": "literal list"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.StabiliserVFX",
+    "receiver_kind": "config",
+    "line": 102,
+    "in_function": "refreshFeelConfig",
+    "name": "FeelDustReleaseSeconds",
+    "via": "literal list"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.StabiliserVFX",
+    "receiver_kind": "config",
+    "line": 102,
+    "in_function": "refreshFeelConfig",
+    "name": "FeelBrakeMinMph",
+    "via": "literal list"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.StabiliserVFX",
+    "receiver_kind": "config",
+    "line": 102,
+    "in_function": "refreshFeelConfig",
+    "name": "FeelBrakeFullMph",
+    "via": "literal list"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.StabiliserVFX",
+    "receiver_kind": "config",
+    "line": 102,
+    "in_function": "refreshFeelConfig",
+    "name": "FeelBrakeFloor",
+    "via": "literal list"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.StabiliserVFX",
+    "receiver_kind": "config",
+    "line": 102,
+    "in_function": "refreshFeelConfig",
+    "name": "FeelImpactMinInterval",
+    "via": "literal list"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.StabiliserVFX",
+    "receiver_kind": "config",
+    "line": 102,
+    "in_function": "refreshFeelConfig",
+    "name": "FeelImpactSparksLight",
+    "via": "literal list"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.StabiliserVFX",
+    "receiver_kind": "config",
+    "line": 102,
+    "in_function": "refreshFeelConfig",
+    "name": "FeelImpactSparksMedium",
+    "via": "literal list"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.StabiliserVFX",
+    "receiver_kind": "config",
+    "line": 102,
+    "in_function": "refreshFeelConfig",
+    "name": "FeelImpactSparksHeavy",
+    "via": "literal list"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.StabiliserVFX",
+    "receiver_kind": "config",
+    "line": 102,
+    "in_function": "refreshFeelConfig",
+    "name": "FeelImpactSparksSevere",
+    "via": "literal list"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.StabiliserVFX",
+    "receiver_kind": "config",
+    "line": 102,
+    "in_function": "refreshFeelConfig",
+    "name": "FeelLandMinStuds",
+    "via": "literal list"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.StabiliserVFX",
+    "receiver_kind": "config",
+    "line": 102,
+    "in_function": "refreshFeelConfig",
+    "name": "FeelLandFullStuds",
+    "via": "literal list"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.StabiliserVFX",
+    "receiver_kind": "config",
+    "line": 102,
+    "in_function": "refreshFeelConfig",
+    "name": "FeelLandDustMin",
+    "via": "literal list"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.StabiliserVFX",
+    "receiver_kind": "config",
+    "line": 102,
+    "in_function": "refreshFeelConfig",
+    "name": "FeelLandDustMax",
+    "via": "literal list"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.StabiliserVFX",
+    "receiver_kind": "config",
+    "line": 102,
+    "in_function": "refreshFeelConfig",
+    "name": "FeelBackfireEnabled",
+    "via": "literal list"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.StabiliserVFX",
+    "receiver_kind": "config",
+    "line": 102,
+    "in_function": "refreshFeelConfig",
+    "name": "FeelBackfireCrackleMin",
+    "via": "literal list"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.StabiliserVFX",
+    "receiver_kind": "config",
+    "line": 102,
+    "in_function": "refreshFeelConfig",
+    "name": "FeelBackfireCrackleMax",
+    "via": "literal list"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.StabiliserVFX",
+    "receiver_kind": "config",
+    "line": 102,
+    "in_function": "refreshFeelConfig",
+    "name": "FeelBackfireBangMin",
+    "via": "literal list"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.StabiliserVFX",
+    "receiver_kind": "config",
+    "line": 102,
+    "in_function": "refreshFeelConfig",
+    "name": "FeelBackfireBangMax",
+    "via": "literal list"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.StabiliserVFX",
+    "receiver_kind": "config",
+    "line": 102,
+    "in_function": "refreshFeelConfig",
+    "name": "FeelBackfireCrackleFlashSeconds",
+    "via": "literal list"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.StabiliserVFX",
+    "receiver_kind": "config",
+    "line": 102,
+    "in_function": "refreshFeelConfig",
+    "name": "FeelBackfireBangFlashSeconds",
+    "via": "literal list"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.StabiliserVFX",
+    "receiver_kind": "config",
+    "line": 102,
+    "in_function": "refreshFeelConfig",
+    "name": "FeelBackfireFlashGain",
+    "via": "literal list"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.StabiliserVFX",
+    "receiver_kind": "config",
+    "line": 102,
+    "in_function": "refreshFeelConfig",
+    "name": "ExoticV2PreviewLightMax",
+    "via": "literal list"
+   },
+   {
+    "receiver": "current",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "line": 233,
+    "in_function": "resolvePaintChannel",
+    "name": "PaintChannel"
+   },
+   {
+    "receiver": "cache.ControlRoot",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "wrapper_defined": "VehicleVFXClient:314",
+    "line": 320,
+    "in_function": "thrustColour",
+    "via": "wrapper readAttr()",
+    "name": "ThrustColor"
+   },
+   {
+    "receiver": "cache.Model",
+    "receiver_path": null,
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "VehicleVFXClient:311",
+    "line": 320,
+    "in_function": "thrustColour",
+    "via": "wrapper readAttr()",
+    "name": "ThrustColor"
+   },
+   {
+    "receiver": "cache.ControlRoot",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "wrapper_defined": "VehicleVFXClient:314",
+    "line": 326,
+    "in_function": "runtimeState",
+    "via": "wrapper readAttr()",
+    "name": "ForceThrustPreview"
+   },
+   {
+    "receiver": "cache.Model",
+    "receiver_path": null,
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "VehicleVFXClient:311",
+    "line": 326,
+    "in_function": "runtimeState",
+    "via": "wrapper readAttr()",
+    "name": "ForceThrustPreview"
+   },
+   {
+    "receiver": "cache.ControlRoot",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "wrapper_defined": "VehicleVFXClient:314",
+    "line": 327,
+    "in_function": "runtimeState",
+    "via": "wrapper readAttr()",
+    "name": "DriveReady"
+   },
+   {
+    "receiver": "cache.Model",
+    "receiver_path": null,
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "VehicleVFXClient:311",
+    "line": 327,
+    "in_function": "runtimeState",
+    "via": "wrapper readAttr()",
+    "name": "DriveReady"
+   },
+   {
+    "receiver": "cache.Model",
+    "receiver_path": null,
+    "receiver_kind": "vehicle?",
+    "line": 329,
+    "in_function": "runtimeState",
+    "name": "OwnerUserId"
+   },
+   {
+    "receiver": "cache.Model",
+    "receiver_path": null,
+    "receiver_kind": "vehicle?",
+    "line": 332,
+    "in_function": "runtimeState",
+    "name": "FeelSpeedMph"
+   },
+   {
+    "receiver": "cache.ControlRoot",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "wrapper_defined": "VehicleVFXClient:314",
+    "line": 338,
+    "in_function": "runtimeState",
+    "via": "wrapper readAttr()",
+    "name": "Accelerating"
+   },
+   {
+    "receiver": "cache.Model",
+    "receiver_path": null,
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "VehicleVFXClient:311",
+    "line": 338,
+    "in_function": "runtimeState",
+    "via": "wrapper readAttr()",
+    "name": "Accelerating"
+   },
+   {
+    "receiver": "cache.ControlRoot",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "wrapper_defined": "VehicleVFXClient:314",
+    "line": 339,
+    "in_function": "runtimeState",
+    "via": "wrapper readAttr()",
+    "name": "Boosting"
+   },
+   {
+    "receiver": "cache.Model",
+    "receiver_path": null,
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "VehicleVFXClient:311",
+    "line": 339,
+    "in_function": "runtimeState",
+    "via": "wrapper readAttr()",
+    "name": "Boosting"
+   },
+   {
+    "receiver": "cache.ControlRoot",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "wrapper_defined": "VehicleVFXClient:314",
+    "line": 340,
+    "in_function": "runtimeState",
+    "via": "wrapper readAttr()",
+    "name": "DriftingLeft"
+   },
+   {
+    "receiver": "cache.Model",
+    "receiver_path": null,
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "VehicleVFXClient:311",
+    "line": 340,
+    "in_function": "runtimeState",
+    "via": "wrapper readAttr()",
+    "name": "DriftingLeft"
+   },
+   {
+    "receiver": "cache.ControlRoot",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "wrapper_defined": "VehicleVFXClient:314",
+    "line": 341,
+    "in_function": "runtimeState",
+    "via": "wrapper readAttr()",
+    "name": "DriftingRight"
+   },
+   {
+    "receiver": "cache.Model",
+    "receiver_path": null,
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "VehicleVFXClient:311",
+    "line": 341,
+    "in_function": "runtimeState",
+    "via": "wrapper readAttr()",
+    "name": "DriftingRight"
+   },
+   {
+    "receiver": "cache.ControlRoot",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "wrapper_defined": "VehicleVFXClient:314",
+    "line": 345,
+    "in_function": "runtimeState",
+    "via": "wrapper readAttr()",
+    "name": "PreviewVFXMode"
+   },
+   {
+    "receiver": "cache.Model",
+    "receiver_path": null,
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "VehicleVFXClient:311",
+    "line": 345,
+    "in_function": "runtimeState",
+    "via": "wrapper readAttr()",
+    "name": "PreviewVFXMode"
+   },
+   {
+    "receiver": "cache.ControlRoot",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "wrapper_defined": "VehicleVFXClient:314",
+    "line": 363,
+    "in_function": "runtimeState",
+    "via": "wrapper readAttr()",
+    "name": "AudioIgnition"
+   },
+   {
+    "receiver": "cache.Model",
+    "receiver_path": null,
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "VehicleVFXClient:311",
+    "line": 363,
+    "in_function": "runtimeState",
+    "via": "wrapper readAttr()",
+    "name": "AudioIgnition"
+   },
+   {
+    "receiver": "cache.ControlRoot",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "wrapper_defined": "VehicleVFXClient:314",
+    "line": 364,
+    "in_function": "runtimeState",
+    "via": "wrapper readAttr()",
+    "name": "AudioDrive"
+   },
+   {
+    "receiver": "cache.Model",
+    "receiver_path": null,
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "VehicleVFXClient:311",
+    "line": 364,
+    "in_function": "runtimeState",
+    "via": "wrapper readAttr()",
+    "name": "AudioDrive"
+   },
+   {
+    "receiver": "cache.ControlRoot",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "wrapper_defined": "VehicleVFXClient:314",
+    "line": 365,
+    "in_function": "runtimeState",
+    "via": "wrapper readAttr()",
+    "name": "AudioBoost"
+   },
+   {
+    "receiver": "cache.Model",
+    "receiver_path": null,
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "VehicleVFXClient:311",
+    "line": 365,
+    "in_function": "runtimeState",
+    "via": "wrapper readAttr()",
+    "name": "AudioBoost"
+   },
+   {
+    "receiver": "cache.ControlRoot",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "wrapper_defined": "VehicleVFXClient:314",
+    "line": 366,
+    "in_function": "runtimeState",
+    "via": "wrapper readAttr()",
+    "name": "AudioDrift"
+   },
+   {
+    "receiver": "cache.Model",
+    "receiver_path": null,
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "VehicleVFXClient:311",
+    "line": 366,
+    "in_function": "runtimeState",
+    "via": "wrapper readAttr()",
+    "name": "AudioDrift"
+   },
+   {
+    "receiver": "descendant",
+    "receiver_kind": "other",
+    "wrapper_defined": "VehicleVFXClient:434",
+    "line": 459,
+    "in_function": "scanTree",
+    "via": "wrapper scanOne()",
+    "name": "LightChannel",
+    "receiver_path": null
+   },
+   {
+    "receiver": "descendant",
+    "receiver_kind": "other",
+    "wrapper_defined": "VehicleVFXClient:434",
+    "line": 459,
+    "in_function": "scanTree",
+    "via": "wrapper scanOne()",
+    "name": "VehicleCosmeticId",
+    "receiver_path": null
+   },
+   {
+    "receiver": "descendant",
+    "receiver_kind": "other",
+    "wrapper_defined": "VehicleVFXClient:427",
+    "line": 459,
+    "in_function": "scanTree",
+    "via": "wrapper scanOne()",
+    "name": "TemplateRole",
+    "receiver_path": null
+   },
+   {
+    "receiver": "cache.Model",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "VehicleVFXClient:167",
+    "line": 544,
+    "in_function": "attachTemplateController",
+    "via": "wrapper modelOwnerUserId()",
+    "name": "OwnerUserId",
+    "receiver_path": null
+   },
+   {
+    "receiver": "cache.Model",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "VehicleVFXClient:457",
+    "line": 549,
+    "in_function": "attachTemplateController",
+    "via": "wrapper scanTree()",
+    "name": "LightChannel",
+    "receiver_path": null
+   },
+   {
+    "receiver": "cache.Model",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "VehicleVFXClient:457",
+    "line": 549,
+    "in_function": "attachTemplateController",
+    "via": "wrapper scanTree()",
+    "name": "VehicleCosmeticId",
+    "receiver_path": null
+   },
+   {
+    "receiver": "cache.Model",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "VehicleVFXClient:457",
+    "line": 549,
+    "in_function": "attachTemplateController",
+    "via": "wrapper scanTree()",
+    "name": "TemplateRole",
+    "receiver_path": null
+   },
+   {
+    "receiver": "model",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "VehicleVFXClient:112",
+    "line": 579,
+    "in_function": "feelInputs",
+    "via": "wrapper feelNumber()",
+    "name": "FeelImpactRevision",
+    "receiver_path": null
+   },
+   {
+    "receiver": "model",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "VehicleVFXClient:112",
+    "line": 580,
+    "in_function": "feelInputs",
+    "via": "wrapper feelNumber()",
+    "name": "FeelLandRevision",
+    "receiver_path": null
+   },
+   {
+    "receiver": "model",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "VehicleVFXClient:112",
+    "line": 581,
+    "in_function": "feelInputs",
+    "via": "wrapper feelNumber()",
+    "name": "FeelPopRevision",
+    "receiver_path": null
+   },
+   {
+    "receiver": "model",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "VehicleVFXClient:112",
+    "line": 598,
+    "in_function": "feelInputs",
+    "via": "wrapper feelNumber()",
+    "name": "FeelThrottle",
+    "receiver_path": null
+   },
+   {
+    "receiver": "model",
+    "receiver_path": null,
+    "receiver_kind": "vehicle?",
+    "line": 615,
+    "in_function": "feelInputs",
+    "name": "FeelBoostKind"
+   },
+   {
+    "receiver": "model",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "VehicleVFXClient:112",
+    "line": 637,
+    "in_function": "feelInputs",
+    "via": "wrapper feelNumber()",
+    "name": "FeelSlip",
+    "receiver_path": null
+   },
+   {
+    "receiver": "model",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "VehicleVFXClient:112",
+    "line": 649,
+    "in_function": "feelInputs",
+    "via": "wrapper feelNumber()",
+    "name": "FeelSpeedMph",
+    "receiver_path": null
+   },
+   {
+    "receiver": "model",
+    "receiver_path": null,
+    "receiver_kind": "vehicle?",
+    "line": 650,
+    "in_function": "feelInputs",
+    "name": "FeelGrounded"
+   },
+   {
+    "receiver": "model",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "VehicleVFXClient:112",
+    "line": 656,
+    "in_function": "feelInputs",
+    "via": "wrapper feelNumber()",
+    "name": "FeelHover",
+    "receiver_path": null
+   },
+   {
+    "receiver": "model",
+    "receiver_path": null,
+    "receiver_kind": "vehicle?",
+    "line": 672,
+    "in_function": "feelInputs",
+    "name": "Braking"
+   },
+   {
+    "receiver": "model",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "VehicleVFXClient:112",
+    "line": 687,
+    "in_function": "feelInputs",
+    "via": "wrapper feelNumber()",
+    "name": "FeelHover",
+    "receiver_path": null
+   },
+   {
+    "receiver": "model",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "VehicleVFXClient:112",
+    "line": 690,
+    "in_function": "feelInputs",
+    "via": "wrapper feelNumber()",
+    "name": "FeelDriftCharge",
+    "receiver_path": null
+   },
+   {
+    "receiver": "model",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "VehicleVFXClient:112",
+    "line": 692,
+    "in_function": "feelInputs",
+    "via": "wrapper feelNumber()",
+    "name": "FeelScrape",
+    "receiver_path": null
+   },
+   {
+    "receiver": "model",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "VehicleVFXClient:112",
+    "line": 698,
+    "in_function": "feelInputs",
+    "via": "wrapper feelNumber()",
+    "name": "FeelImpactX",
+    "receiver_path": null
+   },
+   {
+    "receiver": "model",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "VehicleVFXClient:112",
+    "line": 699,
+    "in_function": "feelInputs",
+    "via": "wrapper feelNumber()",
+    "name": "FeelImpactZ",
+    "receiver_path": null
+   },
+   {
+    "receiver": "model",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "VehicleVFXClient:112",
+    "line": 715,
+    "in_function": "feelBursts",
+    "via": "wrapper feelNumber()",
+    "name": "FeelImpactRevision",
+    "receiver_path": null
+   },
+   {
+    "receiver": "model",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "VehicleVFXClient:112",
+    "line": 716,
+    "in_function": "feelBursts",
+    "via": "wrapper feelNumber()",
+    "name": "FeelLandRevision",
+    "receiver_path": null
+   },
+   {
+    "receiver": "model",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "VehicleVFXClient:112",
+    "line": 717,
+    "in_function": "feelBursts",
+    "via": "wrapper feelNumber()",
+    "name": "FeelPopRevision",
+    "receiver_path": null
+   },
+   {
+    "receiver": "model",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "VehicleVFXClient:112",
+    "line": 724,
+    "in_function": "feelBursts",
+    "via": "wrapper feelNumber()",
+    "name": "FeelPopStrength",
+    "receiver_path": null
+   },
+   {
+    "receiver": "model",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "VehicleVFXClient:112",
+    "line": 748,
+    "in_function": "feelBursts",
+    "via": "wrapper feelNumber()",
+    "name": "FeelImpactStrength",
+    "receiver_path": null
+   },
+   {
+    "receiver": "model",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "VehicleVFXClient:112",
+    "line": 763,
+    "in_function": "feelBursts",
+    "via": "wrapper feelNumber()",
+    "name": "FeelImpactX",
+    "receiver_path": null
+   },
+   {
+    "receiver": "model",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "VehicleVFXClient:112",
+    "line": 763,
+    "in_function": "feelBursts",
+    "via": "wrapper feelNumber()",
+    "name": "FeelImpactZ",
+    "receiver_path": null
+   },
+   {
+    "receiver": "model",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "VehicleVFXClient:112",
+    "line": 771,
+    "in_function": "feelBursts",
+    "via": "wrapper feelNumber()",
+    "name": "FeelLandStrength",
+    "receiver_path": null
+   },
+   {
+    "receiver": "cache.Model",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "VehicleVFXClient:178",
+    "line": 786,
+    "in_function": "updateTemplateController",
+    "via": "wrapper shouldRenderVehicleVFX()",
+    "name": "RaceParticipant",
+    "receiver_path": null
+   },
+   {
+    "receiver": "cache.Model",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "VehicleVFXClient:173",
+    "line": 786,
+    "in_function": "updateTemplateController",
+    "via": "wrapper shouldRenderVehicleVFX()",
+    "name": "OwnerUserId",
+    "receiver_path": null
+   },
+   {
+    "receiver": "cache.Model",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "VehicleVFXClient:178",
+    "line": 854,
+    "in_function": "applyVFXState",
+    "via": "wrapper shouldRenderVehicleVFX()",
+    "name": "RaceParticipant",
+    "receiver_path": null
+   },
+   {
+    "receiver": "cache.Model",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "VehicleVFXClient:173",
+    "line": 854,
+    "in_function": "applyVFXState",
+    "via": "wrapper shouldRenderVehicleVFX()",
+    "name": "OwnerUserId",
+    "receiver_path": null
+   },
+   {
+    "receiver": "child",
+    "receiver_kind": "other",
+    "wrapper_defined": "VehicleVFXClient:943",
+    "line": 998,
+    "in_function": "runtimeVehicles",
+    "via": "wrapper trackModel()",
+    "name": "LightChannel",
+    "receiver_path": null
+   },
+   {
+    "receiver": "child",
+    "receiver_kind": "other",
+    "wrapper_defined": "VehicleVFXClient:943",
+    "line": 998,
+    "in_function": "runtimeVehicles",
+    "via": "wrapper trackModel()",
+    "name": "VehicleCosmeticId",
+    "receiver_path": null
+   },
+   {
+    "receiver": "child",
+    "receiver_kind": "other",
+    "wrapper_defined": "VehicleVFXClient:943",
+    "line": 998,
+    "in_function": "runtimeVehicles",
+    "via": "wrapper trackModel()",
+    "name": "TemplateRole",
+    "receiver_path": null
+   },
+   {
+    "receiver": "preview",
+    "receiver_kind": "other",
+    "wrapper_defined": "VehicleVFXClient:943",
+    "line": 1007,
+    "in_function": "previewVehicles",
+    "via": "wrapper trackModel()",
+    "name": "LightChannel",
+    "receiver_path": null
+   },
+   {
+    "receiver": "preview",
+    "receiver_kind": "other",
+    "wrapper_defined": "VehicleVFXClient:943",
+    "line": 1007,
+    "in_function": "previewVehicles",
+    "via": "wrapper trackModel()",
+    "name": "VehicleCosmeticId",
+    "receiver_path": null
+   },
+   {
+    "receiver": "preview",
+    "receiver_kind": "other",
+    "wrapper_defined": "VehicleVFXClient:943",
+    "line": 1007,
+    "in_function": "previewVehicles",
+    "via": "wrapper trackModel()",
+    "name": "TemplateRole",
+    "receiver_path": null
+   },
+   {
+    "receiver": "child",
+    "receiver_kind": "other",
+    "wrapper_defined": "VehicleVFXClient:943",
+    "line": 1012,
+    "in_function": "previewVehicles",
+    "via": "wrapper trackModel()",
+    "name": "LightChannel",
+    "receiver_path": null
+   },
+   {
+    "receiver": "child",
+    "receiver_kind": "other",
+    "wrapper_defined": "VehicleVFXClient:943",
+    "line": 1012,
+    "in_function": "previewVehicles",
+    "via": "wrapper trackModel()",
+    "name": "VehicleCosmeticId",
+    "receiver_path": null
+   },
+   {
+    "receiver": "child",
+    "receiver_kind": "other",
+    "wrapper_defined": "VehicleVFXClient:943",
+    "line": 1012,
+    "in_function": "previewVehicles",
+    "via": "wrapper trackModel()",
+    "name": "TemplateRole",
+    "receiver_path": null
+   },
+   {
+    "receiver": "vehicle",
+    "receiver_path": null,
+    "receiver_kind": "vehicle?",
+    "line": 1041,
+    "in_function": "playerVehicle",
+    "name": "OwnerUserId"
+   },
+   {
+    "receiver": "LOCAL_PLAYER",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "line": 1049,
+    "in_function": "garageOpen",
+    "name": "GarageSessionActive"
+   }
+  ],
+  "writes": [],
+  "listens": [
+   {
+    "receiver": "controlRoot",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "line": 969,
+    "in_function": "trackModel",
+    "name": "ThrustColor"
+   },
+   {
+    "receiver": "controlRoot",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "line": 972,
+    "in_function": "trackModel",
+    "name": "ForceThrustPreview"
+   },
+   {
+    "receiver": "controlRoot",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "line": 975,
+    "in_function": "trackModel",
+    "name": "PreviewVFXMode"
+   },
+   {
+    "receiver": "child",
+    "receiver_kind": "other",
+    "wrapper_defined": "VehicleVFXClient:983",
+    "line": 998,
+    "in_function": "runtimeVehicles",
+    "via": "wrapper trackModel()",
+    "receiver_path": null,
+    "name": "DriveReady"
+   },
+   {
+    "receiver": "child",
+    "receiver_kind": "other",
+    "wrapper_defined": "VehicleVFXClient:983",
+    "line": 998,
+    "in_function": "runtimeVehicles",
+    "via": "wrapper trackModel()",
+    "receiver_path": null,
+    "name": "Accelerating"
+   },
+   {
+    "receiver": "child",
+    "receiver_kind": "other",
+    "wrapper_defined": "VehicleVFXClient:983",
+    "line": 998,
+    "in_function": "runtimeVehicles",
+    "via": "wrapper trackModel()",
+    "receiver_path": null,
+    "name": "Boosting"
+   },
+   {
+    "receiver": "child",
+    "receiver_kind": "other",
+    "wrapper_defined": "VehicleVFXClient:983",
+    "line": 998,
+    "in_function": "runtimeVehicles",
+    "via": "wrapper trackModel()",
+    "receiver_path": null,
+    "name": "DriftingLeft"
+   },
+   {
+    "receiver": "child",
+    "receiver_kind": "other",
+    "wrapper_defined": "VehicleVFXClient:983",
+    "line": 998,
+    "in_function": "runtimeVehicles",
+    "via": "wrapper trackModel()",
+    "receiver_path": null,
+    "name": "DriftingRight"
+   },
+   {
+    "receiver": "child",
+    "receiver_kind": "other",
+    "wrapper_defined": "VehicleVFXClient:983",
+    "line": 998,
+    "in_function": "runtimeVehicles",
+    "via": "wrapper trackModel()",
+    "receiver_path": null,
+    "name": "RaceParticipant"
+   },
+   {
+    "receiver": "child",
+    "receiver_kind": "other",
+    "wrapper_defined": "VehicleVFXClient:983",
+    "line": 998,
+    "in_function": "runtimeVehicles",
+    "via": "wrapper trackModel()",
+    "receiver_path": null,
+    "name": "RaceRunId"
+   },
+   {
+    "receiver": "child",
+    "receiver_kind": "other",
+    "wrapper_defined": "VehicleVFXClient:979",
+    "line": 998,
+    "in_function": "runtimeVehicles",
+    "via": "wrapper trackModel()",
+    "name": "ThrustColor",
+    "receiver_path": null
+   },
+   {
+    "receiver": "preview",
+    "receiver_kind": "other",
+    "wrapper_defined": "VehicleVFXClient:983",
+    "line": 1007,
+    "in_function": "previewVehicles",
+    "via": "wrapper trackModel()",
+    "receiver_path": null,
+    "name": "DriveReady"
+   },
+   {
+    "receiver": "preview",
+    "receiver_kind": "other",
+    "wrapper_defined": "VehicleVFXClient:983",
+    "line": 1007,
+    "in_function": "previewVehicles",
+    "via": "wrapper trackModel()",
+    "receiver_path": null,
+    "name": "Accelerating"
+   },
+   {
+    "receiver": "preview",
+    "receiver_kind": "other",
+    "wrapper_defined": "VehicleVFXClient:983",
+    "line": 1007,
+    "in_function": "previewVehicles",
+    "via": "wrapper trackModel()",
+    "receiver_path": null,
+    "name": "Boosting"
+   },
+   {
+    "receiver": "preview",
+    "receiver_kind": "other",
+    "wrapper_defined": "VehicleVFXClient:983",
+    "line": 1007,
+    "in_function": "previewVehicles",
+    "via": "wrapper trackModel()",
+    "receiver_path": null,
+    "name": "DriftingLeft"
+   },
+   {
+    "receiver": "preview",
+    "receiver_kind": "other",
+    "wrapper_defined": "VehicleVFXClient:983",
+    "line": 1007,
+    "in_function": "previewVehicles",
+    "via": "wrapper trackModel()",
+    "receiver_path": null,
+    "name": "DriftingRight"
+   },
+   {
+    "receiver": "preview",
+    "receiver_kind": "other",
+    "wrapper_defined": "VehicleVFXClient:983",
+    "line": 1007,
+    "in_function": "previewVehicles",
+    "via": "wrapper trackModel()",
+    "receiver_path": null,
+    "name": "RaceParticipant"
+   },
+   {
+    "receiver": "preview",
+    "receiver_kind": "other",
+    "wrapper_defined": "VehicleVFXClient:983",
+    "line": 1007,
+    "in_function": "previewVehicles",
+    "via": "wrapper trackModel()",
+    "receiver_path": null,
+    "name": "RaceRunId"
+   },
+   {
+    "receiver": "preview",
+    "receiver_kind": "other",
+    "wrapper_defined": "VehicleVFXClient:979",
+    "line": 1007,
+    "in_function": "previewVehicles",
+    "via": "wrapper trackModel()",
+    "name": "ThrustColor",
+    "receiver_path": null
+   },
+   {
+    "receiver": "child",
+    "receiver_kind": "other",
+    "wrapper_defined": "VehicleVFXClient:983",
+    "line": 1012,
+    "in_function": "previewVehicles",
+    "via": "wrapper trackModel()",
+    "receiver_path": null,
+    "name": "DriveReady"
+   },
+   {
+    "receiver": "child",
+    "receiver_kind": "other",
+    "wrapper_defined": "VehicleVFXClient:983",
+    "line": 1012,
+    "in_function": "previewVehicles",
+    "via": "wrapper trackModel()",
+    "receiver_path": null,
+    "name": "Accelerating"
+   },
+   {
+    "receiver": "child",
+    "receiver_kind": "other",
+    "wrapper_defined": "VehicleVFXClient:983",
+    "line": 1012,
+    "in_function": "previewVehicles",
+    "via": "wrapper trackModel()",
+    "receiver_path": null,
+    "name": "Boosting"
+   },
+   {
+    "receiver": "child",
+    "receiver_kind": "other",
+    "wrapper_defined": "VehicleVFXClient:983",
+    "line": 1012,
+    "in_function": "previewVehicles",
+    "via": "wrapper trackModel()",
+    "receiver_path": null,
+    "name": "DriftingLeft"
+   },
+   {
+    "receiver": "child",
+    "receiver_kind": "other",
+    "wrapper_defined": "VehicleVFXClient:983",
+    "line": 1012,
+    "in_function": "previewVehicles",
+    "via": "wrapper trackModel()",
+    "receiver_path": null,
+    "name": "DriftingRight"
+   },
+   {
+    "receiver": "child",
+    "receiver_kind": "other",
+    "wrapper_defined": "VehicleVFXClient:983",
+    "line": 1012,
+    "in_function": "previewVehicles",
+    "via": "wrapper trackModel()",
+    "receiver_path": null,
+    "name": "RaceParticipant"
+   },
+   {
+    "receiver": "child",
+    "receiver_kind": "other",
+    "wrapper_defined": "VehicleVFXClient:983",
+    "line": 1012,
+    "in_function": "previewVehicles",
+    "via": "wrapper trackModel()",
+    "receiver_path": null,
+    "name": "RaceRunId"
+   },
+   {
+    "receiver": "child",
+    "receiver_kind": "other",
+    "wrapper_defined": "VehicleVFXClient:979",
+    "line": 1012,
+    "in_function": "previewVehicles",
+    "via": "wrapper trackModel()",
+    "name": "ThrustColor",
+    "receiver_path": null
+   }
+  ]
+ },
+ "player_attribute_writes": [],
+ "screenguis": {
+  "created": [],
+  "enabled_writes": [
+   {
+    "receiver": "object",
+    "receiver_path": null,
+    "value": {
+     "expr": "enabled"
+    },
+    "screengui_like": "unknown",
+    "reason": "",
+    "line": 202,
+    "in_function": "setEnabled"
+   },
+   {
+    "receiver": "touchGui",
+    "receiver_path": "Players.LocalPlayer.PlayerGui.TouchGui",
+    "value": {
+     "expr": "enabled"
+    },
+    "screengui_like": "yes",
+    "reason": "child of PlayerGui",
+    "line": 1061,
+    "in_function": "setRobloxTouchControls",
+    "screengui_name": "TouchGui"
+   }
+  ]
+ },
+ "names": {
+  "assigned": [],
+  "looked_up": [
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 35,
+    "name": "Modules"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\")",
+    "receiver_path": "ReplicatedStorage.Modules",
+    "root": "ReplicatedStorage",
+    "line": 35,
+    "name": "Game"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game",
+    "root": "ReplicatedStorage",
+    "line": 35,
+    "name": "Vehicles"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Vehicles\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game.Vehicles",
+    "root": "ReplicatedStorage",
+    "line": 35,
+    "name": "VehicleCosmeticCatalog"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 36,
+    "name": "Assets"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Assets\")",
+    "receiver_path": "ReplicatedStorage.Assets",
+    "root": "ReplicatedStorage",
+    "line": 36,
+    "name": "VFX"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Assets\"):WaitForChild(\"VFX\")",
+    "receiver_path": "ReplicatedStorage.Assets.VFX",
+    "root": "ReplicatedStorage",
+    "line": 36,
+    "name": "VehicleTemplates"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 39,
+    "name": "Modules"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\")",
+    "receiver_path": "ReplicatedStorage.Modules",
+    "root": "ReplicatedStorage",
+    "line": 39,
+    "name": "Game"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game",
+    "root": "ReplicatedStorage",
+    "line": 39,
+    "name": "Vehicles"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Vehicles\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game.Vehicles",
+    "root": "ReplicatedStorage",
+    "line": 39,
+    "name": "VehiclePreviewVFXClient"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "ReplicatedStorage",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 98,
+    "in_function": "refreshFeelConfig",
+    "name": "Config"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config",
+    "root": "ReplicatedStorage",
+    "line": 99,
+    "in_function": "refreshFeelConfig",
+    "name": "Vehicles"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "vehicles",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles",
+    "root": "ReplicatedStorage",
+    "line": 100,
+    "in_function": "refreshFeelConfig",
+    "name": "StabiliserVFX"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "current",
+    "receiver_path": null,
+    "root": null,
+    "line": 224,
+    "in_function": "resolvePaintChannel",
+    "name": "THRUST_COLOR_WhiteByDefault"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "current",
+    "receiver_path": null,
+    "root": null,
+    "line": 225,
+    "in_function": "resolvePaintChannel",
+    "name": "NEON_OptionalLights"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "current",
+    "receiver_path": null,
+    "root": null,
+    "line": 226,
+    "in_function": "resolvePaintChannel",
+    "name": "PRIMARY_ReplaceWithPrimaryMeshes"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "current",
+    "receiver_path": null,
+    "root": null,
+    "line": 227,
+    "in_function": "resolvePaintChannel",
+    "name": "SECONDARY_ReplaceWithSecondaryMeshes"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "current",
+    "receiver_path": null,
+    "root": null,
+    "line": 228,
+    "in_function": "resolvePaintChannel",
+    "name": "DETAIL_ReplaceWithDetailMeshes"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "Workspace",
+    "receiver_path": "Workspace",
+    "root": "Workspace",
+    "line": 289,
+    "in_function": "getPreviewRoot",
+    "name": "ClientOnly"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "clientOnlyRoot",
+    "receiver_path": "Workspace.ClientOnly",
+    "root": "Workspace",
+    "line": 290,
+    "in_function": "getPreviewRoot",
+    "name": "VehiclePreview"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "Workspace",
+    "receiver_path": "Workspace",
+    "root": "Workspace",
+    "line": 294,
+    "in_function": "getPreviewRoot",
+    "name": "LocalVehiclePreview"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "cache.Model",
+    "root": null,
+    "recursive": true,
+    "wrapper_defined": "VehicleVFXClient:279",
+    "line": 436,
+    "in_function": "scanOne",
+    "via": "wrapper sideFromPosition()",
+    "name": "CockpitRoot_DoNotRename",
+    "receiver_path": null,
+    "receiver_kind": "vehicle?"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "cache.Model",
+    "root": null,
+    "recursive": true,
+    "wrapper_defined": "VehiclePreviewVFXClient:1072",
+    "line": 545,
+    "in_function": "attachTemplateController",
+    "via": "wrapper VehicleVFXController.Attach()",
+    "name": "CockpitRoot_DoNotRename",
+    "receiver_path": null,
+    "receiver_kind": "vehicle?"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "templates",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "VehiclePreviewVFXClient:1071",
+    "receiver_kind": "other",
+    "line": 545,
+    "in_function": "attachTemplateController",
+    "via": "wrapper VehicleVFXController.Attach()",
+    "name": "00_GLOBAL_VFX_SETTINGS",
+    "receiver_path": "ReplicatedStorage.Assets.VFX.VehicleTemplates"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "cache.Model",
+    "receiver_path": null,
+    "root": null,
+    "recursive": true,
+    "line": 556,
+    "in_function": "feelRoot",
+    "name": "CockpitRoot_DoNotRename"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "game:GetService(\"Workspace\")",
+    "receiver_path": "Workspace",
+    "root": "Workspace",
+    "line": 993,
+    "in_function": "runtimeVehicles",
+    "name": "World"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Workspace\")",
+    "receiver_path": "Workspace",
+    "root": "Workspace",
+    "line": 994,
+    "in_function": "runtimeVehicles",
+    "name": "World"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "game:GetService(\"Workspace\"):WaitForChild(\"World\")",
+    "receiver_path": "Workspace.World",
+    "root": "Workspace",
+    "line": 994,
+    "in_function": "runtimeVehicles",
+    "name": "Runtime"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Workspace\")",
+    "receiver_path": "Workspace",
+    "root": "Workspace",
+    "line": 994,
+    "in_function": "runtimeVehicles",
+    "name": "World"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "game:GetService(\"Workspace\"):WaitForChild(\"World\").Runtime",
+    "receiver_path": "Workspace.World.Runtime",
+    "root": "Workspace",
+    "line": 994,
+    "in_function": "runtimeVehicles",
+    "name": "PlayerVehicles"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "game:GetService(\"Workspace\")",
+    "receiver_path": "Workspace",
+    "root": "Workspace",
+    "line": 1037,
+    "in_function": "playerVehicle",
+    "name": "World"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Workspace\")",
+    "receiver_path": "Workspace",
+    "root": "Workspace",
+    "line": 1038,
+    "in_function": "playerVehicle",
+    "name": "World"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "game:GetService(\"Workspace\"):WaitForChild(\"World\")",
+    "receiver_path": "Workspace.World",
+    "root": "Workspace",
+    "line": 1038,
+    "in_function": "playerVehicle",
+    "name": "Runtime"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Workspace\")",
+    "receiver_path": "Workspace",
+    "root": "Workspace",
+    "line": 1038,
+    "in_function": "playerVehicle",
+    "name": "World"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "game:GetService(\"Workspace\"):WaitForChild(\"World\").Runtime",
+    "receiver_path": "Workspace.World.Runtime",
+    "root": "Workspace",
+    "line": 1038,
+    "in_function": "playerVehicle",
+    "name": "PlayerVehicles"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "LOCAL_PLAYER",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 1053,
+    "in_function": "driveOpen",
+    "name": "PlayerGui"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "LOCAL_PLAYER.PlayerGui",
+    "receiver_path": "Players.LocalPlayer.PlayerGui",
+    "root": "Players",
+    "line": 1053,
+    "in_function": "driveOpen",
+    "name": "DriveHUD"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "LOCAL_PLAYER",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 1058,
+    "in_function": "setRobloxTouchControls",
+    "name": "PlayerGui"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "playerGui",
+    "receiver_path": "Players.LocalPlayer.PlayerGui",
+    "root": "Players",
+    "line": 1059,
+    "in_function": "setRobloxTouchControls",
+    "name": "TouchGui"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "LOCAL_PLAYER",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 1086,
+    "in_function": "initControls",
+    "name": "PlayerScripts"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "scripts",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts",
+    "root": "Players",
+    "line": 1087,
+    "in_function": "initControls",
+    "name": "PlayerModule"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 1099,
+    "in_function": "connectRaceVisibility",
+    "name": "Remotes"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 1100,
+    "in_function": "connectRaceVisibility",
+    "name": "Remotes"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Remotes\")",
+    "receiver_path": "ReplicatedStorage.Remotes",
+    "root": "ReplicatedStorage",
+    "line": 1100,
+    "in_function": "connectRaceVisibility",
+    "name": "Racing"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 1101,
+    "in_function": "connectRaceVisibility",
+    "name": "Remotes"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Remotes\")",
+    "receiver_path": "ReplicatedStorage.Remotes",
+    "root": "ReplicatedStorage",
+    "line": 1101,
+    "in_function": "connectRaceVisibility",
+    "name": "Racing"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Remotes\"):WaitForChild(\"Racing\")",
+    "receiver_path": "ReplicatedStorage.Remotes.Racing",
+    "root": "ReplicatedStorage",
+    "line": 1101,
+    "in_function": "connectRaceVisibility",
+    "name": "RaceEvent"
+   }
+  ],
+  "text_compared": []
+ },
+ "run_service": {
+  "render_steps": [],
+  "connects": [
+   {
+    "signal": "RenderStepped",
+    "method": "Connect",
+    "line": 1130,
+    "in_function": "Runtime.Start",
+    "callback": "function(dt) visualTimer += dt scanTimer += dt ..."
+   }
+  ]
+ },
+ "context_actions": [],
+ "user_input_service": {
+  "connects": [],
+  "members_used": [
+   {
+    "member": "TouchEnabled",
+    "kind": "read",
+    "line": 545,
+    "in_function": "attachTemplateController"
+   },
+   {
+    "member": "TouchEnabled",
+    "kind": "read",
+    "line": 1078,
+    "in_function": "updateCameraAndTouchControls"
+   }
+  ]
+ },
+ "audio": {
+  "bridge_calls": [],
+  "ui_audio_attributes": []
+ },
+ "config": {
+  "paths": [
+   {
+    "path": "ReplicatedStorage.Config",
+    "line": 98
+   },
+   {
+    "path": "ReplicatedStorage.Config.Vehicles",
+    "line": 99
+   },
+   {
+    "path": "ReplicatedStorage.Config.Vehicles.StabiliserVFX",
+    "line": 100
+   }
+  ],
+  "attribute_reads": [
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.StabiliserVFX",
+    "receiver_kind": "config",
+    "line": 102,
+    "in_function": "refreshFeelConfig",
+    "name": "FeelVFXEnabled",
+    "via": "literal list",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.StabiliserVFX",
+    "receiver_kind": "config",
+    "line": 102,
+    "in_function": "refreshFeelConfig",
+    "name": "FeelThrottleAttackSeconds",
+    "via": "literal list",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.StabiliserVFX",
+    "receiver_kind": "config",
+    "line": 102,
+    "in_function": "refreshFeelConfig",
+    "name": "FeelThrottleReleaseSeconds",
+    "via": "literal list",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.StabiliserVFX",
+    "receiver_kind": "config",
+    "line": 102,
+    "in_function": "refreshFeelConfig",
+    "name": "FeelThrottleCutoff",
+    "via": "literal list",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.StabiliserVFX",
+    "receiver_kind": "config",
+    "line": 102,
+    "in_function": "refreshFeelConfig",
+    "name": "FeelJetFloor",
+    "via": "literal list",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.StabiliserVFX",
+    "receiver_kind": "config",
+    "line": 102,
+    "in_function": "refreshFeelConfig",
+    "name": "FeelBoostPulsePeak",
+    "via": "literal list",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.StabiliserVFX",
+    "receiver_kind": "config",
+    "line": 102,
+    "in_function": "refreshFeelConfig",
+    "name": "FeelBoostPulseSeconds",
+    "via": "literal list",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.StabiliserVFX",
+    "receiver_kind": "config",
+    "line": 102,
+    "in_function": "refreshFeelConfig",
+    "name": "FeelDriftFloor",
+    "via": "literal list",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.StabiliserVFX",
+    "receiver_kind": "config",
+    "line": 102,
+    "in_function": "refreshFeelConfig",
+    "name": "FeelDriftSlipFull",
+    "via": "literal list",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.StabiliserVFX",
+    "receiver_kind": "config",
+    "line": 102,
+    "in_function": "refreshFeelConfig",
+    "name": "FeelDustFloor",
+    "via": "literal list",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.StabiliserVFX",
+    "receiver_kind": "config",
+    "line": 102,
+    "in_function": "refreshFeelConfig",
+    "name": "FeelDustSpeedGain",
+    "via": "literal list",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.StabiliserVFX",
+    "receiver_kind": "config",
+    "line": 102,
+    "in_function": "refreshFeelConfig",
+    "name": "FeelDustSpeedFullMph",
+    "via": "literal list",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.StabiliserVFX",
+    "receiver_kind": "config",
+    "line": 102,
+    "in_function": "refreshFeelConfig",
+    "name": "FeelDustSquashGain",
+    "via": "literal list",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.StabiliserVFX",
+    "receiver_kind": "config",
+    "line": 102,
+    "in_function": "refreshFeelConfig",
+    "name": "FeelDustReleaseSeconds",
+    "via": "literal list",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.StabiliserVFX",
+    "receiver_kind": "config",
+    "line": 102,
+    "in_function": "refreshFeelConfig",
+    "name": "FeelBrakeMinMph",
+    "via": "literal list",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.StabiliserVFX",
+    "receiver_kind": "config",
+    "line": 102,
+    "in_function": "refreshFeelConfig",
+    "name": "FeelBrakeFullMph",
+    "via": "literal list",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.StabiliserVFX",
+    "receiver_kind": "config",
+    "line": 102,
+    "in_function": "refreshFeelConfig",
+    "name": "FeelBrakeFloor",
+    "via": "literal list",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.StabiliserVFX",
+    "receiver_kind": "config",
+    "line": 102,
+    "in_function": "refreshFeelConfig",
+    "name": "FeelImpactMinInterval",
+    "via": "literal list",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.StabiliserVFX",
+    "receiver_kind": "config",
+    "line": 102,
+    "in_function": "refreshFeelConfig",
+    "name": "FeelImpactSparksLight",
+    "via": "literal list",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.StabiliserVFX",
+    "receiver_kind": "config",
+    "line": 102,
+    "in_function": "refreshFeelConfig",
+    "name": "FeelImpactSparksMedium",
+    "via": "literal list",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.StabiliserVFX",
+    "receiver_kind": "config",
+    "line": 102,
+    "in_function": "refreshFeelConfig",
+    "name": "FeelImpactSparksHeavy",
+    "via": "literal list",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.StabiliserVFX",
+    "receiver_kind": "config",
+    "line": 102,
+    "in_function": "refreshFeelConfig",
+    "name": "FeelImpactSparksSevere",
+    "via": "literal list",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.StabiliserVFX",
+    "receiver_kind": "config",
+    "line": 102,
+    "in_function": "refreshFeelConfig",
+    "name": "FeelLandMinStuds",
+    "via": "literal list",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.StabiliserVFX",
+    "receiver_kind": "config",
+    "line": 102,
+    "in_function": "refreshFeelConfig",
+    "name": "FeelLandFullStuds",
+    "via": "literal list",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.StabiliserVFX",
+    "receiver_kind": "config",
+    "line": 102,
+    "in_function": "refreshFeelConfig",
+    "name": "FeelLandDustMin",
+    "via": "literal list",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.StabiliserVFX",
+    "receiver_kind": "config",
+    "line": 102,
+    "in_function": "refreshFeelConfig",
+    "name": "FeelLandDustMax",
+    "via": "literal list",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.StabiliserVFX",
+    "receiver_kind": "config",
+    "line": 102,
+    "in_function": "refreshFeelConfig",
+    "name": "FeelBackfireEnabled",
+    "via": "literal list",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.StabiliserVFX",
+    "receiver_kind": "config",
+    "line": 102,
+    "in_function": "refreshFeelConfig",
+    "name": "FeelBackfireCrackleMin",
+    "via": "literal list",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.StabiliserVFX",
+    "receiver_kind": "config",
+    "line": 102,
+    "in_function": "refreshFeelConfig",
+    "name": "FeelBackfireCrackleMax",
+    "via": "literal list",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.StabiliserVFX",
+    "receiver_kind": "config",
+    "line": 102,
+    "in_function": "refreshFeelConfig",
+    "name": "FeelBackfireBangMin",
+    "via": "literal list",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.StabiliserVFX",
+    "receiver_kind": "config",
+    "line": 102,
+    "in_function": "refreshFeelConfig",
+    "name": "FeelBackfireBangMax",
+    "via": "literal list",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.StabiliserVFX",
+    "receiver_kind": "config",
+    "line": 102,
+    "in_function": "refreshFeelConfig",
+    "name": "FeelBackfireCrackleFlashSeconds",
+    "via": "literal list",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.StabiliserVFX",
+    "receiver_kind": "config",
+    "line": 102,
+    "in_function": "refreshFeelConfig",
+    "name": "FeelBackfireBangFlashSeconds",
+    "via": "literal list",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.StabiliserVFX",
+    "receiver_kind": "config",
+    "line": 102,
+    "in_function": "refreshFeelConfig",
+    "name": "FeelBackfireFlashGain",
+    "via": "literal list",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.StabiliserVFX",
+    "receiver_kind": "config",
+    "line": 102,
+    "in_function": "refreshFeelConfig",
+    "name": "ExoticV2PreviewLightMax",
+    "via": "literal list",
+    "access": "read"
+   }
+  ],
+  "child_lookups": []
+ },
+ "startergui_core": [],
+ "gui_service": [],
+ "other_services": {},
+ "service_connects": [],
+ "proximity_prompts": [],
+ "instances_created_by_class": {},
+ "public_api": [
+  {
+   "name": "Start",
+   "kind": "function",
+   "params": [],
+   "line": 1125
+  },
+  {
+   "name": "Stop",
+   "kind": "function",
+   "params": [],
+   "line": 1159
+  },
+  {
+   "name": "DebugCounts",
+   "kind": "function",
+   "params": [],
+   "line": 1170
+  }
+ ],
+ "unresolved": [
+  {
+   "category": "attribute_reads",
+   "line": 946,
+   "detail": "name comes from parameter of anonymous function(); no call site found statically"
+  },
+  {
+   "category": "attribute_reads",
+   "line": 946,
+   "detail": "name comes from parameter of anonymous function(); no call site found statically"
+  },
+  {
+   "category": "attribute_reads",
+   "line": 946,
+   "detail": "name comes from parameter of anonymous function(); no call site found statically"
+  },
+  {
+   "category": "attribute_reads",
+   "line": 953,
+   "detail": "name comes from parameter of anonymous function(); no call site found statically"
+  }
+ ],
+ "contract_file": "VehicleVFXClient.json"
+}

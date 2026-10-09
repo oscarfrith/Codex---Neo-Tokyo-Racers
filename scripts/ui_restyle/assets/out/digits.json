@@ -1,0 +1,1401 @@
+{
+  "face": "Barlow Condensed ExtraBold Italic (800 italic), Google Fonts web face, rendered by Chrome",
+  "measured_from": "rendered pixels (PIL bbox per glyph, alpha > 8); advance from a baseline marker",
+  "sheets": {
+    "256": {
+      "image": "digits_256.png",
+      "size": [
+        1024,
+        512
+      ],
+      "cell": [
+        148,
+        256
+      ],
+      "per_row": 6,
+      "font_px": 264,
+      "cap_height": 185,
+      "digit_height": 189,
+      "baseline_y": 218,
+      "pitch": 130,
+      "pitch_worst_bbox_gap": -2.0,
+      "pitch_tight": 117,
+      "pitch_tight_worst_bbox_gap": -15.0,
+      "italic_overhang": 5,
+      "pitch_note": "The *_bbox_gap values compare upright bounding boxes; a negative value is normal for an italic (slanted boxes overlap while the ink stays clear; see the contact sheet). Barlow Condensed digits are proportional (1 is narrow, 4 is wide). pitch is the widest advance (safe, slightly loose); pitch_tight is the second widest and looks closer to set text.",
+      "layout": "place each digit cell at x = n * pitch - (cell_w - pitch) / 2; cells overlap by cell_w - pitch, which is the italic overhang plus guard. Draw size = cell * (target cap / cap_height).",
+      "em": {
+        "cap_height": 0.7008,
+        "pitch": 0.4924,
+        "overhang": 0.0189
+      },
+      "glyphs": {
+        "0": {
+          "ImageRectOffset": [
+            0,
+            0
+          ],
+          "ImageRectSize": [
+            148,
+            256
+          ],
+          "advance": 117,
+          "origin_x": 16,
+          "ink_in_cell": [
+            22,
+            30,
+            139,
+            222
+          ]
+        },
+        "1": {
+          "ImageRectOffset": [
+            148,
+            0
+          ],
+          "ImageRectSize": [
+            148,
+            256
+          ],
+          "advance": 75,
+          "origin_x": 36,
+          "ink_in_cell": [
+            51,
+            33,
+            122,
+            218
+          ]
+        },
+        "2": {
+          "ImageRectOffset": [
+            296,
+            0
+          ],
+          "ImageRectSize": [
+            148,
+            256
+          ],
+          "advance": 116,
+          "origin_x": 16,
+          "ink_in_cell": [
+            16,
+            31,
+            138,
+            218
+          ]
+        },
+        "3": {
+          "ImageRectOffset": [
+            444,
+            0
+          ],
+          "ImageRectSize": [
+            148,
+            256
+          ],
+          "advance": 114,
+          "origin_x": 17,
+          "ink_in_cell": [
+            22,
+            33,
+            142,
+            220
+          ]
+        },
+        "4": {
+          "ImageRectOffset": [
+            592,
+            0
+          ],
+          "ImageRectSize": [
+            148,
+            256
+          ],
+          "advance": 130,
+          "origin_x": 9,
+          "ink_in_cell": [
+            12,
+            33,
+            142,
+            218
+          ]
+        },
+        "5": {
+          "ImageRectOffset": [
+            740,
+            0
+          ],
+          "ImageRectSize": [
+            148,
+            256
+          ],
+          "advance": 115,
+          "origin_x": 16,
+          "ink_in_cell": [
+            22,
+            33,
+            143,
+            220
+          ]
+        },
+        "6": {
+          "ImageRectOffset": [
+            0,
+            256
+          ],
+          "ImageRectSize": [
+            148,
+            256
+          ],
+          "advance": 115,
+          "origin_x": 16,
+          "ink_in_cell": [
+            23,
+            31,
+            137,
+            220
+          ]
+        },
+        "7": {
+          "ImageRectOffset": [
+            148,
+            256
+          ],
+          "ImageRectSize": [
+            148,
+            256
+          ],
+          "advance": 108,
+          "origin_x": 20,
+          "ink_in_cell": [
+            34,
+            33,
+            144,
+            218
+          ]
+        },
+        "8": {
+          "ImageRectOffset": [
+            296,
+            256
+          ],
+          "ImageRectSize": [
+            148,
+            256
+          ],
+          "advance": 114,
+          "origin_x": 17,
+          "ink_in_cell": [
+            23,
+            29,
+            138,
+            220
+          ]
+        },
+        "9": {
+          "ImageRectOffset": [
+            444,
+            256
+          ],
+          "ImageRectSize": [
+            148,
+            256
+          ],
+          "advance": 114,
+          "origin_x": 17,
+          "ink_in_cell": [
+            22,
+            31,
+            137,
+            220
+          ]
+        }
+      }
+    },
+    "128": {
+      "image": "digits_128.png",
+      "size": [
+        1024,
+        128
+      ],
+      "cell": [
+        80,
+        128
+      ],
+      "per_row": 12,
+      "font_px": 132,
+      "cap_height": 92,
+      "digit_height": 93,
+      "baseline_y": 108,
+      "pitch": 65,
+      "pitch_worst_bbox_gap": -1.5,
+      "pitch_tight": 58,
+      "pitch_tight_worst_bbox_gap": -8.5,
+      "italic_overhang": 3,
+      "pitch_note": "The *_bbox_gap values compare upright bounding boxes; a negative value is normal for an italic (slanted boxes overlap while the ink stays clear; see the contact sheet). Barlow Condensed digits are proportional (1 is narrow, 4 is wide). pitch is the widest advance (safe, slightly loose); pitch_tight is the second widest and looks closer to set text.",
+      "layout": "place each digit cell at x = n * pitch - (cell_w - pitch) / 2; cells overlap by cell_w - pitch, which is the italic overhang plus guard. Draw size = cell * (target cap / cap_height).",
+      "em": {
+        "cap_height": 0.697,
+        "pitch": 0.4924,
+        "overhang": 0.0227
+      },
+      "glyphs": {
+        "0": {
+          "ImageRectOffset": [
+            0,
+            0
+          ],
+          "ImageRectSize": [
+            80,
+            128
+          ],
+          "advance": 58,
+          "origin_x": 11,
+          "ink_in_cell": [
+            14,
+            15,
+            73,
+            109
+          ]
+        },
+        "1": {
+          "ImageRectOffset": [
+            80,
+            0
+          ],
+          "ImageRectSize": [
+            80,
+            128
+          ],
+          "advance": 38,
+          "origin_x": 21,
+          "ink_in_cell": [
+            28,
+            16,
+            65,
+            108
+          ]
+        },
+        "2": {
+          "ImageRectOffset": [
+            160,
+            0
+          ],
+          "ImageRectSize": [
+            80,
+            128
+          ],
+          "advance": 58,
+          "origin_x": 11,
+          "ink_in_cell": [
+            11,
+            15,
+            73,
+            108
+          ]
+        },
+        "3": {
+          "ImageRectOffset": [
+            240,
+            0
+          ],
+          "ImageRectSize": [
+            80,
+            128
+          ],
+          "advance": 57,
+          "origin_x": 12,
+          "ink_in_cell": [
+            14,
+            16,
+            75,
+            109
+          ]
+        },
+        "4": {
+          "ImageRectOffset": [
+            320,
+            0
+          ],
+          "ImageRectSize": [
+            80,
+            128
+          ],
+          "advance": 65,
+          "origin_x": 8,
+          "ink_in_cell": [
+            9,
+            16,
+            75,
+            108
+          ]
+        },
+        "5": {
+          "ImageRectOffset": [
+            400,
+            0
+          ],
+          "ImageRectSize": [
+            80,
+            128
+          ],
+          "advance": 58,
+          "origin_x": 11,
+          "ink_in_cell": [
+            14,
+            16,
+            75,
+            109
+          ]
+        },
+        "6": {
+          "ImageRectOffset": [
+            480,
+            0
+          ],
+          "ImageRectSize": [
+            80,
+            128
+          ],
+          "advance": 58,
+          "origin_x": 11,
+          "ink_in_cell": [
+            14,
+            15,
+            72,
+            109
+          ]
+        },
+        "7": {
+          "ImageRectOffset": [
+            560,
+            0
+          ],
+          "ImageRectSize": [
+            80,
+            128
+          ],
+          "advance": 54,
+          "origin_x": 13,
+          "ink_in_cell": [
+            19,
+            16,
+            75,
+            108
+          ]
+        },
+        "8": {
+          "ImageRectOffset": [
+            640,
+            0
+          ],
+          "ImageRectSize": [
+            80,
+            128
+          ],
+          "advance": 57,
+          "origin_x": 12,
+          "ink_in_cell": [
+            15,
+            15,
+            73,
+            109
+          ]
+        },
+        "9": {
+          "ImageRectOffset": [
+            720,
+            0
+          ],
+          "ImageRectSize": [
+            80,
+            128
+          ],
+          "advance": 57,
+          "origin_x": 12,
+          "ink_in_cell": [
+            14,
+            15,
+            73,
+            109
+          ]
+        }
+      }
+    }
+  },
+  "punctuation": {
+    "image": "digits_punct.png",
+    "size": [
+      1024,
+      1024
+    ],
+    "used_height": 1024,
+    "layout": "advance the pen by `advance`; draw the cell at pen - origin_x. Baseline and cap height match the digit sheet of the same size.",
+    "sizes": {
+      "256": {
+        ":": {
+          "ImageRectOffset": [
+            0,
+            0
+          ],
+          "ImageRectSize": [
+            84,
+            256
+          ],
+          "advance": 76,
+          "origin_x": 4,
+          "ink_in_cell": [
+            17,
+            86,
+            74,
+            218
+          ]
+        },
+        ".": {
+          "ImageRectOffset": [
+            84,
+            0
+          ],
+          "ImageRectSize": [
+            68,
+            256
+          ],
+          "advance": 60,
+          "origin_x": 4,
+          "ink_in_cell": [
+            9,
+            173,
+            55,
+            220
+          ]
+        },
+        ",": {
+          "ImageRectOffset": [
+            152,
+            0
+          ],
+          "ImageRectSize": [
+            70,
+            256
+          ],
+          "advance": 57,
+          "origin_x": 6,
+          "ink_in_cell": [
+            4,
+            176,
+            55,
+            246
+          ]
+        },
+        "$": {
+          "ImageRectOffset": [
+            222,
+            0
+          ],
+          "ImageRectSize": [
+            138,
+            256
+          ],
+          "advance": 116,
+          "origin_x": 11,
+          "ink_in_cell": [
+            17,
+            11,
+            134,
+            237
+          ]
+        },
+        "%": {
+          "ImageRectOffset": [
+            360,
+            0
+          ],
+          "ImageRectSize": [
+            204,
+            256
+          ],
+          "advance": 195,
+          "origin_x": 4,
+          "ink_in_cell": [
+            25,
+            31,
+            191,
+            220
+          ]
+        },
+        "+": {
+          "ImageRectOffset": [
+            564,
+            0
+          ],
+          "ImageRectSize": [
+            122,
+            256
+          ],
+          "advance": 112,
+          "origin_x": 5,
+          "ink_in_cell": [
+            13,
+            84,
+            118,
+            189
+          ]
+        },
+        "-": {
+          "ImageRectOffset": [
+            686,
+            0
+          ],
+          "ImageRectSize": [
+            98,
+            256
+          ],
+          "advance": 86,
+          "origin_x": 6,
+          "ink_in_cell": [
+            13,
+            122,
+            94,
+            161
+          ]
+        },
+        "/": {
+          "ImageRectOffset": [
+            784,
+            0
+          ],
+          "ImageRectSize": [
+            142,
+            256
+          ],
+          "advance": 114,
+          "origin_x": 14,
+          "ink_in_cell": [
+            13,
+            33,
+            138,
+            218
+          ]
+        },
+        "x": {
+          "ImageRectOffset": [
+            0,
+            256
+          ],
+          "ImageRectSize": [
+            144,
+            256
+          ],
+          "advance": 118,
+          "origin_x": 13,
+          "ink_in_cell": [
+            11,
+            81,
+            140,
+            218
+          ]
+        },
+        "K": {
+          "ImageRectOffset": [
+            144,
+            256
+          ],
+          "ImageRectSize": [
+            164,
+            256
+          ],
+          "advance": 129,
+          "origin_x": 17,
+          "ink_in_cell": [
+            21,
+            33,
+            159,
+            218
+          ]
+        },
+        "M": {
+          "ImageRectOffset": [
+            308,
+            256
+          ],
+          "ImageRectSize": [
+            172,
+            256
+          ],
+          "advance": 143,
+          "origin_x": 14,
+          "ink_in_cell": [
+            16,
+            33,
+            167,
+            218
+          ]
+        },
+        "MPH": {
+          "ImageRectOffset": [
+            480,
+            256
+          ],
+          "ImageRectSize": [
+            414,
+            256
+          ],
+          "advance": 388,
+          "origin_x": 13,
+          "ink_in_cell": [
+            15,
+            33,
+            410,
+            218
+          ]
+        },
+        "KM/H": {
+          "ImageRectOffset": [
+            0,
+            512
+          ],
+          "ImageRectSize": [
+            536,
+            256
+          ],
+          "advance": 510,
+          "origin_x": 13,
+          "ink_in_cell": [
+            17,
+            33,
+            532,
+            218
+          ]
+        },
+        "XP": {
+          "ImageRectOffset": [
+            536,
+            512
+          ],
+          "ImageRectSize": [
+            270,
+            256
+          ],
+          "advance": 247,
+          "origin_x": 11,
+          "ink_in_cell": [
+            11,
+            33,
+            265,
+            218
+          ]
+        }
+      },
+      "128": {
+        ":": {
+          "ImageRectOffset": [
+            0,
+            768
+          ],
+          "ImageRectSize": [
+            46,
+            128
+          ],
+          "advance": 38,
+          "origin_x": 4,
+          "ink_in_cell": [
+            10,
+            42,
+            39,
+            108
+          ]
+        },
+        ".": {
+          "ImageRectOffset": [
+            46,
+            768
+          ],
+          "ImageRectSize": [
+            38,
+            128
+          ],
+          "advance": 30,
+          "origin_x": 4,
+          "ink_in_cell": [
+            6,
+            86,
+            30,
+            109
+          ]
+        },
+        ",": {
+          "ImageRectOffset": [
+            84,
+            768
+          ],
+          "ImageRectSize": [
+            40,
+            128
+          ],
+          "advance": 29,
+          "origin_x": 5,
+          "ink_in_cell": [
+            4,
+            87,
+            30,
+            122
+          ]
+        },
+        "$": {
+          "ImageRectOffset": [
+            124,
+            768
+          ],
+          "ImageRectSize": [
+            74,
+            128
+          ],
+          "advance": 58,
+          "origin_x": 8,
+          "ink_in_cell": [
+            11,
+            5,
+            70,
+            117
+          ]
+        },
+        "%": {
+          "ImageRectOffset": [
+            198,
+            768
+          ],
+          "ImageRectSize": [
+            106,
+            128
+          ],
+          "advance": 97,
+          "origin_x": 4,
+          "ink_in_cell": [
+            14,
+            15,
+            98,
+            109
+          ]
+        },
+        "+": {
+          "ImageRectOffset": [
+            304,
+            768
+          ],
+          "ImageRectSize": [
+            66,
+            128
+          ],
+          "advance": 56,
+          "origin_x": 5,
+          "ink_in_cell": [
+            9,
+            42,
+            62,
+            94
+          ]
+        },
+        "-": {
+          "ImageRectOffset": [
+            370,
+            768
+          ],
+          "ImageRectSize": [
+            54,
+            128
+          ],
+          "advance": 43,
+          "origin_x": 5,
+          "ink_in_cell": [
+            8,
+            60,
+            49,
+            79
+          ]
+        },
+        "/": {
+          "ImageRectOffset": [
+            424,
+            768
+          ],
+          "ImageRectSize": [
+            76,
+            128
+          ],
+          "advance": 57,
+          "origin_x": 9,
+          "ink_in_cell": [
+            8,
+            16,
+            71,
+            108
+          ]
+        },
+        "x": {
+          "ImageRectOffset": [
+            500,
+            768
+          ],
+          "ImageRectSize": [
+            78,
+            128
+          ],
+          "advance": 59,
+          "origin_x": 9,
+          "ink_in_cell": [
+            8,
+            40,
+            73,
+            108
+          ]
+        },
+        "K": {
+          "ImageRectOffset": [
+            578,
+            768
+          ],
+          "ImageRectSize": [
+            88,
+            128
+          ],
+          "advance": 65,
+          "origin_x": 11,
+          "ink_in_cell": [
+            12,
+            16,
+            83,
+            108
+          ]
+        },
+        "M": {
+          "ImageRectOffset": [
+            666,
+            768
+          ],
+          "ImageRectSize": [
+            92,
+            128
+          ],
+          "advance": 71,
+          "origin_x": 10,
+          "ink_in_cell": [
+            11,
+            16,
+            87,
+            108
+          ]
+        },
+        "MPH": {
+          "ImageRectOffset": [
+            758,
+            768
+          ],
+          "ImageRectSize": [
+            212,
+            128
+          ],
+          "advance": 194,
+          "origin_x": 9,
+          "ink_in_cell": [
+            10,
+            16,
+            208,
+            108
+          ]
+        },
+        "KM/H": {
+          "ImageRectOffset": [
+            0,
+            896
+          ],
+          "ImageRectSize": [
+            274,
+            128
+          ],
+          "advance": 255,
+          "origin_x": 9,
+          "ink_in_cell": [
+            10,
+            16,
+            269,
+            108
+          ]
+        },
+        "XP": {
+          "ImageRectOffset": [
+            274,
+            896
+          ],
+          "ImageRectSize": [
+            142,
+            128
+          ],
+          "advance": 123,
+          "origin_x": 9,
+          "ink_in_cell": [
+            9,
+            16,
+            137,
+            108
+          ]
+        }
+      }
+    }
+  },
+  "raw_metrics": {
+    "256": {
+      "0": {
+        "advance": 117,
+        "ink": [
+          6,
+          -188,
+          123,
+          4
+        ]
+      },
+      "1": {
+        "advance": 75,
+        "ink": [
+          15,
+          -185,
+          86,
+          0
+        ]
+      },
+      "2": {
+        "advance": 116,
+        "ink": [
+          0,
+          -187,
+          122,
+          0
+        ]
+      },
+      "3": {
+        "advance": 114,
+        "ink": [
+          5,
+          -185,
+          125,
+          2
+        ]
+      },
+      "4": {
+        "advance": 130,
+        "ink": [
+          3,
+          -185,
+          133,
+          0
+        ]
+      },
+      "5": {
+        "advance": 115,
+        "ink": [
+          6,
+          -185,
+          127,
+          2
+        ]
+      },
+      "6": {
+        "advance": 115,
+        "ink": [
+          7,
+          -187,
+          121,
+          2
+        ]
+      },
+      "7": {
+        "advance": 108,
+        "ink": [
+          14,
+          -185,
+          124,
+          0
+        ]
+      },
+      "8": {
+        "advance": 114,
+        "ink": [
+          6,
+          -189,
+          121,
+          2
+        ]
+      },
+      "9": {
+        "advance": 114,
+        "ink": [
+          5,
+          -187,
+          120,
+          2
+        ]
+      },
+      ":": {
+        "advance": 76,
+        "ink": [
+          13,
+          -132,
+          70,
+          0
+        ]
+      },
+      ".": {
+        "advance": 60,
+        "ink": [
+          5,
+          -45,
+          51,
+          2
+        ]
+      },
+      ",": {
+        "advance": 57,
+        "ink": [
+          -2,
+          -42,
+          49,
+          28
+        ]
+      },
+      "$": {
+        "advance": 116,
+        "ink": [
+          6,
+          -207,
+          123,
+          19
+        ]
+      },
+      "%": {
+        "advance": 195,
+        "ink": [
+          21,
+          -187,
+          187,
+          2
+        ]
+      },
+      "+": {
+        "advance": 112,
+        "ink": [
+          8,
+          -134,
+          113,
+          -29
+        ]
+      },
+      "-": {
+        "advance": 86,
+        "ink": [
+          7,
+          -96,
+          88,
+          -57
+        ]
+      },
+      "/": {
+        "advance": 114,
+        "ink": [
+          -1,
+          -185,
+          124,
+          0
+        ]
+      },
+      "x": {
+        "advance": 118,
+        "ink": [
+          -2,
+          -137,
+          127,
+          0
+        ]
+      },
+      "K": {
+        "advance": 129,
+        "ink": [
+          4,
+          -185,
+          142,
+          0
+        ]
+      },
+      "M": {
+        "advance": 143,
+        "ink": [
+          2,
+          -185,
+          153,
+          0
+        ]
+      },
+      "MPH": {
+        "advance": 388,
+        "ink": [
+          2,
+          -185,
+          397,
+          0
+        ]
+      },
+      "KM/H": {
+        "advance": 510,
+        "ink": [
+          4,
+          -185,
+          519,
+          0
+        ]
+      },
+      "XP": {
+        "advance": 247,
+        "ink": [
+          0,
+          -185,
+          254,
+          0
+        ]
+      },
+      "H": {
+        "advance": 124,
+        "ink": [
+          4,
+          -185,
+          133,
+          0
+        ]
+      }
+    },
+    "128": {
+      "0": {
+        "advance": 58,
+        "ink": [
+          3,
+          -93,
+          62,
+          1
+        ]
+      },
+      "1": {
+        "advance": 38,
+        "ink": [
+          7,
+          -92,
+          44,
+          0
+        ]
+      },
+      "2": {
+        "advance": 58,
+        "ink": [
+          0,
+          -93,
+          62,
+          0
+        ]
+      },
+      "3": {
+        "advance": 57,
+        "ink": [
+          2,
+          -92,
+          63,
+          1
+        ]
+      },
+      "4": {
+        "advance": 65,
+        "ink": [
+          1,
+          -92,
+          67,
+          0
+        ]
+      },
+      "5": {
+        "advance": 58,
+        "ink": [
+          3,
+          -92,
+          64,
+          1
+        ]
+      },
+      "6": {
+        "advance": 58,
+        "ink": [
+          3,
+          -93,
+          61,
+          1
+        ]
+      },
+      "7": {
+        "advance": 54,
+        "ink": [
+          6,
+          -92,
+          62,
+          0
+        ]
+      },
+      "8": {
+        "advance": 57,
+        "ink": [
+          3,
+          -93,
+          61,
+          1
+        ]
+      },
+      "9": {
+        "advance": 57,
+        "ink": [
+          2,
+          -93,
+          61,
+          1
+        ]
+      },
+      ":": {
+        "advance": 38,
+        "ink": [
+          6,
+          -66,
+          35,
+          0
+        ]
+      },
+      ".": {
+        "advance": 30,
+        "ink": [
+          2,
+          -22,
+          26,
+          1
+        ]
+      },
+      ",": {
+        "advance": 29,
+        "ink": [
+          -1,
+          -21,
+          25,
+          14
+        ]
+      },
+      "$": {
+        "advance": 58,
+        "ink": [
+          3,
+          -103,
+          62,
+          9
+        ]
+      },
+      "%": {
+        "advance": 97,
+        "ink": [
+          10,
+          -93,
+          94,
+          1
+        ]
+      },
+      "+": {
+        "advance": 56,
+        "ink": [
+          4,
+          -66,
+          57,
+          -14
+        ]
+      },
+      "-": {
+        "advance": 43,
+        "ink": [
+          3,
+          -48,
+          44,
+          -29
+        ]
+      },
+      "/": {
+        "advance": 57,
+        "ink": [
+          -1,
+          -92,
+          62,
+          0
+        ]
+      },
+      "x": {
+        "advance": 59,
+        "ink": [
+          -1,
+          -68,
+          64,
+          0
+        ]
+      },
+      "K": {
+        "advance": 65,
+        "ink": [
+          1,
+          -92,
+          72,
+          0
+        ]
+      },
+      "M": {
+        "advance": 71,
+        "ink": [
+          1,
+          -92,
+          77,
+          0
+        ]
+      },
+      "MPH": {
+        "advance": 194,
+        "ink": [
+          1,
+          -92,
+          199,
+          0
+        ]
+      },
+      "KM/H": {
+        "advance": 255,
+        "ink": [
+          1,
+          -92,
+          260,
+          0
+        ]
+      },
+      "XP": {
+        "advance": 123,
+        "ink": [
+          0,
+          -92,
+          128,
+          0
+        ]
+      },
+      "H": {
+        "advance": 62,
+        "ink": [
+          1,
+          -92,
+          67,
+          0
+        ]
+      }
+    }
+  }
+}

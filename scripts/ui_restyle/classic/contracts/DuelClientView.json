@@ -1,0 +1,324 @@
+{
+ "script": "ReplicatedStorage.Modules.Game.Activities.DuelClientView",
+ "class": "ModuleScript",
+ "source_file": "classic/sources/ReplicatedStorage.Modules.Game.Activities.DuelClientView.lua",
+ "source_lines": 296,
+ "included_because": [
+  "loaded by ActivityClient from a literal name list (line 295)"
+ ],
+ "requires": [],
+ "remotes": {
+  "calls": [],
+  "listens": []
+ },
+ "bindables": {
+  "fires": [],
+  "connects": [],
+  "invokes": [],
+  "handlers": [],
+  "created": [],
+  "module_signal_fires": []
+ },
+ "attributes": {
+  "reads": [
+   {
+    "receiver": "player",
+    "receiver_kind": "player",
+    "wrapper_defined": "DuelClientView:64",
+    "line": 70,
+    "in_function": "findTarget",
+    "via": "wrapper playerFree()",
+    "name": "OwnedGarageInside",
+    "receiver_path": "Players.LocalPlayer"
+   },
+   {
+    "receiver": "player",
+    "receiver_kind": "player",
+    "wrapper_defined": "DuelClientView:63",
+    "line": 70,
+    "in_function": "findTarget",
+    "via": "wrapper playerFree()",
+    "name": "GarageSessionActive",
+    "receiver_path": "Players.LocalPlayer"
+   },
+   {
+    "receiver": "player",
+    "receiver_kind": "player",
+    "wrapper_defined": "DuelClientView:63",
+    "line": 70,
+    "in_function": "findTarget",
+    "via": "wrapper playerFree()",
+    "name": "RaceQueueActive",
+    "receiver_path": "Players.LocalPlayer"
+   },
+   {
+    "receiver": "player",
+    "receiver_kind": "player",
+    "wrapper_defined": "DuelClientView:61",
+    "line": 70,
+    "in_function": "findTarget",
+    "via": "wrapper playerFree()",
+    "name": "ActivityKind",
+    "receiver_path": "Players.LocalPlayer"
+   },
+   {
+    "receiver": "vehicle",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "DuelClientView:56",
+    "line": 73,
+    "in_function": "findTarget",
+    "via": "wrapper drivenByOwner()",
+    "name": "RaceRunId",
+    "receiver_path": null
+   },
+   {
+    "receiver": "vehicle",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "DuelClientView:56",
+    "line": 73,
+    "in_function": "findTarget",
+    "via": "wrapper drivenByOwner()",
+    "name": "RaceParticipant",
+    "receiver_path": null
+   },
+   {
+    "receiver": "vehicle",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "DuelClientView:50",
+    "line": 73,
+    "in_function": "findTarget",
+    "via": "wrapper drivenByOwner()",
+    "name": "OwnerUserId",
+    "receiver_path": null
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "DuelClientView:29",
+    "line": 79,
+    "in_function": "findTarget",
+    "via": "wrapper configNumber()",
+    "name": "ChallengeRange"
+   },
+   {
+    "receiver": "other.Owner",
+    "receiver_kind": "player?",
+    "wrapper_defined": "DuelClientView:64",
+    "line": 84,
+    "in_function": "findTarget",
+    "via": "wrapper playerFree()",
+    "name": "OwnedGarageInside",
+    "receiver_path": null
+   },
+   {
+    "receiver": "other.Owner",
+    "receiver_kind": "player?",
+    "wrapper_defined": "DuelClientView:63",
+    "line": 84,
+    "in_function": "findTarget",
+    "via": "wrapper playerFree()",
+    "name": "GarageSessionActive",
+    "receiver_path": null
+   },
+   {
+    "receiver": "other.Owner",
+    "receiver_kind": "player?",
+    "wrapper_defined": "DuelClientView:63",
+    "line": 84,
+    "in_function": "findTarget",
+    "via": "wrapper playerFree()",
+    "name": "RaceQueueActive",
+    "receiver_path": null
+   },
+   {
+    "receiver": "other.Owner",
+    "receiver_kind": "player?",
+    "wrapper_defined": "DuelClientView:61",
+    "line": 84,
+    "in_function": "findTarget",
+    "via": "wrapper playerFree()",
+    "name": "ActivityKind",
+    "receiver_path": null
+   },
+   {
+    "receiver": "duelConfig()",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "line": 165,
+    "in_function": "refreshButton",
+    "name": "Enabled"
+   }
+  ],
+  "writes": [],
+  "listens": []
+ },
+ "player_attribute_writes": [],
+ "screenguis": {
+  "created": [],
+  "enabled_writes": []
+ },
+ "names": {
+  "assigned": [
+   {
+    "via": "table_field",
+    "callee": null,
+    "class": null,
+    "line": 115,
+    "in_function": "sendChallenge",
+    "name": null,
+    "name_expr": "player.DisplayName"
+   },
+   {
+    "via": "table_field",
+    "callee": "Button",
+    "class": null,
+    "line": 253,
+    "in_function": "mount",
+    "name": "DuelChallengeButton"
+   }
+  ],
+  "looked_up": [
+   {
+    "method": "FindFirstChild",
+    "receiver": "ReplicatedStorage",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 22,
+    "in_function": "duelConfig",
+    "name": "Config"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config",
+    "root": "ReplicatedStorage",
+    "line": 23,
+    "in_function": "duelConfig",
+    "name": "Activities"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "activities",
+    "receiver_path": "ReplicatedStorage.Config.Activities",
+    "root": "ReplicatedStorage",
+    "line": 24,
+    "in_function": "duelConfig",
+    "name": "Duels"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "Workspace",
+    "receiver_path": "Workspace",
+    "root": "Workspace",
+    "line": 43,
+    "in_function": "vehiclesFolder",
+    "name": "World"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "world",
+    "receiver_path": "Workspace.World",
+    "root": "Workspace",
+    "line": 44,
+    "in_function": "vehiclesFolder",
+    "name": "Runtime"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "runtime",
+    "receiver_path": "Workspace.World.Runtime",
+    "root": "Workspace",
+    "line": 45,
+    "in_function": "vehiclesFolder",
+    "name": "PlayerVehicles"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "vehicle",
+    "root": null,
+    "recursive": true,
+    "wrapper_defined": "DuelClientView:53",
+    "line": 73,
+    "in_function": "findTarget",
+    "via": "wrapper drivenByOwner()",
+    "name": "DriverSeat",
+    "receiver_path": null,
+    "receiver_kind": "vehicle?"
+   }
+  ],
+  "text_compared": []
+ },
+ "run_service": {
+  "render_steps": [],
+  "connects": [
+   {
+    "signal": "Heartbeat",
+    "method": "Connect",
+    "line": 273,
+    "in_function": "mount",
+    "callback": "function(dt) if not button.Parent then scan:Dis..."
+   }
+  ]
+ },
+ "context_actions": [],
+ "user_input_service": {
+  "connects": [],
+  "members_used": []
+ },
+ "audio": {
+  "bridge_calls": [],
+  "ui_audio_attributes": []
+ },
+ "config": {
+  "paths": [
+   {
+    "path": "ReplicatedStorage.Config",
+    "line": 22
+   },
+   {
+    "path": "ReplicatedStorage.Config.Activities",
+    "line": 23
+   }
+  ],
+  "attribute_reads": [
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "DuelClientView:29",
+    "line": 79,
+    "in_function": "findTarget",
+    "via": "wrapper configNumber()",
+    "name": "ChallengeRange",
+    "access": "read"
+   },
+   {
+    "receiver": "duelConfig()",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "line": 165,
+    "in_function": "refreshButton",
+    "name": "Enabled",
+    "access": "read"
+   }
+  ],
+  "child_lookups": []
+ },
+ "startergui_core": [],
+ "gui_service": [],
+ "other_services": {},
+ "service_connects": [],
+ "proximity_prompts": [],
+ "instances_created_by_class": {},
+ "public_api": [],
+ "unresolved": [
+  {
+   "category": "names_assigned",
+   "field": "name",
+   "line": 115,
+   "detail": "not a literal: player.DisplayName"
+  }
+ ],
+ "contract_file": "DuelClientView.json"
+}

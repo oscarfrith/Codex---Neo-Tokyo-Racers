@@ -1,0 +1,242 @@
+{
+ "script": "ReplicatedStorage.Modules.Game.World.WindowMaterialClient",
+ "class": "ModuleScript",
+ "source_file": "classic/sources/ReplicatedStorage.Modules.Game.World.WindowMaterialClient.lua",
+ "source_lines": 46,
+ "included_because": [
+  "ClientBase entry 'WindowMaterialClient'"
+ ],
+ "requires": [],
+ "remotes": {
+  "calls": [],
+  "listens": []
+ },
+ "bindables": {
+  "fires": [],
+  "connects": [],
+  "invokes": [],
+  "handlers": [],
+  "created": [],
+  "module_signal_fires": []
+ },
+ "attributes": {
+  "reads": [
+   {
+    "receiver": "Lighting",
+    "receiver_path": "Lighting",
+    "receiver_kind": "other",
+    "line": 15,
+    "in_function": "currentFolder",
+    "name": "LightingPreset"
+   },
+   {
+    "receiver": "Lighting",
+    "receiver_path": "Lighting",
+    "receiver_kind": "other",
+    "line": 17,
+    "in_function": "mode",
+    "name": "LightingCycleMode"
+   },
+   {
+    "receiver": "Lighting",
+    "receiver_path": "Lighting",
+    "receiver_kind": "other",
+    "line": 18,
+    "in_function": "mode",
+    "name": "WindowMode"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "line": 20,
+    "in_function": "mode",
+    "name": "WindowMode"
+   },
+   {
+    "receiver": "Lighting",
+    "receiver_path": "Lighting",
+    "receiver_kind": "other",
+    "line": 22,
+    "in_function": "mode",
+    "name": "WindowMode"
+   }
+  ],
+  "writes": [],
+  "listens": [
+   {
+    "receiver": "Lighting",
+    "receiver_path": "Lighting",
+    "receiver_kind": "other",
+    "line": 36,
+    "in_function": "Client.start",
+    "name": "LightingPreset"
+   },
+   {
+    "receiver": "Lighting",
+    "receiver_path": "Lighting",
+    "receiver_kind": "other",
+    "line": 37,
+    "in_function": "Client.start",
+    "name": "WindowMode"
+   },
+   {
+    "receiver": "Lighting",
+    "receiver_path": "Lighting",
+    "receiver_kind": "other",
+    "line": 38,
+    "in_function": "Client.start",
+    "name": "LightingCycleMode"
+   }
+  ]
+ },
+ "player_attribute_writes": [],
+ "screenguis": {
+  "created": [],
+  "enabled_writes": []
+ },
+ "names": {
+  "assigned": [],
+  "looked_up": [
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 14,
+    "in_function": "Client.start",
+    "name": "Config"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\")",
+    "receiver_path": "ReplicatedStorage.Config",
+    "root": "ReplicatedStorage",
+    "line": 14,
+    "in_function": "Client.start",
+    "name": "World"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\"):WaitForChild(\"World\")",
+    "receiver_path": "ReplicatedStorage.Config.World",
+    "root": "ReplicatedStorage",
+    "line": 14,
+    "in_function": "Client.start",
+    "name": "Lighting"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\"):WaitForChild(\"World\"):WaitForChild(\"Lighting\")",
+    "receiver_path": "ReplicatedStorage.Config.World.Lighting",
+    "root": "ReplicatedStorage",
+    "line": 14,
+    "in_function": "Client.start",
+    "name": "StageVisuals"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "visuals",
+    "receiver_path": "ReplicatedStorage.Config.World.Lighting.StageVisuals",
+    "root": "ReplicatedStorage",
+    "line": 15,
+    "in_function": "currentFolder",
+    "name": null,
+    "name_expr": "name"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "MaterialService",
+    "receiver_path": "MaterialService",
+    "root": "MaterialService",
+    "recursive": true,
+    "wrapper_defined": "WindowMaterialClient:24",
+    "line": 27,
+    "in_function": "apply",
+    "via": "wrapper variant()",
+    "name": "Windows Night"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "MaterialService",
+    "receiver_path": "MaterialService",
+    "root": "MaterialService",
+    "recursive": true,
+    "wrapper_defined": "WindowMaterialClient:24",
+    "line": 27,
+    "in_function": "apply",
+    "via": "wrapper variant()",
+    "name": "Windows Day"
+   }
+  ],
+  "text_compared": []
+ },
+ "run_service": {
+  "render_steps": [],
+  "connects": []
+ },
+ "context_actions": [],
+ "user_input_service": {
+  "connects": [],
+  "members_used": []
+ },
+ "audio": {
+  "bridge_calls": [],
+  "ui_audio_attributes": []
+ },
+ "config": {
+  "paths": [
+   {
+    "path": "ReplicatedStorage.Config",
+    "line": 14
+   },
+   {
+    "path": "ReplicatedStorage.Config.World",
+    "line": 14
+   },
+   {
+    "path": "ReplicatedStorage.Config.World.Lighting",
+    "line": 14
+   },
+   {
+    "path": "ReplicatedStorage.Config.World.Lighting.StageVisuals",
+    "line": 14
+   }
+  ],
+  "attribute_reads": [
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "line": 20,
+    "in_function": "mode",
+    "name": "WindowMode",
+    "access": "read"
+   }
+  ],
+  "child_lookups": []
+ },
+ "startergui_core": [],
+ "gui_service": [],
+ "other_services": {},
+ "service_connects": [],
+ "proximity_prompts": [],
+ "instances_created_by_class": {},
+ "public_api": [
+  {
+   "name": "start",
+   "kind": "function",
+   "params": [],
+   "line": 4
+  }
+ ],
+ "unresolved": [
+  {
+   "category": "lookups",
+   "field": "name",
+   "line": 15,
+   "detail": "not a literal: name"
+  }
+ ],
+ "contract_file": "WindowMaterialClient.json"
+}

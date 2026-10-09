@@ -1,0 +1,1089 @@
+{
+ "script": "ReplicatedStorage.Modules.Game.UI.RacingUIComponents",
+ "class": "ModuleScript",
+ "source_file": "classic/sources/ReplicatedStorage.Modules.Game.UI.RacingUIComponents.lua",
+ "source_lines": 194,
+ "included_because": [
+  "under ReplicatedStorage.Modules.Game.UI"
+ ],
+ "requires": [
+  {
+   "expr": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"UI\"):WaitForChild(\"ResponsiveUIFoundation\")",
+   "as": "Foundation",
+   "line": 7,
+   "target": "ReplicatedStorage.Modules.Game.UI.ResponsiveUIFoundation"
+  }
+ ],
+ "remotes": {
+  "calls": [],
+  "listens": []
+ },
+ "bindables": {
+  "fires": [],
+  "connects": [],
+  "invokes": [],
+  "handlers": [],
+  "created": [],
+  "module_signal_fires": []
+ },
+ "attributes": {
+  "reads": [],
+  "writes": [
+   {
+    "receiver": "label",
+    "receiver_kind": "other",
+    "value": {
+     "expr": "tostring(kind or \"Metric\")"
+    },
+    "wrapper_defined": "ResponsiveUIFoundation:213",
+    "line": 187,
+    "in_function": "Components.MetricLabel",
+    "via": "wrapper M.StyleMetric()",
+    "name": "MetricKind",
+    "receiver_path": null
+   },
+   {
+    "receiver": "label",
+    "receiver_kind": "other",
+    "value": true,
+    "wrapper_defined": "ResponsiveUIFoundation:212",
+    "line": 187,
+    "in_function": "Components.MetricLabel",
+    "via": "wrapper M.StyleMetric()",
+    "name": "SharedMetric",
+    "receiver_path": null
+   }
+  ],
+  "listens": []
+ },
+ "player_attribute_writes": [],
+ "screenguis": {
+  "created": [],
+  "enabled_writes": []
+ },
+ "names": {
+  "assigned": [
+   {
+    "via": "property",
+    "receiver": "item",
+    "class": "TextLabel",
+    "line": 72,
+    "in_function": "Components.Label",
+    "name": null,
+    "name_expr": "properties.Name or \"Label\""
+   },
+   {
+    "via": "property",
+    "receiver": "item",
+    "class": "Frame",
+    "line": 92,
+    "in_function": "Components.Panel",
+    "name": null,
+    "name_expr": "properties.Name or \"Panel\""
+   },
+   {
+    "via": "property",
+    "receiver": "stroke",
+    "class": null,
+    "line": 104,
+    "in_function": "Components.Panel",
+    "name": "Stroke"
+   },
+   {
+    "via": "property",
+    "receiver": "glow",
+    "class": null,
+    "line": 107,
+    "in_function": "Components.Panel",
+    "name": "GlowStroke"
+   },
+   {
+    "via": "property",
+    "receiver": "item",
+    "class": "TextButton",
+    "line": 116,
+    "in_function": "Components.Button",
+    "name": null,
+    "name_expr": "properties.Name or \"Button\""
+   },
+   {
+    "via": "property",
+    "receiver": "stroke",
+    "class": null,
+    "line": 134,
+    "in_function": "Components.Button",
+    "name": "Stroke"
+   },
+   {
+    "via": "property",
+    "receiver": "glow",
+    "class": null,
+    "line": 136,
+    "in_function": "Components.Button",
+    "name": "GlowStroke"
+   },
+   {
+    "via": "property",
+    "receiver": "scale",
+    "class": "UIScale",
+    "line": 159,
+    "in_function": "Components.AttachResponsiveScale",
+    "name": "ResponsiveScale"
+   }
+  ],
+  "looked_up": [
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 7,
+    "name": "Modules"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\")",
+    "receiver_path": "ReplicatedStorage.Modules",
+    "root": "ReplicatedStorage",
+    "line": 7,
+    "name": "Game"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game",
+    "root": "ReplicatedStorage",
+    "line": 7,
+    "name": "UI"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"UI\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game.UI",
+    "root": "ReplicatedStorage",
+    "line": 7,
+    "name": "ResponsiveUIFoundation"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 8,
+    "name": "Config"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\")",
+    "receiver_path": "ReplicatedStorage.Config",
+    "root": "ReplicatedStorage",
+    "line": 8,
+    "name": "UI"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\"):WaitForChild(\"UI\")",
+    "receiver_path": "ReplicatedStorage.Config.UI",
+    "root": "ReplicatedStorage",
+    "line": 8,
+    "name": "Racing"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 9,
+    "name": "Config"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\")",
+    "receiver_path": "ReplicatedStorage.Config",
+    "root": "ReplicatedStorage",
+    "line": 9,
+    "name": "UI"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\"):WaitForChild(\"UI\")",
+    "receiver_path": "ReplicatedStorage.Config.UI",
+    "root": "ReplicatedStorage",
+    "line": 9,
+    "name": "Racing"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\"):WaitForChild(\"UI\"):WaitForChild(\"Racing\")",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing",
+    "root": "ReplicatedStorage",
+    "line": 9,
+    "name": "Colours"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 10,
+    "name": "Config"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\")",
+    "receiver_path": "ReplicatedStorage.Config",
+    "root": "ReplicatedStorage",
+    "line": 10,
+    "name": "UI"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\"):WaitForChild(\"UI\")",
+    "receiver_path": "ReplicatedStorage.Config.UI",
+    "root": "ReplicatedStorage",
+    "line": 10,
+    "name": "Racing"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\"):WaitForChild(\"UI\"):WaitForChild(\"Racing\")",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing",
+    "root": "ReplicatedStorage",
+    "line": 10,
+    "name": "Layout"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 11,
+    "name": "Config"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\")",
+    "receiver_path": "ReplicatedStorage.Config",
+    "root": "ReplicatedStorage",
+    "line": 11,
+    "name": "UI"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\"):WaitForChild(\"UI\")",
+    "receiver_path": "ReplicatedStorage.Config.UI",
+    "root": "ReplicatedStorage",
+    "line": 11,
+    "name": "Racing"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\"):WaitForChild(\"UI\"):WaitForChild(\"Racing\")",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing",
+    "root": "ReplicatedStorage",
+    "line": 11,
+    "name": "Typography"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 12,
+    "name": "Config"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\")",
+    "receiver_path": "ReplicatedStorage.Config",
+    "root": "ReplicatedStorage",
+    "line": 12,
+    "name": "UI"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\"):WaitForChild(\"UI\")",
+    "receiver_path": "ReplicatedStorage.Config.UI",
+    "root": "ReplicatedStorage",
+    "line": 12,
+    "name": "Racing"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\"):WaitForChild(\"UI\"):WaitForChild(\"Racing\")",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing",
+    "root": "ReplicatedStorage",
+    "line": 12,
+    "name": "Assets"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:15",
+    "receiver_kind": "config",
+    "line": 47,
+    "in_function": "Components.Font",
+    "via": "wrapper read()",
+    "name": "FontFamily",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Typography"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:25",
+    "receiver_kind": "config",
+    "line": 56,
+    "in_function": "Components.Corner",
+    "via": "wrapper Components.Layout()",
+    "name": "CornerRadius",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Layout"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 61,
+    "in_function": "Components.Stroke",
+    "via": "wrapper Components.Colour()",
+    "name": "Outline",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 78,
+    "in_function": "Components.Label",
+    "via": "wrapper Components.Colour()",
+    "name": "Text",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:29",
+    "receiver_kind": "config",
+    "line": 79,
+    "in_function": "Components.Label",
+    "via": "wrapper Components.Type()",
+    "name": "Body",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Typography"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 94,
+    "in_function": "Components.Panel",
+    "via": "wrapper Components.Colour()",
+    "name": "Panel",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:25",
+    "receiver_kind": "config",
+    "line": 95,
+    "in_function": "Components.Panel",
+    "via": "wrapper Components.Layout()",
+    "name": "PanelTransparency",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Layout"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 102,
+    "in_function": "Components.Panel",
+    "via": "wrapper Components.Colour()",
+    "name": "Outline",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 119,
+    "in_function": "Components.Button",
+    "via": "wrapper Components.Colour()",
+    "name": "PanelSoft",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 124,
+    "in_function": "Components.Button",
+    "via": "wrapper Components.Colour()",
+    "name": "Text",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:29",
+    "receiver_kind": "config",
+    "line": 125,
+    "in_function": "Components.Button",
+    "via": "wrapper Components.Type()",
+    "name": "Button",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Typography"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "item",
+    "root": null,
+    "wrapper_defined": "ResponsiveUIFoundation:65",
+    "line": 130,
+    "in_function": "Components.Button",
+    "via": "wrapper M.ApplyBevel()",
+    "name": "GradientOverlay",
+    "receiver_path": null,
+    "receiver_kind": "other"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 131,
+    "in_function": "Components.Button",
+    "via": "wrapper Components.Colour()",
+    "name": "Outline",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 132,
+    "in_function": "Components.Button",
+    "via": "wrapper Components.Colour()",
+    "name": "Telemetry",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 139,
+    "in_function": "Components.Button",
+    "via": "wrapper Components.Colour()",
+    "name": "PanelSoft",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 147,
+    "in_function": "Components.Button",
+    "via": "wrapper Components.Colour()",
+    "name": "PanelSoft",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:25",
+    "receiver_kind": "config",
+    "line": 165,
+    "in_function": "resize",
+    "via": "wrapper Components.Layout()",
+    "name": "DesktopEdgeBufferXRatio",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Layout"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:25",
+    "receiver_kind": "config",
+    "line": 166,
+    "in_function": "resize",
+    "via": "wrapper Components.Layout()",
+    "name": "DesktopEdgeBufferYRatio",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Layout"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:25",
+    "receiver_kind": "config",
+    "line": 167,
+    "in_function": "resize",
+    "via": "wrapper Components.Layout()",
+    "name": "ShellWidth",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Layout"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:25",
+    "receiver_kind": "config",
+    "line": 168,
+    "in_function": "resize",
+    "via": "wrapper Components.Layout()",
+    "name": "ShellHeight",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Layout"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:25",
+    "receiver_kind": "config",
+    "line": 169,
+    "in_function": "resize",
+    "via": "wrapper Components.Layout()",
+    "name": "ResponsiveScaleMin",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Layout"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:25",
+    "receiver_kind": "config",
+    "line": 169,
+    "in_function": "resize",
+    "via": "wrapper Components.Layout()",
+    "name": "ScaleMax",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Layout"
+   }
+  ],
+  "text_compared": []
+ },
+ "run_service": {
+  "render_steps": [],
+  "connects": []
+ },
+ "context_actions": [],
+ "user_input_service": {
+  "connects": [],
+  "members_used": []
+ },
+ "audio": {
+  "bridge_calls": [],
+  "ui_audio_attributes": []
+ },
+ "config": {
+  "paths": [
+   {
+    "path": "ReplicatedStorage.Config",
+    "line": 8
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI",
+    "line": 8
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI.Racing",
+    "line": 8
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI.Racing.Assets",
+    "line": 12
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI.Racing.Colours",
+    "line": 9
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI.Racing.Layout",
+    "line": 10
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI.Racing.Typography",
+    "line": 11
+   }
+  ],
+  "attribute_reads": [],
+  "child_lookups": [
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:15",
+    "receiver_kind": "config",
+    "line": 47,
+    "in_function": "Components.Font",
+    "via": "wrapper read()",
+    "name": "FontFamily",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Typography"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:25",
+    "receiver_kind": "config",
+    "line": 56,
+    "in_function": "Components.Corner",
+    "via": "wrapper Components.Layout()",
+    "name": "CornerRadius",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Layout"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 61,
+    "in_function": "Components.Stroke",
+    "via": "wrapper Components.Colour()",
+    "name": "Outline",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 78,
+    "in_function": "Components.Label",
+    "via": "wrapper Components.Colour()",
+    "name": "Text",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:29",
+    "receiver_kind": "config",
+    "line": 79,
+    "in_function": "Components.Label",
+    "via": "wrapper Components.Type()",
+    "name": "Body",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Typography"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 94,
+    "in_function": "Components.Panel",
+    "via": "wrapper Components.Colour()",
+    "name": "Panel",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:25",
+    "receiver_kind": "config",
+    "line": 95,
+    "in_function": "Components.Panel",
+    "via": "wrapper Components.Layout()",
+    "name": "PanelTransparency",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Layout"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 102,
+    "in_function": "Components.Panel",
+    "via": "wrapper Components.Colour()",
+    "name": "Outline",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 119,
+    "in_function": "Components.Button",
+    "via": "wrapper Components.Colour()",
+    "name": "PanelSoft",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 124,
+    "in_function": "Components.Button",
+    "via": "wrapper Components.Colour()",
+    "name": "Text",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:29",
+    "receiver_kind": "config",
+    "line": 125,
+    "in_function": "Components.Button",
+    "via": "wrapper Components.Type()",
+    "name": "Button",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Typography"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 131,
+    "in_function": "Components.Button",
+    "via": "wrapper Components.Colour()",
+    "name": "Outline",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 132,
+    "in_function": "Components.Button",
+    "via": "wrapper Components.Colour()",
+    "name": "Telemetry",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 139,
+    "in_function": "Components.Button",
+    "via": "wrapper Components.Colour()",
+    "name": "PanelSoft",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:21",
+    "receiver_kind": "config",
+    "line": 147,
+    "in_function": "Components.Button",
+    "via": "wrapper Components.Colour()",
+    "name": "PanelSoft",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Colours"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:25",
+    "receiver_kind": "config",
+    "line": 165,
+    "in_function": "resize",
+    "via": "wrapper Components.Layout()",
+    "name": "DesktopEdgeBufferXRatio",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Layout"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:25",
+    "receiver_kind": "config",
+    "line": 166,
+    "in_function": "resize",
+    "via": "wrapper Components.Layout()",
+    "name": "DesktopEdgeBufferYRatio",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Layout"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:25",
+    "receiver_kind": "config",
+    "line": 167,
+    "in_function": "resize",
+    "via": "wrapper Components.Layout()",
+    "name": "ShellWidth",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Layout"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:25",
+    "receiver_kind": "config",
+    "line": 168,
+    "in_function": "resize",
+    "via": "wrapper Components.Layout()",
+    "name": "ShellHeight",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Layout"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:25",
+    "receiver_kind": "config",
+    "line": 169,
+    "in_function": "resize",
+    "via": "wrapper Components.Layout()",
+    "name": "ResponsiveScaleMin",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Layout"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RacingUIComponents:25",
+    "receiver_kind": "config",
+    "line": 169,
+    "in_function": "resize",
+    "via": "wrapper Components.Layout()",
+    "name": "ScaleMax",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.Layout"
+   }
+  ]
+ },
+ "startergui_core": [],
+ "gui_service": [],
+ "other_services": {},
+ "service_connects": [],
+ "proximity_prompts": [],
+ "instances_created_by_class": {
+  "Frame": 1,
+  "TextButton": 1,
+  "TextLabel": 1,
+  "UIScale": 1,
+  "UIStroke": 1
+ },
+ "public_api": [
+  {
+   "name": "Colour",
+   "kind": "function",
+   "params": [
+    "name",
+    "fallback"
+   ],
+   "line": 20
+  },
+  {
+   "name": "Layout",
+   "kind": "function",
+   "params": [
+    "name",
+    "fallback"
+   ],
+   "line": 24
+  },
+  {
+   "name": "Type",
+   "kind": "function",
+   "params": [
+    "name",
+    "fallback"
+   ],
+   "line": 28
+  },
+  {
+   "name": "AssetValue",
+   "kind": "function",
+   "params": [
+    "name",
+    "fallback"
+   ],
+   "line": 32
+  },
+  {
+   "name": "Asset",
+   "kind": "function",
+   "params": [
+    "value"
+   ],
+   "line": 36
+  },
+  {
+   "name": "Font",
+   "kind": "function",
+   "params": [
+    "object",
+    "role"
+   ],
+   "line": 44
+  },
+  {
+   "name": "Corner",
+   "kind": "function",
+   "params": [
+    "parent",
+    "radius"
+   ],
+   "line": 55
+  },
+  {
+   "name": "Stroke",
+   "kind": "function",
+   "params": [
+    "parent",
+    "color",
+    "thickness",
+    "transparency"
+   ],
+   "line": 59
+  },
+  {
+   "name": "Label",
+   "kind": "function",
+   "params": [
+    "parent",
+    "properties"
+   ],
+   "line": 69
+  },
+  {
+   "name": "Panel",
+   "kind": "function",
+   "params": [
+    "parent",
+    "properties"
+   ],
+   "line": 89
+  },
+  {
+   "name": "Button",
+   "kind": "function",
+   "params": [
+    "parent",
+    "properties"
+   ],
+   "line": 113
+  },
+  {
+   "name": "AttachResponsiveScale",
+   "kind": "function",
+   "params": [
+    "shell"
+   ],
+   "line": 155
+  },
+  {
+   "name": "SetCorner",
+   "kind": "field",
+   "line": 176,
+   "value": "Foundation.SetCorner"
+  },
+  {
+   "name": "StrokeWidth",
+   "kind": "field",
+   "line": 177,
+   "value": "Foundation.StrokeWidth"
+  },
+  {
+   "name": "StyleStroke",
+   "kind": "field",
+   "line": 178,
+   "value": "Foundation.StyleStroke"
+  },
+  {
+   "name": "ApplyBevel",
+   "kind": "field",
+   "line": 179,
+   "value": "Foundation.ApplyBevel"
+  },
+  {
+   "name": "FormatMoney",
+   "kind": "field",
+   "line": 180,
+   "value": "Foundation.FormatCompactMoney"
+  },
+  {
+   "name": "ProjectEconomy",
+   "kind": "field",
+   "line": 181,
+   "value": "Foundation.ProjectEconomy"
+  },
+  {
+   "name": "BindReplicatedCash",
+   "kind": "field",
+   "line": 182,
+   "value": "Foundation.BindReplicatedCash"
+  },
+  {
+   "name": "MetricLabel",
+   "kind": "function",
+   "params": [
+    "parent",
+    "properties"
+   ],
+   "line": 183
+  },
+  {
+   "name": "ConfirmationModal",
+   "kind": "function",
+   "params": [
+    "root",
+    "options"
+   ],
+   "line": 189
+  }
+ ],
+ "unresolved": [
+  {
+   "category": "names_assigned",
+   "field": "name",
+   "line": 72,
+   "detail": "not a literal: properties.Name or \"Label\""
+  },
+  {
+   "category": "names_assigned",
+   "field": "name",
+   "line": 92,
+   "detail": "not a literal: properties.Name or \"Panel\""
+  },
+  {
+   "category": "names_assigned",
+   "field": "name",
+   "line": 116,
+   "detail": "not a literal: properties.Name or \"Button\""
+  }
+ ],
+ "contract_file": "RacingUIComponents.json"
+}

@@ -1,0 +1,267 @@
+{
+ "script": "ReplicatedStorage.Modules.Game.World.NightLamppostLightClient",
+ "class": "ModuleScript",
+ "source_file": "classic/sources/ReplicatedStorage.Modules.Game.World.NightLamppostLightClient.lua",
+ "source_lines": 40,
+ "included_because": [
+  "ClientBase entry 'NightLamppostLightClient'"
+ ],
+ "requires": [],
+ "remotes": {
+  "calls": [],
+  "listens": []
+ },
+ "bindables": {
+  "fires": [],
+  "connects": [],
+  "invokes": [],
+  "handlers": [],
+  "created": [],
+  "module_signal_fires": []
+ },
+ "attributes": {
+  "reads": [
+   {
+    "receiver": "Lighting",
+    "receiver_path": "Lighting",
+    "receiver_kind": "other",
+    "line": 15,
+    "in_function": "settings",
+    "name": "LightingCycleMode"
+   },
+   {
+    "receiver": "Lighting",
+    "receiver_path": "Lighting",
+    "receiver_kind": "other",
+    "line": 16,
+    "in_function": "settings",
+    "name": "StreetLightsOn"
+   },
+   {
+    "receiver": "Lighting",
+    "receiver_path": "Lighting",
+    "receiver_kind": "other",
+    "line": 16,
+    "in_function": "settings",
+    "name": "StreetLightBrightness"
+   },
+   {
+    "receiver": "Lighting",
+    "receiver_path": "Lighting",
+    "receiver_kind": "other",
+    "line": 18,
+    "in_function": "settings",
+    "name": "LightingPreset"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.World.Lighting.StageVisuals.<name>",
+    "receiver_kind": "config",
+    "line": 19,
+    "in_function": "settings",
+    "name": "StreetLightsEnabled"
+   },
+   {
+    "receiver": "Lighting",
+    "receiver_path": "Lighting",
+    "receiver_kind": "other",
+    "line": 19,
+    "in_function": "settings",
+    "name": "StreetLightsOn"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.World.Lighting.StageVisuals.<name>",
+    "receiver_kind": "config",
+    "line": 20,
+    "in_function": "settings",
+    "name": "StreetLightBrightness"
+   }
+  ],
+  "writes": [],
+  "listens": [
+   {
+    "receiver": "Lighting",
+    "receiver_path": "Lighting",
+    "receiver_kind": "other",
+    "line": 29,
+    "in_function": "Client.start",
+    "name": "LightingPreset"
+   },
+   {
+    "receiver": "Lighting",
+    "receiver_path": "Lighting",
+    "receiver_kind": "other",
+    "line": 30,
+    "in_function": "Client.start",
+    "name": "StreetLightsOn"
+   },
+   {
+    "receiver": "Lighting",
+    "receiver_path": "Lighting",
+    "receiver_kind": "other",
+    "line": 31,
+    "in_function": "Client.start",
+    "name": "StreetLightBrightness"
+   },
+   {
+    "receiver": "Lighting",
+    "receiver_path": "Lighting",
+    "receiver_kind": "other",
+    "line": 32,
+    "in_function": "Client.start",
+    "name": "LightingCycleMode"
+   }
+  ]
+ },
+ "player_attribute_writes": [],
+ "screenguis": {
+  "created": [],
+  "enabled_writes": [
+   {
+    "receiver": "instance",
+    "receiver_path": null,
+    "value": {
+     "expr": "enabled"
+    },
+    "screengui_like": "no",
+    "reason": "IsA(Light) in the same function",
+    "line": 23,
+    "in_function": "apply"
+   }
+  ]
+ },
+ "names": {
+  "assigned": [],
+  "looked_up": [
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 13,
+    "in_function": "Client.start",
+    "name": "Config"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\")",
+    "receiver_path": "ReplicatedStorage.Config",
+    "root": "ReplicatedStorage",
+    "line": 13,
+    "in_function": "Client.start",
+    "name": "World"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\"):WaitForChild(\"World\")",
+    "receiver_path": "ReplicatedStorage.Config.World",
+    "root": "ReplicatedStorage",
+    "line": 13,
+    "in_function": "Client.start",
+    "name": "Lighting"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\"):WaitForChild(\"World\"):WaitForChild(\"Lighting\")",
+    "receiver_path": "ReplicatedStorage.Config.World.Lighting",
+    "root": "ReplicatedStorage",
+    "line": 13,
+    "in_function": "Client.start",
+    "name": "StageVisuals"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "visuals",
+    "receiver_path": "ReplicatedStorage.Config.World.Lighting.StageVisuals",
+    "root": "ReplicatedStorage",
+    "line": 18,
+    "in_function": "settings",
+    "name": null,
+    "name_expr": "name"
+   }
+  ],
+  "text_compared": []
+ },
+ "run_service": {
+  "render_steps": [],
+  "connects": []
+ },
+ "context_actions": [],
+ "user_input_service": {
+  "connects": [],
+  "members_used": []
+ },
+ "audio": {
+  "bridge_calls": [],
+  "ui_audio_attributes": []
+ },
+ "config": {
+  "paths": [
+   {
+    "path": "ReplicatedStorage.Config",
+    "line": 13
+   },
+   {
+    "path": "ReplicatedStorage.Config.World",
+    "line": 13
+   },
+   {
+    "path": "ReplicatedStorage.Config.World.Lighting",
+    "line": 13
+   },
+   {
+    "path": "ReplicatedStorage.Config.World.Lighting.StageVisuals",
+    "line": 13
+   },
+   {
+    "path": "ReplicatedStorage.Config.World.Lighting.StageVisuals.<name>",
+    "line": 18
+   }
+  ],
+  "attribute_reads": [
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.World.Lighting.StageVisuals.<name>",
+    "receiver_kind": "config",
+    "line": 19,
+    "in_function": "settings",
+    "name": "StreetLightsEnabled",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": "ReplicatedStorage.Config.World.Lighting.StageVisuals.<name>",
+    "receiver_kind": "config",
+    "line": 20,
+    "in_function": "settings",
+    "name": "StreetLightBrightness",
+    "access": "read"
+   }
+  ],
+  "child_lookups": []
+ },
+ "startergui_core": [],
+ "gui_service": [],
+ "other_services": {},
+ "service_connects": [],
+ "proximity_prompts": [],
+ "instances_created_by_class": {},
+ "public_api": [
+  {
+   "name": "start",
+   "kind": "function",
+   "params": [],
+   "line": 4
+  }
+ ],
+ "unresolved": [
+  {
+   "category": "lookups",
+   "field": "name",
+   "line": 18,
+   "detail": "not a literal: name"
+  }
+ ],
+ "contract_file": "NightLamppostLightClient.json"
+}

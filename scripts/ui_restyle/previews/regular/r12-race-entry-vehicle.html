@@ -1,0 +1,31 @@
+<!doctype html><html><head><meta charset="utf-8"><title>r12 Race entry: vehicle choice</title><script src="../shared/boot.js"></script></head><body><script>
+const car = P.sil("car");
+const v = [
+  {tier:"C",rating:540,sub:"EXOTIC",name:"AURORA",sel:1},
+  {tier:"C",rating:512,sub:"PIERCER",name:"KESTREL"},
+  {tier:"C",rating:498,sub:"EXOTIC",name:"ZEPHYR"},
+  {tier:"D",rating:316,sub:"TIER C ONLY",name:"STINGER",locked:1},
+  {tier:"S",rating:939,sub:"TIER C ONLY",name:"SERAPH",locked:1},
+  {tier:"B",rating:675,sub:"TIER C ONLY",name:"ENDURA",locked:1}];
+P.page(`
+  ${P.scene("city")}<div class="scrim-menu"></div>
+  ${P.title("SHOWROOM LOOP")}
+  <div class="tabs"><div class="t-tab shadow" style="height:46px;display:flex;align-items:center">CHOOSE TIME TRIAL VEHICLE</div></div>
+  ${P.status({tier:"S",rating:939,cash:"$3,613,709"})}
+  <div class="abs flex ac jb" style="left:100px;top:210px;width:1290px">
+    <div class="flex ac g12"><span class="tier">C</span><span class="t-status">TIER C</span><span class="t-label c-2" style="margin-left:8px">3 LAPS &middot; 17 CHECKPOINTS &middot; 3 OF 6 VEHICLES ELIGIBLE</span></div>
+    <div class="flex g8">${P.dropdown("CATEGORY","ALL",270)}${P.dropdown("SORT","RATING",250)}</div>
+  </div>
+  <div class="abs" style="left:100px;top:306px;width:1290px;display:grid;grid-template-columns:repeat(4,315px);gap:26px 10px;align-items:end">
+    ${v.map(x => P.tile({...x, vis:car})).join("")}
+  </div>
+  <div class="abs col" style="left:1400px;top:290px;width:420px;gap:10px">
+    <div class="panel flush" style="height:220px;display:flex;align-items:center;justify-content:center">${P.route("loop","var(--cyan)",300,9)}</div>
+    <div class="panel" style="padding:8px 22px">
+      ${P.fact("flag","MODE","TIME TRIAL")}${P.fact("laps","LAPS","3")}${P.fact("clock","YOUR BEST","01:03.275")}
+      <div class="fact"><span class="t-label c-2">PLATINUM PRIZE</span><span class="v chip yellow lg">$25,000</span></div>
+    </div>
+  </div>
+  ${P.btnrow([P.btn("BACK","back"),P.btn("START TIME TRIAL","flag","main")])}
+`);
+</script></body></html>

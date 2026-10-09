@@ -1,0 +1,538 @@
+{
+ "script": "ReplicatedStorage.Modules.Game.Racing.RaceSessionAssetsClient",
+ "class": "ModuleScript",
+ "source_file": "classic/sources/ReplicatedStorage.Modules.Game.Racing.RaceSessionAssetsClient.lua",
+ "source_lines": 287,
+ "included_because": [
+  "ClientBase entry 'RaceSessionAssetsClient'"
+ ],
+ "requires": [],
+ "remotes": {
+  "calls": [],
+  "listens": [
+   {
+    "signal": "OnClientEvent",
+    "receiver": "raceEvent",
+    "method": "Connect",
+    "handler": "inline",
+    "handler_line": 233,
+    "handler_params": [
+     "payload"
+    ],
+    "payload_fields_read": [
+     "Type",
+     "RunId"
+    ],
+    "literal_comparisons": {
+     "Type": [
+      "RaceVisibilityUpdate",
+      "TimeTrialStaged",
+      "TimeTrialStarted",
+      "TimeTrialCheckpoint",
+      "TimeTrialLapCompleted",
+      "TimeTrialReset",
+      "RaceStaged",
+      "RaceStarted",
+      "RaceCheckpoint",
+      "RaceReset",
+      "TimeTrialEnded",
+      "TimeTrialFinished",
+      "RaceFinished",
+      "RaceEnded",
+      "RaceDNF",
+      "RaceExitedToStart"
+     ]
+    },
+    "line": 233,
+    "in_function": "Client.start",
+    "remote": "ReplicatedStorage.Remotes.Racing.RaceEvent"
+   }
+  ]
+ },
+ "bindables": {
+  "fires": [],
+  "connects": [],
+  "invokes": [],
+  "handlers": [],
+  "created": [],
+  "module_signal_fires": []
+ },
+ "attributes": {
+  "reads": [
+   {
+    "receiver": "routeGuideConfig",
+    "receiver_path": "ReplicatedStorage.Config.Racing.RouteGuide",
+    "receiver_kind": "config",
+    "line": 17,
+    "in_function": "routeArrowMarkersEnabled",
+    "name": "ShowRouteArrowMarkers"
+   },
+   {
+    "receiver": "item",
+    "receiver_kind": "other",
+    "wrapper_defined": "RaceSessionAssetsClient:65",
+    "line": 74,
+    "in_function": "segmentParts",
+    "via": "wrapper registerSegmentPart()",
+    "name": "ArrowOriginalTransparency",
+    "receiver_path": null
+   },
+   {
+    "receiver": "arrowRoot",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "line": 92,
+    "in_function": "routeCache",
+    "name": "SegmentWindowBehind"
+   },
+   {
+    "receiver": "arrowRoot",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "line": 92,
+    "in_function": "routeCache",
+    "name": "SegmentWindowAhead"
+   },
+   {
+    "receiver": "child",
+    "receiver_kind": "other",
+    "wrapper_defined": "RaceSessionAssetsClient:95",
+    "line": 101,
+    "in_function": "routeCache",
+    "via": "wrapper registerSegment()",
+    "name": "Enabled",
+    "receiver_path": null
+   },
+   {
+    "receiver": "child",
+    "receiver_kind": "other",
+    "wrapper_defined": "RaceSessionAssetsClient:94",
+    "line": 101,
+    "in_function": "routeCache",
+    "via": "wrapper registerSegment()",
+    "name": "SegmentKey",
+    "receiver_path": null
+   },
+   {
+    "receiver": "child",
+    "receiver_kind": "other",
+    "wrapper_defined": "RaceSessionAssetsClient:94",
+    "line": 101,
+    "in_function": "routeCache",
+    "via": "wrapper registerSegment()",
+    "name": "SegmentTo",
+    "receiver_path": null
+   },
+   {
+    "receiver": "child",
+    "receiver_kind": "other",
+    "wrapper_defined": "RaceSessionAssetsClient:94",
+    "line": 101,
+    "in_function": "routeCache",
+    "via": "wrapper registerSegment()",
+    "name": "SegmentFrom",
+    "receiver_path": null
+   },
+   {
+    "receiver": "candidate",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "line": 125,
+    "in_function": "findRouteFolder",
+    "name": "RouteId"
+   },
+   {
+    "receiver": "proxies",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "line": 187,
+    "in_function": "proxySegmentForRun",
+    "name": "ParticipantSegments"
+   }
+  ],
+  "writes": [],
+  "listens": [
+   {
+    "receiver": "routeGuideConfig",
+    "receiver_path": "ReplicatedStorage.Config.Racing.RouteGuide",
+    "receiver_kind": "config",
+    "line": 274,
+    "in_function": "Client.start",
+    "name": "ShowRouteArrowMarkers"
+   }
+  ]
+ },
+ "player_attribute_writes": [],
+ "screenguis": {
+  "created": [],
+  "enabled_writes": []
+ },
+ "names": {
+  "assigned": [],
+  "looked_up": [
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 14,
+    "in_function": "Client.start",
+    "name": "Config"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\")",
+    "receiver_path": "ReplicatedStorage.Config",
+    "root": "ReplicatedStorage",
+    "line": 14,
+    "in_function": "Client.start",
+    "name": "Racing"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 15,
+    "in_function": "Client.start",
+    "name": "Config"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\")",
+    "receiver_path": "ReplicatedStorage.Config",
+    "root": "ReplicatedStorage",
+    "line": 15,
+    "in_function": "Client.start",
+    "name": "Racing"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\"):WaitForChild(\"Racing\")",
+    "receiver_path": "ReplicatedStorage.Config.Racing",
+    "root": "ReplicatedStorage",
+    "line": 15,
+    "in_function": "Client.start",
+    "name": "PresentationPerformance"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 16,
+    "in_function": "Client.start",
+    "name": "Config"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\")",
+    "receiver_path": "ReplicatedStorage.Config",
+    "root": "ReplicatedStorage",
+    "line": 16,
+    "in_function": "Client.start",
+    "name": "Racing"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\"):WaitForChild(\"Racing\")",
+    "receiver_path": "ReplicatedStorage.Config.Racing",
+    "root": "ReplicatedStorage",
+    "line": 16,
+    "in_function": "Client.start",
+    "name": "RouteGuide"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 18,
+    "in_function": "Client.start",
+    "name": "Remotes"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Remotes\")",
+    "receiver_path": "ReplicatedStorage.Remotes",
+    "root": "ReplicatedStorage",
+    "line": 18,
+    "in_function": "Client.start",
+    "name": "Racing"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 19,
+    "in_function": "Client.start",
+    "name": "Remotes"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Remotes\")",
+    "receiver_path": "ReplicatedStorage.Remotes",
+    "root": "ReplicatedStorage",
+    "line": 19,
+    "in_function": "Client.start",
+    "name": "Racing"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Remotes\"):WaitForChild(\"Racing\")",
+    "receiver_path": "ReplicatedStorage.Remotes.Racing",
+    "root": "ReplicatedStorage",
+    "line": 19,
+    "in_function": "Client.start",
+    "name": "RaceEvent"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "game:GetService(\"Workspace\")",
+    "receiver_path": "Workspace",
+    "root": "Workspace",
+    "line": 32,
+    "in_function": "worldRoot",
+    "name": "World"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "world",
+    "receiver_path": null,
+    "root": null,
+    "line": 33,
+    "in_function": "raceRoutesRoot",
+    "name": "RaceRoutes"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "world",
+    "receiver_path": null,
+    "root": null,
+    "line": 34,
+    "in_function": "raceInstancesRoot",
+    "name": "RaceInstances"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "routeFolder",
+    "root": null,
+    "wrapper_defined": "RaceSessionAssetsClient:90",
+    "line": 151,
+    "in_function": "hideAllOnce",
+    "via": "wrapper routeCache()",
+    "name": "ArrowMarkers",
+    "receiver_path": null,
+    "receiver_kind": "other"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "instances",
+    "receiver_path": null,
+    "root": null,
+    "line": 181,
+    "in_function": "proxyFolderForRun",
+    "name": null,
+    "name_expr": "tostring(runId or \"\")"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "runFolder",
+    "receiver_path": null,
+    "root": null,
+    "line": 182,
+    "in_function": "proxyFolderForRun",
+    "name": "SessionAssets"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "assets",
+    "receiver_path": null,
+    "root": null,
+    "line": 183,
+    "in_function": "proxyFolderForRun",
+    "name": "ArrowBarrierProxies"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "routes",
+    "root": null,
+    "wrapper_defined": "RaceSessionAssetsClient:120",
+    "line": 212,
+    "in_function": "apply",
+    "via": "wrapper findRouteFolder()",
+    "name": null,
+    "name_expr": "tostring(routeId or \"\")",
+    "receiver_path": null,
+    "receiver_kind": "other"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "routeFolder",
+    "root": null,
+    "wrapper_defined": "RaceSessionAssetsClient:90",
+    "line": 213,
+    "in_function": "apply",
+    "via": "wrapper routeCache()",
+    "name": "ArrowMarkers",
+    "receiver_path": null,
+    "receiver_kind": "other"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "performanceConfig",
+    "receiver_path": "ReplicatedStorage.Config.Racing.PresentationPerformance",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionAssetsClient:29",
+    "line": 247,
+    "in_function": "Client.start",
+    "via": "wrapper numberValue()",
+    "name": "ArrowProxyPollSeconds"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "current",
+    "receiver_path": null,
+    "root": null,
+    "line": 256,
+    "in_function": "belongsToAuthoredArrowRoot",
+    "name": "ArrowMarkers"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "current.Parent.Parent",
+    "receiver_path": null,
+    "root": null,
+    "line": 256,
+    "in_function": "belongsToAuthoredArrowRoot",
+    "name": "RaceRoutes"
+   }
+  ],
+  "text_compared": []
+ },
+ "run_service": {
+  "render_steps": [],
+  "connects": []
+ },
+ "context_actions": [],
+ "user_input_service": {
+  "connects": [],
+  "members_used": []
+ },
+ "audio": {
+  "bridge_calls": [],
+  "ui_audio_attributes": []
+ },
+ "config": {
+  "paths": [
+   {
+    "path": "ReplicatedStorage.Config",
+    "line": 14
+   },
+   {
+    "path": "ReplicatedStorage.Config.Racing",
+    "line": 14
+   },
+   {
+    "path": "ReplicatedStorage.Config.Racing.PresentationPerformance",
+    "line": 15
+   },
+   {
+    "path": "ReplicatedStorage.Config.Racing.PresentationPerformance.<name>",
+    "line": 29
+   },
+   {
+    "path": "ReplicatedStorage.Config.Racing.RouteGuide",
+    "line": 16
+   }
+  ],
+  "attribute_reads": [
+   {
+    "receiver": "routeGuideConfig",
+    "receiver_path": "ReplicatedStorage.Config.Racing.RouteGuide",
+    "receiver_kind": "config",
+    "line": 17,
+    "in_function": "routeArrowMarkersEnabled",
+    "name": "ShowRouteArrowMarkers",
+    "access": "read"
+   },
+   {
+    "receiver": "routeGuideConfig",
+    "receiver_path": "ReplicatedStorage.Config.Racing.RouteGuide",
+    "receiver_kind": "config",
+    "line": 274,
+    "in_function": "Client.start",
+    "name": "ShowRouteArrowMarkers",
+    "access": "listen"
+   }
+  ],
+  "child_lookups": [
+   {
+    "method": "FindFirstChild",
+    "receiver": "performanceConfig",
+    "receiver_path": "ReplicatedStorage.Config.Racing.PresentationPerformance",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceSessionAssetsClient:29",
+    "line": 247,
+    "in_function": "Client.start",
+    "via": "wrapper numberValue()",
+    "name": "ArrowProxyPollSeconds"
+   }
+  ]
+ },
+ "startergui_core": [],
+ "gui_service": [],
+ "other_services": {},
+ "service_connects": [],
+ "proximity_prompts": [],
+ "instances_created_by_class": {},
+ "public_api": [
+  {
+   "name": "start",
+   "kind": "function",
+   "params": [],
+   "line": 4
+  }
+ ],
+ "unresolved": [
+  {
+   "category": "attribute_reads",
+   "line": 76,
+   "detail": "name comes from parameter of anonymous function(); no call site found statically"
+  },
+  {
+   "category": "attribute_reads",
+   "line": 103,
+   "detail": "name comes from parameter of anonymous function(); no call site found statically"
+  },
+  {
+   "category": "attribute_reads",
+   "line": 103,
+   "detail": "name comes from parameter of anonymous function(); no call site found statically"
+  },
+  {
+   "category": "attribute_reads",
+   "line": 103,
+   "detail": "name comes from parameter of anonymous function(); no call site found statically"
+  },
+  {
+   "category": "attribute_reads",
+   "line": 103,
+   "detail": "name comes from parameter of anonymous function(); no call site found statically"
+  },
+  {
+   "category": "lookups",
+   "field": "name",
+   "line": 181,
+   "detail": "not a literal: tostring(runId or \"\")"
+  },
+  {
+   "category": "lookups",
+   "field": "name",
+   "line": 212,
+   "detail": "not a literal: tostring(routeId or \"\")"
+  }
+ ],
+ "contract_file": "RaceSessionAssetsClient.json"
+}

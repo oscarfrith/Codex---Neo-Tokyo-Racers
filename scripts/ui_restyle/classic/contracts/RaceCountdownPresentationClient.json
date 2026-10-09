@@ -1,0 +1,517 @@
+{
+ "script": "ReplicatedStorage.Modules.Game.Racing.RaceCountdownPresentationClient",
+ "class": "ModuleScript",
+ "source_file": "classic/sources/ReplicatedStorage.Modules.Game.Racing.RaceCountdownPresentationClient.lua",
+ "source_lines": 69,
+ "included_because": [
+  "ClientBase entry 'RaceCountdownPresentationClient'"
+ ],
+ "requires": [
+  {
+   "expr": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"UI\"):WaitForChild(\"RacingUIComponents\")",
+   "as": "UI",
+   "line": 15,
+   "in_function": "Client.start",
+   "target": "ReplicatedStorage.Modules.Game.UI.RacingUIComponents"
+  }
+ ],
+ "remotes": {
+  "calls": [],
+  "listens": [
+   {
+    "signal": "OnClientEvent",
+    "receiver": "event",
+    "method": "Connect",
+    "handler": "inline",
+    "handler_line": 53,
+    "handler_params": [
+     "payload"
+    ],
+    "payload_fields_read": [
+     "Type",
+     "Countdown"
+    ],
+    "literal_comparisons": {
+     "Type": [
+      "TimeTrialStaged",
+      "RaceStaged",
+      "TimeTrialCountdownReveal",
+      "RaceCountdownReveal",
+      "TimeTrialCountdownScheduled",
+      "RaceCountdownScheduled",
+      "TimeTrialCountdown",
+      "RaceCountdown",
+      "TimeTrialStarted",
+      "RaceStarted",
+      "TimeTrialFinished",
+      "TimeTrialEnded",
+      "TimeTrialError",
+      "RaceFinished",
+      "RaceDNF",
+      "RaceEnded",
+      "RaceExitedToStart",
+      "RaceQueueError"
+     ]
+    },
+    "line": 53,
+    "in_function": "Client.start",
+    "remote": "ReplicatedStorage.Remotes.Racing.RaceEvent"
+   }
+  ]
+ },
+ "bindables": {
+  "fires": [],
+  "connects": [],
+  "invokes": [],
+  "handlers": [],
+  "created": [],
+  "module_signal_fires": []
+ },
+ "attributes": {
+  "reads": [],
+  "writes": [
+   {
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"Runtime\"):WaitForChild(\"Racing\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime.Racing",
+    "receiver_kind": "playerScripts",
+    "value": true,
+    "line": 61,
+    "in_function": "Client.start",
+    "name": "CountdownPresentationReady"
+   }
+  ],
+  "listens": []
+ },
+ "player_attribute_writes": [],
+ "screenguis": {
+  "created": [
+   {
+    "variable": "gui",
+    "class": "ScreenGui",
+    "line": 20,
+    "factory": null,
+    "adopts_existing": false,
+    "Name": "RaceCountdown",
+    "DisplayOrder": 205,
+    "ResetOnSpawn": false,
+    "IgnoreGuiInset": true,
+    "Parent": {
+     "expr": "playerGui"
+    },
+    "enabled_writes": [],
+    "property_lines": {
+     "Name": 20,
+     "IgnoreGuiInset": 20,
+     "ResetOnSpawn": 20,
+     "DisplayOrder": 20,
+     "Parent": 20
+    }
+   }
+  ],
+  "enabled_writes": []
+ },
+ "names": {
+  "assigned": [
+   {
+    "via": "property",
+    "receiver": "gui",
+    "class": "ScreenGui",
+    "line": 20,
+    "in_function": "Client.start",
+    "name": "RaceCountdown"
+   },
+   {
+    "via": "property",
+    "receiver": "card",
+    "class": "Frame",
+    "line": 25,
+    "in_function": "Client.start",
+    "name": "CountdownCard"
+   }
+  ],
+  "looked_up": [
+   {
+    "method": "WaitForChild",
+    "receiver": "Players.LocalPlayer",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 12,
+    "in_function": "Client.start",
+    "name": "PlayerGui"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 14,
+    "in_function": "Client.start",
+    "name": "Remotes"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Remotes\").Racing",
+    "receiver_path": "ReplicatedStorage.Remotes.Racing",
+    "root": "ReplicatedStorage",
+    "line": 14,
+    "in_function": "Client.start",
+    "name": "RaceEvent"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 15,
+    "in_function": "Client.start",
+    "name": "Modules"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\")",
+    "receiver_path": "ReplicatedStorage.Modules",
+    "root": "ReplicatedStorage",
+    "line": 15,
+    "in_function": "Client.start",
+    "name": "Game"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game",
+    "root": "ReplicatedStorage",
+    "line": 15,
+    "in_function": "Client.start",
+    "name": "UI"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"UI\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game.UI",
+    "root": "ReplicatedStorage",
+    "line": 15,
+    "in_function": "Client.start",
+    "name": "RacingUIComponents"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 17,
+    "in_function": "Client.start",
+    "name": "Config"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\")",
+    "receiver_path": "ReplicatedStorage.Config",
+    "root": "ReplicatedStorage",
+    "line": 17,
+    "in_function": "Client.start",
+    "name": "Racing"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\"):WaitForChild(\"Racing\")",
+    "receiver_path": "ReplicatedStorage.Config.Racing",
+    "root": "ReplicatedStorage",
+    "line": 17,
+    "in_function": "Client.start",
+    "name": "FlowUI"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "playerGui",
+    "receiver_path": "Players.LocalPlayer.PlayerGui",
+    "root": "Players",
+    "line": 19,
+    "in_function": "Client.start",
+    "name": "RaceCountdown"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Racing.FlowUI",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceCountdownPresentationClient:18",
+    "line": 24,
+    "in_function": "Client.start",
+    "via": "wrapper N()",
+    "name": "CountdownCardSize"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Racing.FlowUI",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceCountdownPresentationClient:18",
+    "line": 25,
+    "in_function": "Client.start",
+    "via": "wrapper N()",
+    "name": "CountdownCardTransparency"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Racing.FlowUI",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceCountdownPresentationClient:18",
+    "line": 27,
+    "in_function": "Client.start",
+    "via": "wrapper N()",
+    "name": "CountdownGradientRotation"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Racing.FlowUI",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceCountdownPresentationClient:18",
+    "line": 29,
+    "in_function": "Client.start",
+    "via": "wrapper N()",
+    "name": "CountdownTextSize"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Racing.FlowUI",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceCountdownPresentationClient:18",
+    "line": 32,
+    "in_function": "show",
+    "via": "wrapper N()",
+    "name": "GoTextSize"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Racing.FlowUI",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceCountdownPresentationClient:18",
+    "line": 32,
+    "in_function": "show",
+    "via": "wrapper N()",
+    "name": "CountdownTextSize"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Racing.FlowUI",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceCountdownPresentationClient:18",
+    "line": 32,
+    "in_function": "show",
+    "via": "wrapper N()",
+    "name": "GoDuration"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Racing.FlowUI",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceCountdownPresentationClient:18",
+    "line": 37,
+    "in_function": "schedule",
+    "via": "wrapper N()",
+    "name": "CountdownSeconds"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Racing.FlowUI",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceCountdownPresentationClient:18",
+    "line": 47,
+    "in_function": "schedule",
+    "via": "wrapper N()",
+    "name": "CountdownTextSize"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 61,
+    "in_function": "Client.start",
+    "name": "PlayerScripts"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts",
+    "root": "Players",
+    "line": 61,
+    "in_function": "Client.start",
+    "name": "Runtime"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"Runtime\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime",
+    "root": "Players",
+    "line": 61,
+    "in_function": "Client.start",
+    "name": "Racing"
+   }
+  ],
+  "text_compared": []
+ },
+ "run_service": {
+  "render_steps": [],
+  "connects": []
+ },
+ "context_actions": [],
+ "user_input_service": {
+  "connects": [],
+  "members_used": []
+ },
+ "audio": {
+  "bridge_calls": [],
+  "ui_audio_attributes": []
+ },
+ "config": {
+  "paths": [
+   {
+    "path": "ReplicatedStorage.Config",
+    "line": 17
+   },
+   {
+    "path": "ReplicatedStorage.Config.Racing",
+    "line": 17
+   },
+   {
+    "path": "ReplicatedStorage.Config.Racing.FlowUI",
+    "line": 17
+   },
+   {
+    "path": "ReplicatedStorage.Config.Racing.FlowUI.<name>",
+    "line": 18
+   }
+  ],
+  "attribute_reads": [],
+  "child_lookups": [
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Racing.FlowUI",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceCountdownPresentationClient:18",
+    "line": 24,
+    "in_function": "Client.start",
+    "via": "wrapper N()",
+    "name": "CountdownCardSize"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Racing.FlowUI",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceCountdownPresentationClient:18",
+    "line": 25,
+    "in_function": "Client.start",
+    "via": "wrapper N()",
+    "name": "CountdownCardTransparency"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Racing.FlowUI",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceCountdownPresentationClient:18",
+    "line": 27,
+    "in_function": "Client.start",
+    "via": "wrapper N()",
+    "name": "CountdownGradientRotation"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Racing.FlowUI",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceCountdownPresentationClient:18",
+    "line": 29,
+    "in_function": "Client.start",
+    "via": "wrapper N()",
+    "name": "CountdownTextSize"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Racing.FlowUI",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceCountdownPresentationClient:18",
+    "line": 32,
+    "in_function": "show",
+    "via": "wrapper N()",
+    "name": "GoTextSize"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Racing.FlowUI",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceCountdownPresentationClient:18",
+    "line": 32,
+    "in_function": "show",
+    "via": "wrapper N()",
+    "name": "CountdownTextSize"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Racing.FlowUI",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceCountdownPresentationClient:18",
+    "line": 32,
+    "in_function": "show",
+    "via": "wrapper N()",
+    "name": "GoDuration"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Racing.FlowUI",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceCountdownPresentationClient:18",
+    "line": 37,
+    "in_function": "schedule",
+    "via": "wrapper N()",
+    "name": "CountdownSeconds"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Racing.FlowUI",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "RaceCountdownPresentationClient:18",
+    "line": 47,
+    "in_function": "schedule",
+    "via": "wrapper N()",
+    "name": "CountdownTextSize"
+   }
+  ]
+ },
+ "startergui_core": [],
+ "gui_service": [],
+ "other_services": {},
+ "service_connects": [],
+ "proximity_prompts": [],
+ "instances_created_by_class": {
+  "Frame": 2,
+  "ScreenGui": 1,
+  "UIGradient": 1,
+  "UIScale": 1
+ },
+ "public_api": [
+  {
+   "name": "start",
+   "kind": "function",
+   "params": [],
+   "line": 4
+  }
+ ],
+ "unresolved": [],
+ "contract_file": "RaceCountdownPresentationClient.json"
+}

@@ -1,0 +1,21 @@
+<!doctype html><html><head><meta charset="utf-8"><title>r01 Dealership</title><script src="../shared/boot.js"></script></head><body><script>
+const car = P.sil("car");
+const cars = [
+  {tier:"E",rating:220,corner:{t:"OWNED"},name:"STINGER"},
+  {tier:"D",rating:390,price:"$150,000",name:"ZEPHYR",sel:1},
+  {tier:"C",rating:540,price:"$440,000",name:"AURORA"},
+  {tier:"B",rating:675,price:"$1.40M",name:"ENDURA"},
+  {tier:"A",rating:800,price:"$4.40M",unaff:1,name:"ROSSO"},
+  {tier:"S",rating:936,price:"$9.80M",unaff:1,name:"SERAPH"}];
+P.page(`
+  ${P.scene("dealer","3D SCENE &middot; SELECTED VEHICLE ON THE TURNTABLE")}<div class="scrim-garage"></div>
+  ${P.title("DEALERSHIP")}
+  ${P.tabs([{l:"ALL"},{l:"EXOTIC",on:1},{l:"PIERCER"},{l:"MUSCLE"}])}
+  ${P.status({garage:"1 / 2",plus:1,rank:1,cash:"$1,000,000"})}
+  ${P.statpanel({name:"ZEPHYR",badge:"<span>D</span><span>390</span>",sub:[["EXOTIC &middot; PERFORMANCE",""]],
+     stats:[["SPEED",77],["ACCEL",74],["HANDLING",74],["DRIFT",72],["BRAKING",73],["BOOST",72]]})}
+  ${P.railhead("EXOTIC 2/6")}
+  <div class="rail">${cars.map(c=>P.tile({...c,vis:car,sub:"EXOTIC"})).join("")}</div>
+  ${P.btnrow([P.btn("EXIT","exit"),P.btn("BUY $150,000","","buy")])}
+`);
+</script></body></html>

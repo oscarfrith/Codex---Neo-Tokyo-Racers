@@ -1,0 +1,442 @@
+{
+ "script": "ReplicatedStorage.Modules.Game.UI.RacingMobileScaledDesktopLayout",
+ "class": "ModuleScript",
+ "source_file": "classic/sources/ReplicatedStorage.Modules.Game.UI.RacingMobileScaledDesktopLayout.lua",
+ "source_lines": 89,
+ "included_because": [
+  "under ReplicatedStorage.Modules.Game.UI"
+ ],
+ "requires": [],
+ "remotes": {
+  "calls": [],
+  "listens": []
+ },
+ "bindables": {
+  "fires": [],
+  "connects": [],
+  "invokes": [],
+  "handlers": [],
+  "created": [],
+  "module_signal_fires": []
+ },
+ "attributes": {
+  "reads": [
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.MobileScaledDesktop",
+    "receiver_kind": "config",
+    "line": 16,
+    "in_function": "Layout.IsEnabled",
+    "name": "Enabled"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.MobileScaledDesktop",
+    "receiver_kind": "config",
+    "wrapper_defined": "RacingMobileScaledDesktopLayout:11",
+    "line": 43,
+    "in_function": "update",
+    "via": "wrapper numberAttribute()",
+    "name": "ReferenceWidth"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.MobileScaledDesktop",
+    "receiver_kind": "config",
+    "wrapper_defined": "RacingMobileScaledDesktopLayout:11",
+    "line": 44,
+    "in_function": "update",
+    "via": "wrapper numberAttribute()",
+    "name": "ReferenceHeight"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.MobileScaledDesktop",
+    "receiver_kind": "config",
+    "wrapper_defined": "RacingMobileScaledDesktopLayout:11",
+    "line": 45,
+    "in_function": "update",
+    "via": "wrapper numberAttribute()",
+    "name": "SafeTop"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.MobileScaledDesktop",
+    "receiver_kind": "config",
+    "wrapper_defined": "RacingMobileScaledDesktopLayout:11",
+    "line": 46,
+    "in_function": "update",
+    "via": "wrapper numberAttribute()",
+    "name": "SafeBottom"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.MobileScaledDesktop",
+    "receiver_kind": "config",
+    "wrapper_defined": "RacingMobileScaledDesktopLayout:11",
+    "line": 47,
+    "in_function": "update",
+    "via": "wrapper numberAttribute()",
+    "name": "SafeSide"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.MobileScaledDesktop",
+    "receiver_kind": "config",
+    "wrapper_defined": "RacingMobileScaledDesktopLayout:11",
+    "line": 50,
+    "in_function": "update",
+    "via": "wrapper numberAttribute()",
+    "name": "ScaleMin"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.MobileScaledDesktop",
+    "receiver_kind": "config",
+    "wrapper_defined": "RacingMobileScaledDesktopLayout:11",
+    "line": 51,
+    "in_function": "update",
+    "via": "wrapper numberAttribute()",
+    "name": "ScaleMax"
+   }
+  ],
+  "writes": [],
+  "listens": [
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.MobileScaledDesktop",
+    "receiver_kind": "config",
+    "line": 79,
+    "in_function": "Layout.Attach",
+    "name": "ReferenceWidth",
+    "via": "literal list"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.MobileScaledDesktop",
+    "receiver_kind": "config",
+    "line": 79,
+    "in_function": "Layout.Attach",
+    "name": "ReferenceHeight",
+    "via": "literal list"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.MobileScaledDesktop",
+    "receiver_kind": "config",
+    "line": 79,
+    "in_function": "Layout.Attach",
+    "name": "SafeTop",
+    "via": "literal list"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.MobileScaledDesktop",
+    "receiver_kind": "config",
+    "line": 79,
+    "in_function": "Layout.Attach",
+    "name": "SafeBottom",
+    "via": "literal list"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.MobileScaledDesktop",
+    "receiver_kind": "config",
+    "line": 79,
+    "in_function": "Layout.Attach",
+    "name": "SafeSide",
+    "via": "literal list"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.MobileScaledDesktop",
+    "receiver_kind": "config",
+    "line": 79,
+    "in_function": "Layout.Attach",
+    "name": "ScaleMin",
+    "via": "literal list"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.MobileScaledDesktop",
+    "receiver_kind": "config",
+    "line": 79,
+    "in_function": "Layout.Attach",
+    "name": "ScaleMax",
+    "via": "literal list"
+   }
+  ]
+ },
+ "player_attribute_writes": [],
+ "screenguis": {
+  "created": [],
+  "enabled_writes": []
+ },
+ "names": {
+  "assigned": [
+   {
+    "via": "property",
+    "receiver": "scale",
+    "class": "UIScale",
+    "line": 29,
+    "in_function": "Layout.Attach",
+    "name": "MobileScaledDesktopScale"
+   }
+  ],
+  "looked_up": [
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 5,
+    "name": "Config"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\")",
+    "receiver_path": "ReplicatedStorage.Config",
+    "root": "ReplicatedStorage",
+    "line": 5,
+    "name": "UI"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\"):WaitForChild(\"UI\")",
+    "receiver_path": "ReplicatedStorage.Config.UI",
+    "root": "ReplicatedStorage",
+    "line": 5,
+    "name": "Racing"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\"):WaitForChild(\"UI\"):WaitForChild(\"Racing\")",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing",
+    "root": "ReplicatedStorage",
+    "line": 5,
+    "name": "MobileScaledDesktop"
+   }
+  ],
+  "text_compared": []
+ },
+ "run_service": {
+  "render_steps": [],
+  "connects": []
+ },
+ "context_actions": [],
+ "user_input_service": {
+  "connects": [],
+  "members_used": []
+ },
+ "audio": {
+  "bridge_calls": [],
+  "ui_audio_attributes": []
+ },
+ "config": {
+  "paths": [
+   {
+    "path": "ReplicatedStorage.Config",
+    "line": 5
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI",
+    "line": 5
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI.Racing",
+    "line": 5
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI.Racing.MobileScaledDesktop",
+    "line": 5
+   }
+  ],
+  "attribute_reads": [
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.MobileScaledDesktop",
+    "receiver_kind": "config",
+    "line": 16,
+    "in_function": "Layout.IsEnabled",
+    "name": "Enabled",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.MobileScaledDesktop",
+    "receiver_kind": "config",
+    "wrapper_defined": "RacingMobileScaledDesktopLayout:11",
+    "line": 43,
+    "in_function": "update",
+    "via": "wrapper numberAttribute()",
+    "name": "ReferenceWidth",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.MobileScaledDesktop",
+    "receiver_kind": "config",
+    "wrapper_defined": "RacingMobileScaledDesktopLayout:11",
+    "line": 44,
+    "in_function": "update",
+    "via": "wrapper numberAttribute()",
+    "name": "ReferenceHeight",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.MobileScaledDesktop",
+    "receiver_kind": "config",
+    "wrapper_defined": "RacingMobileScaledDesktopLayout:11",
+    "line": 45,
+    "in_function": "update",
+    "via": "wrapper numberAttribute()",
+    "name": "SafeTop",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.MobileScaledDesktop",
+    "receiver_kind": "config",
+    "wrapper_defined": "RacingMobileScaledDesktopLayout:11",
+    "line": 46,
+    "in_function": "update",
+    "via": "wrapper numberAttribute()",
+    "name": "SafeBottom",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.MobileScaledDesktop",
+    "receiver_kind": "config",
+    "wrapper_defined": "RacingMobileScaledDesktopLayout:11",
+    "line": 47,
+    "in_function": "update",
+    "via": "wrapper numberAttribute()",
+    "name": "SafeSide",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.MobileScaledDesktop",
+    "receiver_kind": "config",
+    "wrapper_defined": "RacingMobileScaledDesktopLayout:11",
+    "line": 50,
+    "in_function": "update",
+    "via": "wrapper numberAttribute()",
+    "name": "ScaleMin",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.MobileScaledDesktop",
+    "receiver_kind": "config",
+    "wrapper_defined": "RacingMobileScaledDesktopLayout:11",
+    "line": 51,
+    "in_function": "update",
+    "via": "wrapper numberAttribute()",
+    "name": "ScaleMax",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.MobileScaledDesktop",
+    "receiver_kind": "config",
+    "line": 79,
+    "in_function": "Layout.Attach",
+    "name": "ReferenceWidth",
+    "via": "literal list",
+    "access": "listen"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.MobileScaledDesktop",
+    "receiver_kind": "config",
+    "line": 79,
+    "in_function": "Layout.Attach",
+    "name": "ReferenceHeight",
+    "via": "literal list",
+    "access": "listen"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.MobileScaledDesktop",
+    "receiver_kind": "config",
+    "line": 79,
+    "in_function": "Layout.Attach",
+    "name": "SafeTop",
+    "via": "literal list",
+    "access": "listen"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.MobileScaledDesktop",
+    "receiver_kind": "config",
+    "line": 79,
+    "in_function": "Layout.Attach",
+    "name": "SafeBottom",
+    "via": "literal list",
+    "access": "listen"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.MobileScaledDesktop",
+    "receiver_kind": "config",
+    "line": 79,
+    "in_function": "Layout.Attach",
+    "name": "SafeSide",
+    "via": "literal list",
+    "access": "listen"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.MobileScaledDesktop",
+    "receiver_kind": "config",
+    "line": 79,
+    "in_function": "Layout.Attach",
+    "name": "ScaleMin",
+    "via": "literal list",
+    "access": "listen"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.Racing.MobileScaledDesktop",
+    "receiver_kind": "config",
+    "line": 79,
+    "in_function": "Layout.Attach",
+    "name": "ScaleMax",
+    "via": "literal list",
+    "access": "listen"
+   }
+  ],
+  "child_lookups": []
+ },
+ "startergui_core": [],
+ "gui_service": [],
+ "other_services": {},
+ "service_connects": [],
+ "proximity_prompts": [],
+ "instances_created_by_class": {
+  "UIScale": 1
+ },
+ "public_api": [
+  {
+   "name": "IsEnabled",
+   "kind": "function",
+   "params": [
+    "touchDevice"
+   ],
+   "line": 15
+  },
+  {
+   "name": "Attach",
+   "kind": "function",
+   "params": [
+    "shell"
+   ],
+   "line": 19
+  }
+ ],
+ "unresolved": [],
+ "contract_file": "RacingMobileScaledDesktopLayout.json"
+}

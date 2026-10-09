@@ -1,0 +1,769 @@
+{
+ "script": "ReplicatedStorage.Modules.Game.Racing.RaceLifecyclePresentationClient",
+ "class": "ModuleScript",
+ "source_file": "classic/sources/ReplicatedStorage.Modules.Game.Racing.RaceLifecyclePresentationClient.lua",
+ "source_lines": 309,
+ "included_because": [
+  "ClientBase entry 'RaceLifecyclePresentationClient'"
+ ],
+ "requires": [],
+ "remotes": {
+  "calls": [],
+  "listens": []
+ },
+ "bindables": {
+  "fires": [],
+  "connects": [],
+  "invokes": [],
+  "handlers": [],
+  "created": [],
+  "module_signal_fires": []
+ },
+ "attributes": {
+  "reads": [
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "line": 102,
+    "in_function": "isBlocked",
+    "name": "StartScreenActive"
+   },
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "line": 103,
+    "in_function": "isBlocked",
+    "name": "RaceQueueActive"
+   },
+   {
+    "receiver": "loadingState",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime.UI.LoadingPresentationState",
+    "receiver_kind": "playerScripts",
+    "line": 104,
+    "in_function": "isBlocked",
+    "name": "Active"
+   },
+   {
+    "receiver": "item",
+    "receiver_kind": "other",
+    "wrapper_defined": "RaceLifecyclePresentationClient:149",
+    "line": 198,
+    "in_function": "Client.start",
+    "via": "wrapper isRaceStartZone()",
+    "name": "Mode",
+    "receiver_path": null
+   },
+   {
+    "receiver": "item",
+    "receiver_kind": "other",
+    "wrapper_defined": "RaceLifecyclePresentationClient:154",
+    "line": 198,
+    "in_function": "Client.start",
+    "via": "wrapper trackZone()",
+    "name": "Mode",
+    "receiver_path": null
+   },
+   {
+    "receiver": "item",
+    "receiver_kind": "other",
+    "wrapper_defined": "RaceLifecyclePresentationClient:166",
+    "line": 198,
+    "in_function": "Client.start",
+    "via": "wrapper trackZone()",
+    "name": "Enabled",
+    "receiver_path": null
+   },
+   {
+    "receiver": "loadingState",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime.UI.LoadingPresentationState",
+    "receiver_kind": "playerScripts",
+    "line": 254,
+    "in_function": "Client.start",
+    "name": "Active"
+   },
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "line": 254,
+    "in_function": "Client.start",
+    "name": "RaceQueueActive"
+   },
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "line": 264,
+    "in_function": "Client.start",
+    "name": "RaceQueueActive"
+   },
+   {
+    "receiver": "loadingState",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime.UI.LoadingPresentationState",
+    "receiver_kind": "playerScripts",
+    "line": 264,
+    "in_function": "Client.start",
+    "name": "Active"
+   },
+   {
+    "receiver": "loadingState",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime.UI.LoadingPresentationState",
+    "receiver_kind": "playerScripts",
+    "line": 271,
+    "in_function": "Client.start",
+    "name": "Active"
+   },
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "line": 271,
+    "in_function": "Client.start",
+    "name": "RaceQueueActive"
+   },
+   {
+    "receiver": "zone",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "line": 293,
+    "in_function": "Client.start",
+    "name": "Enabled"
+   }
+  ],
+  "writes": [
+   {
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"Runtime\"):WaitForChild(\"Racing\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime.Racing",
+    "receiver_kind": "playerScripts",
+    "value": true,
+    "line": 300,
+    "in_function": "Client.start",
+    "name": "AuraVisibilityOwnerReady"
+   },
+   {
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"Runtime\"):WaitForChild(\"Racing\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime.Racing",
+    "receiver_kind": "playerScripts",
+    "value": true,
+    "line": 301,
+    "in_function": "Client.start",
+    "name": "PromptVisibilityOwnerReady"
+   }
+  ],
+  "listens": [
+   {
+    "receiver": "item",
+    "receiver_kind": "other",
+    "wrapper_defined": "RaceLifecyclePresentationClient:188",
+    "line": 198,
+    "in_function": "Client.start",
+    "via": "wrapper trackZone()",
+    "name": "Enabled",
+    "receiver_path": null
+   },
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "line": 262,
+    "in_function": "Client.start",
+    "name": "StartScreenActive"
+   },
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "line": 263,
+    "in_function": "Client.start",
+    "name": "RaceQueueActive"
+   },
+   {
+    "receiver": "loadingState",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime.UI.LoadingPresentationState",
+    "receiver_kind": "playerScripts",
+    "line": 270,
+    "in_function": "Client.start",
+    "name": "Active"
+   }
+  ]
+ },
+ "player_attribute_writes": [],
+ "screenguis": {
+  "created": [],
+  "enabled_writes": [
+   {
+    "receiver": "item",
+    "receiver_path": null,
+    "value": {
+     "expr": "visible"
+    },
+    "screengui_like": "no",
+    "reason": "IsA(BasePart,Beam,Fire,ParticleEmitter,PointLight,Smoke,Sparkles,SpotLight,SurfaceLight,Trail) in the same function",
+    "line": 84,
+    "in_function": "setAuraItem"
+   },
+   {
+    "receiver": "item",
+    "receiver_path": null,
+    "value": {
+     "expr": "original(item,\"Enabled\",item.Enabled)"
+    },
+    "screengui_like": "no",
+    "reason": "IsA(BasePart,Beam,Fire,ParticleEmitter,PointLight,Smoke,Sparkles,SpotLight,SurfaceLight,Trail) in the same function",
+    "line": 97,
+    "in_function": "restoreAuraItem"
+   },
+   {
+    "receiver": "prompt",
+    "receiver_path": null,
+    "value": {
+     "expr": "enabled"
+    },
+    "screengui_like": "no",
+    "reason": "IsA(ProximityPrompt) in the same function",
+    "line": 125,
+    "in_function": "applyPrompt"
+   },
+   {
+    "receiver": "child",
+    "receiver_path": null,
+    "value": {
+     "expr": "zone:GetAttribute(\"Enabled\")~=false"
+    },
+    "screengui_like": "no",
+    "reason": "IsA(ProximityPrompt) in the same function",
+    "line": 293,
+    "in_function": "Client.start"
+   }
+  ]
+ },
+ "names": {
+  "assigned": [],
+  "looked_up": [
+   {
+    "method": "WaitForChild",
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 15,
+    "in_function": "Client.start",
+    "name": "PlayerGui"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 17,
+    "in_function": "Client.start",
+    "name": "PlayerScripts"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts",
+    "root": "Players",
+    "line": 17,
+    "in_function": "Client.start",
+    "name": "Runtime"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 18,
+    "in_function": "Client.start",
+    "name": "PlayerScripts"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts",
+    "root": "Players",
+    "line": 18,
+    "in_function": "Client.start",
+    "name": "Runtime"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"Runtime\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime",
+    "root": "Players",
+    "line": 18,
+    "in_function": "Client.start",
+    "name": "UI"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 19,
+    "in_function": "Client.start",
+    "name": "PlayerScripts"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts",
+    "root": "Players",
+    "line": 19,
+    "in_function": "Client.start",
+    "name": "Runtime"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"Runtime\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime",
+    "root": "Players",
+    "line": 19,
+    "in_function": "Client.start",
+    "name": "UI"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"Runtime\"):WaitForChild(\"UI\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime.UI",
+    "root": "Players",
+    "line": 19,
+    "in_function": "Client.start",
+    "name": "LoadingPresentationState"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 20,
+    "in_function": "Client.start",
+    "name": "Remotes"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Remotes\")",
+    "receiver_path": "ReplicatedStorage.Remotes",
+    "root": "ReplicatedStorage",
+    "line": 20,
+    "in_function": "Client.start",
+    "name": "Racing"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Remotes\"):WaitForChild(\"Racing\")",
+    "receiver_path": "ReplicatedStorage.Remotes.Racing",
+    "root": "ReplicatedStorage",
+    "line": 20,
+    "in_function": "Client.start",
+    "name": "RaceEvent"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 21,
+    "in_function": "Client.start",
+    "name": "PlayerScripts"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts",
+    "root": "Players",
+    "line": 21,
+    "in_function": "Client.start",
+    "name": "Runtime"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"Runtime\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime",
+    "root": "Players",
+    "line": 21,
+    "in_function": "Client.start",
+    "name": "Racing"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"Runtime\"):WaitForChild(\"Racing\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime.Racing",
+    "root": "Players",
+    "line": 21,
+    "in_function": "Client.start",
+    "name": "RaceEntryLegacyAction"
+   },
+   {
+    "method": "NameSet",
+    "receiver": "child",
+    "receiver_path": null,
+    "root": null,
+    "table": "legacyNames",
+    "table_line": 23,
+    "receiver_isa": [
+     "ScreenGui"
+    ],
+    "line": 55,
+    "in_function": "destroyLegacy",
+    "name": "RaceHud",
+    "via": "literal list"
+   },
+   {
+    "method": "NameSet",
+    "receiver": "child",
+    "receiver_path": null,
+    "root": null,
+    "table": "legacyNames",
+    "table_line": 23,
+    "receiver_isa": [
+     "ScreenGui"
+    ],
+    "line": 55,
+    "in_function": "destroyLegacy",
+    "name": "RaceHud_Phase3",
+    "via": "literal list"
+   },
+   {
+    "method": "NameSet",
+    "receiver": "child",
+    "receiver_path": null,
+    "root": null,
+    "table": "legacyNames",
+    "table_line": 23,
+    "receiver_isa": [
+     "ScreenGui"
+    ],
+    "line": 55,
+    "in_function": "destroyLegacy",
+    "name": "RaceCheckpointBadge_Phase5D",
+    "via": "literal list"
+   },
+   {
+    "method": "NameSet",
+    "receiver": "child",
+    "receiver_path": null,
+    "root": null,
+    "table": "legacyNames",
+    "table_line": 23,
+    "receiver_isa": [
+     "ScreenGui"
+    ],
+    "line": 55,
+    "in_function": "destroyLegacy",
+    "name": "RaceQueue_Phase8",
+    "via": "literal list"
+   },
+   {
+    "method": "NameSet",
+    "receiver": "child",
+    "receiver_path": null,
+    "root": null,
+    "table": "legacyNames",
+    "table_line": 23,
+    "receiver_isa": [
+     "ScreenGui"
+    ],
+    "line": 55,
+    "in_function": "destroyLegacy",
+    "name": "RaceSessionControls_Phase8C",
+    "via": "literal list"
+   },
+   {
+    "method": "NameSet",
+    "receiver": "child",
+    "receiver_path": null,
+    "root": null,
+    "table": "legacyNames",
+    "table_line": 23,
+    "receiver_isa": [
+     "ScreenGui"
+    ],
+    "line": 55,
+    "in_function": "destroyLegacy",
+    "name": "RaceSessionControls_Phase8D",
+    "via": "literal list"
+   },
+   {
+    "method": "NameSet",
+    "receiver": "child",
+    "receiver_path": null,
+    "root": null,
+    "table": "legacyNames",
+    "table_line": 23,
+    "receiver_isa": [
+     "ScreenGui"
+    ],
+    "line": 55,
+    "in_function": "destroyLegacy",
+    "name": "RaceResults_Phase4",
+    "via": "literal list"
+   },
+   {
+    "method": "NameSet",
+    "receiver": "child",
+    "receiver_path": null,
+    "root": null,
+    "table": "legacyNames",
+    "table_line": 23,
+    "receiver_isa": [
+     "ScreenGui"
+    ],
+    "line": 55,
+    "in_function": "destroyLegacy",
+    "name": "TimeTrialResultCoach",
+    "via": "literal list"
+   },
+   {
+    "method": "NameSet",
+    "receiver": "child",
+    "receiver_path": null,
+    "root": null,
+    "table": "legacyNames",
+    "table_line": 23,
+    "receiver_isa": [
+     "ScreenGui"
+    ],
+    "line": 55,
+    "in_function": "destroyLegacy",
+    "name": "RaceEntry",
+    "via": "literal list"
+   },
+   {
+    "method": "NameSet",
+    "receiver": "child",
+    "receiver_path": null,
+    "root": null,
+    "table": "legacyNames",
+    "table_line": 23,
+    "receiver_isa": [
+     "ScreenGui"
+    ],
+    "line": 55,
+    "in_function": "destroyLegacy",
+    "name": "RaceEntryProbe",
+    "via": "literal list"
+   },
+   {
+    "method": "NameSet",
+    "receiver": "child",
+    "receiver_path": null,
+    "root": null,
+    "table": "legacyNames",
+    "table_line": 23,
+    "receiver_isa": [
+     "ScreenGui"
+    ],
+    "line": 55,
+    "in_function": "destroyLegacy",
+    "name": "TimeTrialPersonalBestBoard",
+    "via": "literal list"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "prompt",
+    "receiver_path": null,
+    "root": null,
+    "receiver_isa": [
+     "ProximityPrompt"
+    ],
+    "receiver_property_writes": [
+     "Enabled"
+    ],
+    "line": 123,
+    "in_function": "applyPrompt",
+    "name": "RaceEntryPrompt"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "item.Parent",
+    "receiver_path": null,
+    "root": null,
+    "line": 148,
+    "in_function": "isRaceStartZone",
+    "name": "StartZones"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "prompt",
+    "receiver_path": null,
+    "root": null,
+    "receiver_isa": [
+     "ProximityPrompt"
+    ],
+    "line": 158,
+    "in_function": "trackPrompt",
+    "name": "RaceEntryPrompt"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "child",
+    "receiver_path": null,
+    "root": null,
+    "receiver_isa": [
+     "ProximityPrompt"
+    ],
+    "line": 174,
+    "in_function": "trackZone",
+    "name": "RaceEntryPrompt"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "child",
+    "receiver_path": null,
+    "root": null,
+    "receiver_isa": [
+     "ProximityPrompt"
+    ],
+    "line": 184,
+    "in_function": "trackZone",
+    "name": "RaceEntryPrompt"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 282,
+    "in_function": "Client.start",
+    "name": "PlayerScripts"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "child",
+    "receiver_path": null,
+    "root": null,
+    "receiver_isa": [
+     "ProximityPrompt"
+    ],
+    "receiver_property_writes": [
+     "Enabled"
+    ],
+    "line": 292,
+    "in_function": "Client.start",
+    "name": "RaceEntryPrompt"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 300,
+    "in_function": "Client.start",
+    "name": "PlayerScripts"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts",
+    "root": "Players",
+    "line": 300,
+    "in_function": "Client.start",
+    "name": "Runtime"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"Runtime\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime",
+    "root": "Players",
+    "line": 300,
+    "in_function": "Client.start",
+    "name": "Racing"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 301,
+    "in_function": "Client.start",
+    "name": "PlayerScripts"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts",
+    "root": "Players",
+    "line": 301,
+    "in_function": "Client.start",
+    "name": "Runtime"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"Runtime\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime",
+    "root": "Players",
+    "line": 301,
+    "in_function": "Client.start",
+    "name": "Racing"
+   }
+  ],
+  "text_compared": []
+ },
+ "run_service": {
+  "render_steps": [],
+  "connects": []
+ },
+ "context_actions": [],
+ "user_input_service": {
+  "connects": [],
+  "members_used": []
+ },
+ "audio": {
+  "bridge_calls": [],
+  "ui_audio_attributes": []
+ },
+ "config": {
+  "paths": [],
+  "attribute_reads": [],
+  "child_lookups": []
+ },
+ "startergui_core": [],
+ "gui_service": [],
+ "other_services": {},
+ "service_connects": [],
+ "proximity_prompts": [],
+ "instances_created_by_class": {},
+ "public_api": [
+  {
+   "name": "start",
+   "kind": "function",
+   "params": [],
+   "line": 4
+  }
+ ],
+ "unresolved": [
+  {
+   "category": "attribute_reads",
+   "line": 131,
+   "detail": "name comes from parameter of applyZone(); no call site found statically"
+  },
+  {
+   "category": "attribute_reads",
+   "line": 136,
+   "detail": "name comes from parameter of applyZone(); no call site found statically"
+  },
+  {
+   "category": "attribute_listens",
+   "line": 201,
+   "detail": "name comes from parameter of anonymous function(); no call site found statically"
+  },
+  {
+   "category": "attribute_reads",
+   "line": 201,
+   "detail": "name comes from parameter of anonymous function(); no call site found statically"
+  },
+  {
+   "category": "attribute_reads",
+   "line": 201,
+   "detail": "name comes from parameter of anonymous function(); no call site found statically"
+  },
+  {
+   "category": "attribute_reads",
+   "line": 201,
+   "detail": "name comes from parameter of anonymous function(); no call site found statically"
+  }
+ ],
+ "contract_file": "RaceLifecyclePresentationClient.json"
+}

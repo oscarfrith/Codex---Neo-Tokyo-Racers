@@ -1,0 +1,81 @@
+{
+  "wordmark": {
+    "size": [
+      1024,
+      256
+    ],
+    "text": "PULSE RACERS",
+    "face": "Barlow ExtraBold Italic (800)",
+    "font_px": 112,
+    "status": "PLACEHOLDER lockup, not a logo; Oscar to replace or approve",
+    "ink": [
+      74,
+      83,
+      943,
+      174
+    ]
+  },
+  "touch": {
+    "size": [
+      1024,
+      1024
+    ],
+    "cell": 512,
+    "images": {
+      "accelerate": {
+        "ImageRectOffset": [
+          0,
+          0
+        ],
+        "ImageRectSize": [
+          512,
+          512
+        ]
+      },
+      "brake": {
+        "ImageRectOffset": [
+          512,
+          0
+        ],
+        "ImageRectSize": [
+          512,
+          512
+        ]
+      },
+      "drift": {
+        "ImageRectOffset": [
+          0,
+          512
+        ],
+        "ImageRectSize": [
+          512,
+          512
+        ]
+      },
+      "boost": {
+        "ImageRectOffset": [
+          512,
+          512
+        ],
+        "ImageRectSize": [
+          512,
+          512
+        ]
+      }
+    },
+    "note": "drift points left; rotate 180 for the right-hand control as Classic does. Turn arrows use icons.png chevron_left."
+  },
+  "chequer": {
+    "size": [
+      256,
+      256
+    ],
+    "grid": [
+      5,
+      4
+    ],
+    "square": 40,
+    "rotate_deg": -10,
+    "skew_deg": -10
+  }
+}

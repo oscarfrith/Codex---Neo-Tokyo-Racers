@@ -1,0 +1,15 @@
+<!doctype html><html><head><meta charset="utf-8"><title>r16b World prompts: banner variants</title><script src="../shared/boot.js"></script></head><body><script>
+const fam = [["JOIN RACE","RACE","E","X",1],["START TIME TRIAL","TIME TRIAL","E","X",1],["ENTER","VEHICLE","E","X"],["DRIVE OUT","SERAPH","E","X"],["EXIT GARAGE","GARAGE DOOR","E","X"],
+  ["MANAGE GARAGE","GARAGE DESK","E","X"],["DRIVE INTO GARAGE","KANDA TWO-BAY","E","X"],["OPEN GARAGE","KANDA TWO-BAY","E","X"],["ENTER","DEALERSHIP","E","X"],["RIDE","NEONRIDER","F","Y"],
+  ["GIVE RIDE","TAXI FARE &middot; 1.2 MI TRIP &middot; ~$1,234","E","X"]];
+const W = "width:590px;min-width:0;height:66px";
+const pr = (f, cap, cls = "") => `<div class="prompt ${cls}" style="${W}"><span class="t-btn" style="font-size:32px">${f[0]}</span><span class="obj t-label c-2" style="overflow:hidden">${f[1]}</span>${cap}</div>`;
+const col = (x, title, fn) => `<div class="abs col" style="left:${x}px;top:112px;gap:8px"><div class="sheetlabel" style="margin-bottom:6px">${title}</div>${fam.map(fn).join("")}</div>`;
+P.page(`
+  ${P.scene("city","",0.35)}${sheetHead("WORLD PROMPTS","PROMPT BANNER &middot; ALL TEN FAMILIES &middot; ACTION, OBJECT, ONE KEY CAP OR GLYPH")}
+  ${col(60,"Keyboard: key cap", f => pr(f, P.key(f[2])))}
+  ${col(665,"Gamepad: glyph", f => pr(f, P.glyph(f[3])))}
+  ${col(1270,"Touch: the banner is the button, no key cap (min 48 dp)", f => pr(f, "", "touch"))}
+  <div class="abs note" style="left:60px;top:1000px;width:1800px">Banners stack in one screen-anchored slot in the lower middle, newest at the bottom, never over the gauge or minimap. The race-start banner uses the taller Main size (see r16a). Refusal text ("Move the vehicle into the start zone.") appears as a toast. Texts are the live ActionText and ObjectText, upper-cased.</div>
+`);
+</script></body></html>

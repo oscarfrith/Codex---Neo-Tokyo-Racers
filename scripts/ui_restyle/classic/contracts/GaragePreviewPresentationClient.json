@@ -1,0 +1,748 @@
+{
+ "script": "ReplicatedStorage.Modules.Game.Garage.GaragePreviewPresentationClient",
+ "class": "ModuleScript",
+ "source_file": "classic/sources/ReplicatedStorage.Modules.Game.Garage.GaragePreviewPresentationClient.lua",
+ "source_lines": 339,
+ "included_because": [
+  "ClientBase entry 'GaragePreviewPresentationClient'"
+ ],
+ "requires": [
+  {
+   "expr": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"World\"):WaitForChild(\"LightingPresets\")",
+   "as": "presets",
+   "line": 20,
+   "in_function": "Client.start",
+   "target": "ReplicatedStorage.Modules.Game.World.LightingPresets"
+  },
+  {
+   "expr": "ReplicatedStorage.Modules.Game.World.LightingClient",
+   "as": "renderer",
+   "line": 23,
+   "in_function": "Client.start",
+   "target": "ReplicatedStorage.Modules.Game.World.LightingClient"
+  }
+ ],
+ "remotes": {
+  "calls": [],
+  "listens": []
+ },
+ "bindables": {
+  "fires": [],
+  "connects": [],
+  "invokes": [],
+  "handlers": [],
+  "created": [],
+  "module_signal_fires": []
+ },
+ "attributes": {
+  "reads": [
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "line": 90,
+    "in_function": "garageOpen",
+    "name": "GarageSessionActive"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "receiver_kind": "config",
+    "wrapper_defined": "GaragePreviewPresentationClient:55",
+    "line": 197,
+    "in_function": "beginGarageLighting",
+    "via": "wrapper boolean()",
+    "name": "PreviewLightingEnabled"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "receiver_kind": "config",
+    "wrapper_defined": "GaragePreviewPresentationClient:60",
+    "line": 198,
+    "in_function": "beginGarageLighting",
+    "via": "wrapper text()",
+    "name": "PreviewLightingPreset"
+   },
+   {
+    "receiver": "Lighting",
+    "receiver_path": "Lighting",
+    "receiver_kind": "other",
+    "line": 214,
+    "in_function": "endGarageLighting",
+    "name": "LightingPreset"
+   },
+   {
+    "receiver": "previewRoot",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "line": 252,
+    "in_function": "refreshPreview",
+    "name": "PreviewVFXMode"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "receiver_kind": "config",
+    "wrapper_defined": "GaragePreviewPresentationClient:55",
+    "line": 280,
+    "in_function": "updatePresentation",
+    "via": "wrapper boolean()",
+    "name": "PreviewWobbleEnabled"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "receiver_kind": "config",
+    "wrapper_defined": "GaragePreviewPresentationClient:50",
+    "line": 289,
+    "in_function": "updatePresentation",
+    "via": "wrapper number()",
+    "name": "PreviewWobbleSpeed"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "receiver_kind": "config",
+    "wrapper_defined": "GaragePreviewPresentationClient:50",
+    "line": 291,
+    "in_function": "updatePresentation",
+    "via": "wrapper number()",
+    "name": "PreviewWobbleAmountDegrees"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "receiver_kind": "config",
+    "wrapper_defined": "GaragePreviewPresentationClient:50",
+    "line": 292,
+    "in_function": "updatePresentation",
+    "via": "wrapper number()",
+    "name": "PreviewWobbleRandomiseAmount"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "receiver_kind": "config",
+    "wrapper_defined": "GaragePreviewPresentationClient:50",
+    "line": 297,
+    "in_function": "updatePresentation",
+    "via": "wrapper number()",
+    "name": "PreviewWobblePitchMultiplier"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "receiver_kind": "config",
+    "wrapper_defined": "GaragePreviewPresentationClient:50",
+    "line": 298,
+    "in_function": "updatePresentation",
+    "via": "wrapper number()",
+    "name": "PreviewWobbleRollMultiplier"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "receiver_kind": "config",
+    "wrapper_defined": "GaragePreviewPresentationClient:50",
+    "line": 299,
+    "in_function": "updatePresentation",
+    "via": "wrapper number()",
+    "name": "PreviewWobbleSmoothing"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "receiver_kind": "config",
+    "wrapper_defined": "GaragePreviewPresentationClient:50",
+    "line": 302,
+    "in_function": "updatePresentation",
+    "via": "wrapper number()",
+    "name": "PreviewBobAmountStuds"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "receiver_kind": "config",
+    "wrapper_defined": "GaragePreviewPresentationClient:60",
+    "line": 314,
+    "in_function": "Client.start",
+    "via": "wrapper text()",
+    "name": "PreviewLightingPreset"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "receiver_kind": "config",
+    "wrapper_defined": "GaragePreviewPresentationClient:50",
+    "line": 319,
+    "in_function": "Client.start",
+    "via": "wrapper number()",
+    "name": "PreviewPresentationPollSeconds"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "receiver_kind": "config",
+    "wrapper_defined": "GaragePreviewPresentationClient:55",
+    "line": 325,
+    "in_function": "Client.start",
+    "via": "wrapper boolean()",
+    "name": "PreviewLightingEnabled"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "receiver_kind": "config",
+    "wrapper_defined": "GaragePreviewPresentationClient:60",
+    "line": 327,
+    "in_function": "Client.start",
+    "via": "wrapper text()",
+    "name": "PreviewLightingPreset"
+   }
+  ],
+  "writes": [
+   {
+    "receiver": "previewRoot",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "value": false,
+    "line": 239,
+    "in_function": "releasePreview",
+    "name": "ForceThrustPreview"
+   },
+   {
+    "receiver": "previewRoot",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "value": false,
+    "line": 246,
+    "in_function": "refreshPreview",
+    "name": "ForceThrustPreview"
+   },
+   {
+    "receiver": "previewRoot",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "value": false,
+    "line": 251,
+    "in_function": "refreshPreview",
+    "name": "ForceThrustPreview"
+   },
+   {
+    "receiver": "previewRoot",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "value": "Idle",
+    "line": 252,
+    "in_function": "refreshPreview",
+    "name": "PreviewVFXMode"
+   }
+  ],
+  "listens": [
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "line": 309,
+    "in_function": "Client.start",
+    "name": "GarageSessionActive"
+   },
+   {
+    "receiver": "Lighting",
+    "receiver_path": "Lighting",
+    "receiver_kind": "other",
+    "line": 313,
+    "in_function": "Client.start",
+    "name": "LightingPreset"
+   }
+  ]
+ },
+ "player_attribute_writes": [],
+ "screenguis": {
+  "created": [],
+  "enabled_writes": []
+ },
+ "names": {
+  "assigned": [
+   {
+    "via": "table_field",
+    "callee": null,
+    "class": null,
+    "line": 26,
+    "in_function": "Client.start",
+    "name": "Atmosphere"
+   },
+   {
+    "via": "table_field",
+    "callee": null,
+    "class": null,
+    "line": 27,
+    "in_function": "Client.start",
+    "name": "Bloom"
+   },
+   {
+    "via": "table_field",
+    "callee": null,
+    "class": null,
+    "line": 28,
+    "in_function": "Client.start",
+    "name": "ColorCorrection"
+   },
+   {
+    "via": "table_field",
+    "callee": null,
+    "class": null,
+    "line": 29,
+    "in_function": "Client.start",
+    "name": "DepthOfField"
+   },
+   {
+    "via": "table_field",
+    "callee": null,
+    "class": null,
+    "line": 30,
+    "in_function": "Client.start",
+    "name": "SunRays"
+   },
+   {
+    "via": "property",
+    "receiver": "clone",
+    "class": null,
+    "line": 116,
+    "in_function": "replaceSky",
+    "name": "ActiveSky"
+   },
+   {
+    "via": "property",
+    "receiver": "effect",
+    "class": null,
+    "line": 137,
+    "in_function": "applyPreset",
+    "name": null,
+    "name_expr": "definition.Name"
+   }
+  ],
+  "looked_up": [
+   {
+    "method": "WaitForChild",
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 16,
+    "in_function": "Client.start",
+    "name": "PlayerGui"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 18,
+    "in_function": "Client.start",
+    "name": "Config"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\")",
+    "receiver_path": "ReplicatedStorage.Config",
+    "root": "ReplicatedStorage",
+    "line": 18,
+    "in_function": "Client.start",
+    "name": "UI"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\"):WaitForChild(\"UI\")",
+    "receiver_path": "ReplicatedStorage.Config.UI",
+    "root": "ReplicatedStorage",
+    "line": 18,
+    "in_function": "Client.start",
+    "name": "GarageReplacement"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 20,
+    "in_function": "Client.start",
+    "name": "Modules"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\")",
+    "receiver_path": "ReplicatedStorage.Modules",
+    "root": "ReplicatedStorage",
+    "line": 20,
+    "in_function": "Client.start",
+    "name": "Game"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game",
+    "root": "ReplicatedStorage",
+    "line": 20,
+    "in_function": "Client.start",
+    "name": "World"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"World\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game.World",
+    "root": "ReplicatedStorage",
+    "line": 20,
+    "in_function": "Client.start",
+    "name": "LightingPresets"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 21,
+    "in_function": "Client.start",
+    "name": "Assets"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Assets\")",
+    "receiver_path": "ReplicatedStorage.Assets",
+    "root": "ReplicatedStorage",
+    "line": 21,
+    "in_function": "Client.start",
+    "name": "World"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Assets\"):WaitForChild(\"World\")",
+    "receiver_path": "ReplicatedStorage.Assets.World",
+    "root": "ReplicatedStorage",
+    "line": 21,
+    "in_function": "Client.start",
+    "name": "Skies"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "Workspace",
+    "receiver_path": "Workspace",
+    "root": "Workspace",
+    "line": 65,
+    "in_function": "findPreviewRoot",
+    "name": "ClientOnly"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "client",
+    "receiver_path": "Workspace.ClientOnly",
+    "root": "Workspace",
+    "line": 66,
+    "in_function": "findPreviewRoot",
+    "name": "VehiclePreview"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "Workspace",
+    "receiver_path": "Workspace",
+    "root": "Workspace",
+    "line": 66,
+    "in_function": "findPreviewRoot",
+    "name": "LocalVehiclePreview"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "playerGui",
+    "receiver_path": "Players.LocalPlayer.PlayerGui",
+    "root": "Players",
+    "line": 78,
+    "in_function": "canonicalGarageVisible",
+    "name": "CanonicalGarageGui"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "gui",
+    "receiver_path": "Players.LocalPlayer.PlayerGui.CanonicalGarageGui",
+    "root": "Players",
+    "recursive": true,
+    "line": 80,
+    "in_function": "canonicalGarageVisible",
+    "name": "CanonicalCanvas"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "canvas",
+    "receiver_path": "Players.LocalPlayer.PlayerGui.CanonicalGarageGui.CanonicalCanvas",
+    "root": "Players",
+    "recursive": true,
+    "line": 83,
+    "in_function": "canonicalGarageVisible",
+    "name": "CanonicalGarageBrowser",
+    "via": "literal list"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "canvas",
+    "receiver_path": "Players.LocalPlayer.PlayerGui.CanonicalGarageGui.CanonicalCanvas",
+    "root": "Players",
+    "recursive": true,
+    "line": 83,
+    "in_function": "canonicalGarageVisible",
+    "name": "CanonicalGarageWorkspace",
+    "via": "literal list"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "Lighting",
+    "receiver_path": "Lighting",
+    "root": "Lighting",
+    "line": 101,
+    "in_function": "findEffect",
+    "name": null,
+    "name_expr": "definition.Name"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "skies",
+    "receiver_path": "ReplicatedStorage.Assets.World.Skies",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "GaragePreviewPresentationClient:113",
+    "line": 143,
+    "in_function": "applyPreset",
+    "via": "wrapper replaceSky()",
+    "name": null,
+    "name_expr": "preset.SkyName"
+   }
+  ],
+  "text_compared": []
+ },
+ "run_service": {
+  "render_steps": [],
+  "connects": [
+   {
+    "signal": "RenderStepped",
+    "method": "Connect",
+    "line": 317,
+    "in_function": "Client.start",
+    "callback": "function(dt) pollElapsed+=dt local interval=mat..."
+   }
+  ]
+ },
+ "context_actions": [],
+ "user_input_service": {
+  "connects": [],
+  "members_used": []
+ },
+ "audio": {
+  "bridge_calls": [],
+  "ui_audio_attributes": []
+ },
+ "config": {
+  "paths": [
+   {
+    "path": "ReplicatedStorage.Config",
+    "line": 18
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI",
+    "line": 18
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "line": 18
+   }
+  ],
+  "attribute_reads": [
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "receiver_kind": "config",
+    "wrapper_defined": "GaragePreviewPresentationClient:55",
+    "line": 197,
+    "in_function": "beginGarageLighting",
+    "via": "wrapper boolean()",
+    "name": "PreviewLightingEnabled",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "receiver_kind": "config",
+    "wrapper_defined": "GaragePreviewPresentationClient:60",
+    "line": 198,
+    "in_function": "beginGarageLighting",
+    "via": "wrapper text()",
+    "name": "PreviewLightingPreset",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "receiver_kind": "config",
+    "wrapper_defined": "GaragePreviewPresentationClient:55",
+    "line": 280,
+    "in_function": "updatePresentation",
+    "via": "wrapper boolean()",
+    "name": "PreviewWobbleEnabled",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "receiver_kind": "config",
+    "wrapper_defined": "GaragePreviewPresentationClient:50",
+    "line": 289,
+    "in_function": "updatePresentation",
+    "via": "wrapper number()",
+    "name": "PreviewWobbleSpeed",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "receiver_kind": "config",
+    "wrapper_defined": "GaragePreviewPresentationClient:50",
+    "line": 291,
+    "in_function": "updatePresentation",
+    "via": "wrapper number()",
+    "name": "PreviewWobbleAmountDegrees",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "receiver_kind": "config",
+    "wrapper_defined": "GaragePreviewPresentationClient:50",
+    "line": 292,
+    "in_function": "updatePresentation",
+    "via": "wrapper number()",
+    "name": "PreviewWobbleRandomiseAmount",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "receiver_kind": "config",
+    "wrapper_defined": "GaragePreviewPresentationClient:50",
+    "line": 297,
+    "in_function": "updatePresentation",
+    "via": "wrapper number()",
+    "name": "PreviewWobblePitchMultiplier",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "receiver_kind": "config",
+    "wrapper_defined": "GaragePreviewPresentationClient:50",
+    "line": 298,
+    "in_function": "updatePresentation",
+    "via": "wrapper number()",
+    "name": "PreviewWobbleRollMultiplier",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "receiver_kind": "config",
+    "wrapper_defined": "GaragePreviewPresentationClient:50",
+    "line": 299,
+    "in_function": "updatePresentation",
+    "via": "wrapper number()",
+    "name": "PreviewWobbleSmoothing",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "receiver_kind": "config",
+    "wrapper_defined": "GaragePreviewPresentationClient:50",
+    "line": 302,
+    "in_function": "updatePresentation",
+    "via": "wrapper number()",
+    "name": "PreviewBobAmountStuds",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "receiver_kind": "config",
+    "wrapper_defined": "GaragePreviewPresentationClient:60",
+    "line": 314,
+    "in_function": "Client.start",
+    "via": "wrapper text()",
+    "name": "PreviewLightingPreset",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "receiver_kind": "config",
+    "wrapper_defined": "GaragePreviewPresentationClient:50",
+    "line": 319,
+    "in_function": "Client.start",
+    "via": "wrapper number()",
+    "name": "PreviewPresentationPollSeconds",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "receiver_kind": "config",
+    "wrapper_defined": "GaragePreviewPresentationClient:55",
+    "line": 325,
+    "in_function": "Client.start",
+    "via": "wrapper boolean()",
+    "name": "PreviewLightingEnabled",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "receiver_kind": "config",
+    "wrapper_defined": "GaragePreviewPresentationClient:60",
+    "line": 327,
+    "in_function": "Client.start",
+    "via": "wrapper text()",
+    "name": "PreviewLightingPreset",
+    "access": "read"
+   }
+  ],
+  "child_lookups": []
+ },
+ "startergui_core": [],
+ "gui_service": [],
+ "other_services": {},
+ "service_connects": [],
+ "proximity_prompts": [],
+ "instances_created_by_class": {},
+ "public_api": [
+  {
+   "name": "start",
+   "kind": "function",
+   "params": [],
+   "line": 4
+  }
+ ],
+ "unresolved": [
+  {
+   "category": "lookups",
+   "field": "name",
+   "line": 101,
+   "detail": "not a literal: definition.Name"
+  },
+  {
+   "category": "names_assigned",
+   "field": "name",
+   "line": 137,
+   "detail": "not a literal: definition.Name"
+  },
+  {
+   "category": "lookups",
+   "field": "name",
+   "line": 143,
+   "detail": "not a literal: preset.SkyName"
+  }
+ ],
+ "contract_file": "GaragePreviewPresentationClient.json"
+}

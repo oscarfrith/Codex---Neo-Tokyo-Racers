@@ -1,0 +1,43 @@
+<!doctype html><html><head><meta charset="utf-8"><title>r08 Full map</title><script src="../shared/boot.js"></script></head><body><script>
+let roads = "";
+for (let i = 0; i < 9; i++) roads += `<path d="M${-40 + i * 250} -20 L${120 + i * 250} 1100" stroke-width="${i % 3 ? 14 : 30}"/>`;
+for (let i = 0; i < 6; i++) roads += `<path d="M-20 ${90 + i * 200} L1940 ${20 + i * 200}" stroke-width="${i % 2 ? 14 : 30}"/>`;
+const mk = (x, y, icon, cls = "") => `<div class="abs round ${cls}" style="left:${x - 24}px;top:${y - 24}px;width:48px;height:48px;background:var(--ink);border:3px solid var(--white);display:flex;align-items:center;justify-content:center"><i class="ic ${icon}" style="font-size:26px"></i></div>`;
+const leg = [["nav","YOU"],["person","OTHER PLAYER"],["pin","WAYPOINT"],["garage","MY GARAGE"],["car","DEALERSHIP"],["flag","RACE"],["clock","TIME TRIAL"],["swap","DUEL"],["target","JOB"],["players","TAXI FARE"],["players","TAXI DROP-OFF"],["box","COURIER PICK-UP"],["box","COURIER DROP-OFF"]];
+const hint = (keys, label) => `<span class="flex ac g8">${keys.map(k => `<span class="keycap" style="height:34px;min-width:34px;font-size:20px;border-bottom-width:3px">${k}</span>`).join("")}<span class="t-label c-2">${label}</span></span>`;
+P.page(`
+  <div class="scene" style="background:#141226"></div>
+  <svg class="abs" style="inset:0" width="1920" height="1080"><g stroke="#3d3a62" fill="none">${roads}</g>
+    <path d="M-20 780 Q500 700 900 860 T1940 800" stroke="#1d2b55" stroke-width="70" fill="none"/>
+    <path d="M830 585 L915 566 L1010 0" stroke="none" fill="none"/>
+    <path d="M842 596 L900 180 L1168 170" stroke="#22E4FF" stroke-width="9" fill="none"/></svg>
+  <div class="scene-tag" style="top:250px;left:800px">MAP IMAGE (UNCHANGED) &middot; PAN AND ZOOM</div>
+  ${mk(1168,170,"pin")}${mk(640,330,"garage")}${mk(1090,520,"car")}${mk(560,640,"flag")}${mk(1260,700,"clock")}${mk(410,470,"target")}${mk(980,330,"person")}
+  <div class="abs" style="left:818px;top:572px;width:48px;height:48px;display:flex;align-items:center;justify-content:center;transform:rotate(8deg)"><i class="ic nav" style="font-size:46px;color:var(--white)"></i></div>
+  <div class="abs" style="left:0;right:0;top:0;height:230px;background:linear-gradient(180deg,rgba(7,6,13,.8),rgba(7,6,13,0))"></div>
+  <div class="abs" style="left:0;right:0;bottom:0;height:200px;background:linear-gradient(0deg,rgba(7,6,13,.85),rgba(7,6,13,0))"></div>
+  ${P.title("MAP","AKANE DISTRICT")}
+  ${P.status({tier:"S",rating:939,cash:"$3,613,709"})}
+  <div class="abs flex ac g12" style="left:50%;transform:translateX(-50%);top:74px"><span class="chip cyan lg">${P.ic("route")}ROUTE SET &middot; 0.8 MI</span></div>
+  <div class="panel abs" style="right:100px;top:152px;width:400px;padding:16px 22px 10px">
+    <div class="flex ac jb" style="margin-bottom:8px"><span class="t-status">MAP KEY</span><span class="t-label c-muted">LEGEND</span></div>
+    ${leg.map(l => `<div class="fact" style="height:48px">${P.ic(l[0])}<span class="t-label">${l[1]}</span></div>`).join("")}
+  </div>
+  <div class="abs col g8" style="left:100px;top:420px">
+    <div class="btn icon">${P.ic("plus")}</div><div class="btn icon">${P.ic("minus")}</div>
+    <div class="btn icon t-tab" style="font-size:24px">ME</div><div class="btn icon t-tab" style="font-size:24px">ALL</div>
+  </div>
+  <div class="abs flex ac g24" style="left:100px;bottom:160px">
+    ${hint(["W","A","S","D"],"PAN")}${hint(["Q","E"],"ZOOM")}${hint(["C"],"CENTRE ON ME")}${hint(["F"],"WHOLE MAP")}
+  </div>
+  <div class="abs flex ac g24" style="left:100px;bottom:106px">
+    ${hint(["CLICK"],"SET WAYPOINT")}${hint(["BACKSPACE"],"CLEAR")}${hint(["M"],"CLOSE")}
+  </div>
+  <div class="abs flex ac g16" style="left:100px;bottom:46px">
+    <span class="t-label c-muted">ON GAMEPAD</span>
+    ${[["A","WAYPOINT"],["X","CLEAR"],["Y","CENTRE"]].map(g=>`<span class="flex ac g8"><span class="glyph" style="width:34px;height:34px;font-size:20px">${g[0]}</span><span class="t-label c-2">${g[1]}</span></span>`).join("")}
+    <span class="flex ac g8"><span class="glyph bumper" style="height:30px;min-width:44px;font-size:18px">LB</span><span class="glyph bumper" style="height:30px;min-width:44px;font-size:18px">RB</span><span class="t-label c-2">ZOOM</span></span>
+  </div>
+  ${P.btnrow([P.btn("CLOSE","back"),P.btn("LEGEND","info"),P.btn("CLEAR WAYPOINT","close")])}
+`);
+</script></body></html>

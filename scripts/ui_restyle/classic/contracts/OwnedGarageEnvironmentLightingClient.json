@@ -1,0 +1,590 @@
+{
+ "script": "ReplicatedStorage.Modules.Game.World.OwnedGarageEnvironmentLightingClient",
+ "class": "ModuleScript",
+ "source_file": "classic/sources/ReplicatedStorage.Modules.Game.World.OwnedGarageEnvironmentLightingClient.lua",
+ "source_lines": 183,
+ "included_because": [
+  "ClientBase entry 'OwnedGarageEnvironmentLightingClient'"
+ ],
+ "requires": [
+  {
+   "expr": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"World\"):WaitForChild(\"LightingPresets\")",
+   "as": "presets",
+   "line": 17,
+   "in_function": "Client.start",
+   "target": "ReplicatedStorage.Modules.Game.World.LightingPresets"
+  },
+  {
+   "expr": "ReplicatedStorage.Modules.Game.World.LightingClient",
+   "as": "renderer",
+   "line": 20,
+   "in_function": "Client.start",
+   "target": "ReplicatedStorage.Modules.Game.World.LightingClient"
+  }
+ ],
+ "remotes": {
+  "calls": [],
+  "listens": []
+ },
+ "bindables": {
+  "fires": [],
+  "connects": [],
+  "invokes": [],
+  "handlers": [],
+  "created": [],
+  "module_signal_fires": []
+ },
+ "attributes": {
+  "reads": [
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "line": 23,
+    "in_function": "updateContext",
+    "name": "OwnedGarageInside"
+   },
+   {
+    "receiver": "settings",
+    "receiver_path": "ReplicatedStorage.Config.Garage.Interior",
+    "receiver_kind": "config",
+    "line": 23,
+    "in_function": "updateContext",
+    "name": "InteriorEnvironmentLightingEnabled"
+   },
+   {
+    "receiver": "settings",
+    "receiver_path": "ReplicatedStorage.Config.Garage.Interior",
+    "receiver_kind": "config",
+    "line": 24,
+    "in_function": "updateContext",
+    "name": "InteriorEnvironmentPreset"
+   },
+   {
+    "receiver": "settings",
+    "receiver_path": "ReplicatedStorage.Config.Garage.Interior",
+    "receiver_kind": "config",
+    "line": 57,
+    "in_function": "configuredPreset",
+    "name": "InteriorEnvironmentPreset"
+   },
+   {
+    "receiver": "child",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "line": 96,
+    "in_function": "applySky",
+    "name": "OwnedGarageSkyPreset"
+   },
+   {
+    "receiver": "settings",
+    "receiver_path": "ReplicatedStorage.Config.Garage.Interior",
+    "receiver_kind": "config",
+    "line": 123,
+    "in_function": "applyInterior",
+    "name": "InteriorEnvironmentLightingEnabled"
+   },
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "line": 141,
+    "in_function": "update",
+    "name": "OwnedGarageInside"
+   },
+   {
+    "receiver": "settings",
+    "receiver_path": "ReplicatedStorage.Config.Garage.Interior",
+    "receiver_kind": "config",
+    "line": 142,
+    "in_function": "update",
+    "name": "InteriorEnvironmentLightingEnabled"
+   },
+   {
+    "receiver": "Lighting",
+    "receiver_path": "Lighting",
+    "receiver_kind": "other",
+    "line": 144,
+    "in_function": "update",
+    "name": "LightingPreset"
+   },
+   {
+    "receiver": "Lighting",
+    "receiver_path": "Lighting",
+    "receiver_kind": "other",
+    "line": 150,
+    "in_function": "update",
+    "name": "LightingPreset"
+   },
+   {
+    "receiver": "settings",
+    "receiver_path": "ReplicatedStorage.Config.Garage.Interior",
+    "receiver_kind": "config",
+    "line": 152,
+    "in_function": "update",
+    "name": "InteriorEnvironmentFallbackCityPreset"
+   },
+   {
+    "receiver": "Lighting",
+    "receiver_path": "Lighting",
+    "receiver_kind": "other",
+    "line": 163,
+    "in_function": "Client.start",
+    "name": "LightingPreset"
+   }
+  ],
+  "writes": [
+   {
+    "receiver": "player:WaitForChild(\"PlayerScripts\"):WaitForChild(\"Runtime\"):WaitForChild(\"World\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime.World",
+    "receiver_kind": "playerScripts",
+    "value": true,
+    "line": 37,
+    "in_function": "Client.start",
+    "name": "OwnedGarageEnvironmentStarted"
+   },
+   {
+    "receiver": "clone",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "value": {
+     "expr": "name"
+    },
+    "line": 103,
+    "in_function": "applySky",
+    "name": "OwnedGarageSkyPreset"
+   },
+   {
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"Runtime\"):WaitForChild(\"World\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime.World",
+    "receiver_kind": "playerScripts",
+    "value": true,
+    "line": 175,
+    "in_function": "Client.start",
+    "name": "OwnedGarageEnvironmentStarted"
+   }
+  ],
+  "listens": [
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "line": 28,
+    "in_function": "Client.start",
+    "name": "OwnedGarageInside"
+   },
+   {
+    "receiver": "settings",
+    "receiver_path": "ReplicatedStorage.Config.Garage.Interior",
+    "receiver_kind": "config",
+    "line": 29,
+    "in_function": "Client.start",
+    "name": "InteriorEnvironmentLightingEnabled"
+   },
+   {
+    "receiver": "settings",
+    "receiver_path": "ReplicatedStorage.Config.Garage.Interior",
+    "receiver_kind": "config",
+    "line": 30,
+    "in_function": "Client.start",
+    "name": "InteriorEnvironmentPreset"
+   },
+   {
+    "receiver": "Lighting",
+    "receiver_path": "Lighting",
+    "receiver_kind": "other",
+    "line": 162,
+    "in_function": "Client.start",
+    "name": "LightingPreset"
+   },
+   {
+    "receiver": "settings",
+    "receiver_path": "ReplicatedStorage.Config.Garage.Interior",
+    "receiver_kind": "config",
+    "line": 168,
+    "in_function": "Client.start",
+    "name": "InteriorEnvironmentPreset"
+   },
+   {
+    "receiver": "settings",
+    "receiver_path": "ReplicatedStorage.Config.Garage.Interior",
+    "receiver_kind": "config",
+    "line": 171,
+    "in_function": "Client.start",
+    "name": "InteriorEnvironmentLightingEnabled"
+   },
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "line": 172,
+    "in_function": "Client.start",
+    "name": "OwnedGarageInside"
+   }
+  ]
+ },
+ "player_attribute_writes": [],
+ "screenguis": {
+  "created": [],
+  "enabled_writes": []
+ },
+ "names": {
+  "assigned": [
+   {
+    "via": "property",
+    "receiver": "existing",
+    "class": null,
+    "line": 72,
+    "in_function": "getEffect",
+    "name": null,
+    "name_expr": "spec[2]"
+   },
+   {
+    "via": "property",
+    "receiver": "clone",
+    "class": null,
+    "line": 103,
+    "in_function": "applySky",
+    "name": "ActiveSky"
+   }
+  ],
+  "looked_up": [
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 15,
+    "in_function": "Client.start",
+    "name": "Config"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\")",
+    "receiver_path": "ReplicatedStorage.Config",
+    "root": "ReplicatedStorage",
+    "line": 15,
+    "in_function": "Client.start",
+    "name": "Garage"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\"):WaitForChild(\"Garage\")",
+    "receiver_path": "ReplicatedStorage.Config.Garage",
+    "root": "ReplicatedStorage",
+    "line": 15,
+    "in_function": "Client.start",
+    "name": "Interior"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 17,
+    "in_function": "Client.start",
+    "name": "Modules"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\")",
+    "receiver_path": "ReplicatedStorage.Modules",
+    "root": "ReplicatedStorage",
+    "line": 17,
+    "in_function": "Client.start",
+    "name": "Game"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game",
+    "root": "ReplicatedStorage",
+    "line": 17,
+    "in_function": "Client.start",
+    "name": "World"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"World\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game.World",
+    "root": "ReplicatedStorage",
+    "line": 17,
+    "in_function": "Client.start",
+    "name": "LightingPresets"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 18,
+    "in_function": "Client.start",
+    "name": "Assets"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Assets\")",
+    "receiver_path": "ReplicatedStorage.Assets",
+    "root": "ReplicatedStorage",
+    "line": 18,
+    "in_function": "Client.start",
+    "name": "World"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Assets\"):WaitForChild(\"World\")",
+    "receiver_path": "ReplicatedStorage.Assets.World",
+    "root": "ReplicatedStorage",
+    "line": 18,
+    "in_function": "Client.start",
+    "name": "Skies"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 37,
+    "in_function": "Client.start",
+    "name": "PlayerScripts"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "player:WaitForChild(\"PlayerScripts\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts",
+    "root": "Players",
+    "line": 37,
+    "in_function": "Client.start",
+    "name": "Runtime"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "player:WaitForChild(\"PlayerScripts\"):WaitForChild(\"Runtime\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime",
+    "root": "Players",
+    "line": 37,
+    "in_function": "Client.start",
+    "name": "World"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "Lighting",
+    "receiver_path": "Lighting",
+    "root": "Lighting",
+    "line": 70,
+    "in_function": "getEffect",
+    "name": null,
+    "name_expr": "spec[2]"
+   },
+   {
+    "method": "NameCompare",
+    "receiver": "child",
+    "receiver_path": null,
+    "root": null,
+    "receiver_isa": [
+     "Sky"
+    ],
+    "line": 96,
+    "in_function": "applySky",
+    "name": "ActiveSky"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "skies",
+    "receiver_path": "ReplicatedStorage.Assets.World.Skies",
+    "root": "ReplicatedStorage",
+    "wrapper_defined": "OwnedGarageEnvironmentLightingClient:89",
+    "line": 115,
+    "in_function": "applyPreset",
+    "via": "wrapper applySky()",
+    "name": null,
+    "name_expr": "preset.SkyName"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 175,
+    "in_function": "Client.start",
+    "name": "PlayerScripts"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts",
+    "root": "Players",
+    "line": 175,
+    "in_function": "Client.start",
+    "name": "Runtime"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"Runtime\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime",
+    "root": "Players",
+    "line": 175,
+    "in_function": "Client.start",
+    "name": "World"
+   }
+  ],
+  "text_compared": []
+ },
+ "run_service": {
+  "render_steps": [],
+  "connects": []
+ },
+ "context_actions": [],
+ "user_input_service": {
+  "connects": [],
+  "members_used": []
+ },
+ "audio": {
+  "bridge_calls": [],
+  "ui_audio_attributes": []
+ },
+ "config": {
+  "paths": [
+   {
+    "path": "ReplicatedStorage.Config",
+    "line": 15
+   },
+   {
+    "path": "ReplicatedStorage.Config.Garage",
+    "line": 15
+   },
+   {
+    "path": "ReplicatedStorage.Config.Garage.Interior",
+    "line": 15
+   }
+  ],
+  "attribute_reads": [
+   {
+    "receiver": "settings",
+    "receiver_path": "ReplicatedStorage.Config.Garage.Interior",
+    "receiver_kind": "config",
+    "line": 23,
+    "in_function": "updateContext",
+    "name": "InteriorEnvironmentLightingEnabled",
+    "access": "read"
+   },
+   {
+    "receiver": "settings",
+    "receiver_path": "ReplicatedStorage.Config.Garage.Interior",
+    "receiver_kind": "config",
+    "line": 24,
+    "in_function": "updateContext",
+    "name": "InteriorEnvironmentPreset",
+    "access": "read"
+   },
+   {
+    "receiver": "settings",
+    "receiver_path": "ReplicatedStorage.Config.Garage.Interior",
+    "receiver_kind": "config",
+    "line": 57,
+    "in_function": "configuredPreset",
+    "name": "InteriorEnvironmentPreset",
+    "access": "read"
+   },
+   {
+    "receiver": "settings",
+    "receiver_path": "ReplicatedStorage.Config.Garage.Interior",
+    "receiver_kind": "config",
+    "line": 123,
+    "in_function": "applyInterior",
+    "name": "InteriorEnvironmentLightingEnabled",
+    "access": "read"
+   },
+   {
+    "receiver": "settings",
+    "receiver_path": "ReplicatedStorage.Config.Garage.Interior",
+    "receiver_kind": "config",
+    "line": 142,
+    "in_function": "update",
+    "name": "InteriorEnvironmentLightingEnabled",
+    "access": "read"
+   },
+   {
+    "receiver": "settings",
+    "receiver_path": "ReplicatedStorage.Config.Garage.Interior",
+    "receiver_kind": "config",
+    "line": 152,
+    "in_function": "update",
+    "name": "InteriorEnvironmentFallbackCityPreset",
+    "access": "read"
+   },
+   {
+    "receiver": "settings",
+    "receiver_path": "ReplicatedStorage.Config.Garage.Interior",
+    "receiver_kind": "config",
+    "line": 29,
+    "in_function": "Client.start",
+    "name": "InteriorEnvironmentLightingEnabled",
+    "access": "listen"
+   },
+   {
+    "receiver": "settings",
+    "receiver_path": "ReplicatedStorage.Config.Garage.Interior",
+    "receiver_kind": "config",
+    "line": 30,
+    "in_function": "Client.start",
+    "name": "InteriorEnvironmentPreset",
+    "access": "listen"
+   },
+   {
+    "receiver": "settings",
+    "receiver_path": "ReplicatedStorage.Config.Garage.Interior",
+    "receiver_kind": "config",
+    "line": 168,
+    "in_function": "Client.start",
+    "name": "InteriorEnvironmentPreset",
+    "access": "listen"
+   },
+   {
+    "receiver": "settings",
+    "receiver_path": "ReplicatedStorage.Config.Garage.Interior",
+    "receiver_kind": "config",
+    "line": 171,
+    "in_function": "Client.start",
+    "name": "InteriorEnvironmentLightingEnabled",
+    "access": "listen"
+   }
+  ],
+  "child_lookups": []
+ },
+ "startergui_core": [],
+ "gui_service": [],
+ "other_services": {},
+ "service_connects": [],
+ "proximity_prompts": [],
+ "instances_created_by_class": {},
+ "public_api": [
+  {
+   "name": "start",
+   "kind": "function",
+   "params": [],
+   "line": 4
+  }
+ ],
+ "unresolved": [
+  {
+   "category": "lookups",
+   "field": "name",
+   "line": 70,
+   "detail": "not a literal: spec[2]"
+  },
+  {
+   "category": "names_assigned",
+   "field": "name",
+   "line": 72,
+   "detail": "not a literal: spec[2]"
+  },
+  {
+   "category": "lookups",
+   "field": "name",
+   "line": 115,
+   "detail": "not a literal: preset.SkyName"
+  }
+ ],
+ "contract_file": "OwnedGarageEnvironmentLightingClient.json"
+}

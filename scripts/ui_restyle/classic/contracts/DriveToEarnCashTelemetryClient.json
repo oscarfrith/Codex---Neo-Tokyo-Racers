@@ -1,0 +1,364 @@
+{
+ "script": "ReplicatedStorage.Modules.Game.Development.DriveToEarnCashTelemetryClient",
+ "class": "ModuleScript",
+ "source_file": "classic/sources/ReplicatedStorage.Modules.Game.Development.DriveToEarnCashTelemetryClient.lua",
+ "source_lines": 95,
+ "included_because": [
+  "ClientBase entry 'DriveToEarnCashTelemetryClient'"
+ ],
+ "requires": [],
+ "remotes": {
+  "calls": [],
+  "listens": []
+ },
+ "bindables": {
+  "fires": [],
+  "connects": [],
+  "invokes": [],
+  "handlers": [],
+  "created": [],
+  "module_signal_fires": []
+ },
+ "attributes": {
+  "reads": [
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.DriveRewards",
+    "receiver_kind": "config",
+    "line": 18,
+    "in_function": "Client.start",
+    "name": "StudioTelemetryEnabled"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.DriveRewards",
+    "receiver_kind": "config",
+    "line": 58,
+    "in_function": "update",
+    "name": "StudioTelemetryEnabled"
+   },
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "wrapper_defined": "DriveToEarnCashTelemetryClient:54",
+    "line": 69,
+    "in_function": "update",
+    "via": "wrapper value()",
+    "name": "DriveCashAcceptedStuds"
+   },
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "wrapper_defined": "DriveToEarnCashTelemetryClient:54",
+    "line": 70,
+    "in_function": "update",
+    "via": "wrapper value()",
+    "name": "DriveCashRejectedStudsByReason"
+   },
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "wrapper_defined": "DriveToEarnCashTelemetryClient:54",
+    "line": 71,
+    "in_function": "update",
+    "via": "wrapper value()",
+    "name": "DriveCashAccumulatedUngranted"
+   },
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "wrapper_defined": "DriveToEarnCashTelemetryClient:54",
+    "line": 72,
+    "in_function": "update",
+    "via": "wrapper value()",
+    "name": "DriveCashGranted"
+   },
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "wrapper_defined": "DriveToEarnCashTelemetryClient:54",
+    "line": 73,
+    "in_function": "update",
+    "via": "wrapper value()",
+    "name": "DriveCashCurrentHourly"
+   },
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "wrapper_defined": "DriveToEarnCashTelemetryClient:54",
+    "line": 74,
+    "in_function": "update",
+    "via": "wrapper value()",
+    "name": "DriveCashProjectedHourly"
+   },
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "wrapper_defined": "DriveToEarnCashTelemetryClient:54",
+    "line": 75,
+    "in_function": "update",
+    "via": "wrapper value()",
+    "name": "DriveCashCapUsage"
+   },
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "wrapper_defined": "DriveToEarnCashTelemetryClient:54",
+    "line": 75,
+    "in_function": "update",
+    "via": "wrapper value()",
+    "name": "DriveCashCapUsed"
+   },
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "wrapper_defined": "DriveToEarnCashTelemetryClient:54",
+    "line": 76,
+    "in_function": "update",
+    "via": "wrapper value()",
+    "name": "DriveCashLastReason"
+   },
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "wrapper_defined": "DriveToEarnCashTelemetryClient:54",
+    "line": 78,
+    "in_function": "update",
+    "via": "wrapper value()",
+    "name": "DriveCashVehicleIdentity"
+   },
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "wrapper_defined": "DriveToEarnCashTelemetryClient:54",
+    "line": 79,
+    "in_function": "update",
+    "via": "wrapper value()",
+    "name": "DriveCashSessionIdentity"
+   }
+  ],
+  "writes": [],
+  "listens": []
+ },
+ "player_attribute_writes": [],
+ "screenguis": {
+  "created": [
+   {
+    "variable": "gui",
+    "class": "ScreenGui",
+    "line": 23,
+    "factory": null,
+    "adopts_existing": false,
+    "Name": "DriveToEarnCashTelemetry",
+    "DisplayOrder": 2000,
+    "ResetOnSpawn": false,
+    "IgnoreGuiInset": false,
+    "Enabled": false,
+    "Parent": {
+     "expr": "playerGui"
+    },
+    "enabled_writes": [
+     {
+      "property": "Enabled",
+      "value": false,
+      "line": 59
+     },
+     {
+      "property": "Enabled",
+      "value": true,
+      "line": 62
+     }
+    ],
+    "property_lines": {
+     "Name": 24,
+     "ResetOnSpawn": 25,
+     "IgnoreGuiInset": 26,
+     "DisplayOrder": 27,
+     "Parent": 28,
+     "Enabled": 59
+    }
+   }
+  ],
+  "enabled_writes": [
+   {
+    "receiver": "gui",
+    "receiver_path": null,
+    "value": false,
+    "screengui_like": "yes",
+    "reason": "created here as ScreenGui",
+    "line": 59,
+    "in_function": "update",
+    "screengui_name": "DriveToEarnCashTelemetry"
+   },
+   {
+    "receiver": "gui",
+    "receiver_path": null,
+    "value": true,
+    "screengui_like": "yes",
+    "reason": "created here as ScreenGui",
+    "line": 62,
+    "in_function": "update",
+    "screengui_name": "DriveToEarnCashTelemetry"
+   }
+  ]
+ },
+ "names": {
+  "assigned": [
+   {
+    "via": "property",
+    "receiver": "gui",
+    "class": "ScreenGui",
+    "line": 24,
+    "in_function": "Client.start",
+    "name": "DriveToEarnCashTelemetry"
+   },
+   {
+    "via": "property",
+    "receiver": "panel",
+    "class": "Frame",
+    "line": 30,
+    "in_function": "Client.start",
+    "name": "ReadOnlyPanel"
+   },
+   {
+    "via": "property",
+    "receiver": "label",
+    "class": "TextLabel",
+    "line": 41,
+    "in_function": "Client.start",
+    "name": "TelemetryText"
+   }
+  ],
+  "looked_up": [
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 17,
+    "in_function": "Client.start",
+    "name": "Config"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\")",
+    "receiver_path": "ReplicatedStorage.Config",
+    "root": "ReplicatedStorage",
+    "line": 17,
+    "in_function": "Client.start",
+    "name": "Vehicles"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\"):WaitForChild(\"Vehicles\")",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles",
+    "root": "ReplicatedStorage",
+    "line": 17,
+    "in_function": "Client.start",
+    "name": "DriveRewards"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 19,
+    "in_function": "Client.start",
+    "name": "PlayerGui"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "playerGui",
+    "receiver_path": "Players.LocalPlayer.PlayerGui",
+    "root": "Players",
+    "line": 20,
+    "in_function": "Client.start",
+    "name": "DriveToEarnCashTelemetry"
+   }
+  ],
+  "text_compared": []
+ },
+ "run_service": {
+  "render_steps": [],
+  "connects": []
+ },
+ "context_actions": [],
+ "user_input_service": {
+  "connects": [],
+  "members_used": []
+ },
+ "audio": {
+  "bridge_calls": [],
+  "ui_audio_attributes": []
+ },
+ "config": {
+  "paths": [
+   {
+    "path": "ReplicatedStorage.Config",
+    "line": 17
+   },
+   {
+    "path": "ReplicatedStorage.Config.Vehicles",
+    "line": 17
+   },
+   {
+    "path": "ReplicatedStorage.Config.Vehicles.DriveRewards",
+    "line": 17
+   }
+  ],
+  "attribute_reads": [
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.DriveRewards",
+    "receiver_kind": "config",
+    "line": 18,
+    "in_function": "Client.start",
+    "name": "StudioTelemetryEnabled",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.Vehicles.DriveRewards",
+    "receiver_kind": "config",
+    "line": 58,
+    "in_function": "update",
+    "name": "StudioTelemetryEnabled",
+    "access": "read"
+   }
+  ],
+  "child_lookups": []
+ },
+ "startergui_core": [],
+ "gui_service": [],
+ "other_services": {},
+ "service_connects": [],
+ "proximity_prompts": [],
+ "instances_created_by_class": {
+  "Frame": 1,
+  "ScreenGui": 1,
+  "TextLabel": 1,
+  "UICorner": 1,
+  "UIStroke": 1
+ },
+ "public_api": [
+  {
+   "name": "start",
+   "kind": "function",
+   "params": [],
+   "line": 4
+  }
+ ],
+ "unresolved": [],
+ "contract_file": "DriveToEarnCashTelemetryClient.json"
+}

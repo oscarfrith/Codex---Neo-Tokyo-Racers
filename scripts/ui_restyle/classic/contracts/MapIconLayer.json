@@ -1,0 +1,696 @@
+{
+ "script": "ReplicatedStorage.Modules.Game.UI.MapIconLayer",
+ "class": "ModuleScript",
+ "source_file": "classic/sources/ReplicatedStorage.Modules.Game.UI.MapIconLayer.lua",
+ "source_lines": 336,
+ "included_because": [
+  "under ReplicatedStorage.Modules.Game.UI"
+ ],
+ "requires": [
+  {
+   "expr": "uiModules:WaitForChild(\"MapMarkers\")",
+   "as": "MapMarkers",
+   "line": 12,
+   "target": "ReplicatedStorage.Modules.Game.UI.MapMarkers"
+  },
+  {
+   "expr": "uiModules:WaitForChild(\"MapMath\")",
+   "as": "MapMath",
+   "line": 13,
+   "target": "ReplicatedStorage.Modules.Game.UI.MapMath"
+  }
+ ],
+ "remotes": {
+  "calls": [],
+  "listens": []
+ },
+ "bindables": {
+  "fires": [],
+  "connects": [],
+  "invokes": [],
+  "handlers": [],
+  "created": [],
+  "module_signal_fires": []
+ },
+ "attributes": {
+  "reads": [
+   {
+    "receiver": "folder",
+    "receiver_kind": "config?",
+    "wrapper_defined": "MapIconLayer:56",
+    "line": 143,
+    "in_function": "Layer.CreateIcon",
+    "via": "wrapper number()",
+    "name": "ShadowTransparency",
+    "receiver_path": null
+   },
+   {
+    "receiver": "folder",
+    "receiver_kind": "config?",
+    "wrapper_defined": "MapIconLayer:56",
+    "line": 143,
+    "in_function": "Layer.CreateIcon",
+    "via": "wrapper number()",
+    "name": "ShadowOffset",
+    "receiver_path": null
+   },
+   {
+    "receiver": "iconFolder",
+    "receiver_path": "ReplicatedStorage.Config.UI.MapIcons",
+    "receiver_kind": "config",
+    "wrapper_defined": "MapIconLayer:110",
+    "line": 144,
+    "in_function": "Layer.CreateIcon",
+    "via": "wrapper style()",
+    "name": null,
+    "name_expr": "options.Icon"
+   },
+   {
+    "receiver": "folder",
+    "receiver_kind": "config?",
+    "wrapper_defined": "MapIconLayer:56",
+    "line": 195,
+    "in_function": "Layer:_readConfig",
+    "via": "wrapper number()",
+    "receiver_path": null,
+    "name": "MobileMinimapIconSize"
+   },
+   {
+    "receiver": "folder",
+    "receiver_kind": "config?",
+    "wrapper_defined": "MapIconLayer:56",
+    "line": 195,
+    "in_function": "Layer:_readConfig",
+    "via": "wrapper number()",
+    "receiver_path": null,
+    "name": "MinimapIconSize"
+   },
+   {
+    "receiver": "folder",
+    "receiver_kind": "config?",
+    "wrapper_defined": "MapIconLayer:56",
+    "line": 197,
+    "in_function": "Layer:_readConfig",
+    "via": "wrapper number()",
+    "name": "EdgeInset",
+    "receiver_path": null
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "line": 198,
+    "in_function": "Layer:_readConfig",
+    "name": "PinIcons"
+   },
+   {
+    "receiver": "folder",
+    "receiver_kind": "config?",
+    "wrapper_defined": "MapIconLayer:56",
+    "line": 199,
+    "in_function": "Layer:_readConfig",
+    "via": "wrapper number()",
+    "name": "PinTipY",
+    "receiver_path": null
+   },
+   {
+    "receiver": "folder",
+    "receiver_kind": "config?",
+    "wrapper_defined": "MapIconLayer:56",
+    "line": 200,
+    "in_function": "Layer:_readConfig",
+    "via": "wrapper number()",
+    "name": "ShadowTransparency",
+    "receiver_path": null
+   },
+   {
+    "receiver": "folder",
+    "receiver_kind": "config?",
+    "wrapper_defined": "MapIconLayer:56",
+    "line": 200,
+    "in_function": "Layer:_readConfig",
+    "via": "wrapper number()",
+    "name": "ShadowOffset",
+    "receiver_path": null
+   },
+   {
+    "receiver": "folder",
+    "receiver_kind": "config?",
+    "wrapper_defined": "MapIconLayer:56",
+    "line": 201,
+    "in_function": "Layer:_readConfig",
+    "via": "wrapper number()",
+    "name": "Overscan",
+    "receiver_path": null
+   },
+   {
+    "receiver": "folder",
+    "receiver_kind": "config?",
+    "wrapper_defined": "MapIconLayer:56",
+    "line": 202,
+    "in_function": "Layer:_readConfig",
+    "via": "wrapper number()",
+    "name": "PulseSpeed",
+    "receiver_path": null
+   },
+   {
+    "receiver": "folder",
+    "receiver_kind": "config?",
+    "wrapper_defined": "MapIconLayer:56",
+    "line": 203,
+    "in_function": "Layer:_readConfig",
+    "via": "wrapper number()",
+    "name": "PulseAmount",
+    "receiver_path": null
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "line": 204,
+    "in_function": "Layer:_readConfig",
+    "name": null,
+    "name_expr": "self.Surface .. \"Enabled\""
+   },
+   {
+    "receiver": "iconFolder",
+    "receiver_path": "ReplicatedStorage.Config.UI.MapIcons",
+    "receiver_kind": "config",
+    "wrapper_defined": "MapIconLayer:110",
+    "line": 248,
+    "in_function": "Layer:_style",
+    "via": "wrapper style()",
+    "name": null,
+    "name_expr": "marker.Icon"
+   }
+  ],
+  "writes": [],
+  "listens": []
+ },
+ "player_attribute_writes": [],
+ "screenguis": {
+  "created": [],
+  "enabled_writes": [
+   {
+    "receiver": "self",
+    "receiver_path": null,
+    "value": {
+     "expr": "not (folder and folder:GetAttribute(self.Surface .. \"Enabled\") == false)"
+    },
+    "screengui_like": "unknown",
+    "reason": "",
+    "line": 204,
+    "in_function": "Layer:_readConfig"
+   }
+  ]
+ },
+ "names": {
+  "assigned": [
+   {
+    "via": "property",
+    "receiver": "root",
+    "class": "Frame",
+    "line": 64,
+    "in_function": "build",
+    "name": "MapIcon"
+   },
+   {
+    "via": "property",
+    "receiver": "shadow",
+    "class": "ImageLabel",
+    "line": 71,
+    "in_function": "build",
+    "name": "Shadow"
+   },
+   {
+    "via": "property",
+    "receiver": "image",
+    "class": "ImageLabel",
+    "line": 82,
+    "in_function": "build",
+    "name": "Image"
+   },
+   {
+    "via": "property",
+    "receiver": "glyph",
+    "class": "TextLabel",
+    "line": 90,
+    "in_function": "build",
+    "name": "Glyph"
+   },
+   {
+    "via": "property",
+    "receiver": "pulse",
+    "class": "UIScale",
+    "line": 102,
+    "in_function": "build",
+    "name": "Pulse"
+   },
+   {
+    "via": "property",
+    "receiver": "overlay",
+    "class": "Frame",
+    "line": 165,
+    "in_function": "Layer.new",
+    "name": "MapIcons"
+   },
+   {
+    "via": "property",
+    "receiver": "item.Root",
+    "class": null,
+    "line": 234,
+    "in_function": "Layer:_sync",
+    "name": null,
+    "name_pattern": "Icon_*",
+    "name_expr": "\"Icon_\" .. id"
+   }
+  ],
+  "looked_up": [
+   {
+    "method": "WaitForChild",
+    "receiver": "ReplicatedStorage",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 11,
+    "name": "Modules"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "ReplicatedStorage:WaitForChild(\"Modules\")",
+    "receiver_path": "ReplicatedStorage.Modules",
+    "root": "ReplicatedStorage",
+    "line": 11,
+    "name": "Game"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "ReplicatedStorage:WaitForChild(\"Modules\"):WaitForChild(\"Game\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game",
+    "root": "ReplicatedStorage",
+    "line": 11,
+    "name": "UI"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "uiModules",
+    "receiver_path": "ReplicatedStorage.Modules.Game.UI",
+    "root": "ReplicatedStorage",
+    "line": 12,
+    "name": "MapMarkers"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "uiModules",
+    "receiver_path": "ReplicatedStorage.Modules.Game.UI",
+    "root": "ReplicatedStorage",
+    "line": 13,
+    "name": "MapMath"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "ReplicatedStorage",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 50,
+    "in_function": "config",
+    "name": "Config"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "ui",
+    "receiver_path": "ReplicatedStorage.Config",
+    "root": "ReplicatedStorage",
+    "line": 51,
+    "in_function": "config",
+    "name": "UI"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "ui",
+    "receiver_path": "ReplicatedStorage.Config.UI",
+    "root": "ReplicatedStorage",
+    "line": 52,
+    "in_function": "config",
+    "name": "MapIconLayer"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "options.Container",
+    "receiver_path": null,
+    "root": null,
+    "line": 162,
+    "in_function": "Layer.new",
+    "name": "MapIcons"
+   }
+  ],
+  "text_compared": []
+ },
+ "run_service": {
+  "render_steps": [],
+  "connects": []
+ },
+ "context_actions": [],
+ "user_input_service": {
+  "connects": [],
+  "members_used": []
+ },
+ "audio": {
+  "bridge_calls": [],
+  "ui_audio_attributes": []
+ },
+ "config": {
+  "paths": [
+   {
+    "path": "ReplicatedStorage.Config",
+    "line": 50
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI",
+    "line": 51
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI.MapIcons",
+    "line": 144
+   }
+  ],
+  "attribute_reads": [
+   {
+    "receiver": "folder",
+    "receiver_kind": "config?",
+    "wrapper_defined": "MapIconLayer:56",
+    "line": 143,
+    "in_function": "Layer.CreateIcon",
+    "via": "wrapper number()",
+    "name": "ShadowTransparency",
+    "receiver_path": null,
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_kind": "config?",
+    "wrapper_defined": "MapIconLayer:56",
+    "line": 143,
+    "in_function": "Layer.CreateIcon",
+    "via": "wrapper number()",
+    "name": "ShadowOffset",
+    "receiver_path": null,
+    "access": "read"
+   },
+   {
+    "receiver": "iconFolder",
+    "receiver_path": "ReplicatedStorage.Config.UI.MapIcons",
+    "receiver_kind": "config",
+    "wrapper_defined": "MapIconLayer:110",
+    "line": 144,
+    "in_function": "Layer.CreateIcon",
+    "via": "wrapper style()",
+    "name": null,
+    "name_expr": "options.Icon",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_kind": "config?",
+    "wrapper_defined": "MapIconLayer:56",
+    "line": 195,
+    "in_function": "Layer:_readConfig",
+    "via": "wrapper number()",
+    "receiver_path": null,
+    "name": "MobileMinimapIconSize",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_kind": "config?",
+    "wrapper_defined": "MapIconLayer:56",
+    "line": 195,
+    "in_function": "Layer:_readConfig",
+    "via": "wrapper number()",
+    "receiver_path": null,
+    "name": "MinimapIconSize",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_kind": "config?",
+    "wrapper_defined": "MapIconLayer:56",
+    "line": 197,
+    "in_function": "Layer:_readConfig",
+    "via": "wrapper number()",
+    "name": "EdgeInset",
+    "receiver_path": null,
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "line": 198,
+    "in_function": "Layer:_readConfig",
+    "name": "PinIcons",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_kind": "config?",
+    "wrapper_defined": "MapIconLayer:56",
+    "line": 199,
+    "in_function": "Layer:_readConfig",
+    "via": "wrapper number()",
+    "name": "PinTipY",
+    "receiver_path": null,
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_kind": "config?",
+    "wrapper_defined": "MapIconLayer:56",
+    "line": 200,
+    "in_function": "Layer:_readConfig",
+    "via": "wrapper number()",
+    "name": "ShadowTransparency",
+    "receiver_path": null,
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_kind": "config?",
+    "wrapper_defined": "MapIconLayer:56",
+    "line": 200,
+    "in_function": "Layer:_readConfig",
+    "via": "wrapper number()",
+    "name": "ShadowOffset",
+    "receiver_path": null,
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_kind": "config?",
+    "wrapper_defined": "MapIconLayer:56",
+    "line": 201,
+    "in_function": "Layer:_readConfig",
+    "via": "wrapper number()",
+    "name": "Overscan",
+    "receiver_path": null,
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_kind": "config?",
+    "wrapper_defined": "MapIconLayer:56",
+    "line": 202,
+    "in_function": "Layer:_readConfig",
+    "via": "wrapper number()",
+    "name": "PulseSpeed",
+    "receiver_path": null,
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_kind": "config?",
+    "wrapper_defined": "MapIconLayer:56",
+    "line": 203,
+    "in_function": "Layer:_readConfig",
+    "via": "wrapper number()",
+    "name": "PulseAmount",
+    "receiver_path": null,
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "line": 204,
+    "in_function": "Layer:_readConfig",
+    "name": null,
+    "name_expr": "self.Surface .. \"Enabled\"",
+    "access": "read"
+   },
+   {
+    "receiver": "iconFolder",
+    "receiver_path": "ReplicatedStorage.Config.UI.MapIcons",
+    "receiver_kind": "config",
+    "wrapper_defined": "MapIconLayer:110",
+    "line": 248,
+    "in_function": "Layer:_style",
+    "via": "wrapper style()",
+    "name": null,
+    "name_expr": "marker.Icon",
+    "access": "read"
+   }
+  ],
+  "child_lookups": []
+ },
+ "startergui_core": [],
+ "gui_service": [],
+ "other_services": {},
+ "service_connects": [],
+ "proximity_prompts": [],
+ "instances_created_by_class": {
+  "Frame": 2,
+  "ImageLabel": 2,
+  "TextLabel": 1,
+  "UIScale": 1
+ },
+ "public_api": [
+  {
+   "name": "__index",
+   "kind": "field",
+   "line": 16,
+   "value": "Layer"
+  },
+  {
+   "name": "Glyph",
+   "kind": "function",
+   "params": [
+    "icon",
+    "kind"
+   ],
+   "line": 40
+  },
+  {
+   "name": "Colour",
+   "kind": "function",
+   "params": [
+    "theme",
+    "kind",
+    "icon",
+    "override"
+   ],
+   "line": 44
+  },
+  {
+   "name": "CreateIcon",
+   "kind": "function",
+   "params": [
+    "parent",
+    "options"
+   ],
+   "line": 139
+  },
+  {
+   "name": "new",
+   "kind": "function",
+   "params": [
+    "options"
+   ],
+   "line": 149
+  },
+  {
+   "name": "_readConfig",
+   "kind": "function",
+   "params": [],
+   "line": 186
+  },
+  {
+   "name": "SetIconSize",
+   "kind": "function",
+   "params": [
+    "size"
+   ],
+   "line": 207
+  },
+  {
+   "name": "_release",
+   "kind": "function",
+   "params": [
+    "id"
+   ],
+   "line": 213
+  },
+  {
+   "name": "_sync",
+   "kind": "function",
+   "params": [],
+   "line": 221
+  },
+  {
+   "name": "_style",
+   "kind": "function",
+   "params": [
+    "record"
+   ],
+   "line": 246
+  },
+  {
+   "name": "SetVisible",
+   "kind": "function",
+   "params": [
+    "visible"
+   ],
+   "line": 259
+  },
+  {
+   "name": "Step",
+   "kind": "function",
+   "params": [
+    "_dt",
+    "state"
+   ],
+   "line": 268
+  },
+  {
+   "name": "HitTest",
+   "kind": "function",
+   "params": [
+    "x",
+    "y",
+    "radius"
+   ],
+   "line": 323
+  },
+  {
+   "name": "Destroy",
+   "kind": "function",
+   "params": [],
+   "line": 327
+  }
+ ],
+ "unresolved": [
+  {
+   "category": "attribute_reads",
+   "field": "name",
+   "line": 144,
+   "detail": "not a literal: options.Icon"
+  },
+  {
+   "category": "attribute_reads",
+   "field": "name",
+   "line": 204,
+   "detail": "not a literal: self.Surface .. \"Enabled\""
+  },
+  {
+   "category": "names_assigned",
+   "field": "name",
+   "line": 234,
+   "detail": "name built at run time: \"Icon_\" .. id"
+  },
+  {
+   "category": "attribute_reads",
+   "field": "name",
+   "line": 248,
+   "detail": "not a literal: marker.Icon"
+  }
+ ],
+ "contract_file": "MapIconLayer.json"
+}

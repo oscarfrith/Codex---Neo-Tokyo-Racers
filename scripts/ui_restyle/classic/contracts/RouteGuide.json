@@ -1,0 +1,686 @@
+{
+ "script": "ReplicatedStorage.Modules.Game.UI.RouteGuide",
+ "class": "ModuleScript",
+ "source_file": "classic/sources/ReplicatedStorage.Modules.Game.UI.RouteGuide.lua",
+ "source_lines": 412,
+ "included_because": [
+  "under ReplicatedStorage.Modules.Game.UI"
+ ],
+ "requires": [
+  {
+   "expr": "modules:WaitForChild(\"Core\"):WaitForChild(\"Signal\")",
+   "as": "Signal",
+   "line": 8,
+   "target": "ReplicatedStorage.Modules.Core.Signal"
+  },
+  {
+   "expr": "modules:WaitForChild(\"Game\"):WaitForChild(\"World\"):WaitForChild(\"RoadRouting\")",
+   "as": "RoadRouting",
+   "line": 9,
+   "target": "ReplicatedStorage.Modules.Game.World.RoadRouting"
+  },
+  {
+   "expr": "modules.Game.World:WaitForChild(\"RoadGraphData\")",
+   "as": "graphData",
+   "line": 10,
+   "target": "ReplicatedStorage.Modules.Game.World.RoadGraphData"
+  }
+ ],
+ "remotes": {
+  "calls": [],
+  "listens": []
+ },
+ "bindables": {
+  "fires": [],
+  "connects": [],
+  "invokes": [],
+  "handlers": [],
+  "created": [],
+  "module_signal_fires": [
+   {
+    "receiver": "RouteGuide.Changed",
+    "line": 57,
+    "in_function": "choose"
+   },
+   {
+    "receiver": "RouteGuide.Arrived",
+    "line": 151,
+    "in_function": "RouteGuide.Update"
+   }
+  ]
+ },
+ "attributes": {
+  "reads": [
+   {
+    "receiver": "item",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "line": 98,
+    "in_function": "RouteGuide.Destinations",
+    "name": "Position"
+   },
+   {
+    "receiver": "item",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "line": 102,
+    "in_function": "RouteGuide.Destinations",
+    "name": "DisplayName"
+   },
+   {
+    "receiver": "item",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "line": 103,
+    "in_function": "RouteGuide.Destinations",
+    "name": "Kind"
+   },
+   {
+    "receiver": "item",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "line": 104,
+    "in_function": "RouteGuide.Destinations",
+    "name": "RouteId"
+   },
+   {
+    "receiver": "item",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "line": 106,
+    "in_function": "RouteGuide.Destinations",
+    "name": "Order"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.RouteGuide",
+    "receiver_kind": "config",
+    "wrapper_defined": "RouteGuide:18",
+    "line": 137,
+    "in_function": "plan",
+    "via": "wrapper number()",
+    "name": "CornerRadius"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.RouteGuide",
+    "receiver_kind": "config",
+    "line": 145,
+    "in_function": "RouteGuide.Update",
+    "name": "Enabled"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.RouteGuide",
+    "receiver_kind": "config",
+    "wrapper_defined": "RouteGuide:18",
+    "line": 147,
+    "in_function": "RouteGuide.Update",
+    "via": "wrapper number()",
+    "name": "ArriveStuds"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.RouteGuide",
+    "receiver_kind": "config",
+    "wrapper_defined": "RouteGuide:18",
+    "line": 155,
+    "in_function": "RouteGuide.Update",
+    "via": "wrapper number()",
+    "name": "ReplanMinSeconds"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.RouteGuide",
+    "receiver_kind": "config",
+    "wrapper_defined": "RouteGuide:18",
+    "line": 158,
+    "in_function": "RouteGuide.Update",
+    "via": "wrapper number()",
+    "name": "ProgressHz"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.RouteGuide",
+    "receiver_kind": "config",
+    "wrapper_defined": "RouteGuide:18",
+    "line": 162,
+    "in_function": "RouteGuide.Update",
+    "via": "wrapper number()",
+    "name": "OffRouteStuds"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.RouteGuide",
+    "receiver_kind": "config",
+    "wrapper_defined": "RouteGuide:18",
+    "line": 164,
+    "in_function": "RouteGuide.Update",
+    "via": "wrapper number()",
+    "name": "OffRouteSeconds"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.RouteGuide",
+    "receiver_kind": "config",
+    "wrapper_defined": "RouteGuide:18",
+    "line": 164,
+    "in_function": "RouteGuide.Update",
+    "via": "wrapper number()",
+    "name": "ReplanMinSeconds"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.RouteGuide",
+    "receiver_kind": "config",
+    "wrapper_defined": "RouteGuide:24",
+    "line": 255,
+    "in_function": "MapRenderer:_colour",
+    "via": "wrapper colour()",
+    "name": "ActivityColour"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.RouteGuide",
+    "receiver_kind": "config",
+    "wrapper_defined": "RouteGuide:24",
+    "line": 256,
+    "in_function": "MapRenderer:_colour",
+    "via": "wrapper colour()",
+    "name": "LineColour"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.RouteGuide",
+    "receiver_kind": "config",
+    "line": 295,
+    "in_function": "MapRenderer:Step",
+    "name": "Enabled"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.RouteGuide",
+    "receiver_kind": "config",
+    "wrapper_defined": "RouteGuide:18",
+    "line": 316,
+    "in_function": "MapRenderer:Step",
+    "via": "wrapper number()",
+    "name": "LineWidth"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.RouteGuide",
+    "receiver_kind": "config",
+    "wrapper_defined": "RouteGuide:18",
+    "line": 317,
+    "in_function": "MapRenderer:Step",
+    "via": "wrapper number()",
+    "name": "OutlineWidth"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.RouteGuide",
+    "receiver_kind": "config",
+    "line": 393,
+    "in_function": "MapRenderer:Step",
+    "name": "ChipEnabled"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.RouteGuide",
+    "receiver_kind": "config",
+    "wrapper_defined": "RouteGuide:18",
+    "line": 394,
+    "in_function": "MapRenderer:Step",
+    "via": "wrapper number()",
+    "name": "StudsPerMile"
+   }
+  ],
+  "writes": [],
+  "listens": []
+ },
+ "player_attribute_writes": [],
+ "screenguis": {
+  "created": [],
+  "enabled_writes": []
+ },
+ "names": {
+  "assigned": [
+   {
+    "via": "property",
+    "receiver": "layer",
+    "class": "Frame",
+    "line": 189,
+    "in_function": "RouteGuide.newMapRenderer",
+    "name": "RouteGuide"
+   },
+   {
+    "via": "property",
+    "receiver": "blip",
+    "class": "Frame",
+    "line": 199,
+    "in_function": "RouteGuide.newMapRenderer",
+    "name": "DestinationBlip"
+   },
+   {
+    "via": "property",
+    "receiver": "pip",
+    "class": "Frame",
+    "line": 212,
+    "in_function": "RouteGuide.newMapRenderer",
+    "name": "RouteEdgePip"
+   },
+   {
+    "via": "property",
+    "receiver": "chip",
+    "class": "TextLabel",
+    "line": 227,
+    "in_function": "RouteGuide.newMapRenderer",
+    "name": "RouteChip"
+   },
+   {
+    "via": "property",
+    "receiver": "outline",
+    "class": "Frame",
+    "line": 263,
+    "in_function": "MapRenderer:_segment",
+    "name": null,
+    "name_pattern": "RouteOutline*",
+    "name_expr": "\"RouteOutline\" .. index"
+   },
+   {
+    "via": "property",
+    "receiver": "line",
+    "class": "Frame",
+    "line": 269,
+    "in_function": "MapRenderer:_segment",
+    "name": null,
+    "name_pattern": "RouteLine*",
+    "name_expr": "\"RouteLine\" .. index"
+   }
+  ],
+  "looked_up": [
+   {
+    "method": "WaitForChild",
+    "receiver": "ReplicatedStorage",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 7,
+    "name": "Modules"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "modules",
+    "receiver_path": "ReplicatedStorage.Modules",
+    "root": "ReplicatedStorage",
+    "line": 8,
+    "name": "Core"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "modules:WaitForChild(\"Core\")",
+    "receiver_path": "ReplicatedStorage.Modules.Core",
+    "root": "ReplicatedStorage",
+    "line": 8,
+    "name": "Signal"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "modules",
+    "receiver_path": "ReplicatedStorage.Modules",
+    "root": "ReplicatedStorage",
+    "line": 9,
+    "name": "Game"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "modules:WaitForChild(\"Game\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game",
+    "root": "ReplicatedStorage",
+    "line": 9,
+    "name": "World"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "modules:WaitForChild(\"Game\"):WaitForChild(\"World\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game.World",
+    "root": "ReplicatedStorage",
+    "line": 9,
+    "name": "RoadRouting"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "modules.Game.World",
+    "receiver_path": "ReplicatedStorage.Modules.Game.World",
+    "root": "ReplicatedStorage",
+    "line": 10,
+    "name": "RoadGraphData"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "ReplicatedStorage",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 11,
+    "name": "Config"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "ReplicatedStorage:WaitForChild(\"Config\")",
+    "receiver_path": "ReplicatedStorage.Config",
+    "root": "ReplicatedStorage",
+    "line": 11,
+    "name": "UI"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "ReplicatedStorage:WaitForChild(\"Config\"):WaitForChild(\"UI\")",
+    "receiver_path": "ReplicatedStorage.Config.UI",
+    "root": "ReplicatedStorage",
+    "line": 11,
+    "name": "RouteGuide"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.RouteGuide",
+    "root": "ReplicatedStorage",
+    "line": 96,
+    "in_function": "RouteGuide.Destinations",
+    "name": "Destinations"
+   }
+  ],
+  "text_compared": []
+ },
+ "run_service": {
+  "render_steps": [],
+  "connects": []
+ },
+ "context_actions": [],
+ "user_input_service": {
+  "connects": [],
+  "members_used": []
+ },
+ "audio": {
+  "bridge_calls": [],
+  "ui_audio_attributes": []
+ },
+ "config": {
+  "paths": [
+   {
+    "path": "ReplicatedStorage.Config",
+    "line": 11
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI",
+    "line": 11
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI.RouteGuide",
+    "line": 11
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI.RouteGuide.Destinations",
+    "line": 96
+   }
+  ],
+  "attribute_reads": [
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.RouteGuide",
+    "receiver_kind": "config",
+    "wrapper_defined": "RouteGuide:18",
+    "line": 137,
+    "in_function": "plan",
+    "via": "wrapper number()",
+    "name": "CornerRadius",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.RouteGuide",
+    "receiver_kind": "config",
+    "line": 145,
+    "in_function": "RouteGuide.Update",
+    "name": "Enabled",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.RouteGuide",
+    "receiver_kind": "config",
+    "wrapper_defined": "RouteGuide:18",
+    "line": 147,
+    "in_function": "RouteGuide.Update",
+    "via": "wrapper number()",
+    "name": "ArriveStuds",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.RouteGuide",
+    "receiver_kind": "config",
+    "wrapper_defined": "RouteGuide:18",
+    "line": 155,
+    "in_function": "RouteGuide.Update",
+    "via": "wrapper number()",
+    "name": "ReplanMinSeconds",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.RouteGuide",
+    "receiver_kind": "config",
+    "wrapper_defined": "RouteGuide:18",
+    "line": 158,
+    "in_function": "RouteGuide.Update",
+    "via": "wrapper number()",
+    "name": "ProgressHz",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.RouteGuide",
+    "receiver_kind": "config",
+    "wrapper_defined": "RouteGuide:18",
+    "line": 162,
+    "in_function": "RouteGuide.Update",
+    "via": "wrapper number()",
+    "name": "OffRouteStuds",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.RouteGuide",
+    "receiver_kind": "config",
+    "wrapper_defined": "RouteGuide:18",
+    "line": 164,
+    "in_function": "RouteGuide.Update",
+    "via": "wrapper number()",
+    "name": "OffRouteSeconds",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.RouteGuide",
+    "receiver_kind": "config",
+    "wrapper_defined": "RouteGuide:18",
+    "line": 164,
+    "in_function": "RouteGuide.Update",
+    "via": "wrapper number()",
+    "name": "ReplanMinSeconds",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.RouteGuide",
+    "receiver_kind": "config",
+    "wrapper_defined": "RouteGuide:24",
+    "line": 255,
+    "in_function": "MapRenderer:_colour",
+    "via": "wrapper colour()",
+    "name": "ActivityColour",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.RouteGuide",
+    "receiver_kind": "config",
+    "wrapper_defined": "RouteGuide:24",
+    "line": 256,
+    "in_function": "MapRenderer:_colour",
+    "via": "wrapper colour()",
+    "name": "LineColour",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.RouteGuide",
+    "receiver_kind": "config",
+    "line": 295,
+    "in_function": "MapRenderer:Step",
+    "name": "Enabled",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.RouteGuide",
+    "receiver_kind": "config",
+    "wrapper_defined": "RouteGuide:18",
+    "line": 316,
+    "in_function": "MapRenderer:Step",
+    "via": "wrapper number()",
+    "name": "LineWidth",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.RouteGuide",
+    "receiver_kind": "config",
+    "wrapper_defined": "RouteGuide:18",
+    "line": 317,
+    "in_function": "MapRenderer:Step",
+    "via": "wrapper number()",
+    "name": "OutlineWidth",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.RouteGuide",
+    "receiver_kind": "config",
+    "line": 393,
+    "in_function": "MapRenderer:Step",
+    "name": "ChipEnabled",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.UI.RouteGuide",
+    "receiver_kind": "config",
+    "wrapper_defined": "RouteGuide:18",
+    "line": 394,
+    "in_function": "MapRenderer:Step",
+    "via": "wrapper number()",
+    "name": "StudsPerMile",
+    "access": "read"
+   }
+  ],
+  "child_lookups": []
+ },
+ "startergui_core": [],
+ "gui_service": [],
+ "other_services": {},
+ "service_connects": [],
+ "proximity_prompts": [],
+ "instances_created_by_class": {
+  "Frame": 5,
+  "TextLabel": 1,
+  "UICorner": 2,
+  "UIPadding": 1,
+  "UIStroke": 3
+ },
+ "public_api": [
+  {
+   "name": "Changed",
+   "kind": "field",
+   "line": 14,
+   "value": "Signal.new()"
+  },
+  {
+   "name": "Arrived",
+   "kind": "field",
+   "line": 15,
+   "value": "Signal.new()"
+  },
+  {
+   "name": "SetDestination",
+   "kind": "function",
+   "params": [
+    "sourceId",
+    "position",
+    "options"
+   ],
+   "line": 63
+  },
+  {
+   "name": "Clear",
+   "kind": "function",
+   "params": [
+    "sourceId"
+   ],
+   "line": 80
+  },
+  {
+   "name": "GetActive",
+   "kind": "function",
+   "params": [],
+   "line": 89
+  },
+  {
+   "name": "Destinations",
+   "kind": "function",
+   "params": [],
+   "line": 94
+  },
+  {
+   "name": "SetDestinationById",
+   "kind": "function",
+   "params": [
+    "id",
+    "sourceId"
+   ],
+   "line": 117
+  },
+  {
+   "name": "Update",
+   "kind": "function",
+   "params": [
+    "position"
+   ],
+   "line": 144
+  },
+  {
+   "name": "newMapRenderer",
+   "kind": "function",
+   "params": [
+    "options"
+   ],
+   "line": 178
+  }
+ ],
+ "unresolved": [
+  {
+   "category": "names_assigned",
+   "field": "name",
+   "line": 263,
+   "detail": "name built at run time: \"RouteOutline\" .. index"
+  },
+  {
+   "category": "names_assigned",
+   "field": "name",
+   "line": 269,
+   "detail": "name built at run time: \"RouteLine\" .. index"
+  }
+ ],
+ "contract_file": "RouteGuide.json"
+}

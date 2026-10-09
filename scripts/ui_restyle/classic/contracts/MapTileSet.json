@@ -1,0 +1,244 @@
+{
+ "script": "ReplicatedStorage.Modules.Game.UI.MapTileSet",
+ "class": "ModuleScript",
+ "source_file": "classic/sources/ReplicatedStorage.Modules.Game.UI.MapTileSet.lua",
+ "source_lines": 88,
+ "included_because": [
+  "under ReplicatedStorage.Modules.Game.UI"
+ ],
+ "requires": [
+  {
+   "expr": "ReplicatedStorage:WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"UI\"):WaitForChild(\"MapMath\")",
+   "as": "MapMath",
+   "line": 10,
+   "target": "ReplicatedStorage.Modules.Game.UI.MapMath"
+  }
+ ],
+ "remotes": {
+  "calls": [],
+  "listens": []
+ },
+ "bindables": {
+  "fires": [],
+  "connects": [],
+  "invokes": [],
+  "handlers": [],
+  "created": [],
+  "module_signal_fires": []
+ },
+ "attributes": {
+  "reads": [],
+  "writes": [],
+  "listens": []
+ },
+ "player_attribute_writes": [],
+ "screenguis": {
+  "created": [],
+  "enabled_writes": []
+ },
+ "names": {
+  "assigned": [
+   {
+    "via": "property",
+    "receiver": "image",
+    "class": "ImageLabel",
+    "line": 53,
+    "in_function": "TileSet.new",
+    "name": null,
+    "name_expr": "info.Source == \"Legacy\" and MapMath.LegacyTiles[row][col] or (\"MapTileR\" .. row .. \"C\" .. col)"
+   }
+  ],
+  "looked_up": [
+   {
+    "method": "WaitForChild",
+    "receiver": "ReplicatedStorage",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 10,
+    "name": "Modules"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "ReplicatedStorage:WaitForChild(\"Modules\")",
+    "receiver_path": "ReplicatedStorage.Modules",
+    "root": "ReplicatedStorage",
+    "line": 10,
+    "name": "Game"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "ReplicatedStorage:WaitForChild(\"Modules\"):WaitForChild(\"Game\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game",
+    "root": "ReplicatedStorage",
+    "line": 10,
+    "name": "UI"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "ReplicatedStorage:WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"UI\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game.UI",
+    "root": "ReplicatedStorage",
+    "line": 10,
+    "name": "MapMath"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "ReplicatedStorage",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 16,
+    "in_function": "folders",
+    "name": "Config"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config",
+    "root": "ReplicatedStorage",
+    "line": 17,
+    "in_function": "folders",
+    "name": "UI"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "ui",
+    "receiver_path": "ReplicatedStorage.Config.UI",
+    "root": "ReplicatedStorage",
+    "line": 18,
+    "in_function": "folders",
+    "name": "MapTiles"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "ui",
+    "receiver_path": "ReplicatedStorage.Config.UI",
+    "root": "ReplicatedStorage",
+    "line": 19,
+    "in_function": "folders",
+    "name": "DesktopFreeRoamHud"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "hud",
+    "receiver_path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud",
+    "root": "ReplicatedStorage",
+    "line": 20,
+    "in_function": "folders",
+    "name": "Assets"
+   }
+  ],
+  "text_compared": []
+ },
+ "run_service": {
+  "render_steps": [],
+  "connects": []
+ },
+ "context_actions": [],
+ "user_input_service": {
+  "connects": [],
+  "members_used": []
+ },
+ "audio": {
+  "bridge_calls": [],
+  "ui_audio_attributes": []
+ },
+ "config": {
+  "paths": [
+   {
+    "path": "ReplicatedStorage.Config",
+    "line": 16
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI",
+    "line": 17
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud",
+    "line": 19
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI.MapTiles",
+    "line": 18
+   }
+  ],
+  "attribute_reads": [],
+  "child_lookups": []
+ },
+ "startergui_core": [],
+ "gui_service": [],
+ "other_services": {},
+ "service_connects": [],
+ "proximity_prompts": [],
+ "instances_created_by_class": {
+  "ImageLabel": 1
+ },
+ "public_api": [
+  {
+   "name": "__index",
+   "kind": "field",
+   "line": 13,
+   "value": "TileSet"
+  },
+  {
+   "name": "Resolve",
+   "kind": "function",
+   "params": [],
+   "line": 30
+  },
+  {
+   "name": "new",
+   "kind": "function",
+   "params": [
+    "options"
+   ],
+   "line": 39
+  },
+  {
+   "name": "Cull",
+   "kind": "function",
+   "params": [
+    "uMin",
+    "uMax",
+    "vMin",
+    "vMax"
+   ],
+   "line": 69
+  },
+  {
+   "name": "ShowAll",
+   "kind": "function",
+   "params": [],
+   "line": 76
+  },
+  {
+   "name": "Destroy",
+   "kind": "function",
+   "params": [],
+   "line": 82
+  }
+ ],
+ "unresolved": [
+  {
+   "category": "attribute_reads",
+   "line": 33,
+   "detail": "name comes from parameter of anonymous function(); no call site found statically"
+  },
+  {
+   "category": "attribute_reads",
+   "line": 34,
+   "detail": "name comes from parameter of anonymous function(); no call site found statically"
+  },
+  {
+   "category": "lookups",
+   "line": 34,
+   "detail": "name comes from parameter of anonymous function(); no call site found statically"
+  },
+  {
+   "category": "names_assigned",
+   "field": "name",
+   "line": 53,
+   "detail": "not a literal: info.Source == \"Legacy\" and MapMath.LegacyTiles[row][col] or (\"MapTileR\" .. row .. \"C\" .. col)"
+  }
+ ],
+ "contract_file": "MapTileSet.json"
+}

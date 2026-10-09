@@ -1,0 +1,6784 @@
+{
+ "record": {
+  "hashOf": "canonical JSON of nodes (sorted keys, no spaces, ASCII); Python-side record only",
+  "mode": "Edit",
+  "parent": "ReplicatedStorage.Config",
+  "place": "Space Racers v3",
+  "placeId": 93959280828322,
+  "taken": "2026-10-09"
+ },
+ "roots": {
+  "Development": {
+   "attributeCount": 10,
+   "hash": {
+    "djb2": 633633257,
+    "fnv1a32": 2537166891
+   },
+   "nodeCount": 3,
+   "nodes": {
+    "Development": {
+     "attributes": {},
+     "class": "Folder"
+    },
+    "Development.CashGrant": {
+     "attributes": {
+      "AllowedUserName": {
+       "t": "string",
+       "v": "LucidityStudios"
+      },
+      "Amount": {
+       "t": "number",
+       "v": 1000000
+      },
+      "CooldownSeconds": {
+       "t": "number",
+       "v": 0.5
+      },
+      "Enabled": {
+       "t": "boolean",
+       "v": true
+      },
+      "KeyCode": {
+       "t": "string",
+       "v": "Equals"
+      },
+      "StudioOnly": {
+       "t": "boolean",
+       "v": true
+      }
+     },
+     "class": "Folder"
+    },
+    "Development.ClientTools": {
+     "attributes": {
+      "LightingPreviewEnabled": {
+       "t": "boolean",
+       "v": false
+      },
+      "TrailerModeEnabled": {
+       "t": "boolean",
+       "v": false
+      },
+      "TrailerShotEnabled": {
+       "t": "boolean",
+       "v": false
+      },
+      "TrailerVehicleCameraEnabled": {
+       "t": "boolean",
+       "v": false
+      }
+     },
+     "class": "Configuration"
+    }
+   },
+   "rawKey": "clientTools",
+   "valueCount": 0
+  },
+  "Player": {
+   "attributeCount": 95,
+   "hash": {
+    "djb2": 46122830,
+    "fnv1a32": 1285882738
+   },
+   "nodeCount": 3,
+   "nodes": {
+    "Player": {
+     "attributes": {},
+     "class": "Folder"
+    },
+    "Player.Movement": {
+     "attributes": {
+      "AnimationId": {
+       "t": "string",
+       "v": "rbxassetid://0"
+      },
+      "Debug": {
+       "t": "boolean",
+       "v": false
+      },
+      "Enabled": {
+       "t": "boolean",
+       "v": true
+      },
+      "FovTweenSeconds": {
+       "t": "number",
+       "v": 0.35
+      },
+      "MinimumMoveSpeedForAnimation": {
+       "t": "number",
+       "v": 1
+      },
+      "MobileAutoSprintEnabled": {
+       "t": "boolean",
+       "v": true
+      },
+      "MobileSprintMoveThreshold": {
+       "t": "number",
+       "v": 0.85
+      },
+      "NormalWalkSpeed": {
+       "t": "number",
+       "v": 16
+      },
+      "SprintFieldOfView": {
+       "t": "number",
+       "v": 80
+      },
+      "SprintFovEnabled": {
+       "t": "boolean",
+       "v": true
+      },
+      "SprintKey": {
+       "t": "string",
+       "v": "LeftShift"
+      },
+      "SprintWalkSpeed": {
+       "t": "number",
+       "v": 32
+      }
+     },
+     "class": "Folder"
+    },
+    "Player.Onboarding": {
+     "attributes": {
+      "CalloutMarginPixels": {
+       "t": "number",
+       "v": 12
+      },
+      "DimTransparency": {
+       "t": "number",
+       "v": 0.35
+      },
+      "EdgeOverscanPixels": {
+       "t": "number",
+       "v": 8
+      },
+      "GuideTrailArrowLength": {
+       "t": "number",
+       "v": 0
+      },
+      "GuideTrailArrowScale": {
+       "t": "number",
+       "v": 1
+      },
+      "GuideTrailArrowWidth": {
+       "t": "number",
+       "v": 0
+      },
+      "GuideTrailBeamCoreTransparency": {
+       "t": "number",
+       "v": 0.8
+      },
+      "GuideTrailBeamCoreWidth": {
+       "t": "number",
+       "v": 0.6
+      },
+      "GuideTrailBeamEnabled": {
+       "t": "boolean",
+       "v": true
+      },
+      "GuideTrailBeamStartHeightOffset": {
+       "t": "number",
+       "v": -1
+      },
+      "GuideTrailBeamTransparency": {
+       "t": "number",
+       "v": 0.9
+      },
+      "GuideTrailBeamWidth": {
+       "t": "number",
+       "v": 3
+      },
+      "GuideTrailChevronBeamEnabled": {
+       "t": "boolean",
+       "v": true
+      },
+      "GuideTrailChevronBrightness": {
+       "t": "number",
+       "v": 2
+      },
+      "GuideTrailChevronTexture": {
+       "t": "string",
+       "v": "103838921533168"
+      },
+      "GuideTrailChevronTextureLength": {
+       "t": "number",
+       "v": 5
+      },
+      "GuideTrailChevronTextureSpeed": {
+       "t": "number",
+       "v": 1.5
+      },
+      "GuideTrailChevronTransparency": {
+       "t": "number",
+       "v": 0.08
+      },
+      "GuideTrailChevronWidth": {
+       "t": "number",
+       "v": 2.5
+      },
+      "GuideTrailChevronZOffset": {
+       "t": "number",
+       "v": 0.05
+      },
+      "GuideTrailEndOffset": {
+       "t": "number",
+       "v": 0
+      },
+      "GuideTrailHeadLength": {
+       "t": "number",
+       "v": 3
+      },
+      "GuideTrailHeadWidth": {
+       "t": "number",
+       "v": 1
+      },
+      "GuideTrailHeightOffset": {
+       "t": "number",
+       "v": 1.8
+      },
+      "GuideTrailMaximumArrows": {
+       "t": "number",
+       "v": 30
+      },
+      "GuideTrailMinimumDistance": {
+       "t": "number",
+       "v": 4
+      },
+      "GuideTrailPartArrowsEnabled": {
+       "t": "boolean",
+       "v": false
+      },
+      "GuideTrailPulseAmplitude": {
+       "t": "number",
+       "v": 0.4
+      },
+      "GuideTrailPulseSpeed": {
+       "t": "number",
+       "v": 2
+      },
+      "GuideTrailShaftEnabled": {
+       "t": "boolean",
+       "v": true
+      },
+      "GuideTrailShaftLength": {
+       "t": "number",
+       "v": 2.6
+      },
+      "GuideTrailSpacing": {
+       "t": "number",
+       "v": 9
+      },
+      "GuideTrailStartOffset": {
+       "t": "number",
+       "v": 0
+      },
+      "GuideTrailTransparency": {
+       "t": "number",
+       "v": 0.5
+      },
+      "HighlightPaddingPixels": {
+       "t": "number",
+       "v": 8
+      },
+      "LandscapePhoneScale": {
+       "t": "number",
+       "v": 0.6
+      },
+      "LandscapePhoneShortSidePixels": {
+       "t": "number",
+       "v": 650
+      },
+      "LandscapePhoneShortcutGapPixels": {
+       "t": "number",
+       "v": 2
+      },
+      "LandscapePhoneShortcutWidthRatio": {
+       "t": "number",
+       "v": 0.34
+      },
+      "LandscapePhoneTextWidthRatio": {
+       "t": "number",
+       "v": 0.42
+      },
+      "MaximumTextSize": {
+       "t": "number",
+       "v": 22
+      },
+      "MinimumTextSize": {
+       "t": "number",
+       "v": 14
+      },
+      "NextGradientTransparency": {
+       "t": "number",
+       "v": 0.62
+      },
+      "ObjectiveCardGapPixels": {
+       "t": "number",
+       "v": 8
+      },
+      "ObjectiveCardHeightPixels": {
+       "t": "number",
+       "v": 98
+      },
+      "ObjectiveCardPaddingPixels": {
+       "t": "number",
+       "v": 16
+      },
+      "ObjectiveCardWidthPixels": {
+       "t": "number",
+       "v": 350
+      },
+      "ObjectiveDesktopTextMultiplier": {
+       "t": "number",
+       "v": 1.5
+      },
+      "ObjectiveEnterSeconds": {
+       "t": "number",
+       "v": 0.55
+      },
+      "ObjectiveExitHoldSeconds": {
+       "t": "number",
+       "v": 0.15
+      },
+      "ObjectiveExitSeconds": {
+       "t": "number",
+       "v": 0.4
+      },
+      "ObjectiveGlowSafePaddingPixels": {
+       "t": "number",
+       "v": 6
+      },
+      "ObjectiveHintTextSize": {
+       "t": "number",
+       "v": 10
+      },
+      "ObjectiveNumberTextSize": {
+       "t": "number",
+       "v": 10
+      },
+      "ObjectiveOffscreenPaddingPixels": {
+       "t": "number",
+       "v": 24
+      },
+      "ObjectivePhoneBoostGapPixels": {
+       "t": "number",
+       "v": 4
+      },
+      "ObjectivePhoneCardGapPixels": {
+       "t": "number",
+       "v": 4
+      },
+      "ObjectivePhoneCardHeightPixels": {
+       "t": "number",
+       "v": 48
+      },
+      "ObjectivePhoneFallbackTopPixels": {
+       "t": "number",
+       "v": 94
+      },
+      "ObjectivePhoneMinimumCardHeightPixels": {
+       "t": "number",
+       "v": 46
+      },
+      "ObjectivePhoneTopGapPixels": {
+       "t": "number",
+       "v": 2
+      },
+      "ObjectivePhoneTopRowClearancePixels": {
+       "t": "number",
+       "v": 14
+      },
+      "ObjectiveProgressTextSize": {
+       "t": "number",
+       "v": 9
+      },
+      "ObjectiveReflowSeconds": {
+       "t": "number",
+       "v": 0.45
+      },
+      "ObjectiveStaggerSeconds": {
+       "t": "number",
+       "v": 0.1
+      },
+      "ObjectiveTitleTextSize": {
+       "t": "number",
+       "v": 13
+      },
+      "PageAbandonSeconds": {
+       "t": "number",
+       "v": 3
+      },
+      "PageLossGraceSeconds": {
+       "t": "number",
+       "v": 0.8
+      },
+      "ShadeOverlapPixels": {
+       "t": "number",
+       "v": 0
+      },
+      "ShortcutCalloutGapPixels": {
+       "t": "number",
+       "v": 7
+      },
+      "StudioReplayEveryPlay": {
+       "t": "boolean",
+       "v": false
+      },
+      "StudioVehicleSandboxCash": {
+       "t": "number",
+       "v": 1000000
+      },
+      "StudioVehicleSandboxEveryPlay": {
+       "t": "boolean",
+       "v": false
+      },
+      "TargetStabilityFrames": {
+       "t": "number",
+       "v": 2
+      },
+      "TutorialDesktopMinimumScale": {
+       "t": "number",
+       "v": 0.68
+      },
+      "TutorialDesktopMinimumTextSize": {
+       "t": "number",
+       "v": 11
+      },
+      "TutorialGold": {
+       "t": "Color3",
+       "v": [
+        1.0,
+        0.7686274647712708,
+        0.25882354378700256
+       ]
+      },
+      "TutorialMaximumScale": {
+       "t": "number",
+       "v": 1.08
+      },
+      "TutorialMaximumTextWidth": {
+       "t": "number",
+       "v": 520
+      },
+      "TutorialMinimumScale": {
+       "t": "number",
+       "v": 0.38
+      },
+      "TutorialPhoneMinimumTextSize": {
+       "t": "number",
+       "v": 9
+      },
+      "TutorialStackedWidthPixels": {
+       "t": "number",
+       "v": 560
+      },
+      "TutorialTextSize": {
+       "t": "number",
+       "v": 14
+      }
+     },
+     "class": "Folder"
+    }
+   },
+   "rawKey": "onboarding",
+   "valueCount": 0
+  },
+  "UI": {
+   "attributeCount": 666,
+   "hash": {
+    "djb2": 2449610855,
+    "fnv1a32": 2690844907
+   },
+   "nodeCount": 444,
+   "nodes": {
+    "UI": {
+     "attributes": {},
+     "class": "Folder"
+    },
+    "UI.DesktopFreeRoamHud": {
+     "attributes": {},
+     "class": "Folder"
+    },
+    "UI.DesktopFreeRoamHud.Assets": {
+     "attributes": {},
+     "class": "Folder"
+    },
+    "UI.DesktopFreeRoamHud.Assets.BoostIcon": {
+     "attributes": {},
+     "class": "StringValue",
+     "value": {
+      "t": "string",
+      "v": "rbxassetid://127668984476658"
+     }
+    },
+    "UI.DesktopFreeRoamHud.Assets.CarIcon": {
+     "attributes": {},
+     "class": "StringValue",
+     "value": {
+      "t": "string",
+      "v": "rbxassetid://88860760495187"
+     }
+    },
+    "UI.DesktopFreeRoamHud.Assets.DealershipIcon": {
+     "attributes": {},
+     "class": "StringValue",
+     "value": {
+      "t": "string",
+      "v": "rbxassetid://110010902394406"
+     }
+    },
+    "UI.DesktopFreeRoamHud.Assets.GarageIcon": {
+     "attributes": {},
+     "class": "StringValue",
+     "value": {
+      "t": "string",
+      "v": "rbxassetid://139219537977577"
+     }
+    },
+    "UI.DesktopFreeRoamHud.Assets.MapImage": {
+     "attributes": {},
+     "class": "StringValue",
+     "value": {
+      "t": "string",
+      "v": ""
+     }
+    },
+    "UI.DesktopFreeRoamHud.Assets.MapNorthArrow": {
+     "attributes": {},
+     "class": "StringValue",
+     "value": {
+      "t": "string",
+      "v": "rbxassetid://112515035978701"
+     }
+    },
+    "UI.DesktopFreeRoamHud.Assets.MapPlayerIcon": {
+     "attributes": {},
+     "class": "StringValue",
+     "value": {
+      "t": "string",
+      "v": "rbxassetid://77959076685939"
+     }
+    },
+    "UI.DesktopFreeRoamHud.Assets.MapTileBottomLeft": {
+     "attributes": {},
+     "class": "StringValue",
+     "value": {
+      "t": "string",
+      "v": "rbxassetid://85498926288328"
+     }
+    },
+    "UI.DesktopFreeRoamHud.Assets.MapTileBottomRight": {
+     "attributes": {},
+     "class": "StringValue",
+     "value": {
+      "t": "string",
+      "v": "rbxassetid://97942462366071"
+     }
+    },
+    "UI.DesktopFreeRoamHud.Assets.MapTileTopLeft": {
+     "attributes": {},
+     "class": "StringValue",
+     "value": {
+      "t": "string",
+      "v": "rbxassetid://105511999776909"
+     }
+    },
+    "UI.DesktopFreeRoamHud.Assets.MapTileTopRight": {
+     "attributes": {},
+     "class": "StringValue",
+     "value": {
+      "t": "string",
+      "v": "rbxassetid://113515913291985"
+     }
+    },
+    "UI.DesktopFreeRoamHud.Assets.RaceIcon": {
+     "attributes": {},
+     "class": "StringValue",
+     "value": {
+      "t": "string",
+      "v": "rbxassetid://82772526464800"
+     }
+    },
+    "UI.DesktopFreeRoamHud.Assets.SettingsIcon": {
+     "attributes": {},
+     "class": "StringValue",
+     "value": {
+      "t": "string",
+      "v": "rbxassetid://81640143382366"
+     }
+    },
+    "UI.DesktopFreeRoamHud.Colours": {
+     "attributes": {},
+     "class": "Folder"
+    },
+    "UI.DesktopFreeRoamHud.Colours.Danger": {
+     "attributes": {},
+     "class": "Color3Value",
+     "value": {
+      "t": "Color3",
+      "v": [
+       0.7686274647712708,
+       0.2235294133424759,
+       0.29411765933036804
+      ]
+     }
+    },
+    "UI.DesktopFreeRoamHud.Colours.Disabled": {
+     "attributes": {},
+     "class": "Color3Value",
+     "value": {
+      "t": "Color3",
+      "v": [
+       0.3176470696926117,
+       0.3450980484485626,
+       0.38823530077934265
+      ]
+     }
+    },
+    "UI.DesktopFreeRoamHud.Colours.ElectricBlue": {
+     "attributes": {},
+     "class": "Color3Value",
+     "value": {
+      "t": "Color3",
+      "v": [
+       0.09803921729326248,
+       0.45490196347236633,
+       1.0
+      ]
+     }
+    },
+    "UI.DesktopFreeRoamHud.Colours.HighSpeed": {
+     "attributes": {},
+     "class": "Color3Value",
+     "value": {
+      "t": "Color3",
+      "v": [
+       0.9647058844566345,
+       0.32549020648002625,
+       0.6235294342041016
+      ]
+     }
+    },
+    "UI.DesktopFreeRoamHud.Colours.Muted": {
+     "attributes": {},
+     "class": "Color3Value",
+     "value": {
+      "t": "Color3",
+      "v": [
+       0.6392157077789307,
+       0.6705882549285889,
+       0.7215686440467834
+      ]
+     }
+    },
+    "UI.DesktopFreeRoamHud.Colours.Outline": {
+     "attributes": {},
+     "class": "Color3Value",
+     "value": {
+      "t": "Color3",
+      "v": [
+       0.95686274766922,
+       0.18039216101169586,
+       0.5921568870544434
+      ]
+     }
+    },
+    "UI.DesktopFreeRoamHud.Colours.OutlineSoft": {
+     "attributes": {},
+     "class": "Color3Value",
+     "value": {
+      "t": "Color3",
+      "v": [
+       0.8392156958580017,
+       0.29019609093666077,
+       0.686274528503418
+      ]
+     }
+    },
+    "UI.DesktopFreeRoamHud.Colours.Panel": {
+     "attributes": {},
+     "class": "Color3Value",
+     "value": {
+      "t": "Color3",
+      "v": [
+       0.05882352963089943,
+       0.07450980693101883,
+       0.0941176488995552
+      ]
+     }
+    },
+    "UI.DesktopFreeRoamHud.Colours.PanelBlue": {
+     "attributes": {},
+     "class": "Color3Value",
+     "value": {
+      "t": "Color3",
+      "v": [
+       0.0313725508749485,
+       0.16470588743686676,
+       0.3294117748737335
+      ]
+     }
+    },
+    "UI.DesktopFreeRoamHud.Colours.PanelDeep": {
+     "attributes": {},
+     "class": "Color3Value",
+     "value": {
+      "t": "Color3",
+      "v": [
+       0.03529411926865578,
+       0.0470588244497776,
+       0.062745101749897
+      ]
+     }
+    },
+    "UI.DesktopFreeRoamHud.Colours.PanelSoft": {
+     "attributes": {},
+     "class": "Color3Value",
+     "value": {
+      "t": "Color3",
+      "v": [
+       0.0941176488995552,
+       0.11372549086809158,
+       0.1411764770746231
+      ]
+     }
+    },
+    "UI.DesktopFreeRoamHud.Colours.Telemetry": {
+     "attributes": {},
+     "class": "Color3Value",
+     "value": {
+      "t": "Color3",
+      "v": [
+       0.16862745583057404,
+       0.8823529481887817,
+       0.8549019694328308
+      ]
+     }
+    },
+    "UI.DesktopFreeRoamHud.Colours.Text": {
+     "attributes": {},
+     "class": "Color3Value",
+     "value": {
+      "t": "Color3",
+      "v": [
+       0.9647058844566345,
+       0.9725490212440491,
+       0.9882352948188782
+      ]
+     }
+    },
+    "UI.DesktopFreeRoamHud.Defaults": {
+     "attributes": {},
+     "class": "Folder"
+    },
+    "UI.DesktopFreeRoamHud.Defaults.Category": {
+     "attributes": {},
+     "class": "StringValue",
+     "value": {
+      "t": "string",
+      "v": "ALL"
+     }
+    },
+    "UI.DesktopFreeRoamHud.Defaults.Graphics": {
+     "attributes": {},
+     "class": "StringValue",
+     "value": {
+      "t": "string",
+      "v": "HIGH"
+     }
+    },
+    "UI.DesktopFreeRoamHud.Defaults.HudOpacityPercent": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 90
+     }
+    },
+    "UI.DesktopFreeRoamHud.Defaults.Lighting": {
+     "attributes": {},
+     "class": "StringValue",
+     "value": {
+      "t": "string",
+      "v": "HIGH"
+     }
+    },
+    "UI.DesktopFreeRoamHud.Defaults.MapFlipX": {
+     "attributes": {},
+     "class": "BoolValue",
+     "value": {
+      "t": "boolean",
+      "v": false
+     }
+    },
+    "UI.DesktopFreeRoamHud.Defaults.MapFlipZ": {
+     "attributes": {},
+     "class": "BoolValue",
+     "value": {
+      "t": "boolean",
+      "v": false
+     }
+    },
+    "UI.DesktopFreeRoamHud.Defaults.MapPlayerIconRotates": {
+     "attributes": {},
+     "class": "BoolValue",
+     "value": {
+      "t": "boolean",
+      "v": true
+     }
+    },
+    "UI.DesktopFreeRoamHud.Defaults.Minimap": {
+     "attributes": {},
+     "class": "StringValue",
+     "value": {
+      "t": "string",
+      "v": "NORTH"
+     }
+    },
+    "UI.DesktopFreeRoamHud.Defaults.MusicPercent": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 65
+     }
+    },
+    "UI.DesktopFreeRoamHud.Defaults.SfxPercent": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 80
+     }
+    },
+    "UI.DesktopFreeRoamHud.Defaults.Sort": {
+     "attributes": {},
+     "class": "StringValue",
+     "value": {
+      "t": "string",
+      "v": "RATING"
+     }
+    },
+    "UI.DesktopFreeRoamHud.Defaults.SpeedUnit": {
+     "attributes": {},
+     "class": "StringValue",
+     "value": {
+      "t": "string",
+      "v": "MPH"
+     }
+    },
+    "UI.DesktopFreeRoamHud.Defaults.UiScalePercent": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 100
+     }
+    },
+    "UI.DesktopFreeRoamHud.Effects": {
+     "attributes": {},
+     "class": "Folder"
+    },
+    "UI.DesktopFreeRoamHud.Effects.ButtonGradientRotation": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 90
+     }
+    },
+    "UI.DesktopFreeRoamHud.Effects.ButtonGradientStrength": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 0.1
+     }
+    },
+    "UI.DesktopFreeRoamHud.Effects.ButtonTransparency": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 0.08
+     }
+    },
+    "UI.DesktopFreeRoamHud.Effects.DropdownTransparency": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 0.06
+     }
+    },
+    "UI.DesktopFreeRoamHud.Effects.GlowTransparency": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 0.82
+     }
+    },
+    "UI.DesktopFreeRoamHud.Effects.GradientTransparency": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 0.12
+     }
+    },
+    "UI.DesktopFreeRoamHud.Effects.MinimapEdgeOpacity": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 0.82
+     }
+    },
+    "UI.DesktopFreeRoamHud.Effects.PanelTransparency": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 0.1
+     }
+    },
+    "UI.DesktopFreeRoamHud.Effects.PatternTransparency": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 0.94
+     }
+    },
+    "UI.DesktopFreeRoamHud.Enabled": {
+     "attributes": {},
+     "class": "BoolValue",
+     "value": {
+      "t": "boolean",
+      "v": true
+     }
+    },
+    "UI.DesktopFreeRoamHud.InstalledPhase": {
+     "attributes": {},
+     "class": "StringValue",
+     "value": {
+      "t": "string",
+      "v": "NTR_PC_FREEROAM_UI_PHASE4A_DEALERSHIP_TELEPORT"
+     }
+    },
+    "UI.DesktopFreeRoamHud.Layout": {
+     "attributes": {
+      "MapSpeedZoomEnabled": {
+       "t": "boolean",
+       "v": true
+      },
+      "MapSpeedZoomFullMph": {
+       "t": "number",
+       "v": 200
+      },
+      "MapSpeedZoomInResponse": {
+       "t": "number",
+       "v": 0.8
+      },
+      "MapSpeedZoomMaxFactor": {
+       "t": "number",
+       "v": 1.8
+      },
+      "MapSpeedZoomOutResponse": {
+       "t": "number",
+       "v": 1.6
+      },
+      "MapSpeedZoomStartMph": {
+       "t": "number",
+       "v": 40
+      }
+     },
+     "class": "Folder"
+    },
+    "UI.DesktopFreeRoamHud.Layout.ActionButtonSize": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 54
+     }
+    },
+    "UI.DesktopFreeRoamHud.Layout.ActionGap": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 8
+     }
+    },
+    "UI.DesktopFreeRoamHud.Layout.BaseHeight": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 1080
+     }
+    },
+    "UI.DesktopFreeRoamHud.Layout.BaseWidth": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 1920
+     }
+    },
+    "UI.DesktopFreeRoamHud.Layout.BoostBarHeight": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 24
+     }
+    },
+    "UI.DesktopFreeRoamHud.Layout.BoostBarOffsetX": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 100
+     }
+    },
+    "UI.DesktopFreeRoamHud.Layout.BoostBarOffsetY": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 67
+     }
+    },
+    "UI.DesktopFreeRoamHud.Layout.BoostBarSmoothing": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 14
+     }
+    },
+    "UI.DesktopFreeRoamHud.Layout.BoostBarWidth": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 210
+     }
+    },
+    "UI.DesktopFreeRoamHud.Layout.BoostIconGap": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 8
+     }
+    },
+    "UI.DesktopFreeRoamHud.Layout.BoostIconSize": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 40
+     }
+    },
+    "UI.DesktopFreeRoamHud.Layout.CarHeaderHeight": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 154
+     }
+    },
+    "UI.DesktopFreeRoamHud.Layout.CarPanelBottomMargin": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 20
+     }
+    },
+    "UI.DesktopFreeRoamHud.Layout.CarPanelTop": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 88
+     }
+    },
+    "UI.DesktopFreeRoamHud.Layout.CarPanelWidth": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 500
+     }
+    },
+    "UI.DesktopFreeRoamHud.Layout.CardGap": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 12
+     }
+    },
+    "UI.DesktopFreeRoamHud.Layout.CardStrokeSafePadding": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 5
+     }
+    },
+    "UI.DesktopFreeRoamHud.Layout.CardTopSafePadding": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 8
+     }
+    },
+    "UI.DesktopFreeRoamHud.Layout.CashHeight": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 40
+     }
+    },
+    "UI.DesktopFreeRoamHud.Layout.DropdownGap": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 6
+     }
+    },
+    "UI.DesktopFreeRoamHud.Layout.EdgeMargin": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 20
+     }
+    },
+    "UI.DesktopFreeRoamHud.Layout.MapCalibrationPixels": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 207
+     }
+    },
+    "UI.DesktopFreeRoamHud.Layout.MapCalibrationStuds": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 2850
+     }
+    },
+    "UI.DesktopFreeRoamHud.Layout.MapCoordinateRotationDegrees": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 90
+     }
+    },
+    "UI.DesktopFreeRoamHud.Layout.MapNorthArrowMargin": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 10
+     }
+    },
+    "UI.DesktopFreeRoamHud.Layout.MapNorthArrowSize": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 28
+     }
+    },
+    "UI.DesktopFreeRoamHud.Layout.MapPixels": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 2048
+     }
+    },
+    "UI.DesktopFreeRoamHud.Layout.MapPlayerIconSize": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 26
+     }
+    },
+    "UI.DesktopFreeRoamHud.Layout.MapRotationOffsetDegrees": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 0
+     }
+    },
+    "UI.DesktopFreeRoamHud.Layout.MapSmoothing": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 100
+     }
+    },
+    "UI.DesktopFreeRoamHud.Layout.MapViewportFieldOfView": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 20
+     }
+    },
+    "UI.DesktopFreeRoamHud.Layout.MapVisibleStuds": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 2850
+     }
+    },
+    "UI.DesktopFreeRoamHud.Layout.MapWorldCenterX": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 0
+     }
+    },
+    "UI.DesktopFreeRoamHud.Layout.MapWorldCenterZ": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 0
+     }
+    },
+    "UI.DesktopFreeRoamHud.Layout.MaxScale": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 1.12
+     }
+    },
+    "UI.DesktopFreeRoamHud.Layout.MinScale": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 0.72
+     }
+    },
+    "UI.DesktopFreeRoamHud.Layout.MinimapSize": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 245
+     }
+    },
+    "UI.DesktopFreeRoamHud.Layout.ModalDimTransparency": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 0.32
+     }
+    },
+    "UI.DesktopFreeRoamHud.Layout.ProfileRefreshSeconds": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 2
+     }
+    },
+    "UI.DesktopFreeRoamHud.Layout.SpeedGaugeMaxMph": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 180
+     }
+    },
+    "UI.DesktopFreeRoamHud.Layout.TopMargin": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 18
+     }
+    },
+    "UI.DesktopFreeRoamHud.Typography": {
+     "attributes": {},
+     "class": "Folder"
+    },
+    "UI.DesktopFreeRoamHud.Typography.Body": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 14
+     }
+    },
+    "UI.DesktopFreeRoamHud.Typography.BodyBold": {
+     "attributes": {},
+     "class": "BoolValue",
+     "value": {
+      "t": "boolean",
+      "v": false
+     }
+    },
+    "UI.DesktopFreeRoamHud.Typography.BodyFont": {
+     "attributes": {},
+     "class": "StringValue",
+     "value": {
+      "t": "string",
+      "v": "Michroma"
+     }
+    },
+    "UI.DesktopFreeRoamHud.Typography.BodyItalic": {
+     "attributes": {},
+     "class": "BoolValue",
+     "value": {
+      "t": "boolean",
+      "v": false
+     }
+    },
+    "UI.DesktopFreeRoamHud.Typography.Button": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 13
+     }
+    },
+    "UI.DesktopFreeRoamHud.Typography.ButtonBold": {
+     "attributes": {},
+     "class": "BoolValue",
+     "value": {
+      "t": "boolean",
+      "v": true
+     }
+    },
+    "UI.DesktopFreeRoamHud.Typography.ButtonItalic": {
+     "attributes": {},
+     "class": "BoolValue",
+     "value": {
+      "t": "boolean",
+      "v": false
+     }
+    },
+    "UI.DesktopFreeRoamHud.Typography.Caption": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 11
+     }
+    },
+    "UI.DesktopFreeRoamHud.Typography.CaptionBold": {
+     "attributes": {},
+     "class": "BoolValue",
+     "value": {
+      "t": "boolean",
+      "v": false
+     }
+    },
+    "UI.DesktopFreeRoamHud.Typography.CaptionItalic": {
+     "attributes": {},
+     "class": "BoolValue",
+     "value": {
+      "t": "boolean",
+      "v": false
+     }
+    },
+    "UI.DesktopFreeRoamHud.Typography.CashMetric": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 18
+     }
+    },
+    "UI.DesktopFreeRoamHud.Typography.CashMetricBold": {
+     "attributes": {},
+     "class": "BoolValue",
+     "value": {
+      "t": "boolean",
+      "v": false
+     }
+    },
+    "UI.DesktopFreeRoamHud.Typography.CashMetricItalic": {
+     "attributes": {},
+     "class": "BoolValue",
+     "value": {
+      "t": "boolean",
+      "v": false
+     }
+    },
+    "UI.DesktopFreeRoamHud.Typography.Heading": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 22
+     }
+    },
+    "UI.DesktopFreeRoamHud.Typography.HeadingBold": {
+     "attributes": {},
+     "class": "BoolValue",
+     "value": {
+      "t": "boolean",
+      "v": false
+     }
+    },
+    "UI.DesktopFreeRoamHud.Typography.HeadingItalic": {
+     "attributes": {},
+     "class": "BoolValue",
+     "value": {
+      "t": "boolean",
+      "v": false
+     }
+    },
+    "UI.DesktopFreeRoamHud.Typography.Metric": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 64
+     }
+    },
+    "UI.DesktopFreeRoamHud.Typography.MetricBold": {
+     "attributes": {},
+     "class": "BoolValue",
+     "value": {
+      "t": "boolean",
+      "v": false
+     }
+    },
+    "UI.DesktopFreeRoamHud.Typography.MetricItalic": {
+     "attributes": {},
+     "class": "BoolValue",
+     "value": {
+      "t": "boolean",
+      "v": false
+     }
+    },
+    "UI.DesktopFreeRoamHud.Typography.MetricUnit": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 20
+     }
+    },
+    "UI.DesktopFreeRoamHud.Typography.MetricUnitBold": {
+     "attributes": {},
+     "class": "BoolValue",
+     "value": {
+      "t": "boolean",
+      "v": false
+     }
+    },
+    "UI.DesktopFreeRoamHud.Typography.MetricUnitItalic": {
+     "attributes": {},
+     "class": "BoolValue",
+     "value": {
+      "t": "boolean",
+      "v": false
+     }
+    },
+    "UI.DesktopFreeRoamHud.Typography.PrimaryFont": {
+     "attributes": {},
+     "class": "StringValue",
+     "value": {
+      "t": "string",
+      "v": "Michroma"
+     }
+    },
+    "UI.DriveInCustomisation": {
+     "attributes": {},
+     "class": "Folder"
+    },
+    "UI.DriveInCustomisation.AccentColor": {
+     "attributes": {},
+     "class": "Color3Value",
+     "value": {
+      "t": "Color3",
+      "v": [
+       0.9019607901573181,
+       0.3450980484485626,
+       0.8039215803146362
+      ]
+     }
+    },
+    "UI.DriveInCustomisation.CountdownTitle": {
+     "attributes": {},
+     "class": "StringValue",
+     "value": {
+      "t": "string",
+      "v": "Customisation"
+     }
+    },
+    "UI.DriveInCustomisation.IdleAction": {
+     "attributes": {},
+     "class": "StringValue",
+     "value": {
+      "t": "string",
+      "v": "Drive In"
+     }
+    },
+    "UI.DriveInCustomisation.IdleTitle": {
+     "attributes": {},
+     "class": "StringValue",
+     "value": {
+      "t": "string",
+      "v": "Customisation"
+     }
+    },
+    "UI.DriveInCustomisation.PanelColor": {
+     "attributes": {},
+     "class": "Color3Value",
+     "value": {
+      "t": "Color3",
+      "v": [
+       0.0235294122248888,
+       0.03921568766236305,
+       0.05098039284348488
+      ]
+     }
+    },
+    "UI.DriveInCustomisation.PanelTransparency": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 0.12
+     }
+    },
+    "UI.DriveInCustomisation.PromptPrefix": {
+     "attributes": {},
+     "class": "StringValue",
+     "value": {
+      "t": "string",
+      "v": "ENTERING CUSTOMISATION IN"
+     }
+    },
+    "UI.DriveInCustomisation.TextColor": {
+     "attributes": {},
+     "class": "Color3Value",
+     "value": {
+      "t": "Color3",
+      "v": [
+       1.0,
+       0.886274516582489,
+       0.9764705896377563
+      ]
+     }
+    },
+    "UI.DriveInCustomisation.ZoneColor": {
+     "attributes": {},
+     "class": "Color3Value",
+     "value": {
+      "t": "Color3",
+      "v": [
+       0.9019607901573181,
+       0.3450980484485626,
+       0.8039215803146362
+      ]
+     }
+    },
+    "UI.DriveInCustomisation.ZoneTransparency": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 0.62
+     }
+    },
+    "UI.FreeRoamMapPlayerMarkers": {
+     "attributes": {
+      "EdgeOverscanPixels": {
+       "t": "number",
+       "v": 8
+      },
+      "Enabled": {
+       "t": "boolean",
+       "v": true
+      },
+      "MapNorthArrowMode": {
+       "t": "string",
+       "v": "Hidden"
+      },
+      "MapNorthOrbitInset": {
+       "t": "number",
+       "v": 16
+      },
+      "MapPanResponse": {
+       "t": "number",
+       "v": 12
+      },
+      "MapPanSubpixelFactor": {
+       "t": "number",
+       "v": 4
+      },
+      "MapRotationMode": {
+       "t": "string",
+       "v": "Subject"
+      },
+      "MapRotationResponse": {
+       "t": "number",
+       "v": 10
+      },
+      "MarkerBackgroundTransparency": {
+       "t": "number",
+       "v": 0.08
+      },
+      "MarkerColor": {
+       "t": "Color3",
+       "v": [
+        0.21176470816135406,
+        0.8784313797950745,
+        1.0
+       ]
+      },
+      "MarkerResponse": {
+       "t": "number",
+       "v": 14
+      },
+      "MarkerStrokeColor": {
+       "t": "Color3",
+       "v": [
+        0.9254902005195618,
+        1.0,
+        1.0
+       ]
+      },
+      "MarkerStrokeThickness": {
+       "t": "number",
+       "v": 1
+      },
+      "MarkerStrokeTransparency": {
+       "t": "number",
+       "v": 0.14
+      },
+      "MaximumMarkerSizePixels": {
+       "t": "number",
+       "v": 16
+      },
+      "MaximumOtherPlayers": {
+       "t": "number",
+       "v": 14
+      },
+      "MinimumMarkerSizePixels": {
+       "t": "number",
+       "v": 8
+      },
+      "OtherPlayerIcon": {
+       "t": "string",
+       "v": ""
+      },
+      "OtherPlayerMarkerScale": {
+       "t": "number",
+       "v": 0.65
+      },
+      "PositionEpsilonPixels": {
+       "t": "number",
+       "v": 0.01
+      },
+      "Revision": {
+       "t": "string",
+       "v": "NTR_FREEROAM_MAP_PLAYERS_SMOOTH_PAN_V1_1"
+      },
+      "UseRelativeCanvasTransform": {
+       "t": "boolean",
+       "v": true
+      }
+     },
+     "class": "Folder"
+    },
+    "UI.FullMap": {
+     "attributes": {
+      "BackdropTransparency": {
+       "t": "number",
+       "v": 0.35
+      },
+      "BoundsMarginStuds": {
+       "t": "number",
+       "v": 600
+      },
+      "CentreResponse": {
+       "t": "number",
+       "v": 12
+      },
+      "CloseTweenSeconds": {
+       "t": "number",
+       "v": 0.12
+      },
+      "DisplayOrder": {
+       "t": "number",
+       "v": 90
+      },
+      "DistrictName": {
+       "t": "string",
+       "v": ""
+      },
+      "DragThresholdPixels": {
+       "t": "number",
+       "v": 8
+      },
+      "Enabled": {
+       "t": "boolean",
+       "v": true
+      },
+      "GamepadPanSpeed": {
+       "t": "number",
+       "v": 1
+      },
+      "KeyboardPanSpeed": {
+       "t": "number",
+       "v": 0.9
+      },
+      "LegendOpen": {
+       "t": "boolean",
+       "v": true
+      },
+      "LegendWidth": {
+       "t": "number",
+       "v": 260
+      },
+      "LockGameplayInput": {
+       "t": "boolean",
+       "v": true
+      },
+      "MaxVisibleStuds": {
+       "t": "number",
+       "v": 40000
+      },
+      "MinVisibleStuds": {
+       "t": "number",
+       "v": 500
+      },
+      "MobileLegendMinViewport": {
+       "t": "number",
+       "v": 760
+      },
+      "MobileLegendWidth": {
+       "t": "number",
+       "v": 220
+      },
+      "OpenTweenSeconds": {
+       "t": "number",
+       "v": 0.18
+      },
+      "OpenVisibleStuds": {
+       "t": "number",
+       "v": 5000
+      },
+      "PanMaxX": {
+       "t": "number",
+       "v": 4310
+      },
+      "PanMaxZ": {
+       "t": "number",
+       "v": 10857
+      },
+      "PanMinX": {
+       "t": "number",
+       "v": -5192
+      },
+      "PanMinZ": {
+       "t": "number",
+       "v": -7161
+      },
+      "RememberZoom": {
+       "t": "boolean",
+       "v": true
+      },
+      "RouteLineScale": {
+       "t": "number",
+       "v": 2
+      },
+      "TapRadiusPixels": {
+       "t": "number",
+       "v": 26
+      },
+      "TouchTapRadiusPixels": {
+       "t": "number",
+       "v": 34
+      },
+      "WaypointY": {
+       "t": "number",
+       "v": 101
+      },
+      "ZoomStep": {
+       "t": "number",
+       "v": 1.25
+      }
+     },
+     "class": "Folder"
+    },
+    "UI.GarageExperience": {
+     "attributes": {},
+     "class": "Folder"
+    },
+    "UI.GarageExperience.BaseHeight": {
+     "attributes": {
+      "Default": {
+       "t": "boolean",
+       "v": true
+      }
+     },
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 900
+     }
+    },
+    "UI.GarageExperience.BaseWidth": {
+     "attributes": {
+      "Default": {
+       "t": "boolean",
+       "v": true
+      }
+     },
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 1600
+     }
+    },
+    "UI.GarageExperience.CarouselArrowWidth": {
+     "attributes": {
+      "Default": {
+       "t": "boolean",
+       "v": true
+      }
+     },
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 30
+     }
+    },
+    "UI.GarageExperience.CarouselCardHeight": {
+     "attributes": {
+      "Default": {
+       "t": "boolean",
+       "v": true
+      }
+     },
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 132
+     }
+    },
+    "UI.GarageExperience.CarouselCardWidth": {
+     "attributes": {
+      "Default": {
+       "t": "boolean",
+       "v": true
+      }
+     },
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 204
+     }
+    },
+    "UI.GarageExperience.CarouselHeight": {
+     "attributes": {
+      "Default": {
+       "t": "boolean",
+       "v": true
+      }
+     },
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 156
+     }
+    },
+    "UI.GarageExperience.CategoryCarouselGap": {
+     "attributes": {
+      "Default": {
+       "t": "boolean",
+       "v": true
+      }
+     },
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 26
+     }
+    },
+    "UI.GarageExperience.CategoryWidth": {
+     "attributes": {
+      "Default": {
+       "t": "boolean",
+       "v": true
+      }
+     },
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 196
+     }
+    },
+    "UI.GarageExperience.Danger": {
+     "attributes": {
+      "Default": {
+       "t": "boolean",
+       "v": true
+      }
+     },
+     "class": "Color3Value",
+     "value": {
+      "t": "Color3",
+      "v": [
+       0.7450980544090271,
+       0.2078431397676468,
+       0.2666666805744171
+      ]
+     }
+    },
+    "UI.GarageExperience.EconomyChipHeight": {
+     "attributes": {
+      "Default": {
+       "t": "boolean",
+       "v": true
+      }
+     },
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 58
+     }
+    },
+    "UI.GarageExperience.FontFamily": {
+     "attributes": {
+      "Default": {
+       "t": "boolean",
+       "v": true
+      }
+     },
+     "class": "StringValue",
+     "value": {
+      "t": "string",
+      "v": "rbxasset://fonts/families/Michroma.json"
+     }
+    },
+    "UI.GarageExperience.Gap": {
+     "attributes": {
+      "Default": {
+       "t": "boolean",
+       "v": true
+      }
+     },
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 14
+     }
+    },
+    "UI.GarageExperience.HeaderHeight": {
+     "attributes": {
+      "Default": {
+       "t": "boolean",
+       "v": true
+      }
+     },
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 64
+     }
+    },
+    "UI.GarageExperience.HeaderWidth": {
+     "attributes": {
+      "Default": {
+       "t": "boolean",
+       "v": true
+      }
+     },
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 440
+     }
+    },
+    "UI.GarageExperience.Margin": {
+     "attributes": {
+      "Default": {
+       "t": "boolean",
+       "v": true
+      }
+     },
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 18
+     }
+    },
+    "UI.GarageExperience.MaxScale": {
+     "attributes": {
+      "Default": {
+       "t": "boolean",
+       "v": true
+      }
+     },
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 1.02
+     }
+    },
+    "UI.GarageExperience.MinScale": {
+     "attributes": {
+      "Default": {
+       "t": "boolean",
+       "v": true
+      }
+     },
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 0.68
+     }
+    },
+    "UI.GarageExperience.MobileMinScale": {
+     "attributes": {
+      "Default": {
+       "t": "boolean",
+       "v": true
+      }
+     },
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 0.42
+     }
+    },
+    "UI.GarageExperience.ModuleDiagrams": {
+     "attributes": {},
+     "class": "Folder"
+    },
+    "UI.GarageExperience.ModuleDiagrams.BRUISER": {
+     "attributes": {},
+     "class": "Folder"
+    },
+    "UI.GarageExperience.ModuleDiagrams.BRUISER.Boost": {
+     "attributes": {},
+     "class": "Folder"
+    },
+    "UI.GarageExperience.ModuleDiagrams.BRUISER.Boost.Image": {
+     "attributes": {
+      "Default": {
+       "t": "boolean",
+       "v": true
+      }
+     },
+     "class": "StringValue",
+     "value": {
+      "t": "string",
+      "v": ""
+     }
+    },
+    "UI.GarageExperience.ModuleDiagrams.BRUISER.Boost.Label": {
+     "attributes": {
+      "Default": {
+       "t": "boolean",
+       "v": true
+      }
+     },
+     "class": "StringValue",
+     "value": {
+      "t": "string",
+      "v": "BOOST"
+     }
+    },
+    "UI.GarageExperience.ModuleDiagrams.BRUISER.Engine1": {
+     "attributes": {},
+     "class": "Folder"
+    },
+    "UI.GarageExperience.ModuleDiagrams.BRUISER.Engine1.Image": {
+     "attributes": {
+      "Default": {
+       "t": "boolean",
+       "v": true
+      }
+     },
+     "class": "StringValue",
+     "value": {
+      "t": "string",
+      "v": ""
+     }
+    },
+    "UI.GarageExperience.ModuleDiagrams.BRUISER.Engine1.Label": {
+     "attributes": {
+      "Default": {
+       "t": "boolean",
+       "v": true
+      }
+     },
+     "class": "StringValue",
+     "value": {
+      "t": "string",
+      "v": "FRONT ENGINE"
+     }
+    },
+    "UI.GarageExperience.ModuleDiagrams.BRUISER.Engine2": {
+     "attributes": {},
+     "class": "Folder"
+    },
+    "UI.GarageExperience.ModuleDiagrams.BRUISER.Engine2.Image": {
+     "attributes": {
+      "Default": {
+       "t": "boolean",
+       "v": true
+      }
+     },
+     "class": "StringValue",
+     "value": {
+      "t": "string",
+      "v": ""
+     }
+    },
+    "UI.GarageExperience.ModuleDiagrams.BRUISER.Engine2.Label": {
+     "attributes": {
+      "Default": {
+       "t": "boolean",
+       "v": true
+      }
+     },
+     "class": "StringValue",
+     "value": {
+      "t": "string",
+      "v": "REAR ENGINE"
+     }
+    },
+    "UI.GarageExperience.ModuleDiagrams.BRUISER.FrontBumper": {
+     "attributes": {},
+     "class": "Folder"
+    },
+    "UI.GarageExperience.ModuleDiagrams.BRUISER.FrontBumper.Image": {
+     "attributes": {
+      "Default": {
+       "t": "boolean",
+       "v": true
+      }
+     },
+     "class": "StringValue",
+     "value": {
+      "t": "string",
+      "v": ""
+     }
+    },
+    "UI.GarageExperience.ModuleDiagrams.BRUISER.FrontBumper.Label": {
+     "attributes": {
+      "Default": {
+       "t": "boolean",
+       "v": true
+      }
+     },
+     "class": "StringValue",
+     "value": {
+      "t": "string",
+      "v": "FRONT BUMPER"
+     }
+    },
+    "UI.GarageExperience.ModuleDiagrams.BRUISER.RearBumper": {
+     "attributes": {},
+     "class": "Folder"
+    },
+    "UI.GarageExperience.ModuleDiagrams.BRUISER.RearBumper.Image": {
+     "attributes": {
+      "Default": {
+       "t": "boolean",
+       "v": true
+      }
+     },
+     "class": "StringValue",
+     "value": {
+      "t": "string",
+      "v": ""
+     }
+    },
+    "UI.GarageExperience.ModuleDiagrams.BRUISER.RearBumper.Label": {
+     "attributes": {
+      "Default": {
+       "t": "boolean",
+       "v": true
+      }
+     },
+     "class": "StringValue",
+     "value": {
+      "t": "string",
+      "v": "REAR BUMPER"
+     }
+    },
+    "UI.GarageExperience.ModuleDiagrams.BRUISER.RearSpoiler": {
+     "attributes": {},
+     "class": "Folder"
+    },
+    "UI.GarageExperience.ModuleDiagrams.BRUISER.RearSpoiler.Image": {
+     "attributes": {
+      "Default": {
+       "t": "boolean",
+       "v": true
+      }
+     },
+     "class": "StringValue",
+     "value": {
+      "t": "string",
+      "v": ""
+     }
+    },
+    "UI.GarageExperience.ModuleDiagrams.BRUISER.RearSpoiler.Label": {
+     "attributes": {
+      "Default": {
+       "t": "boolean",
+       "v": true
+      }
+     },
+     "class": "StringValue",
+     "value": {
+      "t": "string",
+      "v": "REAR SPOILER"
+     }
+    },
+    "UI.GarageExperience.ModuleDiagrams.BRUISER.SidePods": {
+     "attributes": {},
+     "class": "Folder"
+    },
+    "UI.GarageExperience.ModuleDiagrams.BRUISER.SidePods.Image": {
+     "attributes": {
+      "Default": {
+       "t": "boolean",
+       "v": true
+      }
+     },
+     "class": "StringValue",
+     "value": {
+      "t": "string",
+      "v": ""
+     }
+    },
+    "UI.GarageExperience.ModuleDiagrams.BRUISER.SidePods.Label": {
+     "attributes": {
+      "Default": {
+       "t": "boolean",
+       "v": true
+      }
+     },
+     "class": "StringValue",
+     "value": {
+      "t": "string",
+      "v": "SIDE PODS"
+     }
+    },
+    "UI.GarageExperience.ModuleDiagrams.BRUISER.Stabilisers": {
+     "attributes": {},
+     "class": "Folder"
+    },
+    "UI.GarageExperience.ModuleDiagrams.BRUISER.Stabilisers.Image": {
+     "attributes": {
+      "Default": {
+       "t": "boolean",
+       "v": true
+      }
+     },
+     "class": "StringValue",
+     "value": {
+      "t": "string",
+      "v": ""
+     }
+    },
+    "UI.GarageExperience.ModuleDiagrams.BRUISER.Stabilisers.Label": {
+     "attributes": {
+      "Default": {
+       "t": "boolean",
+       "v": true
+      }
+     },
+     "class": "StringValue",
+     "value": {
+      "t": "string",
+      "v": "STABILISERS"
+     }
+    },
+    "UI.GarageExperience.Muted": {
+     "attributes": {
+      "Default": {
+       "t": "boolean",
+       "v": true
+      }
+     },
+     "class": "Color3Value",
+     "value": {
+      "t": "Color3",
+      "v": [
+       0.6392157077789307,
+       0.6705882549285889,
+       0.7215686440467834
+      ]
+     }
+    },
+    "UI.GarageExperience.Panel": {
+     "attributes": {
+      "Default": {
+       "t": "boolean",
+       "v": true
+      }
+     },
+     "class": "Color3Value",
+     "value": {
+      "t": "Color3",
+      "v": [
+       0.05882352963089943,
+       0.07450980693101883,
+       0.0941176488995552
+      ]
+     }
+    },
+    "UI.GarageExperience.PanelDeep": {
+     "attributes": {
+      "Default": {
+       "t": "boolean",
+       "v": true
+      }
+     },
+     "class": "Color3Value",
+     "value": {
+      "t": "Color3",
+      "v": [
+       0.03529411926865578,
+       0.0470588244497776,
+       0.062745101749897
+      ]
+     }
+    },
+    "UI.GarageExperience.PanelSoft": {
+     "attributes": {
+      "Default": {
+       "t": "boolean",
+       "v": true
+      }
+     },
+     "class": "Color3Value",
+     "value": {
+      "t": "Color3",
+      "v": [
+       0.10588235408067703,
+       0.12941177189350128,
+       0.16078431904315948
+      ]
+     }
+    },
+    "UI.GarageExperience.PromptDistance": {
+     "attributes": {
+      "Default": {
+       "t": "boolean",
+       "v": true
+      }
+     },
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 14
+     }
+    },
+    "UI.GarageExperience.Purchase": {
+     "attributes": {
+      "Default": {
+       "t": "boolean",
+       "v": true
+      }
+     },
+     "class": "Color3Value",
+     "value": {
+      "t": "Color3",
+      "v": [
+       0.20000000298023224,
+       0.5176470875740051,
+       1.0
+      ]
+     }
+    },
+    "UI.GarageExperience.Selected": {
+     "attributes": {
+      "Default": {
+       "t": "boolean",
+       "v": true
+      }
+     },
+     "class": "Color3Value",
+     "value": {
+      "t": "Color3",
+      "v": [
+       0.1921568661928177,
+       0.8627451062202454,
+       1.0
+      ]
+     }
+    },
+    "UI.GarageExperience.StatBarReference": {
+     "attributes": {
+      "Default": {
+       "t": "boolean",
+       "v": true
+      }
+     },
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 180
+     }
+    },
+    "UI.GarageExperience.StatsHeight": {
+     "attributes": {
+      "Default": {
+       "t": "boolean",
+       "v": true
+      }
+     },
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 338
+     }
+    },
+    "UI.GarageExperience.StatsWidth": {
+     "attributes": {
+      "Default": {
+       "t": "boolean",
+       "v": true
+      }
+     },
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 336
+     }
+    },
+    "UI.GarageExperience.Structure": {
+     "attributes": {
+      "Default": {
+       "t": "boolean",
+       "v": true
+      }
+     },
+     "class": "Color3Value",
+     "value": {
+      "t": "Color3",
+      "v": [
+       0.9254902005195618,
+       0.3607843220233917,
+       0.658823549747467
+      ]
+     }
+    },
+    "UI.GarageExperience.Text": {
+     "attributes": {
+      "Default": {
+       "t": "boolean",
+       "v": true
+      }
+     },
+     "class": "Color3Value",
+     "value": {
+      "t": "Color3",
+      "v": [
+       0.95686274766922,
+       0.9686274528503418,
+       0.9882352948188782
+      ]
+     }
+    },
+    "UI.GarageReplacement": {
+     "attributes": {
+      "BuildLeftPanelPadding": {
+       "t": "number",
+       "v": 14
+      },
+      "CarouselEndTolerance": {
+       "t": "number",
+       "v": 4
+      },
+      "CategoryArrowGutter": {
+       "t": "number",
+       "v": 36
+      },
+      "CategoryArrowHeight": {
+       "t": "number",
+       "v": 27
+      },
+      "CategoryArrowStep": {
+       "t": "number",
+       "v": 124
+      },
+      "CategoryArrowWidth": {
+       "t": "number",
+       "v": 46
+      },
+      "CategoryWheelStep": {
+       "t": "number",
+       "v": 48
+      },
+      "CustomiseActionIconScale": {
+       "t": "number",
+       "v": 0.5
+      },
+      "CustomiseCategoryCardHeight": {
+       "t": "number",
+       "v": 118
+      },
+      "CustomiseCategoryImageHeight": {
+       "t": "number",
+       "v": 78
+      },
+      "DealershipHiddenCategories": {
+       "t": "string",
+       "v": "bruiser,muscle"
+      },
+      "DesktopFullProfilePollingEnabled": {
+       "t": "boolean",
+       "v": false
+      },
+      "EconomyCardHeight": {
+       "t": "number",
+       "v": 46
+      },
+      "EconomyCashTextSize": {
+       "t": "number",
+       "v": 17
+      },
+      "EconomySpacesTextSize": {
+       "t": "number",
+       "v": 13
+      },
+      "EconomyStackGap": {
+       "t": "number",
+       "v": 10
+      },
+      "HeaderHeight": {
+       "t": "number",
+       "v": 82
+      },
+      "HeaderSubtitleTextSize": {
+       "t": "number",
+       "v": 15
+      },
+      "HeaderTitleTextSize": {
+       "t": "number",
+       "v": 22
+      },
+      "LockedModuleIconSize": {
+       "t": "number",
+       "v": 68
+      },
+      "LockedModuleIconYScale": {
+       "t": "number",
+       "v": 0.36
+      },
+      "MaterialRailTabClearance": {
+       "t": "number",
+       "v": 48
+      },
+      "ModuleCategoryRailWidth": {
+       "t": "number",
+       "v": 238
+      },
+      "ModuleColourIcon": {
+       "t": "string",
+       "v": "rbxassetid://139744856495281"
+      },
+      "ModuleCosmeticsIcon": {
+       "t": "string",
+       "v": "rbxassetid://85935652702038"
+      },
+      "ModuleLockIcon": {
+       "t": "string",
+       "v": "rbxassetid://96467470526298"
+      },
+      "ModuleNeonIcon": {
+       "t": "string",
+       "v": "rbxassetid://87739019174785"
+      },
+      "ModulePerformanceIcon": {
+       "t": "string",
+       "v": "rbxassetid://130179495223690"
+      },
+      "NavigationButtonHeight": {
+       "t": "number",
+       "v": 46
+      },
+      "NavigationPopupClearance": {
+       "t": "number",
+       "v": 48
+      },
+      "OwnedGarageUnaffordablePriceColor": {
+       "t": "Color3",
+       "v": [
+        1.0,
+        0.29411765933036804,
+        0.3333333432674408
+       ]
+      },
+      "PaintCommitOnRelease": {
+       "t": "boolean",
+       "v": true
+      },
+      "PaintPaletteColumns": {
+       "t": "number",
+       "v": 15
+      },
+      "PerformanceHeadingTextSize": {
+       "t": "number",
+       "v": 11
+      },
+      "PerformanceRatingTextSize": {
+       "t": "number",
+       "v": 20
+      },
+      "PerformanceStatNameTextSize": {
+       "t": "number",
+       "v": 11
+      },
+      "PerformanceStatValueTextSize": {
+       "t": "number",
+       "v": 12
+      },
+      "PreviewBobAmountStuds": {
+       "t": "number",
+       "v": 0.08
+      },
+      "PreviewCameraFadeEnabled": {
+       "t": "boolean",
+       "v": false
+      },
+      "PreviewCameraFadeHoldSeconds": {
+       "t": "number",
+       "v": 0.05
+      },
+      "PreviewCameraFadeInSeconds": {
+       "t": "number",
+       "v": 0.46
+      },
+      "PreviewCameraFadeOpacity": {
+       "t": "number",
+       "v": 0.68
+      },
+      "PreviewCameraFadeOutSeconds": {
+       "t": "number",
+       "v": 0.28
+      },
+      "PreviewCameraFront45YawDegrees": {
+       "t": "number",
+       "v": 135
+      },
+      "PreviewCameraFrontYawDegrees": {
+       "t": "number",
+       "v": 180
+      },
+      "PreviewCameraLerpSpeed": {
+       "t": "number",
+       "v": 4.5
+      },
+      "PreviewCameraMaxDistance": {
+       "t": "number",
+       "v": 46
+      },
+      "PreviewCameraMaxPitchDegrees": {
+       "t": "number",
+       "v": 10
+      },
+      "PreviewCameraMinDistance": {
+       "t": "number",
+       "v": 16
+      },
+      "PreviewCameraMinPitchDegrees": {
+       "t": "number",
+       "v": -45
+      },
+      "PreviewCameraPinchZoom": {
+       "t": "number",
+       "v": 10
+      },
+      "PreviewCameraPitchSensitivity": {
+       "t": "number",
+       "v": 0.004
+      },
+      "PreviewCameraRear45YawDegrees": {
+       "t": "number",
+       "v": 45
+      },
+      "PreviewCameraRearYawDegrees": {
+       "t": "number",
+       "v": 0
+      },
+      "PreviewCameraSessionScoped": {
+       "t": "boolean",
+       "v": true
+      },
+      "PreviewCameraSideYawDegrees": {
+       "t": "number",
+       "v": 90
+      },
+      "PreviewCameraWheelZoom": {
+       "t": "number",
+       "v": 2.4
+      },
+      "PreviewCameraYawOffsetDegrees": {
+       "t": "number",
+       "v": 45
+      },
+      "PreviewCameraYawSensitivity": {
+       "t": "number",
+       "v": 0.006
+      },
+      "PreviewHoverVFXEnabled": {
+       "t": "boolean",
+       "v": true
+      },
+      "PreviewIdleHoverIntensity": {
+       "t": "number",
+       "v": 1
+      },
+      "PreviewLightingEnabled": {
+       "t": "boolean",
+       "v": true
+      },
+      "PreviewLightingPreset": {
+       "t": "string",
+       "v": "EightPM"
+      },
+      "PreviewPadYOffset": {
+       "t": "number",
+       "v": 2
+      },
+      "PreviewPresentationPollSeconds": {
+       "t": "number",
+       "v": 0.1
+      },
+      "PreviewThrustBoostIntensity": {
+       "t": "number",
+       "v": 1
+      },
+      "PreviewThrustHoverIntensity": {
+       "t": "number",
+       "v": 1
+      },
+      "PreviewThrustStabiliserIntensity": {
+       "t": "number",
+       "v": 1
+      },
+      "PreviewThrustThrottleIntensity": {
+       "t": "number",
+       "v": 1
+      },
+      "PreviewWobbleAmountDegrees": {
+       "t": "number",
+       "v": 1.15
+      },
+      "PreviewWobbleEnabled": {
+       "t": "boolean",
+       "v": true
+      },
+      "PreviewWobblePitchMultiplier": {
+       "t": "number",
+       "v": 0.75
+      },
+      "PreviewWobbleRandomiseAmount": {
+       "t": "number",
+       "v": 0.65
+      },
+      "PreviewWobbleRollMultiplier": {
+       "t": "number",
+       "v": 1
+      },
+      "PreviewWobbleSmoothing": {
+       "t": "number",
+       "v": 4.5
+      },
+      "PreviewWobbleSpeed": {
+       "t": "number",
+       "v": 1.15
+      },
+      "ResponsiveTouchEnabled": {
+       "t": "number",
+       "v": 1
+      },
+      "RuntimeAuditEnabled": {
+       "t": "boolean",
+       "v": false
+      },
+      "ThrustTargetPollSeconds": {
+       "t": "number",
+       "v": 0.25
+      },
+      "TouchActionPixels": {
+       "t": "number",
+       "v": 30
+      },
+      "TouchArrowPixels": {
+       "t": "number",
+       "v": 32
+      },
+      "TouchCategoryTop": {
+       "t": "number",
+       "v": 82
+      },
+      "TouchCategoryTopTiny": {
+       "t": "number",
+       "v": 68
+      },
+      "TouchCompactTargetPixels": {
+       "t": "number",
+       "v": 24
+      },
+      "TouchDenseTextMinSize": {
+       "t": "number",
+       "v": 7
+      },
+      "TouchPopupPixels": {
+       "t": "number",
+       "v": 30
+      },
+      "TouchSafeBottom": {
+       "t": "number",
+       "v": 4
+      },
+      "TouchSafeSide": {
+       "t": "number",
+       "v": 4
+      },
+      "TouchSafeTop": {
+       "t": "number",
+       "v": 4
+      },
+      "TouchScaleMin": {
+       "t": "number",
+       "v": 0.25
+      },
+      "TouchTargetPixels": {
+       "t": "number",
+       "v": 30
+      },
+      "TouchTextMaxSize": {
+       "t": "number",
+       "v": 22
+      },
+      "TouchTextScale": {
+       "t": "number",
+       "v": 1
+      },
+      "TouchTextThreshold": {
+       "t": "number",
+       "v": 14
+      },
+      "TouchTopLeftClearance": {
+       "t": "number",
+       "v": 92
+      },
+      "TouchVisualControlScaling": {
+       "t": "number",
+       "v": 0
+      },
+      "UpgradeBudgetHeight": {
+       "t": "number",
+       "v": 42
+      },
+      "UpgradeBudgetPipGap": {
+       "t": "number",
+       "v": 5
+      },
+      "UpgradeBudgetPipWidth": {
+       "t": "number",
+       "v": 18
+      },
+      "UpgradeBudgetPopupClearance": {
+       "t": "number",
+       "v": 48
+      },
+      "UpgradeBudgetTextSize": {
+       "t": "number",
+       "v": 13
+      },
+      "UpgradeBudgetWidth": {
+       "t": "number",
+       "v": 480
+      },
+      "VariantLabels_exotic": {
+       "t": "string",
+       "v": "Lightweight=GT;Power=EVO"
+      },
+      "VariantLabels_muscle": {
+       "t": "string",
+       "v": "Lightweight=GT;Power=EVO"
+      },
+      "WorkspacePaintWideWidth": {
+       "t": "number",
+       "v": 900
+      }
+     },
+     "class": "Folder"
+    },
+    "UI.GarageReplacement.ArrowHeight": {
+     "attributes": {
+      "GarageReplacementDefault": {
+       "t": "boolean",
+       "v": true
+      }
+     },
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 72
+     }
+    },
+    "UI.GarageReplacement.ArrowWidth": {
+     "attributes": {
+      "GarageReplacementDefault": {
+       "t": "boolean",
+       "v": true
+      }
+     },
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 42
+     }
+    },
+    "UI.GarageReplacement.BaseHeight": {
+     "attributes": {
+      "GarageReplacementDefault": {
+       "t": "boolean",
+       "v": true
+      }
+     },
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 900
+     }
+    },
+    "UI.GarageReplacement.BaseWidth": {
+     "attributes": {
+      "GarageReplacementDefault": {
+       "t": "boolean",
+       "v": true
+      }
+     },
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 1600
+     }
+    },
+    "UI.GarageReplacement.CardHeight": {
+     "attributes": {
+      "GarageReplacementDefault": {
+       "t": "boolean",
+       "v": true
+      }
+     },
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 146
+     }
+    },
+    "UI.GarageReplacement.CardImageHeight": {
+     "attributes": {
+      "GarageReplacementDefault": {
+       "t": "boolean",
+       "v": true
+      }
+     },
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 136
+     }
+    },
+    "UI.GarageReplacement.CardWidth": {
+     "attributes": {
+      "GarageReplacementDefault": {
+       "t": "boolean",
+       "v": true
+      }
+     },
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 226
+     }
+    },
+    "UI.GarageReplacement.CarouselHeight": {
+     "attributes": {
+      "GarageReplacementDefault": {
+       "t": "boolean",
+       "v": true
+      }
+     },
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 166
+     }
+    },
+    "UI.GarageReplacement.CategoryButtonHeight": {
+     "attributes": {
+      "GarageReplacementDefault": {
+       "t": "boolean",
+       "v": true
+      }
+     },
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 46
+     }
+    },
+    "UI.GarageReplacement.CategoryCarouselClearance": {
+     "attributes": {
+      "GarageReplacementDefault": {
+       "t": "boolean",
+       "v": true
+      }
+     },
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 82
+     }
+    },
+    "UI.GarageReplacement.CategoryWidth": {
+     "attributes": {
+      "GarageReplacementDefault": {
+       "t": "boolean",
+       "v": true
+      }
+     },
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 214
+     }
+    },
+    "UI.GarageReplacement.DesktopMinScale": {
+     "attributes": {
+      "GarageReplacementDefault": {
+       "t": "boolean",
+       "v": true
+      }
+     },
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 0.68
+     }
+    },
+    "UI.GarageReplacement.EconomyHeight": {
+     "attributes": {
+      "GarageReplacementDefault": {
+       "t": "boolean",
+       "v": true
+      }
+     },
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 46
+     }
+    },
+    "UI.GarageReplacement.Gap": {
+     "attributes": {
+      "GarageReplacementDefault": {
+       "t": "boolean",
+       "v": true
+      }
+     },
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 14
+     }
+    },
+    "UI.GarageReplacement.Margin": {
+     "attributes": {
+      "GarageReplacementDefault": {
+       "t": "boolean",
+       "v": true
+      }
+     },
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 18
+     }
+    },
+    "UI.GarageReplacement.MaxScale": {
+     "attributes": {
+      "GarageReplacementDefault": {
+       "t": "boolean",
+       "v": true
+      }
+     },
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 1.02
+     }
+    },
+    "UI.GarageReplacement.MobileMinScale": {
+     "attributes": {
+      "GarageReplacementDefault": {
+       "t": "boolean",
+       "v": true
+      }
+     },
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 0.42
+     }
+    },
+    "UI.GarageReplacement.ModuleArtwork": {
+     "attributes": {},
+     "class": "Folder"
+    },
+    "UI.GarageReplacement.ModuleArtwork.All": {
+     "attributes": {
+      "DisplayName": {
+       "t": "string",
+       "v": "All"
+      },
+      "Image": {
+       "t": "string",
+       "v": "rbxassetid://81870436149298"
+      },
+      "Image_exotic": {
+       "t": "string",
+       "v": "rbxassetid://128118074135601"
+      },
+      "ShowInBuild": {
+       "t": "boolean",
+       "v": false
+      },
+      "ShowInCustomise": {
+       "t": "boolean",
+       "v": true
+      },
+      "SortOrder": {
+       "t": "number",
+       "v": 10
+      },
+      "TargetId": {
+       "t": "string",
+       "v": "ALL"
+      }
+     },
+     "class": "Folder"
+    },
+    "UI.GarageReplacement.ModuleArtwork.Boost": {
+     "attributes": {
+      "DisplayName": {
+       "t": "string",
+       "v": "Boost"
+      },
+      "Image": {
+       "t": "string",
+       "v": "rbxassetid://87508389212440"
+      },
+      "Image_exotic": {
+       "t": "string",
+       "v": "rbxassetid://125156887089093"
+      },
+      "ShowInBuild": {
+       "t": "boolean",
+       "v": true
+      },
+      "ShowInCustomise": {
+       "t": "boolean",
+       "v": true
+      },
+      "SortOrder": {
+       "t": "number",
+       "v": 70
+      },
+      "TargetId": {
+       "t": "string",
+       "v": "Boost"
+      }
+     },
+     "class": "Folder"
+    },
+    "UI.GarageReplacement.ModuleArtwork.Cockpit": {
+     "attributes": {
+      "DisplayName": {
+       "t": "string",
+       "v": "Cockpit"
+      },
+      "Image": {
+       "t": "string",
+       "v": "rbxassetid://113886075743589"
+      },
+      "Image_exotic": {
+       "t": "string",
+       "v": "rbxassetid://81262312162264"
+      },
+      "ShowInBuild": {
+       "t": "boolean",
+       "v": false
+      },
+      "ShowInCustomise": {
+       "t": "boolean",
+       "v": true
+      },
+      "SortOrder": {
+       "t": "number",
+       "v": 20
+      },
+      "TargetId": {
+       "t": "string",
+       "v": "Cockpit"
+      }
+     },
+     "class": "Folder"
+    },
+    "UI.GarageReplacement.ModuleArtwork.FrontBody": {
+     "attributes": {
+      "DisplayName": {
+       "t": "string",
+       "v": "Front Body"
+      },
+      "Image": {
+       "t": "string",
+       "v": "rbxassetid://76594522686468"
+      },
+      "Image_exotic": {
+       "t": "string",
+       "v": "rbxassetid://83836476075409"
+      },
+      "ShowInBuild": {
+       "t": "boolean",
+       "v": true
+      },
+      "ShowInCustomise": {
+       "t": "boolean",
+       "v": true
+      },
+      "SortOrder": {
+       "t": "number",
+       "v": 32
+      },
+      "TargetId": {
+       "t": "string",
+       "v": "FrontBody"
+      }
+     },
+     "class": "Folder"
+    },
+    "UI.GarageReplacement.ModuleArtwork.FrontBumper": {
+     "attributes": {
+      "DisplayName": {
+       "t": "string",
+       "v": "Front Bumper"
+      },
+      "Hidden_exotic": {
+       "t": "boolean",
+       "v": true
+      },
+      "Hidden_muscle": {
+       "t": "boolean",
+       "v": true
+      },
+      "Image": {
+       "t": "string",
+       "v": "rbxassetid://76594522686468"
+      },
+      "ShowInBuild": {
+       "t": "boolean",
+       "v": true
+      },
+      "ShowInCustomise": {
+       "t": "boolean",
+       "v": true
+      },
+      "SortOrder": {
+       "t": "number",
+       "v": 80
+      },
+      "TargetId": {
+       "t": "string",
+       "v": "FrontBumper"
+      }
+     },
+     "class": "Folder"
+    },
+    "UI.GarageReplacement.ModuleArtwork.FrontEngine": {
+     "attributes": {
+      "DisplayName": {
+       "t": "string",
+       "v": "Front Engine"
+      },
+      "Image": {
+       "t": "string",
+       "v": "rbxassetid://75624529535039"
+      },
+      "Image_exotic": {
+       "t": "string",
+       "v": "rbxassetid://131895203472955"
+      },
+      "ShowInBuild": {
+       "t": "boolean",
+       "v": true
+      },
+      "ShowInCustomise": {
+       "t": "boolean",
+       "v": true
+      },
+      "SortOrder": {
+       "t": "number",
+       "v": 40
+      },
+      "TargetId": {
+       "t": "string",
+       "v": "Engine1"
+      }
+     },
+     "class": "Folder"
+    },
+    "UI.GarageReplacement.ModuleArtwork.RearBody": {
+     "attributes": {
+      "DisplayName": {
+       "t": "string",
+       "v": "Rear Body"
+      },
+      "Image": {
+       "t": "string",
+       "v": "rbxassetid://136042248946525"
+      },
+      "Image_exotic": {
+       "t": "string",
+       "v": "rbxassetid://94927048868347"
+      },
+      "ShowInBuild": {
+       "t": "boolean",
+       "v": true
+      },
+      "ShowInCustomise": {
+       "t": "boolean",
+       "v": true
+      },
+      "SortOrder": {
+       "t": "number",
+       "v": 34
+      },
+      "TargetId": {
+       "t": "string",
+       "v": "RearBody"
+      }
+     },
+     "class": "Folder"
+    },
+    "UI.GarageReplacement.ModuleArtwork.RearBumper": {
+     "attributes": {
+      "DisplayName": {
+       "t": "string",
+       "v": "Rear Bumper"
+      },
+      "Hidden_exotic": {
+       "t": "boolean",
+       "v": true
+      },
+      "Hidden_muscle": {
+       "t": "boolean",
+       "v": true
+      },
+      "Image": {
+       "t": "string",
+       "v": "rbxassetid://136042248946525"
+      },
+      "ShowInBuild": {
+       "t": "boolean",
+       "v": true
+      },
+      "ShowInCustomise": {
+       "t": "boolean",
+       "v": true
+      },
+      "SortOrder": {
+       "t": "number",
+       "v": 90
+      },
+      "TargetId": {
+       "t": "string",
+       "v": "RearBumper"
+      }
+     },
+     "class": "Folder"
+    },
+    "UI.GarageReplacement.ModuleArtwork.RearEngine": {
+     "attributes": {
+      "DisplayName": {
+       "t": "string",
+       "v": "Rear Engine"
+      },
+      "Image": {
+       "t": "string",
+       "v": "rbxassetid://100594986362095"
+      },
+      "Image_exotic": {
+       "t": "string",
+       "v": "rbxassetid://87580925930089"
+      },
+      "ShowInBuild": {
+       "t": "boolean",
+       "v": true
+      },
+      "ShowInCustomise": {
+       "t": "boolean",
+       "v": true
+      },
+      "SortOrder": {
+       "t": "number",
+       "v": 50
+      },
+      "TargetId": {
+       "t": "string",
+       "v": "Engine2"
+      }
+     },
+     "class": "Folder"
+    },
+    "UI.GarageReplacement.ModuleArtwork.SidePods": {
+     "attributes": {
+      "DisplayName": {
+       "t": "string",
+       "v": "Side Pods"
+      },
+      "Hidden_exotic": {
+       "t": "boolean",
+       "v": true
+      },
+      "Hidden_muscle": {
+       "t": "boolean",
+       "v": true
+      },
+      "Image": {
+       "t": "string",
+       "v": "rbxassetid://131991855282079"
+      },
+      "ShowInBuild": {
+       "t": "boolean",
+       "v": true
+      },
+      "ShowInCustomise": {
+       "t": "boolean",
+       "v": true
+      },
+      "SortOrder": {
+       "t": "number",
+       "v": 100
+      },
+      "TargetId": {
+       "t": "string",
+       "v": "SidePods"
+      }
+     },
+     "class": "Folder"
+    },
+    "UI.GarageReplacement.ModuleArtwork.Spoiler": {
+     "attributes": {
+      "DisplayName": {
+       "t": "string",
+       "v": "Spoiler"
+      },
+      "Image": {
+       "t": "string",
+       "v": "rbxassetid://136022300099023"
+      },
+      "Image_exotic": {
+       "t": "string",
+       "v": "rbxassetid://99681362447707"
+      },
+      "ShowInBuild": {
+       "t": "boolean",
+       "v": true
+      },
+      "ShowInCustomise": {
+       "t": "boolean",
+       "v": true
+      },
+      "SortOrder": {
+       "t": "number",
+       "v": 110
+      },
+      "TargetId": {
+       "t": "string",
+       "v": "RearSpoiler"
+      }
+     },
+     "class": "Folder"
+    },
+    "UI.GarageReplacement.ModuleArtwork.Stabilisers": {
+     "attributes": {
+      "DisplayName": {
+       "t": "string",
+       "v": "Stabilisers"
+      },
+      "Image": {
+       "t": "string",
+       "v": "rbxassetid://102447215741079"
+      },
+      "Image_exotic": {
+       "t": "string",
+       "v": "rbxassetid://105948755652652"
+      },
+      "ShowInBuild": {
+       "t": "boolean",
+       "v": true
+      },
+      "ShowInCustomise": {
+       "t": "boolean",
+       "v": true
+      },
+      "SortOrder": {
+       "t": "number",
+       "v": 60
+      },
+      "TargetId": {
+       "t": "string",
+       "v": "Stabilisers"
+      }
+     },
+     "class": "Folder"
+    },
+    "UI.GarageReplacement.ModuleArtwork.ThrustColour": {
+     "attributes": {
+      "DisplayName": {
+       "t": "string",
+       "v": "Thrust Colour"
+      },
+      "Image": {
+       "t": "string",
+       "v": "rbxassetid://116894552982899"
+      },
+      "Image_exotic": {
+       "t": "string",
+       "v": "rbxassetid://127812752445338"
+      },
+      "ShowInBuild": {
+       "t": "boolean",
+       "v": false
+      },
+      "ShowInCustomise": {
+       "t": "boolean",
+       "v": true
+      },
+      "SortOrder": {
+       "t": "number",
+       "v": 30
+      },
+      "TargetId": {
+       "t": "string",
+       "v": "THRUST_COLOR"
+      }
+     },
+     "class": "Folder"
+    },
+    "UI.GarageReplacement.ModuleCardImageHeight": {
+     "attributes": {
+      "GarageReplacementDefault": {
+       "t": "boolean",
+       "v": true
+      }
+     },
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 104
+     }
+    },
+    "UI.GarageReplacement.NavigationIcons": {
+     "attributes": {
+      "BackIcon": {
+       "t": "string",
+       "v": "rbxassetid://130571746357911"
+      },
+      "BuildModulesIcon": {
+       "t": "string",
+       "v": "rbxassetid://110010902394406"
+      },
+      "BuyModulesIcon": {
+       "t": "string",
+       "v": "rbxassetid://78853137219660"
+      },
+      "CustomiseIcon": {
+       "t": "string",
+       "v": "rbxassetid://85935652702038"
+      },
+      "CustomiseModulesIcon": {
+       "t": "string",
+       "v": "rbxassetid://85935652702038"
+      },
+      "DriveIcon": {
+       "t": "string",
+       "v": "rbxassetid://124917478219752"
+      },
+      "ExitIcon": {
+       "t": "string",
+       "v": "rbxassetid://133533403173813"
+      },
+      "OwnedModulesIcon": {
+       "t": "string",
+       "v": "rbxassetid://76816973927488"
+      },
+      "PaintShopIcon": {
+       "t": "string",
+       "v": "rbxassetid://139744856495281"
+      },
+      "UnderglowIcon": {
+       "t": "string",
+       "v": "rbxassetid://87739019174785"
+      },
+      "UnderglowSidebarIcon": {
+       "t": "string",
+       "v": "132867231924801"
+      },
+      "UnderglowSidebarIcon_exotic": {
+       "t": "string",
+       "v": "rbxassetid://137313031963928"
+      },
+      "UpgradeModulesIcon": {
+       "t": "string",
+       "v": "rbxassetid://85935652702038"
+      }
+     },
+     "class": "Folder"
+    },
+    "UI.GarageReplacement.OwnedGarageIcons": {
+     "attributes": {
+      "ContractVersion": {
+       "t": "number",
+       "v": 4
+      },
+      "EditNote": {
+       "t": "string",
+       "v": "Owned-garage icon folders include Save, Colour, Material, Locked, All locations and one icon per material. Blank values retain documented fallbacks."
+      },
+      "Revision": {
+       "t": "string",
+       "v": "NTR_OWNED_GARAGE_MATERIAL_ICON_SIZE_V1"
+      }
+     },
+     "class": "Folder"
+    },
+    "UI.GarageReplacement.OwnedGarageIcons.Access": {
+     "attributes": {
+      "FriendsOnly": {
+       "t": "string",
+       "v": ""
+      },
+      "Invite": {
+       "t": "string",
+       "v": ""
+      },
+      "InviteOnly": {
+       "t": "string",
+       "v": ""
+      },
+      "Private": {
+       "t": "string",
+       "v": ""
+      },
+      "Public": {
+       "t": "string",
+       "v": ""
+      }
+     },
+     "class": "Folder"
+    },
+    "UI.GarageReplacement.OwnedGarageIcons.Actions": {
+     "attributes": {
+      "Colour": {
+       "t": "string",
+       "v": "rbxassetid://139744856495281"
+      },
+      "InstallAsset": {
+       "t": "string",
+       "v": ""
+      },
+      "Material": {
+       "t": "string",
+       "v": "rbxassetid://70574439126662"
+      }
+     },
+     "class": "Folder"
+    },
+    "UI.GarageReplacement.OwnedGarageIcons.Browser": {
+     "attributes": {
+      "Cancel": {
+       "t": "string",
+       "v": ""
+      },
+      "Enter": {
+       "t": "string",
+       "v": ""
+      },
+      "Exit": {
+       "t": "string",
+       "v": ""
+      }
+     },
+     "class": "Folder"
+    },
+    "UI.GarageReplacement.OwnedGarageIcons.DecorationLocations": {
+     "attributes": {
+      "AllDecorations": {
+       "t": "string",
+       "v": "rbxassetid://114190063420048"
+      },
+      "DisplayPlatforms": {
+       "t": "string",
+       "v": "rbxassetid://83198821892691"
+      },
+      "FeatureCorner": {
+       "t": "string",
+       "v": "rbxassetid://81959347627319"
+      },
+      "HangoutBay": {
+       "t": "string",
+       "v": "rbxassetid://135588654023543"
+      },
+      "IdentityWall": {
+       "t": "string",
+       "v": "rbxassetid://111625726375475"
+      },
+      "StorageWall": {
+       "t": "string",
+       "v": "rbxassetid://132801303599525"
+      },
+      "WorkshopWall": {
+       "t": "string",
+       "v": "rbxassetid://103659383424655"
+      }
+     },
+     "class": "Folder"
+    },
+    "UI.GarageReplacement.OwnedGarageIcons.Economy": {
+     "attributes": {
+      "Capacity": {
+       "t": "string",
+       "v": ""
+      }
+     },
+     "class": "Folder"
+    },
+    "UI.GarageReplacement.OwnedGarageIcons.Families": {
+     "attributes": {
+      "Decorations": {
+       "t": "string",
+       "v": "rbxassetid://81092631604328"
+      },
+      "Lighting": {
+       "t": "string",
+       "v": "rbxassetid://87739019174785"
+      },
+      "Structure": {
+       "t": "string",
+       "v": "rbxassetid://135612377189871"
+      }
+     },
+     "class": "Folder"
+    },
+    "UI.GarageReplacement.OwnedGarageIcons.Materials": {
+     "attributes": {
+      "CONCRETE": {
+       "t": "string",
+       "v": "72212354753427"
+      },
+      "METAL": {
+       "t": "string",
+       "v": "104014204152403"
+      },
+      "PAINT": {
+       "t": "string",
+       "v": "138038508891120"
+      },
+      "TILES_A": {
+       "t": "string",
+       "v": "97983186586997"
+      },
+      "TILES_B": {
+       "t": "string",
+       "v": "90564001363102"
+      },
+      "TILES_C": {
+       "t": "string",
+       "v": "104159792046905"
+      },
+      "TILES_D": {
+       "t": "string",
+       "v": "128484130261144"
+      },
+      "TILES_E": {
+       "t": "string",
+       "v": "112723551908186"
+      },
+      "TILES_F": {
+       "t": "string",
+       "v": "105783559502192"
+      },
+      "WOOD": {
+       "t": "string",
+       "v": "75769478743340"
+      }
+     },
+     "class": "Folder"
+    },
+    "UI.GarageReplacement.OwnedGarageIcons.Modes": {
+     "attributes": {
+      "BuildGarage": {
+       "t": "string",
+       "v": "rbxassetid://110010902394406"
+      },
+      "DisplayCars": {
+       "t": "string",
+       "v": "rbxassetid://77221165732303"
+      },
+      "StyleGarage": {
+       "t": "string",
+       "v": "rbxassetid://139744856495281"
+      }
+     },
+     "class": "Folder"
+    },
+    "UI.GarageReplacement.OwnedGarageIcons.Navigation": {
+     "attributes": {
+      "Back": {
+       "t": "string",
+       "v": "rbxassetid://130571746357911"
+      },
+      "Exit": {
+       "t": "string",
+       "v": "rbxassetid://133533403173813"
+      },
+      "Save": {
+       "t": "string",
+       "v": "rbxassetid://98867283361897"
+      }
+     },
+     "class": "Folder"
+    },
+    "UI.GarageReplacement.OwnedGarageIcons.Sizing": {
+     "attributes": {
+      "DecorationLocationImageZoom": {
+       "t": "number",
+       "v": 0.85
+      },
+      "MaterialImageZoom": {
+       "t": "number",
+       "v": 0.85
+      },
+      "StructureLocationImageZoom": {
+       "t": "number",
+       "v": 0.85
+      }
+     },
+     "class": "Folder"
+    },
+    "UI.GarageReplacement.OwnedGarageIcons.States": {
+     "attributes": {
+      "Locked": {
+       "t": "string",
+       "v": "rbxassetid://96467470526298"
+      }
+     },
+     "class": "Folder"
+    },
+    "UI.GarageReplacement.OwnedGarageIcons.StructureLocations": {
+     "attributes": {
+      "AllStructure": {
+       "t": "string",
+       "v": "rbxassetid://119782582531272"
+      },
+      "BackWall": {
+       "t": "string",
+       "v": "rbxassetid://112382609751975"
+      },
+      "Ceiling": {
+       "t": "string",
+       "v": "rbxassetid://107003250483960"
+      },
+      "Floor": {
+       "t": "string",
+       "v": "rbxassetid://79096464558908"
+      },
+      "FrontWall": {
+       "t": "string",
+       "v": "rbxassetid://83254878416191"
+      },
+      "LeftWall": {
+       "t": "string",
+       "v": "rbxassetid://134782117152434"
+      },
+      "RightWall": {
+       "t": "string",
+       "v": "rbxassetid://101513434420710"
+      }
+     },
+     "class": "Folder"
+    },
+    "UI.GarageReplacement.StatReference": {
+     "attributes": {
+      "GarageReplacementDefault": {
+       "t": "boolean",
+       "v": true
+      }
+     },
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 180
+     }
+    },
+    "UI.GarageReplacement.StatsWidth": {
+     "attributes": {
+      "GarageReplacementDefault": {
+       "t": "boolean",
+       "v": true
+      }
+     },
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 354
+     }
+    },
+    "UI.GarageReplacement.VehicleCosmetics": {
+     "attributes": {
+      "Revision": {
+       "t": "string",
+       "v": "NTR_CUSTOMISATION_VEHICLE_COSMETICS_EMPTY_ROUTES_V1_2_AUTHORED_LIGHT_PROPERTIES"
+      },
+      "SchemaVersion": {
+       "t": "number",
+       "v": 1
+      }
+     },
+     "class": "Folder"
+    },
+    "UI.GarageReplacement.VehicleCosmetics.ThrustColour": {
+     "attributes": {
+      "Available": {
+       "t": "boolean",
+       "v": true
+      },
+      "CosmeticId": {
+       "t": "string",
+       "v": "ThrustColour"
+      },
+      "DefaultColor": {
+       "t": "Color3",
+       "v": [
+        1.0,
+        1.0,
+        1.0
+       ]
+      },
+      "DisplayName": {
+       "t": "string",
+       "v": "Thrust Colour"
+      },
+      "Icon": {
+       "t": "string",
+       "v": "rbxassetid://139744856495281"
+      },
+      "Price": {
+       "t": "number",
+       "v": 5000
+      },
+      "SortOrder": {
+       "t": "number",
+       "v": 10
+      }
+     },
+     "class": "Folder"
+    },
+    "UI.GarageReplacement.VehicleCosmetics.Underglow": {
+     "attributes": {
+      "Available": {
+       "t": "boolean",
+       "v": true
+      },
+      "CosmeticId": {
+       "t": "string",
+       "v": "Underglow"
+      },
+      "DebugEnabled": {
+       "t": "boolean",
+       "v": false
+      },
+      "DefaultColor": {
+       "t": "Color3",
+       "v": [
+        1.0,
+        1.0,
+        1.0
+       ]
+      },
+      "DisplayName": {
+       "t": "string",
+       "v": "Underglow"
+      },
+      "Icon": {
+       "t": "string",
+       "v": "rbxassetid://87739019174785"
+      },
+      "LightPropertyMode": {
+       "t": "string",
+       "v": "AuthoredPerVehicle"
+      },
+      "Price": {
+       "t": "number",
+       "v": 5000
+      },
+      "SortOrder": {
+       "t": "number",
+       "v": 20
+      }
+     },
+     "class": "Folder"
+    },
+    "UI.GarageReplacement.WorkspaceCardHeight": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 146
+     }
+    },
+    "UI.GarageReplacement.WorkspaceCardWidth": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 210
+     }
+    },
+    "UI.GarageReplacement.WorkspacePaintWidth": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 720
+     }
+    },
+    "UI.GarageReplacement.WorkspaceStatsHeight": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 258
+     }
+    },
+    "UI.LoadingSystem": {
+     "attributes": {
+      "AllowRandomOnStartScreen": {
+       "t": "boolean",
+       "v": false
+      },
+      "AmbienceBaseVolume": {
+       "t": "number",
+       "v": 1
+      },
+      "CompletionFillSeconds": {
+       "t": "number",
+       "v": 0.2
+      },
+      "DefaultArtworkId": {
+       "t": "string",
+       "v": "NeoTokyoStreet01"
+      },
+      "DisplayOrder": {
+       "t": "number",
+       "v": 1000
+      },
+      "Enabled": {
+       "t": "boolean",
+       "v": true
+      },
+      "FadeOutSeconds": {
+       "t": "number",
+       "v": 0.3
+      },
+      "GameplayAudioDuckSeconds": {
+       "t": "number",
+       "v": 0.25
+      },
+      "GameplayDuckVolume": {
+       "t": "number",
+       "v": 0
+      },
+      "GameplayMusicBaseVolume": {
+       "t": "number",
+       "v": 1
+      },
+      "GameplaySFXBaseVolume": {
+       "t": "number",
+       "v": 1
+      },
+      "GridOverlapPixels": {
+       "t": "number",
+       "v": 1
+      },
+      "GridPreloadAttempts": {
+       "t": "number",
+       "v": 2
+      },
+      "GridPreloadRetrySeconds": {
+       "t": "number",
+       "v": 0.25
+      },
+      "GridPromotionWaitSeconds": {
+       "t": "number",
+       "v": 3
+      },
+      "LoadingMusicAssetId": {
+       "t": "string",
+       "v": ""
+      },
+      "LoadingMusicFadeInSeconds": {
+       "t": "number",
+       "v": 0.5
+      },
+      "LoadingMusicStartDelaySeconds": {
+       "t": "number",
+       "v": 0.9
+      },
+      "LoadingMusicVolume": {
+       "t": "number",
+       "v": 0.55
+      },
+      "MinimumVisibleSeconds": {
+       "t": "number",
+       "v": 1.2
+      },
+      "MotionDurationSeconds": {
+       "t": "number",
+       "v": 7
+      },
+      "MotionEnabled": {
+       "t": "boolean",
+       "v": true
+      },
+      "MotionEndScale": {
+       "t": "number",
+       "v": 1.1
+      },
+      "MotionOnStartScreen": {
+       "t": "boolean",
+       "v": false
+      },
+      "MotionStartScale": {
+       "t": "number",
+       "v": 1.06
+      },
+      "MotionTravelPercent": {
+       "t": "number",
+       "v": 0.012
+      },
+      "ReadyHoldSeconds": {
+       "t": "number",
+       "v": 0.06
+      },
+      "Revision": {
+       "t": "string",
+       "v": "NTR_LOADING_SYSTEM_PHASE3_OWNED_GARAGE_TRANSITIONS_V1"
+      },
+      "StartScreenButtonYScaleDesktop": {
+       "t": "number",
+       "v": 0.82
+      },
+      "StartScreenButtonYScaleLandscapePhone": {
+       "t": "number",
+       "v": 0.84
+      },
+      "StartScreenButtonYScalePortrait": {
+       "t": "number",
+       "v": 0.8
+      },
+      "StartScreenPlayIconAssetId": {
+       "t": "string",
+       "v": "rbxassetid://111016536187357"
+      },
+      "StartScreenShopIconAssetId": {
+       "t": "string",
+       "v": "rbxassetid://72917122145318"
+      },
+      "TimeoutSeconds": {
+       "t": "number",
+       "v": 12
+      },
+      "VehicleBaseVolume": {
+       "t": "number",
+       "v": 1
+      },
+      "WarmPoolSize": {
+       "t": "number",
+       "v": 1
+      }
+     },
+     "class": "Folder"
+    },
+    "UI.LoadingSystem.Artworks": {
+     "attributes": {
+      "SchemaVersion": {
+       "t": "number",
+       "v": 2
+      }
+     },
+     "class": "Folder"
+    },
+    "UI.LoadingSystem.Artworks.NeoTokyoStreet01": {
+     "attributes": {
+      "ArtworkId": {
+       "t": "string",
+       "v": "NeoTokyoStreet01"
+      },
+      "AspectRatio": {
+       "t": "number",
+       "v": 1.7777777777777777
+      },
+      "Columns": {
+       "t": "number",
+       "v": 3
+      },
+      "CompositeResolution": {
+       "t": "string",
+       "v": "3072x1728"
+      },
+      "Destinations": {
+       "t": "string",
+       "v": "*"
+      },
+      "Enabled": {
+       "t": "boolean",
+       "v": true
+      },
+      "FocalPointX": {
+       "t": "number",
+       "v": 0.5
+      },
+      "FocalPointY": {
+       "t": "number",
+       "v": 0.5
+      },
+      "ImageAssetId": {
+       "t": "string",
+       "v": "rbxassetid://137948691365480"
+      },
+      "Layout": {
+       "t": "string",
+       "v": "Grid3x2"
+      },
+      "MotionPreset": {
+       "t": "string",
+       "v": "SlowPanRight"
+      },
+      "Rows": {
+       "t": "number",
+       "v": 2
+      },
+      "StartScreenEligible": {
+       "t": "boolean",
+       "v": true
+      },
+      "Weight": {
+       "t": "number",
+       "v": 1
+      }
+     },
+     "class": "Folder"
+    },
+    "UI.LoadingSystem.Artworks.NeoTokyoStreet01.Tiles": {
+     "attributes": {
+      "SchemaVersion": {
+       "t": "number",
+       "v": 1
+      }
+     },
+     "class": "Folder"
+    },
+    "UI.LoadingSystem.Artworks.NeoTokyoStreet01.Tiles.R1C1": {
+     "attributes": {
+      "Column": {
+       "t": "number",
+       "v": 1
+      },
+      "ImageAssetId": {
+       "t": "string",
+       "v": "rbxassetid://127077020536917"
+      },
+      "Row": {
+       "t": "number",
+       "v": 1
+      }
+     },
+     "class": "Folder"
+    },
+    "UI.LoadingSystem.Artworks.NeoTokyoStreet01.Tiles.R1C2": {
+     "attributes": {
+      "Column": {
+       "t": "number",
+       "v": 2
+      },
+      "ImageAssetId": {
+       "t": "string",
+       "v": "rbxassetid://88106196503875"
+      },
+      "Row": {
+       "t": "number",
+       "v": 1
+      }
+     },
+     "class": "Folder"
+    },
+    "UI.LoadingSystem.Artworks.NeoTokyoStreet01.Tiles.R1C3": {
+     "attributes": {
+      "Column": {
+       "t": "number",
+       "v": 3
+      },
+      "ImageAssetId": {
+       "t": "string",
+       "v": "rbxassetid://128401986247728"
+      },
+      "Row": {
+       "t": "number",
+       "v": 1
+      }
+     },
+     "class": "Folder"
+    },
+    "UI.LoadingSystem.Artworks.NeoTokyoStreet01.Tiles.R2C1": {
+     "attributes": {
+      "Column": {
+       "t": "number",
+       "v": 1
+      },
+      "ImageAssetId": {
+       "t": "string",
+       "v": "rbxassetid://138002780903229"
+      },
+      "Row": {
+       "t": "number",
+       "v": 2
+      }
+     },
+     "class": "Folder"
+    },
+    "UI.LoadingSystem.Artworks.NeoTokyoStreet01.Tiles.R2C2": {
+     "attributes": {
+      "Column": {
+       "t": "number",
+       "v": 2
+      },
+      "ImageAssetId": {
+       "t": "string",
+       "v": "rbxassetid://71472388719280"
+      },
+      "Row": {
+       "t": "number",
+       "v": 2
+      }
+     },
+     "class": "Folder"
+    },
+    "UI.LoadingSystem.Artworks.NeoTokyoStreet01.Tiles.R2C3": {
+     "attributes": {
+      "Column": {
+       "t": "number",
+       "v": 3
+      },
+      "ImageAssetId": {
+       "t": "string",
+       "v": "rbxassetid://83174055122526"
+      },
+      "Row": {
+       "t": "number",
+       "v": 2
+      }
+     },
+     "class": "Folder"
+    },
+    "UI.MapIconLayer": {
+     "attributes": {
+      "EdgeInset": {
+       "t": "number",
+       "v": 11
+      },
+      "FullMapEnabled": {
+       "t": "boolean",
+       "v": true
+      },
+      "FullMapIconSize": {
+       "t": "number",
+       "v": 48
+      },
+      "MinimapEnabled": {
+       "t": "boolean",
+       "v": true
+      },
+      "MinimapIconSize": {
+       "t": "number",
+       "v": 32
+      },
+      "MobileMinimapIconSize": {
+       "t": "number",
+       "v": 24
+      },
+      "Overscan": {
+       "t": "number",
+       "v": 12
+      },
+      "PinIcons": {
+       "t": "string",
+       "v": "Waypoint,TaxiDrop,CourierDrop"
+      },
+      "PinTipY": {
+       "t": "number",
+       "v": 0.9219
+      },
+      "PulseAmount": {
+       "t": "number",
+       "v": 0
+      },
+      "PulseSpeed": {
+       "t": "number",
+       "v": 4
+      },
+      "ShadowOffset": {
+       "t": "number",
+       "v": 1.5
+      },
+      "ShadowTransparency": {
+       "t": "number",
+       "v": 1
+      },
+      "TouchFullMapIconSize": {
+       "t": "number",
+       "v": 56
+      }
+     },
+     "class": "Folder"
+    },
+    "UI.MapIcons": {
+     "attributes": {
+      "CourierDrop": {
+       "t": "string",
+       "v": "rbxassetid://91332824339252"
+      },
+      "CourierPickup": {
+       "t": "string",
+       "v": "rbxassetid://98923575173924"
+      },
+      "Customisation": {
+       "t": "string",
+       "v": "rbxassetid://103658738821696"
+      },
+      "Dealership": {
+       "t": "string",
+       "v": "rbxassetid://92869129705490"
+      },
+      "Duel": {
+       "t": "string",
+       "v": "rbxassetid://98037275271976"
+      },
+      "Garage": {
+       "t": "string",
+       "v": "rbxassetid://117463710888636"
+      },
+      "Job": {
+       "t": "string",
+       "v": "rbxassetid://114936364584344"
+      },
+      "OtherPlayer": {
+       "t": "string",
+       "v": "rbxassetid://105355064166767"
+      },
+      "Player": {
+       "t": "string",
+       "v": "rbxassetid://131214078324709"
+      },
+      "Race": {
+       "t": "string",
+       "v": "rbxassetid://101513672811479"
+      },
+      "TaxiDrop": {
+       "t": "string",
+       "v": "rbxassetid://91589223582119"
+      },
+      "TaxiFare": {
+       "t": "string",
+       "v": "rbxassetid://122684785819223"
+      },
+      "TimeTrial": {
+       "t": "string",
+       "v": "rbxassetid://70689086757093"
+      },
+      "Waypoint": {
+       "t": "string",
+       "v": "rbxassetid://103285523696337"
+      }
+     },
+     "class": "Folder"
+    },
+    "UI.MapPois": {
+     "attributes": {},
+     "class": "Folder"
+    },
+    "UI.MapPois.Customisation": {
+     "attributes": {
+      "DestinationId": {
+       "t": "string",
+       "v": "Customisation"
+      },
+      "Hidden": {
+       "t": "boolean",
+       "v": true
+      },
+      "Icon": {
+       "t": "string",
+       "v": "Customisation"
+      },
+      "Kind": {
+       "t": "string",
+       "v": "Place"
+      },
+      "Label": {
+       "t": "string",
+       "v": "Customisation"
+      },
+      "Order": {
+       "t": "number",
+       "v": 3
+      },
+      "Position": {
+       "t": "Vector3",
+       "v": [
+        940.5999755859375,
+        101.0,
+        -1661.800048828125
+       ]
+      }
+     },
+     "class": "Folder"
+    },
+    "UI.MapPois.Dealership": {
+     "attributes": {
+      "DestinationId": {
+       "t": "string",
+       "v": "Dealership"
+      },
+      "Icon": {
+       "t": "string",
+       "v": "Dealership"
+      },
+      "Kind": {
+       "t": "string",
+       "v": "Place"
+      },
+      "Label": {
+       "t": "string",
+       "v": "Dealership"
+      },
+      "Order": {
+       "t": "number",
+       "v": 1
+      },
+      "Position": {
+       "t": "Vector3",
+       "v": [
+        731.2999877929688,
+        106.69999694824219,
+        -1747.9000244140625
+       ]
+      }
+     },
+     "class": "Folder"
+    },
+    "UI.MapPois.MyGarage": {
+     "attributes": {
+      "DestinationId": {
+       "t": "string",
+       "v": "MyGarage"
+      },
+      "Icon": {
+       "t": "string",
+       "v": "Garage"
+      },
+      "Kind": {
+       "t": "string",
+       "v": "Place"
+      },
+      "Label": {
+       "t": "string",
+       "v": "My Garage"
+      },
+      "Order": {
+       "t": "number",
+       "v": 2
+      },
+      "Position": {
+       "t": "Vector3",
+       "v": [
+        1580.800048828125,
+        102.30000305175781,
+        -1841.699951171875
+       ]
+      }
+     },
+     "class": "Folder"
+    },
+    "UI.MapPois.Race_ShiftedCanalSprint": {
+     "attributes": {
+      "DestinationId": {
+       "t": "string",
+       "v": "Race_ShiftedCanalSprint"
+      },
+      "Icon": {
+       "t": "string",
+       "v": "Race"
+      },
+      "Kind": {
+       "t": "string",
+       "v": "Race"
+      },
+      "Label": {
+       "t": "string",
+       "v": "Waterfront Sprint"
+      },
+      "Order": {
+       "t": "number",
+       "v": 11
+      },
+      "Position": {
+       "t": "Vector3",
+       "v": [
+        2199.0,
+        100.0,
+        -1329.0
+       ]
+      },
+      "RouteId": {
+       "t": "string",
+       "v": "ShiftedCanalSprint"
+      }
+     },
+     "class": "Folder"
+    },
+    "UI.MapPois.Race_ShowroomLoop": {
+     "attributes": {
+      "DestinationId": {
+       "t": "string",
+       "v": "Race_ShowroomLoop"
+      },
+      "Icon": {
+       "t": "string",
+       "v": "Race"
+      },
+      "Kind": {
+       "t": "string",
+       "v": "Race"
+      },
+      "Label": {
+       "t": "string",
+       "v": "Showroom Loop"
+      },
+      "Order": {
+       "t": "number",
+       "v": 10
+      },
+      "Position": {
+       "t": "Vector3",
+       "v": [
+        1380.4000244140625,
+        101.0,
+        -1229.199951171875
+       ]
+      },
+      "RouteId": {
+       "t": "string",
+       "v": "ShowroomLoop"
+      }
+     },
+     "class": "Folder"
+    },
+    "UI.MapTiles": {
+     "attributes": {
+      "GridSize": {
+       "t": "number",
+       "v": 4
+      },
+      "R1C1": {
+       "t": "string",
+       "v": "rbxassetid://133774379342066"
+      },
+      "R1C2": {
+       "t": "string",
+       "v": "rbxassetid://110188395343938"
+      },
+      "R1C3": {
+       "t": "string",
+       "v": "rbxassetid://79188649890221"
+      },
+      "R1C4": {
+       "t": "string",
+       "v": "rbxassetid://83113469548271"
+      },
+      "R2C1": {
+       "t": "string",
+       "v": "rbxassetid://120778952728854"
+      },
+      "R2C2": {
+       "t": "string",
+       "v": "rbxassetid://120153010240630"
+      },
+      "R2C3": {
+       "t": "string",
+       "v": "rbxassetid://95326871704869"
+      },
+      "R2C4": {
+       "t": "string",
+       "v": "rbxassetid://121849526040461"
+      },
+      "R3C1": {
+       "t": "string",
+       "v": "rbxassetid://133949744327450"
+      },
+      "R3C2": {
+       "t": "string",
+       "v": "rbxassetid://133261306383702"
+      },
+      "R3C3": {
+       "t": "string",
+       "v": "rbxassetid://78488737639591"
+      },
+      "R3C4": {
+       "t": "string",
+       "v": "rbxassetid://135783406757604"
+      },
+      "R4C1": {
+       "t": "string",
+       "v": "rbxassetid://78668541660055"
+      },
+      "R4C2": {
+       "t": "string",
+       "v": "rbxassetid://78668541660055"
+      },
+      "R4C3": {
+       "t": "string",
+       "v": "rbxassetid://78668541660055"
+      },
+      "R4C4": {
+       "t": "string",
+       "v": "rbxassetid://78668541660055"
+      }
+     },
+     "class": "Folder"
+    },
+    "UI.MobileFreeRoamHud": {
+     "attributes": {
+      "ArrowCardGradientRotation": {
+       "t": "number",
+       "v": 90
+      },
+      "ArrowCardOpacity": {
+       "t": "number",
+       "v": 0.4
+      },
+      "ArrowImageOpacity": {
+       "t": "number",
+       "v": 0.7
+      },
+      "ArrowPressedOpacityBoost": {
+       "t": "number",
+       "v": 0.12
+      },
+      "ArrowWidthMultiplier": {
+       "t": "number",
+       "v": 1.5
+      },
+      "BoostIconScale": {
+       "t": "number",
+       "v": 1.05
+      },
+      "BoostPlateGradientRotation": {
+       "t": "number",
+       "v": 45
+      },
+      "BoostPlateScale": {
+       "t": "number",
+       "v": 0.84
+      },
+      "CarMenuBottomMargin": {
+       "t": "number",
+       "v": 2
+      },
+      "CarMenuCardAspect": {
+       "t": "number",
+       "v": 0.88
+      },
+      "CarMenuCardBottomSafePadding": {
+       "t": "number",
+       "v": 3
+      },
+      "CarMenuCardGap": {
+       "t": "number",
+       "v": 5
+      },
+      "CarMenuCardStrokeSafePadding": {
+       "t": "number",
+       "v": 5
+      },
+      "CarMenuCardTopSafePadding": {
+       "t": "number",
+       "v": 3
+      },
+      "CarMenuDespawnGradientTransparency": {
+       "t": "number",
+       "v": 0.72
+      },
+      "CarMenuDespawnHeight": {
+       "t": "number",
+       "v": 20
+      },
+      "CarMenuDropdownHeight": {
+       "t": "number",
+       "v": 28
+      },
+      "CarMenuFooterGap": {
+       "t": "number",
+       "v": 3
+      },
+      "CarMenuHeaderHeight": {
+       "t": "number",
+       "v": 36
+      },
+      "CarMenuLeftMargin": {
+       "t": "number",
+       "v": 3
+      },
+      "CarMenuMaxWidthRatio": {
+       "t": "number",
+       "v": 0.42
+      },
+      "CarMenuPanelPadding": {
+       "t": "number",
+       "v": 5
+      },
+      "CarMenuTargetCardWidth": {
+       "t": "number",
+       "v": 92
+      },
+      "CarMenuTop": {
+       "t": "number",
+       "v": 82
+      },
+      "CarMenuVehicleImageYOffset": {
+       "t": "number",
+       "v": 0.13
+      },
+      "CarMenuVisibleRows": {
+       "t": "number",
+       "v": 3
+      },
+      "CarMenuWidth": {
+       "t": "number",
+       "v": 430
+      },
+      "CarMenuWidthRatio": {
+       "t": "number",
+       "v": 0.4
+      },
+      "CashHeight": {
+       "t": "number",
+       "v": 34
+      },
+      "CashModalHeight": {
+       "t": "number",
+       "v": 650
+      },
+      "CashModalWidth": {
+       "t": "number",
+       "v": 840
+      },
+      "ConfirmModalHeight": {
+       "t": "number",
+       "v": 270
+      },
+      "ConfirmModalWidth": {
+       "t": "number",
+       "v": 650
+      },
+      "ControlButtonSize": {
+       "t": "number",
+       "v": 70
+      },
+      "ControlPressedImageOpacityBoost": {
+       "t": "number",
+       "v": 0.08
+      },
+      "DefaultControlMode": {
+       "t": "string",
+       "v": "Arrows"
+      },
+      "EdgeMargin": {
+       "t": "number",
+       "v": 14
+      },
+      "HudScale": {
+       "t": "number",
+       "v": 1
+      },
+      "MinimapSize": {
+       "t": "number",
+       "v": 170
+      },
+      "ModalSafeBottom": {
+       "t": "number",
+       "v": 10
+      },
+      "ModalSafeSide": {
+       "t": "number",
+       "v": 10
+      },
+      "ModalSafeTop": {
+       "t": "number",
+       "v": 72
+      },
+      "ModalScaleMax": {
+       "t": "number",
+       "v": 1
+      },
+      "ModalScaleMin": {
+       "t": "number",
+       "v": 0.25
+      },
+      "NavButtonSize": {
+       "t": "number",
+       "v": 42
+      },
+      "NavGap": {
+       "t": "number",
+       "v": 6
+      },
+      "PedalBottomOffset": {
+       "t": "number",
+       "v": 8
+      },
+      "PedalCardOpacity": {
+       "t": "number",
+       "v": 0
+      },
+      "PedalGap": {
+       "t": "number",
+       "v": 0
+      },
+      "PedalHeight": {
+       "t": "number",
+       "v": 96
+      },
+      "PedalImageOpacity": {
+       "t": "number",
+       "v": 0.7
+      },
+      "PedalRightOffset": {
+       "t": "number",
+       "v": 10
+      },
+      "PedalSize": {
+       "t": "number",
+       "v": 125
+      },
+      "PedalWidth": {
+       "t": "number",
+       "v": 78
+      },
+      "SettingsModalHeight": {
+       "t": "number",
+       "v": 420
+      },
+      "SettingsModalWidth": {
+       "t": "number",
+       "v": 720
+      },
+      "TelemetryBottomMargin": {
+       "t": "number",
+       "v": 2
+      },
+      "ThumbstickSize": {
+       "t": "number",
+       "v": 150
+      },
+      "TiltDeadzoneDegrees": {
+       "t": "number",
+       "v": 3
+      },
+      "TiltMaxDegrees": {
+       "t": "number",
+       "v": 28
+      },
+      "TiltSmoothing": {
+       "t": "number",
+       "v": 10
+      },
+      "TopClusterGap": {
+       "t": "number",
+       "v": 6
+      }
+     },
+     "class": "Folder"
+    },
+    "UI.MobileFreeRoamHud.Assets": {
+     "attributes": {},
+     "class": "Folder"
+    },
+    "UI.MobileFreeRoamHud.Assets.AcceleratorImage": {
+     "attributes": {},
+     "class": "StringValue",
+     "value": {
+      "t": "string",
+      "v": "rbxassetid://92143631801983"
+     }
+    },
+    "UI.MobileFreeRoamHud.Assets.BrakeImage": {
+     "attributes": {},
+     "class": "StringValue",
+     "value": {
+      "t": "string",
+      "v": "rbxassetid://105499559629319"
+     }
+    },
+    "UI.MobileFreeRoamHud.Assets.DriftArrowImage": {
+     "attributes": {},
+     "class": "StringValue",
+     "value": {
+      "t": "string",
+      "v": "rbxassetid://78905432253159"
+     }
+    },
+    "UI.MobileFreeRoamHud.Assets.TurnArrowImage": {
+     "attributes": {},
+     "class": "StringValue",
+     "value": {
+      "t": "string",
+      "v": "rbxassetid://94792915490549"
+     }
+    },
+    "UI.PaintPresets": {
+     "attributes": {},
+     "class": "Folder"
+    },
+    "UI.PaintPresets.aWhite": {
+     "attributes": {},
+     "class": "Color3Value",
+     "value": {
+      "t": "Color3",
+      "v": [
+       0.9333333969116211,
+       0.9333333969116211,
+       0.9333333969116211
+      ]
+     }
+    },
+    "UI.PaintPresets.bGraphite": {
+     "attributes": {},
+     "class": "Color3Value",
+     "value": {
+      "t": "Color3",
+      "v": [
+       0.14901961386203766,
+       0.1725490242242813,
+       0.19607843458652496
+      ]
+     }
+    },
+    "UI.PaintPresets.cred": {
+     "attributes": {},
+     "class": "Color3Value",
+     "value": {
+      "t": "Color3",
+      "v": [
+       0.9176470637321472,
+       0.13333334028720856,
+       0.13333334028720856
+      ]
+     }
+    },
+    "UI.PaintPresets.dorange": {
+     "attributes": {},
+     "class": "Color3Value",
+     "value": {
+      "t": "Color3",
+      "v": [
+       0.917647123336792,
+       0.6549019813537598,
+       0.13333334028720856
+      ]
+     }
+    },
+    "UI.PaintPresets.egreen": {
+     "attributes": {},
+     "class": "Color3Value",
+     "value": {
+      "t": "Color3",
+      "v": [
+       0.5803921818733215,
+       0.917647123336792,
+       0.2196078598499298
+      ]
+     }
+    },
+    "UI.PaintPresets.fCyan": {
+     "attributes": {},
+     "class": "Color3Value",
+     "value": {
+      "t": "Color3",
+      "v": [
+       0.0,
+       0.803921639919281,
+       0.9019608497619629
+      ]
+     }
+    },
+    "UI.PaintPresets.gblue": {
+     "attributes": {},
+     "class": "Color3Value",
+     "value": {
+      "t": "Color3",
+      "v": [
+       0.027450982481241226,
+       0.08627451211214066,
+       0.5960784554481506
+      ]
+     }
+    },
+    "UI.PaintPresets.hpurple": {
+     "attributes": {},
+     "class": "Color3Value",
+     "value": {
+      "t": "Color3",
+      "v": [
+       0.6509804129600525,
+       0.22352942824363708,
+       1.0
+      ]
+     }
+    },
+    "UI.RaceBrowser": {
+     "attributes": {},
+     "class": "Folder"
+    },
+    "UI.RaceBrowser.WaypointBackgroundTransparency": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 0.28
+     }
+    },
+    "UI.RaceBrowser.WaypointHeight": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 14
+     }
+    },
+    "UI.RaceBrowser.WaypointHeightPixels": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 58
+     }
+    },
+    "UI.RaceBrowser.WaypointWidth": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 220
+     }
+    },
+    "UI.Racing": {
+     "attributes": {},
+     "class": "Folder"
+    },
+    "UI.Racing.Assets": {
+     "attributes": {},
+     "class": "Folder"
+    },
+    "UI.Racing.Assets.BronzeMedal": {
+     "attributes": {},
+     "class": "StringValue",
+     "value": {
+      "t": "string",
+      "v": ""
+     }
+    },
+    "UI.Racing.Assets.DefaultMapImage": {
+     "attributes": {},
+     "class": "StringValue",
+     "value": {
+      "t": "string",
+      "v": "rbxassetid://120663188326007"
+     }
+    },
+    "UI.Racing.Assets.DefaultTrackImage": {
+     "attributes": {},
+     "class": "StringValue",
+     "value": {
+      "t": "string",
+      "v": "rbxassetid://85813025967950"
+     }
+    },
+    "UI.Racing.Assets.GoldMedal": {
+     "attributes": {},
+     "class": "StringValue",
+     "value": {
+      "t": "string",
+      "v": ""
+     }
+    },
+    "UI.Racing.Assets.MedalAtlas": {
+     "attributes": {},
+     "class": "StringValue",
+     "value": {
+      "t": "string",
+      "v": "rbxassetid://109150933268171"
+     }
+    },
+    "UI.Racing.Assets.MedalAtlasCellSize": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 512
+     }
+    },
+    "UI.Racing.Assets.MedalAtlasSize": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 1024
+     }
+    },
+    "UI.Racing.Assets.PlatinumMedal": {
+     "attributes": {},
+     "class": "StringValue",
+     "value": {
+      "t": "string",
+      "v": ""
+     }
+    },
+    "UI.Racing.Assets.RacingIconAtlas": {
+     "attributes": {},
+     "class": "StringValue",
+     "value": {
+      "t": "string",
+      "v": "rbxassetid://79062219140152"
+     }
+    },
+    "UI.Racing.Assets.RacingIconAtlasSize": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 1024
+     }
+    },
+    "UI.Racing.Assets.RacingIconCellSize": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 256
+     }
+    },
+    "UI.Racing.Assets.SilverMedal": {
+     "attributes": {},
+     "class": "StringValue",
+     "value": {
+      "t": "string",
+      "v": ""
+     }
+    },
+    "UI.Racing.Colours": {
+     "attributes": {},
+     "class": "Folder"
+    },
+    "UI.Racing.Colours.Danger": {
+     "attributes": {},
+     "class": "Color3Value",
+     "value": {
+      "t": "Color3",
+      "v": [
+       0.7686274647712708,
+       0.2235294133424759,
+       0.29411765933036804
+      ]
+     }
+    },
+    "UI.Racing.Colours.Disabled": {
+     "attributes": {},
+     "class": "Color3Value",
+     "value": {
+      "t": "Color3",
+      "v": [
+       0.3176470696926117,
+       0.3450980484485626,
+       0.38823530077934265
+      ]
+     }
+    },
+    "UI.Racing.Colours.ElectricBlue": {
+     "attributes": {},
+     "class": "Color3Value",
+     "value": {
+      "t": "Color3",
+      "v": [
+       0.09803921729326248,
+       0.45490196347236633,
+       1.0
+      ]
+     }
+    },
+    "UI.Racing.Colours.Muted": {
+     "attributes": {},
+     "class": "Color3Value",
+     "value": {
+      "t": "Color3",
+      "v": [
+       0.6392157077789307,
+       0.6705882549285889,
+       0.7215686440467834
+      ]
+     }
+    },
+    "UI.Racing.Colours.Outline": {
+     "attributes": {},
+     "class": "Color3Value",
+     "value": {
+      "t": "Color3",
+      "v": [
+       0.95686274766922,
+       0.18039216101169586,
+       0.5921568870544434
+      ]
+     }
+    },
+    "UI.Racing.Colours.OutlineSoft": {
+     "attributes": {},
+     "class": "Color3Value",
+     "value": {
+      "t": "Color3",
+      "v": [
+       0.8392156958580017,
+       0.29019609093666077,
+       0.686274528503418
+      ]
+     }
+    },
+    "UI.Racing.Colours.Panel": {
+     "attributes": {},
+     "class": "Color3Value",
+     "value": {
+      "t": "Color3",
+      "v": [
+       0.05882352963089943,
+       0.07450980693101883,
+       0.0941176488995552
+      ]
+     }
+    },
+    "UI.Racing.Colours.PanelBlue": {
+     "attributes": {},
+     "class": "Color3Value",
+     "value": {
+      "t": "Color3",
+      "v": [
+       0.0313725508749485,
+       0.16470588743686676,
+       0.3294117748737335
+      ]
+     }
+    },
+    "UI.Racing.Colours.PanelDeep": {
+     "attributes": {},
+     "class": "Color3Value",
+     "value": {
+      "t": "Color3",
+      "v": [
+       0.03529411926865578,
+       0.0470588244497776,
+       0.062745101749897
+      ]
+     }
+    },
+    "UI.Racing.Colours.PanelSoft": {
+     "attributes": {},
+     "class": "Color3Value",
+     "value": {
+      "t": "Color3",
+      "v": [
+       0.0941176488995552,
+       0.11372549086809158,
+       0.1411764770746231
+      ]
+     }
+    },
+    "UI.Racing.Colours.Telemetry": {
+     "attributes": {},
+     "class": "Color3Value",
+     "value": {
+      "t": "Color3",
+      "v": [
+       0.16862745583057404,
+       0.8823529481887817,
+       0.8549019694328308
+      ]
+     }
+    },
+    "UI.Racing.Colours.Text": {
+     "attributes": {},
+     "class": "Color3Value",
+     "value": {
+      "t": "Color3",
+      "v": [
+       0.9647058844566345,
+       0.9725490212440491,
+       0.9882352948188782
+      ]
+     }
+    },
+    "UI.Racing.Copy": {
+     "attributes": {},
+     "class": "Folder"
+    },
+    "UI.Racing.Copy.DailyBonusDisplay": {
+     "attributes": {},
+     "class": "StringValue",
+     "value": {
+      "t": "string",
+      "v": "2X"
+     }
+    },
+    "UI.Racing.InRace": {
+     "attributes": {},
+     "class": "Folder"
+    },
+    "UI.Racing.InRace.BoardAvatarSize": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 30
+     }
+    },
+    "UI.Racing.InRace.BoardHeadingSize": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 18
+     }
+    },
+    "UI.Racing.InRace.BoardHeight": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 276
+     }
+    },
+    "UI.Racing.InRace.BoardMetricSize": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 18
+     }
+    },
+    "UI.Racing.InRace.BoardOffsetX": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 30
+     }
+    },
+    "UI.Racing.InRace.BoardOffsetY": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 38
+     }
+    },
+    "UI.Racing.InRace.BoardRowHeight": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 39
+     }
+    },
+    "UI.Racing.InRace.BoardTextSize": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 16
+     }
+    },
+    "UI.Racing.InRace.BoardWidth": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 340
+     }
+    },
+    "UI.Racing.InRace.BottomY": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 30
+     }
+    },
+    "UI.Racing.InRace.DataRowCornerRadius": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 7
+     }
+    },
+    "UI.Racing.InRace.DataRowGap": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 5
+     }
+    },
+    "UI.Racing.InRace.DataRowHeight": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 42
+     }
+    },
+    "UI.Racing.InRace.DataRowMetricSize": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 18
+     }
+    },
+    "UI.Racing.InRace.DataRowTextSize": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 16
+     }
+    },
+    "UI.Racing.InRace.DataRowTransparency": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 0.42
+     }
+    },
+    "UI.Racing.InRace.EdgeX": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 30
+     }
+    },
+    "UI.Racing.InRace.EdgeY": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 30
+     }
+    },
+    "UI.Racing.InRace.FirstPlaceColor": {
+     "attributes": {},
+     "class": "Color3Value",
+     "value": {
+      "t": "Color3",
+      "v": [
+       1.0,
+       0.7450980544090271,
+       0.1764705926179886
+      ]
+     }
+    },
+    "UI.Racing.InRace.LocalRowTransparency": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 0.24
+     }
+    },
+    "UI.Racing.InRace.MapHeight": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 420
+     }
+    },
+    "UI.Racing.InRace.MapInnerPadding": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 0
+     }
+    },
+    "UI.Racing.InRace.MapOffsetX": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 16
+     }
+    },
+    "UI.Racing.InRace.MapOffsetY": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 16
+     }
+    },
+    "UI.Racing.InRace.MapOpacity": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 0.6
+     }
+    },
+    "UI.Racing.InRace.MapWidth": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 420
+     }
+    },
+    "UI.Racing.InRace.MetricCardCornerRadius": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 9
+     }
+    },
+    "UI.Racing.InRace.MetricCardTransparency": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 0.34
+     }
+    },
+    "UI.Racing.InRace.MetricHeadingSize": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 15
+     }
+    },
+    "UI.Racing.InRace.MetricHeight": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 92
+     }
+    },
+    "UI.Racing.InRace.MetricValueSize": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 36
+     }
+    },
+    "UI.Racing.InRace.MetricWidth": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 300
+     }
+    },
+    "UI.Racing.InRace.Mobile": {
+     "attributes": {},
+     "class": "Folder"
+    },
+    "UI.Racing.InRace.Mobile.BoardAvatarSize": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 27
+     }
+    },
+    "UI.Racing.InRace.Mobile.BoardHeight": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 280
+     }
+    },
+    "UI.Racing.InRace.Mobile.BoardOffsetX": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 24
+     }
+    },
+    "UI.Racing.InRace.Mobile.BoardOffsetY": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 30
+     }
+    },
+    "UI.Racing.InRace.Mobile.BoardWidth": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 330
+     }
+    },
+    "UI.Racing.InRace.Mobile.DataRowGap": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 4
+     }
+    },
+    "UI.Racing.InRace.Mobile.DataRowHeight": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 38
+     }
+    },
+    "UI.Racing.InRace.Mobile.DataRowMetricSize": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 15
+     }
+    },
+    "UI.Racing.InRace.Mobile.DataRowTextSize": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 14
+     }
+    },
+    "UI.Racing.InRace.Mobile.Enabled": {
+     "attributes": {},
+     "class": "BoolValue",
+     "value": {
+      "t": "boolean",
+      "v": true
+     }
+    },
+    "UI.Racing.InRace.Mobile.MetricHeadingSize": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 13
+     }
+    },
+    "UI.Racing.InRace.Mobile.MetricHeight": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 80
+     }
+    },
+    "UI.Racing.InRace.Mobile.MetricOffsetY": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 28
+     }
+    },
+    "UI.Racing.InRace.Mobile.MetricValueSize": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 30
+     }
+    },
+    "UI.Racing.InRace.Mobile.MetricWidth": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 260
+     }
+    },
+    "UI.Racing.InRace.Mobile.ProgressHeight": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 78
+     }
+    },
+    "UI.Racing.InRace.Mobile.ProgressOffsetX": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 30
+     }
+    },
+    "UI.Racing.InRace.Mobile.ProgressOffsetY": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 150
+     }
+    },
+    "UI.Racing.InRace.Mobile.ProgressWidth": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 150
+     }
+    },
+    "UI.Racing.InRace.Mobile.SessionButtonGap": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 18
+     }
+    },
+    "UI.Racing.InRace.Mobile.SessionButtonHeight": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 48
+     }
+    },
+    "UI.Racing.InRace.Mobile.SessionButtonTextSize": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 15
+     }
+    },
+    "UI.Racing.InRace.Mobile.SessionButtonWidth": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 126
+     }
+    },
+    "UI.Racing.InRace.Mobile.SessionControlsBottomOffset": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 24
+     }
+    },
+    "UI.Racing.InRace.Mobile.SessionControlsCenterX": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 700
+     }
+    },
+    "UI.Racing.InRace.PanelTransparency": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 0.16
+     }
+    },
+    "UI.Racing.InRace.ProgressHeight": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 92
+     }
+    },
+    "UI.Racing.InRace.ProgressOffsetX": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 30
+     }
+    },
+    "UI.Racing.InRace.ProgressOffsetY": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 105
+     }
+    },
+    "UI.Racing.InRace.ProgressWidth": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 178
+     }
+    },
+    "UI.Racing.InRace.SecondPlaceColor": {
+     "attributes": {},
+     "class": "Color3Value",
+     "value": {
+      "t": "Color3",
+      "v": [
+       0.8039215803146362,
+       0.843137264251709,
+       0.8823529481887817
+      ]
+     }
+    },
+    "UI.Racing.InRace.ThirdPlaceColor": {
+     "attributes": {},
+     "class": "Color3Value",
+     "value": {
+      "t": "Color3",
+      "v": [
+       0.8039215803146362,
+       0.4901960790157318,
+       0.2549019753932953
+      ]
+     }
+    },
+    "UI.Racing.Layout": {
+     "attributes": {},
+     "class": "Folder"
+    },
+    "UI.Racing.Layout.BrowserListFraction": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 0.38
+     }
+    },
+    "UI.Racing.Layout.CornerRadius": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 5
+     }
+    },
+    "UI.Racing.Layout.DesktopEdgeBufferXRatio": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 0.1
+     }
+    },
+    "UI.Racing.Layout.DesktopEdgeBufferYRatio": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 0.08
+     }
+    },
+    "UI.Racing.Layout.FooterHeight": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 72
+     }
+    },
+    "UI.Racing.Layout.Gap": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 16
+     }
+    },
+    "UI.Racing.Layout.HeaderHeight": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 64
+     }
+    },
+    "UI.Racing.Layout.MobileBreakpoint": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 900
+     }
+    },
+    "UI.Racing.Layout.OuterPadding": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 24
+     }
+    },
+    "UI.Racing.Layout.PanelTransparency": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 0.08
+     }
+    },
+    "UI.Racing.Layout.ResponsiveScaleMin": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 0.55
+     }
+    },
+    "UI.Racing.Layout.ScaleMax": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 1.15
+     }
+    },
+    "UI.Racing.Layout.ScaleMin": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 0.72
+     }
+    },
+    "UI.Racing.Layout.ShellHeight": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 720
+     }
+    },
+    "UI.Racing.Layout.ShellStrokeWidth": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 2
+     }
+    },
+    "UI.Racing.Layout.ShellWidth": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 1200
+     }
+    },
+    "UI.Racing.Layout.StrokeWidth": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 1.5
+     }
+    },
+    "UI.Racing.MobileScaledDesktop": {
+     "attributes": {
+      "Enabled": {
+       "t": "boolean",
+       "v": true
+      },
+      "ReferenceHeight": {
+       "t": "number",
+       "v": 720
+      },
+      "ReferenceWidth": {
+       "t": "number",
+       "v": 1200
+      },
+      "SafeBottom": {
+       "t": "number",
+       "v": 10
+      },
+      "SafeSide": {
+       "t": "number",
+       "v": 10
+      },
+      "SafeTop": {
+       "t": "number",
+       "v": 72
+      },
+      "ScaleMax": {
+       "t": "number",
+       "v": 1
+      },
+      "ScaleMin": {
+       "t": "number",
+       "v": 0.25
+      }
+     },
+     "class": "Folder"
+    },
+    "UI.Racing.Typography": {
+     "attributes": {},
+     "class": "Folder"
+    },
+    "UI.Racing.Typography.Body": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 14
+     }
+    },
+    "UI.Racing.Typography.Button": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 14
+     }
+    },
+    "UI.Racing.Typography.Caption": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 11
+     }
+    },
+    "UI.Racing.Typography.FontFamily": {
+     "attributes": {},
+     "class": "StringValue",
+     "value": {
+      "t": "string",
+      "v": "rbxasset://fonts/families/Michroma.json"
+     }
+    },
+    "UI.Racing.Typography.Heading": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 22
+     }
+    },
+    "UI.Racing.Typography.Metric": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 22
+     }
+    },
+    "UI.RouteGuide": {
+     "attributes": {
+      "ArriveStuds": {
+       "t": "number",
+       "v": 45
+      },
+      "ChipEnabled": {
+       "t": "boolean",
+       "v": true
+      },
+      "CornerRadius": {
+       "t": "number",
+       "v": 50
+      },
+      "Enabled": {
+       "t": "boolean",
+       "v": true
+      },
+      "LineWidth": {
+       "t": "number",
+       "v": 5
+      },
+      "OffRouteSeconds": {
+       "t": "number",
+       "v": 1
+      },
+      "OffRouteStuds": {
+       "t": "number",
+       "v": 60
+      },
+      "OutlineWidth": {
+       "t": "number",
+       "v": 1.5
+      },
+      "Owner": {
+       "t": "string",
+       "v": "RouteGuide"
+      },
+      "ProgressHz": {
+       "t": "number",
+       "v": 10
+      },
+      "ReplanMinSeconds": {
+       "t": "number",
+       "v": 1
+      },
+      "StudsPerMile": {
+       "t": "number",
+       "v": 5760
+      }
+     },
+     "class": "Folder"
+    },
+    "UI.RouteGuide.Destinations": {
+     "attributes": {
+      "Note": {
+       "t": "string",
+       "v": "Route guide destinations. Position is copied from SourcePath by the installer; rerun it after moving a source part."
+      }
+     },
+     "class": "Folder"
+    },
+    "UI.RouteGuide.Destinations.Dealership": {
+     "attributes": {
+      "DisplayName": {
+       "t": "string",
+       "v": "Dealership"
+      },
+      "Kind": {
+       "t": "string",
+       "v": "Place"
+      },
+      "Order": {
+       "t": "number",
+       "v": 1
+      },
+      "Position": {
+       "t": "Vector3",
+       "v": [
+        731.2999877929688,
+        106.69999694824219,
+        -1747.9000244140625
+       ]
+      },
+      "SourcePath": {
+       "t": "string",
+       "v": "Workspace.World.Dealership.TeleportPoints.FreeRoamHudTeleportPoint"
+      }
+     },
+     "class": "Folder"
+    },
+    "UI.RouteGuide.Destinations.MyGarage": {
+     "attributes": {
+      "DisplayName": {
+       "t": "string",
+       "v": "My Garage"
+      },
+      "Kind": {
+       "t": "string",
+       "v": "Place"
+      },
+      "Order": {
+       "t": "number",
+       "v": 2
+      },
+      "Position": {
+       "t": "Vector3",
+       "v": [
+        1580.800048828125,
+        102.30000305175781,
+        -1841.699951171875
+       ]
+      },
+      "SourcePath": {
+       "t": "string",
+       "v": "Workspace.World.OwnedGarageExteriors.STARTER_TWO_BAY.DriveInEntrance"
+      }
+     },
+     "class": "Folder"
+    },
+    "UI.RouteGuide.Destinations.Race_ShiftedCanalSprint": {
+     "attributes": {
+      "DisplayName": {
+       "t": "string",
+       "v": "Waterfront Sprint"
+      },
+      "Kind": {
+       "t": "string",
+       "v": "Race"
+      },
+      "Order": {
+       "t": "number",
+       "v": 11
+      },
+      "Position": {
+       "t": "Vector3",
+       "v": [
+        2199.0,
+        100.0,
+        -1329.0
+       ]
+      },
+      "RouteId": {
+       "t": "string",
+       "v": "ShiftedCanalSprint"
+      },
+      "SourcePath": {
+       "t": "string",
+       "v": "Workspace.World.RaceRoutes.ShiftedCanalSprint.StartZones.RaceStartZone"
+      }
+     },
+     "class": "Folder"
+    },
+    "UI.RouteGuide.Destinations.Race_ShowroomLoop": {
+     "attributes": {
+      "DisplayName": {
+       "t": "string",
+       "v": "Showroom Loop"
+      },
+      "Kind": {
+       "t": "string",
+       "v": "Race"
+      },
+      "Order": {
+       "t": "number",
+       "v": 10
+      },
+      "Position": {
+       "t": "Vector3",
+       "v": [
+        1380.4000244140625,
+        101.0,
+        -1229.199951171875
+       ]
+      },
+      "RouteId": {
+       "t": "string",
+       "v": "ShowroomLoop"
+      },
+      "SourcePath": {
+       "t": "string",
+       "v": "Workspace.World.RaceRoutes.ShowroomLoop.StartZones.RaceStartZone"
+      }
+     },
+     "class": "Folder"
+    },
+    "UI.Theme": {
+     "attributes": {
+      "CashCountAnimationEnabled": {
+       "t": "boolean",
+       "v": true
+      },
+      "CashCountDurationSeconds": {
+       "t": "number",
+       "v": 0.4
+      },
+      "CashCountEveryDollarLimit": {
+       "t": "number",
+       "v": 12
+      },
+      "CashCountLargeIncreaseMaximumSteps": {
+       "t": "number",
+       "v": 20
+      },
+      "FreeRoamCashUseFullFormatting": {
+       "t": "boolean",
+       "v": true
+      },
+      "HowToUse": {
+       "t": "string",
+       "v": "Edit these values in Properties. Stop and Play again to refresh UI colours/font."
+      }
+     },
+     "class": "Folder"
+    },
+    "UI.Theme.Accent": {
+     "attributes": {},
+     "class": "Color3Value",
+     "value": {
+      "t": "Color3",
+      "v": [
+       1.0,
+       0.6745098233222961,
+       0.917647123336792
+      ]
+     }
+    },
+    "UI.Theme.Back": {
+     "attributes": {},
+     "class": "Color3Value",
+     "value": {
+      "t": "Color3",
+      "v": [
+       0.0941176488995552,
+       0.13725490868091583,
+       0.16470588743686676
+      ]
+     }
+    },
+    "UI.Theme.ButtonCornerRadius": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 4
+     }
+    },
+    "UI.Theme.ButtonStrokeTransparency": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 0.62
+     }
+    },
+    "UI.Theme.ButtonTransparency": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 0.08
+     }
+    },
+    "UI.Theme.Buy": {
+     "attributes": {},
+     "class": "Color3Value",
+     "value": {
+      "t": "Color3",
+      "v": [
+       0.5686274766921997,
+       0.0313725508749485,
+       0.43529415130615234
+      ]
+     }
+    },
+    "UI.Theme.Card": {
+     "attributes": {},
+     "class": "Color3Value",
+     "value": {
+      "t": "Color3",
+      "v": [
+       0.0941176488995552,
+       0.13725490868091583,
+       0.16470588743686676
+      ]
+     }
+    },
+    "UI.Theme.Cash": {
+     "attributes": {},
+     "class": "Color3Value",
+     "value": {
+      "t": "Color3",
+      "v": [
+       0.545098066329956,
+       1.0,
+       0.46666666865348816
+      ]
+     }
+    },
+    "UI.Theme.CornerScaleDesktop": {
+     "attributes": {
+      "Description": {
+       "t": "string",
+       "v": "Scale applied by shared renderers to active desktop corner radii."
+      }
+     },
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 0.7
+     }
+    },
+    "UI.Theme.CornerScaleMobile": {
+     "attributes": {
+      "Description": {
+       "t": "string",
+       "v": "Scale applied by shared renderers to active touch/mobile corner radii."
+      }
+     },
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 0.5
+     }
+    },
+    "UI.Theme.Danger": {
+     "attributes": {},
+     "class": "Color3Value",
+     "value": {
+      "t": "Color3",
+      "v": [
+       0.29019609093666077,
+       0.6901960968971252,
+       0.38823533058166504
+      ]
+     }
+    },
+    "UI.Theme.Descriptions": {
+     "attributes": {},
+     "class": "Folder"
+    },
+    "UI.Theme.Descriptions.CashCountAnimationEnabled": {
+     "attributes": {},
+     "class": "StringValue",
+     "value": {
+      "t": "string",
+      "v": "Presentation-only free-roam Cash counting. Does not change authoritative Cash or reward cadence."
+     }
+    },
+    "UI.Theme.Descriptions.CashCountDurationSeconds": {
+     "attributes": {},
+     "class": "StringValue",
+     "value": {
+      "t": "string",
+      "v": "Target duration for a positive free-roam Cash count animation. Runtime clamps to 0.15-0.75 seconds."
+     }
+    },
+    "UI.Theme.Descriptions.CashCountEveryDollarLimit": {
+     "attributes": {},
+     "class": "StringValue",
+     "value": {
+      "t": "string",
+      "v": "Positive gains at or below this value display every whole dollar. Runtime clamps to 1-24."
+     }
+    },
+    "UI.Theme.Descriptions.CashCountLargeIncreaseMaximumSteps": {
+     "attributes": {},
+     "class": "StringValue",
+     "value": {
+      "t": "string",
+      "v": "Maximum bounded display updates for a larger positive grant. Runtime clamps to 4-60."
+     }
+    },
+    "UI.Theme.Descriptions.FreeRoamCashUseFullFormatting": {
+     "attributes": {},
+     "class": "StringValue",
+     "value": {
+      "t": "string",
+      "v": "True shows full grouped free-roam Cash such as $10,000,000. False restores compact formatting."
+     }
+    },
+    "UI.Theme.Disabled": {
+     "attributes": {},
+     "class": "Color3Value",
+     "value": {
+      "t": "Color3",
+      "v": [
+       0.24313725531101227,
+       0.2823529541492462,
+       0.2862745225429535
+      ]
+     }
+    },
+    "UI.Theme.Exit": {
+     "attributes": {},
+     "class": "Color3Value",
+     "value": {
+      "t": "Color3",
+      "v": [
+       0.686274528503418,
+       0.27450981736183167,
+       0.2666666805744171
+      ]
+     }
+    },
+    "UI.Theme.FontFamily": {
+     "attributes": {},
+     "class": "StringValue",
+     "value": {
+      "t": "string",
+      "v": "rbxasset://fonts/families/Michroma.json"
+     }
+    },
+    "UI.Theme.Muted": {
+     "attributes": {},
+     "class": "Color3Value",
+     "value": {
+      "t": "Color3",
+      "v": [
+       0.6980392336845398,
+       0.5686274766921997,
+       0.6666666865348816
+      ]
+     }
+    },
+    "UI.Theme.Panel": {
+     "attributes": {},
+     "class": "Color3Value",
+     "value": {
+      "t": "Color3",
+      "v": [
+       0.019607843831181526,
+       0.03529411926865578,
+       0.027450980618596077
+      ]
+     }
+    },
+    "UI.Theme.PanelCornerRadius": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 5
+     }
+    },
+    "UI.Theme.PanelSoft": {
+     "attributes": {},
+     "class": "Color3Value",
+     "value": {
+      "t": "Color3",
+      "v": [
+       0.0470588244497776,
+       0.0784313753247261,
+       0.06666667014360428
+      ]
+     }
+    },
+    "UI.Theme.PanelStrokeTransparency": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 0.2
+     }
+    },
+    "UI.Theme.PanelTransparency": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 0.12
+     }
+    },
+    "UI.Theme.Selected": {
+     "attributes": {},
+     "class": "Color3Value",
+     "value": {
+      "t": "Color3",
+      "v": [
+       0.46274513006210327,
+       0.1411764770746231,
+       0.38431376218795776
+      ]
+     }
+    },
+    "UI.Theme.StrokeWidth": {
+     "attributes": {},
+     "class": "NumberValue",
+     "value": {
+      "t": "number",
+      "v": 1
+     }
+    },
+    "UI.Theme.Text": {
+     "attributes": {},
+     "class": "Color3Value",
+     "value": {
+      "t": "Color3",
+      "v": [
+       1.0,
+       0.8549020290374756,
+       0.9647059440612793
+      ]
+     }
+    }
+   },
+   "rawKey": "configUI",
+   "valueCount": 350
+  }
+ },
+ "services": {
+  "hash": {
+   "djb2": 726489997,
+   "fnv1a32": 1149897553
+  },
+  "values": {
+   "ScreenOrientation": "Enum.ScreenOrientation.LandscapeSensor",
+   "ShowDevelopmentGui": true,
+   "StarterGuiChildren": 0
+  }
+ }
+}

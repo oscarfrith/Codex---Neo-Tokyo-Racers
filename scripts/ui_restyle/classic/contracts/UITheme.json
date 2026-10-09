@@ -1,0 +1,501 @@
+{
+ "script": "ReplicatedStorage.Modules.Game.UI.UITheme",
+ "class": "ModuleScript",
+ "source_file": "classic/sources/ReplicatedStorage.Modules.Game.UI.UITheme.lua",
+ "source_lines": 97,
+ "included_because": [
+  "under ReplicatedStorage.Modules.Game.UI"
+ ],
+ "requires": [
+  {
+   "expr": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"UI\"):WaitForChild(\"ResponsiveUIFoundation\")",
+   "as": "Foundation",
+   "line": 4,
+   "target": "ReplicatedStorage.Modules.Game.UI.ResponsiveUIFoundation"
+  }
+ ],
+ "remotes": {
+  "calls": [],
+  "listens": []
+ },
+ "bindables": {
+  "fires": [],
+  "connects": [],
+  "invokes": [],
+  "handlers": [],
+  "created": [],
+  "module_signal_fires": []
+ },
+ "attributes": {
+  "reads": [],
+  "writes": [],
+  "listens": []
+ },
+ "player_attribute_writes": [],
+ "screenguis": {
+  "created": [],
+  "enabled_writes": []
+ },
+ "names": {
+  "assigned": [],
+  "looked_up": [
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 4,
+    "name": "Modules"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\")",
+    "receiver_path": "ReplicatedStorage.Modules",
+    "root": "ReplicatedStorage",
+    "line": 4,
+    "name": "Game"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game",
+    "root": "ReplicatedStorage",
+    "line": 4,
+    "name": "UI"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"UI\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game.UI",
+    "root": "ReplicatedStorage",
+    "line": 4,
+    "name": "ResponsiveUIFoundation"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 33,
+    "in_function": "findThemeFolder",
+    "name": "Config"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\")",
+    "receiver_path": "ReplicatedStorage.Config",
+    "root": "ReplicatedStorage",
+    "line": 33,
+    "in_function": "findThemeFolder",
+    "name": "UI"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\"):WaitForChild(\"UI\")",
+    "receiver_path": "ReplicatedStorage.Config.UI",
+    "root": "ReplicatedStorage",
+    "line": 33,
+    "in_function": "findThemeFolder",
+    "name": "Theme"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": null,
+    "wrapper_defined": "UITheme:37",
+    "line": 64,
+    "in_function": "UITheme.Read",
+    "via": "wrapper color()",
+    "name": "Panel",
+    "receiver_path": null,
+    "receiver_kind": "config?"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": null,
+    "wrapper_defined": "UITheme:37",
+    "line": 65,
+    "in_function": "UITheme.Read",
+    "via": "wrapper color()",
+    "name": "PanelSoft",
+    "receiver_path": null,
+    "receiver_kind": "config?"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": null,
+    "wrapper_defined": "UITheme:37",
+    "line": 66,
+    "in_function": "UITheme.Read",
+    "via": "wrapper color()",
+    "name": "Card",
+    "receiver_path": null,
+    "receiver_kind": "config?"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": null,
+    "wrapper_defined": "UITheme:37",
+    "line": 67,
+    "in_function": "UITheme.Read",
+    "via": "wrapper color()",
+    "name": "CardHot",
+    "receiver_path": null,
+    "receiver_kind": "config?"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": null,
+    "wrapper_defined": "UITheme:37",
+    "line": 67,
+    "in_function": "UITheme.Read",
+    "via": "wrapper color()",
+    "name": "Selected",
+    "receiver_path": null,
+    "receiver_kind": "config?"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": null,
+    "wrapper_defined": "UITheme:37",
+    "line": 68,
+    "in_function": "UITheme.Read",
+    "via": "wrapper color()",
+    "name": "Text",
+    "receiver_path": null,
+    "receiver_kind": "config?"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": null,
+    "wrapper_defined": "UITheme:37",
+    "line": 69,
+    "in_function": "UITheme.Read",
+    "via": "wrapper color()",
+    "name": "Muted",
+    "receiver_path": null,
+    "receiver_kind": "config?"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": null,
+    "wrapper_defined": "UITheme:37",
+    "line": 70,
+    "in_function": "UITheme.Read",
+    "via": "wrapper color()",
+    "name": "Accent",
+    "receiver_path": null,
+    "receiver_kind": "config?"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": null,
+    "wrapper_defined": "UITheme:37",
+    "line": 71,
+    "in_function": "UITheme.Read",
+    "via": "wrapper color()",
+    "name": "Cash",
+    "receiver_path": null,
+    "receiver_kind": "config?"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": null,
+    "wrapper_defined": "UITheme:37",
+    "line": 72,
+    "in_function": "UITheme.Read",
+    "via": "wrapper color()",
+    "name": "Danger",
+    "receiver_path": null,
+    "receiver_kind": "config?"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": null,
+    "wrapper_defined": "UITheme:37",
+    "line": 73,
+    "in_function": "UITheme.Read",
+    "via": "wrapper color()",
+    "name": "BackButton",
+    "receiver_path": null,
+    "receiver_kind": "config?"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": null,
+    "wrapper_defined": "UITheme:37",
+    "line": 73,
+    "in_function": "UITheme.Read",
+    "via": "wrapper color()",
+    "name": "Back",
+    "receiver_path": null,
+    "receiver_kind": "config?"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": null,
+    "wrapper_defined": "UITheme:37",
+    "line": 74,
+    "in_function": "UITheme.Read",
+    "via": "wrapper color()",
+    "name": "ExitButton",
+    "receiver_path": null,
+    "receiver_kind": "config?"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": null,
+    "wrapper_defined": "UITheme:37",
+    "line": 74,
+    "in_function": "UITheme.Read",
+    "via": "wrapper color()",
+    "name": "Exit",
+    "receiver_path": null,
+    "receiver_kind": "config?"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": null,
+    "wrapper_defined": "UITheme:37",
+    "line": 75,
+    "in_function": "UITheme.Read",
+    "via": "wrapper color()",
+    "name": "Buy",
+    "receiver_path": null,
+    "receiver_kind": "config?"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": null,
+    "wrapper_defined": "UITheme:37",
+    "line": 76,
+    "in_function": "UITheme.Read",
+    "via": "wrapper color()",
+    "name": "Disabled",
+    "receiver_path": null,
+    "receiver_kind": "config?"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": null,
+    "wrapper_defined": "UITheme:45",
+    "line": 77,
+    "in_function": "UITheme.Read",
+    "via": "wrapper number()",
+    "name": "PanelTransparency",
+    "receiver_path": null,
+    "receiver_kind": "config?"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": null,
+    "wrapper_defined": "UITheme:45",
+    "line": 78,
+    "in_function": "UITheme.Read",
+    "via": "wrapper number()",
+    "name": "ButtonTransparency",
+    "receiver_path": null,
+    "receiver_kind": "config?"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": null,
+    "wrapper_defined": "UITheme:45",
+    "line": 79,
+    "in_function": "UITheme.Read",
+    "via": "wrapper number()",
+    "name": "PanelStrokeTransparency",
+    "receiver_path": null,
+    "receiver_kind": "config?"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": null,
+    "wrapper_defined": "UITheme:45",
+    "line": 80,
+    "in_function": "UITheme.Read",
+    "via": "wrapper number()",
+    "name": "ButtonStrokeTransparency",
+    "receiver_path": null,
+    "receiver_kind": "config?"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": null,
+    "wrapper_defined": "UITheme:45",
+    "line": 81,
+    "in_function": "UITheme.Read",
+    "via": "wrapper number()",
+    "name": "StrokeWidth",
+    "receiver_path": null,
+    "receiver_kind": "config?"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": null,
+    "wrapper_defined": "UITheme:45",
+    "line": 82,
+    "in_function": "UITheme.Read",
+    "via": "wrapper number()",
+    "name": "PanelCornerRadius",
+    "receiver_path": null,
+    "receiver_kind": "config?"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": null,
+    "wrapper_defined": "UITheme:45",
+    "line": 83,
+    "in_function": "UITheme.Read",
+    "via": "wrapper number()",
+    "name": "ButtonCornerRadius",
+    "receiver_path": null,
+    "receiver_kind": "config?"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": null,
+    "wrapper_defined": "UITheme:45",
+    "line": 84,
+    "in_function": "UITheme.Read",
+    "via": "wrapper number()",
+    "name": "CornerScaleDesktop",
+    "receiver_path": null,
+    "receiver_kind": "config?"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": null,
+    "wrapper_defined": "UITheme:45",
+    "line": 85,
+    "in_function": "UITheme.Read",
+    "via": "wrapper number()",
+    "name": "CornerScaleMobile",
+    "receiver_path": null,
+    "receiver_kind": "config?"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "folder",
+    "root": null,
+    "wrapper_defined": "UITheme:53",
+    "line": 86,
+    "in_function": "UITheme.Read",
+    "via": "wrapper text()",
+    "name": "FontFamily",
+    "receiver_path": null,
+    "receiver_kind": "config?"
+   }
+  ],
+  "text_compared": []
+ },
+ "run_service": {
+  "render_steps": [],
+  "connects": []
+ },
+ "context_actions": [],
+ "user_input_service": {
+  "connects": [],
+  "members_used": []
+ },
+ "audio": {
+  "bridge_calls": [],
+  "ui_audio_attributes": []
+ },
+ "config": {
+  "paths": [
+   {
+    "path": "ReplicatedStorage.Config",
+    "line": 33
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI",
+    "line": 33
+   }
+  ],
+  "attribute_reads": [],
+  "child_lookups": []
+ },
+ "startergui_core": [],
+ "gui_service": [],
+ "other_services": {},
+ "service_connects": [],
+ "proximity_prompts": [],
+ "instances_created_by_class": {},
+ "public_api": [
+  {
+   "name": "Default",
+   "kind": "field",
+   "line": 6,
+   "value": "{ Panel = Color3.fromRGB(5, 9, 7), PanelSoft = Color3.fro..."
+  },
+  {
+   "name": "Read",
+   "kind": "function",
+   "params": [],
+   "line": 60
+  },
+  {
+   "name": "CornerRadius",
+   "kind": "field",
+   "line": 89,
+   "value": "Foundation.CornerRadius"
+  },
+  {
+   "name": "Corner",
+   "kind": "field",
+   "line": 90,
+   "value": "Foundation.Corner"
+  },
+  {
+   "name": "SetCorner",
+   "kind": "field",
+   "line": 91,
+   "value": "Foundation.SetCorner"
+  },
+  {
+   "name": "StrokeWidth",
+   "kind": "field",
+   "line": 92,
+   "value": "Foundation.StrokeWidth"
+  },
+  {
+   "name": "StyleStroke",
+   "kind": "field",
+   "line": 93,
+   "value": "Foundation.StyleStroke"
+  },
+  {
+   "name": "ApplyBevel",
+   "kind": "field",
+   "line": 94,
+   "value": "Foundation.ApplyBevel"
+  }
+ ],
+ "unresolved": [],
+ "contract_file": "UITheme.json"
+}

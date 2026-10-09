@@ -1,0 +1,3758 @@
+{
+ "script": "ReplicatedStorage.Modules.Game.Audio.VehicleAudioClient",
+ "class": "ModuleScript",
+ "source_file": "classic/sources/ReplicatedStorage.Modules.Game.Audio.VehicleAudioClient.lua",
+ "source_lines": 1466,
+ "included_because": [
+  "client script that is UI-coupled: references PlayerScripts"
+ ],
+ "requires": [
+  {
+   "expr": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Audio\"):WaitForChild(\"AudioBusClient\")",
+   "as": "Bus",
+   "line": 14,
+   "target": "ReplicatedStorage.Modules.Game.Audio.AudioBusClient"
+  },
+  {
+   "expr": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Audio\"):WaitForChild(\"VehicleAudioCatalog\")",
+   "as": "Catalog",
+   "line": 15,
+   "target": "ReplicatedStorage.Modules.Game.Audio.VehicleAudioCatalog"
+  },
+  {
+   "expr": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Audio\"):WaitForChild(\"VehicleAudioStateContract\")",
+   "as": "Contract",
+   "line": 16,
+   "target": "ReplicatedStorage.Modules.Game.Audio.VehicleAudioStateContract"
+  },
+  {
+   "expr": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Vehicles\"):WaitForChild(\"MobileDriveInputState\")",
+   "as": "MobileDriveState",
+   "line": 17,
+   "target": "ReplicatedStorage.Modules.Game.Vehicles.MobileDriveInputState"
+  }
+ ],
+ "remotes": {
+  "calls": [
+   {
+    "method": "FireServer",
+    "receiver": "stateRemote",
+    "arg_count": 2,
+    "first_arg_expr": "state.Vehicle",
+    "line": 1068,
+    "in_function": "publishLocalState",
+    "remote": "ReplicatedStorage.Remotes.Audio.VehicleAudioState",
+    "payload_keys": [
+     "Ignition",
+     "Drive",
+     "Drift",
+     "Boost",
+     "Cue",
+     "Revision"
+    ]
+   }
+  ],
+  "listens": []
+ },
+ "bindables": {
+  "fires": [],
+  "connects": [],
+  "invokes": [],
+  "handlers": [],
+  "created": [],
+  "module_signal_fires": []
+ },
+ "attributes": {
+  "reads": [
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "line": 45,
+    "in_function": "enabled",
+    "name": "AudioSystemEnabled"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "line": 45,
+    "in_function": "enabled",
+    "name": "VehicleAudioEnabled"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "line": 49,
+    "in_function": "debugLog",
+    "name": "DebugAudio"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "line": 184,
+    "in_function": "feelGloballyEnabled",
+    "name": "FeelAudioEnabled"
+   },
+   {
+    "receiver": "quality",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Quality",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioClient:188",
+    "line": 247,
+    "in_function": "buildFeel",
+    "via": "wrapper qualityNumber()",
+    "name": "MaxRevLayerPlayersMobile"
+   },
+   {
+    "receiver": "quality",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Quality",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioClient:188",
+    "line": 247,
+    "in_function": "buildFeel",
+    "via": "wrapper qualityNumber()",
+    "name": "MaxRevLayerPlayers"
+   },
+   {
+    "receiver": "quality",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Quality",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioClient:188",
+    "line": 249,
+    "in_function": "buildFeel",
+    "via": "wrapper qualityNumber()",
+    "name": "MaxRemoteRevLayerPlayers"
+   },
+   {
+    "receiver": "quality",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Quality",
+    "receiver_kind": "config",
+    "line": 293,
+    "in_function": "buildFeel",
+    "name": "TwinEngineEnabled"
+   },
+   {
+    "receiver": "quality",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Quality",
+    "receiver_kind": "config",
+    "line": 294,
+    "in_function": "buildFeel",
+    "name": "TwinEngineOnMobile"
+   },
+   {
+    "receiver": "vehicle",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "VehicleAudioCatalog:193",
+    "line": 323,
+    "in_function": "makeGraph",
+    "via": "wrapper Catalog.ResolveProfileId()",
+    "name": "AudioProfileSource",
+    "receiver_path": null
+   },
+   {
+    "receiver": "vehicle",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "VehicleAudioCatalog:192",
+    "line": 323,
+    "in_function": "makeGraph",
+    "via": "wrapper Catalog.ResolveProfileId()",
+    "name": "StandardAudioProfileId",
+    "receiver_path": null
+   },
+   {
+    "receiver": "vehicle",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "VehicleAudioCatalog:191",
+    "line": 323,
+    "in_function": "makeGraph",
+    "via": "wrapper Catalog.ResolveProfileId()",
+    "name": "ResolvedAudioProfileId",
+    "receiver_path": null
+   },
+   {
+    "receiver": "vehicle",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "VehicleAudioCatalog:195",
+    "line": 323,
+    "in_function": "makeGraph",
+    "via": "wrapper Catalog.ResolveProfileId()",
+    "name": "CategoryId",
+    "receiver_path": null
+   },
+   {
+    "receiver": "vehicle",
+    "receiver_path": null,
+    "receiver_kind": "vehicle?",
+    "line": 327,
+    "in_function": "makeGraph",
+    "name": "OwnerUserId"
+   },
+   {
+    "receiver": "profile.Folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "line": 342,
+    "in_function": "makeGraph",
+    "name": "ProfileRevision"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "line": 349,
+    "in_function": "makeGraph",
+    "name": "ExternalMinDistanceStuds"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "line": 350,
+    "in_function": "makeGraph",
+    "name": "ExternalMaxDistanceStuds"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 351,
+    "in_function": "makeGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "ExternalMidDistanceStuds"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 352,
+    "in_function": "makeGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "ExternalMidDistanceGain"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 376,
+    "in_function": "routeMultiplier",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "LocalDriverGain"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 376,
+    "in_function": "routeMultiplier",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "ExternalVehicleGain"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 377,
+    "in_function": "routeMultiplier",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "OneShotMasterGain"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 398,
+    "in_function": "playOneShot",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "ManagedCueCancelFadeSeconds"
+   },
+   {
+    "receiver": "quality",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Quality",
+    "receiver_kind": "config",
+    "line": 401,
+    "in_function": "playOneShot",
+    "name": "MaxConcurrentOneShotsPerVehicle"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 432,
+    "in_function": "playOneShot",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "OneShotMaxLifetimeSeconds"
+   },
+   {
+    "receiver": "state",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime.UI.LoadingPresentationState",
+    "receiver_kind": "playerScripts",
+    "line": 444,
+    "in_function": "loadingPresentationActive",
+    "name": "Active"
+   },
+   {
+    "receiver": "localPlayer",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "line": 445,
+    "in_function": "loadingPresentationActive",
+    "name": "FirstDrivePresentationPending"
+   },
+   {
+    "receiver": "state.Vehicle",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "VehicleAudioCatalog:193",
+    "line": 462,
+    "in_function": "prepareLocalIgnition",
+    "via": "wrapper Catalog.ResolveProfileId()",
+    "name": "AudioProfileSource",
+    "receiver_path": null
+   },
+   {
+    "receiver": "state.Vehicle",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "VehicleAudioCatalog:192",
+    "line": 462,
+    "in_function": "prepareLocalIgnition",
+    "via": "wrapper Catalog.ResolveProfileId()",
+    "name": "StandardAudioProfileId",
+    "receiver_path": null
+   },
+   {
+    "receiver": "state.Vehicle",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "VehicleAudioCatalog:191",
+    "line": 462,
+    "in_function": "prepareLocalIgnition",
+    "via": "wrapper Catalog.ResolveProfileId()",
+    "name": "ResolvedAudioProfileId",
+    "receiver_path": null
+   },
+   {
+    "receiver": "state.Vehicle",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "VehicleAudioCatalog:195",
+    "line": 462,
+    "in_function": "prepareLocalIgnition",
+    "via": "wrapper Catalog.ResolveProfileId()",
+    "name": "CategoryId",
+    "receiver_path": null
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 477,
+    "in_function": "prepareLocalIgnition",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "LocalDriverGain"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 477,
+    "in_function": "prepareLocalIgnition",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "OneShotMasterGain"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "line": 493,
+    "in_function": "prepareLocalIgnition",
+    "name": "DebugReliableIgnition"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "line": 507,
+    "in_function": "confirmLocalIgnition",
+    "name": "DebugReliableIgnition"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "line": 514,
+    "in_function": "updateLocalIgnition",
+    "name": "ReliableIgnitionEnabled"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 525,
+    "in_function": "updateLocalIgnition",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "IgnitionPlaybackConfirmSeconds"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 527,
+    "in_function": "updateLocalIgnition",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "IgnitionMaxPlayAttempts"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 534,
+    "in_function": "updateLocalIgnition",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "IgnitionRetryDelaySeconds"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 542,
+    "in_function": "updateLocalIgnition",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "IgnitionReadinessTimeoutSeconds"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 548,
+    "in_function": "updateLocalIgnition",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "IgnitionAfterReadyDelaySeconds"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 550,
+    "in_function": "updateLocalIgnition",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "IgnitionAssetWarmTimeoutSeconds"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "line": 557,
+    "in_function": "updateLocalIgnition",
+    "name": "DebugReliableIgnition"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 560,
+    "in_function": "updateLocalIgnition",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "OneShotMaxLifetimeSeconds"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "line": 565,
+    "in_function": "updateLocalIgnition",
+    "name": "DebugReliableIgnition"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "line": 571,
+    "in_function": "holdLocalEngineLoopsForIgnition",
+    "name": "ReliableIgnitionEnabled"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 573,
+    "in_function": "holdLocalEngineLoopsForIgnition",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "IgnitionToIdleLeadSeconds"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:167",
+    "line": 615,
+    "in_function": "cueEnabled",
+    "via": "wrapper Catalog.GlobalBool()",
+    "name": "VehicleAudioCueExpansionEnabled"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 632,
+    "in_function": "conditionLocalAcceleration",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "AccelerationEnterConfirmSeconds"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 643,
+    "in_function": "conditionLocalAcceleration",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "AccelerationReleaseConfirmSeconds"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 646,
+    "in_function": "conditionLocalAcceleration",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "AccelerationMinimumActiveSeconds"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 654,
+    "in_function": "conditionLocalAcceleration",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "AccelerationRetriggerCooldownSeconds"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 666,
+    "in_function": "fadeSeconds",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "LayerSmoothingPerSecond"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 667,
+    "in_function": "fadeSeconds",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": null,
+    "name_expr": "prefix .. (rising and \"FadeInSeconds\" or \"FadeOutSeconds\")"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 775,
+    "in_function": "playImpact",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "ImpactMinIntervalSeconds"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 778,
+    "in_function": "playImpact",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": null,
+    "name_expr": "name .. \"Studs\""
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 792,
+    "in_function": "playImpact",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": null,
+    "name_expr": "impactTiers[tier] .. \"Studs\""
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 793,
+    "in_function": "playImpact",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": null,
+    "name_expr": "impactTiers[tier + 1] .. \"Studs\""
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 842,
+    "in_function": "updateFeel",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "FeelVoiceSleepSeconds"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 843,
+    "in_function": "updateFeel",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "FeelLayerFadeInSeconds"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 844,
+    "in_function": "updateFeel",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "FeelLayerFadeOutSeconds"
+   },
+   {
+    "receiver": "vehicle",
+    "receiver_path": null,
+    "receiver_kind": "vehicle?",
+    "line": 848,
+    "in_function": "updateFeel",
+    "name": "FeelThrottle"
+   },
+   {
+    "receiver": "vehicle",
+    "receiver_path": null,
+    "receiver_kind": "vehicle?",
+    "line": 849,
+    "in_function": "updateFeel",
+    "name": "FeelSlip"
+   },
+   {
+    "receiver": "vehicle",
+    "receiver_path": null,
+    "receiver_kind": "vehicle?",
+    "line": 850,
+    "in_function": "updateFeel",
+    "name": "FeelDriftCharge"
+   },
+   {
+    "receiver": "vehicle",
+    "receiver_path": null,
+    "receiver_kind": "vehicle?",
+    "line": 851,
+    "in_function": "updateFeel",
+    "name": "FeelHover"
+   },
+   {
+    "receiver": "vehicle",
+    "receiver_path": null,
+    "receiver_kind": "vehicle?",
+    "line": 852,
+    "in_function": "updateFeel",
+    "name": "FeelBoostKind"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 908,
+    "in_function": "updateFeel",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "ParkedFadeInSeconds"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 908,
+    "in_function": "updateFeel",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "ParkedFadeOutSeconds"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 935,
+    "in_function": "updateFeel",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "RevHandoverSeconds"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 938,
+    "in_function": "updateFeel",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "RevLayerSmoothingSeconds"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 972,
+    "in_function": "updateFeel",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "BoostEndVent"
+   },
+   {
+    "receiver": "vehicle",
+    "receiver_path": null,
+    "receiver_kind": "vehicle?",
+    "line": 1037,
+    "in_function": "updateFeel",
+    "name": "FeelPopRevision"
+   },
+   {
+    "receiver": "vehicle",
+    "receiver_path": null,
+    "receiver_kind": "vehicle?",
+    "line": 1042,
+    "in_function": "updateFeel",
+    "name": "FeelPopStrength"
+   },
+   {
+    "receiver": "vehicle",
+    "receiver_path": null,
+    "receiver_kind": "vehicle?",
+    "line": 1044,
+    "in_function": "updateFeel",
+    "name": "FeelImpactRevision"
+   },
+   {
+    "receiver": "vehicle",
+    "receiver_path": null,
+    "receiver_kind": "vehicle?",
+    "line": 1049,
+    "in_function": "updateFeel",
+    "name": "FeelImpactStrength"
+   },
+   {
+    "receiver": "vehicle",
+    "receiver_path": null,
+    "receiver_kind": "vehicle?",
+    "line": 1051,
+    "in_function": "updateFeel",
+    "name": "FeelLandRevision"
+   },
+   {
+    "receiver": "vehicle",
+    "receiver_path": null,
+    "receiver_kind": "vehicle?",
+    "line": 1056,
+    "in_function": "updateFeel",
+    "name": "FeelLandStrength"
+   },
+   {
+    "receiver": "state.Vehicle",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "VehicleAudioClient:596",
+    "line": 1082,
+    "in_function": "updateGraph",
+    "via": "wrapper semanticState()",
+    "name": "AudioBoost",
+    "receiver_path": null
+   },
+   {
+    "receiver": "state.Vehicle",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "VehicleAudioClient:595",
+    "line": 1082,
+    "in_function": "updateGraph",
+    "via": "wrapper semanticState()",
+    "name": "AudioDrift",
+    "receiver_path": null
+   },
+   {
+    "receiver": "state.Vehicle",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "VehicleAudioClient:594",
+    "line": 1082,
+    "in_function": "updateGraph",
+    "via": "wrapper semanticState()",
+    "name": "AudioDrive",
+    "receiver_path": null
+   },
+   {
+    "receiver": "state.Vehicle",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "VehicleAudioClient:593",
+    "line": 1082,
+    "in_function": "updateGraph",
+    "via": "wrapper semanticState()",
+    "name": "AudioIgnition",
+    "receiver_path": null
+   },
+   {
+    "receiver": "state.Vehicle",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "VehicleAudioClient:589",
+    "line": 1082,
+    "in_function": "updateGraph",
+    "via": "wrapper semanticState()",
+    "name": "Boosting",
+    "receiver_path": null
+   },
+   {
+    "receiver": "state.Vehicle",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "VehicleAudioClient:582",
+    "line": 1082,
+    "in_function": "updateGraph",
+    "via": "wrapper semanticState()",
+    "name": "DriftingRight",
+    "receiver_path": null
+   },
+   {
+    "receiver": "state.Vehicle",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "VehicleAudioClient:581",
+    "line": 1082,
+    "in_function": "updateGraph",
+    "via": "wrapper semanticState()",
+    "name": "DriftingLeft",
+    "receiver_path": null
+   },
+   {
+    "receiver": "state.Vehicle",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "VehicleAudioClient:580",
+    "line": 1082,
+    "in_function": "updateGraph",
+    "via": "wrapper semanticState()",
+    "name": "Braking",
+    "receiver_path": null
+   },
+   {
+    "receiver": "state.Vehicle",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "VehicleAudioClient:579",
+    "line": 1082,
+    "in_function": "updateGraph",
+    "via": "wrapper semanticState()",
+    "name": "Accelerating",
+    "receiver_path": null
+   },
+   {
+    "receiver": "state.Vehicle",
+    "receiver_path": null,
+    "receiver_kind": "vehicle?",
+    "line": 1085,
+    "in_function": "updateGraph",
+    "name": "AudioCueRevision"
+   },
+   {
+    "receiver": "state.Vehicle",
+    "receiver_path": null,
+    "receiver_kind": "vehicle?",
+    "line": 1088,
+    "in_function": "updateGraph",
+    "name": "AudioCue"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1101,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "BoostContinuousReleaseGraceSeconds"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1116,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "FullBoostStartThreshold"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1120,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "BoostEmptyThreshold"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1122,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "FullBoostMinimumConsumedFraction"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1129,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "BoostRechargeMinimumMissingCharge"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1133,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "BoostRechargeRetriggerCooldownSeconds"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1142,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "BoostRechargeCancelFadeSeconds"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:167",
+    "line": 1146,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalBool()",
+    "name": "BoostRechargeStopAtFull"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1146,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "BoostRechargeCancelFadeSeconds"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1160,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "IdleFadeStartMph"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1160,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "IdleFadeEndMph"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1161,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "EngineHighFadeStartMph"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1161,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "EngineHighFullSpeedMph"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1162,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "EngineLowPeakMph"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1164,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "EngineHighFullSpeedMph"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1165,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "EngineLowFloorMultiplier"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1165,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "EngineLowFloorMultiplier"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1168,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "CoastStartMph"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:167",
+    "line": 1173,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalBool()",
+    "name": "ParkedVehicleAudioEnabled"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:167",
+    "line": 1175,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalBool()",
+    "name": "ExitCoastAudioEnabled"
+   },
+   {
+    "receiver": "state.Vehicle",
+    "receiver_path": null,
+    "receiver_kind": "vehicle?",
+    "line": 1176,
+    "in_function": "updateGraph",
+    "name": "ExitCoasting"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1179,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "DriftLoopStartGainMultiplier"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1180,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "DriftRampDelaySeconds"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1180,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "DriftRampFullSeconds"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1181,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "DriftRampCurveExponent"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1185,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "CoastStartMph"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1185,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "CoastFullGainMph"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1193,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "ExitCoastGainMultiplier"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1194,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "ExitCoastIdleGainMultiplier"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1195,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "ExitCoastEngineLowGainMultiplier"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:167",
+    "line": 1196,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalBool()",
+    "name": "ExitCoastSuppressEngineHigh"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1199,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "ParkedIdleGainMultiplier"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1200,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "ParkedEngineLowGainMultiplier"
+   },
+   {
+    "receiver": "localPlayer",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "line": 1203,
+    "in_function": "updateGraph",
+    "name": "FirstDrivePresentationPending"
+   },
+   {
+    "receiver": "localPlayer",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "line": 1212,
+    "in_function": "updateGraph",
+    "name": "FirstDrivePresentationPending"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1217,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "WindStartMph"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1217,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "WindFullGainMph"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1227,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "ParkedFadeInSeconds"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1227,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "ParkedFadeOutSeconds"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1241,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "EngineLowPitchMin"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1241,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "EngineLowPitchMax"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1241,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "EngineLowPitchMin"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1244,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "EngineHighPitchMin"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1244,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "EngineHighPitchMax"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1244,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "EngineHighPitchMin"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1247,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "DriftPitchStartMultiplier"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1247,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "DriftPitchEndMultiplier"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1247,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "DriftPitchStartMultiplier"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1257,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "ExitCoastGainMultiplier"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1257,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "ExitCoastEngineLowGainMultiplier"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1259,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "ParkedIdleGainMultiplier"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:167",
+    "line": 1292,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalBool()",
+    "name": "FullBoostReplacesEmpty"
+   },
+   {
+    "receiver": "state.Vehicle",
+    "receiver_path": null,
+    "receiver_kind": "vehicle?",
+    "line": 1307,
+    "in_function": "updateGraph",
+    "name": "OwnerUserId"
+   },
+   {
+    "receiver": "quality",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Quality",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioClient:188",
+    "line": 1342,
+    "in_function": "refreshPriorities",
+    "via": "wrapper qualityNumber()",
+    "name": "LocalFeelUpdateHzMobile"
+   },
+   {
+    "receiver": "quality",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Quality",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioClient:188",
+    "line": 1342,
+    "in_function": "refreshPriorities",
+    "via": "wrapper qualityNumber()",
+    "name": "LocalFeelUpdateHz"
+   },
+   {
+    "receiver": "vehicle",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "VehicleAudioClient:74",
+    "line": 1347,
+    "in_function": "refreshPriorities",
+    "via": "wrapper isLocalDriver()",
+    "name": "DriverUserId",
+    "receiver_path": null
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:167",
+    "line": 1350,
+    "in_function": "refreshPriorities",
+    "via": "wrapper Catalog.GlobalBool()",
+    "name": "ReplayIgnitionOnRunningVehicleReentry"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "line": 1364,
+    "in_function": "refreshPriorities",
+    "name": "ExternalMaxDistanceStuds"
+   },
+   {
+    "receiver": "quality",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Quality",
+    "receiver_kind": "config",
+    "line": 1365,
+    "in_function": "refreshPriorities",
+    "name": "MaxDetailedRemoteVehicles"
+   },
+   {
+    "receiver": "quality",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Quality",
+    "receiver_kind": "config",
+    "line": 1366,
+    "in_function": "refreshPriorities",
+    "name": "MaxSimpleRemoteVehicles"
+   },
+   {
+    "receiver": "vehicle",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "VehicleAudioCatalog:193",
+    "line": 1375,
+    "in_function": "refreshPriorities",
+    "via": "wrapper Catalog.ResolveProfileId()",
+    "name": "AudioProfileSource",
+    "receiver_path": null
+   },
+   {
+    "receiver": "vehicle",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "VehicleAudioCatalog:192",
+    "line": 1375,
+    "in_function": "refreshPriorities",
+    "via": "wrapper Catalog.ResolveProfileId()",
+    "name": "StandardAudioProfileId",
+    "receiver_path": null
+   },
+   {
+    "receiver": "vehicle",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "VehicleAudioCatalog:191",
+    "line": 1375,
+    "in_function": "refreshPriorities",
+    "via": "wrapper Catalog.ResolveProfileId()",
+    "name": "ResolvedAudioProfileId",
+    "receiver_path": null
+   },
+   {
+    "receiver": "vehicle",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "VehicleAudioCatalog:195",
+    "line": 1375,
+    "in_function": "refreshPriorities",
+    "via": "wrapper Catalog.ResolveProfileId()",
+    "name": "CategoryId",
+    "receiver_path": null
+   },
+   {
+    "receiver": "graph.Profile.Folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "line": 1380,
+    "in_function": "refreshPriorities",
+    "name": "ProfileRevision"
+   },
+   {
+    "receiver": "quality",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Quality",
+    "receiver_kind": "config",
+    "line": 1412,
+    "in_function": "Controller.Start",
+    "name": "ParameterUpdateHz"
+   },
+   {
+    "receiver": "quality",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Quality",
+    "receiver_kind": "config",
+    "line": 1413,
+    "in_function": "Controller.Start",
+    "name": "PriorityUpdateHz"
+   },
+   {
+    "receiver": "state.Vehicle",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "VehicleAudioClient:596",
+    "line": 1430,
+    "in_function": "Controller.Start",
+    "via": "wrapper semanticState()",
+    "name": "AudioBoost",
+    "receiver_path": null
+   },
+   {
+    "receiver": "state.Vehicle",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "VehicleAudioClient:595",
+    "line": 1430,
+    "in_function": "Controller.Start",
+    "via": "wrapper semanticState()",
+    "name": "AudioDrift",
+    "receiver_path": null
+   },
+   {
+    "receiver": "state.Vehicle",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "VehicleAudioClient:594",
+    "line": 1430,
+    "in_function": "Controller.Start",
+    "via": "wrapper semanticState()",
+    "name": "AudioDrive",
+    "receiver_path": null
+   },
+   {
+    "receiver": "state.Vehicle",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "VehicleAudioClient:593",
+    "line": 1430,
+    "in_function": "Controller.Start",
+    "via": "wrapper semanticState()",
+    "name": "AudioIgnition",
+    "receiver_path": null
+   },
+   {
+    "receiver": "state.Vehicle",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "VehicleAudioClient:589",
+    "line": 1430,
+    "in_function": "Controller.Start",
+    "via": "wrapper semanticState()",
+    "name": "Boosting",
+    "receiver_path": null
+   },
+   {
+    "receiver": "state.Vehicle",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "VehicleAudioClient:582",
+    "line": 1430,
+    "in_function": "Controller.Start",
+    "via": "wrapper semanticState()",
+    "name": "DriftingRight",
+    "receiver_path": null
+   },
+   {
+    "receiver": "state.Vehicle",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "VehicleAudioClient:581",
+    "line": 1430,
+    "in_function": "Controller.Start",
+    "via": "wrapper semanticState()",
+    "name": "DriftingLeft",
+    "receiver_path": null
+   },
+   {
+    "receiver": "state.Vehicle",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "VehicleAudioClient:580",
+    "line": 1430,
+    "in_function": "Controller.Start",
+    "via": "wrapper semanticState()",
+    "name": "Braking",
+    "receiver_path": null
+   },
+   {
+    "receiver": "state.Vehicle",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "VehicleAudioClient:579",
+    "line": 1430,
+    "in_function": "Controller.Start",
+    "via": "wrapper semanticState()",
+    "name": "Accelerating",
+    "receiver_path": null
+   }
+  ],
+  "writes": [],
+  "listens": [
+   {
+    "receiver": "vehicle",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "VehicleAudioClient:1329",
+    "line": 1403,
+    "in_function": "Controller.Start",
+    "via": "wrapper registerVehicle()",
+    "receiver_path": null,
+    "name": "ResolvedAudioProfileId"
+   },
+   {
+    "receiver": "vehicle",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "VehicleAudioClient:1329",
+    "line": 1403,
+    "in_function": "Controller.Start",
+    "via": "wrapper registerVehicle()",
+    "receiver_path": null,
+    "name": "AudioProfileRevision"
+   },
+   {
+    "receiver": "vehicle",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "VehicleAudioClient:1329",
+    "line": 1403,
+    "in_function": "Controller.Start",
+    "via": "wrapper registerVehicle()",
+    "receiver_path": null,
+    "name": "DriverUserId"
+   }
+  ]
+ },
+ "player_attribute_writes": [],
+ "screenguis": {
+  "created": [],
+  "enabled_writes": []
+ },
+ "names": {
+  "assigned": [
+   {
+    "via": "property",
+    "receiver": "deviceOutput",
+    "class": "AudioDeviceOutput",
+    "line": 93,
+    "in_function": "ensureOutputGraph",
+    "name": "AudioDeviceOutput_Runtime"
+   },
+   {
+    "via": "property",
+    "receiver": "listener",
+    "class": "AudioListener",
+    "line": 100,
+    "in_function": "ensureOutputGraph",
+    "name": "AudioListener_Runtime"
+   },
+   {
+    "via": "property",
+    "receiver": "listenerWire",
+    "class": "Wire",
+    "line": 114,
+    "in_function": "ensureOutputGraph",
+    "name": "ListenerToOutput"
+   },
+   {
+    "via": "wrapper newPlayer()",
+    "receiver": "player",
+    "class": "AudioPlayer",
+    "wrapper_defined": "VehicleAudioClient:139",
+    "line": 150,
+    "in_function": "newRoutedSource",
+    "name": null,
+    "name_pattern": "Player_*",
+    "name_expr": "\"Player_\" .. layer"
+   },
+   {
+    "via": "property",
+    "receiver": "fader",
+    "class": "AudioFader",
+    "line": 153,
+    "in_function": "newRoutedSource",
+    "name": null,
+    "name_pattern": "Fader_*",
+    "name_expr": "\"Fader_\" .. layer"
+   },
+   {
+    "via": "wrapper wire()",
+    "receiver": "item",
+    "class": "Wire",
+    "wrapper_defined": "VehicleAudioClient:124",
+    "line": 156,
+    "in_function": "newRoutedSource",
+    "name": null,
+    "name_pattern": "Wire_*",
+    "name_expr": "\"Wire_\" .. layer .. \"_PlayerToFader\""
+   },
+   {
+    "via": "wrapper wire()",
+    "receiver": "item",
+    "class": "Wire",
+    "wrapper_defined": "VehicleAudioClient:124",
+    "line": 158,
+    "in_function": "newRoutedSource",
+    "name": null,
+    "name_pattern": "Wire_*",
+    "name_expr": "\"Wire_\" .. layer .. \"_FaderToOutput\""
+   },
+   {
+    "via": "wrapper wire()",
+    "receiver": "item",
+    "class": "Wire",
+    "wrapper_defined": "VehicleAudioClient:124",
+    "line": 160,
+    "in_function": "newRoutedSource",
+    "name": null,
+    "name_pattern": "Wire_*",
+    "name_expr": "\"Wire_\" .. layer .. \"_FaderToEmitter\""
+   },
+   {
+    "via": "property",
+    "receiver": "graphRoot",
+    "class": "Folder",
+    "line": 327,
+    "in_function": "makeGraph",
+    "name": null,
+    "name_pattern": "Vehicle_*",
+    "name_expr": "\"Vehicle_\" .. tostring(vehicle:GetAttribute(\"OwnerUserId\") or vehicle.Name)"
+   },
+   {
+    "via": "property",
+    "receiver": "emitter",
+    "class": "AudioEmitter",
+    "line": 346,
+    "in_function": "makeGraph",
+    "name": "VehicleAudioEmitter_Runtime"
+   },
+   {
+    "via": "wrapper newPlayer()",
+    "receiver": "player",
+    "class": "AudioPlayer",
+    "wrapper_defined": "VehicleAudioClient:139",
+    "line": 404,
+    "in_function": "playOneShot",
+    "name": null,
+    "name_pattern": "OneShot_*",
+    "name_expr": "\"OneShot_\" .. layerName"
+   },
+   {
+    "via": "property",
+    "receiver": "fader",
+    "class": "AudioFader",
+    "line": 407,
+    "in_function": "playOneShot",
+    "name": null,
+    "name_pattern": "OneShotFader_*",
+    "name_expr": "\"OneShotFader_\" .. layerName"
+   },
+   {
+    "via": "wrapper wire()",
+    "receiver": "item",
+    "class": "Wire",
+    "wrapper_defined": "VehicleAudioClient:124",
+    "line": 409,
+    "in_function": "playOneShot",
+    "name": null,
+    "name_pattern": "OneShotWire_*",
+    "name_expr": "\"OneShotWire_\" .. layerName .. \"_PlayerToFader\""
+   },
+   {
+    "via": "wrapper wire()",
+    "receiver": "item",
+    "class": "Wire",
+    "wrapper_defined": "VehicleAudioClient:124",
+    "line": 411,
+    "in_function": "playOneShot",
+    "name": null,
+    "name_pattern": "OneShotWire_*",
+    "name_expr": "\"OneShotWire_\" .. layerName .. \"_FaderToOutput\""
+   },
+   {
+    "via": "wrapper wire()",
+    "receiver": "item",
+    "class": "Wire",
+    "wrapper_defined": "VehicleAudioClient:124",
+    "line": 413,
+    "in_function": "playOneShot",
+    "name": null,
+    "name_pattern": "OneShotWire_*",
+    "name_expr": "\"OneShotWire_\" .. layerName .. \"_FaderToEmitter\""
+   },
+   {
+    "via": "wrapper newPlayer()",
+    "receiver": "player",
+    "class": "AudioPlayer",
+    "wrapper_defined": "VehicleAudioClient:139",
+    "line": 469,
+    "in_function": "prepareLocalIgnition",
+    "name": "ReliableLocalIgnitionPlayer"
+   },
+   {
+    "via": "property",
+    "receiver": "fader",
+    "class": "AudioFader",
+    "line": 472,
+    "in_function": "prepareLocalIgnition",
+    "name": "ReliableLocalIgnitionFader"
+   },
+   {
+    "via": "wrapper wire()",
+    "receiver": "item",
+    "class": "Wire",
+    "wrapper_defined": "VehicleAudioClient:124",
+    "line": 474,
+    "in_function": "prepareLocalIgnition",
+    "name": "ReliableLocalIgnition_PlayerToFader"
+   },
+   {
+    "via": "wrapper wire()",
+    "receiver": "item",
+    "class": "Wire",
+    "wrapper_defined": "VehicleAudioClient:124",
+    "line": 475,
+    "in_function": "prepareLocalIgnition",
+    "name": "ReliableLocalIgnition_FaderToOutput"
+   },
+   {
+    "via": "property",
+    "receiver": "runtimeRoot",
+    "class": "Folder",
+    "line": 1398,
+    "in_function": "Controller.Start",
+    "name": "AudioRuntime_Local"
+   }
+  ],
+  "looked_up": [
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 12,
+    "name": "Modules"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\")",
+    "receiver_path": "ReplicatedStorage.Modules",
+    "root": "ReplicatedStorage",
+    "line": 12,
+    "name": "Game"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game",
+    "root": "ReplicatedStorage",
+    "line": 12,
+    "name": "Audio"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 13,
+    "name": "Modules"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\")",
+    "receiver_path": "ReplicatedStorage.Modules",
+    "root": "ReplicatedStorage",
+    "line": 13,
+    "name": "Game"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game",
+    "root": "ReplicatedStorage",
+    "line": 13,
+    "name": "Audio"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 14,
+    "name": "Modules"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\")",
+    "receiver_path": "ReplicatedStorage.Modules",
+    "root": "ReplicatedStorage",
+    "line": 14,
+    "name": "Game"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game",
+    "root": "ReplicatedStorage",
+    "line": 14,
+    "name": "Audio"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Audio\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game.Audio",
+    "root": "ReplicatedStorage",
+    "line": 14,
+    "name": "AudioBusClient"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 15,
+    "name": "Modules"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\")",
+    "receiver_path": "ReplicatedStorage.Modules",
+    "root": "ReplicatedStorage",
+    "line": 15,
+    "name": "Game"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game",
+    "root": "ReplicatedStorage",
+    "line": 15,
+    "name": "Audio"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Audio\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game.Audio",
+    "root": "ReplicatedStorage",
+    "line": 15,
+    "name": "VehicleAudioCatalog"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 16,
+    "name": "Modules"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\")",
+    "receiver_path": "ReplicatedStorage.Modules",
+    "root": "ReplicatedStorage",
+    "line": 16,
+    "name": "Game"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game",
+    "root": "ReplicatedStorage",
+    "line": 16,
+    "name": "Audio"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Audio\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game.Audio",
+    "root": "ReplicatedStorage",
+    "line": 16,
+    "name": "VehicleAudioStateContract"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 17,
+    "name": "Modules"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\")",
+    "receiver_path": "ReplicatedStorage.Modules",
+    "root": "ReplicatedStorage",
+    "line": 17,
+    "name": "Game"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game",
+    "root": "ReplicatedStorage",
+    "line": 17,
+    "name": "Vehicles"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Vehicles\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game.Vehicles",
+    "root": "ReplicatedStorage",
+    "line": 17,
+    "name": "MobileDriveInputState"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 18,
+    "name": "Remotes"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Remotes\")",
+    "receiver_path": "ReplicatedStorage.Remotes",
+    "root": "ReplicatedStorage",
+    "line": 18,
+    "name": "Audio"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Remotes\"):WaitForChild(\"Audio\")",
+    "receiver_path": "ReplicatedStorage.Remotes.Audio",
+    "root": "ReplicatedStorage",
+    "line": 18,
+    "name": "VehicleAudioState"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 19,
+    "name": "Config"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\")",
+    "receiver_path": "ReplicatedStorage.Config",
+    "root": "ReplicatedStorage",
+    "line": 19,
+    "name": "Audio"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\"):WaitForChild(\"Audio\")",
+    "receiver_path": "ReplicatedStorage.Config.Audio",
+    "root": "ReplicatedStorage",
+    "line": 19,
+    "name": "Global"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 20,
+    "name": "Config"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\")",
+    "receiver_path": "ReplicatedStorage.Config",
+    "root": "ReplicatedStorage",
+    "line": 20,
+    "name": "Audio"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\"):WaitForChild(\"Audio\")",
+    "receiver_path": "ReplicatedStorage.Config.Audio",
+    "root": "ReplicatedStorage",
+    "line": 20,
+    "name": "Quality"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "game:GetService(\"Workspace\")",
+    "receiver_path": "Workspace",
+    "root": "Workspace",
+    "line": 53,
+    "in_function": "vehiclesRoot",
+    "name": "World"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Workspace\")",
+    "receiver_path": "Workspace",
+    "root": "Workspace",
+    "line": 54,
+    "in_function": "vehiclesRoot",
+    "name": "World"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "game:GetService(\"Workspace\"):WaitForChild(\"World\")",
+    "receiver_path": "Workspace.World",
+    "root": "Workspace",
+    "line": 54,
+    "in_function": "vehiclesRoot",
+    "name": "Runtime"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Workspace\")",
+    "receiver_path": "Workspace",
+    "root": "Workspace",
+    "line": 55,
+    "in_function": "vehiclesRoot",
+    "name": "World"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Workspace\"):WaitForChild(\"World\")",
+    "receiver_path": "Workspace.World",
+    "root": "Workspace",
+    "line": 55,
+    "in_function": "vehiclesRoot",
+    "name": "Runtime"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "game:GetService(\"Workspace\"):WaitForChild(\"World\"):WaitForChild(\"Runtime\")",
+    "receiver_path": "Workspace.World.Runtime",
+    "root": "Workspace",
+    "line": 55,
+    "in_function": "vehiclesRoot",
+    "name": "PlayerVehicles"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "vehicle",
+    "root": null,
+    "recursive": true,
+    "wrapper_defined": "VehicleAudioClient:69",
+    "line": 321,
+    "in_function": "makeGraph",
+    "via": "wrapper rootFor()",
+    "name": "CockpitRoot_DoNotRename",
+    "receiver_path": null,
+    "receiver_kind": "vehicle?"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "localPlayer",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 439,
+    "in_function": "loadingPresentationActive",
+    "name": "PlayerScripts"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 440,
+    "in_function": "loadingPresentationActive",
+    "name": "PlayerScripts"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts",
+    "root": "Players",
+    "line": 440,
+    "in_function": "loadingPresentationActive",
+    "name": "Runtime"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 441,
+    "in_function": "loadingPresentationActive",
+    "name": "PlayerScripts"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts",
+    "root": "Players",
+    "line": 441,
+    "in_function": "loadingPresentationActive",
+    "name": "Runtime"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 442,
+    "in_function": "loadingPresentationActive",
+    "name": "PlayerScripts"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts",
+    "root": "Players",
+    "line": 442,
+    "in_function": "loadingPresentationActive",
+    "name": "Runtime"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"Runtime\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime",
+    "root": "Players",
+    "line": 442,
+    "in_function": "loadingPresentationActive",
+    "name": "UI"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 443,
+    "in_function": "loadingPresentationActive",
+    "name": "PlayerScripts"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts",
+    "root": "Players",
+    "line": 443,
+    "in_function": "loadingPresentationActive",
+    "name": "Runtime"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"Runtime\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime",
+    "root": "Players",
+    "line": 443,
+    "in_function": "loadingPresentationActive",
+    "name": "UI"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer:WaitForChild(\"PlayerScripts\"):WaitForChild(\"Runtime\"):WaitForChild(\"UI\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime.UI",
+    "root": "Players",
+    "line": 443,
+    "in_function": "loadingPresentationActive",
+    "name": "LoadingPresentationState"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "state.Vehicle",
+    "root": null,
+    "recursive": true,
+    "wrapper_defined": "VehicleAudioClient:69",
+    "line": 833,
+    "in_function": "updateFeel",
+    "via": "wrapper rootFor()",
+    "name": "CockpitRoot_DoNotRename",
+    "receiver_path": null,
+    "receiver_kind": "vehicle?"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "state.Vehicle",
+    "root": null,
+    "recursive": true,
+    "wrapper_defined": "VehicleAudioClient:69",
+    "line": 1080,
+    "in_function": "updateGraph",
+    "via": "wrapper rootFor()",
+    "name": "CockpitRoot_DoNotRename",
+    "receiver_path": null,
+    "receiver_kind": "vehicle?"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "state.Vehicle",
+    "root": null,
+    "recursive": true,
+    "wrapper_defined": "VehicleAudioClient:583",
+    "line": 1082,
+    "in_function": "updateGraph",
+    "via": "wrapper semanticState()",
+    "name": "CockpitRoot_DoNotRename",
+    "receiver_path": null,
+    "receiver_kind": "vehicle?"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "state.Vehicle",
+    "root": null,
+    "recursive": true,
+    "wrapper_defined": "VehicleAudioClient:64",
+    "line": 1170,
+    "in_function": "updateGraph",
+    "via": "wrapper seatFor()",
+    "name": "DriverSeat",
+    "receiver_path": null,
+    "receiver_kind": "vehicle?"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "vehicle",
+    "root": null,
+    "recursive": true,
+    "wrapper_defined": "VehicleAudioClient:69",
+    "line": 1358,
+    "in_function": "refreshPriorities",
+    "via": "wrapper rootFor()",
+    "name": "CockpitRoot_DoNotRename",
+    "receiver_path": null,
+    "receiver_kind": "vehicle?"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "SoundService",
+    "receiver_path": "SoundService",
+    "root": "SoundService",
+    "line": 1395,
+    "in_function": "Controller.Start",
+    "name": "AudioRuntime_Local"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "state.Vehicle",
+    "root": null,
+    "recursive": true,
+    "wrapper_defined": "VehicleAudioClient:583",
+    "line": 1430,
+    "in_function": "Controller.Start",
+    "via": "wrapper semanticState()",
+    "name": "CockpitRoot_DoNotRename",
+    "receiver_path": null,
+    "receiver_kind": "vehicle?"
+   }
+  ],
+  "text_compared": []
+ },
+ "run_service": {
+  "render_steps": [],
+  "connects": [
+   {
+    "signal": "Heartbeat",
+    "method": "Connect",
+    "line": 1409,
+    "in_function": "Controller.Start",
+    "callback": "function(dt) updateAccumulator += dt priorityAc..."
+   }
+  ]
+ },
+ "context_actions": [],
+ "user_input_service": {
+  "connects": [],
+  "members_used": [
+   {
+    "member": "TouchEnabled",
+    "kind": "read",
+    "line": 195,
+    "in_function": "mobileBudget"
+   }
+  ]
+ },
+ "audio": {
+  "bridge_calls": [],
+  "ui_audio_attributes": []
+ },
+ "config": {
+  "paths": [
+   {
+    "path": "ReplicatedStorage.Config",
+    "line": 19
+   },
+   {
+    "path": "ReplicatedStorage.Config.Audio",
+    "line": 19
+   },
+   {
+    "path": "ReplicatedStorage.Config.Audio.Global",
+    "line": 19
+   },
+   {
+    "path": "ReplicatedStorage.Config.Audio.Quality",
+    "line": 20
+   }
+  ],
+  "attribute_reads": [
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "line": 45,
+    "in_function": "enabled",
+    "name": "AudioSystemEnabled",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "line": 45,
+    "in_function": "enabled",
+    "name": "VehicleAudioEnabled",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "line": 49,
+    "in_function": "debugLog",
+    "name": "DebugAudio",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "line": 184,
+    "in_function": "feelGloballyEnabled",
+    "name": "FeelAudioEnabled",
+    "access": "read"
+   },
+   {
+    "receiver": "quality",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Quality",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioClient:188",
+    "line": 247,
+    "in_function": "buildFeel",
+    "via": "wrapper qualityNumber()",
+    "name": "MaxRevLayerPlayersMobile",
+    "access": "read"
+   },
+   {
+    "receiver": "quality",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Quality",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioClient:188",
+    "line": 247,
+    "in_function": "buildFeel",
+    "via": "wrapper qualityNumber()",
+    "name": "MaxRevLayerPlayers",
+    "access": "read"
+   },
+   {
+    "receiver": "quality",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Quality",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioClient:188",
+    "line": 249,
+    "in_function": "buildFeel",
+    "via": "wrapper qualityNumber()",
+    "name": "MaxRemoteRevLayerPlayers",
+    "access": "read"
+   },
+   {
+    "receiver": "quality",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Quality",
+    "receiver_kind": "config",
+    "line": 293,
+    "in_function": "buildFeel",
+    "name": "TwinEngineEnabled",
+    "access": "read"
+   },
+   {
+    "receiver": "quality",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Quality",
+    "receiver_kind": "config",
+    "line": 294,
+    "in_function": "buildFeel",
+    "name": "TwinEngineOnMobile",
+    "access": "read"
+   },
+   {
+    "receiver": "profile.Folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "line": 342,
+    "in_function": "makeGraph",
+    "name": "ProfileRevision",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "line": 349,
+    "in_function": "makeGraph",
+    "name": "ExternalMinDistanceStuds",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "line": 350,
+    "in_function": "makeGraph",
+    "name": "ExternalMaxDistanceStuds",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 351,
+    "in_function": "makeGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "ExternalMidDistanceStuds",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 352,
+    "in_function": "makeGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "ExternalMidDistanceGain",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 376,
+    "in_function": "routeMultiplier",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "LocalDriverGain",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 376,
+    "in_function": "routeMultiplier",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "ExternalVehicleGain",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 377,
+    "in_function": "routeMultiplier",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "OneShotMasterGain",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 398,
+    "in_function": "playOneShot",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "ManagedCueCancelFadeSeconds",
+    "access": "read"
+   },
+   {
+    "receiver": "quality",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Quality",
+    "receiver_kind": "config",
+    "line": 401,
+    "in_function": "playOneShot",
+    "name": "MaxConcurrentOneShotsPerVehicle",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 432,
+    "in_function": "playOneShot",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "OneShotMaxLifetimeSeconds",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 477,
+    "in_function": "prepareLocalIgnition",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "LocalDriverGain",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 477,
+    "in_function": "prepareLocalIgnition",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "OneShotMasterGain",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "line": 493,
+    "in_function": "prepareLocalIgnition",
+    "name": "DebugReliableIgnition",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "line": 507,
+    "in_function": "confirmLocalIgnition",
+    "name": "DebugReliableIgnition",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "line": 514,
+    "in_function": "updateLocalIgnition",
+    "name": "ReliableIgnitionEnabled",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 525,
+    "in_function": "updateLocalIgnition",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "IgnitionPlaybackConfirmSeconds",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 527,
+    "in_function": "updateLocalIgnition",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "IgnitionMaxPlayAttempts",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 534,
+    "in_function": "updateLocalIgnition",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "IgnitionRetryDelaySeconds",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 542,
+    "in_function": "updateLocalIgnition",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "IgnitionReadinessTimeoutSeconds",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 548,
+    "in_function": "updateLocalIgnition",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "IgnitionAfterReadyDelaySeconds",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 550,
+    "in_function": "updateLocalIgnition",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "IgnitionAssetWarmTimeoutSeconds",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "line": 557,
+    "in_function": "updateLocalIgnition",
+    "name": "DebugReliableIgnition",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 560,
+    "in_function": "updateLocalIgnition",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "OneShotMaxLifetimeSeconds",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "line": 565,
+    "in_function": "updateLocalIgnition",
+    "name": "DebugReliableIgnition",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "line": 571,
+    "in_function": "holdLocalEngineLoopsForIgnition",
+    "name": "ReliableIgnitionEnabled",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 573,
+    "in_function": "holdLocalEngineLoopsForIgnition",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "IgnitionToIdleLeadSeconds",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:167",
+    "line": 615,
+    "in_function": "cueEnabled",
+    "via": "wrapper Catalog.GlobalBool()",
+    "name": "VehicleAudioCueExpansionEnabled",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 632,
+    "in_function": "conditionLocalAcceleration",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "AccelerationEnterConfirmSeconds",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 643,
+    "in_function": "conditionLocalAcceleration",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "AccelerationReleaseConfirmSeconds",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 646,
+    "in_function": "conditionLocalAcceleration",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "AccelerationMinimumActiveSeconds",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 654,
+    "in_function": "conditionLocalAcceleration",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "AccelerationRetriggerCooldownSeconds",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 666,
+    "in_function": "fadeSeconds",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "LayerSmoothingPerSecond",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 667,
+    "in_function": "fadeSeconds",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": null,
+    "name_expr": "prefix .. (rising and \"FadeInSeconds\" or \"FadeOutSeconds\")",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 775,
+    "in_function": "playImpact",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "ImpactMinIntervalSeconds",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 778,
+    "in_function": "playImpact",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": null,
+    "name_expr": "name .. \"Studs\"",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 792,
+    "in_function": "playImpact",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": null,
+    "name_expr": "impactTiers[tier] .. \"Studs\"",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 793,
+    "in_function": "playImpact",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": null,
+    "name_expr": "impactTiers[tier + 1] .. \"Studs\"",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 842,
+    "in_function": "updateFeel",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "FeelVoiceSleepSeconds",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 843,
+    "in_function": "updateFeel",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "FeelLayerFadeInSeconds",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 844,
+    "in_function": "updateFeel",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "FeelLayerFadeOutSeconds",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 908,
+    "in_function": "updateFeel",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "ParkedFadeInSeconds",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 908,
+    "in_function": "updateFeel",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "ParkedFadeOutSeconds",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 935,
+    "in_function": "updateFeel",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "RevHandoverSeconds",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 938,
+    "in_function": "updateFeel",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "RevLayerSmoothingSeconds",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 972,
+    "in_function": "updateFeel",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "BoostEndVent",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1101,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "BoostContinuousReleaseGraceSeconds",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1116,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "FullBoostStartThreshold",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1120,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "BoostEmptyThreshold",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1122,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "FullBoostMinimumConsumedFraction",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1129,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "BoostRechargeMinimumMissingCharge",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1133,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "BoostRechargeRetriggerCooldownSeconds",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1142,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "BoostRechargeCancelFadeSeconds",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:167",
+    "line": 1146,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalBool()",
+    "name": "BoostRechargeStopAtFull",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1146,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "BoostRechargeCancelFadeSeconds",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1160,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "IdleFadeStartMph",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1160,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "IdleFadeEndMph",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1161,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "EngineHighFadeStartMph",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1161,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "EngineHighFullSpeedMph",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1162,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "EngineLowPeakMph",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1164,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "EngineHighFullSpeedMph",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1165,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "EngineLowFloorMultiplier",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1165,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "EngineLowFloorMultiplier",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1168,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "CoastStartMph",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:167",
+    "line": 1173,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalBool()",
+    "name": "ParkedVehicleAudioEnabled",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:167",
+    "line": 1175,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalBool()",
+    "name": "ExitCoastAudioEnabled",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1179,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "DriftLoopStartGainMultiplier",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1180,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "DriftRampDelaySeconds",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1180,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "DriftRampFullSeconds",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1181,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "DriftRampCurveExponent",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1185,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "CoastStartMph",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1185,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "CoastFullGainMph",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1193,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "ExitCoastGainMultiplier",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1194,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "ExitCoastIdleGainMultiplier",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1195,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "ExitCoastEngineLowGainMultiplier",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:167",
+    "line": 1196,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalBool()",
+    "name": "ExitCoastSuppressEngineHigh",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1199,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "ParkedIdleGainMultiplier",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1200,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "ParkedEngineLowGainMultiplier",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1217,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "WindStartMph",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1217,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "WindFullGainMph",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1227,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "ParkedFadeInSeconds",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1227,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "ParkedFadeOutSeconds",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1241,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "EngineLowPitchMin",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1241,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "EngineLowPitchMax",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1241,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "EngineLowPitchMin",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1244,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "EngineHighPitchMin",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1244,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "EngineHighPitchMax",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1244,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "EngineHighPitchMin",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1247,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "DriftPitchStartMultiplier",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1247,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "DriftPitchEndMultiplier",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1247,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "DriftPitchStartMultiplier",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1257,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "ExitCoastGainMultiplier",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1257,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "ExitCoastEngineLowGainMultiplier",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:162",
+    "line": 1259,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "ParkedIdleGainMultiplier",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:167",
+    "line": 1292,
+    "in_function": "updateGraph",
+    "via": "wrapper Catalog.GlobalBool()",
+    "name": "FullBoostReplacesEmpty",
+    "access": "read"
+   },
+   {
+    "receiver": "quality",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Quality",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioClient:188",
+    "line": 1342,
+    "in_function": "refreshPriorities",
+    "via": "wrapper qualityNumber()",
+    "name": "LocalFeelUpdateHzMobile",
+    "access": "read"
+   },
+   {
+    "receiver": "quality",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Quality",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioClient:188",
+    "line": 1342,
+    "in_function": "refreshPriorities",
+    "via": "wrapper qualityNumber()",
+    "name": "LocalFeelUpdateHz",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "VehicleAudioCatalog:167",
+    "line": 1350,
+    "in_function": "refreshPriorities",
+    "via": "wrapper Catalog.GlobalBool()",
+    "name": "ReplayIgnitionOnRunningVehicleReentry",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Global",
+    "receiver_kind": "config",
+    "line": 1364,
+    "in_function": "refreshPriorities",
+    "name": "ExternalMaxDistanceStuds",
+    "access": "read"
+   },
+   {
+    "receiver": "quality",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Quality",
+    "receiver_kind": "config",
+    "line": 1365,
+    "in_function": "refreshPriorities",
+    "name": "MaxDetailedRemoteVehicles",
+    "access": "read"
+   },
+   {
+    "receiver": "quality",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Quality",
+    "receiver_kind": "config",
+    "line": 1366,
+    "in_function": "refreshPriorities",
+    "name": "MaxSimpleRemoteVehicles",
+    "access": "read"
+   },
+   {
+    "receiver": "graph.Profile.Folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "line": 1380,
+    "in_function": "refreshPriorities",
+    "name": "ProfileRevision",
+    "access": "read"
+   },
+   {
+    "receiver": "quality",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Quality",
+    "receiver_kind": "config",
+    "line": 1412,
+    "in_function": "Controller.Start",
+    "name": "ParameterUpdateHz",
+    "access": "read"
+   },
+   {
+    "receiver": "quality",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Quality",
+    "receiver_kind": "config",
+    "line": 1413,
+    "in_function": "Controller.Start",
+    "name": "PriorityUpdateHz",
+    "access": "read"
+   }
+  ],
+  "child_lookups": []
+ },
+ "startergui_core": [],
+ "gui_service": [],
+ "other_services": {},
+ "service_connects": [],
+ "proximity_prompts": [],
+ "instances_created_by_class": {
+  "AudioDeviceOutput": 1,
+  "AudioEmitter": 1,
+  "AudioFader": 3,
+  "AudioListener": 1,
+  "AudioPlayer": 1,
+  "Folder": 2,
+  "Wire": 2
+ },
+ "public_api": [
+  {
+   "name": "Start",
+   "kind": "function",
+   "params": [],
+   "line": 1391
+  },
+  {
+   "name": "Stop",
+   "kind": "function",
+   "params": [],
+   "line": 1439
+  },
+  {
+   "name": "Counts",
+   "kind": "function",
+   "params": [],
+   "line": 1456
+  }
+ ],
+ "unresolved": [
+  {
+   "category": "names_assigned",
+   "field": "name",
+   "line": 150,
+   "detail": "name built at run time: \"Player_\" .. layer"
+  },
+  {
+   "category": "names_assigned",
+   "field": "name",
+   "line": 153,
+   "detail": "name built at run time: \"Fader_\" .. layer"
+  },
+  {
+   "category": "names_assigned",
+   "field": "name",
+   "line": 156,
+   "detail": "name built at run time: \"Wire_\" .. layer .. \"_PlayerToFader\""
+  },
+  {
+   "category": "names_assigned",
+   "field": "name",
+   "line": 158,
+   "detail": "name built at run time: \"Wire_\" .. layer .. \"_FaderToOutput\""
+  },
+  {
+   "category": "names_assigned",
+   "field": "name",
+   "line": 160,
+   "detail": "name built at run time: \"Wire_\" .. layer .. \"_FaderToEmitter\""
+  },
+  {
+   "category": "names_assigned",
+   "field": "name",
+   "line": 327,
+   "detail": "name built at run time: \"Vehicle_\" .. tostring(vehicle:GetAttribute(\"OwnerUserId\") or vehicle.Name)"
+  },
+  {
+   "category": "names_assigned",
+   "field": "name",
+   "line": 404,
+   "detail": "name built at run time: \"OneShot_\" .. layerName"
+  },
+  {
+   "category": "names_assigned",
+   "field": "name",
+   "line": 407,
+   "detail": "name built at run time: \"OneShotFader_\" .. layerName"
+  },
+  {
+   "category": "names_assigned",
+   "field": "name",
+   "line": 409,
+   "detail": "name built at run time: \"OneShotWire_\" .. layerName .. \"_PlayerToFader\""
+  },
+  {
+   "category": "names_assigned",
+   "field": "name",
+   "line": 411,
+   "detail": "name built at run time: \"OneShotWire_\" .. layerName .. \"_FaderToOutput\""
+  },
+  {
+   "category": "names_assigned",
+   "field": "name",
+   "line": 413,
+   "detail": "name built at run time: \"OneShotWire_\" .. layerName .. \"_FaderToEmitter\""
+  },
+  {
+   "category": "attribute_reads",
+   "field": "name",
+   "line": 667,
+   "detail": "not a literal: prefix .. (rising and \"FadeInSeconds\" or \"FadeOutSeconds\")"
+  },
+  {
+   "category": "attribute_reads",
+   "field": "name",
+   "line": 778,
+   "detail": "not a literal: name .. \"Studs\""
+  },
+  {
+   "category": "attribute_reads",
+   "field": "name",
+   "line": 792,
+   "detail": "not a literal: impactTiers[tier] .. \"Studs\""
+  },
+  {
+   "category": "attribute_reads",
+   "field": "name",
+   "line": 793,
+   "detail": "not a literal: impactTiers[tier + 1] .. \"Studs\""
+  }
+ ],
+ "contract_file": "VehicleAudioClient.json"
+}

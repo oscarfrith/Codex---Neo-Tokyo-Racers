@@ -1,0 +1,943 @@
+{
+ "script": "ReplicatedStorage.Modules.Game.Audio.PresentationAudioClient",
+ "class": "ModuleScript",
+ "source_file": "classic/sources/ReplicatedStorage.Modules.Game.Audio.PresentationAudioClient.lua",
+ "source_lines": 415,
+ "included_because": [
+  "client script that is UI-coupled: references PlayerGui"
+ ],
+ "requires": [
+  {
+   "expr": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Audio\"):WaitForChild(\"PresentationAudioCatalog\")",
+   "as": "Catalog",
+   "line": 15,
+   "target": "ReplicatedStorage.Modules.Game.Audio.PresentationAudioCatalog"
+  },
+  {
+   "expr": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Audio\"):WaitForChild(\"PresentationAudioBridge\")",
+   "as": "Bridge",
+   "line": 16,
+   "target": "ReplicatedStorage.Modules.Game.Audio.PresentationAudioBridge"
+  }
+ ],
+ "remotes": {
+  "calls": [],
+  "listens": [
+   {
+    "signal": "OnClientEvent",
+    "receiver": "raceEvent",
+    "method": "Connect",
+    "handler": "onRaceEvent",
+    "handler_line": 338,
+    "handler_params": [
+     "payload"
+    ],
+    "payload_fields_read": [
+     "Type",
+     "RunId",
+     "EventId",
+     "Countdown",
+     "CurrentLap",
+     "Lap",
+     "CheckpointIndex",
+     "NextGateIndex"
+    ],
+    "literal_comparisons": {
+     "Type": [
+      "TimeTrialCountdownScheduled",
+      "RaceCountdownScheduled",
+      "TimeTrialCountdown",
+      "RaceCountdown",
+      "TimeTrialStarted",
+      "RaceStarted",
+      "TimeTrialCheckpoint",
+      "RaceCheckpoint",
+      "TimeTrialLapCompleted",
+      "RaceLapCompleted",
+      "TimeTrialFinished",
+      "RaceFinished",
+      "RaceDNF",
+      "RaceStaged",
+      "TimeTrialEnded",
+      "TimeTrialError",
+      "RaceEnded",
+      "RaceExitedToStart",
+      "RaceQueueError"
+     ]
+    },
+    "line": 379,
+    "in_function": "Controller.Start",
+    "remote": "ReplicatedStorage.Remotes.Racing.RaceEvent"
+   }
+  ]
+ },
+ "bindables": {
+  "fires": [],
+  "connects": [],
+  "invokes": [],
+  "handlers": [],
+  "created": [],
+  "module_signal_fires": []
+ },
+ "attributes": {
+  "reads": [
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Presentation.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "PresentationAudioCatalog:32",
+    "line": 40,
+    "in_function": "debugLog",
+    "via": "wrapper Catalog.GlobalBool()",
+    "name": "DebugPresentationAudio"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Presentation.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "PresentationAudioCatalog:38",
+    "line": 85,
+    "in_function": "availableOneShot",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "MaximumOneShotVoices"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Presentation.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "PresentationAudioCatalog:32",
+    "line": 120,
+    "in_function": "warmConfiguredOneShots",
+    "via": "wrapper Catalog.GlobalBool()",
+    "name": "PreloadOneShotsEnabled"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Presentation.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "PresentationAudioCatalog:38",
+    "line": 122,
+    "in_function": "warmConfiguredOneShots",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "PreloadOneShotAssetLimit"
+   },
+   {
+    "receiver": "cue",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "line": 128,
+    "in_function": "warmConfiguredOneShots",
+    "name": "AssetId"
+   },
+   {
+    "receiver": "cue",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "line": 129,
+    "in_function": "warmConfiguredOneShots",
+    "name": "Enabled"
+   },
+   {
+    "receiver": "profile",
+    "receiver_path": "ReplicatedStorage.Config.Audio.VehicleProfiles.<profileId>",
+    "receiver_kind": "config",
+    "line": 215,
+    "in_function": "loopDefinition",
+    "name": null,
+    "name_expr": "layer .. \"AssetId\""
+   },
+   {
+    "receiver": "profile",
+    "receiver_path": "ReplicatedStorage.Config.Audio.VehicleProfiles.<profileId>",
+    "receiver_kind": "config",
+    "line": 217,
+    "in_function": "loopDefinition",
+    "name": null,
+    "name_expr": "layer .. \"Gain\""
+   },
+   {
+    "receiver": "profile",
+    "receiver_path": "ReplicatedStorage.Config.Audio.VehicleProfiles.<profileId>",
+    "receiver_kind": "config",
+    "line": 218,
+    "in_function": "loopDefinition",
+    "name": null,
+    "name_expr": "layer .. \"Pitch\""
+   },
+   {
+    "receiver": "profile",
+    "receiver_path": "ReplicatedStorage.Config.Audio.VehicleProfiles.<profileId>",
+    "receiver_kind": "config",
+    "line": 219,
+    "in_function": "loopDefinition",
+    "name": "ProfileMasterGain"
+   },
+   {
+    "receiver": "vehicle",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "PresentationAudioClient:209",
+    "line": 244,
+    "in_function": "updatePreview",
+    "via": "wrapper loopDefinition()",
+    "name": "StandardAudioProfileId",
+    "receiver_path": null
+   },
+   {
+    "receiver": "vehicle",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "PresentationAudioClient:209",
+    "line": 244,
+    "in_function": "updatePreview",
+    "via": "wrapper loopDefinition()",
+    "name": "ResolvedAudioProfileId",
+    "receiver_path": null
+   },
+   {
+    "receiver": "root",
+    "receiver_kind": "other",
+    "wrapper_defined": "PresentationAudioClient:208",
+    "line": 244,
+    "in_function": "updatePreview",
+    "via": "wrapper loopDefinition()",
+    "name": "PreviewAudioProfileId",
+    "receiver_path": null
+   },
+   {
+    "receiver": "root",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "line": 246,
+    "in_function": "updatePreview",
+    "name": "PreviewVFXMode"
+   },
+   {
+    "receiver": "vehicle",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "PresentationAudioClient:209",
+    "line": 247,
+    "in_function": "updatePreview",
+    "via": "wrapper loopDefinition()",
+    "name": "StandardAudioProfileId",
+    "receiver_path": null
+   },
+   {
+    "receiver": "vehicle",
+    "receiver_kind": "vehicle?",
+    "wrapper_defined": "PresentationAudioClient:209",
+    "line": 247,
+    "in_function": "updatePreview",
+    "via": "wrapper loopDefinition()",
+    "name": "ResolvedAudioProfileId",
+    "receiver_path": null
+   },
+   {
+    "receiver": "root",
+    "receiver_kind": "other",
+    "wrapper_defined": "PresentationAudioClient:208",
+    "line": 247,
+    "in_function": "updatePreview",
+    "via": "wrapper loopDefinition()",
+    "name": "PreviewAudioProfileId",
+    "receiver_path": null
+   },
+   {
+    "receiver": "at",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "line": 275,
+    "in_function": "visibleAndActive",
+    "name": "UIAudioSilent"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Presentation.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "PresentationAudioCatalog:32",
+    "line": 292,
+    "in_function": "bindButton",
+    "via": "wrapper Catalog.GlobalBool()",
+    "name": "MouseHoverEnabled"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Presentation.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "PresentationAudioCatalog:32",
+    "line": 297,
+    "in_function": "bindButton",
+    "via": "wrapper Catalog.GlobalBool()",
+    "name": "ControllerFocusHoverEnabled"
+   },
+   {
+    "receiver": "object",
+    "receiver_kind": "other",
+    "wrapper_defined": "PresentationAudioClient:303",
+    "line": 377,
+    "in_function": "Controller.Start",
+    "via": "wrapper bindButton()",
+    "name": "UIAudioClickCue",
+    "receiver_path": null
+   },
+   {
+    "receiver": "object",
+    "receiver_kind": "other",
+    "wrapper_defined": "PresentationAudioClient:302",
+    "line": 377,
+    "in_function": "Controller.Start",
+    "via": "wrapper bindButton()",
+    "name": "UIAudioSuppressClick",
+    "receiver_path": null
+   },
+   {
+    "receiver": "object",
+    "receiver_kind": "other",
+    "wrapper_defined": "PresentationAudioClient:293",
+    "line": 377,
+    "in_function": "Controller.Start",
+    "via": "wrapper bindButton()",
+    "name": "UIAudioHoverCue",
+    "receiver_path": null
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Presentation.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "PresentationAudioCatalog:38",
+    "line": 384,
+    "in_function": "Controller.Start",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "PreviewPollHz"
+   }
+  ],
+  "writes": [],
+  "listens": []
+ },
+ "player_attribute_writes": [],
+ "screenguis": {
+  "created": [],
+  "enabled_writes": []
+ },
+ "names": {
+  "assigned": [
+   {
+    "via": "wrapper newSound()",
+    "receiver": "sound",
+    "class": "Sound",
+    "wrapper_defined": "PresentationAudioClient:60",
+    "line": 87,
+    "in_function": "availableOneShot",
+    "name": null,
+    "name_pattern": "OneShot_*",
+    "name_expr": "\"OneShot_\" .. tostring(#oneShots + 1)"
+   },
+   {
+    "via": "property",
+    "receiver": "sound",
+    "class": "Sound",
+    "line": 133,
+    "in_function": "warmConfiguredOneShots",
+    "name": null,
+    "name_pattern": "Warm_*",
+    "name_expr": "\"Warm_\" .. sectionName .. \"_\" .. cue.Name"
+   },
+   {
+    "via": "wrapper newSound()",
+    "receiver": "sound",
+    "class": "Sound",
+    "wrapper_defined": "PresentationAudioClient:60",
+    "line": 178,
+    "in_function": "transitionLoop",
+    "name": null,
+    "name_pattern": "Loop_*",
+    "name_expr": "\"Loop_\" .. name"
+   },
+   {
+    "via": "property",
+    "receiver": "runtimeRoot",
+    "class": "Folder",
+    "line": 374,
+    "in_function": "Controller.Start",
+    "name": "PresentationAudioRuntime_Local"
+   }
+  ],
+  "looked_up": [
+   {
+    "method": "WaitForChild",
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 12,
+    "name": "PlayerGui"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 14,
+    "name": "Modules"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\")",
+    "receiver_path": "ReplicatedStorage.Modules",
+    "root": "ReplicatedStorage",
+    "line": 14,
+    "name": "Game"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game",
+    "root": "ReplicatedStorage",
+    "line": 14,
+    "name": "Audio"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 15,
+    "name": "Modules"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\")",
+    "receiver_path": "ReplicatedStorage.Modules",
+    "root": "ReplicatedStorage",
+    "line": 15,
+    "name": "Game"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game",
+    "root": "ReplicatedStorage",
+    "line": 15,
+    "name": "Audio"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Audio\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game.Audio",
+    "root": "ReplicatedStorage",
+    "line": 15,
+    "name": "PresentationAudioCatalog"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 16,
+    "name": "Modules"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\")",
+    "receiver_path": "ReplicatedStorage.Modules",
+    "root": "ReplicatedStorage",
+    "line": 16,
+    "name": "Game"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game",
+    "root": "ReplicatedStorage",
+    "line": 16,
+    "name": "Audio"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Audio\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game.Audio",
+    "root": "ReplicatedStorage",
+    "line": 16,
+    "name": "PresentationAudioBridge"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 17,
+    "name": "Remotes"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Remotes\").Racing",
+    "receiver_path": "ReplicatedStorage.Remotes.Racing",
+    "root": "ReplicatedStorage",
+    "line": 17,
+    "name": "RaceEvent"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 18,
+    "name": "Config"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\")",
+    "receiver_path": "ReplicatedStorage.Config",
+    "root": "ReplicatedStorage",
+    "line": 18,
+    "name": "Audio"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\"):WaitForChild(\"Audio\")",
+    "receiver_path": "ReplicatedStorage.Config.Audio",
+    "root": "ReplicatedStorage",
+    "line": 18,
+    "name": "VehicleProfiles"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "SoundService",
+    "receiver_path": "SoundService",
+    "root": "SoundService",
+    "line": 54,
+    "in_function": "groupFor",
+    "name": null,
+    "name_expr": "BUS_GROUPS[bus] or BUS_GROUPS.UI"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "root",
+    "receiver_path": null,
+    "root": null,
+    "line": 125,
+    "in_function": "warmConfiguredOneShots",
+    "name": "UI",
+    "via": "literal list"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "root",
+    "receiver_path": null,
+    "root": null,
+    "line": 125,
+    "in_function": "warmConfiguredOneShots",
+    "name": "Objective",
+    "via": "literal list"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "root",
+    "receiver_path": null,
+    "root": null,
+    "line": 125,
+    "in_function": "warmConfiguredOneShots",
+    "name": "Racing",
+    "via": "literal list"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "Workspace",
+    "receiver_path": "Workspace",
+    "root": "Workspace",
+    "line": 196,
+    "in_function": "findPreview",
+    "name": "ClientOnly"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "clientOnly",
+    "receiver_path": "Workspace.ClientOnly",
+    "root": "Workspace",
+    "line": 197,
+    "in_function": "findPreview",
+    "name": "VehiclePreview"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "Workspace",
+    "receiver_path": "Workspace",
+    "root": "Workspace",
+    "line": 197,
+    "in_function": "findPreview",
+    "name": "LocalVehiclePreview"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "profiles",
+    "receiver_path": "ReplicatedStorage.Config.Audio.VehicleProfiles",
+    "root": "ReplicatedStorage",
+    "line": 211,
+    "in_function": "loopDefinition",
+    "name": null,
+    "name_expr": "profileId"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 211,
+    "in_function": "loopDefinition",
+    "name": "Config"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\")",
+    "receiver_path": "ReplicatedStorage.Config",
+    "root": "ReplicatedStorage",
+    "line": 211,
+    "in_function": "loopDefinition",
+    "name": "Audio"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\"):WaitForChild(\"Audio\")",
+    "receiver_path": "ReplicatedStorage.Config.Audio",
+    "root": "ReplicatedStorage",
+    "line": 211,
+    "in_function": "loopDefinition",
+    "name": "VehicleProfiles"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\"):WaitForChild(\"Audio\"):WaitForChild(\"VehicleProfiles\")",
+    "receiver_path": "ReplicatedStorage.Config.Audio.VehicleProfiles",
+    "root": "ReplicatedStorage",
+    "line": 211,
+    "in_function": "loopDefinition",
+    "name": "GENERIC_STANDARD_AUDIO"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "SoundService",
+    "receiver_path": "SoundService",
+    "root": "SoundService",
+    "line": 371,
+    "in_function": "Controller.Start",
+    "name": "PresentationAudioRuntime_Local"
+   }
+  ],
+  "text_compared": [
+   {
+    "method": "string.match",
+    "receiver": "button.Text or \"\"",
+    "line": 259,
+    "in_function": "hasVisibleContent",
+    "text": "%S"
+   },
+   {
+    "method": "string.match",
+    "receiver": "object.Text or \"\"",
+    "line": 263,
+    "in_function": "hasVisibleContent",
+    "text": "%S"
+   }
+  ]
+ },
+ "run_service": {
+  "render_steps": [],
+  "connects": []
+ },
+ "context_actions": [],
+ "user_input_service": {
+  "connects": [],
+  "members_used": [
+   {
+    "member": "MouseEnabled",
+    "kind": "read",
+    "line": 292,
+    "in_function": "bindButton"
+   },
+   {
+    "member": "GamepadEnabled",
+    "kind": "read",
+    "line": 297,
+    "in_function": "bindButton"
+   }
+  ]
+ },
+ "audio": {
+  "bridge_calls": [
+   {
+    "method": "Subscribe",
+    "receiver": "Bridge",
+    "args": [
+     "function(cueId, payload) play(cueId, payload) end"
+    ],
+    "cue_expr": "function(cueId, payload) play(cueId, payload) end",
+    "line": 380,
+    "in_function": "Controller.Start"
+   }
+  ],
+  "ui_audio_attributes": [
+   {
+    "receiver": "at",
+    "receiver_path": null,
+    "receiver_kind": "other",
+    "line": 275,
+    "in_function": "visibleAndActive",
+    "name": "UIAudioSilent",
+    "access": "read"
+   },
+   {
+    "receiver": "object",
+    "receiver_kind": "other",
+    "wrapper_defined": "PresentationAudioClient:303",
+    "line": 377,
+    "in_function": "Controller.Start",
+    "via": "wrapper bindButton()",
+    "name": "UIAudioClickCue",
+    "receiver_path": null,
+    "access": "read"
+   },
+   {
+    "receiver": "object",
+    "receiver_kind": "other",
+    "wrapper_defined": "PresentationAudioClient:302",
+    "line": 377,
+    "in_function": "Controller.Start",
+    "via": "wrapper bindButton()",
+    "name": "UIAudioSuppressClick",
+    "receiver_path": null,
+    "access": "read"
+   },
+   {
+    "receiver": "object",
+    "receiver_kind": "other",
+    "wrapper_defined": "PresentationAudioClient:293",
+    "line": 377,
+    "in_function": "Controller.Start",
+    "via": "wrapper bindButton()",
+    "name": "UIAudioHoverCue",
+    "receiver_path": null,
+    "access": "read"
+   }
+  ]
+ },
+ "config": {
+  "paths": [
+   {
+    "path": "ReplicatedStorage.Config",
+    "line": 18
+   },
+   {
+    "path": "ReplicatedStorage.Config.Audio",
+    "line": 18
+   },
+   {
+    "path": "ReplicatedStorage.Config.Audio.Presentation.Global",
+    "line": 40
+   },
+   {
+    "path": "ReplicatedStorage.Config.Audio.VehicleProfiles",
+    "line": 18
+   },
+   {
+    "path": "ReplicatedStorage.Config.Audio.VehicleProfiles.<profileId>",
+    "line": 211
+   }
+  ],
+  "attribute_reads": [
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Presentation.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "PresentationAudioCatalog:32",
+    "line": 40,
+    "in_function": "debugLog",
+    "via": "wrapper Catalog.GlobalBool()",
+    "name": "DebugPresentationAudio",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Presentation.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "PresentationAudioCatalog:38",
+    "line": 85,
+    "in_function": "availableOneShot",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "MaximumOneShotVoices",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Presentation.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "PresentationAudioCatalog:32",
+    "line": 120,
+    "in_function": "warmConfiguredOneShots",
+    "via": "wrapper Catalog.GlobalBool()",
+    "name": "PreloadOneShotsEnabled",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Presentation.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "PresentationAudioCatalog:38",
+    "line": 122,
+    "in_function": "warmConfiguredOneShots",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "PreloadOneShotAssetLimit",
+    "access": "read"
+   },
+   {
+    "receiver": "profile",
+    "receiver_path": "ReplicatedStorage.Config.Audio.VehicleProfiles.<profileId>",
+    "receiver_kind": "config",
+    "line": 215,
+    "in_function": "loopDefinition",
+    "name": null,
+    "name_expr": "layer .. \"AssetId\"",
+    "access": "read"
+   },
+   {
+    "receiver": "profile",
+    "receiver_path": "ReplicatedStorage.Config.Audio.VehicleProfiles.<profileId>",
+    "receiver_kind": "config",
+    "line": 217,
+    "in_function": "loopDefinition",
+    "name": null,
+    "name_expr": "layer .. \"Gain\"",
+    "access": "read"
+   },
+   {
+    "receiver": "profile",
+    "receiver_path": "ReplicatedStorage.Config.Audio.VehicleProfiles.<profileId>",
+    "receiver_kind": "config",
+    "line": 218,
+    "in_function": "loopDefinition",
+    "name": null,
+    "name_expr": "layer .. \"Pitch\"",
+    "access": "read"
+   },
+   {
+    "receiver": "profile",
+    "receiver_path": "ReplicatedStorage.Config.Audio.VehicleProfiles.<profileId>",
+    "receiver_kind": "config",
+    "line": 219,
+    "in_function": "loopDefinition",
+    "name": "ProfileMasterGain",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Presentation.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "PresentationAudioCatalog:32",
+    "line": 292,
+    "in_function": "bindButton",
+    "via": "wrapper Catalog.GlobalBool()",
+    "name": "MouseHoverEnabled",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Presentation.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "PresentationAudioCatalog:32",
+    "line": 297,
+    "in_function": "bindButton",
+    "via": "wrapper Catalog.GlobalBool()",
+    "name": "ControllerFocusHoverEnabled",
+    "access": "read"
+   },
+   {
+    "receiver": "global",
+    "receiver_path": "ReplicatedStorage.Config.Audio.Presentation.Global",
+    "receiver_kind": "config",
+    "wrapper_defined": "PresentationAudioCatalog:38",
+    "line": 384,
+    "in_function": "Controller.Start",
+    "via": "wrapper Catalog.GlobalNumber()",
+    "name": "PreviewPollHz",
+    "access": "read"
+   }
+  ],
+  "child_lookups": []
+ },
+ "startergui_core": [],
+ "gui_service": [],
+ "other_services": {},
+ "service_connects": [],
+ "proximity_prompts": [],
+ "instances_created_by_class": {
+  "Folder": 1,
+  "Sound": 2
+ },
+ "public_api": [
+  {
+   "name": "Start",
+   "kind": "function",
+   "params": [],
+   "line": 368
+  },
+  {
+   "name": "Stop",
+   "kind": "function",
+   "params": [],
+   "line": 391
+  },
+  {
+   "name": "Counts",
+   "kind": "function",
+   "params": [],
+   "line": 407
+  }
+ ],
+ "unresolved": [
+  {
+   "category": "lookups",
+   "field": "name",
+   "line": 54,
+   "detail": "not a literal: BUS_GROUPS[bus] or BUS_GROUPS.UI"
+  },
+  {
+   "category": "names_assigned",
+   "field": "name",
+   "line": 87,
+   "detail": "name built at run time: \"OneShot_\" .. tostring(#oneShots + 1)"
+  },
+  {
+   "category": "names_assigned",
+   "field": "name",
+   "line": 133,
+   "detail": "name built at run time: \"Warm_\" .. sectionName .. \"_\" .. cue.Name"
+  },
+  {
+   "category": "names_assigned",
+   "field": "name",
+   "line": 178,
+   "detail": "name built at run time: \"Loop_\" .. name"
+  },
+  {
+   "category": "lookups",
+   "field": "name",
+   "line": 211,
+   "detail": "not a literal: profileId"
+  },
+  {
+   "category": "attribute_reads",
+   "field": "name",
+   "line": 215,
+   "detail": "not a literal: layer .. \"AssetId\""
+  },
+  {
+   "category": "attribute_reads",
+   "field": "name",
+   "line": 217,
+   "detail": "not a literal: layer .. \"Gain\""
+  },
+  {
+   "category": "attribute_reads",
+   "field": "name",
+   "line": 218,
+   "detail": "not a literal: layer .. \"Pitch\""
+  }
+ ],
+ "contract_file": "PresentationAudioClient.json"
+}

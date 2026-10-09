@@ -1,0 +1,23 @@
+<!doctype html><html><head><meta charset="utf-8"><title>r15a Results: race</title><script src="../shared/boot.js"></script></head><body><script>
+const rows = [["1ST","NEONRIDER","03:10.018","SERAPH"],["2ND","OSCAR","03:11.842","SERAPH",1],["3RD","CYBERWAVE","03:12.450","ROSSO"],["4TH","NIGHTDRIFT","03:14.139","AURORA"],["5TH","VANTA","03:19.702","ENDURA"],["6TH","MIRA_K","DNF","ZEPHYR"]];
+const trow = (r) => `<div class="row ${r[4] ? "you" : "bare"}" style="min-height:50px;${r[4] ? "border-left:8px solid var(--pink);padding-left:12px" : ""}"><span class="t-value" style="width:80px">${r[0]}</span><span class="t-value grow">${r[1]}</span><span class="t-value" style="width:170px">${r[2]}</span><span class="t-label c-2" style="width:140px;text-align:right">${r[3]}</span></div>`;
+const hero = (label, v, cls) => `<div style="text-align:center"><div class="t-status shadow">${label}</div><div class="num shadow ${cls}" style="font-size:200px;margin-top:22px">${v}</div></div>`;
+P.page(`
+  ${P.scene("race")}<div class="scrim-menu"></div>
+  <div class="abs" style="left:0;right:0;top:50px;text-align:center"><div class="t-title shadow">RACE COMPLETE</div><div class="t-label c-2" style="margin-top:12px">SHIFTED CANAL SPRINT &middot; 3 LAPS &middot; SERAPH</div></div>
+  <div class="abs flex" style="left:0;right:0;top:186px;justify-content:center;gap:90px">${hero("BANKED","$20,000","c-yellow")}${hero("DRIVER XP","+120","c-pink")}</div>
+  <div class="panel abs flex ac" style="left:50%;transform:translateX(-50%);top:442px;height:70px;padding:0 34px;gap:44px">
+    ${[["FINISH","2ND OF 6"],["TIME","03:11.842"],["BEST LAP","01:02.966"]].map(s => `<span class="flex ac g12"><span class="t-value c-muted">${s[0]}</span><span class="t-value">${s[1]}</span></span>`).join("")}
+  </div>
+  <div class="panel abs" style="left:300px;top:538px;width:900px;padding:8px 22px 10px">
+    <div class="row bare" style="min-height:38px;border-bottom:0"><span class="t-label c-muted" style="width:80px">PLACE</span><span class="t-label c-muted grow">RACE RESULTS</span><span class="t-label c-muted" style="width:170px">TIME</span><span class="t-label c-muted" style="width:140px;text-align:right">VEHICLE</span></div>
+    <div class="hairline"></div>${rows.map(trow).join("")}
+  </div>
+  <div class="panel abs" style="left:1212px;top:538px;width:408px;padding:16px 22px">
+    <div class="t-label c-muted" style="margin-bottom:6px">RACE HIGHLIGHTS</div>
+    <div class="hairline"></div>
+    ${[["clock","FASTEST LAP","01:02.118","NEONRIDER"],["bolt","HIGHEST SPEED","231 MPH","CYBERWAVE"]].map((h,i)=>`<div class="flex ac g16" style="height:96px;${i?"":"border-bottom:2px solid var(--hair-bot)"}"><i class="ic ${h[0]}" style="font-size:34px;color:var(--text2)"></i><div class="grow" style="flex:1"><div class="t-label c-2">${h[1]}</div><div class="t-label" style="margin-top:8px">${h[3]}</div></div><span class="t-status">${h[2]}</span></div>`).join("")}
+  </div>
+  ${P.btnrow([P.btn("EXIT TO START","exit"),P.btn("RACE AGAIN","loop","main")],"centre")}
+`);
+</script></body></html>

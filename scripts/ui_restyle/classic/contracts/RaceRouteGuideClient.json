@@ -1,0 +1,1470 @@
+{
+ "script": "ReplicatedStorage.Modules.Game.Racing.RaceRouteGuideClient",
+ "class": "ModuleScript",
+ "source_file": "classic/sources/ReplicatedStorage.Modules.Game.Racing.RaceRouteGuideClient.lua",
+ "source_lines": 451,
+ "included_because": [
+  "ClientBase entry 'RaceRouteGuideClient'"
+ ],
+ "requires": [
+  {
+   "expr": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"UI\"):WaitForChild(\"ResponsiveUIFoundation\")",
+   "as": "Foundation",
+   "line": 17,
+   "in_function": "Client.start",
+   "target": "ReplicatedStorage.Modules.Game.UI.ResponsiveUIFoundation"
+  },
+  {
+   "expr": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Racing\"):WaitForChild(\"RaceRouteDefinition\")",
+   "as": "RouteDefinition",
+   "line": 21,
+   "in_function": "Client.start",
+   "target": "ReplicatedStorage.Modules.Game.Racing.RaceRouteDefinition"
+  }
+ ],
+ "remotes": {
+  "calls": [],
+  "listens": [
+   {
+    "signal": "OnClientEvent",
+    "receiver": "raceEvent",
+    "method": "Connect",
+    "handler": "inline",
+    "handler_line": 418,
+    "handler_params": [
+     "payload"
+    ],
+    "payload_fields_read": [
+     "Type"
+    ],
+    "literal_comparisons": {
+     "Type": [
+      "TimeTrialStaged",
+      "TimeTrialCountdown",
+      "RaceStaged",
+      "RaceCountdown",
+      "TimeTrialStarted",
+      "RaceStarted",
+      "TimeTrialCheckpoint",
+      "RaceCheckpoint",
+      "TimeTrialLapCompleted",
+      "RaceLapCompleted",
+      "TimeTrialFinished",
+      "TimeTrialEnded",
+      "TimeTrialError",
+      "RaceFinished",
+      "RaceEnded"
+     ]
+    },
+    "line": 418,
+    "in_function": "Client.start",
+    "remote": "ReplicatedStorage.Remotes.Racing.RaceEvent"
+   }
+  ]
+ },
+ "bindables": {
+  "fires": [],
+  "connects": [],
+  "invokes": [],
+  "handlers": [],
+  "created": [],
+  "module_signal_fires": []
+ },
+ "attributes": {
+  "reads": [
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "RaceRouteGuideClient:48",
+    "line": 66,
+    "in_function": "checkpointUiScale",
+    "via": "wrapper numberAttr()",
+    "name": "MobileCheckpointUIScale"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "RaceRouteGuideClient:39",
+    "line": 133,
+    "in_function": "makeBillboard",
+    "via": "wrapper boolAttr()",
+    "name": "ShowWorldCheckpointLabel"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "RaceRouteGuideClient:39",
+    "line": 140,
+    "in_function": "makeBillboard",
+    "via": "wrapper boolAttr()",
+    "name": "CheckpointWorldTextAlwaysOnTop"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "RaceRouteGuideClient:48",
+    "line": 141,
+    "in_function": "makeBillboard",
+    "via": "wrapper numberAttr()",
+    "name": "CheckpointPillWidth"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "RaceRouteGuideClient:48",
+    "line": 141,
+    "in_function": "makeBillboard",
+    "via": "wrapper numberAttr()",
+    "name": "CheckpointPillHeight"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "RaceRouteGuideClient:48",
+    "line": 142,
+    "in_function": "makeBillboard",
+    "via": "wrapper numberAttr()",
+    "name": "CheckpointPillYOffset"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "RaceRouteGuideClient:48",
+    "line": 148,
+    "in_function": "makeBillboard",
+    "via": "wrapper numberAttr()",
+    "name": "CheckpointPillBackgroundTransparency"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "RaceRouteGuideClient:48",
+    "line": 155,
+    "in_function": "makeBillboard",
+    "via": "wrapper numberAttr()",
+    "name": "CheckpointWorldTextStrokeTransparency"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "RaceRouteGuideClient:48",
+    "line": 156,
+    "in_function": "makeBillboard",
+    "via": "wrapper numberAttr()",
+    "name": "CheckpointWorldTextSize"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "RaceRouteGuideClient:48",
+    "line": 164,
+    "in_function": "makeBillboard",
+    "via": "wrapper numberAttr()",
+    "name": "CheckpointPillCornerRadius"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "RaceRouteGuideClient:48",
+    "line": 168,
+    "in_function": "makeBillboard",
+    "via": "wrapper numberAttr()",
+    "name": "CheckpointPillStrokeThickness"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "RaceRouteGuideClient:48",
+    "line": 169,
+    "in_function": "makeBillboard",
+    "via": "wrapper numberAttr()",
+    "name": "CheckpointPillStrokeTransparency"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "RaceRouteGuideClient:57",
+    "line": 177,
+    "in_function": "colorForGate",
+    "via": "wrapper colorAttr()",
+    "name": "FinishColor"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "RaceRouteGuideClient:57",
+    "line": 179,
+    "in_function": "colorForGate",
+    "via": "wrapper colorAttr()",
+    "name": "CheckpointColor"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "RaceRouteGuideClient:57",
+    "line": 185,
+    "in_function": "colorForArrow",
+    "via": "wrapper colorAttr()",
+    "name": "WarningColor"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "RaceRouteGuideClient:57",
+    "line": 187,
+    "in_function": "colorForArrow",
+    "via": "wrapper colorAttr()",
+    "name": "CheckpointColor"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "RaceRouteGuideClient:57",
+    "line": 189,
+    "in_function": "colorForArrow",
+    "via": "wrapper colorAttr()",
+    "name": "ArrowColor"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "RaceRouteGuideClient:39",
+    "line": 206,
+    "in_function": "drawGateFrame",
+    "via": "wrapper boolAttr()",
+    "name": "ShowCheckpointFrames"
+   },
+   {
+    "receiver": "configFolder()",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "line": 208,
+    "in_function": "drawGateFrame",
+    "name": "CheckpointFrameStyle"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "RaceRouteGuideClient:48",
+    "line": 213,
+    "in_function": "drawGateFrame",
+    "via": "wrapper numberAttr()",
+    "name": "CheckpointFrameTransparency"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "RaceRouteGuideClient:48",
+    "line": 214,
+    "in_function": "drawGateFrame",
+    "via": "wrapper numberAttr()",
+    "name": "CheckpointCornerTickThickness"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "RaceRouteGuideClient:48",
+    "line": 215,
+    "in_function": "drawGateFrame",
+    "via": "wrapper numberAttr()",
+    "name": "CheckpointCornerTickLength"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "RaceRouteGuideClient:39",
+    "line": 243,
+    "in_function": "drawDynamicArrow",
+    "via": "wrapper boolAttr()",
+    "name": "ShowCheckpointArrows"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "RaceRouteGuideClient:39",
+    "line": 243,
+    "in_function": "drawDynamicArrow",
+    "via": "wrapper boolAttr()",
+    "name": "ShowDynamicNextArrow"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "RaceRouteGuideClient:48",
+    "line": 250,
+    "in_function": "drawDynamicArrow",
+    "via": "wrapper numberAttr()",
+    "name": "DynamicArrowBackStuds"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "RaceRouteGuideClient:48",
+    "line": 251,
+    "in_function": "drawDynamicArrow",
+    "via": "wrapper numberAttr()",
+    "name": "DynamicArrowHeightStuds"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "RaceRouteGuideClient:48",
+    "line": 254,
+    "in_function": "drawDynamicArrow",
+    "via": "wrapper numberAttr()",
+    "name": "DynamicArrowScale"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "RaceRouteGuideClient:39",
+    "line": 258,
+    "in_function": "drawAuthoredArrows",
+    "via": "wrapper boolAttr()",
+    "name": "ShowCheckpointArrows"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "RaceRouteGuideClient:39",
+    "line": 258,
+    "in_function": "drawAuthoredArrows",
+    "via": "wrapper boolAttr()",
+    "name": "ShowAuthoringArrows"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "RaceRouteGuideClient:57",
+    "line": 287,
+    "in_function": "Client.start",
+    "via": "wrapper colorAttr()",
+    "name": "WarningColor"
+   },
+   {
+    "receiver": "vehicle",
+    "receiver_path": null,
+    "receiver_kind": "vehicle?",
+    "line": 307,
+    "in_function": "findLocalVehicleRoot",
+    "name": "OwnerUserId"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "RaceRouteGuideClient:39",
+    "line": 327,
+    "in_function": "isCurrentlyWrongWay",
+    "via": "wrapper boolAttr()",
+    "name": "ShowWrongWayPrompt"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "RaceRouteGuideClient:48",
+    "line": 337,
+    "in_function": "isCurrentlyWrongWay",
+    "via": "wrapper numberAttr()",
+    "name": "WrongWayMinSpeed"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "RaceRouteGuideClient:48",
+    "line": 341,
+    "in_function": "isCurrentlyWrongWay",
+    "via": "wrapper numberAttr()",
+    "name": "WrongWayIgnoreNearGateStuds"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "RaceRouteGuideClient:48",
+    "line": 345,
+    "in_function": "isCurrentlyWrongWay",
+    "via": "wrapper numberAttr()",
+    "name": "WrongWayDotThreshold"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "RaceRouteGuideClient:48",
+    "line": 349,
+    "in_function": "updateWrongWay",
+    "via": "wrapper numberAttr()",
+    "name": "WrongWayCheckInterval"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "RaceRouteGuideClient:48",
+    "line": 358,
+    "in_function": "updateWrongWay",
+    "via": "wrapper numberAttr()",
+    "name": "WrongWayDelaySeconds"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "RaceRouteGuideClient:39",
+    "line": 366,
+    "in_function": "renderGuide",
+    "via": "wrapper boolAttr()",
+    "name": "EnableRouteGuide"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "RaceRouteGuideClient:57",
+    "line": 414,
+    "in_function": "clearActive",
+    "via": "wrapper colorAttr()",
+    "name": "CheckpointColor"
+   }
+  ],
+  "writes": [],
+  "listens": []
+ },
+ "player_attribute_writes": [],
+ "screenguis": {
+  "created": [
+   {
+    "variable": "gui",
+    "class": "BillboardGui",
+    "line": 137,
+    "factory": null,
+    "adopts_existing": false,
+    "Name": {
+     "expr": "name"
+    },
+    "Parent": {
+     "expr": "ensureRenderRoot()"
+    },
+    "enabled_writes": [],
+    "property_lines": {
+     "Name": 138,
+     "Parent": 144
+    }
+   },
+   {
+    "variable": "guideGui",
+    "class": "ScreenGui",
+    "line": 271,
+    "factory": null,
+    "adopts_existing": false,
+    "Name": "RaceRouteGuide_Phase5",
+    "DisplayOrder": 78,
+    "ResetOnSpawn": false,
+    "IgnoreGuiInset": true,
+    "Parent": {
+     "expr": "playerGui"
+    },
+    "enabled_writes": [],
+    "property_lines": {
+     "Name": 272,
+     "IgnoreGuiInset": 273,
+     "ResetOnSpawn": 274,
+     "DisplayOrder": 275,
+     "Parent": 276
+    }
+   }
+  ],
+  "enabled_writes": []
+ },
+ "names": {
+  "assigned": [
+   {
+    "via": "property",
+    "receiver": "root",
+    "class": "Folder",
+    "line": 73,
+    "in_function": "clientRoot",
+    "name": "ClientOnly"
+   },
+   {
+    "via": "property",
+    "receiver": "guide",
+    "class": "Folder",
+    "line": 79,
+    "in_function": "clientRoot",
+    "name": "RaceRouteGuide"
+   },
+   {
+    "via": "property",
+    "receiver": "renderRoot",
+    "class": "Folder",
+    "line": 98,
+    "in_function": "ensureRenderRoot",
+    "name": "ActiveGuide"
+   },
+   {
+    "via": "wrapper makeBillboard()",
+    "receiver": "gui",
+    "class": "BillboardGui",
+    "wrapper_defined": "RaceRouteGuideClient:138",
+    "line": 205,
+    "in_function": "drawGateFrame",
+    "name": "NextGateLabel"
+   },
+   {
+    "via": "wrapper part()",
+    "receiver": "p",
+    "class": "Part",
+    "wrapper_defined": "RaceRouteGuideClient:112",
+    "line": 220,
+    "in_function": "drawGateFrame",
+    "name": "NextGateCorner_FL_X"
+   },
+   {
+    "via": "wrapper part()",
+    "receiver": "p",
+    "class": "Part",
+    "wrapper_defined": "RaceRouteGuideClient:112",
+    "line": 221,
+    "in_function": "drawGateFrame",
+    "name": "NextGateCorner_FR_X"
+   },
+   {
+    "via": "wrapper part()",
+    "receiver": "p",
+    "class": "Part",
+    "wrapper_defined": "RaceRouteGuideClient:112",
+    "line": 222,
+    "in_function": "drawGateFrame",
+    "name": "NextGateCorner_BL_X"
+   },
+   {
+    "via": "wrapper part()",
+    "receiver": "p",
+    "class": "Part",
+    "wrapper_defined": "RaceRouteGuideClient:112",
+    "line": 223,
+    "in_function": "drawGateFrame",
+    "name": "NextGateCorner_BR_X"
+   },
+   {
+    "via": "wrapper part()",
+    "receiver": "p",
+    "class": "Part",
+    "wrapper_defined": "RaceRouteGuideClient:112",
+    "line": 224,
+    "in_function": "drawGateFrame",
+    "name": "NextGateCorner_FL_Z"
+   },
+   {
+    "via": "wrapper part()",
+    "receiver": "p",
+    "class": "Part",
+    "wrapper_defined": "RaceRouteGuideClient:112",
+    "line": 225,
+    "in_function": "drawGateFrame",
+    "name": "NextGateCorner_FR_Z"
+   },
+   {
+    "via": "wrapper part()",
+    "receiver": "p",
+    "class": "Part",
+    "wrapper_defined": "RaceRouteGuideClient:112",
+    "line": 226,
+    "in_function": "drawGateFrame",
+    "name": "NextGateCorner_BL_Z"
+   },
+   {
+    "via": "wrapper part()",
+    "receiver": "p",
+    "class": "Part",
+    "wrapper_defined": "RaceRouteGuideClient:112",
+    "line": 227,
+    "in_function": "drawGateFrame",
+    "name": "NextGateCorner_BR_Z"
+   },
+   {
+    "via": "wrapper part()",
+    "receiver": "p",
+    "class": "Part",
+    "wrapper_defined": "RaceRouteGuideClient:112",
+    "line": 237,
+    "in_function": "chevronAt",
+    "name": null,
+    "name_expr": "prefix .. \"_Left\""
+   },
+   {
+    "via": "wrapper part()",
+    "receiver": "p",
+    "class": "Part",
+    "wrapper_defined": "RaceRouteGuideClient:112",
+    "line": 238,
+    "in_function": "chevronAt",
+    "name": null,
+    "name_expr": "prefix .. \"_Right\""
+   },
+   {
+    "via": "wrapper part()",
+    "receiver": "p",
+    "class": "Part",
+    "wrapper_defined": "RaceRouteGuideClient:112",
+    "line": 239,
+    "in_function": "chevronAt",
+    "name": null,
+    "name_expr": "prefix .. \"_Stem\""
+   },
+   {
+    "via": "property",
+    "receiver": "guideGui",
+    "class": "ScreenGui",
+    "line": 272,
+    "in_function": "Client.start",
+    "name": "RaceRouteGuide_Phase5"
+   },
+   {
+    "via": "property",
+    "receiver": "wrongWay",
+    "class": "TextLabel",
+    "line": 279,
+    "in_function": "Client.start",
+    "name": "WrongWayPrompt"
+   }
+  ],
+  "looked_up": [
+   {
+    "method": "WaitForChild",
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 15,
+    "in_function": "Client.start",
+    "name": "PlayerGui"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 17,
+    "in_function": "Client.start",
+    "name": "Modules"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\")",
+    "receiver_path": "ReplicatedStorage.Modules",
+    "root": "ReplicatedStorage",
+    "line": 17,
+    "in_function": "Client.start",
+    "name": "Game"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game",
+    "root": "ReplicatedStorage",
+    "line": 17,
+    "in_function": "Client.start",
+    "name": "UI"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"UI\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game.UI",
+    "root": "ReplicatedStorage",
+    "line": 17,
+    "in_function": "Client.start",
+    "name": "ResponsiveUIFoundation"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 18,
+    "in_function": "Client.start",
+    "name": "Remotes"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Remotes\")",
+    "receiver_path": "ReplicatedStorage.Remotes",
+    "root": "ReplicatedStorage",
+    "line": 18,
+    "in_function": "Client.start",
+    "name": "Racing"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 19,
+    "in_function": "Client.start",
+    "name": "Remotes"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Remotes\")",
+    "receiver_path": "ReplicatedStorage.Remotes",
+    "root": "ReplicatedStorage",
+    "line": 19,
+    "in_function": "Client.start",
+    "name": "Racing"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Remotes\"):WaitForChild(\"Racing\")",
+    "receiver_path": "ReplicatedStorage.Remotes.Racing",
+    "root": "ReplicatedStorage",
+    "line": 19,
+    "in_function": "Client.start",
+    "name": "RaceEvent"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 20,
+    "in_function": "Client.start",
+    "name": "Modules"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\")",
+    "receiver_path": "ReplicatedStorage.Modules",
+    "root": "ReplicatedStorage",
+    "line": 20,
+    "in_function": "Client.start",
+    "name": "Game"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game",
+    "root": "ReplicatedStorage",
+    "line": 20,
+    "in_function": "Client.start",
+    "name": "Racing"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 21,
+    "in_function": "Client.start",
+    "name": "Modules"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\")",
+    "receiver_path": "ReplicatedStorage.Modules",
+    "root": "ReplicatedStorage",
+    "line": 21,
+    "in_function": "Client.start",
+    "name": "Game"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game",
+    "root": "ReplicatedStorage",
+    "line": 21,
+    "in_function": "Client.start",
+    "name": "Racing"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Game\"):WaitForChild(\"Racing\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game.Racing",
+    "root": "ReplicatedStorage",
+    "line": 21,
+    "in_function": "Client.start",
+    "name": "RaceRouteDefinition"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 32,
+    "in_function": "configFolder",
+    "name": "Config"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 33,
+    "in_function": "configFolder",
+    "name": "Config"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\")",
+    "receiver_path": "ReplicatedStorage.Config",
+    "root": "ReplicatedStorage",
+    "line": 33,
+    "in_function": "configFolder",
+    "name": "Racing"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 34,
+    "in_function": "configFolder",
+    "name": "Config"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\")",
+    "receiver_path": "ReplicatedStorage.Config",
+    "root": "ReplicatedStorage",
+    "line": 34,
+    "in_function": "configFolder",
+    "name": "Racing"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Config\"):WaitForChild(\"Racing\")",
+    "receiver_path": "ReplicatedStorage.Config.Racing",
+    "root": "ReplicatedStorage",
+    "line": 34,
+    "in_function": "configFolder",
+    "name": "RouteGuide"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "Workspace",
+    "receiver_path": "Workspace",
+    "root": "Workspace",
+    "line": 70,
+    "in_function": "clientRoot",
+    "name": "ClientOnly"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "root",
+    "receiver_path": null,
+    "root": null,
+    "line": 76,
+    "in_function": "clientRoot",
+    "name": "RaceRouteGuide"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "game:GetService(\"Workspace\")",
+    "receiver_path": "Workspace",
+    "root": "Workspace",
+    "line": 303,
+    "in_function": "findLocalVehicleRoot",
+    "name": "World"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Workspace\")",
+    "receiver_path": "Workspace",
+    "root": "Workspace",
+    "line": 304,
+    "in_function": "findLocalVehicleRoot",
+    "name": "World"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "game:GetService(\"Workspace\"):WaitForChild(\"World\")",
+    "receiver_path": "Workspace.World",
+    "root": "Workspace",
+    "line": 304,
+    "in_function": "findLocalVehicleRoot",
+    "name": "Runtime"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Workspace\")",
+    "receiver_path": "Workspace",
+    "root": "Workspace",
+    "line": 305,
+    "in_function": "findLocalVehicleRoot",
+    "name": "World"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Workspace\"):WaitForChild(\"World\")",
+    "receiver_path": "Workspace.World",
+    "root": "Workspace",
+    "line": 305,
+    "in_function": "findLocalVehicleRoot",
+    "name": "Runtime"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "game:GetService(\"Workspace\"):WaitForChild(\"World\"):WaitForChild(\"Runtime\")",
+    "receiver_path": "Workspace.World.Runtime",
+    "root": "Workspace",
+    "line": 305,
+    "in_function": "findLocalVehicleRoot",
+    "name": "PlayerVehicles"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "vehicle",
+    "receiver_path": null,
+    "root": null,
+    "recursive": true,
+    "line": 308,
+    "in_function": "findLocalVehicleRoot",
+    "name": "CockpitRoot_DoNotRename"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "character",
+    "receiver_path": "Players.LocalPlayer.Character",
+    "root": "Players",
+    "line": 315,
+    "in_function": "findLocalVehicleRoot",
+    "name": "HumanoidRootPart"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"Players\").LocalPlayer",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 436,
+    "in_function": "Client.start",
+    "name": "PlayerScripts"
+   }
+  ],
+  "text_compared": []
+ },
+ "run_service": {
+  "render_steps": [],
+  "connects": [
+   {
+    "signal": "Heartbeat",
+    "method": "Connect",
+    "line": 432,
+    "in_function": "Client.start",
+    "callback": "function(dt) updateWrongWay(dt) end"
+   }
+  ]
+ },
+ "context_actions": [],
+ "user_input_service": {
+  "connects": [],
+  "members_used": []
+ },
+ "audio": {
+  "bridge_calls": [],
+  "ui_audio_attributes": []
+ },
+ "config": {
+  "paths": [
+   {
+    "path": "ReplicatedStorage.Config",
+    "line": 32
+   },
+   {
+    "path": "ReplicatedStorage.Config.Racing",
+    "line": 33
+   }
+  ],
+  "attribute_reads": [
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "RaceRouteGuideClient:48",
+    "line": 66,
+    "in_function": "checkpointUiScale",
+    "via": "wrapper numberAttr()",
+    "name": "MobileCheckpointUIScale",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "RaceRouteGuideClient:39",
+    "line": 133,
+    "in_function": "makeBillboard",
+    "via": "wrapper boolAttr()",
+    "name": "ShowWorldCheckpointLabel",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "RaceRouteGuideClient:39",
+    "line": 140,
+    "in_function": "makeBillboard",
+    "via": "wrapper boolAttr()",
+    "name": "CheckpointWorldTextAlwaysOnTop",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "RaceRouteGuideClient:48",
+    "line": 141,
+    "in_function": "makeBillboard",
+    "via": "wrapper numberAttr()",
+    "name": "CheckpointPillWidth",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "RaceRouteGuideClient:48",
+    "line": 141,
+    "in_function": "makeBillboard",
+    "via": "wrapper numberAttr()",
+    "name": "CheckpointPillHeight",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "RaceRouteGuideClient:48",
+    "line": 142,
+    "in_function": "makeBillboard",
+    "via": "wrapper numberAttr()",
+    "name": "CheckpointPillYOffset",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "RaceRouteGuideClient:48",
+    "line": 148,
+    "in_function": "makeBillboard",
+    "via": "wrapper numberAttr()",
+    "name": "CheckpointPillBackgroundTransparency",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "RaceRouteGuideClient:48",
+    "line": 155,
+    "in_function": "makeBillboard",
+    "via": "wrapper numberAttr()",
+    "name": "CheckpointWorldTextStrokeTransparency",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "RaceRouteGuideClient:48",
+    "line": 156,
+    "in_function": "makeBillboard",
+    "via": "wrapper numberAttr()",
+    "name": "CheckpointWorldTextSize",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "RaceRouteGuideClient:48",
+    "line": 164,
+    "in_function": "makeBillboard",
+    "via": "wrapper numberAttr()",
+    "name": "CheckpointPillCornerRadius",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "RaceRouteGuideClient:48",
+    "line": 168,
+    "in_function": "makeBillboard",
+    "via": "wrapper numberAttr()",
+    "name": "CheckpointPillStrokeThickness",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "RaceRouteGuideClient:48",
+    "line": 169,
+    "in_function": "makeBillboard",
+    "via": "wrapper numberAttr()",
+    "name": "CheckpointPillStrokeTransparency",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "RaceRouteGuideClient:57",
+    "line": 177,
+    "in_function": "colorForGate",
+    "via": "wrapper colorAttr()",
+    "name": "FinishColor",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "RaceRouteGuideClient:57",
+    "line": 179,
+    "in_function": "colorForGate",
+    "via": "wrapper colorAttr()",
+    "name": "CheckpointColor",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "RaceRouteGuideClient:57",
+    "line": 185,
+    "in_function": "colorForArrow",
+    "via": "wrapper colorAttr()",
+    "name": "WarningColor",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "RaceRouteGuideClient:57",
+    "line": 187,
+    "in_function": "colorForArrow",
+    "via": "wrapper colorAttr()",
+    "name": "CheckpointColor",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "RaceRouteGuideClient:57",
+    "line": 189,
+    "in_function": "colorForArrow",
+    "via": "wrapper colorAttr()",
+    "name": "ArrowColor",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "RaceRouteGuideClient:39",
+    "line": 206,
+    "in_function": "drawGateFrame",
+    "via": "wrapper boolAttr()",
+    "name": "ShowCheckpointFrames",
+    "access": "read"
+   },
+   {
+    "receiver": "configFolder()",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "line": 208,
+    "in_function": "drawGateFrame",
+    "name": "CheckpointFrameStyle",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "RaceRouteGuideClient:48",
+    "line": 213,
+    "in_function": "drawGateFrame",
+    "via": "wrapper numberAttr()",
+    "name": "CheckpointFrameTransparency",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "RaceRouteGuideClient:48",
+    "line": 214,
+    "in_function": "drawGateFrame",
+    "via": "wrapper numberAttr()",
+    "name": "CheckpointCornerTickThickness",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "RaceRouteGuideClient:48",
+    "line": 215,
+    "in_function": "drawGateFrame",
+    "via": "wrapper numberAttr()",
+    "name": "CheckpointCornerTickLength",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "RaceRouteGuideClient:39",
+    "line": 243,
+    "in_function": "drawDynamicArrow",
+    "via": "wrapper boolAttr()",
+    "name": "ShowCheckpointArrows",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "RaceRouteGuideClient:39",
+    "line": 243,
+    "in_function": "drawDynamicArrow",
+    "via": "wrapper boolAttr()",
+    "name": "ShowDynamicNextArrow",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "RaceRouteGuideClient:48",
+    "line": 250,
+    "in_function": "drawDynamicArrow",
+    "via": "wrapper numberAttr()",
+    "name": "DynamicArrowBackStuds",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "RaceRouteGuideClient:48",
+    "line": 251,
+    "in_function": "drawDynamicArrow",
+    "via": "wrapper numberAttr()",
+    "name": "DynamicArrowHeightStuds",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "RaceRouteGuideClient:48",
+    "line": 254,
+    "in_function": "drawDynamicArrow",
+    "via": "wrapper numberAttr()",
+    "name": "DynamicArrowScale",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "RaceRouteGuideClient:39",
+    "line": 258,
+    "in_function": "drawAuthoredArrows",
+    "via": "wrapper boolAttr()",
+    "name": "ShowCheckpointArrows",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "RaceRouteGuideClient:39",
+    "line": 258,
+    "in_function": "drawAuthoredArrows",
+    "via": "wrapper boolAttr()",
+    "name": "ShowAuthoringArrows",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "RaceRouteGuideClient:57",
+    "line": 287,
+    "in_function": "Client.start",
+    "via": "wrapper colorAttr()",
+    "name": "WarningColor",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "RaceRouteGuideClient:39",
+    "line": 327,
+    "in_function": "isCurrentlyWrongWay",
+    "via": "wrapper boolAttr()",
+    "name": "ShowWrongWayPrompt",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "RaceRouteGuideClient:48",
+    "line": 337,
+    "in_function": "isCurrentlyWrongWay",
+    "via": "wrapper numberAttr()",
+    "name": "WrongWayMinSpeed",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "RaceRouteGuideClient:48",
+    "line": 341,
+    "in_function": "isCurrentlyWrongWay",
+    "via": "wrapper numberAttr()",
+    "name": "WrongWayIgnoreNearGateStuds",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "RaceRouteGuideClient:48",
+    "line": 345,
+    "in_function": "isCurrentlyWrongWay",
+    "via": "wrapper numberAttr()",
+    "name": "WrongWayDotThreshold",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "RaceRouteGuideClient:48",
+    "line": 349,
+    "in_function": "updateWrongWay",
+    "via": "wrapper numberAttr()",
+    "name": "WrongWayCheckInterval",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "RaceRouteGuideClient:48",
+    "line": 358,
+    "in_function": "updateWrongWay",
+    "via": "wrapper numberAttr()",
+    "name": "WrongWayDelaySeconds",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "RaceRouteGuideClient:39",
+    "line": 366,
+    "in_function": "renderGuide",
+    "via": "wrapper boolAttr()",
+    "name": "EnableRouteGuide",
+    "access": "read"
+   },
+   {
+    "receiver": "folder",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "RaceRouteGuideClient:57",
+    "line": 414,
+    "in_function": "clearActive",
+    "via": "wrapper colorAttr()",
+    "name": "CheckpointColor",
+    "access": "read"
+   }
+  ],
+  "child_lookups": []
+ },
+ "startergui_core": [],
+ "gui_service": [],
+ "other_services": {},
+ "service_connects": [],
+ "proximity_prompts": [],
+ "instances_created_by_class": {
+  "BillboardGui": 1,
+  "Folder": 3,
+  "Part": 1,
+  "ScreenGui": 1,
+  "TextLabel": 2,
+  "UIStroke": 2
+ },
+ "public_api": [
+  {
+   "name": "start",
+   "kind": "function",
+   "params": [],
+   "line": 4
+  }
+ ],
+ "unresolved": [
+  {
+   "category": "names_assigned",
+   "field": "name",
+   "line": 237,
+   "detail": "not a literal: prefix .. \"_Left\""
+  },
+  {
+   "category": "names_assigned",
+   "field": "name",
+   "line": 238,
+   "detail": "not a literal: prefix .. \"_Right\""
+  },
+  {
+   "category": "names_assigned",
+   "field": "name",
+   "line": 239,
+   "detail": "not a literal: prefix .. \"_Stem\""
+  }
+ ],
+ "contract_file": "RaceRouteGuideClient.json"
+}

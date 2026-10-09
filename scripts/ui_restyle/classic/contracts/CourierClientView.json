@@ -1,0 +1,165 @@
+{
+ "script": "ReplicatedStorage.Modules.Game.Activities.CourierClientView",
+ "class": "ModuleScript",
+ "source_file": "classic/sources/ReplicatedStorage.Modules.Game.Activities.CourierClientView.lua",
+ "source_lines": 67,
+ "included_because": [
+  "loaded by ActivityClient from a literal name list (line 295)"
+ ],
+ "requires": [
+  {
+   "expr": "activities:WaitForChild(\"JobClient\")",
+   "as": "JobClient",
+   "line": 8,
+   "target": "ReplicatedStorage.Modules.Game.Activities.JobClient"
+  },
+  {
+   "expr": "activities:WaitForChild(\"JobRules\")",
+   "as": "JobRules",
+   "line": 9,
+   "target": "ReplicatedStorage.Modules.Game.Activities.JobRules"
+  }
+ ],
+ "remotes": {
+  "calls": [],
+  "listens": []
+ },
+ "bindables": {
+  "fires": [],
+  "connects": [],
+  "invokes": [],
+  "handlers": [],
+  "created": [],
+  "module_signal_fires": []
+ },
+ "attributes": {
+  "reads": [],
+  "writes": [],
+  "listens": []
+ },
+ "player_attribute_writes": [],
+ "screenguis": {
+  "created": [],
+  "enabled_writes": []
+ },
+ "names": {
+  "assigned": [
+   {
+    "via": "wrapper box()",
+    "receiver": "part",
+    "class": "Part",
+    "wrapper_defined": "CourierClientView:18",
+    "line": 31,
+    "in_function": "buildParcel",
+    "name": "Parcel"
+   },
+   {
+    "via": "wrapper box()",
+    "receiver": "part",
+    "class": "Part",
+    "wrapper_defined": "CourierClientView:18",
+    "line": 32,
+    "in_function": "buildParcel",
+    "name": "ParcelTop"
+   },
+   {
+    "via": "wrapper box()",
+    "receiver": "part",
+    "class": "Part",
+    "wrapper_defined": "CourierClientView:18",
+    "line": 33,
+    "in_function": "buildParcel",
+    "name": "Band"
+   }
+  ],
+  "looked_up": [
+   {
+    "method": "WaitForChild",
+    "receiver": "ReplicatedStorage",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 7,
+    "name": "Modules"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "ReplicatedStorage:WaitForChild(\"Modules\")",
+    "receiver_path": "ReplicatedStorage.Modules",
+    "root": "ReplicatedStorage",
+    "line": 7,
+    "name": "Game"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "ReplicatedStorage:WaitForChild(\"Modules\"):WaitForChild(\"Game\")",
+    "receiver_path": "ReplicatedStorage.Modules.Game",
+    "root": "ReplicatedStorage",
+    "line": 7,
+    "name": "Activities"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "activities",
+    "receiver_path": "ReplicatedStorage.Modules.Game.Activities",
+    "root": "ReplicatedStorage",
+    "line": 8,
+    "name": "JobClient"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "activities",
+    "receiver_path": "ReplicatedStorage.Modules.Game.Activities",
+    "root": "ReplicatedStorage",
+    "line": 9,
+    "name": "JobRules"
+   }
+  ],
+  "text_compared": []
+ },
+ "run_service": {
+  "render_steps": [],
+  "connects": []
+ },
+ "context_actions": [],
+ "user_input_service": {
+  "connects": [],
+  "members_used": []
+ },
+ "audio": {
+  "bridge_calls": [],
+  "ui_audio_attributes": []
+ },
+ "config": {
+  "paths": [],
+  "attribute_reads": [],
+  "child_lookups": []
+ },
+ "startergui_core": [],
+ "gui_service": [],
+ "other_services": {},
+ "service_connects": [],
+ "proximity_prompts": [],
+ "instances_created_by_class": {
+  "Part": 1
+ },
+ "public_api": [
+  {
+   "name": "Mount",
+   "kind": "function",
+   "params": [
+    "ctx"
+   ],
+   "line": 36
+  },
+  {
+   "name": "OnEvent",
+   "kind": "function",
+   "params": [
+    "payload"
+   ],
+   "line": 61
+  }
+ ],
+ "unresolved": [],
+ "contract_file": "CourierClientView.json"
+}

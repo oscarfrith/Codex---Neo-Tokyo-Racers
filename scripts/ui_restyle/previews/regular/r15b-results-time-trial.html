@@ -1,0 +1,26 @@
+<!doctype html><html><head><meta charset="utf-8"><title>r15b Results: time trial</title><script src="../shared/boot.js"></script></head><body><script>
+const board = [["5","PULSEHEAD","00:59.340","AURORA"],["6","VANTA","01:00.027","ENDURA"],["7","OSCAR","01:01.842","AURORA",1],["8","LOWLIGHT","01:02.618","AURORA"],["9","MIRA_K","01:03.090","ZEPHYR"],["10","HALCYON","01:03.777","AURORA"]];
+const trow = (r) => `<div class="row ${r[4] ? "you" : "bare"}" style="min-height:50px;${r[4] ? "border-left:8px solid var(--pink);padding-left:12px" : ""}"><span class="t-value" style="width:60px">${r[0]}</span><span class="t-value grow">${r[1]}</span><span class="t-value" style="width:170px">${r[2]}</span><span class="t-label c-2" style="width:120px;text-align:right">${r[3]}</span></div>`;
+const lap = (n, t, best) => `<div class="row bare" style="min-height:50px;padding:0"><span class="t-value c-2" style="width:90px">LAP ${n}</span><span class="t-value grow">${t}</span>${best ? `<span class="chip cyan">BEST</span>` : ""}</div>`;
+const hero = (label, v, cls) => `<div style="text-align:center"><div class="t-status shadow">${label}</div><div class="num shadow ${cls}" style="font-size:200px;margin-top:22px">${v}</div></div>`;
+P.page(`
+  ${P.scene("race")}<div class="scrim-menu"></div>
+  <div class="abs" style="left:0;right:0;top:50px;text-align:center"><div class="t-title shadow">TIME TRIAL COMPLETE</div><div class="t-label c-2" style="margin-top:12px">SHOWROOM LOOP &middot; TIER C &middot; 3 LAPS &middot; AURORA</div></div>
+  <div class="abs flex" style="left:0;right:0;top:186px;justify-content:center;gap:90px">${hero("BEST LAP","01:01.842","")}${hero("BANKED","$12,500","c-yellow")}</div>
+  <div class="panel abs flex ac" style="left:50%;transform:translateX(-50%);top:442px;height:70px;padding:0 34px;gap:44px">
+    <span class="flex ac g12">${P.medal("")}<span class="t-value">GOLD MEDAL</span></span>
+    <span class="flex ac g12"><span class="chip pink">NEW PERSONAL BEST</span><span class="t-value c-cyan">-1.433</span></span>
+    <span class="flex ac g12"><span class="t-value c-muted">DRIVER XP</span><span class="t-value c-pink">+80</span></span>
+  </div>
+  <div class="panel abs" style="left:300px;top:538px;width:408px;padding:16px 22px 10px">
+    <div class="t-label c-muted" style="margin-bottom:6px">SESSION LAPS</div><div class="hairline"></div>
+    ${lap(1,"01:04.611")}${lap(2,"01:01.842",1)}${lap(3,"01:02.905")}
+    <div class="row bare" style="min-height:50px;padding:0;border-bottom:0"><span class="t-value c-2" style="width:90px">NEXT</span><span class="t-value grow c-2">PLATINUM 00:58.000</span></div>
+  </div>
+  <div class="panel abs" style="left:720px;top:538px;width:900px;padding:8px 22px 10px">
+    <div class="row bare" style="min-height:38px;border-bottom:0"><span class="t-label c-muted" style="width:60px">#</span><span class="t-label c-muted grow">GLOBAL TOP 20 &middot; TIER C</span><span class="t-label c-muted" style="width:170px">TIME</span><span class="t-label c-muted" style="width:120px;text-align:right">VEHICLE</span></div>
+    <div class="hairline"></div>${board.map(trow).join("")}
+  </div>
+  ${P.btnrow([P.btn("EXIT TO START","exit"),P.btn("TRY AGAIN","loop","main")],"centre")}
+`);
+</script></body></html>

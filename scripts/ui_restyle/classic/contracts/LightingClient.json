@@ -1,0 +1,599 @@
+{
+ "script": "ReplicatedStorage.Modules.Game.World.LightingClient",
+ "class": "ModuleScript",
+ "source_file": "classic/sources/ReplicatedStorage.Modules.Game.World.LightingClient.lua",
+ "source_lines": 156,
+ "included_because": [
+  "ClientBase entry 'LightingClient'"
+ ],
+ "requires": [
+  {
+   "expr": "world.LightingCycle",
+   "as": "Cycle",
+   "line": 37,
+   "in_function": "Client.start",
+   "target": "ReplicatedStorage.Modules.Game.World.LightingCycle"
+  },
+  {
+   "expr": "world.LightingPresets",
+   "as": "presets",
+   "line": 38,
+   "in_function": "Client.start",
+   "target": "ReplicatedStorage.Modules.Game.World.LightingPresets"
+  },
+  {
+   "expr": "world.LightingSchedule",
+   "as": "schedule",
+   "line": 39,
+   "in_function": "Client.start",
+   "target": "ReplicatedStorage.Modules.Game.World.LightingSchedule"
+  }
+ ],
+ "remotes": {
+  "calls": [],
+  "listens": []
+ },
+ "bindables": {
+  "fires": [],
+  "connects": [],
+  "invokes": [],
+  "handlers": [],
+  "created": [],
+  "module_signal_fires": []
+ },
+ "attributes": {
+  "reads": [
+   {
+    "receiver": "Lighting",
+    "receiver_path": "Lighting",
+    "receiver_kind": "other",
+    "line": 32,
+    "in_function": "Client.start",
+    "name": "LightingCycleMode"
+   },
+   {
+    "receiver": "Lighting",
+    "receiver_path": "Lighting",
+    "receiver_kind": "other",
+    "line": 33,
+    "in_function": "Client.start",
+    "name": "LightingCycleMode"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.World.Lighting",
+    "receiver_kind": "config",
+    "line": 79,
+    "in_function": "Client.start",
+    "name": "SteppedGeographicLatitude"
+   },
+   {
+    "receiver": "Lighting",
+    "receiver_path": "Lighting",
+    "receiver_kind": "other",
+    "line": 87,
+    "in_function": "readState",
+    "name": "LightingCycleState"
+   },
+   {
+    "receiver": "runtime",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime.World",
+    "receiver_kind": "playerScripts",
+    "wrapper_defined": "LightingClient:85",
+    "line": 101,
+    "in_function": "guarded",
+    "via": "wrapper mark()",
+    "name": "LightingRenderError"
+   },
+   {
+    "receiver": "runtime",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime.World",
+    "receiver_kind": "playerScripts",
+    "wrapper_defined": "LightingClient:85",
+    "line": 103,
+    "in_function": "guarded",
+    "via": "wrapper mark()",
+    "name": "LightingRenderError"
+   },
+   {
+    "receiver": "tools",
+    "receiver_path": "ReplicatedStorage.Config.Development.ClientTools",
+    "receiver_kind": "config",
+    "line": 109,
+    "in_function": "render",
+    "name": "LightingPreviewEnabled"
+   },
+   {
+    "receiver": "runtime",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime.World",
+    "receiver_kind": "playerScripts",
+    "line": 109,
+    "in_function": "render",
+    "name": "LightingPreviewClockTime"
+   },
+   {
+    "receiver": "runtime",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime.World",
+    "receiver_kind": "playerScripts",
+    "wrapper_defined": "LightingClient:85",
+    "line": 129,
+    "in_function": "render",
+    "via": "wrapper mark()",
+    "name": "LightingContext"
+   },
+   {
+    "receiver": "runtime",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime.World",
+    "receiver_kind": "playerScripts",
+    "wrapper_defined": "LightingClient:85",
+    "line": 130,
+    "in_function": "render",
+    "via": "wrapper mark()",
+    "name": "LightingCycleReady"
+   },
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "line": 137,
+    "in_function": "Client.start",
+    "name": "OwnedGarageInside"
+   },
+   {
+    "receiver": "interior",
+    "receiver_path": "ReplicatedStorage.Config.Garage.Interior",
+    "receiver_kind": "config",
+    "line": 137,
+    "in_function": "Client.start",
+    "name": "InteriorEnvironmentLightingEnabled"
+   },
+   {
+    "receiver": "interior",
+    "receiver_path": "ReplicatedStorage.Config.Garage.Interior",
+    "receiver_kind": "config",
+    "line": 138,
+    "in_function": "Client.start",
+    "name": "InteriorEnvironmentPreset"
+   },
+   {
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "line": 140,
+    "in_function": "Client.start",
+    "name": "GarageSessionActive"
+   },
+   {
+    "receiver": "RS.Config.UI.GarageReplacement",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "receiver_kind": "config",
+    "line": 140,
+    "in_function": "Client.start",
+    "name": "PreviewLightingEnabled"
+   },
+   {
+    "receiver": "RS.Config.UI.GarageReplacement",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "receiver_kind": "config",
+    "line": 141,
+    "in_function": "Client.start",
+    "name": "PreviewLightingPreset"
+   }
+  ],
+  "writes": [
+   {
+    "receiver": "runtime",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime.World",
+    "receiver_kind": "playerScripts",
+    "value": {
+     "expr": "value"
+    },
+    "wrapper_defined": "LightingClient:85",
+    "line": 101,
+    "in_function": "guarded",
+    "via": "wrapper mark()",
+    "name": "LightingRenderError"
+   },
+   {
+    "receiver": "runtime",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime.World",
+    "receiver_kind": "playerScripts",
+    "value": {
+     "expr": "value"
+    },
+    "wrapper_defined": "LightingClient:85",
+    "line": 103,
+    "in_function": "guarded",
+    "via": "wrapper mark()",
+    "name": "LightingRenderError"
+   },
+   {
+    "receiver": "Lighting",
+    "receiver_path": "Lighting",
+    "receiver_kind": "other",
+    "value": {
+     "expr": "night"
+    },
+    "line": 126,
+    "in_function": "render",
+    "name": "StreetLightsOn"
+   },
+   {
+    "receiver": "Lighting",
+    "receiver_path": "Lighting",
+    "receiver_kind": "other",
+    "value": {
+     "expr": "night and \"Night\" or \"Day\""
+    },
+    "line": 126,
+    "in_function": "render",
+    "name": "WindowMode"
+   },
+   {
+    "receiver": "runtime",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime.World",
+    "receiver_kind": "playerScripts",
+    "value": {
+     "expr": "value"
+    },
+    "wrapper_defined": "LightingClient:85",
+    "line": 129,
+    "in_function": "render",
+    "via": "wrapper mark()",
+    "name": "LightingContext"
+   },
+   {
+    "receiver": "runtime",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime.World",
+    "receiver_kind": "playerScripts",
+    "value": {
+     "expr": "value"
+    },
+    "wrapper_defined": "LightingClient:85",
+    "line": 130,
+    "in_function": "render",
+    "via": "wrapper mark()",
+    "name": "LightingCycleReady"
+   }
+  ],
+  "listens": [
+   {
+    "receiver": "Lighting",
+    "receiver_path": "Lighting",
+    "receiver_kind": "other",
+    "line": 134,
+    "in_function": "Client.start",
+    "name": "LightingCycleState"
+   }
+  ]
+ },
+ "player_attribute_writes": [],
+ "screenguis": {
+  "created": [],
+  "enabled_writes": []
+ },
+ "names": {
+  "assigned": [
+   {
+    "via": "property",
+    "receiver": "effect",
+    "class": null,
+    "line": 47,
+    "in_function": "Client.start",
+    "name": "Atmosphere"
+   },
+   {
+    "via": "property",
+    "receiver": "effect",
+    "class": null,
+    "line": 47,
+    "in_function": "Client.start",
+    "name": "Bloom"
+   },
+   {
+    "via": "property",
+    "receiver": "effect",
+    "class": null,
+    "line": 47,
+    "in_function": "Client.start",
+    "name": "ColorCorrection"
+   },
+   {
+    "via": "property",
+    "receiver": "effect",
+    "class": null,
+    "line": 47,
+    "in_function": "Client.start",
+    "name": "DepthOfField"
+   },
+   {
+    "via": "property",
+    "receiver": "effect",
+    "class": null,
+    "line": 47,
+    "in_function": "Client.start",
+    "name": "SunRays"
+   },
+   {
+    "via": "property",
+    "receiver": "clouds",
+    "class": "Clouds",
+    "line": 52,
+    "in_function": "Client.start",
+    "name": "Clouds"
+   },
+   {
+    "via": "property",
+    "receiver": "activeSky",
+    "class": "Sky",
+    "line": 55,
+    "in_function": "Client.start",
+    "name": "ActiveSky"
+   }
+  ],
+  "looked_up": [
+   {
+    "method": "WaitForChild",
+    "receiver": "RS",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 28,
+    "in_function": "Client.start",
+    "name": "Modules"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "RS",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 29,
+    "in_function": "Client.start",
+    "name": "Config"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "player",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 41,
+    "in_function": "Client.start",
+    "name": "PlayerScripts"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "player:WaitForChild(\"PlayerScripts\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts",
+    "root": "Players",
+    "line": 41,
+    "in_function": "Client.start",
+    "name": "Runtime"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "player:WaitForChild(\"PlayerScripts\"):WaitForChild(\"Runtime\")",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts.Runtime",
+    "root": "Players",
+    "line": 41,
+    "in_function": "Client.start",
+    "name": "World"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "Lighting",
+    "receiver_path": "Lighting",
+    "root": "Lighting",
+    "line": 45,
+    "in_function": "Client.start",
+    "name": "Atmosphere",
+    "via": "literal list"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "Lighting",
+    "receiver_path": "Lighting",
+    "root": "Lighting",
+    "line": 45,
+    "in_function": "Client.start",
+    "name": "Bloom",
+    "via": "literal list"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "Lighting",
+    "receiver_path": "Lighting",
+    "root": "Lighting",
+    "line": 45,
+    "in_function": "Client.start",
+    "name": "ColorCorrection",
+    "via": "literal list"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "Lighting",
+    "receiver_path": "Lighting",
+    "root": "Lighting",
+    "line": 45,
+    "in_function": "Client.start",
+    "name": "DepthOfField",
+    "via": "literal list"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "Lighting",
+    "receiver_path": "Lighting",
+    "root": "Lighting",
+    "line": 45,
+    "in_function": "Client.start",
+    "name": "SunRays",
+    "via": "literal list"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "Lighting",
+    "receiver_path": "Lighting",
+    "root": "Lighting",
+    "line": 53,
+    "in_function": "Client.start",
+    "name": "ActiveSky"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "skies",
+    "receiver_path": "ReplicatedStorage.Assets.World.Skies",
+    "root": "ReplicatedStorage",
+    "line": 65,
+    "in_function": "apply",
+    "name": null,
+    "name_expr": "target.SkyName"
+   }
+  ],
+  "text_compared": []
+ },
+ "run_service": {
+  "render_steps": [],
+  "connects": [
+   {
+    "signal": "PreRender",
+    "method": "Connect",
+    "line": 146,
+    "in_function": "Client.start",
+    "callback": "function() refresh() end"
+   }
+  ]
+ },
+ "context_actions": [],
+ "user_input_service": {
+  "connects": [],
+  "members_used": []
+ },
+ "audio": {
+  "bridge_calls": [],
+  "ui_audio_attributes": []
+ },
+ "config": {
+  "paths": [
+   {
+    "path": "ReplicatedStorage.Config.Development.ClientTools",
+    "line": 30
+   },
+   {
+    "path": "ReplicatedStorage.Config.Garage.Interior",
+    "line": 136
+   },
+   {
+    "path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "line": 140
+   },
+   {
+    "path": "ReplicatedStorage.Config.World.Lighting",
+    "line": 29
+   }
+  ],
+  "attribute_reads": [
+   {
+    "receiver": "config",
+    "receiver_path": "ReplicatedStorage.Config.World.Lighting",
+    "receiver_kind": "config",
+    "line": 79,
+    "in_function": "Client.start",
+    "name": "SteppedGeographicLatitude",
+    "access": "read"
+   },
+   {
+    "receiver": "tools",
+    "receiver_path": "ReplicatedStorage.Config.Development.ClientTools",
+    "receiver_kind": "config",
+    "line": 109,
+    "in_function": "render",
+    "name": "LightingPreviewEnabled",
+    "access": "read"
+   },
+   {
+    "receiver": "interior",
+    "receiver_path": "ReplicatedStorage.Config.Garage.Interior",
+    "receiver_kind": "config",
+    "line": 137,
+    "in_function": "Client.start",
+    "name": "InteriorEnvironmentLightingEnabled",
+    "access": "read"
+   },
+   {
+    "receiver": "interior",
+    "receiver_path": "ReplicatedStorage.Config.Garage.Interior",
+    "receiver_kind": "config",
+    "line": 138,
+    "in_function": "Client.start",
+    "name": "InteriorEnvironmentPreset",
+    "access": "read"
+   },
+   {
+    "receiver": "RS.Config.UI.GarageReplacement",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "receiver_kind": "config",
+    "line": 140,
+    "in_function": "Client.start",
+    "name": "PreviewLightingEnabled",
+    "access": "read"
+   },
+   {
+    "receiver": "RS.Config.UI.GarageReplacement",
+    "receiver_path": "ReplicatedStorage.Config.UI.GarageReplacement",
+    "receiver_kind": "config",
+    "line": 141,
+    "in_function": "Client.start",
+    "name": "PreviewLightingPreset",
+    "access": "read"
+   }
+  ],
+  "child_lookups": []
+ },
+ "startergui_core": [],
+ "gui_service": [],
+ "other_services": {},
+ "service_connects": [],
+ "proximity_prompts": [],
+ "instances_created_by_class": {
+  "Clouds": 1,
+  "Sky": 1
+ },
+ "public_api": [
+  {
+   "name": "isContinuous",
+   "kind": "function",
+   "params": [],
+   "line": 9
+  },
+  {
+   "name": "setContext",
+   "kind": "function",
+   "params": [
+    "owner",
+    "preset"
+   ],
+   "line": 10
+  },
+  {
+   "name": "releaseContext",
+   "kind": "function",
+   "params": [
+    "owner"
+   ],
+   "line": 17
+  },
+  {
+   "name": "start",
+   "kind": "function",
+   "params": [],
+   "line": 20
+  }
+ ],
+ "unresolved": [
+  {
+   "category": "lookups",
+   "field": "name",
+   "line": 65,
+   "detail": "not a literal: target.SkyName"
+  }
+ ],
+ "contract_file": "LightingClient.json"
+}

@@ -1,0 +1,35 @@
+<!doctype html><html><head><meta charset="utf-8"><title>r18 Toasts, onboarding callout and objective cards</title><script src="../shared/boot.js"></script></head><body><script>
+const obj = (n, title, text, state) => `<div class="panel flush flex" style="width:436px;${state === "done" ? "opacity:.6" : ""}">
+   <div class="t-status" style="width:60px;display:flex;align-items:center;justify-content:center;${state === "now" ? "background:var(--white);color:var(--ink)" : "background:rgba(243,240,255,.12)"}">${state === "done" ? P.ic("tick") : n}</div>
+   <div style="padding:14px 18px 14px"><div class="t-value">${title}</div><div class="t-body" style="margin-top:4px;line-height:1.2">${text}</div>${state === "now" ? `<div class="t-label c-cyan" style="margin-top:8px">${P.ic("pin")} FOLLOW THE TRAIL &middot; 0.3 MI</div>` : ""}</div></div>`;
+P.page(`
+  ${P.freeroam({onfoot:1})}
+  <div class="abs col g8" style="left:58px;top:58px">
+    <div class="t-label c-2 shadow" style="margin-bottom:2px">GETTING STARTED &middot; 1 / 3</div>
+    ${obj(1,"BUY YOUR FIRST VEHICLE","Visit the dealership and choose a car.","done")}
+    ${obj(2,"FIT IT OUT","Open Customise and fit an engine, stabilisers and boost.","now")}
+    ${obj(3,"ENTER A RACE","Drive to a race start and try a time trial.","")}
+  </div>
+  <div class="toastslot" style="left:838px;top:58px">
+    ${P.toast("ROUTE SET: SHOWROOM LOOP","ok","route")}
+    ${P.toast("MAP NOT AVAILABLE","","info")}
+    ${P.toast("GARAGE REQUESTS ARE ARRIVING TOO QUICKLY.","err","warn")}
+    ${P.toast("TAXI FARE PAID &nbsp;<span class='c-yellow'>+$1,234</span>","money","coin")}
+  </div>
+  <!-- callout: four dim rectangles around the target, white frame, connector, bubble -->
+  <div class="abs" style="left:1180px;top:0;width:740px;height:126px;background:rgba(7,6,13,.72)"></div>
+  <div class="abs" style="left:1180px;top:202px;width:740px;height:878px;background:rgba(7,6,13,.72)"></div>
+  <div class="abs" style="left:1180px;top:126px;width:342px;height:76px;background:rgba(7,6,13,.72)"></div>
+  <div class="abs" style="left:1615px;top:126px;width:305px;height:76px;background:rgba(7,6,13,.72)"></div>
+  <div class="abs" style="left:1522px;top:126px;width:93px;height:76px;border:3px solid var(--white);box-shadow:var(--glow-tile)"></div>
+  <div class="abs" style="left:1567px;top:202px;width:3px;height:70px;background:var(--white)"></div>
+  <div class="panel abs" style="left:1262px;top:272px;width:560px;padding:24px 26px">
+    <div class="t-label c-pink">TIP 2 OF 5</div>
+    <div class="t-tile" style="margin:8px 0 10px">YOUR GARAGE</div>
+    <div class="t-body" style="font-size:24px">Open your garage from here to enter it, or to visit a friend's.</div>
+    <div class="flex" style="justify-content:flex-end;margin-top:20px">${P.btn("NEXT","right","md main nochev")}</div>
+  </div>
+  <div class="divider" style="left:1178px;width:2px;background:rgba(243,240,255,.25)"></div>
+  <div class="abs note" style="left:1200px;top:1010px;width:640px">Right of the line: an onboarding callout (dimmer cut out around the target, white frame with the selection glow, connector, bubble with NEXT). Left: objective cards top-left and the toast stack (top-centre slot, at most three; four kinds shown).</div>
+`);
+</script></body></html>

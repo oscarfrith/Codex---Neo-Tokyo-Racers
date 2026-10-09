@@ -1,0 +1,48 @@
+<!doctype html><html><head><meta charset="utf-8"><title>r20a Component sheet 1: Tile, ListRow</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,500;0,600;1,600;1,800;1,900&family=Barlow+Condensed:ital,wght@1,800&display=block">
+<link rel="stylesheet" href="../shared/pulse.css"><script src="../shared/pulse.js"></script><script src="../shared/sheet.js"></script></head><body><script>
+const car = P.sil("car");
+P.page(`
+  ${P.scene("city", "", 0.5)}${sheetHead("COMPONENT SHEET 1 / 3","TILE (THE ONE SHARED CARD) &middot; LIST ROW &middot; GAMEPAD FOCUS = SELECTED")}
+  <div class="sec rowx" style="top:128px;gap:14px">
+    ${cell("Tile &middot; default", P.tile({tier:"C",rating:540,price:"$440,000",sub:"EXOTIC",name:"AURORA",vis:car}))}
+    ${cell("Tile &middot; selected = gamepad focus", P.tile({tier:"D",rating:390,price:"$150,000",sub:"EXOTIC",name:"ZEPHYR",vis:car,sel:1}))}
+    ${cell("Tile &middot; owned / fitted", P.tile({tier:"E",rating:220,corner:{t:"OWNED"},sub:"EXOTIC",name:"STINGER",vis:car}))}
+    ${cell("Tile &middot; locked (icon + reason in sub-line)", P.tile({variant:"GT",price:"$84,000",unaff:1,sub:"BUY ZEPHYR TO UNLOCK",name:"BRIDGE WING",vis:P.sil("wing"),locked:1}))}
+    ${cell("Tile &middot; unaffordable (muted price)", P.tile({tier:"A",rating:800,price:"$4.40M",unaff:1,sub:"EXOTIC",name:"ROSSO",vis:car}))}
+  </div>
+  <div class="sec rowx" style="top:478px;gap:14px">
+    ${cell("Tile &middot; no image", P.tile({tier:"B",rating:675,price:"$1.40M",sub:"EXOTIC",name:"ENDURA",noimg:1}))}
+    ${cell("Rail of seven (cap 21)", P.tile({t7:1,idx:"03",corner:{t:"FITTED"},sub:"STANDARD",name:"FRONT ENGINE",vis:P.sil("eng")}))}
+    ${cell("selected, two-line name", P.tile({t7:1,idx:"05",corner:{t:"FITTED"},sub:"STANDARD",name:"DRIFT THRUSTERS",sel:1,two:1}))}
+    ${cell("empty slot", P.tile({t7:1,idx:"07",corner:{t:"EMPTY",cls:"pink"},sub:"NOTHING FITTED",name:"WING",noimg:1}))}
+    <div class="col g12" style="margin-left:30px;width:560px">
+      <div class="col g4">
+        <div class="row" style="height:92px"><div class="grow"><div class="t-label c-2">CIRCUIT &middot; 3 LAPS</div><div class="t-tile" style="margin-top:6px">SHIFTED CANAL SPRINT</div></div></div>
+        <div class="row sel" style="height:96px"><div class="grow"><div class="t-label c-2">CIRCUIT &middot; 3 LAPS</div><div class="t-tile" style="margin-top:6px">SHOWROOM LOOP</div></div></div>
+        <div class="row dis" style="height:92px"><div class="grow"><div class="t-label c-2">UNAVAILABLE</div><div class="t-tile" style="margin-top:6px">SHOWROOM LOOP</div></div>${P.ic("lock","")}</div>
+      </div>
+      ${L("ListRow &middot; default / selected (= focus) / disabled")}
+    </div>
+  </div>
+  <div class="sec rowx" style="top:842px;gap:40px">
+    <div class="col g12" style="width:520px">
+      <div class="col g4">
+        <div class="row" style="min-height:52px"><span class="t-value" style="width:26px">1</span><span class="t-value grow">NEONRIDER</span><span class="t-label c-2">-1.8</span></div>
+        <div class="row you" style="min-height:52px;border-left:8px solid var(--pink)"><span class="t-value" style="width:26px">2</span><span class="t-value grow">YOU</span><span class="t-label c-2">SERAPH</span></div>
+        <div class="row" style="min-height:52px"><span class="t-value" style="width:26px">3</span><span class="t-value grow">CYBERWAVE</span><span class="t-label c-2">+0.6</span></div>
+      </div>
+      ${L("ListRow &middot; live order, your row white with pink edge")}
+    </div>
+    <div class="col g12" style="width:620px">
+      <div class="col">
+        <div class="row bare" style="min-height:52px">${P.medal("plat")}<span class="t-value c-2 grow">PLATINUM</span><span class="t-value c-2">00:58.000</span></div>
+        <div class="row bare" style="min-height:52px">${P.medal("")}<span class="t-value grow">GOLD <span class="c-pink">&middot; YOURS</span></span><span class="t-value">01:02.000</span></div>
+        <div class="row bare" style="min-height:52px;border-bottom:0">${P.medal("silver")}<span class="t-value c-2 grow">SILVER</span><span class="t-value c-2">01:08.000</span></div>
+      </div>
+      ${L("ListRow &middot; bare (inside a panel), medal markers")}
+    </div>
+    <div class="note" style="width:520px;align-self:center">Selected and gamepad focus share one look: white fill, ink text, 6 px pink base line, pink glow; the tile grows 16 px upward and its picture 10%. Locked and unaffordable tiles set Active = false. In Barlow a tier-and-rating badge beside a six-figure price needs the full 315 px tile.</div>
+  </div>
+`);
+</script></body></html>

@@ -1,0 +1,10 @@
+<!doctype html><html><head><meta charset="utf-8"><title>r10b Settings modal</title><script src="../shared/boot.js"></script></head><body><script>
+const set = (label, help, sw) => `<div style="padding:18px 0;border-bottom:2px solid var(--hair-bot)"><div class="flex ac jb g24"><div><div class="t-status">${label}</div><div class="t-body" style="margin-top:6px">${help}</div></div>${sw}</div></div>`;
+P.page(`
+  ${P.freeroam({speed:0,dimmed:1,open:4})}
+  ${P.modal("SETTINGS", `
+    ${set("PASSENGERS","Who may ride in your vehicle.",P.segswitch([{l:"EVERYONE"},{l:"FRIENDS",on:1},{l:"NO ONE"}],"width:470px;flex:none"))}
+    ${set("MINIMAP","How the minimap turns as you drive.",P.segswitch([{l:"NORTH UP"},{l:"ROTATE",on:1}],"width:470px;flex:none"))}
+  `, [P.btn("DONE","tick","md main nochev")], "width:1000px")}
+`);
+</script></body></html>

@@ -1,0 +1,105 @@
+{
+  "gauge": {
+    "size": 512,
+    "centre": [
+      256,
+      256
+    ],
+    "start_deg": 135,
+    "sweep_deg": 270,
+    "angle_convention": "degrees clockwise from +X (screen space); gap is centred at the bottom",
+    "ring_radius": 204,
+    "ring_thickness": 14,
+    "tick_outer_radius": 250,
+    "tick_major": {
+      "count": 11,
+      "length": 26,
+      "width": 5
+    },
+    "tick_minor": {
+      "per_gap": 4,
+      "length": 13,
+      "width": 3
+    }
+  },
+  "minimap": {
+    "size": 512,
+    "ring_outer_radius": 254,
+    "ring_thickness": 8,
+    "vignette_start_radius": 140,
+    "vignette_end_radius": 250,
+    "vignette_peak_alpha": 0.9
+  },
+  "glow": {
+    "glow_soft.png": {
+      "size": [
+        128,
+        128
+      ],
+      "edge_inset": 44,
+      "sigma": 13,
+      "SliceCenter": [
+        62,
+        62,
+        66,
+        66
+      ],
+      "use": "selected tile outer glow; frame = tile grown by edge_inset * SliceScale on every side"
+    },
+    "glow_tight.png": {
+      "size": [
+        64,
+        64
+      ],
+      "edge_inset": 20,
+      "sigma": 5.5,
+      "SliceCenter": [
+        30,
+        30,
+        34,
+        34
+      ],
+      "use": "main button glow; frame = button grown by edge_inset * SliceScale on every side"
+    },
+    "glow_line.png": {
+      "size": [
+        64,
+        64
+      ],
+      "end_inset": 20,
+      "sigma": 7,
+      "SliceCenter": [
+        30,
+        0,
+        34,
+        64
+      ],
+      "use": "hairline base-line glow; frame height = 64 * SliceScale centred on the line, width = line + 2 * end_inset * SliceScale; stretches horizontally only"
+    }
+  },
+  "keycap": {
+    "size": [
+      64,
+      64
+    ],
+    "radius": 12,
+    "margin": 2,
+    "SliceCenter": [
+      20,
+      20,
+      44,
+      44
+    ]
+  },
+  "segment": {
+    "size": [
+      64,
+      64
+    ],
+    "fill": [
+      9,
+      55
+    ],
+    "note": "ScaleType.Tile, TileSize = UDim2.new(0, pitch, 1, 0); fill is 46/64 of the pitch, gap split evenly left and right so a row starts and ends on half a gap"
+  }
+}

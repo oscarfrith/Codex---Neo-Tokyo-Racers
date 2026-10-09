@@ -1,0 +1,529 @@
+{
+ "script": "ReplicatedStorage.Modules.Game.Vehicles.CharacterSprintClient",
+ "class": "ModuleScript",
+ "source_file": "classic/sources/ReplicatedStorage.Modules.Game.Vehicles.CharacterSprintClient.lua",
+ "source_lines": 389,
+ "included_because": [
+  "ClientBase entry 'CharacterSprintClient'"
+ ],
+ "requires": [
+  {
+   "expr": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Core\"):WaitForChild(\"CameraService\")",
+   "as": "CameraService",
+   "line": 18,
+   "in_function": "Client.start",
+   "target": "ReplicatedStorage.Modules.Core.CameraService"
+  },
+  {
+   "expr": "playerModule",
+   "protected": true,
+   "as": "module",
+   "line": 64,
+   "in_function": "findControls",
+   "target": "Players.LocalPlayer.PlayerScripts.PlayerModule"
+  }
+ ],
+ "remotes": {
+  "calls": [],
+  "listens": []
+ },
+ "bindables": {
+  "fires": [],
+  "connects": [],
+  "invokes": [],
+  "handlers": [],
+  "created": [],
+  "module_signal_fires": []
+ },
+ "attributes": {
+  "reads": [
+   {
+    "receiver": "config",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "CharacterSprintClient:84",
+    "line": 92,
+    "in_function": "debugLog",
+    "via": "wrapper configValue()",
+    "name": "Debug"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "CharacterSprintClient:84",
+    "line": 98,
+    "in_function": "sprintKeyCode",
+    "via": "wrapper configValue()",
+    "name": "SprintKey"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "CharacterSprintClient:84",
+    "line": 111,
+    "in_function": "mobileAutoSprintEnabled",
+    "via": "wrapper configValue()",
+    "name": "MobileAutoSprintEnabled"
+   },
+   {
+    "receiver": "PLAYER",
+    "receiver_path": "Players.LocalPlayer",
+    "receiver_kind": "player",
+    "line": 128,
+    "in_function": "garageMenuOpen",
+    "name": "GarageSessionActive"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "CharacterSprintClient:84",
+    "line": 142,
+    "in_function": "tweenFov",
+    "via": "wrapper configValue()",
+    "name": "SprintFovEnabled"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "CharacterSprintClient:84",
+    "line": 147,
+    "in_function": "tweenFov",
+    "via": "wrapper configValue()",
+    "name": "SprintFovEnabled"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "CharacterSprintClient:84",
+    "line": 161,
+    "in_function": "tweenFov",
+    "via": "wrapper configValue()",
+    "name": "FovTweenSeconds"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "CharacterSprintClient:84",
+    "line": 186,
+    "in_function": "stopSprint",
+    "via": "wrapper configValue()",
+    "name": "NormalWalkSpeed"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "CharacterSprintClient:84",
+    "line": 202,
+    "in_function": "startSprint",
+    "via": "wrapper configValue()",
+    "name": "Enabled"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "CharacterSprintClient:84",
+    "line": 213,
+    "in_function": "startSprint",
+    "via": "wrapper configValue()",
+    "name": "SprintWalkSpeed"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "CharacterSprintClient:84",
+    "line": 220,
+    "in_function": "startSprint",
+    "via": "wrapper configValue()",
+    "name": "SprintFieldOfView"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "CharacterSprintClient:84",
+    "line": 248,
+    "in_function": "refreshTrack",
+    "via": "wrapper configValue()",
+    "name": "AnimationId"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "CharacterSprintClient:84",
+    "line": 279,
+    "in_function": "updateAnimation",
+    "via": "wrapper configValue()",
+    "name": "MinimumMoveSpeedForAnimation"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "CharacterSprintClient:84",
+    "line": 319,
+    "in_function": "updateMobileAutoSprint",
+    "via": "wrapper configValue()",
+    "name": "MobileSprintMoveThreshold"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "CharacterSprintClient:84",
+    "line": 338,
+    "in_function": "attachCharacter",
+    "via": "wrapper configValue()",
+    "name": "NormalWalkSpeed"
+   }
+  ],
+  "writes": [],
+  "listens": []
+ },
+ "player_attribute_writes": [],
+ "screenguis": {
+  "created": [],
+  "enabled_writes": []
+ },
+ "names": {
+  "assigned": [
+   {
+    "via": "property",
+    "receiver": "animation",
+    "class": "Animation",
+    "line": 255,
+    "in_function": "refreshTrack",
+    "name": "SprintAnimation"
+   }
+  ],
+  "looked_up": [
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\")",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 18,
+    "in_function": "Client.start",
+    "name": "Modules"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\")",
+    "receiver_path": "ReplicatedStorage.Modules",
+    "root": "ReplicatedStorage",
+    "line": 18,
+    "in_function": "Client.start",
+    "name": "Core"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "game:GetService(\"ReplicatedStorage\"):WaitForChild(\"Modules\"):WaitForChild(\"Core\")",
+    "receiver_path": "ReplicatedStorage.Modules.Core",
+    "root": "ReplicatedStorage",
+    "line": 18,
+    "in_function": "Client.start",
+    "name": "CameraService"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "current",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 41,
+    "in_function": "findConfig",
+    "name": "Config",
+    "via": "literal list"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "current",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 41,
+    "in_function": "findConfig",
+    "name": "Player",
+    "via": "literal list"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "current",
+    "receiver_path": "ReplicatedStorage",
+    "root": "ReplicatedStorage",
+    "line": 41,
+    "in_function": "findConfig",
+    "name": "Movement",
+    "via": "literal list"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "PLAYER",
+    "receiver_path": "Players.LocalPlayer",
+    "root": "Players",
+    "line": 54,
+    "in_function": "findControls",
+    "name": "PlayerScripts"
+   },
+   {
+    "method": "FindFirstChild",
+    "receiver": "playerScripts",
+    "receiver_path": "Players.LocalPlayer.PlayerScripts",
+    "root": "Players",
+    "line": 59,
+    "in_function": "findControls",
+    "name": "PlayerModule"
+   },
+   {
+    "method": "WaitForChild",
+    "receiver": "character",
+    "receiver_path": null,
+    "root": null,
+    "line": 333,
+    "in_function": "attachCharacter",
+    "name": "Humanoid"
+   }
+  ],
+  "text_compared": []
+ },
+ "run_service": {
+  "render_steps": [],
+  "connects": [
+   {
+    "signal": "Heartbeat",
+    "method": "Connect",
+    "line": 354,
+    "in_function": "attachCharacter",
+    "callback": "updateMobileAutoSprint"
+   }
+  ]
+ },
+ "context_actions": [],
+ "user_input_service": {
+  "connects": [
+   {
+    "signal": "InputBegan",
+    "method": "Connect",
+    "line": 357,
+    "in_function": "Client.start"
+   },
+   {
+    "signal": "InputEnded",
+    "method": "Connect",
+    "line": 372,
+    "in_function": "Client.start"
+   }
+  ],
+  "members_used": [
+   {
+    "member": "TouchEnabled",
+    "kind": "read",
+    "line": 110,
+    "in_function": "mobileAutoSprintEnabled"
+   },
+   {
+    "member": "InputBegan",
+    "kind": "connect",
+    "line": 357,
+    "in_function": "Client.start"
+   },
+   {
+    "member": "InputEnded",
+    "kind": "connect",
+    "line": 372,
+    "in_function": "Client.start"
+   }
+  ]
+ },
+ "audio": {
+  "bridge_calls": [],
+  "ui_audio_attributes": []
+ },
+ "config": {
+  "paths": [],
+  "attribute_reads": [
+   {
+    "receiver": "config",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "CharacterSprintClient:84",
+    "line": 92,
+    "in_function": "debugLog",
+    "via": "wrapper configValue()",
+    "name": "Debug",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "CharacterSprintClient:84",
+    "line": 98,
+    "in_function": "sprintKeyCode",
+    "via": "wrapper configValue()",
+    "name": "SprintKey",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "CharacterSprintClient:84",
+    "line": 111,
+    "in_function": "mobileAutoSprintEnabled",
+    "via": "wrapper configValue()",
+    "name": "MobileAutoSprintEnabled",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "CharacterSprintClient:84",
+    "line": 142,
+    "in_function": "tweenFov",
+    "via": "wrapper configValue()",
+    "name": "SprintFovEnabled",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "CharacterSprintClient:84",
+    "line": 147,
+    "in_function": "tweenFov",
+    "via": "wrapper configValue()",
+    "name": "SprintFovEnabled",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "CharacterSprintClient:84",
+    "line": 161,
+    "in_function": "tweenFov",
+    "via": "wrapper configValue()",
+    "name": "FovTweenSeconds",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "CharacterSprintClient:84",
+    "line": 186,
+    "in_function": "stopSprint",
+    "via": "wrapper configValue()",
+    "name": "NormalWalkSpeed",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "CharacterSprintClient:84",
+    "line": 202,
+    "in_function": "startSprint",
+    "via": "wrapper configValue()",
+    "name": "Enabled",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "CharacterSprintClient:84",
+    "line": 213,
+    "in_function": "startSprint",
+    "via": "wrapper configValue()",
+    "name": "SprintWalkSpeed",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "CharacterSprintClient:84",
+    "line": 220,
+    "in_function": "startSprint",
+    "via": "wrapper configValue()",
+    "name": "SprintFieldOfView",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "CharacterSprintClient:84",
+    "line": 248,
+    "in_function": "refreshTrack",
+    "via": "wrapper configValue()",
+    "name": "AnimationId",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "CharacterSprintClient:84",
+    "line": 279,
+    "in_function": "updateAnimation",
+    "via": "wrapper configValue()",
+    "name": "MinimumMoveSpeedForAnimation",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "CharacterSprintClient:84",
+    "line": 319,
+    "in_function": "updateMobileAutoSprint",
+    "via": "wrapper configValue()",
+    "name": "MobileSprintMoveThreshold",
+    "access": "read"
+   },
+   {
+    "receiver": "config",
+    "receiver_path": null,
+    "receiver_kind": "config?",
+    "wrapper_defined": "CharacterSprintClient:84",
+    "line": 338,
+    "in_function": "attachCharacter",
+    "via": "wrapper configValue()",
+    "name": "NormalWalkSpeed",
+    "access": "read"
+   }
+  ],
+  "child_lookups": []
+ },
+ "startergui_core": [],
+ "gui_service": [],
+ "other_services": {},
+ "service_connects": [],
+ "proximity_prompts": [],
+ "instances_created_by_class": {
+  "Animation": 1,
+  "Animator": 1,
+  "NumberValue": 1
+ },
+ "public_api": [
+  {
+   "name": "start",
+   "kind": "function",
+   "params": [],
+   "line": 4
+  }
+ ],
+ "unresolved": [],
+ "contract_file": "CharacterSprintClient.json"
+}

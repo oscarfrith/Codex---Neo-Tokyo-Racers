@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pulse Phase 0 previews (regular)</title>
+<style>
+  :root{--bg:#0E0D1A;--panel:#17152a;--text:#F3F0FF;--muted:#B9B3D6;--pink:#FF2D95;--line:rgba(243,240,255,.18)}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font:16px/1.5 system-ui,"Segoe UI",sans-serif}
+  header{padding:32px 16px 8px;max-width:1500px;margin:0 auto}
+  h1{font-size:28px;margin:0 0 8px}
+  p{color:var(--muted);margin:0 0 10px;max-width:90ch}
+  nav{max-width:1500px;margin:0 auto;padding:8px 16px 0;display:flex;flex-wrap:wrap;gap:6px}
+  nav a{color:var(--text);text-decoration:none;border:1px solid var(--line);padding:3px 9px;font-size:13px}
+  nav a:hover{background:var(--text);color:var(--bg)}
+  main{max-width:1500px;margin:0 auto;padding:16px}
+  section{background:var(--panel);border-top:2px solid var(--line);margin:0 0 28px;padding:16px}
+  h2{font-size:19px;margin:0 0 4px}
+  h2 span{color:var(--pink);margin-right:8px}
+  .imgs{display:grid;gap:10px;margin:12px 0}
+  .imgs.two{grid-template-columns:1fr 1fr}
+  @media (max-width:800px){.imgs.two{grid-template-columns:1fr}}
+  img{width:100%;height:auto;display:block;border:1px solid var(--line)}
+  figure{margin:0}figcaption{font-size:13px;color:var(--muted);margin-top:4px}
+  h3{font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:10px 0 4px}
+  ul{margin:0;padding-left:20px}li{margin:2px 0}
+  .none{color:var(--muted)}
+</style></head><body>
+<header>
+  <h1>Pulse Racers UI: Phase 0 previews, regular class</h1>
+  <p>Every screen the ten accepted mockups do not cover, drawn at 1920x1080 in Barlow (the face Roblox can load; about 22% wider than the mockups' Barlow Condensed) with only shapes Roblox can draw: rectangles, hairlines, images and text. Big numbers use Barlow Condensed because they will be image digits.</p>
+  <p>Backgrounds are blurred placeholders, not game art. Names, prices and times are example values. Where the audit did not record the live wording, the text is a draft and is listed under the frame. Sources: <code>scripts/ui_restyle/previews/</code>.</p>
+</header>
+<nav id="nav"></nav>
+<main id="main"></main>
+<script>
+const F = [
+ {id:"r01", t:"Dealership", img:["r01-dealership.jpg"], c:"Categories as tabs, vehicle rail on the shared Tile, stat panel, Buy button in yellow. Final form of sketch 07.",
+  q:["Sketch 07 had a FOR SALE / OWNED switch. The live dealership has no such filter, so it is left out. Add it?","Owned vehicle selected: the button row would read EXIT, CUSTOMISE, BUY ANOTHER (the live popup's three actions). Agreed?","Stat label ACCELERATION does not fit beside the bar in Barlow; ACCEL is used, as in the mockups.","Unaffordable price is muted grey on the tile and the Buy button dims. Is that enough without red?","Category names (Exotic, Piercer, Muscle) come from the sketch, not the audit."]},
+ {id:"r02", t:"Customise: Upgrades tab", img:["r02-customise-upgrades.jpg"], c:"Second level of the Upgrades tab (one slot chosen). Upgrade budget pips beside the heading; previewed pips in cyan. The action spends Cash, so it is a yellow button.",
+  q:["First level is the same slot rail as mockup 04. Agreed?","Upgrade names, level chips, pip costs and lock reasons are drafts; the audit records only the card fields.","Budget shown as pips plus 4 / 10. Pips only, or number only?"]},
+ {id:"r03", t:"Customise: Parts tab, Owned", img:["r03-customise-parts-owned.jpg"], c:"Mockup 05 with the switch on OWNED. Chips: FITTED, OWNED X2, IN USE. A loss shows as a pink chip with a down arrow.",
+  q:["A part in use on another vehicle stays selectable and asks for confirmation (r04b). Or show it locked?","STD for the standard variant is from the mockups; live config names only GT and EVO."]},
+ {id:"r04", t:"Post-purchase paint, and the confirm modal", img:["r04a-post-purchase-paint.jpg","r04b-confirm-modal.jpg"], c:"Left: the Paint Vehicle page shown straight after buying (three channels, one button). Right: Kit.Confirm, NO left and focused, YES right.",
+  q:["Buying a vehicle has no confirmation today (Buy goes straight to Paint Vehicle). Keep it that way, or add this modal before spending?","Confirm wording is a draft; the live body text was not in the audit.","Title PAINT VEHICLE with a one-line subtitle in place of tabs. Agreed?"]},
+ {id:"r05", t:"Owned-garage browser", img:["r05-owned-garage-browser.jpg"], c:"Same structure as the race menu: list left, detail right, pink rule under the image, fact list.",
+  q:["Title GARAGES with tabs MY GARAGES and VISIT: the live title and tab texts were not in the audit.","The ABOUT text and the ACCESS row are drafts (Description and access mode exist as data)."]},
+ {id:"r06", t:"Owned-garage desk", img:["r06-owned-garage-desk.jpg"], c:"Desk home: the three live cards on the shared Tile, with icons in place of pictures.",
+  q:["Home stays a three-tile page (turning it into tabs is not in the plan's navigation list). Agreed?","Sub-pages (Display, Build, Style) would use the same rail with price chips; not drawn because item names were not in the audit. Draw one with placeholders?"]},
+ {id:"r07", t:"Garage interior HUD", img:["r07-garage-interior-hud.jpg"], c:"Owner controls top-left (ACCESS open), status cluster, a status toast and a world-prompt banner.",
+  q:["Should the action bar and minimap show inside a garage? Left out here.","Access labels PRIVATE, FRIENDS ONLY, INVITE ONLY, PUBLIC are derived from the mode names.","Emoji icons on the two buttons are replaced by kit icons."]},
+ {id:"r08", t:"Full map", img:["r08-full-map.jpg"], c:"Map fills the screen; title, status, legend panel, zoom stack, route chip, and the key hints the plan keeps.",
+  q:["Key hints show keyboard or gamepad, never both; both are drawn here for review.","Marker colours: all white-on-ink here. The plan allows marker colours as an exception; keep white or colour by type?","Legend labels other than COURIER DROP-OFF are derived from the icon type names.","Route chip text (ROUTE SET, distance) is a draft format."]},
+ {id:"r09", t:"Free-roam car panel", img:["r09-freeroam-car-panel.jpg"], c:"Opens under the action bar. One row on the shared Rail, Buy more first, no prices, Despawn fixed bottom-right.",
+  q:["One scrolling row instead of today's grid, so the panel clears the gauge. Agreed, or a two-row grid that covers the gauge?","The OUT chip on the spawned vehicle is new. Keep?","Category and Sort option names were not in the audit."]},
+ {id:"r10", t:"HUD modals: Controls, Settings, Get Cash", img:["r10a-modal-controls.jpg","r10b-modal-settings.jpg","r10c-modal-get-cash.jpg"], c:"Three modals on Kit.Modal over a dimmed HUD.",
+  q:["Controls: the eleven rows are drafts; the live list was not in the audit.","Settings shows only the two working rows. Passenger options (EVERYONE, FRIENDS, NO ONE) are drafts.","Get Cash: pack names and prices are not configured, so tiles are placeholders with the live not-enabled line."]},
+ {id:"r11", t:"Race entry: records", img:["r11-race-entry-records.jpg"], c:"World record, medal targets and your record on the left; Global Top 20 on the right; your row white with a pink edge.",
+  q:["Column headers and the RANK 7 OF 214 line are drafts.","Tier rail is read-only on this page today. Shown as buttons with the viewed tier white; should locked tiers look different from unvisited ones?"]},
+ {id:"r12", t:"Race entry: vehicle choice", img:["r12-race-entry-vehicle.jpg"], c:"Four-column grid of the shared Tile, ineligible vehicles locked with the reason, entry summary on the right.",
+  q:["Lock reason TIER C ONLY is a draft for the live UnavailableText.","The right-hand summary (route, laps, your best, prize) is added so the main button has context. Keep?"]},
+ {id:"r13", t:"In-race HUD", img:["r13a-race-hud.jpg","r13b-time-trial-hud.jpg"], c:"Race: position, lap, timer with lap delta chip and checkpoint pips, live order, route map, gauge. Time trial: lap number takes the position slot; the board lists personal best and laps.",
+  q:["Route map stays a square panel (the free-roam minimap is paused in races). Agreed?","Delta chip compares the last lap with your best lap only, and shows after each lap.","Time trial: the TIER C, GOLD PACE line is new. Keep or drop?","Seventeen pips fit; a route with many more checkpoints would need a bar instead."]},
+ {id:"r14", t:"Countdown, queue banner, wrong-way", img:["r14-countdown-queue-wrongway.jpg"], c:"Three states on one sheet.",
+  q:["Countdown has no panel behind it. Enough contrast over bright scenes?","GO! in cyan. Or white?","Wrong-way uses the Danger red, a fourth use beyond destructive buttons."]},
+ {id:"r15", t:"Results", img:["r15a-results-race.jpg","r15b-results-time-trial.jpg"], c:"Hero numbers, then one strip, then the table. Buttons centred: EXIT TO START, then RACE AGAIN or TRY AGAIN.",
+  q:["Buttons use the live texts (EXIT TO START, RACE AGAIN). Sketch 08 had RACE AGAIN, CONTINUE. Which?","Time trial: heroes are best lap and Cash; XP moves to the strip. Or three heroes?","Title TIME TRIAL COMPLETE is a draft.","DNF row and the highlights' driver names are drafts."]},
+ {id:"r16", t:"World prompts", img:["r16a-world-prompt-race-start.jpg","r16b-world-prompt-variants.jpg"], c:"Race start with event card and banner stack; then all ten families as keyboard, gamepad and touch banners.",
+  q:["Event card second cell shows YOUR BEST for a time trial and ENTRY for a race. Agreed?","Banner stack sits above the bottom buttons, between minimap and gauge. Right place?","Object text (VEHICLE, GARAGE DOOR) is kept beside the action. Drop it where it adds nothing?"]},
+ {id:"r17", t:"Activity HUD", img:["r17-activity-hud.jpg"], c:"Job strip, offer card with Duel button, activity countdown, rank-up card.",
+  q:["Offer card title and body, DUEL STARTS and RANK UP are drafts.","Activity theme colours (the plan's named exception) are not applied here; everything live is cyan. Keep per-activity colour on the strip edge?"]},
+ {id:"r18", t:"Toasts and onboarding", img:["r18-toasts-onboarding.jpg"], c:"Objective cards top-left, toast stack, and a callout (right of the line).",
+  q:["Callout frame is white with the pink selection glow; today it is gold. Agreed?","Objective and tip texts are drafts.","Toast kinds by edge colour and icon: neutral, confirm (cyan), cash (yellow), error (red)."]},
+ {id:"r19", t:"Loading view and start screen", img:["r19a-loading.jpg","r19b-start-screen.jpg"], c:"Artwork and logo unchanged; only status text, progress line and the two buttons are restyled.",
+  q:["Status LOADING NEO TOKYO is a stale name in the live list. Replace with LOADING PULSE RACERS?","PLAY becomes the main button on the right, SHOP on the left."]},
+ {id:"r20", t:"Component sheet", img:["r20a-components-tile-listrow.jpg","r20b-components-controls.jpg","r20c-components-data-overlay.jpg"], c:"Every kit component in every state, with the gamepad-focus look.",
+  q:["Focus is white fill everywhere; filled buttons keep a base line in their role colour when focused. Agreed?","Selected tile grows 16 px upward and its picture 10%.","Tier badges stay white with dark letters (no tier colours)."]},
+ {id:"r21", t:"Customise Parts in Barlow, three scales", img:["../../04-customise-parts.jpg","r21-customise-parts-scale_1280x720.jpg","r21-customise-parts-scale_1920x1080.jpg","r21-customise-parts-scale_2560x1440.jpg"],
+  caps:["Accepted mockup 04 (Barlow Condensed)","1280x720, scale 0.667","1920x1080, scale 1.0","2560x1440, scale 1.333"], c:"Mockup 04 redrawn in Barlow with the plan 3.2 scale rule.",
+  q:["On a rail of seven, FRONT ENGINE just fits and DRIFT THRUSTERS wraps to two lines. Accept, or go to six tiles visible?","Is 0.667 at 1280x720 readable enough (Label is 14 px there)?"]},
+];
+const nav = document.getElementById("nav"), main = document.getElementById("main");
+F.forEach(f => {
+  nav.insertAdjacentHTML("beforeend", `<a href="#${f.id}">${f.id}</a>`);
+  const imgs = f.img.map((s, i) => `<figure><a href="${s}"><img loading="lazy" src="${s}" alt="${f.t}"></a><figcaption>${f.caps ? f.caps[i] : s}</figcaption></figure>`).join("");
+  main.insertAdjacentHTML("beforeend", `<section id="${f.id}"><h2><span>${f.id}</span>${f.t}</h2><p>${f.c}</p>
+    <div class="imgs ${f.img.length > 1 ? "two" : ""}">${imgs}</div>
+    <h3>Open questions for Oscar</h3>${f.q.length ? `<ul>${f.q.map(q => `<li>${q}</li>`).join("")}</ul>` : `<p class="none">None.</p>`}</section>`);
+});
+</script>
+</body></html>
