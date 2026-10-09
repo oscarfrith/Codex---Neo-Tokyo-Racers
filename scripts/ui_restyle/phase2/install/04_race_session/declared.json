@@ -126,15 +126,15 @@
    "class": "ModuleScript"
   },
   "ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.ActivityHudView": {
-   "length": 19934,
-   "djb2": 144785964,
-   "fnv1a32": 147670028,
+   "length": 21962,
+   "djb2": 3347297244,
+   "fnv1a32": 1563084512,
    "class": "ModuleScript"
   },
   "ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.CarPanelView": {
-   "length": 7817,
-   "djb2": 682029326,
-   "fnv1a32": 2433073372,
+   "length": 8953,
+   "djb2": 656900188,
+   "fnv1a32": 58472466,
    "class": "ModuleScript"
   },
   "ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.HudClient": {
@@ -156,15 +156,15 @@
    "class": "ModuleScript"
   },
   "ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.HudModel": {
-   "length": 27365,
-   "djb2": 3693285658,
-   "fnv1a32": 3036847774,
+   "length": 27873,
+   "djb2": 1949644849,
+   "fnv1a32": 4042251949,
    "class": "ModuleScript"
   },
   "ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.HudView": {
-   "length": 12095,
-   "djb2": 3344258347,
-   "fnv1a32": 2524622675,
+   "length": 13710,
+   "djb2": 3239181540,
+   "fnv1a32": 307432124,
    "class": "ModuleScript"
   },
   "ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.TouchControlsClient": {
@@ -234,9 +234,9 @@
    "class": "ModuleScript"
   },
   "ReplicatedStorage.Modules.Game.UIPulse.Kit.Minimap": {
-   "length": 18705,
-   "djb2": 1127224829,
-   "fnv1a32": 3758095913,
+   "length": 19093,
+   "djb2": 3877836414,
+   "fnv1a32": 359801508,
    "class": "ModuleScript"
   },
   "ReplicatedStorage.Modules.Game.UIPulse.Kit.Overlay": {
@@ -294,15 +294,15 @@
    "class": "ModuleScript"
   },
   "ReplicatedStorage.Modules.Game.UIPulse.Map.MapIcons": {
-   "length": 9606,
-   "djb2": 1069087350,
-   "fnv1a32": 1994973072,
+   "length": 9896,
+   "djb2": 2849893803,
+   "fnv1a32": 3901674061,
    "class": "ModuleScript"
   },
   "ReplicatedStorage.Modules.Game.UIPulse.Map.MapRoute": {
-   "length": 11273,
-   "djb2": 703873268,
-   "fnv1a32": 3273904358,
+   "length": 11326,
+   "djb2": 3267996957,
+   "fnv1a32": 3064001795,
    "class": "ModuleScript"
   },
   "ReplicatedStorage.Modules.Game.UIPulse.NoOp": {
@@ -324,9 +324,9 @@
    "class": "ModuleScript"
   },
   "ReplicatedStorage.Modules.Game.UIPulse.RaceMenu.RaceMenuView": {
-   "length": 19288,
-   "djb2": 823200064,
-   "fnv1a32": 2144548226,
+   "length": 20831,
+   "djb2": 461382230,
+   "fnv1a32": 2919495214,
    "class": "ModuleScript"
   },
   "ReplicatedStorage.Modules.Game.UIPulse.RaceSession.CountdownClient": {
@@ -430,9 +430,9 @@
    "class": "ModuleScript"
   },
   "ReplicatedStorage.Modules.Game.UIPulse.WorldMap.FullMapView": {
-   "length": 20052,
-   "djb2": 2297422066,
-   "fnv1a32": 201530948,
+   "length": 20308,
+   "djb2": 2138897736,
+   "fnv1a32": 3595390640,
    "class": "ModuleScript"
   }
  },

@@ -369,6 +369,7 @@ return function(M, env)
 		contract("TierBadge rating", preset, M.TierBadge, { Tier = "C", Rating = 540, OnLight = true }, 4)
 		contract("TierBadge letter", preset, M.TierBadge, { Tier = "S", Size = "Small", Dim = true }, 4)
 		contract("Rail", preset, M.Rail, { Heading = "Exotic", Count = "2/6", OnSelected = nothing }, nil)
+		contract("Rail SelectOn Activate", preset, M.Rail, { Heading = "Exotic", Count = "2/6", SelectOn = "Activate", OnSelected = nothing }, nil)
 	end
 
 	case("Tile: the root is a selectable TextButton with Fill and Visual; the hit box is fixed", function()
@@ -580,6 +581,36 @@ return function(M, env)
 		component.SetItems(vehicles())
 		expect(aurora.Fill.Size.Y.Offset == grown, "the selection was lost on SetItems")
 		expect(not pcall(component.Select, "nope"), "unknown key accepted")
+		component.Destroy()
+		scope:destroy()
+	end)
+	case("Rail: SelectOn decides whether a focus move selects; an activation always does; the default is Focus", function()
+		expect(M._railSelects(nil, "Focus") == true and M._railSelects("Focus", "Focus") == true, "the default rail selects on focus")
+		expect(M._railSelects("Activate", "Focus") == false, "SelectOn Activate: focus only highlights")
+		for _, mode in ipairs({ "Focus", "Activate" }) do
+			expect(M._railSelects(mode, "Activate") == true, mode .. ": an activation selects")
+		end
+		expect(M._railSelects(nil, "Activate") == true, "default: an activation selects")
+	end)
+	case("Rail: SelectOn takes Focus or Activate only, in props and in Set; Select still works without a callback", function()
+		local parent = stage("R1080")
+		local scope = newScope()
+		expect(not pcall(M.Rail, parent, { Heading = "Exotic", SelectOn = "Hover" }, scope), "unknown SelectOn accepted")
+		local selections = {}
+		local component = M.Rail(parent, {
+			Heading = "Exotic",
+			SelectOn = "Activate",
+			OnSelected = function(key)
+				table.insert(selections, key)
+			end,
+		}, scope)
+		component.SetItems(vehicles())
+		expect(not pcall(component.Set, { SelectOn = true }), "unknown SelectOn accepted by Set")
+		component.Set({ SelectOn = "Focus" })
+		component.Set({ SelectOn = "Activate" })
+		component.Select("zephyr")
+		expect(#selections == 0, "OnSelected fired for a programmatic Select")
+		expect(component.Tile("zephyr").Instance.Fill.Size.Y.Offset > component.Tile("aurora").Instance.Fill.Size.Y.Offset, "Select did not select")
 		component.Destroy()
 		scope:destroy()
 	end)

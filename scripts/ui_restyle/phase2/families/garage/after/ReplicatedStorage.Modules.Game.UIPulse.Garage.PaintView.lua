@@ -34,6 +34,16 @@ function PaintView._palette(): { { Color3 } }
 	return rows
 end
 
+-- Pure. The colour the sliders start from. GarageUI L523 starts an unset channel at Color3.new(1,1,1)
+-- (`colours[channel]=typeof(value)=="Color3" and value or Color3.new(1,1,1)`): pure white, not the kit's White
+-- token (243,240,255), so the first colour saved from an untouched channel is the one Classic would save.
+function PaintView._seed(current: any): Color3
+	if typeof(current) == "Color3" then
+		return current
+	end
+	return Color3.new(1, 1, 1)
+end
+
 -- Pure. GarageWorkspaceUI L261-263: the three slider ramps for the current hue and saturation.
 function PaintView._ramps(hue: number, saturation: number): (ColorSequence, ColorSequence, ColorSequence)
 	local stops = {}
@@ -273,11 +283,7 @@ function PaintView.New(controlsParent: GuiObject, paletteParent: GuiObject, prop
 		channel = paint.Selected
 		if token ~= shownToken then
 			shownToken = token
-			local current = paint.Colours and paint.Colours[paint.Selected]
-			if typeof(current) ~= "Color3" then
-				current = Tokens.Colour.White -- GarageUI L523 started an unset channel at white
-			end
-			local h, s, v = Color3.toHSV(current)
+			local h, s, v = Color3.toHSV(PaintView._seed(paint.Colours and paint.Colours[paint.Selected]))
 			hsv[1], hsv[2], hsv[3] = h, s, v
 			markPreset(nil)
 			refresh()

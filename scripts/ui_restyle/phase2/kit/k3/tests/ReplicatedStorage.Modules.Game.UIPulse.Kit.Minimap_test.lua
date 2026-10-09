@@ -205,7 +205,7 @@ return function(M, env)
 		local rankLeft = root.RankLeft
 		expect(rankLeft.ClipsDescendants, "the rank window clips")
 		expect(rankLeft:FindFirstChild("RankTrack") ~= nil and rankLeft:FindFirstChild("RankFill") ~= nil, "track and fill")
-		expect(rankLeft.RankTrack.ImageTransparency == 1 - Tokens.Opacity.RankTrackImage, "track at the token opacity")
+		expect(rankLeft.RankTrack.ImageTransparency == 1 - Tokens.Opacity.Panel, "track at the panel opacity")
 		local rankSide = rankLeft.RankFill.Size.X.Offset
 		expect(rankLeft.Size == UDim2.fromOffset(rankSide / 2, rankSide / 2), "Regular: the top-left quarter of the rank frame")
 		expect(rankLeft.Position.X.Offset == (side - rankSide) / 2, "the rank frame shares the map centre")

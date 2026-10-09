@@ -112,9 +112,9 @@
    "_unpinned": "changed by 00_kit"
   },
   "ReplicatedStorage.Modules.Game.UIPulse.Kit.Minimap": {
-   "length": 18705,
-   "djb2": 1127224829,
-   "fnv1a32": 3758095913,
+   "length": 19093,
+   "djb2": 3877836414,
+   "fnv1a32": 359801508,
    "class": "ModuleScript"
   },
   "ReplicatedStorage.Modules.Game.UIPulse.Kit.Overlay": {

@@ -15,6 +15,10 @@ local Scale = Tokens.Scale
 
 local View = {}
 
+-- The arrow's visibility goes through its component (Surface re-applies Visible on a layout change).
+local ARROW_SHOW = { Visible = true }
+local ARROW_HIDE = { Visible = false }
+
 -- Key hints [seen r08]. Keyboard rows, the gamepad row, and the Classic touch line (FullMapUI 364).
 View.KeyboardHints = {
 	{ { Caps = { "W", "A", "S", "D" }, Text = "PAN" }, { Caps = { "Q", "E" }, Text = "ZOOM" }, { Caps = { "C" }, Text = "CENTRE ON ME" }, { Caps = { "F" }, Text = "WHOLE MAP" } },
@@ -370,7 +374,7 @@ function View.Mount(layer: any, model: any, scope: any, extra: any?): any
 		local show = group == "Gamepad" and model:IsOpen()
 		if show ~= crosshairShown then
 			crosshairShown = show
-			crosshair.Instance.Visible = show
+			crosshair.Set({ Visible = show }) -- through the component: Surface re-applies its own Visible
 		end
 	end
 
@@ -447,7 +451,7 @@ function View.Mount(layer: any, model: any, scope: any, extra: any?): any
 		end
 		if shown ~= arrowShown then
 			arrowShown = shown
-			arrow.Instance.Visible = shown
+			arrow.Set(shown and ARROW_SHOW or ARROW_HIDE)
 		end
 
 		if playerMarkers then

@@ -43,6 +43,9 @@ local ARROW = 0.117
 local RANK_CELLS = 3
 local RANK_MAX = 999
 local LABEL_ROLE = "Label"
+-- The unfilled track is the arc image darkened towards Ink and nearly opaque, so it reads on a bright scene as it
+-- does on the dark preview (r00). At RankTrackImage (0.25) alone it vanished over daylight ground.
+local TRACK_SHADE = 0.4
 
 local MINIMAP_KEYS = { Name = true, LayoutOrder = true, Visible = true, Size = true, Round = true, ShowRank = true,
 	Label = true, OnActivated = true }
@@ -216,7 +219,8 @@ function Minimap.New(parent, props, scope)
 	local rankLeft = plain("Frame", "RankLeft", 4, root)
 	rankLeft.ClipsDescendants = true
 	local trackLeft = image("RankTrack", "RankArc", 1, rankLeft)
-	trackLeft.ImageTransparency = 1 - Opacity.RankTrackImage
+	trackLeft.ImageColor3 = Tokens.Colour.Ink:Lerp(Tokens.Colour.White, TRACK_SHADE)
+	trackLeft.ImageTransparency = 1 - Opacity.Panel
 	local fillLeft = image("RankFill", "RankArc", 2, rankLeft)
 	local fillLeftMask = mask(fillLeft, LEFT_EMPTY)
 	-- Built only when the arc passes 12 o'clock (Compact).
@@ -342,7 +346,8 @@ function Minimap.New(parent, props, scope)
 			rankRight = plain("Frame", "RankRight", 4, root)
 			rankRight.ClipsDescendants = true
 			trackRight = image("RankTrack", "RankArc", 1, rankRight)
-			trackRight.ImageTransparency = 1 - Opacity.RankTrackImage
+			trackRight.ImageColor3 = Tokens.Colour.Ink:Lerp(Tokens.Colour.White, TRACK_SHADE)
+			trackRight.ImageTransparency = 1 - Opacity.Panel
 			trackRightMask = mask(trackRight, RIGHT_EMPTY)
 			fillRight = image("RankFill", "RankArc", 2, rankRight)
 			fillRightMask = mask(fillRight, shown.Right)

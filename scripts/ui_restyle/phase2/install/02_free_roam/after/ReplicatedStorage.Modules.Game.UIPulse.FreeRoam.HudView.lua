@@ -29,11 +29,21 @@ local function modules()
 end
 function HudView._setModules(replacement) modulesCache = replacement end
 
-local function holder(name, slot, gap)
+-- Pure: the width of a row of boxes with a gap between them, and the whole-pixel offset that puts the row on a
+-- slot anchor (1: the row ends at the slot; 0.5: centred on it; 0: starts at it).
+function HudView._rowPlace(widths, height, gap, anchorX, anchorY)
+	local width = 0
+	for index, value in ipairs(widths) do
+		width += value + (index > 1 and gap or 0)
+	end
+	return width, -math.floor(width * anchorX), -math.floor(height * anchorY)
+end
+
+-- A row of buttons on a slot. The row is sized and placed in code from its showing children, as Controls.ButtonRow
+-- does: an AutomaticSize row with the slot's AnchorPoint sat centred on the slot instead of ending at it.
+local function holder(name, slot, gap, scope)
 	local item = Instance.new("Frame")
 	item.Name = name
-	item.AnchorPoint = slot.AnchorPoint
-	item.AutomaticSize = Enum.AutomaticSize.XY
 	item.BackgroundTransparency = 1
 	item.BorderSizePixel = 0
 	local layout = Instance.new("UIListLayout")
@@ -43,7 +53,34 @@ local function holder(name, slot, gap)
 	layout.Padding = UDim.new(0, gap)
 	layout.Parent = item
 	item.Parent = slot
-	return item
+
+	local widths = {}
+	local function fit()
+		table.clear(widths)
+		local height = 0
+		for _, child in ipairs(item:GetChildren()) do
+			if child:IsA("GuiObject") and child.Visible then
+				local size = child.Size
+				table.insert(widths, size.X.Offset)
+				height = math.max(height, size.Y.Offset)
+			end
+		end
+		local anchor = slot.AnchorPoint
+		local width, x, y = HudView._rowPlace(widths, height, gap, anchor.X, anchor.Y)
+		local size, position = UDim2.fromOffset(width, height), UDim2.fromOffset(x, y)
+		if item.Size ~= size then item.Size = size end
+		if item.Position ~= position then item.Position = position end
+	end
+	scope:connect(item.ChildAdded, function(child)
+		if child:IsA("GuiObject") then
+			scope:connect(child:GetPropertyChangedSignal("Size"), fit)
+			scope:connect(child:GetPropertyChangedSignal("Visible"), fit)
+		end
+		fit()
+	end)
+	scope:connect(item.ChildRemoved, fit)
+	scope:connect(slot:GetPropertyChangedSignal("AnchorPoint"), fit)
+	return item, fit
 end
 
 local function place(component, slot)
@@ -91,7 +128,7 @@ function HudView.Mount(layer, model, scope, extra)
 	-- Selectable and AutoButtonColor on them (OnboardingClient 666-671): the write is mirrored as the locked look,
 	-- never overridden.
 	local barSlot = layer.Slot("ActionBar")
-	local bar = holder("ActionBar", barSlot, px(compact and space.TouchGap or space.ActionGap))
+	local bar, fitBar = holder("ActionBar", barSlot, px(compact and space.TouchGap or space.ActionGap), scope)
 	local function action(name, icon, markKey, order, onActivated)
 		return m.Controls.IconButton(bar, { Name = name, Icon = icon, Size = "Action", MarkKey = markKey, LayoutOrder = order,
 			OnActivated = onActivated }, scope)
@@ -110,10 +147,11 @@ function HudView.Mount(layer, model, scope, extra)
 	mirrorLock(car)
 	mirrorLock(garage)
 	mirrorLock(race)
+	fitBar()
 
 	-- Bottom buttons (D978-1008, M147). Touch has no Controls button, as the Classic touch HUD has none.
 	local buttonsSlot = layer.Slot("HudButtons")
-	local buttons = holder("BottomActions", buttonsSlot, px(space.Gap))
+	local buttons, fitButtons = holder("BottomActions", buttonsSlot, px(space.Gap), scope)
 	buttons.Visible = false
 	if not touchDrive then
 		m.Controls.Button(buttons, { Name = "OpenControls", Variant = "Default", Size = "Hud", Text = "CONTROLS", Icon = "gamepad",
@@ -121,6 +159,7 @@ function HudView.Mount(layer, model, scope, extra)
 	end
 	m.Controls.Button(buttons, { Name = "ExitVehicle", Variant = "Default", Size = "Hud", Text = touchDrive and "EXIT" or "EXIT VEHICLE",
 		Icon = "exit", LayoutOrder = 2, OnActivated = function() model.ExitVehicle() end }, scope)
+	fitButtons()
 
 	-- Status (D895-911): cash from leaderstats through the kit chip; the plus opens Get Cash.
 	local statusSlot = live.Slot("HudStatus")

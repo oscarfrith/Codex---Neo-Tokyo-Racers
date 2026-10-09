@@ -16,8 +16,8 @@ if config:GetAttribute("StartScreenEnabled") == false then
 	ReplicatedFirst:RemoveDefaultLoadingScreen()
 	return
 end
-local okStyle, pulseShell = pcall(function() return require(ReplicatedFirst:FindFirstChild("UIStyleSwitch")).Active("Shell") end)
-if okStyle and pulseShell then require(packageFolder:WaitForChild("StartScreenPulse")).Run(); return end
+local okPulse, pulseStart = pcall(function() local module = require(ReplicatedFirst:FindFirstChild("UIStyleSwitch")).Active("Shell") and packageFolder:FindFirstChild("StartScreenPulse"); return module and require(module) or nil end)
+if okPulse and type(pulseStart) == "table" and type(pulseStart.Run) == "function" and pulseStart.Run() == true then return end
 
 local uiFolder = playerScripts:WaitForChild("Runtime"):WaitForChild("UI")
 local Runtime = require(game:GetService("ReplicatedFirst"):WaitForChild("Loading"):WaitForChild("LoadingTransitionRuntime"))

@@ -1,4 +1,4 @@
--- Owns the three functions the desk fork (Garage.OwnedGarageWorkspaceUI) asked its two Classic component tables for: ProjectEconomy, ConfirmationModal and Asset; not any look, state, remote or Cash arithmetic.
+-- Owns the three functions the desk fork (Garage.OwnedGarageWorkspaceUI) asked its two Classic component tables for (ProjectEconomy, ConfirmationModal and Asset) and the desk view's toast (Notify); not any look, state, remote or Cash arithmetic.
 -- Pulse UI (phase2). ReplicatedStorage.Modules.Game.UIPulse.Garage.GarageCompat. Requires: Kit.Data, Kit.Overlay.
 local kit = script.Parent.Parent.Kit
 local Data = require(kit.Data)
@@ -45,6 +45,22 @@ function Compat.Asset(value)
 		return "rbxassetid://" .. text
 	end
 	return text
+end
+
+-- The shared top notification, for the desk view (a view fires no bindable itself, API2 6.2). The bindable the
+-- garage owners already fire (Runtime.UI.ShowTopNotification); looked up when called, never created or waited for.
+-- Returns true when it was fired.
+function Compat.Notify(text)
+	local player = game:GetService("Players").LocalPlayer
+	local scripts = player and player:FindFirstChild("PlayerScripts")
+	local runtime = scripts and scripts:FindFirstChild("Runtime")
+	local ui = runtime and runtime:FindFirstChild("UI")
+	local notification = ui and ui:FindFirstChild("ShowTopNotification")
+	if notification and notification:IsA("BindableEvent") then
+		notification:Fire(tostring(text or ""))
+		return true
+	end
+	return false
 end
 
 return Compat

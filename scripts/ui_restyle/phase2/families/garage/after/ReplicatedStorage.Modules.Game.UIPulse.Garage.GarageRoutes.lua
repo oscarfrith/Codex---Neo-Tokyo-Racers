@@ -238,6 +238,7 @@ Routes.Text = table.freeze({
 	PurchaseFailed = "Purchase could not be completed.", -- L559
 	SelectFailed = "Could not select vehicle.", -- L194
 	LeaveGarageFailed = "Could not leave garage.", -- L195
+	GarageUnavailable = "Garage unavailable", -- Pulse: toast after a draw fault closed the garage (GarageModel.Abort)
 	LeaveCustomisationFailed = "Could not leave customisation.", -- L184
 	SpawnFailed = "Vehicle spawn failed", -- L186
 	Busy = "Please wait.", -- L23

@@ -71,6 +71,18 @@ function CarPanelView._tileItems(rows, buyMoreKey)
 	return items
 end
 
+-- Pure: the line above the footer. An empty garage says so instead of asking for a selection.
+function CarPanelView._hint(loading, rowCount, category)
+	if loading then return "LOADING VEHICLES..." end
+	if rowCount == 0 and category == "ALL" then return "NO VEHICLES OWNED YET" end
+	return "SELECT A VEHICLE TO SPAWN IT"
+end
+
+-- Pure: DESPAWN is live only with a vehicle out (D1276: Classic greys it unless the player sits in their vehicle).
+function CarPanelView._canDespawn(state)
+	return state.Driving == true or state.Vehicle ~= nil
+end
+
 -- Pure: category names -> drop-down options.
 function CarPanelView._options(names)
 	local options = {}
@@ -92,7 +104,7 @@ function CarPanelView.Mount(parent, model, scope)
 	local syncing = false
 	local kitClosing = false -- the panel's own close is running: Render must not call Close again
 	local shownOpen = false
-	local shownRows, shownOptions, shownCategory, shownSort
+	local shownRows, shownOptions, shownCategory, shownSort, shownHint, shownDespawn
 
 	local function onSelected(key)
 		if syncing then return end
@@ -139,7 +151,8 @@ function CarPanelView.Mount(parent, model, scope)
 			hint.AnchorPoint = Vector2.new(0, 1)
 			hint.Position = UDim2.new(0, 0, 1, -(buttonHeight + gap))
 			hint.Size = UDim2.new(1, 0, 0, hintHeight)
-			k.Text.Label(hint, { Name = "HintText", Text = "SELECT A VEHICLE TO SPAWN IT", Role = "Label", Colour = "TextSecondary", Align = "Left" }, own)
+			built.Hint = k.Text.Label(hint, { Name = "HintText", Text = "SELECT A VEHICLE TO SPAWN IT", Role = "Label", Colour = "TextSecondary", Align = "Left" }, own)
+			shownHint = "SELECT A VEHICLE TO SPAWN IT"
 			bottom += hintHeight + gap
 		end
 
@@ -159,8 +172,10 @@ function CarPanelView.Mount(parent, model, scope)
 		local width = (compact and space.CompactSidePanelWidth or space.SidePanelWidth) - margin - margin
 		built.Despawn = k.Controls.Button(footer, {
 			Name = "Despawn", Variant = "Danger", Text = "DESPAWN", Icon = "close", MinWidth = width,
+			Disabled = not CarPanelView._canDespawn(model.GetState()),
 			OnActivated = function() model.Despawn() end,
 		}, own)
+		shownDespawn = CarPanelView._canDespawn(model.GetState())
 		parts = built
 	end
 
@@ -195,6 +210,18 @@ function CarPanelView.Mount(parent, model, scope)
 			syncing = false
 		end
 		if not (shownOpen and parts) then return end
+		local canDespawn = CarPanelView._canDespawn(state)
+		if canDespawn ~= shownDespawn then
+			shownDespawn = canDespawn
+			parts.Despawn.Set({ Disabled = not canDespawn })
+		end
+		if parts.Hint then
+			local hint = CarPanelView._hint(state.RowsLoading == true, #state.Rows, state.Category)
+			if hint ~= shownHint then
+				shownHint = hint
+				parts.Hint.Set({ Text = hint })
+			end
+		end
 		if state.Rows ~= shownRows then
 			shownRows = state.Rows
 			syncing = true

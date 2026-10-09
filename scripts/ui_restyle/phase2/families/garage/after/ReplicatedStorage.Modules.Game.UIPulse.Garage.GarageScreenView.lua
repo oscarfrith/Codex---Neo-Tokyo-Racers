@@ -343,6 +343,7 @@ function View.Mount(layer: any, model: any, scope: any, opts: any)
 		Input.Mark(b.CapacityProxy, "Capacity")
 		b.BrowserRail = keep(page, Collections.Rail(browserStage.Slot("BottomRail"), {
 			Heading = "",
+			SelectOn = "Activate", -- a tile here previews a purchase or navigates: gamepad focus only highlights
 			OnSelected = function(key)
 				page.RailMem.Selected = key
 				model.SelectItem(key)
@@ -378,6 +379,7 @@ function View.Mount(layer: any, model: any, scope: any, opts: any)
 		b.Buttons = keep(page, Controls.ButtonRow(b.Shell.Slot("RailButtons"), { Buttons = {} }, scope))
 		b.Rail = keep(page, Collections.Rail(b.BodyStage.Slot("BottomRail"), {
 			Heading = "",
+			SelectOn = "Activate", -- a tile here previews a purchase or navigates: gamepad focus only highlights
 			OnSelected = function(key)
 				page.RailMem.Selected = key
 				model.SelectItem(key)

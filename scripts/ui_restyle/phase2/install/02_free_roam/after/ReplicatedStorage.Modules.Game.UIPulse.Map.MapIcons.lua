@@ -25,6 +25,10 @@ MapIcons._defer = task.defer
 
 local HOLDER_Z = 3
 local MAX_PRIORITY_Z = 60
+-- Visibility goes through the component: Surface re-applies its own Visible on every Set and on every layout
+-- change, so a direct Root.Visible write is undone there while the cached Shown still says shown.
+local SHOW = { Visible = true }
+local HIDE = { Visible = false }
 
 -- A marker whose Icon key is not on the sheet falls back by kind (Classic drew a one-letter text glyph).
 local KIND_FALLBACK = { Race = "Race", Waypoint = "Waypoint", Player = "OtherPlayer", Job = "Job", Activity = "Job", Place = "Job" }
@@ -142,7 +146,7 @@ function MapIcons.New(content: Frame, overlay: Frame, props: { IconSize: number,
 	local function reset(item)
 		if item.Shown then
 			item.Shown = false
-			item.Root.Visible = false
+			item.Component.Set(HIDE)
 		end
 	end
 	local mainPool = Collections.Pool(makeIn(mainHolder, "Icon"), reset)
@@ -243,7 +247,7 @@ function MapIcons.New(content: Frame, overlay: Frame, props: { IconSize: number,
 			end
 			if shown ~= item.Shown then
 				item.Shown = shown
-				item.Root.Visible = shown
+				item.Component.Set(shown and SHOW or HIDE)
 			end
 		end
 	end

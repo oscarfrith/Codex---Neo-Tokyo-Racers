@@ -531,6 +531,16 @@ function Model.new(deps)
 		driving = driving == true
 		if state.Driving == driving then return end
 		state.Driving = driving
+		if driving then
+			-- The seated owned vehicle carries its tier and rating (VehiclePerformance.WriteToVehicle), so the status
+			-- cluster can show them for a vehicle this HUD did not spawn.
+			local _, vehicle = ownedVehicleSeat()
+			local tier = vehicle and vehicle:GetAttribute("PerformanceTier")
+			if tier ~= nil then
+				state.Vehicle = { Tier = tostring(tier), Rating = tonumber(vehicle:GetAttribute("PerformanceIndex")) or 0,
+					Name = state.Vehicle and state.Vehicle.Name or nil }
+			end
+		end
 		update("Driving")
 	end
 

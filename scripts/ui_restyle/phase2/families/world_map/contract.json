@@ -152,12 +152,27 @@
    {
     "on": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud.Layout / Defaults",
     "dir": "read",
-    "name": "MapPixels, MapCalibrationPixels, MapCalibrationStuds, MapWorldCenterX, MapWorldCenterZ, MapCoordinateRotationDegrees, MapRotationOffsetDegrees, MapFlipX, MapFlipZ"
+    "name": "MapRotationOffsetDegrees"
+   }
+  ],
+  "attributesReadBySharedModules": [
+   {
+    "module": "ReplicatedStorage.Modules.Game.UIPulse.Map.MapCanvas",
+    "on": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud.Layout / Defaults",
+    "dir": "read",
+    "names": "MapPixels, MapCalibrationPixels, MapCalibrationStuds, MapWorldCenterX, MapWorldCenterZ, MapCoordinateRotationDegrees, MapFlipX, MapFlipZ",
+    "classicLine": "FullMapUI 96-107",
+    "via": "MapCanvas.Calibration(), cached",
+    "note": "API2 5.4: the shared Map.* sources are installed with FreeRoam and live in families/free_roam/after, so this family's code scan does not see them; same attributes, same folders as Classic"
    },
    {
+    "module": "ReplicatedStorage.Modules.Game.UIPulse.Map.MapRoute",
     "on": "ReplicatedStorage.Config.UI.RouteGuide",
     "dir": "read",
-    "name": "Enabled, ChipEnabled, StudsPerMile"
+    "names": "Enabled, ChipEnabled, StudsPerMile",
+    "classicLine": "UI.RouteGuide 396-397 (through RouteGuide.newMapRenderer, FullMapUI 137)",
+    "via": "MapRoute.New, read once",
+    "note": "API2 5.4: MapRoute replaces RouteGuide.newMapRenderer; source in families/free_roam/after"
    }
   ],
   "names": [
@@ -233,7 +248,7 @@
    },
    {
     "item": "open and close tween of a UIScale and of the backdrop (121, 497-503, 526-529); config OpenTweenSeconds, CloseTweenSeconds, BackdropTransparency",
-    "reason": "API1 11 rule 5 (no tween of a UIScale); NOTES B1"
+    "reason": "API1 section 11 rule 5 (no tween of a UIScale), which API2 6.6 applies in full; NOTES B1"
    },
    {
     "item": "a press outside the panel closes the map (621-628)",
@@ -241,7 +256,7 @@
    },
    {
     "item": "blocked() polled every frame (773)",
-    "reason": "API1 11 rule 7 (no GetAttribute in a step); the same attributes close the map through their changed signals; NOTES B3"
+    "reason": "API1 section 11 rule 7 (no GetAttribute in a step), which API2 6.6 applies in full; API2 5.4 keeps every attribute of blocked(): the same attributes close the map through their changed signals; NOTES B3"
    },
    {
     "item": "config read at use each frame (cfg / flag, 70-78)",
@@ -253,7 +268,7 @@
    },
    {
     "item": "camera ViewportSize and CurrentCamera listeners (763-767)",
-    "reason": "API1 6 (Metrics is the only camera listener)"
+    "reason": "API1 section 6 (Metrics is the only camera listener); API2 6.6"
    },
    {
     "item": "Config.UI.FullMap LegendWidth, MobileLegendWidth, TapRadiusPixels, TouchTapRadiusPixels, RouteLineScale; Config.UI.MapIconLayer; Config.UI.MapIcons asset ids; Assets.MapPlayerIcon",
@@ -269,10 +284,22 @@
    },
    {
     "item": "print \"[FullMapUI] Full map ready\" (850)",
-    "reason": "API1 11 rule 12"
+    "reason": "API2 6.6 (API1 section 11 rule 12): Pulse modules only warn"
    }
   ],
   "added": [
+   {
+    "item": "ScreenGui FullMapScrim at 89",
+    "reason": "API2 5.4 and 2.4: FullMap is created with Scrim = true (Layers ladder row FullMapScrim 89)"
+   },
+   {
+    "item": "ScreenGui FullMapLive at 91",
+    "reason": "API2 5.4 and 2.4: the full map has a static and a live gui (Layers ladder row FullMapLive 91)"
+   },
+   {
+    "item": "render step Perf.Bind(\"FullMap\") on FullMapLive.Root in place of BindToRenderStep \"FullMapUI\" (533)",
+    "reason": "API2 5.4 (the render step 771-846 is preserved) and 6.6 rule 5: one Perf.Bind per live layer"
+   },
    {
     "item": "Presence.Open(\"FullMap\", \"Map\") while open",
     "reason": "API2 3.9, 5.4"
@@ -291,7 +318,7 @@
    },
    {
     "item": "vehicle RaceParticipant / RaceRunId attribute-changed listeners while open; Humanoid SeatPart listener",
-    "reason": "API1 11 rule 7: they replace the per-frame blocked() and subject() polls; NOTES B3"
+    "reason": "API1 section 11 rule 7, which API2 6.6 applies in full: they replace the per-frame blocked() and subject() polls (API2 5.4 model: blocked() 449-461, subject 243-263); NOTES B3"
    }
   ]
  },
@@ -410,6 +437,14 @@
    {
     "item": "the whole owner (Pulse-only entry PulseWorldPrompts)",
     "reason": "API2 4 (Routes.Add), 5.4; PC 7.2"
+   },
+   {
+    "item": "ScreenGui PulseEventCard at 81",
+    "reason": "API2 5.4 (Event card) and 2.4 (Layers ladder row PulseEventCard 81)"
+   },
+   {
+    "item": "Player attribute OwnedGarageVisitor read, and its changed signal",
+    "reason": "API2 5.4 (World prompts): DriveOutPrompt and ManageGaragePrompt are hidden for a player with OwnedGarageVisitor"
    },
    {
     "item": "RaceRequest GetEntryDetails {EventId, Mode} and GetTimeTrialPersonalBest {EventId, VehicleTier} from a new call site",

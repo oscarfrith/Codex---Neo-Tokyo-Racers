@@ -59,5 +59,42 @@ return function(M, env)
 		expect(event:IsA("BindableEvent") and wrong.Parent == nil and #folder:GetChildren() == 1, "replaced")
 	end)
 
+	case("protected draw: a clean render reports nothing and starts no recovery", function()
+		local reports, recoveries, seen = 0, 0, nil
+		local draw = M._protect(function(reason)
+			seen = reason
+		end, function()
+			reports += 1
+		end, function()
+			recoveries += 1
+		end)
+		expect(draw("render") == true and seen == "render", "rendered with the reason")
+		expect(reports == 0 and recoveries == 0, "quiet")
+	end)
+
+	case("protected draw: a fault is reported with its error and recovery runs once until it says done", function()
+		local reports, recoveries, finish = {}, 0, nil
+		local fail = true
+		local draw = M._protect(function()
+			if fail then
+				error("unknown prop Colour", 0)
+			end
+		end, function(message)
+			table.insert(reports, tostring(message))
+		end, function(done)
+			recoveries += 1
+			finish = done
+		end)
+		expect(draw("render") == false, "fault returns false, does not throw")
+		expect(#reports == 1 and reports[1] == "unknown prop Colour", "error text passed on")
+		expect(recoveries == 1, "recovery started")
+		expect(draw("render") == false and recoveries == 1 and #reports == 2, "a fault during recovery (the closing draw) starts no second one")
+		finish()
+		expect(draw("render") == false and recoveries == 2, "the next session's fault recovers again")
+		finish()
+		fail = false
+		expect(draw("render") == true and recoveries == 2, "a clean draw afterwards")
+	end)
+
 	return results
 end

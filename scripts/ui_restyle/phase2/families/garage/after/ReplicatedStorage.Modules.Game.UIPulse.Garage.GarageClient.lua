@@ -1,4 +1,4 @@
--- Owns start-up of the Pulse dealership and customise garage (the GarageUI entry): claims the surface, creates the two garage layers, builds the model and the view, listens to the three garage-open events; it does not own garage state (GarageModel), drawing (GarageScreenView), the owned-garage desk or browser, or the entrance prompts.
+-- Owns start-up of the Pulse dealership and customise garage (the GarageUI entry): claims the surface, creates the two garage layers, builds the model, mounts the view when a page first shows, closes the session when a draw faults, listens to the three garage-open events; it does not own garage state (GarageModel), drawing (GarageScreenView), the owned-garage desk or browser, or the entrance prompts.
 -- Pulse UI (phase2). ReplicatedStorage.Modules.Game.UIPulse.Garage.GarageClient. Requires: Layers, Perf, Presence, GarageModel, GarageScreenView, Core.ConnectionScope; shared (unchanged) GarageCatalogClient, GarageModuleCardViewModel, PresentationAudioBridge, PreviewVehicleClient, PreviewCameraClient, GarageModuleInstancePreviewAdapter, GarageVehiclePreviewProfile, VehiclePerformanceResolver, VehicleCatalog, GaragePropertyCatalog.
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -41,6 +41,28 @@ function Client._introEvent(folder: Instance, name: string): BindableEvent
 		event = created
 	end
 	return event :: BindableEvent
+end
+
+-- Pure. Wraps a render function. A fault is reported through report(message) and, unless a recovery is already
+-- running, recover(done) is called once; the caller ends the session there and calls done() when it has finished.
+-- Faults raised while the recovery runs (its own closing draw) are reported and start no second recovery.
+-- Returns draw(reason) -> boolean.
+function Client._protect(render: (any) -> (), report: (any) -> (), recover: (() -> ()) -> ()): (any) -> boolean
+	local recovering = false
+	return function(reason)
+		local ok, message = pcall(render, reason)
+		if ok then
+			return true
+		end
+		report(message)
+		if not recovering then
+			recovering = true
+			recover(function()
+				recovering = false
+			end)
+		end
+		return false
+	end
 end
 
 -- GarageUI L696: event name -> open mode. One listener each; no other Pulse module may connect to these.
@@ -136,29 +158,70 @@ local function run()
 	local ConnectionScope = require(modules:WaitForChild("Core"):WaitForChild("ConnectionScope"))
 	local scope = ConnectionScope.new()
 
-	-- 3. Layers: the static garage layer (root CanonicalCanvas, with its scrim) and the live one above it.
+	-- 3. Layers: the static garage layer (root CanonicalCanvas, with its scrim) and the live one above it. Both
+	-- are empty and the live one hidden until a page first shows. The static root stays visible and empty: the
+	-- owned-garage desk parents its own root there and shows without one of our sessions.
 	local layer = Layers.Create(LAYER, { Frame = "Scene", Scrim = true, RootName = CANVAS })
 	local live = Layers.Create(LAYER, { Frame = "Scene", Live = true })
+	live.SetVisible(false)
 	deps.CameraGui = layer.Gui -- PreviewCameraClient.Update skips a disabled gui; this one is never disabled
 
-	-- 4. Model and view.
+	-- 4. Model. No instance and no remote call until an entry event arrives.
 	local model = GarageModel.new(deps)
-	local view = GarageScreenView.Mount(layer, model, scope, { Live = live })
-	scope:add(view)
+	local controller = { Model = model, View = nil, Layer = layer, Live = live, Scope = scope }
 
-	-- 5. Connect. A drawing fault must never stop a purchase or a close half way, so it is caught and reported.
-	scope:add(model.Changed:Connect(function(reason)
-		local ok, message = pcall(view.Render, reason)
-		if not ok then
-			warnOnce("render", "render failed: " .. tostring(message))
+	-- 5. View: nothing is built at start. The view is mounted the first time the model has something to show,
+	-- inside the protected draw below, so a kit fault (the kit throws on any unknown prop) can never fail start()
+	-- and leave the entrance waiting for a listener.
+	local view, viewScope = nil, nil
+	local function dropView()
+		local oldView, oldScope = view, viewScope
+		view, viewScope, controller.View = nil, nil, nil
+		if oldView then
+			pcall(oldView.Destroy)
 		end
-	end))
+		if oldScope then
+			oldScope:destroy()
+		end
+		pcall(live.SetVisible, false)
+	end
+	scope:add(dropView)
 
-	-- GarageUI L131: the preview camera step. Kit.Perf runs it only while the live layer root shows, which is
-	-- exactly while a dealership or customise page shows.
-	scope:add(Perf.Bind("GarageCamera", live.Root, model.CameraStep))
+	local function render(reason)
+		if view == nil then
+			if model.Showing() == nil and model.Modal() == nil then
+				return -- closed and never drawn: both layers are still empty
+			end
+			viewScope = ConnectionScope.new()
+			view = GarageScreenView.Mount(layer, model, viewScope, { Live = live })
+			controller.View = view
+			view.BindCash(player) -- records the player; the chip binds when the status strip is first built
+		end
+		view.Render(reason)
+	end
 
-	-- GarageUI L695-696.
+	-- A drawing fault used to be caught and reported only: the session stayed active on the preview camera with
+	-- no Exit or Drive drawn. Now the fault is warned once, then the session is ended through the model's Exit
+	-- sequence (loading Begin, session End, close, loading Complete; the server clears GarageSessionActive on
+	-- End) with a toast, and the broken view is released so the next entry builds a fresh one. Deferred: the
+	-- fault is raised inside a model transition, which finishes first (it may still complete a loading
+	-- generation).
+	local draw = Client._protect(render, function(message)
+		warnOnce("render", "render failed; closing the garage: " .. tostring(message))
+	end, function(done)
+		task.defer(function()
+			local ok, message = pcall(model.Abort)
+			if not ok then
+				warnOnce("abort", "closing after a render fault failed: " .. tostring(message))
+			end
+			dropView()
+			done()
+		end)
+	end)
+	scope:add(model.Changed:Connect(draw))
+
+	-- 6. Entry events (GarageUI L695-696). Connected before the optional parts below, so the entrance always
+	-- finds its listener once start() has reached this line.
 	for _, entry in ipairs(Client._entries) do
 		local mode = entry.Mode
 		scope:connect(Client._introEvent(dealership, entry.Event).Event, function(payload)
@@ -166,38 +229,42 @@ local function run()
 		end)
 	end
 
-	watchCash(player, scope, model.SetReplicatedCash)
+	-- 7. Optional parts. None of them may fail start(): each is protected and reported once.
+	local function optional(name: string, body: () -> ())
+		local ok, message = pcall(body)
+		if not ok then
+			warnOnce(name, name .. " failed: " .. tostring(message))
+		end
+	end
+
+	-- GarageUI L131: the preview camera step. Kit.Perf runs it only while the live layer root shows, which is
+	-- exactly while a dealership or customise page shows.
+	optional("camera step", function()
+		scope:add(Perf.Bind("GarageCamera", live.Root, model.CameraStep))
+	end)
+
+	optional("Cash watch", function()
+		watchCash(player, scope, model.SetReplicatedCash)
+	end)
 
 	-- API2 5.7: GarageSessionActive (server-written) stays the only garage-open signal; Presence mirrors it so
 	-- other Pulse owners need not poll it.
-	local releasePresence = nil
-	local function mirrorSession()
-		local open = player:GetAttribute("GarageSessionActive") == true
-		if open and not releasePresence then
-			releasePresence = Presence.Open(SURFACE, "Garage")
-		elseif not open and releasePresence then
-			releasePresence()
-			releasePresence = nil
+	optional("presence", function()
+		local releasePresence = nil
+		local function mirrorSession()
+			local open = player:GetAttribute("GarageSessionActive") == true
+			if open and not releasePresence then
+				releasePresence = Presence.Open(SURFACE, "Garage")
+			elseif not open and releasePresence then
+				releasePresence()
+				releasePresence = nil
+			end
 		end
-	end
-	scope:connect(player:GetAttributeChangedSignal("GarageSessionActive"), mirrorSession)
-	mirrorSession()
-
-	-- 6. Closed until an entry event arrives. The static root (CanonicalCanvas) stays visible and empty: the
-	-- owned-garage desk parents its own root there and shows without one of our sessions. Our pages, the scrim and
-	-- the live layer are hidden by the view.
-	live.SetVisible(false)
-	view.Render("start")
-
-	Client.Controller = { Model = model, View = view, Layer = layer, Live = live, Scope = scope }
-
-	-- The Cash chip binding reaches the shared cash presenter, which may yield once; start does not wait for it.
-	task.spawn(function()
-		local ok, message = pcall(view.BindCash, player)
-		if not ok then
-			warnOnce("cash", "Cash binding failed: " .. tostring(message))
-		end
+		scope:connect(player:GetAttributeChangedSignal("GarageSessionActive"), mirrorSession)
+		mirrorSession()
 	end)
+
+	Client.Controller = controller
 end
 
 function Client.start()

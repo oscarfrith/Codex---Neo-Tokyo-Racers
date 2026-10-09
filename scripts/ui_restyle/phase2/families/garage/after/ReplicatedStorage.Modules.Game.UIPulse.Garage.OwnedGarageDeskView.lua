@@ -1,5 +1,5 @@
 -- Owns the Pulse drawing of the owned-garage desk (the OwnedGarageCanonicalWorkspace root and what is shown in it); not the desk's state, pages, remote calls or OwnedGarageManagementOpen, which stay in the fork Garage.OwnedGarageWorkspaceUI, and not the CanonicalGarageGui layer, which Garage.GarageClient creates.
--- Pulse UI (phase2). ReplicatedStorage.Modules.Game.UIPulse.Garage.OwnedGarageDeskView. Requires: Kit.Layers, Kit.Metrics, Kit.Tokens, Kit.Contracts, Kit.Surface, Kit.Controls, Kit.Collections, Kit.Data, Kit.Input, Kit.Presence, Core.ConnectionScope.
+-- Pulse UI (phase2). ReplicatedStorage.Modules.Game.UIPulse.Garage.OwnedGarageDeskView. Requires: Kit.Layers, Kit.Metrics, Kit.Tokens, Kit.Contracts, Kit.Surface, Kit.Controls, Kit.Collections, Kit.Data, Kit.Input, Kit.Presence, Core.ConnectionScope, Garage.GarageCompat.
 -- Interface the fork codes against (Classic UI.GarageWorkspaceUI, as used by UI.OwnedGarageWorkspaceUI): new(); .Root (Name, Visible, Active); .TouchMapEnabled; :Show(view); :RefreshCards(view); :Message(text); :Hide(); :IsTouchBlocked(position).
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -10,6 +10,7 @@ local ROOT_NAME = "OwnedGarageCanonicalWorkspace"
 local HOST_GUI = "CanonicalGarageGui"
 local HOST_ROOT = "CanonicalCanvas"
 local PRESENCE_SURFACE = "OwnedGarageWorkspace"
+local UNAVAILABLE_TEXT = "Garage unavailable"
 -- The tutorial pages the desk fork names (Classic UI.OwnedGarageWorkspaceUI line 126). Each has a mark key Page.<id>.
 local PAGE_IDS = { "GarageHome", "DisplayCars", "GarageAssetFamilies", "BuildStructure", "BuildDecorations" }
 local TIERS = { E = true, D = true, C = true, B = true, A = true, S = true }
@@ -214,6 +215,7 @@ function DeskView:_build()
 	self._rail = self:_track(Collections.Rail(layer.Slot("BottomRail"), {
 		Heading = "MANAGE",
 		Count = "",
+		SelectOn = "Activate", -- a card here navigates or starts a server preview: gamepad focus only highlights
 		OnSelected = function(key)
 			if self._rendering then
 				return
@@ -616,18 +618,57 @@ function DeskView:_apply(context, full)
 	if not ok then
 		warnOnce("apply", "render failed: " .. tostring(problem))
 	end
+	return ok
+end
+
+-- Pure. The close function of a fork view, or nil. Classic UI.OwnedGarageWorkspaceUI line 126 gives every view
+-- OnExit = close, and close (line 37) is the Classic close path: it clears PlayerGui@OwnedGarageManagementOpen,
+-- hides the workspace and, inside a garage, cancels the previews and tells the server the desk is shut.
+function DeskView._closeOf(context)
+	local close = type(context) == "table" and context.OnExit or nil
+	return type(close) == "function" and close or nil
+end
+
+-- The desk could not be attached, built or drawn. It used to be shown anyway: an empty root with
+-- OwnedGarageManagementOpen true and no Exit to press. Now nothing is shown, the fork's own close runs (so the
+-- attribute is cleared by its Classic owner, not written here) and the player is told. Deferred: Show is called
+-- from inside the fork's open or render, which finishes its own statement first.
+function DeskView:_fail(context)
+	self.Root.Visible = false
+	self._context = nil
+	self._action = nil
+	if self._releasePresence then
+		self._releasePresence()
+		self._releasePresence = nil
+	end
+	if self._fixture then
+		return
+	end
+	local close = DeskView._closeOf(context)
+	if close then
+		task.defer(close)
+	else
+		warnOnce("close", "the failed desk has no OnExit to close through; OwnedGarageManagementOpen was not cleared")
+	end
+	local ok, problem = pcall(function()
+		require(script.Parent.GarageCompat).Notify(UNAVAILABLE_TEXT)
+	end)
+	if not ok then
+		warnOnce("notify", "toast failed: " .. tostring(problem))
+	end
 end
 
 function DeskView:Show(context)
-	local ready = self:_ensure()
+	if not self:_ensure() then
+		self:_fail(context)
+		return
+	end
 	self.Root.Visible = true
 	if not self._releasePresence and not self._fixture then
 		self._releasePresence = require(kit.Presence).Open(PRESENCE_SURFACE, "Garage")
 	end
-	if ready then
-		self:_apply(context, true)
-	else
-		self._context = context
+	if not self:_apply(context, true) then
+		self:_fail(context)
 	end
 end
 

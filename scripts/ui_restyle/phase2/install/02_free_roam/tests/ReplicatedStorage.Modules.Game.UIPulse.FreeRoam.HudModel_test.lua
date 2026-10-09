@@ -308,6 +308,19 @@ return function(M, env)
 		expect(not h.Model.IsMinimapShowing(), "minimap not showing")
 	end)
 
+	case("driving an owned vehicle makes its tier and rating known", function()
+		local h = harness()
+		local humanoid = h.Seat()
+		local vehicle = humanoid.SeatPart.Parent
+		vehicle.Attributes.PerformanceTier = "A"
+		vehicle.Attributes.PerformanceIndex = 812
+		h.Model.SetDriving(true)
+		local state = h.Model.GetState()
+		expect(state.Vehicle ~= nil and state.Vehicle.Tier == "A" and state.Vehicle.Rating == 812, "read from the seated vehicle")
+		h.Model.SetDriving(false)
+		expect(state.Vehicle ~= nil, "a parked vehicle stays known until it is despawned")
+	end)
+
 	case("driving shows the gauge and the bottom buttons; unchanged value fires nothing", function()
 		local h = harness()
 		h.Model.SetDriving(true)

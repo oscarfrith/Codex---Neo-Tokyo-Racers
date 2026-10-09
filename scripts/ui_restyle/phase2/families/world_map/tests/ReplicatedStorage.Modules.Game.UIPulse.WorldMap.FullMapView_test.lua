@@ -215,7 +215,9 @@ return function(View, env)
 			view.Step(mapTable, nil)
 			expect(snapshot(parent), stepped, "an unchanged step writes nothing")
 			expect(view.HitTest(Vector2.new(ctx.Size.X / 2, ctx.Size.Y / 2)), "Poi_A", "hit test goes to the icon layer")
-			expect(view.ToLocal(Vector2.new(5, 6)), Vector2.new(5, 6), "detached map view sits at the origin")
+			-- The stage root is inset on Compact, so the map view's own origin is the reference, not (0, 0).
+			local origin = view.MapView.AbsolutePosition
+			expect(view.ToLocal(Vector2.new(origin.X + 5, origin.Y + 6)), Vector2.new(5, 6), "ToLocal is relative to the map view")
 
 			view.Destroy()
 			view.Destroy()

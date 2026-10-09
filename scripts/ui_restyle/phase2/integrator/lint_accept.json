@@ -1,0 +1,33 @@
+{
+ "accept": [
+  {
+   "file": "ReplicatedFirst.Loading.StartScreenPulse.lua",
+   "rule": "classic-require",
+   "contains": "LoadingTransitionRuntime",
+   "reason": "Kept fork line: Classic InitialLoadingAndStartScreenClient line 21, byte for byte (API2 5.8 keeps 20-21); the loading runtime is shared by both styles and has no Pulse copy.",
+   "reviewer": "Claude (shell reviewer-fix pass, 2026-10-09); build_forks.py shell reports the hand assembly matches"
+  },
+  {
+   "file": "ReplicatedFirst.Loading.LoadingScreenViewPulse.lua",
+   "rule": "frame-signal",
+   "line": 319,
+   "contains": "RenderStepped",
+   "reason": "Carried Classic line: LoadingScreenView line 187, the bounded grid-promotion wait (API2 5.8: artwork handling is carried from the Classic view unchanged).",
+   "reviewer": "Claude (shell reviewer-fix pass, 2026-10-09); compared with classic/sources line 187"
+  },
+  {
+   "file": "ReplicatedStorage.Modules.Game.UIPulse.World.WorldPromptModel.lua",
+   "rule": "remote-action-server-only",
+   "contains": "'GetEntryDetails'",
+   "reason": "Approved read-only request for the event card: programme contract scripts/ui_restyle/CONTRACT.md section 7.2 (\"two existing rate-limited requests, once per show, cached per event\") and API2 5.4 (Event card); Phase 0 confirmed the server-side rate limit. Existing remote Remotes.Racing.RaceRequest, existing server action, no new payload key.",
+   "reviewer": "Claude (parity clean-up pass, 2026-10-09); integrator instruction"
+  },
+  {
+   "file": "ReplicatedStorage.Modules.Game.UIPulse.World.WorldPromptModel.lua",
+   "rule": "remote-action-owner",
+   "contains": "'GetTimeTrialPersonalBest'",
+   "reason": "Approved read-only request for the event card: programme contract scripts/ui_restyle/CONTRACT.md section 7.2 (\"two existing rate-limited requests, once per show, cached per event\") and API2 5.4 (Event card); Phase 0 confirmed the server-side rate limit. Existing remote Remotes.Racing.RaceRequest, existing server action, no new payload key.",
+   "reviewer": "Claude (parity clean-up pass, 2026-10-09); integrator instruction"
+  }
+ ]
+}

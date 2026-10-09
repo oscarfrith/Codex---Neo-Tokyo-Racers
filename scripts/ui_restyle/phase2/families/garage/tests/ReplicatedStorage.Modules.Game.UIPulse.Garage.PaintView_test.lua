@@ -108,5 +108,14 @@ return function(M, env)
 		scope:destroy()
 	end)
 
+	case("seed: an unset channel starts at Classic's pure white (GarageUI L523), a set one at its colour", function()
+		expect(M._seed(nil) == Color3.new(1, 1, 1), "unset is Color3.new(1,1,1)")
+		expect(M._seed("red") == Color3.new(1, 1, 1), "a value that is not a colour counts as unset")
+		local h, s, v = Color3.toHSV(M._seed(nil))
+		expect(s == 0 and v == 1, "saturation 0, value 1: not the kit White token, got " .. tostring(h) .. " " .. tostring(s) .. " " .. tostring(v))
+		local set = Color3.fromRGB(12, 200, 90)
+		expect(M._seed(set) == set, "a set channel is unchanged")
+	end)
+
 	return results
 end

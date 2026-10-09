@@ -34,6 +34,9 @@ local TAB_ORDER = table.freeze({ "All", "TimeTrials", "Races" }) -- RaceMenuMode
 -- Fact row id -> icon. The route row keeps the Classic circuit / point-to-point split (269).
 local FACT_ICON = table.freeze({ Laps = "laps", Checkpoints = "checkpoints", Players = "players" })
 
+-- Mockup 02: the event list takes a third of the body, and never less than the kit's list width (NOTES Q12).
+local LIST_SHARE = 1 / 3
+
 local warned = {}
 local function warnOnce(message)
 	if not warned[message] then
@@ -202,7 +205,18 @@ function View.Mount(layer, model, scope)
 
 		tree.Hero = keep(Surface.Panel(body, { Name = "Hero", Pad = 0, Hairlines = false, Visible = false }, scope))
 		tree.HeroPicture = newPicture("TrackPicture", tree.Hero.Content, Enum.ScaleType.Crop)
-		tree.HeroIndex = keep(Text.Label(tree.Hero.Content, {
+		-- Mockup 02: "EVENT n OF m" sits on a dark plate in the hero's top-left corner. The plate is a kit Panel
+		-- that follows the label's drawn size plus the page padding on every side (set in layout). Until the label
+		-- has a drawn size the plate is one padding square under the label's corner; it is never hidden, so the
+		-- label's own sizing does not depend on it.
+		tree.HeroIndexPlate = keep(Surface.Panel(tree.Hero.Content, {
+			Name = "EventIndexPlate",
+			Pad = Tokens.Space.Pad,
+			Hairlines = false,
+			Width = Tokens.Space.Pad,
+			Height = Tokens.Space.Pad,
+		}, scope))
+		tree.HeroIndex = keep(Text.Label(tree.HeroIndexPlate.Content, {
 			Name = "EventIndex",
 			Text = "",
 			Role = "Label",
@@ -210,6 +224,20 @@ function View.Mount(layer, model, scope)
 			Align = "Left",
 			Shadow = true,
 		}, scope))
+		tree.IndexInset = 0
+		tree.FitIndexPlate = function()
+			if destroyed or tree.Destroyed then
+				return
+			end
+			local size = tree.HeroIndex.Instance.AbsoluteSize
+			if size.X > 0 and size.Y > 0 then
+				patch(tree, "HeroIndexPlate", tree.HeroIndexPlate, {
+					Width = design(size.X + tree.IndexInset),
+					Height = design(size.Y + tree.IndexInset),
+				})
+			end
+		end
+		scope:connect(tree.HeroIndex.Instance:GetPropertyChangedSignal("AbsoluteSize"), tree.FitIndexPlate)
 		tree.HeroTitle = keep(Text.Label(tree.Hero.Content, {
 			Name = "EventName",
 			Text = "",
@@ -290,6 +318,7 @@ function View.Mount(layer, model, scope)
 	end
 
 	local function destroyTree(tree)
+		tree.Destroyed = true
 		for index = #tree.Components, 1, -1 do
 			tree.Components[index].Destroy()
 		end
@@ -343,7 +372,7 @@ function View.Mount(layer, model, scope)
 		else
 			-- Mockup 02: list on the left; hero over map and facts on the right.
 			pad = ctx.Px(Tokens.Space.Pad)
-			listWidth = math.min(ctx.Px(Tokens.Space.ListWidth), width)
+			listWidth = math.min(math.max(ctx.Px(Tokens.Space.ListWidth), math.floor(width * LIST_SHARE)), width)
 			detailX = listWidth + gap
 			heroWidth = math.max(0, width - detailX)
 			heroHeight = math.max(0, math.floor((height - gap) / 2))
@@ -363,7 +392,10 @@ function View.Mount(layer, model, scope)
 		panelRect(tree, "MapRect", tree.Map, detailX, mapY, mapWidth, mapHeight)
 		panelRect(tree, "FactsRect", tree.Facts, factsX, factsY, factsWidth, factsHeight)
 
-		setProperty(tree.HeroIndex.Instance, "Position", UDim2.fromOffset(pad, pad))
+		-- The label sits in the plate's content, which the plate insets by `pad` on every side.
+		patch(tree, "HeroIndexPad", tree.HeroIndexPlate, { Pad = design(pad) })
+		tree.IndexInset = pad + pad
+		tree.FitIndexPlate()
 		setProperty(tree.HeroTitle.Instance, "Position", UDim2.fromOffset(pad, heroHeight - pad))
 		setProperty(tree.MapPlaceholder.Instance, "Position", UDim2.fromOffset(pad, pad))
 		patch(tree, "HeroTitleWidth", tree.HeroTitle, { MaxWidth = design(math.max(1, heroWidth - pad - pad)) })
@@ -374,22 +406,19 @@ function View.Mount(layer, model, scope)
 	local function listItems(tree)
 		local result = {}
 		for index, item in ipairs(model.Items()) do
-			local row = { Key = item.Key, Title = item.Title }
+			-- Route type and modes on the line over the name (a ListRow has one sub-line, above the title).
+			local row = { Key = item.Key, Title = item.Title, Sub = item.TypeLine }
 			if item.Thumbnail ~= "" then
 				row.Image = item.Thumbnail
 			end
 			if tree.Compact then
 				-- c05: name, type and modes, laps and players, prize chip.
-				row.Sub = item.TypeLine
 				row.Right = item.Laps .. " " .. STRINGS.Laps .. "  \u{00B7}  " .. item.Players
 				row.Chip = item.Prize
 				row.ChipKind = "Yellow"
-			else
-				-- Mockup 02: the route line as a small tag, the modes under the name.
-				row.Sub = item.Availability
-				row.Chip = item.Descriptor
-				row.ChipKind = "Neutral"
 			end
+			-- Regular (mockup 02): no chip and no right-hand text. Whatever sits on the right of a ListRow is taken
+			-- off the title's width, and the route chip cut the event name short; laps are in the facts panel.
 			result[index] = row
 		end
 		return result

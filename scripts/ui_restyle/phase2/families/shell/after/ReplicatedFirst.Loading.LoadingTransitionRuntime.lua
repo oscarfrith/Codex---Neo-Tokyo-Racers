@@ -5,8 +5,8 @@ local RunService = game:GetService("RunService")
 
 local packageFolder = game:GetService("ReplicatedFirst"):WaitForChild("Loading")
 local Catalog = require(game:GetService("ReplicatedFirst"):WaitForChild("Loading"):WaitForChild("LoadingArtworkCatalog"))
-local okStyle, pulseShell = pcall(function() return require(game:GetService("ReplicatedFirst"):FindFirstChild("UIStyleSwitch")).Active("Shell") end)
-local View = require(game:GetService("ReplicatedFirst"):WaitForChild("Loading"):WaitForChild((okStyle and pulseShell) and "LoadingScreenViewPulse" or "LoadingScreenView"))
+local okPulse, pulseView = pcall(function() local module = require(game:GetService("ReplicatedFirst"):FindFirstChild("UIStyleSwitch")).Active("Shell") and packageFolder:FindFirstChild("LoadingScreenViewPulse"); return module and require(module) or nil end)
+local View = (okPulse and type(pulseView) == "table" and pulseView) or require(game:GetService("ReplicatedFirst"):WaitForChild("Loading"):WaitForChild("LoadingScreenView"))
 
 local Runtime = {}
 local singleton = nil

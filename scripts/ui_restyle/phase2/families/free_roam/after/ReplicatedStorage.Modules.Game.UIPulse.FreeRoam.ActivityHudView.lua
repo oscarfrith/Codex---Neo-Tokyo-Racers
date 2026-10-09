@@ -90,6 +90,17 @@ function View._timerWidth(trackWidth, elapsed, timeout)
 	return math.floor(trackWidth * fraction + 0.5)
 end
 
+-- The whole-pixel offset that puts a box of this size on a slot anchor (0.5: centred on it; 1: ending at it).
+function View._boxPlace(width, height, anchor)
+	return -math.floor(width * anchor.X), -math.floor(height * anchor.Y)
+end
+
+-- How far under the toast slot the job strip starts: the height Overlay.Toast's stack can take with its default
+-- MaxCards cards of the minimum card height, each followed by the stack gap.
+function View._stripTop(cards, cardHeight, gap)
+	return cards * (cardHeight + gap)
+end
+
 -- Kit-backed pieces for the shared views ---------------------------------------------------------------------
 
 -- ctx.UI.Button(parent, props) with the Classic call shape (RacingUIComponents.Button). Returns the kit button's
@@ -185,10 +196,36 @@ local function put(instance, property, value)
 	end
 end
 
+-- For a frame with a Size set in code.
 local function attach(instance, slot)
 	instance.AnchorPoint = slot.AnchorPoint
 	instance.Position = UDim2.new()
 	instance.Parent = slot
+end
+
+-- For a flow holder that hugs its content: the HudView row pattern. AutomaticSize on a holder that carries a slot's
+-- AnchorPoint is not relied on (the HUD action bar sat off its slot that way). The holder keeps AnchorPoint 0,0, is
+-- sized in code from its flow's content, and its Position is the whole-pixel offset that puts that box on the
+-- slot anchor, plus `top`. Returns the function that sets `top` (real pixels under the slot).
+local function fitted(holder, flow, slot, scope)
+	local top = 0
+	local function fit()
+		local content = flow.AbsoluteContentSize
+		local width, height = math.ceil(content.X), math.ceil(content.Y)
+		local x, y = View._boxPlace(width, height, slot.AnchorPoint)
+		put(holder, "Size", UDim2.fromOffset(width, height))
+		put(holder, "Position", UDim2.fromOffset(x, y + top))
+	end
+	scope:connect(flow:GetPropertyChangedSignal("AbsoluteContentSize"), fit)
+	scope:connect(slot:GetPropertyChangedSignal("AnchorPoint"), fit)
+	holder.Parent = slot
+	fit()
+	return function(offset)
+		if top ~= offset then
+			top = offset
+			fit()
+		end
+	end
 end
 
 -- View.Mount(layer, model, scope, liveLayer). `layer` is the static ActivityHud layer (job strip); `liveLayer` is
@@ -214,7 +251,6 @@ function View.Mount(layer, model, scope, liveLayer)
 
 	-- Job strip (static layer): [edge | text] [X].
 	local strip = plain("JobStrip", nil)
-	strip.AutomaticSize = Enum.AutomaticSize.XY
 	strip.Visible = false
 	local stripFlow = list(strip, Enum.FillDirection.Horizontal, false)
 	local plate = plain("Plate", strip)
@@ -241,7 +277,9 @@ function View.Mount(layer, model, scope, liveLayer)
 			model.Cancel()
 		end,
 	}, scope))
-	attach(strip, layer.Slot("TopCentreHud"))
+	-- Top centre, under the toast stack: the toast owner's slot (TopCentre) plus the stack's height, set in layout().
+	-- TopCentreHud (the race timer's slot) starts above the first toast card, so a strip there sat under a toast.
+	local setStripTop = fitted(strip, stripFlow, layer.Slot("TopCentre"), scope)
 
 	-- Offer card (live layer).
 	local offer = plain("Offer", nil)
@@ -273,7 +311,6 @@ function View.Mount(layer, model, scope, liveLayer)
 
 	-- Countdown (live layer): label, image digits, then "GO!".
 	local countdown = plain("Countdown", nil)
-	countdown.AutomaticSize = Enum.AutomaticSize.XY
 	countdown.Visible = false
 	local countdownFlow = list(countdown, Enum.FillDirection.Vertical, true)
 	local countdownLabel = keep(Text.Label(countdown, { Name = "Label", Text = "", Role = "SectionHead", Shadow = true, LayoutOrder = 1 }, scope))
@@ -283,7 +320,7 @@ function View.Mount(layer, model, scope, liveLayer)
 	local countdownGo = keep(Text.Label(countdown, {
 		Name = "Go", Text = "GO!", Role = "ScreenTitle", Colour = "Cyan", Shadow = true, LayoutOrder = 3, Visible = false,
 	}, scope))
-	attach(countdown, liveLayer.Slot("Centre"))
+	fitted(countdown, countdownFlow, liveLayer.Slot("Centre"), scope)
 	local shownCountdown = nil
 	local lastKind, lastWhole = nil, nil
 
@@ -339,9 +376,12 @@ function View.Mount(layer, model, scope, liveLayer)
 		local gap = ctx.Px(Space.Gap)
 		local hair = ctx.Hair(Space.Hairline)
 
-		-- Strip. On Compact the action bar is top centre (API2 2.4), so the strip sits under it.
+		-- Strip: under the area the toast stack can take (Overlay.Toast: Space.ToastMaxCards cards, each at least a
+		-- button high, ToastGap apart), measured from the toast slot. That is also under the Compact action bar,
+		-- which is top centre (API2 2.4).
 		local stripHeight = ctx.Px(compact and Space.CompactStatusHeight or Space.StatusHeight)
-		put(strip, "Position", UDim2.fromOffset(0, compact and (ctx.Touch(Space.CompactActionTile) + ctx.Px(Space.TouchGap)) or 0))
+		local toastCard = ctx.Px(compact and Space.CompactButtonDrawn or Space.ButtonHeight)
+		setStripTop(View._stripTop(Space.ToastMaxCards, toastCard, ctx.Px(Space.ToastGap)))
 		put(stripFlow, "Padding", UDim.new(0, hair))
 		put(plate, "Size", UDim2.fromOffset(0, stripHeight))
 		put(plateFlow, "Padding", UDim.new(0, gap))

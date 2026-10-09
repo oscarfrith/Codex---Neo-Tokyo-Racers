@@ -42,8 +42,8 @@ return function(M, env)
 		local bindables = {}
 		for _, name in ipairs({ "FreeRoamHudPresentationMode", "FreeRoamVehicleSpawned" }) do
 			local fake = {}
-			function fake:Fire(payload)
-				table.insert(log.fires, { name = name, payload = payload })
+			function fake:Fire(...)
+				table.insert(log.fires, { name = name, payload = (...), count = select("#", ...) })
 			end
 			bindables[name] = fake
 		end
@@ -73,11 +73,13 @@ return function(M, env)
 				log.renders += 1
 			end,
 		})
+		-- One entry per fire. A fire with no argument (the driving hand-off, Q26 `signal:Fire()`) is listed as
+		-- false: a nil would not be counted by `#`.
 		local function fired(name)
 			local list = {}
 			for _, entry in ipairs(log.fires) do
 				if entry.name == name then
-					table.insert(list, entry.payload)
+					table.insert(list, if entry.count == 0 then false else entry.payload)
 				end
 			end
 			return list
@@ -187,6 +189,7 @@ return function(M, env)
 		end
 		expect(#log.streams == 1 and log.streams[1].routeId == "canal_route" and log.streams[1].index == 3, "stream request")
 		expect(#fired("FreeRoamVehicleSpawned") == 1, "hand-off")
+		expect(fired("FreeRoamVehicleSpawned")[1] == false, "the hand-off fires with no argument (Classic Q26)")
 		log.delays[1].fn()
 		expect(#fired("FreeRoamVehicleSpawned") == 2, "hand-off again")
 		local second, secondLog = harness()

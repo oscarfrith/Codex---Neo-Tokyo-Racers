@@ -35,7 +35,7 @@
     },
     "ReplicatedStorage.Modules.Game.UIPulse.Kit.Minimap": {
      "file": "00_kit/after/ReplicatedStorage.Modules.Game.UIPulse.Kit.Minimap.lua",
-     "fp": "1127224829-3758095913-18705",
+     "fp": "3877836414-359801508-19093",
      "class": "ModuleScript",
      "kind": "create"
     },
@@ -224,7 +224,7 @@
     },
     "ReplicatedStorage.Modules.Game.UIPulse.RaceMenu.RaceMenuView": {
      "file": "01_race_menu/after/ReplicatedStorage.Modules.Game.UIPulse.RaceMenu.RaceMenuView.lua",
-     "fp": "823200064-2144548226-19288",
+     "fp": "461382230-2919495214-20831",
      "class": "ModuleScript",
      "kind": "create"
     },
@@ -266,7 +266,7 @@
    "scripts": {
     "ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.HudModel": {
      "file": "02_free_roam/after/ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.HudModel.lua",
-     "fp": "3693285658-3036847774-27365",
+     "fp": "1949644849-4042251949-27873",
      "class": "ModuleScript",
      "kind": "create"
     },
@@ -278,7 +278,7 @@
     },
     "ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.CarPanelView": {
      "file": "02_free_roam/after/ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.CarPanelView.lua",
-     "fp": "682029326-2433073372-7817",
+     "fp": "656900188-58472466-8953",
      "class": "ModuleScript",
      "kind": "create"
     },
@@ -290,7 +290,7 @@
     },
     "ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.HudView": {
      "file": "02_free_roam/after/ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.HudView.lua",
-     "fp": "3344258347-2524622675-12095",
+     "fp": "3239181540-307432124-13710",
      "class": "ModuleScript",
      "kind": "create"
     },
@@ -320,7 +320,7 @@
     },
     "ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.ActivityHudView": {
      "file": "02_free_roam/after/ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.ActivityHudView.lua",
-     "fp": "144785964-147670028-19934",
+     "fp": "3347297244-1563084512-21962",
      "class": "ModuleScript",
      "kind": "create"
     },
@@ -350,13 +350,13 @@
     },
     "ReplicatedStorage.Modules.Game.UIPulse.Map.MapIcons": {
      "file": "02_free_roam/after/ReplicatedStorage.Modules.Game.UIPulse.Map.MapIcons.lua",
-     "fp": "1069087350-1994973072-9606",
+     "fp": "2849893803-3901674061-9896",
      "class": "ModuleScript",
      "kind": "create"
     },
     "ReplicatedStorage.Modules.Game.UIPulse.Map.MapRoute": {
      "file": "02_free_roam/after/ReplicatedStorage.Modules.Game.UIPulse.Map.MapRoute.lua",
-     "fp": "703873268-3273904358-11273",
+     "fp": "3267996957-3064001795-11326",
      "class": "ModuleScript",
      "kind": "create"
     },
@@ -409,7 +409,7 @@
     },
     "ReplicatedStorage.Modules.Game.UIPulse.WorldMap.FullMapView": {
      "file": "03_world_map/after/ReplicatedStorage.Modules.Game.UIPulse.WorldMap.FullMapView.lua",
-     "fp": "2297422066-201530948-20052",
+     "fp": "2138897736-3595390640-20308",
      "class": "ModuleScript",
      "kind": "create"
     },
@@ -560,6 +560,68 @@
     "ReplicatedStorage.Modules.Game.UIPulse.RaceSession.ResultsModel": "04_race_session/tests/ReplicatedStorage.Modules.Game.UIPulse.RaceSession.ResultsModel_test.lua",
     "ReplicatedStorage.Modules.Game.UIPulse.RaceSession.ResultsView": "04_race_session/tests/ReplicatedStorage.Modules.Game.UIPulse.RaceSession.ResultsView_test.lua",
     "ReplicatedStorage.Modules.Game.UIPulse.Routes": "04_race_session/tests/ReplicatedStorage.Modules.Game.UIPulse.Routes_test.lua"
+   },
+   "installable": true,
+   "provisional": []
+  },
+  "05_race_entry": {
+   "unit": "race_entry",
+   "scripts": {
+    "ReplicatedStorage.Modules.Game.UIPulse.RaceEntry.RaceEntryModel": {
+     "file": "05_race_entry/after/ReplicatedStorage.Modules.Game.UIPulse.RaceEntry.RaceEntryModel.lua",
+     "fp": "172438746-1491013878-36608",
+     "class": "ModuleScript",
+     "kind": "create"
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.RaceEntry.SetupView": {
+     "file": "05_race_entry/after/ReplicatedStorage.Modules.Game.UIPulse.RaceEntry.SetupView.lua",
+     "fp": "346240186-389355312-20527",
+     "class": "ModuleScript",
+     "kind": "create"
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.RaceEntry.RecordsView": {
+     "file": "05_race_entry/after/ReplicatedStorage.Modules.Game.UIPulse.RaceEntry.RecordsView.lua",
+     "fp": "2644010271-3703773859-11887",
+     "class": "ModuleScript",
+     "kind": "create"
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.RaceEntry.VehicleView": {
+     "file": "05_race_entry/after/ReplicatedStorage.Modules.Game.UIPulse.RaceEntry.VehicleView.lua",
+     "fp": "2850435360-3949539406-10498",
+     "class": "ModuleScript",
+     "kind": "create"
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.RaceEntry.RaceEntryClient": {
+     "file": "05_race_entry/after/ReplicatedStorage.Modules.Game.UIPulse.RaceEntry.RaceEntryClient.lua",
+     "fp": "4201803031-432974165-7463",
+     "class": "ModuleScript",
+     "kind": "create"
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.RaceEntry": {
+     "file": "05_race_entry/after/ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.RaceEntry.lua",
+     "fp": "1019909944-3218970760-16611",
+     "class": "ModuleScript",
+     "kind": "create"
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.Routes": {
+     "file": "05_race_entry/after/ReplicatedStorage.Modules.Game.UIPulse.Routes.lua",
+     "fp": "580353436-565637674-9958",
+     "class": "ModuleScript",
+     "kind": "source",
+     "classic": false
+    }
+   },
+   "folders": [
+    "ReplicatedStorage.Modules.Game.UIPulse.RaceEntry"
+   ],
+   "tests": {
+    "ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.RaceEntry": "05_race_entry/tests/ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.RaceEntry_test.lua",
+    "ReplicatedStorage.Modules.Game.UIPulse.RaceEntry.RaceEntryClient": "05_race_entry/tests/ReplicatedStorage.Modules.Game.UIPulse.RaceEntry.RaceEntryClient_test.lua",
+    "ReplicatedStorage.Modules.Game.UIPulse.RaceEntry.RaceEntryModel": "05_race_entry/tests/ReplicatedStorage.Modules.Game.UIPulse.RaceEntry.RaceEntryModel_test.lua",
+    "ReplicatedStorage.Modules.Game.UIPulse.RaceEntry.RecordsView": "05_race_entry/tests/ReplicatedStorage.Modules.Game.UIPulse.RaceEntry.RecordsView_test.lua",
+    "ReplicatedStorage.Modules.Game.UIPulse.RaceEntry.SetupView": "05_race_entry/tests/ReplicatedStorage.Modules.Game.UIPulse.RaceEntry.SetupView_test.lua",
+    "ReplicatedStorage.Modules.Game.UIPulse.RaceEntry.VehicleView": "05_race_entry/tests/ReplicatedStorage.Modules.Game.UIPulse.RaceEntry.VehicleView_test.lua",
+    "ReplicatedStorage.Modules.Game.UIPulse.Routes": "05_race_entry/tests/ReplicatedStorage.Modules.Game.UIPulse.Routes_test.lua"
    },
    "installable": true,
    "provisional": []

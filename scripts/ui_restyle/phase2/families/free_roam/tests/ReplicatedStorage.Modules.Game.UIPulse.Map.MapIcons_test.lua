@@ -187,6 +187,21 @@ return function(_M, env)
 		expect(snapshot(content), beforeContent, "second step, content")
 		expect(snapshot(overlay), beforeOverlay, "second step, overlay")
 
+		-- A restyle of a shown icon keeps it shown: Surface re-applies the component's own Visible on Set.
+		local main = content:FindFirstChild("MapIcons")
+		local function shownIcons()
+			local n = 0
+			for _, child in main:GetChildren() do
+				if child.Visible then
+					n += 1
+				end
+			end
+			return n
+		end
+		expect(shownIcons(), 1, "one icon in view")
+		markers.Set("Poi_A", { Position = Vector3.new(100, 0, -250), Icon = "Garage", Kind = "Place", Priority = 14, Minimap = true, FullMap = true, EdgeClamp = false })
+		expect(shownIcons(), 1, "a restyled icon stays shown")
+
 		-- A marker leaves and another arrives: the pooled instance is reused.
 		local count = #content:GetDescendants()
 		markers.Remove("Poi_B")

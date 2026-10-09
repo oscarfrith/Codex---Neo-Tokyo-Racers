@@ -2222,6 +2222,26 @@ function Model.new(deps: any)
 		end
 	end
 
+	-- Pulse only (no Classic line): the way out when the screen cannot be drawn. The client calls it after a render
+	-- fault, when there is no Exit or Drive button to press. It runs the Exit sequence unchanged (GarageUI L195:
+	-- loading Begin, session End, close, GarageClosedFromDealershipExit, loading Complete) from any page. When the
+	-- server refuses or does not answer End, the client still closes its own side, as Classic does at L684 and L689
+	-- where it ignores the End reply because it has no page to stay on. Sends nothing while no session is active.
+	-- Returns true when a session was closed.
+	function self.Abort(text: any): boolean
+		if not active then
+			return false
+		end
+		exitBrowser()
+		if active then
+			closeSession()
+			fireClosed()
+			setPage({ Id = "Closed" })
+		end
+		notify(tostring(text or TEXT.GarageUnavailable))
+		return true
+	end
+
 	-- A tile was pressed (every page).
 	function self.SelectItem(key: string)
 		local handler = page.Select and page.Select[key]
@@ -2273,10 +2293,15 @@ function Model.new(deps: any)
 			if page.Source.OwnedLocked then
 				return -- GarageUI L342: the Owned card is locked while the slot has no compatible owned module
 			end
-			chooseSource("Owned") -- GarageUI L343
-		elseif source == "Buy" then
-			chooseSource("Buy") -- GarageUI L344
+		elseif source ~= "Buy" then
+			return
 		end
+		-- The switch is drawn on the Options page only, so a press is Classic's Back from Options (GarageUI
+		-- L363-367: clear the transient preview, then buildPreview at L367) followed by the source card (L343 or
+		-- L344). Without the rebuild the 3D vehicle kept a previewed, unbought module after the switch.
+		clearTransientModulePreview() -- GarageUI L363
+		buildPreview() -- GarageUI L367
+		chooseSource(source) -- GarageUI L343 (Owned), L344 (Buy)
 	end
 
 	function self.SelectPicker(id: string)

@@ -1033,10 +1033,28 @@ end
 -- Rail
 ---------------------------------------------------------------------------------------------------
 
-local RAIL_KEYS = keySet({ "Heading", "Count", "CellWidth", "Width", "Rows", "OnSelected" })
+local RAIL_KEYS = keySet({ "Heading", "Count", "CellWidth", "Width", "Rows", "OnSelected", "SelectOn" })
+
+-- Pure. Does this input select a rail tile? cause is "Activate" (click, tap, gamepad A) or "Focus" (a gamepad or
+-- keyboard focus move). SelectOn nil or "Focus": both select (the rail as it has always been). SelectOn
+-- "Activate": focus only highlights the tile (its own focused look) and selection needs an activation, for rails
+-- whose selection navigates or previews a purchase.
+function Collections._railSelects(selectOn, cause)
+	if cause == "Focus" then
+		return selectOn ~= "Activate"
+	end
+	return true
+end
+
+local function checkSelectOn(value)
+	if value ~= nil and value ~= "Focus" and value ~= "Activate" then
+		error("[Pulse.Collections] Rail: SelectOn is \"Focus\" or \"Activate\", got " .. tostring(value), 3)
+	end
+end
 
 function Collections.Rail(parent, props, scope)
 	local state = readProps("Rail", RAIL_KEYS, {}, props)
+	checkSelectOn(state.SelectOn)
 	local ctx = Metrics.Of(parent)
 	local bag = {}
 	local destroyed = false
@@ -1259,7 +1277,7 @@ function Collections.Rail(parent, props, scope)
 		return true
 	end
 
-	-- A click or a focus move: select, then tell the owner.
+	-- A click, or a focus move unless SelectOn is "Activate": select, then tell the owner.
 	local function choose(key)
 		if destroyed or key == nil or items[key] == nil then
 			return
@@ -1286,7 +1304,11 @@ function Collections.Rail(parent, props, scope)
 				choose(slot.Key)
 			end,
 			Focused = function()
-				choose(slot.Key)
+				if Collections._railSelects(state.SelectOn, "Focus") then
+					choose(slot.Key)
+				elseif not destroyed and slot.Key ~= nil then
+					self.ScrollTo(slot.Key) -- highlight only: keep the focused tile in view, select nothing
+				end
 			end,
 		})
 		tile.Instance.ZIndex = 1
@@ -1440,6 +1462,9 @@ function Collections.Rail(parent, props, scope)
 	end
 
 	function self.Set(patch)
+		if type(patch) == "table" then
+			checkSelectOn(patch.SelectOn)
+		end
 		if destroyed or not mergePatch("Rail", RAIL_KEYS, state, patch) then
 			return
 		end

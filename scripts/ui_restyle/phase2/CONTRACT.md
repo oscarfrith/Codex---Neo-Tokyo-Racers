@@ -187,7 +187,7 @@ Recorded changes to the programme contract in this wave (each needs the reviewer
 1. **`ResponsiveUIFoundation` is required by one Pulse module, `Kit.Data`**, for the cash presenter, money formatters, `ProjectEconomy` and `BindReplicatedCash` (PC 2.1 says these are reused unchanged; API1 rule 3 forbade the require). A2 3.5.
 2. **`RaceRouteGuideClient` is a fork, not a new owner** (PC 1.7 listed the route-guide prompt under new owners). Its 3D guide is excluded world art; only the wrong-way label is replaced. A2 5.5.
 3. **The RaceTransitionClient seam styles the label through `Kit.Text.StyleForeign`** after the Classic literals instead of branching them: four inserted lines, Classic statements untouched. A2 5.5.
-4. **`LoadingTransitionRuntime` line 8 becomes two lines** so a missing latch gives Classic (PC 1.6 said "line 8 only"). A2 5.8.
+4. **`LoadingTransitionRuntime` line 8 becomes two lines** so a missing latch, a missing `LoadingScreenViewPulse` or one that errors on require gives the Classic view (PC 1.6 said "line 8 only"): the Pulse view is found with `FindFirstChild` and required inside the same `pcall` as the latch, and the Classic require of line 8 is the fallback, as written. The start-screen guard in `InitialLoadingAndStartScreenClient` is protected the same way and returns only when `StartScreenPulse.Run()` returned true (false = stopped before `Begin`). A2 5.8.
 5. **The Shell downgrade residual of PC 1.3 is accepted**, not moved into the latch.
 6. **No remedy for the Classic onboarding callout scale** on Pulse screens: the Classic fall-through scale is within 8% of the kit scale. A2 2.10.
 7. **Unaffordable tiles stay selectable** (the kit's Phase 1 rule made them inert); only the Buy button is disabled, as in Classic. A2 2.9.

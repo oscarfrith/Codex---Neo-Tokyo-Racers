@@ -192,7 +192,7 @@ function MapRoute.New(canvas: Frame, overlay: Frame, props: { Width: number }, s
 		if not show then
 			if chipShown then
 				chipShown = false
-				chip.Instance.Visible = false
+				chip.Set({ Visible = false }) -- through the component: its Set re-applies Visible
 			end
 			if pipShown then
 				pipShown = false
@@ -263,7 +263,7 @@ function MapRoute.New(canvas: Frame, overlay: Frame, props: { Width: number }, s
 			end
 			if not chipShown then
 				chipShown = true
-				chip.Instance.Visible = true
+				chip.Set({ Visible = true })
 			end
 		end
 

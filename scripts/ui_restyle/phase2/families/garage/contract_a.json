@@ -6,8 +6,9 @@
    "GarageUI",
    "GarageBrowserUI",
    "GarageWorkspaceUI",
-   "GarageComponents (as used by the three above)"
+   "GarageComponents"
   ],
+  "replacesNote": "GarageComponents only as used by the three scripts above (the canonical host, panels, cards, popup and modal parts); its other users keep it",
   "modules": [
    "ReplicatedStorage.Modules.Game.UIPulse.Garage.GarageModel",
    "ReplicatedStorage.Modules.Game.UIPulse.Garage.GarageRoutes",
@@ -188,9 +189,27 @@
      "CockpitId"
     ],
     "classicLine": 194,
-    "site": "GarageModel: call() in renderBrowser / OnPrimary",
+    "site": "GarageModel: call() in primaryOnRow (Classic OnPrimary) and in open (drive-in)",
     "guard": "Adapter busy flag (Classic 20-24)",
-    "retried": false
+    "retried": false,
+    "sites": [
+     {
+      "classicLine": 194,
+      "keys": [
+       "VehicleId",
+       "CockpitId"
+      ],
+      "site": "GarageModel primaryOnRow: picking an owned vehicle in Customisation mode; VehicleId = row.VehicleId, CockpitId = row.CockpitId"
+     },
+     {
+      "classicLine": 691,
+      "keys": [
+       "VehicleId"
+      ],
+      "site": "GarageModel open, drive-in only: VehicleId = Profile.CurrentVehicleId read before DespawnVehicle; no CockpitId, as Classic"
+     }
+    ],
+    "note": "one row for the two call sites: keys is the union the parity check compares; each site sends exactly the keys listed under sites"
    },
    {
     "remote": "Remotes.Garage.GarageInvoke",
@@ -327,21 +346,9 @@
     "site": "GarageModel: call() in open",
     "guard": "Adapter busy flag (Classic 20-24)",
     "retried": false
-   },
-   {
-    "remote": "Remotes.Garage.GarageInvoke",
-    "kind": "invoke",
-    "action": "SelectVehicleInstance",
-    "keys": [
-     "VehicleId"
-    ],
-    "classicLine": 691,
-    "site": "GarageModel: call() in open",
-    "guard": "Adapter busy flag (Classic 20-24)",
-    "retried": false
    }
   ],
-  "remotesNote": "Generated from actions.json (gen_actions.py, from the Classic source): 24 call sites, 16 GarageInvoke actions and GarageSessionRequest End. GetInitial is sent through the shared GarageCatalogClient.Fetch, unchanged, which adds KnownCatalogRevision and makes at most one read-only recovery request. gen_actions.py --check compares every call(...) line of GarageModel with the Classic line it cites.",
+  "remotesNote": "Generated from actions.json (gen_actions.py, from the Classic source): 24 call sites (23 rows here: the two SelectVehicleInstance sites share a row), 16 GarageInvoke actions and GarageSessionRequest End. GetInitial is sent through the shared GarageCatalogClient.Fetch, unchanged, which adds KnownCatalogRevision and makes at most one read-only recovery request. gen_actions.py --check compares every call(...) line of GarageModel with the Classic line it cites.",
   "listens": [],
   "bindables": [
    {
@@ -411,47 +418,51 @@
    {
     "name": "Runtime.UI.LoadingTransitionInvoke",
     "dir": "invoke",
-    "action": "Begin",
     "keys": [
      "Destination",
-     "Status"
-    ],
-    "classicLines": [
-     51,
-     181,
-     195
-    ]
-   },
-   {
-    "name": "Runtime.UI.LoadingTransitionInvoke",
-    "dir": "invoke",
-    "action": "Complete",
-    "keys": [
-     "Generation",
-     "Status"
-    ],
-    "classicLines": [
-     188,
-     195,
-     675,
-     693
-    ]
-   },
-   {
-    "name": "Runtime.UI.LoadingTransitionInvoke",
-    "dir": "invoke",
-    "action": "Fail",
-    "keys": [
-     "Generation",
      "Status",
+     "Generation",
      "Reason"
     ],
-    "classicLines": [
-     184,
-     186,
-     195,
-     689
-    ]
+    "actions": {
+     "Begin": {
+      "keys": [
+       "Destination",
+       "Status"
+      ],
+      "classicLines": [
+       51,
+       181,
+       195
+      ]
+     },
+     "Complete": {
+      "keys": [
+       "Generation",
+       "Status"
+      ],
+      "classicLines": [
+       188,
+       195,
+       675,
+       693
+      ]
+     },
+     "Fail": {
+      "keys": [
+       "Generation",
+       "Status",
+       "Reason"
+      ],
+      "classicLines": [
+       184,
+       186,
+       195,
+       689
+      ]
+     }
+    },
+    "note": "keys is the union over the three actions (what the parity check compares); each action sends exactly the keys listed for it. Destination and Status come from GarageRoutes.Loading, the Classic literals"
    }
   ],
   "attributes": [
@@ -493,11 +504,12 @@
    },
    {
     "on": "ReplicatedStorage.Config.UI.GarageReplacement",
-    "name": "VariantLabels_<categoryId>",
+    "name": "VariantLabels_",
     "dir": "read",
     "classicLines": [
      91
-    ]
+    ],
+    "note": "prefix: the attribute read is VariantLabels_<categoryId> (Classic 91)"
    },
    {
     "on": "ReplicatedStorage.Config.UI.GarageReplacement",
@@ -525,8 +537,8 @@
    {
     "on": "ReplicatedStorage.Config.UI.GarageReplacement.ModuleArtwork.<Name>",
     "dir": "read",
-    "name": "DisplayName, TargetId, SortOrder, ShowInBuild, ShowInCustomise, Image, Image_<categoryId>, Hidden_<categoryId>",
-    "note": "GarageWorkspaceUI 27-32, carried into GarageRoutes.ArtworkForPage"
+    "name": "DisplayName, TargetId, SortOrder, ShowInBuild, ShowInCustomise, Image, Image_, Hidden_",
+    "note": "Image_ and Hidden_ are prefixes: the reads are Image_<categoryId> and Hidden_<categoryId>. GarageWorkspaceUI 27-32, carried into GarageRoutes.ArtworkForPage"
    }
   ],
   "names": [
@@ -535,26 +547,27 @@
    "CanonicalGarageWorkspace",
    "CanonicalGarageModal",
    "Body",
-   "mark Text.Dealership",
-   "mark Categories",
-   "mark Stats",
-   "mark Capacity",
-   "mark VehicleScroller",
-   "mark TutorialCardScroller",
-   "mark UpgradeBudget",
-   "mark Card",
-   "mark Card.AddModules",
-   "mark Card.UpgradeModules",
-   "mark Card.PaintShop",
-   "mark Page.CustomisationHome",
-   "mark Page.AddModules",
-   "mark Page.UpgradeModules",
-   "mark Page.PaintShop"
+   "Text.Dealership",
+   "Categories",
+   "Stats",
+   "Capacity",
+   "VehicleScroller",
+   "TutorialCardScroller",
+   "UpgradeBudget",
+   "Card",
+   "Card.AddModules",
+   "Card.UpgradeModules",
+   "Card.PaintShop",
+   "Page.CustomisationHome",
+   "Page.AddModules",
+   "Page.UpgradeModules",
+   "Page.PaintShop"
   ],
   "contextActions": [],
   "renderSteps": [
    {
-    "name": "Kit.Perf.Bind(\"GarageCamera\", live root)",
+    "name": "GarageCamera",
+    "how": "Kit.Perf.Bind(\"GarageCamera\", live root)",
     "classic": "RunService.RenderStepped at 131",
     "step": "GarageModel.CameraStep -> PreviewCameraClient.Update"
    }
@@ -660,11 +673,11 @@
    },
    {
     "item": "Diagnostic output: Garage Route (194, 695), OWNERSHIP PASS / FAIL with its PlayerGui.GarageUI lookup (138-146), MODAL GEOMETRY (160), DEPENDENCY PASS (698), browser and workspace geometry audits",
-    "reason": "API1 11 rule 12; not behaviour"
+    "reason": "API1 section 11 rule 12; not behaviour"
    },
    {
     "item": "RunService.RenderStepped connection (131) and the per-frame CanonicalHost() call",
-    "reason": "API1 11 rule 7: Kit.Perf.Bind; the gui handle is resolved once"
+    "reason": "API1 section 11 rule 7: Kit.Perf.Bind; the gui handle is resolved once"
    },
    {
     "item": "WaitForChild on Runtime.Garage, NavigationIcons and Vehicles.Performance as bare folders (12, 43, 89)",
@@ -677,10 +690,6 @@
    {
     "item": "CURRENT swatch of the paint panel; the second preset row on Compact",
     "reason": "API2 5.7 Target frames c14; the sliders reach every colour"
-   },
-   {
-    "item": "White (255,255,255) as the start colour of a channel with no saved colour (523)",
-    "reason": "API2 6.6 rule 3: the model holds no Color3 literal; PaintView starts such a channel at Tokens.Colour.White. Display only: nothing is sent until the player commits a colour"
    },
    {
     "item": "The stale look after a refused upgrade (437: the card stayed selected with its popup until the next redraw) and the unchanged card row while the first dealership row is being auto-selected (GarageBrowserUI 118)",
@@ -739,7 +748,24 @@
    {
     "item": "Preview rebuilt only when its inputs changed",
     "reason": "API2 5.7 Preview and camera"
+   },
+   {
+    "item": "Render step GarageCamera: the preview camera step runs through Kit.Perf.Bind while the live layer root shows, in place of the RunService.RenderStepped connection (131)",
+    "reason": "API1 section 11 rule 7; API2 6.6 rule 5: one Perf.Bind per live layer"
+   },
+   {
+    "item": "GarageModel.Abort: after a draw fault the client ends the session with the Exit sequence unchanged (195: loading Begin, GarageSessionRequest End {ReturnToEntry}, close, GarageClosedFromDealershipExit, loading Complete) from any page, closes its own side even when End is refused (as 684 and 689 ignore the End reply), fires ShowTopNotification \"Garage unavailable\" and releases the view. No new call site: it calls the Exit function",
+    "reason": "API2 section 4: a start or draw fault must not strand the player; API2 6.2; delivery review finding 1"
+   },
+   {
+    "item": "The view is mounted when a page first shows, inside the protected draw, not in start(); the camera step, Cash watch and Presence mirror are each protected and reported once",
+    "reason": "API2 section 4: start() must reach ready; delivery review finding 2"
+   },
+   {
+    "item": "The Shop / Owned switch runs Classic's Back from Options (363-367, with its buildPreview at 367) and then the source card (343 or 344), so a previewed module is cleared from the 3D preview",
+    "reason": "API2 5.7 Navigation: the skipped Sources page; delivery review finding 3"
    }
-  ]
+  ],
+  "namesNote": "From Text.Dealership on, the names are Kit.Contracts mark keys applied through Input.Mark only (API2 2.10); the mark writes the legacy name, text or attributes the onboarding looks up"
  }
 ]

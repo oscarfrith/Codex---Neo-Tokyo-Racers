@@ -3,8 +3,10 @@
 
 -- Logic-identical fork of ReplicatedFirst.Loading.InitialLoadingAndStartScreenClient, lines 20 to 328
 -- (forks/StartScreenPulse.json lists the replaced spans; everything else below is the text of that file, unindented
--- as it is there). InitialLoadingAndStartScreenClient calls Run() and returns when the Shell family is Pulse, so
--- exactly one start-screen flow calls Begin and writes StartScreenActive.
+-- as it is there). InitialLoadingAndStartScreenClient calls Run() when the Shell family is Pulse and returns only when
+-- Run() returned true. Run() returns false only when it stopped BEFORE Begin (kit not available, or an error ahead
+-- of Begin); from Begin onwards it returns true or raises, so exactly one start-screen flow calls Begin and writes
+-- StartScreenActive.
 local Players = game:GetService("Players")
 local ReplicatedFirst = game:GetService("ReplicatedFirst")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -14,41 +16,57 @@ local StartScreen = {}
 
 local SURFACE = "StartScreen"
 local MENU_ZINDEX = 40 -- Classic 120: above Status and ProgressTrack (22, 23)
-local KIT_WAIT_SECONDS = 20
+local KIT_WAIT_SECONDS = 5 -- one budget for the whole kit, not per instance; then Run() returns false (Classic start screen)
 local KIT_PATH = { "Modules", "Game", "UIPulse", "Kit" }
 -- Every kit module the ones used below reach through script.Parent, so none is required before it has replicated.
 local KIT_MODULES = { "Sprites", "Contracts", "Tokens", "Metrics", "Layers", "Text", "Surface", "Input", "Controls" }
 
 local kitCache
--- YIELDS on the first call only, and for at most KIT_WAIT_SECONDS per instance; then errors (a reported failed state).
+-- YIELDS on the first call only, for at most KIT_WAIT_SECONDS in total. -> kit table, or nil and the reason; never errors.
 local function loadKit()
 	if kitCache then
 		return kitCache
 	end
+	local deadline = os.clock() + KIT_WAIT_SECONDS
+	local function child(parent, name)
+		return parent:FindFirstChild(name) or parent:WaitForChild(name, math.max(0.05, deadline - os.clock()))
+	end
 	local folder = ReplicatedStorage
 	for _, name in ipairs(KIT_PATH) do
-		local child = folder:WaitForChild(name, KIT_WAIT_SECONDS)
-		assert(child, "[Pulse.StartScreenPulse] " .. name .. " did not arrive under " .. folder:GetFullName())
-		folder = child
+		local found = child(folder, name)
+		if not found then
+			return nil, name .. " did not arrive under " .. folder:GetFullName()
+		end
+		folder = found
 	end
 	for _, name in ipairs(KIT_MODULES) do
-		assert(folder:WaitForChild(name, KIT_WAIT_SECONDS), "[Pulse.StartScreenPulse] Kit." .. name .. " did not arrive")
+		if not child(folder, name) then
+			return nil, "Kit." .. name .. " did not arrive"
+		end
 	end
-	local core = ReplicatedStorage:WaitForChild("Modules"):WaitForChild("Core", KIT_WAIT_SECONDS)
-	local scopeModule = core and core:WaitForChild("ConnectionScope", KIT_WAIT_SECONDS)
-	assert(scopeModule, "[Pulse.StartScreenPulse] Core.ConnectionScope did not arrive")
-	kitCache = {
-		Tokens = require(folder.Tokens),
-		Metrics = require(folder.Metrics),
-		Layers = require(folder.Layers),
-		Text = require(folder.Text),
-		Input = require(folder.Input),
-		Controls = require(folder.Controls),
-		Scope = require(scopeModule),
-	}
+	local core = child(ReplicatedStorage.Modules, "Core")
+	local scopeModule = core and child(core, "ConnectionScope")
+	if not scopeModule then
+		return nil, "Core.ConnectionScope did not arrive"
+	end
+	local ok, loaded = pcall(function()
+		return {
+			Tokens = require(folder.Tokens),
+			Metrics = require(folder.Metrics),
+			Layers = require(folder.Layers),
+			Text = require(folder.Text),
+			Input = require(folder.Input),
+			Controls = require(folder.Controls),
+			Scope = require(scopeModule),
+		}
+	end)
+	if not ok then
+		return nil, tostring(loaded)
+	end
+	kitCache = loaded
 	return kitCache
 end
--- Test and gallery seam: replace with a function returning the same table.
+-- Test and gallery seam: replace with a function returning the same table (or nil and a reason).
 StartScreen._kit = loadKit
 
 -- Claim refuses until ClientBase has committed the routes, which is after this screen is up. The latch publishes
@@ -147,7 +165,11 @@ function StartScreen._buildMenu(kit, safeRoot, ctx, scope, texts)
 	return { Menu = stage.Root, Play = play, Shop = shop, SetBusy = setBusy }
 end
 
+-- -> true when this flow reached Begin (it then owns the start screen to the end, including every release path);
+-- false when it stopped before Begin, so the caller runs the Classic flow. An error after Begin is raised again.
 function StartScreen.Run()
+local began = false
+local ok, problem = pcall(function()
 local player = Players.LocalPlayer or Players.PlayerAdded:Wait()
 local playerGui = player:WaitForChild("PlayerGui")
 local playerScripts = player:WaitForChild("PlayerScripts")

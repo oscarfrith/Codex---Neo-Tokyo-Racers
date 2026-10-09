@@ -1,7 +1,8 @@
 """Shell family: offline assembly and checks. Writes only inside this folder. Run: py -3 build_shell.py [--check]
 
 1. before/  : byte copies of the two edited ReplicatedFirst scripts from classic/sources.
-2. after/   : the two edits exactly as API2 5.8 states them, each verified with a diff.
+2. after/   : the two edits exactly as API2 5.8 states them (reviewer fixes 1 and 2: Pulse module by FindFirstChild
+              and a protected require; Classic on any failure), each verified with a diff.
 3. after/ReplicatedFirst.Loading.StartScreenPulse.lua : hand assembly of forks/StartScreenPulse.json for review
               (the integrator's fork tool is the authority); kept lines verified byte for byte.
 4. Target tables of OnboardingModel against classic/contracts/_onboarding_targets.json, and the generated
@@ -25,12 +26,12 @@ INITIAL = "ReplicatedFirst.Loading.InitialLoadingAndStartScreenClient.lua"
 
 RUNTIME_OLD_8 = 'local View = require(game:GetService("ReplicatedFirst"):WaitForChild("Loading"):WaitForChild("LoadingScreenView"))'
 RUNTIME_NEW = [
-    'local okStyle, pulseShell = pcall(function() return require(game:GetService("ReplicatedFirst"):FindFirstChild("UIStyleSwitch")).Active("Shell") end)',
-    'local View = require(game:GetService("ReplicatedFirst"):WaitForChild("Loading"):WaitForChild((okStyle and pulseShell) and "LoadingScreenViewPulse" or "LoadingScreenView"))',
+    'local okPulse, pulseView = pcall(function() local module = require(game:GetService("ReplicatedFirst"):FindFirstChild("UIStyleSwitch")).Active("Shell") and packageFolder:FindFirstChild("LoadingScreenViewPulse"); return module and require(module) or nil end)',
+    'local View = (okPulse and type(pulseView) == "table" and pulseView) or ' + RUNTIME_OLD_8[len("local View = "):],
 ]
 INITIAL_NEW = [
-    'local okStyle, pulseShell = pcall(function() return require(ReplicatedFirst:FindFirstChild("UIStyleSwitch")).Active("Shell") end)',
-    'if okStyle and pulseShell then require(packageFolder:WaitForChild("StartScreenPulse")).Run(); return end',
+    'local okPulse, pulseStart = pcall(function() local module = require(ReplicatedFirst:FindFirstChild("UIStyleSwitch")).Active("Shell") and packageFolder:FindFirstChild("StartScreenPulse"); return module and require(module) or nil end)',
+    'if okPulse and type(pulseStart) == "table" and type(pulseStart.Run) == "function" and pulseStart.Run() == true then return end',
 ]
 
 
@@ -66,6 +67,8 @@ put(HERE / "before" / INITIAL, initial_before)
 
 rt = lines_of(runtime_before)
 assert rt[7] == RUNTIME_OLD_8, "LoadingTransitionRuntime line 8 is not the recorded text"
+assert rt[5].startswith("local packageFolder = "), "LoadingTransitionRuntime line 6 no longer declares packageFolder"
+assert RUNTIME_NEW[1].endswith(RUNTIME_OLD_8[len("local View = "):]), "the Classic require of line 8 is not carried verbatim"
 rt_after = rt[:7] + RUNTIME_NEW + rt[8:]
 put(HERE / "after" / RUNTIME, join(rt_after))
 ops = opcodes(rt, rt_after)
@@ -73,6 +76,7 @@ assert ops == [("replace", 7, 8, 7, 9)], ops
 print(f"edit 1 {RUNTIME}: line 8 -> 2 lines; {len(rt)} -> {len(rt_after)} lines; diff = one hunk, 1 removed, 2 added: OK")
 
 il = lines_of(initial_before)
+assert il[10].startswith("local packageFolder = "), "InitialLoadingAndStartScreenClient line 11 no longer declares packageFolder"
 assert il[17] == "end" and il[18] == "" and il[14].startswith('if config:GetAttribute("StartScreenEnabled") == false'), "line 15-19 anchor"
 il_after = il[:18] + INITIAL_NEW + il[18:]
 put(HERE / "after" / INITIAL, join(il_after))

@@ -587,6 +587,36 @@ return function(M, env)
 		expect(w.attrs.GarageEntryMode == "Dealership", "attribute untouched")
 	end)
 
+	case("abort (draw fault): the Exit sequence from a customise page, then the toast; nothing sent when closed", function()
+		local w = customise()
+		w.model.SelectItem("RearSpoiler")
+		local sent = #w.calls
+		expect(w.model.Abort() == true, "a session was closed")
+		expect(#w.calls == sent + 1 and w.last().Action == "End" and w.last().Payload.ReturnToEntry == true, "one End {ReturnToEntry}")
+		expect(w.last().Remote == "Remotes.UI.GarageSessionRequest" and sortedKeys(w.last().Payload) == "ReturnToEntry", "the Exit call")
+		expect(w.attrs.GarageEntryMode == nil and w.cameraReleased == true, "attribute cleared, camera released")
+		expect(w.model.IsActive() == false and w.model.Showing() == nil and w.model.Page().Id == "Closed", "closed")
+		expect(w.loading[#w.loading].Action == "Complete" and w.loading[#w.loading - 1].Payload.Destination == "DealershipExterior", "loading Begin and Complete")
+		expect(w.fired[#w.fired].Name == "ShowTopNotification" and w.fired[#w.fired].Args[1] == "Garage unavailable", "toast")
+		expect(w.fired[#w.fired - 1].Name == "GarageClosedFromDealershipExit", "closed event")
+		sent = #w.calls
+		local fired = #w.fired
+		expect(w.model.Abort() == false and #w.calls == sent and #w.fired == fired, "no session: nothing sent, no toast")
+	end)
+
+	case("abort (draw fault): End refused still closes the client side (as the open path does at L684, L689)", function()
+		local w = world({ Owned = false })
+		w.model.Open("Dealership", nil)
+		w.flush()
+		w.replies["Session.End"] = { Success = false, Message = "BUSY" }
+		local sent = #w.calls
+		expect(w.model.Abort() == true, "closed")
+		expect(#w.calls == sent + 1 and w.last().Action == "End", "End sent once, not retried")
+		expect(w.model.IsActive() == false and w.model.Page().Id == "Closed" and w.attrs.GarageEntryMode == nil, "client side closed")
+		expect(w.loading[#w.loading].Action == "Fail" and w.loading[#w.loading].Payload.Reason == "BUSY", "loading Fail, never left pending")
+		expect(w.fired[#w.fired].Args[1] == "Garage unavailable", "toast")
+	end)
+
 	case("entry Customisation: access check, GetInitial, pick an owned vehicle with {VehicleId, CockpitId}", function()
 		local w = world()
 		w.model.Open("Customisation", nil)
@@ -721,6 +751,28 @@ return function(M, env)
 		expect(sortedKeys(w.last().Payload) == "AllowReassign,ModuleInstanceId,SlotId,VehicleId", "keys")
 		expect(w.last().Payload.AllowReassign == false and w.last().Payload.ModuleInstanceId == "MI9", "values")
 		expect(w.model.State.ModuleMode == "Slots", "back on the slot list")
+	end)
+
+	case("parts: switching Shop / Owned clears a previewed module and rebuilds the preview once (GarageUI L367)", function()
+		local w = customise({ SpareSpoiler = true })
+		w.model.SelectItem("RearSpoiler")
+		w.model.SelectItem("M:sp1")
+		expect(w.model.State.PreviewModules.RearSpoiler == "sp1", "shop module previewed")
+		local builds, sent = w.builds, #w.calls
+		w.model.SelectSource("Owned")
+		local state = w.model.State
+		expect(state.ModuleOptionMode == "Owned" and state.SelectedModuleId == nil and next(state.PreviewModules) == nil, "preview state cleared")
+		expect(w.builds == builds + 1, "preview rebuilt without the unbought module, got " .. (w.builds - builds))
+		expect(#w.calls == sent, "the switch sends nothing")
+		w.model.SelectItem("I:MI9")
+		builds = w.builds
+		w.model.SelectSource("Buy")
+		expect(state.ModuleOptionMode == "Buy" and state.SelectedModuleInstanceId == nil and next(state.PreviewModules) == nil, "cleared on the way back")
+		expect(w.builds == builds + 1, "rebuilt on the way back")
+		builds = w.builds
+		w.model.SelectSource("Owned")
+		expect(w.builds == builds, "nothing previewed: the switch builds nothing")
+		expect(#w.calls == sent, "still nothing sent")
 	end)
 
 	case("parts: a module in use elsewhere asks first; YES sends AllowReassign=true, NO sends nothing", function()

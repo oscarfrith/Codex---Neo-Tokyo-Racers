@@ -105,6 +105,8 @@
     "reason": "API2 5.6 target frames 03, r11, c07 (view lines are replaced)"}
   ],
   "added": [
+   {"item": "ScreenGui RaceEntryPresentationScrim at 179",
+    "reason": "API2 5.6 and 2.4: RaceEntryPresentation is created with Scrim = true (Layers ladder row RaceEntryPresentationScrim 179)"},
    {"item": "CHOOSE VEHICLE on the time-trial Setup page goes straight to Vehicles (same ownership gate as Records); NEXT is relabelled VIEW RECORDS (RECORDS on Compact)",
     "reason": "API2 5.6 target frames 03 and c07; PC 8 (a shortcut only: pages and their order stay, Back from Vehicles still goes to Records)"},
    {"item": "Every owned vehicle is listed on the rail; the ones this event does not take are Locked tiles with the sub-line TIER <X> ONLY and cannot be chosen. What can be chosen and started is exactly the Classic list (268)",

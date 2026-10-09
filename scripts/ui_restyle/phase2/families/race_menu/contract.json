@@ -62,11 +62,13 @@
    {"item": "A teleport failure text drawn into a later opening of the menu (433-434)",
     "reason": "API2 6.6 rule 7: one render token"},
    {"item": "Unbounded WaitForChild chain in start (20-34)",
-    "reason": "API2 4: every Pulse start reaches ready without waiting; hops are bounded and a late OpenRaceBrowser is connected when it appears"},
+    "reason": "API2 section 4 and 6.2: every Pulse start reaches ready without waiting; hops are bounded and a late OpenRaceBrowser is connected when it appears"},
    {"item": "print(\"[RaceBrowserClient] Shared-shell Race Browser active.\") (611)",
     "reason": "API2 6.6 (API1 11 rule 12): Pulse modules only warn"}
   ],
   "added": [
+   {"item": "ScreenGui RaceBrowserScrim at 169",
+    "reason": "API2 5.2 and 2.4: RaceBrowser is created with Scrim = true (Layers ladder row RaceBrowserScrim 169)"},
    {"item": "Filter tabs ALL EVENTS / TIME TRIALS / RACES (ids All, TimeTrials, Races): a client-side filter of the same rows, reset to All on every open",
     "reason": "API2 5.2 New in Pulse"},
    {"item": "Escape and ButtonB: the Compact detail page goes back to the list, otherwise the menu closes (Input.BindBack, bound only while open)",

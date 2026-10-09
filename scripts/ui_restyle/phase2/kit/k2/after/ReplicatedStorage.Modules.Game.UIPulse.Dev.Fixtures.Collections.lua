@@ -170,6 +170,7 @@ local railItem = {
 		{ Id = "ModuleOwned", Props = { Heading = "Wing", Count = "2/4", Items = WINGS, Select = "spine_evo", Segment = SEGMENT, OnSelected = nothing } },
 		{ Id = "ModuleShop", Props = { Heading = "Wing", Count = "2/4", Items = WING_SHOP, Select = "bridge_gt", Segment = { Style = "Segment", Triggers = true, Selected = "Shop", OnSelected = nothing, Tabs = SEGMENT.Tabs }, OnSelected = nothing } },
 		{ Id = "FixedWidth", Props = { Heading = "Exotic", Count = "2/6", Width = 1000, Items = VEHICLES, Select = "zephyr", OnSelected = nothing } },
+		{ Id = "SelectOnActivate", Props = { Heading = "Parts", Count = "3/7", CellWidth = 236, SelectOn = "Activate", Items = SLOTS, Select = "front_engine", OnSelected = nothing } },
 		{ Id = "NothingSelected", Props = { Heading = "Exotic", Count = "0/6", Items = VEHICLES, OnSelected = nothing } },
 		{ Id = "NoHeading", Props = { Items = VEHICLES, Select = "aurora", OnSelected = nothing } },
 		{ Id = "Empty", Props = { Heading = "Owned", Count = "0/0", Items = {}, OnSelected = nothing } },
