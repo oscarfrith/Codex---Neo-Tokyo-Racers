@@ -94,11 +94,12 @@ function HudView._gaugeSize(space, class, arrangement)
 	return arrangement == "TouchDrive" and space.GaugeTouchSize or space.GaugeSize
 end
 
--- Pure: the status cluster patch for the known vehicle and rank (Regular only).
-function HudView._statusPatch(vehicle, rank)
+-- Pure: the status cluster patch for the known vehicle (Regular only). The rank is not passed: the cluster's rank
+-- ring drew pale on pale (capture free_roam_driving), and the rank already shows on the minimap (number and arc).
+function HudView._statusPatch(vehicle, _rank)
 	if type(vehicle) == "table" and TIERS[vehicle.Tier] then
-		return { Mode = "Vehicle", Tier = vehicle.Tier, Rating = math.floor(tonumber(vehicle.Rating) or 0), Rank = rank.Visible and rank.Rank or nil },
-			string.format("%s|%d|%s", vehicle.Tier, math.floor(tonumber(vehicle.Rating) or 0), tostring(rank.Visible and rank.Rank))
+		return { Mode = "Vehicle", Tier = vehicle.Tier, Rating = math.floor(tonumber(vehicle.Rating) or 0) },
+			string.format("%s|%d", vehicle.Tier, math.floor(tonumber(vehicle.Rating) or 0))
 	end
 	return { Mode = "CashOnly" }, ""
 end

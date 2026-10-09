@@ -26,7 +26,7 @@ return function(M, env)
 
 	case("status patch: vehicle known, unknown tier, no vehicle", function()
 		local patch, key = M._statusPatch({ Tier = "S", Rating = 939.6 }, { Visible = true, Rank = 6 })
-		expect(patch.Mode == "Vehicle" and patch.Tier == "S" and patch.Rating == 939 and patch.Rank == 6 and key == "S|939|6", "vehicle")
+		expect(patch.Mode == "Vehicle" and patch.Tier == "S" and patch.Rating == 939 and patch.Rank == nil and key == "S|939", "vehicle; the rank stays on the minimap")
 		patch, key = M._statusPatch(nil, { Visible = true, Rank = 6 })
 		expect(patch.Mode == "CashOnly" and key == "", "no vehicle")
 		patch = M._statusPatch({ Tier = "?", Rating = 1 }, { Visible = false, Rank = 1 })

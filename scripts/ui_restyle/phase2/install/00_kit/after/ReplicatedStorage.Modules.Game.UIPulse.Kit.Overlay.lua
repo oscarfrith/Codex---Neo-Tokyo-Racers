@@ -703,19 +703,22 @@ function Overlay.Confirm(root, options)
 
 		local titleRow = Instance.new("Frame")
 		titleRow.Name = "TitleRow"
+		titleRow.AutomaticSize = Enum.AutomaticSize.Y -- a title that wraps grows the row
 		titleRow.BackgroundTransparency = 1
 		titleRow.BorderSizePixel = 0
 		titleRow.LayoutOrder = 1
 		titleRow.Parent = content
 		local mark = Surface.TitleMark(titleRow, { Name = "Mark" }, own)
+		-- A long title is never truncated: the panel widens for it up to ModalMaxWidth (relayout), then it wraps.
 		local title = Text.Label(titleRow, {
 			Name = "Title",
 			Text = options.Title or "CONFIRM",
 			Role = TITLE_ROLE,
 			Colour = "White",
 			Align = "Left",
+			Wrap = true,
 			-- The mark is never wider than it is tall.
-			MaxWidth = Space.ConfirmWidth - Space.Pad * 2 - Space.TitleMarkHeight - Space.Gap,
+			MaxWidth = Space.ModalMaxWidth - Space.Pad * 2 - Space.TitleMarkHeight - Space.Gap,
 		}, own)
 
 		local body = Instance.new("TextLabel")
@@ -767,7 +770,7 @@ function Overlay.Confirm(root, options)
 		}, own)
 
 		parts = { Panel = panel, Content = content, Padding = padding, List = list, TitleRow = titleRow, Mark = mark,
-			Title = title.Instance, Body = body, Buttons = buttons, ButtonList = buttonList,
+			Title = title.Instance, TitleLabel = title, Body = body, Buttons = buttons, ButtonList = buttonList,
 			No = no.Instance, Yes = yes.Instance }
 	end, debug.traceback)
 	if not built then
@@ -796,9 +799,24 @@ function Overlay.Confirm(root, options)
 		local pad = ctx.Px(Space.Pad)
 		local gap = ctx.Px(Space.Gap)
 		local margin = ctx.Px(if compact then Space.CompactMargin else Space.Pad)
-		local width = math.max(1, math.min(ctx.Px(Space.ConfirmWidth), ctx.Size.X - margin * 2))
-		local inner = math.max(1, width - pad * 2)
 		local rowHeight = titleHeight(ctx)
+		local limit = math.max(1, ctx.Size.X - margin * 2)
+		local base = math.min(ctx.Px(Space.ConfirmWidth), limit)
+		local widest = math.max(base, math.min(ctx.Px(Space.ModalMaxWidth), limit))
+		-- The title wraps at the widest panel's title room; the panel is as wide as the title's widest line needs.
+		local titleLeft = markWidth(rowHeight) + gap
+		local titleRoom = math.max(1, widest - pad * 2 - titleLeft)
+		parts.TitleLabel.Set({ MaxWidth = math.max(1, math.floor(titleRoom / ctx.Scale)) })
+		local width = base
+		local titleText = parts.Title:FindFirstChild("Label")
+		if titleText then
+			local _, holderScale = Text.SizeFor(TITLE_ROLE, ctx)
+			-- TextBounds is in the label's own units; the slack covers the italic overhang.
+			local drawn = math.ceil(titleText.TextBounds.X * (holderScale or 1)) + math.ceil(rowHeight / 2)
+			width = math.clamp(titleLeft + drawn + pad * 2, base, widest)
+		end
+		width = math.max(1, width)
+		local inner = math.max(1, width - pad * 2)
 		parts.Panel.Size = UDim2.fromOffset(width, 0)
 		parts.Content.Size = UDim2.fromOffset(width, 0)
 		parts.Padding.PaddingLeft = UDim.new(0, pad)
@@ -808,7 +826,7 @@ function Overlay.Confirm(root, options)
 		parts.List.Padding = UDim.new(0, pad)
 		parts.TitleRow.Size = UDim2.fromOffset(inner, rowHeight)
 		parts.Mark.Set({ Height = markDesignHeight(ctx, rowHeight) })
-		parts.Title.Position = UDim2.fromOffset(markWidth(rowHeight) + gap, 0)
+		parts.Title.Position = UDim2.fromOffset(titleLeft, 0)
 		parts.Body.Size = UDim2.fromOffset(inner, 0)
 		parts.Body.FontFace = Text.Font(BODY_ROLE)
 		parts.Body.TextSize = (Text.SizeFor(BODY_ROLE, ctx))
@@ -848,6 +866,13 @@ function Overlay.Confirm(root, options)
 
 	relayout()
 	shade.Parent = container
+	-- The title's bounds are known once it is in the tree; the panel width follows them (event-driven, no loop:
+	-- the title's own width does not depend on the panel's).
+	local titleText = parts.Title:FindFirstChild("Label")
+	if titleText then
+		own:connect(titleText:GetPropertyChangedSignal("TextBounds"), relayout)
+		relayout()
+	end
 	place()
 	openConfirms[watched] = close
 

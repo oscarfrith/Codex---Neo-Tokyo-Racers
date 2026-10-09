@@ -1,0 +1,53 @@
+{
+  "wave": "phase2 (programme phases 2 to 8)",
+  "date": "2026-10-09",
+  "place": "Space Racers v3 (93959280828322)",
+  "status": "installed; default UIStyle = Pulse at Oscar's request; agent-verified in Studio on desktop only; not user-confirmed",
+  "installed_units": ["00_kit", "01_race_menu", "02_free_roam", "03_world_map", "04_race_session", "05_race_entry", "06_garage", "07_shell"],
+  "pulse_modules_in_place": 97,
+  "classic_scripts_edited": ["ClientBase (Phase 1)", "UI.RouteGuide (one read-only getter)", "Racing.RaceTransitionClient (4-line label seam)", "ReplicatedFirst.Loading.LoadingTransitionRuntime", "ReplicatedFirst.Loading.InitialLoadingAndStartScreenClient"],
+  "final_audit": "07_shell all after; Classic verify 216 scripts same plus 5 declared edits, 0 failures, 0 config diffs",
+  "edit_harness": {
+    "00_kit": "34+ sources compile; 914 of 915 (one Minimap opacity expectation)",
+    "01_race_menu": "130 of 144 (14 instance-budget rows)",
+    "02_free_roam": "255 of 256 (one row-placement expectation)",
+    "03_world_map": "145 of 145",
+    "04_race_session": "261 of 261",
+    "05_race_entry": "226 of 233 (budget and pool-growth rows, one test global)",
+    "06_garage": "286 of 315 (29 instance-budget rows)",
+    "07_shell": "197 of 198"
+  },
+  "reviews": {
+    "free_roam": "READY WITH FIXES (touch fork Enabled read) - applied",
+    "race_session": "READY, no code fix",
+    "shell": "READY WITH FIXES (3 fallback fixes) - applied, not re-reviewed",
+    "garage": "READY WITH FIXES; all 24 call sites and the desk's 36 match Classic; 5 risk fixes applied, not re-reviewed"
+  },
+  "play_pulse_sandbox": {
+    "startup": "45 ready, 4 skipped, none failed; no errors in the log; only Freecam and RaceTransitionFade remain unmarked ScreenGuis",
+    "start_screen": "Pulse start screen shown; PLAY enters the game; HUD buttons active (OnboardingStage 4 profile)",
+    "free_roam": "HUD on foot and seated; action bar on screen; gauge with image digits at 71 mph; status cluster tier and rating; My Vehicles side panel",
+    "race_menu": "opens, select event, set route, exit; names fit",
+    "full_map": "opens with M, legend, markers and player arrow drawn, closes, HUD returns",
+    "prompts": "dealership desk banner shown and opens the dealership; teleport confirmation title fits",
+    "race_entry": "opens from the race-start prompt trigger; tier tabs, laps, medals, prize; EXIT returns to the HUD",
+    "garage": "dealership with car images; vehicle purchase debited exactly 50,000 once (3,614,558 to 3,564,558); post-purchase paint page; Customise with tabs; DRIVE seated the player, session ended, HUD back, no garage UI left on screen"
+  },
+  "not_verified": [
+    "Classic smoke run after the last four installs (the Classic verify passes; no Play in Classic since Phase 1)",
+    "race-start banner on foot after its fix (not re-tested); event card; prompts while seated; touch banners",
+    "in-race HUD, countdown, queue banner, results (no time trial started; agents never finish one)",
+    "garage: buying or equipping a module, upgrades, paint commit, capacity purchase, owned-garage browser, desk and interior HUD, drive-in customise, the render-fault abort path",
+    "onboarding on a fresh profile; loading screen during transitions; start-screen fallback paths",
+    "Settings, Controls and Get Cash modals; activity strip, job offers and rank-up",
+    "phone and tablet layouts, touch controls, gamepad focus, Largest text setting, two clients, a published client",
+    "instance budgets are exceeded on race menu, race entry records and every garage page"
+  ],
+  "known_defects": [
+    "Stat panel label ACCELERATION overlaps its bar (preview used ACCEL)",
+    "Desktop My Vehicles panel still has category and sort drop-downs",
+    "Garage Back is disabled on the Parts slot list (Classic hub also had only Drive)",
+    "Gallery tool flag PulseGalleryEnabled is true (set by Oscar); backslash opens it in Studio"
+  ],
+  "recovery": "Set Config.UI@UIStyle to Classic for the old UI. Full removal: run out_rollback.lua twice for each unit in reverse order (07 to 00) from scripts/ui_restyle/phase2/install/, then scripts/ui_restyle/phase1/out_rollback.lua twice, with scripts/ui_restyle/tools/serve.py running."
+}

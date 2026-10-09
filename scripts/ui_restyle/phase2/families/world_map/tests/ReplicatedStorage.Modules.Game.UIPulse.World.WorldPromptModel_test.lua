@@ -191,7 +191,8 @@ return function(Model, _env)
 			{ "Shown", "Hidden", nil, "Custom", "Hide" },
 			{ "Suppressed", "Hidden", nil, "Custom", nil },
 			{ "Custom", "Hidden", nil, "Custom", nil },
-			{ "Pending", "Shown", true, "Pending", nil },
+			{ "Pending", "Shown", true, "Shown", "Show" },
+			{ "Pending", "Shown", false, "Suppressed", nil },
 			{ "Pending", "Hidden", nil, "Custom", "Custom" },
 			{ "Custom", "ShownDefault", nil, "Pending", nil },
 			{ "Shown", "ShownDefault", nil, "Pending", "Hide" },
@@ -252,6 +253,23 @@ return function(Model, _env)
 		expect(model:Record(desk).State, "Failed", "for good")
 		model:Forget(car)
 		expect(model:Record(car), nil, "forgotten on removal")
+	end)
+
+	case("regression: a race start prompt on foot gets its banner, and its record outlives a collection", function()
+		local model = Model.new({ Presence = fakePresence({}), LocalUserId = 7, Facts = function() return { Visitor = false } end })
+		expect(getmetatable(model.Records), nil, "records are held strongly (no weak keys)")
+		local race = { Name = "RaceEntryPrompt", ActionText = "Join Race" }
+		expect((model:Apply(race, "Track")), "Custom", "track sets Custom")
+		expect((model:Apply(race, "Shown")), "Show", "on foot, no vehicle facts: the banner shows")
+		expect((model:Apply(race, "Hidden")), "Hide", "and hides")
+		-- First seen while the engine shows it, Style already Custom (a lost record): still a banner, never nothing.
+		local late = { Name = "RaceEntryPrompt", ActionText = "Join Race" }
+		expect((model:Apply(late, "TrackShowing")), nil, "tracked as Pending")
+		expect((model:Apply(late, "Shown")), "Show", "a Custom prompt that shows gets its banner from Pending")
+		expect(model:Record(late).State, "Shown", "state Shown")
+		local visitorModel = Model.new({ Presence = fakePresence({}), LocalUserId = 7, Facts = function() return { Visitor = true } end })
+		expect((visitorModel:Apply(race, "Track")), "Custom", "a visitor still tracks it")
+		expect((visitorModel:Apply(race, "Shown")), "Show", "the race start banner is not a visitor-hidden family")
 	end)
 
 	case("TimeText and CardText", function()

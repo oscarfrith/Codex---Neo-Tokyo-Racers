@@ -36,6 +36,9 @@ Unchanged and shared by both styles: `GarageCatalogClient`, `GarageModuleCardVie
 6. **Performance rules.** The 3D preview is rebuilt only when its inputs change; a selection, tab change or Cash change
    creates and destroys no instance; no `ScreenGui.Enabled` write; the button row sits in `RailButtons`.
 7. `start()` claims first, waits only on instances the Classic owner waits on, and never on a remote reply, font or asset.
+   It builds no view: the view is mounted on first open inside the protected draw.
+8. **No stranded player.** A draw fault ends the session through the Exit sequence with a toast (`GarageModel.Abort`);
+   it adds no remote call site.
 
 ## Changes the player sees (API2 5.7, programme contract 8)
 
@@ -53,7 +56,10 @@ confirmation before a vehicle purchase. The full list, with what was dropped, is
 - **Routes:** tabs, marks against `Kit.Contracts`, sources, Back steps, page keys, artwork rows with and without config.
 - **View:** display helpers; every fixture state at R1080 and C844: mounts, instance ceiling, no ScreenGui, a second
   render writes nothing, a selection creates nothing, names and marks present, one page at a time.
-- **PaintView, GarageModals, GarageClient, Fixtures:** data builders, sync rules, the owner shape and entry events.
+- **PaintView, GarageModals, GarageClient, Fixtures:** data builders, sync rules, the owner shape and entry events;
+  the unset-channel seed (Classic white); the protected draw (a fault recovers once, never throws).
+- **Model, added by the reviewer-fix pass:** the Shop / Owned switch rebuilds the preview; `Abort` runs the Exit
+  sequence, closes the client side when End is refused, toasts, and sends nothing without a session.
 - **Static:** `py -3 gen_actions.py --check` (call sites of the model equal the Classic call sites).
 
 ## Gates in Play (integrator; sandbox window)

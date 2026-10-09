@@ -17,7 +17,7 @@ after/…UIPulse.Garage.PaintView.lua           channel switch, three sliders, p
 after/…UIPulse.Garage.GarageModals.lua        cash, properties, move-module and buy-vehicle modals
 after/…UIPulse.Garage.GarageClient.lua        the entry that replaces GarageUI
 after/…UIPulse.Dev.Fixtures.Garage.lua        9 gallery items, 24 states, over a fake model
-tests/…_test.lua               one per module (7 files)
+tests/…_test.lua               one per module (7 files for this half; 11 in the folder with half B)
 contract_a.json  routes_a.json  spec_ops_a.json  CONTRACT_a.md  NOTES_a.md
 ```
 
@@ -90,9 +90,9 @@ Presentation differences with a behavioural edge:
 12. After a garage property purchase the Spaces text is redrawn (Classic left it stale until the next page).
 13. A module's rating is on its status line, not a badge. Module, slot and upgrade tiles carry `CanonicalGarageCard`
     but not `CanonicalGarageCardId` (question 4 below).
-14. Paint: no CURRENT swatch; Compact shows the first preset row only; a channel with no saved colour starts at the
-    kit's White (243, 240, 255) instead of pure white (display only). Channel names are words ("Front lights"), where
-    Classic upper-cased the id.
+14. Paint: no CURRENT swatch; Compact shows the first preset row only. A channel with no saved colour starts at
+    `Color3.new(1, 1, 1)`, exactly as Classic (GarageUI L523; `PaintView._seed`), so this is no longer a difference.
+    Channel names are words ("Front lights"), where Classic upper-cased the id.
 15. Stat rows: the kit shows the previewed value with a delta chip; Classic showed value and signed difference. Same
     numbers (`floor(x + 0.5)` of the same headline fields, same `StatReference`).
 16. Not carried: carousel arrows, scroll memory, mouse-wheel scrolling of the left rail, the geometry and ownership
@@ -188,3 +188,46 @@ change and a Cash change (0 expected); the preview is not rebuilt on an upgrade-
 B shows with no dealership session open; `GaragePreviewPresentationClient` lighting follows the session;
 `StartupState.GarageUI` is `ready` with no remote reply pending; the instance census per page; Compact (C844, C568) fit
 of the paint controls and of the stat panel on the dealership; a gamepad pass (bumpers, triggers, B on modals).
+
+## 6. Reviewer-fix pass (2026-10-09): what changed and what remains
+
+Applied after the delivery review of the whole family. No remote, action, payload key or value source changed:
+`gen_actions.py --check` still reports 24 call sites equal to Classic, `fork_check.py` passes the 4 forks.
+
+1. **A draw fault no longer strands the player.** `GarageClient` wraps every draw in `Client._protect` (pure, tested).
+   On a fault it warns once (`[Pulse.GarageClient] render failed; closing the garage: <error>`), then, deferred so the
+   model transition that raised it finishes first, calls `GarageModel.Abort()` and releases the broken view.
+   `Abort` runs the Exit function unchanged (GarageUI L195: loading Begin, `GarageSessionRequest` `End {ReturnToEntry}`,
+   close, `GarageClosedFromDealershipExit`, loading Complete) from any page, then fires `ShowTopNotification`
+   "Garage unavailable". The server clears `GarageSessionActive` on End; the client clears `GarageEntryMode`, releases
+   the camera and drops the preview. It adds no call site (the model's 24 `call(...)` lines are untouched).
+   - **End refused or unanswered:** `Abort` still closes the client side (loading Fail, attribute cleared, camera back),
+     as the open path already does at L684 and L689 where it ignores the End reply. The server may then still hold the
+     session (`GarageSessionActive` true, so Presence stays open) until the player re-enters or the server times it out.
+     That is a server state Classic can also reach from those two lines; it is not retried.
+   - **A purchase in flight when the fault lands:** the purchase's own continuation runs after the close, exactly as it
+     would if Exit were pressed during a purchase (Classic has no guard there either). Not changed.
+2. **`start()` builds nothing fragile.** The view is mounted the first time the model has something to show, inside the
+   protected draw; `Surface.Scrim`, the status strip and both pages are therefore built on first open, not at start.
+   The entry events are connected before the optional parts, and the camera step, the Cash watch and the Presence
+   mirror are each protected and reported once. **What can still fail `start()`:** a missing or throwing module at
+   require (the ten shared modules, `Core.ConnectionScope`, the kit), `Switch().Claim`, the two `Layers.Create` calls
+   and `GarageModel.new` (a table constructor). The `WaitForChild` calls do not fail, they wait. If `start()` does
+   fail, the entrance fork still sends `Begin` and waits 5 s for the event before its own Classic fallback (kept lines
+   158-166: `End`, attribute cleared, loading Fail, "Garage UI handoff is unavailable."), but only when the event
+   instance is missing; an event that exists with no listener still leaves the loading screen up. That case needs a
+   change to kept Classic lines of the fork and was not made.
+3. **Shop / Owned switch** (`SelectSource`) now clears the transient preview and calls `buildPreview()` before choosing
+   the source, which is Classic's Back from Options (L363-367) followed by the source card (L343, L344). Pure test added.
+4. **Unset paint channel:** see 3.14 above. Pure test added (`PaintView._seed`).
+5. **Gamepad focus.** The three garage rails (dealership, customise, desk) pass `SelectOn = "Activate"` (new optional
+   `Collections.Rail` prop, `../../API2_AMENDMENTS.md` A1): focus only highlights, selection needs an activation. This
+   needs the kit change installed first. The dealership rail is included because a selection there builds the 3D
+   preview and arms BUY; say so if focus-to-preview is wanted back there (remove the one prop at `ensureBrowser`).
+6. **Declarations.** `contract_a.json`: `replaces` names `GarageComponents` (its generated contract exists); the two
+   `SelectVehicleInstance` sites share a row (keys are the union, each site's keys under `sites`); one
+   `LoadingTransitionInvoke` row with the union of keys and the per-action keys; names are the bare mark keys; prefix
+   attribute names; the camera step is render step `GarageCamera` with an `added` entry. `parity_check.py garage`: 0 open.
+7. **Lint:** 0 open. Six accept rows in `../../integrator/lint_accept.json` (the bindable created under a Classic name,
+   three look-free Classic data modules, paint colour data in `PaintView` and `OwnedGarageDeskView`). Fork-kept lines
+   need no row once `build_forks.py garage` has run (it has; `integrator/forks_out/garage/` is generated).

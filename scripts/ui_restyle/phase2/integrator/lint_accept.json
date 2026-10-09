@@ -28,6 +28,46 @@
    "contains": "'GetTimeTrialPersonalBest'",
    "reason": "Approved read-only request for the event card: programme contract scripts/ui_restyle/CONTRACT.md section 7.2 (\"two existing rate-limited requests, once per show, cached per event\") and API2 5.4 (Event card); Phase 0 confirmed the server-side rate limit. Existing remote Remotes.Racing.RaceRequest, existing server action, no new payload key.",
    "reviewer": "Claude (parity clean-up pass, 2026-10-09); integrator instruction"
+  },
+  {
+   "file": "ReplicatedStorage.Modules.Game.UIPulse.Garage.GarageClient.lua",
+   "rule": "bindable-new",
+   "contains": "Instance.new('BindableEvent')",
+   "reason": "Classic GarageUI line 151: the three entry events are created under Runtime.Dealership when the sender has not made them yet; the name is a variable only because it comes from Client._entries, which holds the three Classic names (pure test: GarageClient_test, entries and intro event cases).",
+   "reviewer": "Claude (garage reviewer-fix pass, 2026-10-09); exemption listed by the delivery reviewer"
+  },
+  {
+   "file": "ReplicatedStorage.Modules.Game.UIPulse.Garage.GarageClient.lua",
+   "rule": "classic-require",
+   "contains": "VehicleCatalog",
+   "reason": "Look-free data module the Classic garage controller requires (GarageUI line 2); read-only catalogue lookups passed to GarageModel through deps, no Pulse copy exists (API2 5.7 model to preserve).",
+   "reviewer": "Claude (garage reviewer-fix pass, 2026-10-09); exemption listed by the delivery reviewer"
+  },
+  {
+   "file": "ReplicatedStorage.Modules.Game.UIPulse.Garage.GarageClient.lua",
+   "rule": "classic-require",
+   "contains": "VehiclePerformanceResolver",
+   "reason": "Look-free shared resolver for the stat rows (GarageUI lines 43 and 75-87; API2 5.7 performance 75-87); the numbers must be the ones Classic and the server use, so it is required, not copied.",
+   "reviewer": "Claude (garage reviewer-fix pass, 2026-10-09); exemption listed by the delivery reviewer"
+  },
+  {
+   "file": "ReplicatedStorage.Modules.Game.UIPulse.Garage.GarageClient.lua",
+   "rule": "classic-require",
+   "contains": "GaragePropertyCatalog",
+   "reason": "Look-free data module for the garage property list of the Spaces panel (GarageUI line 173); prices and capacities are catalogue values, never typed in Pulse (API2 3.5).",
+   "reviewer": "Claude (garage reviewer-fix pass, 2026-10-09); exemption listed by the delivery reviewer"
+  },
+  {
+   "file": "ReplicatedStorage.Modules.Game.UIPulse.Garage.PaintView.lua",
+   "rule": "colour-literal",
+   "reason": "Paint swatches and slider ramps are colour data, not theme: the Classic preset palette and HSV ramps (GarageWorkspaceUI 261-263, 282-283) and the colour the player is choosing; the chosen Color3 is what is saved.",
+   "reviewer": "Claude (garage reviewer-fix pass, 2026-10-09); exemption listed by the delivery reviewer"
+  },
+  {
+   "file": "ReplicatedStorage.Modules.Game.UIPulse.Garage.OwnedGarageDeskView.lua",
+   "rule": "colour-literal",
+   "reason": "Desk paint page only: the same Classic preset palette and HSV slider ramps (GarageWorkspaceUI 261-263, 282-283) and the Color3 the player is choosing for a structure, decoration or light; colour data, not theme.",
+   "reviewer": "Claude (garage reviewer-fix pass, 2026-10-09); exemption listed by the delivery reviewer"
   }
  ]
 }

@@ -694,6 +694,10 @@
    {
     "item": "The stale look after a refused upgrade (437: the card stayed selected with its popup until the next redraw) and the unchanged card row while the first dealership row is being auto-selected (GarageBrowserUI 118)",
     "reason": "API2 6.2: the view draws model state"
+   },
+   {
+    "item": "Instance name Boost: the last of the six stat rows of the Classic stat panel (GarageComponents 215-217 names each row Speed, Acceleration, Handling, Drift, Braking, Boost) and the Boost row of the artwork table (GarageWorkspaceUI 18, a data key, still the slot id)",
+    "reason": "API2 5.7 names to keep and 2.10: kit components own their child names. The two readers of the name look elsewhere: DrivingClient 1104 reads <vehicle>.TOTAL_STATS_Runtime and OnboardingClient 193 (D8) targets the touch drive control on the MobileDriving page"
    }
   ],
   "added": [
@@ -764,6 +768,10 @@
    {
     "item": "The Shop / Owned switch runs Classic's Back from Options (363-367, with its buildPreview at 367) and then the source card (343 or 344), so a previewed module is cleared from the 3D preview",
     "reason": "API2 5.7 Navigation: the skipped Sources page; delivery review finding 3"
+   },
+   {
+    "item": "ScreenGuis CanonicalGarageGuiScrim (DisplayOrder 39) and CanonicalGarageGuiLive (41): the scrim and live layers Layers.Create makes beside CanonicalGarageGui (40, the Classic name and order, GarageComponents 295-311)",
+    "reason": "API2 2.4 ladder; 5.7 ScreenGuis"
    }
   ],
   "namesNote": "From Text.Dealership on, the names are Kit.Contracts mark keys applied through Input.Mark only (API2 2.10); the mark writes the legacy name, text or attributes the onboarding looks up"

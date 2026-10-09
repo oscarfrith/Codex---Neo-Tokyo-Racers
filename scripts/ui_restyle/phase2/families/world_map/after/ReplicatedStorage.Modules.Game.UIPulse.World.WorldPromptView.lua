@@ -107,6 +107,26 @@ local function run()
 	local showing = {} -- prompt -> { Connections, Banner } while our banner is up
 	local cardPrompt
 
+	-- Integrator diagnostics on the PulseWorldPrompts ScreenGui, written only on change: how many banners are up,
+	-- and the last banner or handler error.
+	local diagnosticGui = promptLayer.Gui
+	local shownCount, lastError = 0, ""
+	local function writeDiagnostic(name, value)
+		if diagnosticGui and diagnosticGui:GetAttribute(name) ~= value then
+			pcall(diagnosticGui.SetAttribute, diagnosticGui, name, value)
+		end
+	end
+	local function countShown(delta)
+		shownCount = math.max(0, shownCount + delta)
+		writeDiagnostic("PulseShownPrompts", shownCount)
+	end
+	local function noteError(message)
+		lastError = string.sub(tostring(message), 1, 200)
+		writeDiagnostic("PulseLastPromptError", lastError)
+	end
+	writeDiagnostic("PulseShownPrompts", shownCount)
+	writeDiagnostic("PulseLastPromptError", lastError)
+
 	local function setStyle(prompt, style): boolean
 		return (pcall(function()
 			if prompt.Style ~= style then
@@ -122,6 +142,7 @@ local function run()
 			for _, connection in entry.Connections do
 				connection:Disconnect()
 			end
+			countShown(-1)
 		end
 		pcall(stack.Hide, record.Id)
 		if cardPrompt == prompt then
@@ -133,6 +154,7 @@ local function run()
 	-- The per-prompt fail-safe: back to the engine's own prompt UI, and never touched again.
 	local function fail(prompt, record, reason)
 		warnOnce("a banner failed and its prompt is left to the engine (" .. tostring(prompt.Name) .. "): " .. tostring(reason))
+		noteError(tostring(prompt.Name) .. ": " .. tostring(reason))
 		model:Apply(prompt, "Fail")
 		if record then
 			hideBanner(prompt, record)
@@ -185,6 +207,7 @@ local function run()
 				return result
 			end
 			local banner = stack.Show(record.Id, props())
+			assert(banner, "the prompt stack gave no banner")
 			local function update()
 				if showing[prompt] then
 					local updated, message = pcall(function()
@@ -211,11 +234,13 @@ local function run()
 			fail(prompt, record, reason)
 			return
 		end
+		countShown(1)
 		if record.Family == "RaceEntry" then
 			-- The card is an extra: its failure never costs the banner.
 			local cardOk, cardReason = pcall(showCard, prompt)
 			if not cardOk then
 				warnOnce("the event card failed: " .. tostring(cardReason))
+				noteError("event card: " .. tostring(cardReason))
 			end
 		end
 	end
@@ -237,6 +262,7 @@ local function run()
 			local ok, reason = pcall(handler, ...)
 			if not ok then
 				warnOnce("a prompt handler failed: " .. tostring(reason))
+				noteError("handler: " .. tostring(reason))
 			end
 		end
 	end
@@ -262,17 +288,28 @@ local function run()
 	-- 4. Showing and hiding follow the engine's own signals; nothing here runs per frame.
 	scope:connect(ProximityPromptService.PromptShown, guarded(function(prompt)
 		engineShowing[prompt] = true
+		local custom = prompt.Style == Enum.ProximityPromptStyle.Custom
 		local record = model:Record(prompt)
 		if not record then
 			-- A known prompt outside the scoped roots, or one that showed before its root was found.
-			if Model.Classify(prompt.Name) then
-				model:Apply(prompt, "TrackShowing")
+			if not Model.Classify(prompt.Name) then
+				return
 			end
-			return
+			local _, tracked = model:Apply(prompt, "TrackShowing")
+			record = tracked
+			if not record or not custom then
+				return -- the engine draws it; it is made ours when it hides
+			end
+			-- Already Custom (ours): nothing else draws it, so it gets its banner now.
 		end
-		local custom = prompt.Style == Enum.ProximityPromptStyle.Custom
 		local effect = model:Apply(prompt, custom and "Shown" or "ShownDefault")
 		perform(prompt, record, effect)
+		-- The fail-safe: a Custom prompt the engine shows has a banner or a rule that hides it, or goes back to Default.
+		if custom and record.State ~= "Shown" and record.State ~= "Suppressed" and record.State ~= "Failed" then
+			fail(prompt, record, "shown as Custom with no banner (state " .. tostring(record.State) .. ")")
+		elseif record.State == "Shown" and not showing[prompt] then
+			fail(prompt, record, "state Shown with no banner")
+		end
 	end))
 	scope:connect(ProximityPromptService.PromptHidden, guarded(function(prompt)
 		engineShowing[prompt] = nil
@@ -280,6 +317,11 @@ local function run()
 		if record then
 			local effect = model:Apply(prompt, "Hidden")
 			perform(prompt, record, effect)
+			-- Records are held strongly: one for a prompt that has left the game (outside the scoped roots) is dropped here.
+			if not prompt:IsDescendantOf(game) then
+				hideBanner(prompt, record)
+				model:Forget(prompt)
+			end
 		end
 	end))
 
@@ -298,6 +340,8 @@ local function run()
 			end
 			showing[prompt] = nil
 		end
+		shownCount = 0
+		writeDiagnostic("PulseShownPrompts", 0)
 	end)
 
 	-- 5. The roots are found off the start thread, each on its own, so start never waits on the world streaming in.

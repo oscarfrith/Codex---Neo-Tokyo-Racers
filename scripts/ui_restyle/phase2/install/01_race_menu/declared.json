@@ -20,9 +20,9 @@
    "class": "ModuleScript"
   },
   "ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Collections": {
-   "length": 19040,
-   "djb2": 803879344,
-   "fnv1a32": 3839434962,
+   "length": 19219,
+   "djb2": 396849307,
+   "fnv1a32": 903334191,
    "class": "ModuleScript"
   },
   "ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Controls": {
@@ -92,9 +92,9 @@
    "class": "ModuleScript"
   },
   "ReplicatedStorage.Modules.Game.UIPulse.Kit.Collections": {
-   "length": 71547,
-   "djb2": 388635571,
-   "fnv1a32": 1873263153,
+   "length": 72642,
+   "djb2": 2937185373,
+   "fnv1a32": 2426268173,
    "class": "ModuleScript"
   },
   "ReplicatedStorage.Modules.Game.UIPulse.Kit.Contracts": {
@@ -146,9 +146,9 @@
    "class": "ModuleScript"
   },
   "ReplicatedStorage.Modules.Game.UIPulse.Kit.Overlay": {
-   "length": 57855,
-   "djb2": 2630634820,
-   "fnv1a32": 25154472,
+   "length": 59243,
+   "djb2": 2746146027,
+   "fnv1a32": 2521000165,
    "class": "ModuleScript"
   },
   "ReplicatedStorage.Modules.Game.UIPulse.Kit.Perf": {

@@ -139,21 +139,21 @@
     },
     "ReplicatedStorage.Modules.Game.UIPulse.Kit.Collections": {
      "file": "00_kit/after/ReplicatedStorage.Modules.Game.UIPulse.Kit.Collections.lua",
-     "fp": "388635571-1873263153-71547",
+     "fp": "2937185373-2426268173-72642",
      "class": "ModuleScript",
      "kind": "source",
      "classic": false
     },
     "ReplicatedStorage.Modules.Game.UIPulse.Kit.Overlay": {
      "file": "00_kit/after/ReplicatedStorage.Modules.Game.UIPulse.Kit.Overlay.lua",
-     "fp": "2630634820-25154472-57855",
+     "fp": "2746146027-2521000165-59243",
      "class": "ModuleScript",
      "kind": "source",
      "classic": false
     },
     "ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Collections": {
      "file": "00_kit/after/ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Collections.lua",
-     "fp": "803879344-3839434962-19040",
+     "fp": "396849307-903334191-19219",
      "class": "ModuleScript",
      "kind": "source",
      "classic": false
@@ -290,7 +290,7 @@
     },
     "ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.HudView": {
      "file": "02_free_roam/after/ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.HudView.lua",
-     "fp": "3239181540-307432124-13710",
+     "fp": "768716549-302720557-13777",
      "class": "ModuleScript",
      "kind": "create"
     },
@@ -421,7 +421,7 @@
     },
     "ReplicatedStorage.Modules.Game.UIPulse.World.WorldPromptModel": {
      "file": "03_world_map/after/ReplicatedStorage.Modules.Game.UIPulse.World.WorldPromptModel.lua",
-     "fp": "3300486518-4142293448-9844",
+     "fp": "775443960-1392915326-10318",
      "class": "ModuleScript",
      "kind": "create"
     },
@@ -433,7 +433,7 @@
     },
     "ReplicatedStorage.Modules.Game.UIPulse.World.WorldPromptView": {
      "file": "03_world_map/after/ReplicatedStorage.Modules.Game.UIPulse.World.WorldPromptView.lua",
-     "fp": "2448014506-2115322820-11384",
+     "fp": "3847565138-134755644-13397",
      "class": "ModuleScript",
      "kind": "create"
     },
@@ -622,6 +622,219 @@
     "ReplicatedStorage.Modules.Game.UIPulse.RaceEntry.SetupView": "05_race_entry/tests/ReplicatedStorage.Modules.Game.UIPulse.RaceEntry.SetupView_test.lua",
     "ReplicatedStorage.Modules.Game.UIPulse.RaceEntry.VehicleView": "05_race_entry/tests/ReplicatedStorage.Modules.Game.UIPulse.RaceEntry.VehicleView_test.lua",
     "ReplicatedStorage.Modules.Game.UIPulse.Routes": "05_race_entry/tests/ReplicatedStorage.Modules.Game.UIPulse.Routes_test.lua"
+   },
+   "installable": true,
+   "provisional": []
+  },
+  "06_garage": {
+   "unit": "garage",
+   "scripts": {
+    "ReplicatedStorage.Modules.Game.UIPulse.Garage.GarageRoutes": {
+     "file": "06_garage/after/ReplicatedStorage.Modules.Game.UIPulse.Garage.GarageRoutes.lua",
+     "fp": "3402117266-514497510-14834",
+     "class": "ModuleScript",
+     "kind": "create"
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.Garage.GarageModel": {
+     "file": "06_garage/after/ReplicatedStorage.Modules.Game.UIPulse.Garage.GarageModel.lua",
+     "fp": "72071852-2955855538-87513",
+     "class": "ModuleScript",
+     "kind": "create"
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.Garage.PaintView": {
+     "file": "06_garage/after/ReplicatedStorage.Modules.Game.UIPulse.Garage.PaintView.lua",
+     "fp": "2985242696-4048486044-12066",
+     "class": "ModuleScript",
+     "kind": "create"
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.Garage.GarageModals": {
+     "file": "06_garage/after/ReplicatedStorage.Modules.Game.UIPulse.Garage.GarageModals.lua",
+     "fp": "2433875935-3976281279-5925",
+     "class": "ModuleScript",
+     "kind": "create"
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.Garage.GarageScreenView": {
+     "file": "06_garage/after/ReplicatedStorage.Modules.Game.UIPulse.Garage.GarageScreenView.lua",
+     "fp": "1523197935-891921211-28942",
+     "class": "ModuleScript",
+     "kind": "create"
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.Garage.GarageClient": {
+     "file": "06_garage/after/ReplicatedStorage.Modules.Game.UIPulse.Garage.GarageClient.lua",
+     "fp": "2485735288-2610226376-11712",
+     "class": "ModuleScript",
+     "kind": "create"
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Garage": {
+     "file": "06_garage/after/ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Garage.lua",
+     "fp": "2147584874-1361331676-19238",
+     "class": "ModuleScript",
+     "kind": "create"
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.Garage.OwnedGarageClient": {
+     "file": "06_garage/after/ReplicatedStorage.Modules.Game.UIPulse.Garage.OwnedGarageClient.lua",
+     "fp": "3116279494-3420097012-1842",
+     "class": "ModuleScript",
+     "kind": "create"
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.Garage.OwnedGarageBrowserModel": {
+     "file": "06_garage/after/ReplicatedStorage.Modules.Game.UIPulse.Garage.OwnedGarageBrowserModel.lua",
+     "fp": "3155096163-4045359433-23429",
+     "class": "ModuleScript",
+     "kind": "create"
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.Garage.OwnedGarageBrowserUI": {
+     "file": "06_garage/after/ReplicatedStorage.Modules.Game.UIPulse.Garage.OwnedGarageBrowserUI.lua",
+     "fp": "163622922-282568956-15291",
+     "class": "ModuleScript",
+     "kind": "create"
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.Garage.OwnedGarageWorkspaceUI": {
+     "file": "06_garage/after/ReplicatedStorage.Modules.Game.UIPulse.Garage.OwnedGarageWorkspaceUI.lua",
+     "fp": "1211440583-1649215793-45117",
+     "class": "ModuleScript",
+     "kind": "create"
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.Garage.OwnedGarageDeskView": {
+     "file": "06_garage/after/ReplicatedStorage.Modules.Game.UIPulse.Garage.OwnedGarageDeskView.lua",
+     "fp": "2279684806-3963087744-24437",
+     "class": "ModuleScript",
+     "kind": "create"
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.Garage.GarageCompat": {
+     "file": "06_garage/after/ReplicatedStorage.Modules.Game.UIPulse.Garage.GarageCompat.lua",
+     "fp": "1893322381-4057575857-2879",
+     "class": "ModuleScript",
+     "kind": "create"
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.Garage.GarageInteriorHud": {
+     "file": "06_garage/after/ReplicatedStorage.Modules.Game.UIPulse.Garage.GarageInteriorHud.lua",
+     "fp": "1084898089-3854643327-12855",
+     "class": "ModuleScript",
+     "kind": "create"
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.Garage.TouchCameraGuard": {
+     "file": "06_garage/after/ReplicatedStorage.Modules.Game.UIPulse.Garage.TouchCameraGuard.lua",
+     "fp": "2697359570-3002823490-12880",
+     "class": "ModuleScript",
+     "kind": "create"
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.Garage.GarageInteriorTransitionUI": {
+     "file": "06_garage/after/ReplicatedStorage.Modules.Game.UIPulse.Garage.GarageInteriorTransitionUI.lua",
+     "fp": "3817409909-3674440229-1476",
+     "class": "ModuleScript",
+     "kind": "create"
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.Garage.GarageEntranceClient": {
+     "file": "06_garage/after/ReplicatedStorage.Modules.Game.UIPulse.Garage.GarageEntranceClient.lua",
+     "fp": "505618832-3738743008-8078",
+     "class": "ModuleScript",
+     "kind": "create"
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.GarageOwned": {
+     "file": "06_garage/after/ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.GarageOwned.lua",
+     "fp": "2394096495-4224330045-12160",
+     "class": "ModuleScript",
+     "kind": "create"
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.Routes": {
+     "file": "06_garage/after/ReplicatedStorage.Modules.Game.UIPulse.Routes.lua",
+     "fp": "2325339107-3784886049-10314",
+     "class": "ModuleScript",
+     "kind": "source",
+     "classic": false
+    }
+   },
+   "folders": [
+    "ReplicatedStorage.Modules.Game.UIPulse.Garage"
+   ],
+   "tests": {
+    "ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Garage": "06_garage/tests/ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Garage_test.lua",
+    "ReplicatedStorage.Modules.Game.UIPulse.Garage.GarageClient": "06_garage/tests/ReplicatedStorage.Modules.Game.UIPulse.Garage.GarageClient_test.lua",
+    "ReplicatedStorage.Modules.Game.UIPulse.Garage.GarageCompat": "06_garage/tests/ReplicatedStorage.Modules.Game.UIPulse.Garage.GarageCompat_test.lua",
+    "ReplicatedStorage.Modules.Game.UIPulse.Garage.GarageModals": "06_garage/tests/ReplicatedStorage.Modules.Game.UIPulse.Garage.GarageModals_test.lua",
+    "ReplicatedStorage.Modules.Game.UIPulse.Garage.GarageModel": "06_garage/tests/ReplicatedStorage.Modules.Game.UIPulse.Garage.GarageModel_test.lua",
+    "ReplicatedStorage.Modules.Game.UIPulse.Garage.GarageRoutes": "06_garage/tests/ReplicatedStorage.Modules.Game.UIPulse.Garage.GarageRoutes_test.lua",
+    "ReplicatedStorage.Modules.Game.UIPulse.Garage.GarageScreenView": "06_garage/tests/ReplicatedStorage.Modules.Game.UIPulse.Garage.GarageScreenView_test.lua",
+    "ReplicatedStorage.Modules.Game.UIPulse.Garage.OwnedGarageBrowserModel": "06_garage/tests/ReplicatedStorage.Modules.Game.UIPulse.Garage.OwnedGarageBrowserModel_test.lua",
+    "ReplicatedStorage.Modules.Game.UIPulse.Garage.OwnedGarageClient": "06_garage/tests/ReplicatedStorage.Modules.Game.UIPulse.Garage.OwnedGarageClient_test.lua",
+    "ReplicatedStorage.Modules.Game.UIPulse.Garage.OwnedGarageDeskView": "06_garage/tests/ReplicatedStorage.Modules.Game.UIPulse.Garage.OwnedGarageDeskView_test.lua",
+    "ReplicatedStorage.Modules.Game.UIPulse.Garage.PaintView": "06_garage/tests/ReplicatedStorage.Modules.Game.UIPulse.Garage.PaintView_test.lua",
+    "ReplicatedStorage.Modules.Game.UIPulse.Routes": "06_garage/tests/ReplicatedStorage.Modules.Game.UIPulse.Routes_test.lua"
+   },
+   "installable": true,
+   "provisional": []
+  },
+  "07_shell": {
+   "unit": "shell",
+   "scripts": {
+    "ReplicatedStorage.Modules.Game.UIPulse.Shell.OnboardingModel": {
+     "file": "07_shell/after/ReplicatedStorage.Modules.Game.UIPulse.Shell.OnboardingModel.lua",
+     "fp": "2015537707-3458900359-28673",
+     "class": "ModuleScript",
+     "kind": "create"
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.Shell.OnboardingView": {
+     "file": "07_shell/after/ReplicatedStorage.Modules.Game.UIPulse.Shell.OnboardingView.lua",
+     "fp": "1893220971-1508019445-23878",
+     "class": "ModuleScript",
+     "kind": "create"
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.Shell.OnboardingClient": {
+     "file": "07_shell/after/ReplicatedStorage.Modules.Game.UIPulse.Shell.OnboardingClient.lua",
+     "fp": "1363736387-378863139-21249",
+     "class": "ModuleScript",
+     "kind": "create"
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Shell": {
+     "file": "07_shell/after/ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Shell.lua",
+     "fp": "1991206574-2748233934-10273",
+     "class": "ModuleScript",
+     "kind": "create"
+    },
+    "ReplicatedFirst.Loading.LoadingScreenViewPulse": {
+     "file": "07_shell/after/ReplicatedFirst.Loading.LoadingScreenViewPulse.lua",
+     "fp": "3830196684-1334576356-21426",
+     "class": "ModuleScript",
+     "kind": "create"
+    },
+    "ReplicatedFirst.Loading.StartScreenPulse": {
+     "file": "07_shell/after/ReplicatedFirst.Loading.StartScreenPulse.lua",
+     "fp": "820551907-363558893-16575",
+     "class": "ModuleScript",
+     "kind": "create"
+    },
+    "ReplicatedFirst.Loading.LoadingTransitionRuntime": {
+     "file": "07_shell/after/ReplicatedFirst.Loading.LoadingTransitionRuntime.lua",
+     "fp": "3849886005-154855063-8708",
+     "class": "ModuleScript",
+     "kind": "source",
+     "classic": true
+    },
+    "ReplicatedFirst.Loading.InitialLoadingAndStartScreenClient": {
+     "file": "07_shell/after/ReplicatedFirst.Loading.InitialLoadingAndStartScreenClient.lua",
+     "fp": "4149816873-1061083493-14351",
+     "class": "LocalScript",
+     "kind": "source",
+     "classic": true
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.Routes": {
+     "file": "07_shell/after/ReplicatedStorage.Modules.Game.UIPulse.Routes.lua",
+     "fp": "2237053474-3741244782-10437",
+     "class": "ModuleScript",
+     "kind": "source",
+     "classic": false
+    }
+   },
+   "folders": [],
+   "tests": {
+    "ReplicatedFirst.Loading.LoadingScreenViewPulse": "07_shell/tests/ReplicatedFirst.Loading.LoadingScreenViewPulse_test.lua",
+    "ReplicatedFirst.Loading.StartScreenPulse": "07_shell/tests/ReplicatedFirst.Loading.StartScreenPulse_test.lua",
+    "ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Shell": "07_shell/tests/ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Shell_test.lua",
+    "ReplicatedStorage.Modules.Game.UIPulse.Shell.OnboardingClient": "07_shell/tests/ReplicatedStorage.Modules.Game.UIPulse.Shell.OnboardingClient_test.lua",
+    "ReplicatedStorage.Modules.Game.UIPulse.Shell.OnboardingModel": "07_shell/tests/ReplicatedStorage.Modules.Game.UIPulse.Shell.OnboardingModel_test.lua",
+    "ReplicatedStorage.Modules.Game.UIPulse.Shell.OnboardingView": "07_shell/tests/ReplicatedStorage.Modules.Game.UIPulse.Shell.OnboardingView_test.lua",
+    "ReplicatedStorage.Modules.Game.UIPulse.Routes": "07_shell/tests/ReplicatedStorage.Modules.Game.UIPulse.Routes_test.lua"
    },
    "installable": true,
    "provisional": []

@@ -39,6 +39,9 @@ after/…UIPulse.Garage.GarageEntranceClient.lua         fork (hand-assembled)
 after/…UIPulse.Dev.Fixtures.GarageOwned.lua            gallery items OwnedGarage.Browser (10 states), OwnedGarage.Desk (7 states)
 forks/<Module>.json + forks/<Module>.span<lines>.lua   4 definitions, 7 span files
 tests/…UIPulse.Garage.OwnedGarageBrowserModel_test.lua 20 pure cases
+tests/…UIPulse.Garage.OwnedGarageClient_test.lua       2 pure cases (owner shape, start order)
+tests/…UIPulse.Garage.GarageCompat_test.lua            4 pure cases (shape, the Classic asset helper)
+tests/…UIPulse.Garage.OwnedGarageDeskView_test.lua     3 pure cases (close path, spaces text, selected tab)
 fork_check.py  contract_b.json  routes_b.json  spec_ops_b.json  NOTES_b.md
 ```
 
@@ -134,7 +137,8 @@ the hand-assembled file, proves every kept line is present and in order, and com
 9. **`start()` robustness.** Kit view builds are inside `xpcall`: a failure warns once (`[Pulse.OwnedGarageBrowserUI]`,
    `[Pulse.GarageInteriorHud]`, `[Pulse.OwnedGarageDeskView]`) and leaves that screen closed or bare, while the stream
    acknowledgement, exit prompts, attributes and the guard keep working. `Layers.Create` and the Classic waits are not
-   wrapped. Treat any of those three warnings as a failed gate.
+   wrapped. Treat any of those three warnings as a failed gate. The desk is the exception since the reviewer-fix pass
+   (section 7): it no longer shows bare, it closes through the fork and toasts.
 10. **The stream wait** (model `OnPush`) keeps Classic's `task.wait(0.05)` loop up to the server's timeout. It is a
     deadline, not a presence poll, but rule 6.6 item 5 may flag it.
 11. **No fixture for the interior HUD** (its two controls are built inside `Start`).
@@ -157,3 +161,29 @@ the hand-assembled file, proves every kept line is present and in order, and com
   cleared as Classic.
 - Classic onboarding on the Pulse screens: X1 `GarageList`, X3 `Enter`, Z1-Z3 cards, AA1 `TutorialCardScroller`,
   AB1 family cards, AC1 and AD1 `Categories`.
+
+## 7. Reviewer-fix pass (2026-10-09)
+
+No kept fork line changed; `fork_check.py` still passes the 4 forks (36 desk call sites equal to Classic).
+
+1. **The desk no longer shows when it cannot be drawn.** `OwnedGarageDeskView:Show` used to set `Root.Visible` even when
+   the attach to `CanonicalGarageGui.CanonicalCanvas` or the build had failed, with `OwnedGarageManagementOpen` true and
+   no Exit. Now, on a failed attach, a failed build or a failed full draw, it shows nothing, releases its Presence
+   entry, runs the view's own `OnExit` (deferred) and toasts "Garage unavailable" through `GarageCompat.Notify`.
+   `OnExit` is the fork's `close` (Classic line 126 gives it to every view; line 37): it clears
+   `PlayerGui@OwnedGarageManagementOpen`, hides, closes a modal and, inside a garage, sends `CancelAllPreviews` and
+   `SetManagementOpen {Open = false}`. The view itself writes no attribute, fires no bindable and calls no remote.
+   - A failed card refresh (`RefreshCards`) still only warns: the built desk and its Exit button stay.
+   - **What remains:** on the very first open the fork has no state yet, so its `close` sends nothing, while the
+     fork's `open` has already queued `SetManagementOpen {Open = true}` (kept line 173). The server can then believe
+     the desk is open while the client has closed it, until the desk is opened and closed once. Fixing that means
+     changing kept Classic lines; not done.
+2. **Gamepad focus:** the desk rail passes `SelectOn = "Activate"` (`../../API2_AMENDMENTS.md` A1), so focusing a card
+   no longer navigates or starts a server preview. Needs the kit change installed first.
+3. **Declarations** (`contract_b.json`): the 17 desk actions are declared with their literal keys and Classic lines;
+   `SetAccessMode` and `SetInvitation` declare their literal keys with `wrapperKeys` (`BaseRevision`, `RequestId`, added
+   by the wrapper in Classic and Pulse alike); one `LoadingTransitionInvoke` row per owner; `UI.PurchaseRejected` on the
+   entrance; names built at run time are rows with a `built` note. `parity_check.py garage`: 0 open.
+4. **Pure tests added:** `OwnedGarageClient` (start order), `GarageCompat` (asset helper), `OwnedGarageDeskView`
+   (`_closeOf`, `_spaces`, `_selectedTab`). The failure path itself needs the engine and is a Play check: with the
+   garage layer absent, opening the desk must leave `OwnedGarageManagementOpen` false and show the toast.

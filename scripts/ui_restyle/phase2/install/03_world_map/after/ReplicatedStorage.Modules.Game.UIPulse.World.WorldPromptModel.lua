@@ -92,7 +92,9 @@ function Model.Next(current: string?, event: string, visible: boolean?): (string
 		return nil, nil
 	end
 	if event == "Shown" then
-		if current == "Custom" then
+		-- "Shown" means the engine shows the prompt and its Style is Custom, so nothing else draws it: a Pending
+		-- prompt (first seen while showing, already Custom) gets its banner too, never a Custom prompt with none.
+		if current == "Custom" or current == "Pending" then
 			if visible then
 				return "Shown", "Show"
 			end
@@ -166,7 +168,10 @@ end
 function Model.new(deps)
 	local self = setmetatable({}, Model)
 	self.Deps = deps
-	self.Records = setmetatable({}, { __mode = "k" }) -- prompt -> { State, Family, Id }
+	-- prompt -> { State, Family, Id }. Strong keys: a weak key lets the record of a prompt nothing else in Luau
+	-- holds (the server-made race start prompt) be collected while the instance lives, which lost its Custom state
+	-- and left it without a banner. The owner calls Forget when a prompt goes.
+	self.Records = {}
 	self.NextId = 0
 	self.Events = {} -- EventKey -> { Summary, Best = { [tier] = seconds }, Busy }
 	return self

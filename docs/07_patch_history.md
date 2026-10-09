@@ -2,6 +2,15 @@
 
 Recent deliveries, newest first. Entries before September 2026 live in [the archive](history/patch-history-2026-05-to-2026-08.md).
 
+## 2026-10-09 - UI restyle wave 2: every remaining screen in Pulse; default flipped to Pulse (v3)
+
+High-Risk lane. Eight install units through `scripts/ui_restyle/phase2/install/` (kit additions, race menu, free roam, map and prompts, race session, race entry, garage, shell). 31 images uploaded. Four more Classic scripts carry small edits (`RouteGuide`, `RaceTransitionClient`, two loading scripts). Contract and evidence: `scripts/ui_restyle/phase2/`.
+
+- **Changed:** with `Config.UI@UIStyle` = `Pulse` (now the saved default, at Oscar's request) every UI family is the new owner; `Classic` restores the old UI.
+- **Checked:** every unit compiles and runs its pure tests in Edit; `delivery-reviewer` on free roam, race session, shell and garage (fixes applied); AUDIT and Classic verify after each install; Play in the sandbox for start screen, HUD, driving, race menu, map, a prompt, race entry and a dealership purchase through to Drive. Not user-confirmed; many paths untested (see `verification.json`).
+- **Found on the way:** game scripts cannot connect `StarterGui.CoreGuiChangedSignal`; kit components re-write `Visible` from their own state, so callers must go through `Set`; a weak-keyed record table lost a server-made prompt; `execute_luau` hits an HTTP request limit after many bridge fetches in a minute.
+- **Recovery:** `UIStyle` = `Classic`; or roll the units back in reverse order, then Phase 1.
+
 ## 2026-10-09 - UI restyle Phase 1: switch, kit core, Pulse toasts, gallery (v3, default Classic)
 
 High-Risk lane. One existing script edited (`ClientBase`, eight inserted lines), 20 ModuleScripts and two config folders created, three attributes added. Contract, review and evidence: `scripts/ui_restyle/phase1/`.

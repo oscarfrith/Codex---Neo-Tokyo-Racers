@@ -30,9 +30,9 @@
    "class": "ModuleScript"
   },
   "ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Collections": {
-   "length": 19040,
-   "djb2": 803879344,
-   "fnv1a32": 3839434962,
+   "length": 19219,
+   "djb2": 396849307,
+   "fnv1a32": 903334191,
    "class": "ModuleScript"
   },
   "ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Controls": {
@@ -162,9 +162,9 @@
    "class": "ModuleScript"
   },
   "ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.HudView": {
-   "length": 13710,
-   "djb2": 3239181540,
-   "fnv1a32": 307432124,
+   "length": 13777,
+   "djb2": 768716549,
+   "fnv1a32": 302720557,
    "class": "ModuleScript"
   },
   "ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.TouchControlsClient": {
@@ -186,9 +186,9 @@
    "class": "ModuleScript"
   },
   "ReplicatedStorage.Modules.Game.UIPulse.Kit.Collections": {
-   "length": 71547,
-   "djb2": 388635571,
-   "fnv1a32": 1873263153,
+   "length": 72642,
+   "djb2": 2937185373,
+   "fnv1a32": 2426268173,
    "class": "ModuleScript"
   },
   "ReplicatedStorage.Modules.Game.UIPulse.Kit.Contracts": {
@@ -240,9 +240,9 @@
    "class": "ModuleScript"
   },
   "ReplicatedStorage.Modules.Game.UIPulse.Kit.Overlay": {
-   "length": 57855,
-   "djb2": 2630634820,
-   "fnv1a32": 25154472,
+   "length": 59243,
+   "djb2": 2746146027,
+   "fnv1a32": 2521000165,
    "class": "ModuleScript"
   },
   "ReplicatedStorage.Modules.Game.UIPulse.Kit.Perf": {
@@ -406,15 +406,15 @@
    "class": "ModuleScript"
   },
   "ReplicatedStorage.Modules.Game.UIPulse.World.WorldPromptModel": {
-   "length": 9844,
-   "djb2": 3300486518,
-   "fnv1a32": 4142293448,
+   "length": 10318,
+   "djb2": 775443960,
+   "fnv1a32": 1392915326,
    "class": "ModuleScript"
   },
   "ReplicatedStorage.Modules.Game.UIPulse.World.WorldPromptView": {
-   "length": 11384,
-   "djb2": 2448014506,
-   "fnv1a32": 2115322820,
+   "length": 13397,
+   "djb2": 3847565138,
+   "fnv1a32": 134755644,
    "class": "ModuleScript"
   },
   "ReplicatedStorage.Modules.Game.UIPulse.WorldMap.FullMapClient": {
