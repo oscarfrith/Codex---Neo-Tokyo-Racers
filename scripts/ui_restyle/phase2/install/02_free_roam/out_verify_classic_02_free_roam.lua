@@ -688,7 +688,9 @@ local EXPECT_SERVICES = { ScreenOrientation = "Enum.ScreenOrientation.LandscapeS
 -- Declared changes from later phases (build_verify.py --declared). Listed separately, never counted as failures.
 local DECLARED = {
 	scripts = {
+		["ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI"] = {"ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI","ModuleScript",75271,1917299327,648451391,false},
 		["ReplicatedStorage.Modules.Game.UI.RouteGuide"] = {"ReplicatedStorage.Modules.Game.UI.RouteGuide","ModuleScript",15849,3447005970,3064301258,false},
+		["ReplicatedStorage.Modules.Game.Vehicles.DrivingClient"] = {"ReplicatedStorage.Modules.Game.Vehicles.DrivingClient","ModuleScript",72479,1261491730,2693108196,false},
 		["StarterPlayer.StarterPlayerScripts.ClientBase"] = {"StarterPlayer.StarterPlayerScripts.ClientBase","LocalScript",8326,564541363,3766695237,false},
 	},
 	addedScripts = {
@@ -712,7 +714,7 @@ local DECLARED = {
 		["ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.CarPanelView"] = {"ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.CarPanelView","ModuleScript",9946,1167113449,4211398439,false},
 		["ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.HudClient"] = {"ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.HudClient","ModuleScript",11910,111944268,567848318,false},
 		["ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.HudMinimap"] = {"ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.HudMinimap","ModuleScript",10134,2334085733,3555329025,false},
-		["ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.HudModals"] = {"ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.HudModals","ModuleScript",18155,4236126180,2500503292,false},
+		["ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.HudModals"] = {"ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.HudModals","ModuleScript",18155,3362244644,4280416464,false},
 		["ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.HudModel"] = {"ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.HudModel","ModuleScript",29562,383365086,2001965462,false},
 		["ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.HudView"] = {"ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.HudView","ModuleScript",14537,963326786,2943197160,false},
 		["ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.TouchControlsClient"] = {"ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.TouchControlsClient","ModuleScript",10581,2028199314,2937671232,false},
@@ -724,7 +726,7 @@ local DECLARED = {
 		["ReplicatedStorage.Modules.Game.UIPulse.Kit.Data"] = {"ReplicatedStorage.Modules.Game.UIPulse.Kit.Data","ModuleScript",57060,3840631725,3282828073,false},
 		["ReplicatedStorage.Modules.Game.UIPulse.Kit.Gauge"] = {"ReplicatedStorage.Modules.Game.UIPulse.Kit.Gauge","ModuleScript",14598,4258431485,411862015,false},
 		["ReplicatedStorage.Modules.Game.UIPulse.Kit.Input"] = {"ReplicatedStorage.Modules.Game.UIPulse.Kit.Input","ModuleScript",13498,2694737324,1908707770,false},
-		["ReplicatedStorage.Modules.Game.UIPulse.Kit.Layers"] = {"ReplicatedStorage.Modules.Game.UIPulse.Kit.Layers","ModuleScript",15569,3139279021,1369871623,false},
+		["ReplicatedStorage.Modules.Game.UIPulse.Kit.Layers"] = {"ReplicatedStorage.Modules.Game.UIPulse.Kit.Layers","ModuleScript",15686,2288092487,2149580299,false},
 		["ReplicatedStorage.Modules.Game.UIPulse.Kit.Metrics"] = {"ReplicatedStorage.Modules.Game.UIPulse.Kit.Metrics","ModuleScript",13502,685872700,1840105876,false},
 		["ReplicatedStorage.Modules.Game.UIPulse.Kit.Minimap"] = {"ReplicatedStorage.Modules.Game.UIPulse.Kit.Minimap","ModuleScript",19093,3877836414,359801508,false},
 		["ReplicatedStorage.Modules.Game.UIPulse.Kit.Overlay"] = {"ReplicatedStorage.Modules.Game.UIPulse.Kit.Overlay","ModuleScript",59243,2746146027,2521000165,false},

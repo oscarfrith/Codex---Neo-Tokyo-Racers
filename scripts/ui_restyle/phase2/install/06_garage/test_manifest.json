@@ -668,8 +668,22 @@
    "classic": true
   },
   {
+   "path": "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI",
+   "file": "scripts/ui_restyle/phase2/install/02_free_roam/after/ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI.lua",
+   "unit": "02_free_roam",
+   "class": "ModuleScript",
+   "classic": true
+  },
+  {
    "path": "ReplicatedStorage.Modules.Game.UI.RouteGuide",
    "file": "scripts/ui_restyle/phase2/install/02_free_roam/after/ReplicatedStorage.Modules.Game.UI.RouteGuide.lua",
+   "unit": "02_free_roam",
+   "class": "ModuleScript",
+   "classic": true
+  },
+  {
+   "path": "ReplicatedStorage.Modules.Game.Vehicles.DrivingClient",
+   "file": "scripts/ui_restyle/phase2/install/02_free_roam/after/ReplicatedStorage.Modules.Game.Vehicles.DrivingClient.lua",
    "unit": "02_free_roam",
    "class": "ModuleScript",
    "classic": true

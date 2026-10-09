@@ -183,7 +183,7 @@ local function run()
 	local scope = require(scopeModule).new()
 
 	-- 3. Layers: static and live (API2 5.5). Both start hidden; the view shows them with the session.
-	local layer = Layers.Create(LAYER_NAME, { Frame = "Hud" })
+	local layer = Layers.Create(LAYER_NAME, { Frame = "Hud", Scrim = true })
 	local live = Layers.Create(LAYER_NAME, { Frame = "Hud", Live = true })
 	layer.SetVisible(false)
 	live.SetVisible(false)

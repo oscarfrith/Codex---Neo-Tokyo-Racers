@@ -20,6 +20,7 @@ local Perf = require(Kit.Perf)
 local Presence = require(Kit.Presence)
 
 local Space = Tokens.Space
+local MAP_ARROW_SCALE = 1.5 -- the arrow image has more margin than the badge it replaced
 
 local View = {}
 
@@ -126,7 +127,9 @@ function View.Mount(layer, model, scope, options)
 		end
 		p.BoardRows = compact and View.BOARD_ROWS_COMPACT or View.BOARD_ROWS_REGULAR
 
-		keep(Surface.Scrim(layer.Root, { Name = "HudScrim", Kind = "Hud" }, scope))
+		-- The vignette goes in the layer's scrim gui, which is ordered behind every other HUD gui; a stage layer
+		-- (tests, gallery) has none and keeps it in its root.
+		keep(Surface.Scrim(layer.ScrimRoot or layer.Root, { Name = "HudScrim", Kind = "Hud" }, scope))
 
 		-- Top left: position (race) or lap (time trial), with the lap or tier line under it.
 		local block = frame("LapProgress", layer.Slot("TopLeftHud"), Enum.FillDirection.Vertical, true)
@@ -199,18 +202,33 @@ function View.Mount(layer, model, scope, options)
 			mapList.HorizontalAlignment = Enum.HorizontalAlignment.Center
 			mapHolder.Visible = false
 			p.MapHolder = mapHolder
-			local panel = keep(Surface.Panel(mapHolder, { Name = "Panel", Width = Space.TileWidth, Height = Space.TileHeight,
-				Pad = 0, LayoutOrder = 1 }, scope))
+			-- No panel behind it: the route image floats over the world with the player arrow on it.
+			local mapFrame = Instance.new("Frame")
+			mapFrame.Name = "MapFrame"
+			mapFrame.BackgroundTransparency = 1
+			mapFrame.BorderSizePixel = 0
+			mapFrame.LayoutOrder = 1
+			mapFrame.Parent = mapHolder
+			p.MapFrame = mapFrame
 			local art = Instance.new("ImageLabel")
 			art.Name = "SimplifiedRaceMap"
 			art.BackgroundTransparency = 1
 			art.BorderSizePixel = 0
 			art.ScaleType = Enum.ScaleType.Fit
 			art.Size = UDim2.fromScale(1, 1)
-			art.Parent = panel.Content
+			art.Parent = mapFrame
 			p.MapArt = art
-			p.Marker = keep(Surface.MapIcon(art, { Name = "PlayerMarker", Icon = "Player", Colour = "Cyan", Size = Space.Pad,
-				Visible = false }, scope))
+			local marker = Instance.new("ImageLabel")
+			marker.Name = "PlayerMarker"
+			marker.AnchorPoint = Vector2.new(0.5, 0.5)
+			marker.BackgroundTransparency = 1
+			marker.BorderSizePixel = 0
+			marker.Image = Tokens.Asset("MapPlayerArrow") or ""
+			marker.ImageColor3 = Tokens.Colour.White
+			marker.ZIndex = 2
+			marker.Visible = false
+			marker.Parent = art
+			p.Marker = marker
 			p.MapLabel = keep(Text.Label(mapHolder, { Name = "EventName", Text = "", Role = "Label", Colour = "TextSecondary",
 				Align = "Centre", Shadow = true, LayoutOrder = 2 }, scope))
 		end
@@ -222,13 +240,16 @@ function View.Mount(layer, model, scope, options)
 			put(metricList, "Padding", gap)
 			put(controlsList, "Padding", gap)
 			put(board, "Size", UDim2.fromOffset(ctx.Px(boardWidth), ctx.Px(rowHeight) * p.BoardRows))
+			if p.MapFrame then
+				put(p.MapFrame, "Size", UDim2.fromOffset(ctx.Px(Space.TileWidth), ctx.Px(Space.TileHeight)))
+			end
 		end
 		p.ApplyLayout()
 
 		parts = p
 		timer = p.Timer
 		mapArt = p.MapArt
-		markerRoot = p.Marker and p.Marker.Instance or nil
+		markerRoot = p.Marker
 		markerVisible = false
 	end
 
@@ -352,7 +373,8 @@ function View.Mount(layer, model, scope, options)
 			put(p.MapHolder, "Visible", image ~= "")
 			put(p.MapArt, "Image", image)
 			put(p.MapArt, "ImageTransparency", 1 - model.MapOpacity())
-			p.Marker.Set({ Size = Space.Pad * model.MapMarkerScale() })
+			local markerSize = ctx.Px(Space.Pad * MAP_ARROW_SCALE * model.MapMarkerScale())
+			put(p.Marker, "Size", UDim2.fromOffset(markerSize, markerSize))
 			p.MapLabel.Set({ Text = model.DisplayName() })
 		end
 

@@ -113,6 +113,10 @@ end
 -- -> {Menu = stage root, Play = Component, Shop = Component, SetBusy = (busy, playText, shopText) -> ()}
 local LOGO_DEFAULT = "rbxassetid://86895264649881" -- scripts/ui_restyle/assets/out/logo_pulse_racers.png, 1024x519
 local LOGO_ASPECT = 1024 / 519
+local LOGO_DRIFT = 0.012 -- of the logo height, each way
+local LOGO_DRIFT_SECONDS = 4.5
+local LOGO_BREATHE = 1.012
+local LOGO_BREATHE_SECONDS = 3.2
 
 local function logoAsset()
 	local node = game:GetService("ReplicatedStorage")
@@ -156,26 +160,50 @@ function StartScreen._buildMenu(kit, safeRoot, ctx, scope, texts)
 		} }, scope)
 	local play, shop = row.Button("Play"), row.Button("Shop")
 
-	-- The game logo, top centre over the artwork's sky. One image; the id is Config.UI.Pulse.Assets@Logo when that
-	-- attribute is set, otherwise the uploaded default. An empty attribute hides it.
+	-- The game logo, top right over the artwork's sky. One image; the id is Config.UI.Pulse.Assets@Logo when that
+	-- attribute is set, otherwise the uploaded default. An empty attribute hides it. place() seats the holder; the
+	-- image inside drifts a few pixels and breathes very slightly (two endless tweens, stopped with the scope).
+	local logoHolder = Instance.new("Frame")
+	logoHolder.Name = "LogoHolder"
+	logoHolder.AnchorPoint = Vector2.new(1, 0)
+	logoHolder.BackgroundTransparency = 1
+	logoHolder.BorderSizePixel = 0
+	local logoAspect = Instance.new("UIAspectRatioConstraint")
+	logoAspect.AspectRatio = LOGO_ASPECT
+	logoAspect.DominantAxis = Enum.DominantAxis.Height
+	logoAspect.Parent = logoHolder
 	local logo = Instance.new("ImageLabel")
 	logo.Name = "Logo"
-	logo.AnchorPoint = Vector2.new(0.5, 0)
+	logo.AnchorPoint = Vector2.new(0.5, 0.5)
+	logo.Position = UDim2.fromScale(0.5, 0.5 - LOGO_DRIFT)
+	logo.Size = UDim2.fromScale(1, 1)
 	logo.BackgroundTransparency = 1
 	logo.BorderSizePixel = 0
 	logo.ScaleType = Enum.ScaleType.Fit
 	logo.Image = logoAsset()
-	logo.Visible = logo.Image ~= ""
-	local logoAspect = Instance.new("UIAspectRatioConstraint")
-	logoAspect.AspectRatio = LOGO_ASPECT
-	logoAspect.DominantAxis = Enum.DominantAxis.Height
-	logoAspect.Parent = logo
-	logo.Parent = stage.Root
+	local logoScale = Instance.new("UIScale")
+	logoScale.Parent = logo
+	logo.Parent = logoHolder
+	logoHolder.Visible = logo.Image ~= ""
+	logoHolder.Parent = stage.Root
+	if logoHolder.Visible then
+		local TweenService = game:GetService("TweenService")
+		local drift = TweenService:Create(logo, TweenInfo.new(LOGO_DRIFT_SECONDS, Enum.EasingStyle.Sine,
+			Enum.EasingDirection.InOut, -1, true), { Position = UDim2.fromScale(0.5, 0.5 + LOGO_DRIFT) })
+		local breathe = TweenService:Create(logoScale, TweenInfo.new(LOGO_BREATHE_SECONDS, Enum.EasingStyle.Sine,
+			Enum.EasingDirection.InOut, -1, true), { Scale = LOGO_BREATHE })
+		drift:Play()
+		breathe:Play()
+		scope:add(function()
+			drift:Cancel()
+			breathe:Cancel()
+		end)
+	end
 
 	local function place()
 		local compact = ctx.Class == "Compact"
-		logo.Position = UDim2.fromScale(0.5, compact and 0.03 or 0.05)
-		logo.Size = UDim2.fromScale(0.9, compact and 0.36 or 0.3)
+		logoHolder.Position = UDim2.fromScale(0.975, compact and 0.04 or 0.05)
+		logoHolder.Size = UDim2.fromScale(0.6, compact and 0.42 or 0.38)
 		local slot = stage.Slot(compact and "BottomRight" or "BottomCentre")
 		holder.AnchorPoint = slot.AnchorPoint
 		list.HorizontalAlignment = compact and Enum.HorizontalAlignment.Right or Enum.HorizontalAlignment.Center

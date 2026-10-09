@@ -128,9 +128,9 @@
    "class": "ModuleScript"
   },
   "ReplicatedStorage.Modules.Game.UIPulse.Kit.Layers": {
-   "length": 15569,
-   "djb2": 3139279021,
-   "fnv1a32": 1369871623,
+   "length": 15686,
+   "djb2": 2288092487,
+   "fnv1a32": 2149580299,
    "class": "ModuleScript"
   },
   "ReplicatedStorage.Modules.Game.UIPulse.Kit.Metrics": {

@@ -104,7 +104,7 @@
     },
     "ReplicatedStorage.Modules.Game.UIPulse.Kit.Layers": {
      "file": "00_kit/after/ReplicatedStorage.Modules.Game.UIPulse.Kit.Layers.lua",
-     "fp": "3139279021-1369871623-15569",
+     "fp": "2288092487-2149580299-15686",
      "class": "ModuleScript",
      "kind": "source",
      "classic": false
@@ -284,7 +284,7 @@
     },
     "ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.HudModals": {
      "file": "02_free_roam/after/ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.HudModals.lua",
-     "fp": "4236126180-2500503292-18155",
+     "fp": "3362244644-4280416464-18155",
      "class": "ModuleScript",
      "kind": "create"
     },
@@ -363,6 +363,20 @@
     "ReplicatedStorage.Modules.Game.UI.RouteGuide": {
      "file": "02_free_roam/after/ReplicatedStorage.Modules.Game.UI.RouteGuide.lua",
      "fp": "3447005970-3064301258-15849",
+     "class": "ModuleScript",
+     "kind": "source",
+     "classic": true
+    },
+    "ReplicatedStorage.Modules.Game.Vehicles.DrivingClient": {
+     "file": "02_free_roam/after/ReplicatedStorage.Modules.Game.Vehicles.DrivingClient.lua",
+     "fp": "1261491730-2693108196-72479",
+     "class": "ModuleScript",
+     "kind": "source",
+     "classic": true
+    },
+    "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI": {
+     "file": "02_free_roam/after/ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI.lua",
+     "fp": "1917299327-648451391-75271",
      "class": "ModuleScript",
      "kind": "source",
      "classic": true
@@ -479,13 +493,13 @@
     },
     "ReplicatedStorage.Modules.Game.UIPulse.RaceSession.RaceHudView": {
      "file": "04_race_session/after/ReplicatedStorage.Modules.Game.UIPulse.RaceSession.RaceHudView.lua",
-     "fp": "629688077-1758292525-14845",
+     "fp": "4123078064-2838482876-15693",
      "class": "ModuleScript",
      "kind": "create"
     },
     "ReplicatedStorage.Modules.Game.UIPulse.RaceSession.RaceHudClient": {
      "file": "04_race_session/after/ReplicatedStorage.Modules.Game.UIPulse.RaceSession.RaceHudClient.lua",
-     "fp": "2819619864-1355296278-9857",
+     "fp": "502039903-588542965-9871",
      "class": "ModuleScript",
      "kind": "create"
     },
@@ -802,7 +816,7 @@
     },
     "ReplicatedFirst.Loading.StartScreenPulse": {
      "file": "07_shell/after/ReplicatedFirst.Loading.StartScreenPulse.lua",
-     "fp": "1321350140-2427520360-18406",
+     "fp": "2267597272-1446616678-19662",
      "class": "ModuleScript",
      "kind": "create"
     },

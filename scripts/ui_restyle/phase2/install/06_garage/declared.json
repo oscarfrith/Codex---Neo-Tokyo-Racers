@@ -5,10 +5,20 @@
    "djb2": 2599529806,
    "fnv1a32": 3806632348
   },
+  "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI": {
+   "length": 75271,
+   "djb2": 1917299327,
+   "fnv1a32": 648451391
+  },
   "ReplicatedStorage.Modules.Game.UI.RouteGuide": {
    "length": 15849,
    "djb2": 3447005970,
    "fnv1a32": 3064301258
+  },
+  "ReplicatedStorage.Modules.Game.Vehicles.DrivingClient": {
+   "length": 72479,
+   "djb2": 1261491730,
+   "fnv1a32": 2693108196
   },
   "StarterPlayer.StarterPlayerScripts.ClientBase": {
    "length": 8326,
@@ -169,8 +179,8 @@
   },
   "ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.HudModals": {
    "length": 18155,
-   "djb2": 4236126180,
-   "fnv1a32": 2500503292,
+   "djb2": 3362244644,
+   "fnv1a32": 4280416464,
    "class": "ModuleScript"
   },
   "ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.HudModel": {
@@ -336,9 +346,9 @@
    "class": "ModuleScript"
   },
   "ReplicatedStorage.Modules.Game.UIPulse.Kit.Layers": {
-   "length": 15569,
-   "djb2": 3139279021,
-   "fnv1a32": 1369871623,
+   "length": 15686,
+   "djb2": 2288092487,
+   "fnv1a32": 2149580299,
    "class": "ModuleScript"
   },
   "ReplicatedStorage.Modules.Game.UIPulse.Kit.Metrics": {
@@ -486,9 +496,9 @@
    "class": "ModuleScript"
   },
   "ReplicatedStorage.Modules.Game.UIPulse.RaceSession.RaceHudClient": {
-   "length": 9857,
-   "djb2": 2819619864,
-   "fnv1a32": 1355296278,
+   "length": 9871,
+   "djb2": 502039903,
+   "fnv1a32": 588542965,
    "class": "ModuleScript"
   },
   "ReplicatedStorage.Modules.Game.UIPulse.RaceSession.RaceHudModel": {
@@ -498,9 +508,9 @@
    "class": "ModuleScript"
   },
   "ReplicatedStorage.Modules.Game.UIPulse.RaceSession.RaceHudView": {
-   "length": 14845,
-   "djb2": 629688077,
-   "fnv1a32": 1758292525,
+   "length": 15693,
+   "djb2": 4123078064,
+   "fnv1a32": 2838482876,
    "class": "ModuleScript"
   },
   "ReplicatedStorage.Modules.Game.UIPulse.RaceSession.ResultsClient": {

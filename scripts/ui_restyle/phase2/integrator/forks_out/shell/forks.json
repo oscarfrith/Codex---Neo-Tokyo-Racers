@@ -17,7 +17,7 @@
      "with": "StartScreenPulse.01_header.lua",
      "afterLines": [
       1,
-      220
+      248
      ]
     },
     {
@@ -27,8 +27,8 @@
      ],
      "with": "StartScreenPulse.02_kit.lua",
      "afterLines": [
-      223,
-      227
+      251,
+      255
      ]
     },
     {
@@ -38,8 +38,8 @@
      ],
      "with": "StartScreenPulse.03_begin.lua",
      "afterLines": [
-      243,
-      244
+      271,
+      272
      ]
     },
     {
@@ -49,8 +49,8 @@
      ],
      "with": "StartScreenPulse.04_menu.lua",
      "afterLines": [
-      319,
-      339
+      347,
+      367
      ]
     },
     {
@@ -60,8 +60,8 @@
      ],
      "with": "StartScreenPulse.05_layout.lua",
      "afterLines": [
-      341,
-      349
+      369,
+      377
      ]
     },
     {
@@ -71,8 +71,8 @@
      ],
      "with": "StartScreenPulse.06_busy.lua",
      "afterLines": [
-      351,
-      358
+      379,
+      386
      ]
     },
     {
@@ -82,45 +82,45 @@
      ],
      "with": "StartScreenPulse.07_footer.lua",
      "afterLines": [
-      395,
-      411
+      423,
+      439
      ]
     }
    ],
    "newRanges": [
     [
      1,
-     220
+     248
     ],
     [
-     223,
-     227
+     251,
+     255
     ],
     [
-     243,
-     244
+     271,
+     272
     ],
     [
-     319,
-     339
+     347,
+     367
     ],
     [
-     341,
-     349
+     369,
+     377
     ],
     [
-     351,
-     358
+     379,
+     386
     ],
     [
-     395,
-     411
+     423,
+     439
     ]
    ],
    "keptLines": 129,
-   "newLines": 282,
-   "afterLines": 411,
-   "after": "1321350140-2427520360-18406",
+   "newLines": 310,
+   "afterLines": 439,
+   "after": "2267597272-1446616678-19662",
    "watch": [],
    "handAssembled": "match"
   }

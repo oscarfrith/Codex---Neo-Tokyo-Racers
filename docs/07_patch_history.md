@@ -2,6 +2,13 @@
 
 Recent deliveries, newest first. Entries before September 2026 live in [the archive](history/patch-history-2026-05-to-2026-08.md).
 
+## 2026-10-09 - UI restyle: second play-review fixes (race map, vignette order, Space/Shift swap, logo)
+
+Standard lane; chain refreshed through `scripts/ui_restyle/phase2/install/`.
+
+- **Changed:** driving keys: **Space is drift/handbrake, Shift is boost** (`Vehicles.DrivingClient`, two lines; gamepad and touch unchanged), named so in the Pulse and Classic controls lists. The race HUD route map has no panel, only the route image and a player arrow. The race vignette moved to its own gui behind every HUD (`SharedInRaceHUDScrim`, order 57). The start-screen logo sits top right, larger, with a slow drift.
+- **Checked:** AUDIT and Classic verify clean (214 same, 7 declared edits); Play in the sandbox: start screen, time trial HUD, Shift boosts, Space drifts. Not user-confirmed. `phase2/verification.json` (`review_pass_5`).
+
 ## 2026-10-09 - UI restyle: first play-review fixes (loading art, logo, focus guard, bigger car images, icons)
 
 Standard lane on top of wave 2; the install chain was refreshed through `scripts/ui_restyle/phase2/install/`. Ten images uploaded (six loading tiles and a fallback, two icon sheets, the logo).

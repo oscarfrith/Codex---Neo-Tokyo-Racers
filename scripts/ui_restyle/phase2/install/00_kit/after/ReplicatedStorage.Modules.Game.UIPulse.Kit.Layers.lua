@@ -15,6 +15,7 @@ Layers.Order = {
 	CanonicalGarageGuiScrim = 39,
 	CanonicalGarageGui = 40,
 	CanonicalGarageGuiLive = 41,
+	SharedInRaceHUDScrim = 57, -- the race vignette sits behind every HUD gui (gauge, route guide, prompts), not at 154
 	OwnedGarageInteriorHUD = 58,
 	OwnedGarageInteriorHUDLive = 59,
 	RaceRouteGuide_Phase5 = 78,

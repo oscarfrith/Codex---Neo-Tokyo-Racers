@@ -9,8 +9,8 @@
 local TweenService = game:GetService("TweenService")
 
 -- D554-555, with M / MAP added (the full map key, FullMapUI).
-local DRIVING_ROWS = { { "W", "ACCELERATE" }, { "S", "BRAKE / REVERSE" }, { "A / D", "STEER" }, { "SHIFT", "DRIFT" },
-	{ "SPACE", "BOOST" }, { "R", "RESET VEHICLE" }, { "M", "MAP" } }
+local DRIVING_ROWS = { { "W", "ACCELERATE" }, { "S", "BRAKE / REVERSE" }, { "A / D", "STEER" }, { "SPACE", "DRIFT" },
+	{ "SHIFT", "BOOST" }, { "R", "RESET VEHICLE" }, { "M", "MAP" } }
 local FOOT_ROWS = { { "WASD", "MOVE" }, { "SHIFT", "SPRINT" }, { "SPACE", "JUMP" }, { "E", "INTERACT / ENTER VEHICLE" },
 	{ "MOUSE", "CAMERA" } }
 local ACCESS_OPTIONS = { "FRIENDS", "ANYONE", "NOBODY" } -- D599

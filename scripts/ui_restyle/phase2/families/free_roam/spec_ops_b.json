@@ -126,5 +126,35 @@
   "before": "before/ReplicatedStorage.Modules.Game.UI.RouteGuide.lua",
   "after": "after/ReplicatedStorage.Modules.Game.UI.RouteGuide.lua",
   "_note": "API2 5.3: one read-only function inserted after line 91; reviewer reads this op"
+ },
+ {
+  "id": "b_driving_keys",
+  "kind": "source",
+  "class": "ModuleScript",
+  "path": [
+   "ReplicatedStorage",
+   "Modules",
+   "Game",
+   "Vehicles",
+   "DrivingClient"
+  ],
+  "before": "before/ReplicatedStorage.Modules.Game.Vehicles.DrivingClient.lua",
+  "after": "after/ReplicatedStorage.Modules.Game.Vehicles.DrivingClient.lua",
+  "_note": "2026-10-09 Oscar: Space is drift/handbrake, Shift is boost (two lines); gamepad and touch unchanged"
+ },
+ {
+  "id": "b_classic_controls_text",
+  "kind": "source",
+  "class": "ModuleScript",
+  "path": [
+   "ReplicatedStorage",
+   "Modules",
+   "Game",
+   "UI",
+   "DesktopFreeRoamHudUI"
+  ],
+  "before": "before/ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI.lua",
+  "after": "after/ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI.lua",
+  "_note": "2026-10-09: Classic controls list names the swapped keys (lands in both sets)"
  }
 ]

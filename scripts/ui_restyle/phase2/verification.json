@@ -116,5 +116,29 @@
    "logo on phone"
   ]
  },
- "recovery_note_engine": "install_note in test_pass_2_and_3 is superseded: the engine rule was fixed in review_pass_4"
+ "recovery_note_engine": "install_note in test_pass_2_and_3 is superseded: the engine rule was fixed in review_pass_4",
+ "review_pass_5": {
+  "date": "2026-10-09",
+  "request": "race map without a frame, race vignette behind other UI, Space/Shift swap, logo top right and larger with minimal motion",
+  "installed": [
+   "race HUD route map: no panel, route image with the MapPlayerArrow image as marker",
+   "race HUD vignette in its own gui SharedInRaceHUDScrim at DisplayOrder 57 (was inside the HUD at 155, over the gauge and route guide)",
+   "DrivingClient: Space = drift/handbrake, Shift = boost (declared Classic edit); controls list updated in Pulse HudModals and Classic DesktopFreeRoamHudUI (declared Classic edit)",
+   "start-screen logo: top right, 38% of screen height (42% Compact), slow drift and breathe tweens"
+  ],
+  "agent_verified_in_play_sandbox": [
+   "logo placement on the start screen",
+   "time trial HUD: floating map with arrow that moves; scrim gui order 57 under HUD 155 and free roam 85",
+   "Shift drained boost 100% to 6% while held; Space set DriftingLeft with A held and did not boost",
+   "trial left unfinished (no PB write)"
+  ],
+  "final_audit": "07_shell all after; Classic verify same=214 (+7 declared edits) failures=0 cfgDiffs=0; sandbox closed; UIStyle Pulse",
+  "not_verified": [
+   "the Pulse and Classic controls lists were not opened after the text change",
+   "Classic not started after the DesktopFreeRoamHudUI text edit (one string literal changed)",
+   "logo motion judged from code and one still frame",
+   "kit harness not re-run after the one-row Layers change"
+  ],
+  "seen": "CameraUtils:103 error again, after a scripted character teleport; cause still unknown"
+ }
 }

@@ -281,6 +281,20 @@
    "after": "after/ReplicatedStorage.Modules.Game.UIPulse.Routes.lua"
   },
   {
+   "id": "b_classic_controls_text",
+   "kind": "source",
+   "class": "ModuleScript",
+   "path": [
+    "ReplicatedStorage",
+    "Modules",
+    "Game",
+    "UI",
+    "DesktopFreeRoamHudUI"
+   ],
+   "before": "before/ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI.lua",
+   "after": "after/ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI.lua"
+  },
+  {
    "id": "b_route_guide",
    "kind": "source",
    "class": "ModuleScript",
@@ -293,6 +307,20 @@
    ],
    "before": "before/ReplicatedStorage.Modules.Game.UI.RouteGuide.lua",
    "after": "after/ReplicatedStorage.Modules.Game.UI.RouteGuide.lua"
+  },
+  {
+   "id": "b_driving_keys",
+   "kind": "source",
+   "class": "ModuleScript",
+   "path": [
+    "ReplicatedStorage",
+    "Modules",
+    "Game",
+    "Vehicles",
+    "DrivingClient"
+   ],
+   "before": "before/ReplicatedStorage.Modules.Game.Vehicles.DrivingClient.lua",
+   "after": "after/ReplicatedStorage.Modules.Game.Vehicles.DrivingClient.lua"
   }
  ]
 }
