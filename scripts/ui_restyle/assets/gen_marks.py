@@ -1,5 +1,5 @@
 """Chrome-rendered marks: chequered corner (white, plus a two-tone alternative), the
-PULSE RACERS wordmark placeholder, and the four touch-control images on one 1024 sheet."""
+PULSE RACERS wordmark placeholder. (The touch controls are in gen_touch.py.)"""
 from common import *
 import icon_source as src
 
@@ -51,51 +51,14 @@ def wordmark():
     return im
 
 
-TOUCH = {
-    "size": [1024, 1024], "cell": 512,
-    "images": {"accelerate": [0, 0], "brake": [512, 0], "drift": [0, 512], "boost": [512, 512]},
-    "note": "drift points left; rotate 180 for the right-hand control as Classic does. "
-            "Turn arrows use icons.png chevron_left.",
-}
-
-
-def _bars(x0, x1, ys, hgt):
-    return "".join('<rect class="f" x="%d" y="%d" width="%d" height="%d" rx="%d"/>' % (x0, y, x1 - x0, hgt, hgt / 2) for y in ys)
-
-
-def touch_markup():
-    accel = ('<path class="s" style="stroke-width:20" d="M184 44 H328 Q360 44 358 76 L342 440 Q340 468 312 468 '
-             'H200 Q172 468 170 440 L154 76 Q152 44 184 44 Z"/>' + _bars(204, 308, [100, 160, 220, 280, 340, 400], 24))
-    brake = ('<path class="s" style="stroke-width:20" d="M96 148 H416 Q448 148 448 180 V332 Q448 364 416 364 '
-             'H96 Q64 364 64 332 V180 Q64 148 96 148 Z"/>' + _bars(128, 384, [196, 244, 292], 24))
-    drift = ('<path class="s" style="stroke-width:48;stroke-linecap:butt" d="M420 440 C420 290 336 200 200 200"/>'
-             '<path class="f" d="M64 200 L210 92 V308 Z"/>'
-             '<path class="s" style="stroke-width:18;stroke-linecap:butt" d="M336 440 C336 344 290 292 222 286"/>')
-    boost = ('<circle class="s" style="stroke-width:16" cx="256" cy="256" r="232"/>'
-             '<g transform="translate(256 256) scale(3.5) translate(-64 -64)"><path class="f" d="%s"/></g>' % src.BOLT)
-    return {"accelerate": accel, "brake": brake, "drift": drift, "boost": boost}
-
-
-def touch_sheet():
-    mk = touch_markup()
-    parts = ['<svg width="1024" height="1024" viewBox="0 0 1024 1024">']
-    for name, (x, y) in TOUCH["images"].items():
-        parts.append('<svg x="%d" y="%d" width="512" height="512" viewBox="0 0 512 512" overflow="hidden">%s</svg>' % (x, y, mk[name]))
-    parts.append("</svg>")
-    css = CSS + "svg svg{position:static}"
-    return bleed_white(render_html(page("".join(parts), 1024, 1024, css), 1024, 1024, "touch_controls"))
-
-
 def main():
     save(chequer(False), "chequer_corner.png")
     save(chequer(True), "chequer_corner_two_tone.png")
     save(wordmark(), "wordmark_placeholder.png")
-    save(touch_sheet(), "touch_controls.png")
-    recs = {n: {"ImageRectOffset": xy, "ImageRectSize": [512, 512]} for n, xy in TOUCH["images"].items()}
-    write_json({"wordmark": WORDMARK, "touch": dict(TOUCH, images=recs),
+    write_json({"wordmark": WORDMARK, "touch": "moved to touch_controls.json",
                 "chequer": {"size": [256, 256], "grid": [5, 4], "square": 40, "rotate_deg": -10, "skew_deg": -10}},
                "marks.json")
-    print("marks: 4 files")
+    print("marks: 3 files")
 
 
 if __name__ == "__main__":

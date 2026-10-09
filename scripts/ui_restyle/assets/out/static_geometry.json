@@ -1,35 +1,11 @@
 {
-  "gauge": {
-    "size": 512,
-    "centre": [
-      256,
-      256
-    ],
-    "start_deg": 135,
-    "sweep_deg": 270,
-    "angle_convention": "degrees clockwise from +X (screen space); gap is centred at the bottom",
-    "ring_radius": 204,
-    "ring_thickness": 14,
-    "tick_outer_radius": 250,
-    "tick_major": {
-      "count": 11,
-      "length": 26,
-      "width": 5
-    },
-    "tick_minor": {
-      "per_gap": 4,
-      "length": 13,
-      "width": 3
-    }
-  },
   "minimap": {
     "size": 512,
-    "ring_outer_radius": 254,
-    "ring_thickness": 8,
     "vignette_start_radius": 140,
     "vignette_end_radius": 250,
     "vignette_peak_alpha": 0.9
   },
+  "rings": "see rings.json (gauge, minimap ring, rank arc; review 3)",
   "glow": {
     "glow_soft.png": {
       "size": [

@@ -8,13 +8,15 @@ import os, sys, hashlib
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 import common
-import gen_icons, gen_static, gen_marks, gen_digits, contact_sheet, manifest_source
+import gen_icons, gen_static, gen_marks, gen_rings, gen_touch_pulse, gen_digits, contact_sheet, manifest_source
 
 
 def main():
     gen_icons.main()
     gen_static.main()
     gen_marks.main()
+    gen_rings.main()          # review 3: baked gradient rings and gauge
+    gen_touch_pulse.main()    # review 3: Classic touch controls restyled (replaces gen_touch)
     gen_digits.main()
     man = manifest_source.manifest()
     from PIL import Image

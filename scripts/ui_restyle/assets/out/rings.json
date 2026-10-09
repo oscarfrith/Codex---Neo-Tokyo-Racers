@@ -1,0 +1,187 @@
+{
+  "angle_convention": "degrees clockwise from +X (screen space): 0 = 3 o'clock, 90 = 6, 180 = 9, 270 = 12",
+  "size": 512,
+  "centre": [
+    256,
+    256
+  ],
+  "minimap_ring_gradient.png": {
+    "ring_outer_radius": 240,
+    "ring_thickness": 9,
+    "glow_sigma": 6,
+    "glow_peak_alpha": 0.55,
+    "conic_stops": [
+      [
+        225,
+        "Pink"
+      ],
+      [
+        315,
+        "Violet"
+      ],
+      [
+        45,
+        "Cyan"
+      ],
+      [
+        135,
+        "Violet"
+      ]
+    ],
+    "frame": "minimap diameter * 512 / 480, same centre (the ring's outer edge is the map edge; 16 px of glow outside)"
+  },
+  "rank_arc_gradient.png": {
+    "ring_outer_radius": 244,
+    "ring_thickness": 13,
+    "glow_sigma": 5,
+    "glow_peak_alpha": 0.45,
+    "conic_stops": [
+      [
+        150,
+        "Violet"
+      ],
+      [
+        290,
+        "Cyan"
+      ],
+      [
+        40,
+        "Pink"
+      ]
+    ],
+    "frame_scale_vs_minimap_ring_frame": 1.099,
+    "use": "full ring, revealed at run time. Rank: track = the same image at 25% opacity, fill revealed clockwise from 9 o'clock (180) by the XP fraction of the sweep (90 degrees on desktop, 165 to 285 on phones); the gradient runs violet to cyan along that sweep. Also the touch boost charge ring (frame = the boost button frame, revealed clockwise from 12 o'clock)."
+  },
+  "gauge": {
+    "start_deg": 135,
+    "sweep_deg": 270,
+    "plate_radius": 232,
+    "plate_alpha": 0.8,
+    "rim_width": 2,
+    "arc_radius": 210,
+    "arc_thickness": 15,
+    "arc_stops": [
+      [
+        0,
+        "Cyan"
+      ],
+      [
+        0.5,
+        "Violet"
+      ],
+      [
+        1,
+        "Pink"
+      ]
+    ],
+    "boost_radius": 184,
+    "boost_thickness": 8,
+    "glow_sigma": 9,
+    "glow_peak_alpha": 0.6,
+    "tick_outer_radius": 254,
+    "tick_count": 61,
+    "ticks": {
+      "major": {
+        "every": 6,
+        "length": 18,
+        "width": 4.5,
+        "alpha": 1.0
+      },
+      "medium": {
+        "every": 3,
+        "length": 12,
+        "width": 3,
+        "alpha": 0.8
+      },
+      "minor": {
+        "length": 7,
+        "width": 2,
+        "alpha": 0.5
+      }
+    },
+    "tick_hot_from": 0.78,
+    "layers": [
+      "gauge_track.png (plate, rim, both tracks)",
+      "gauge_ticks.png",
+      "gauge_glow.png (revealed with the arc)",
+      "gauge_arc_gradient.png (revealed)",
+      "boost_arc_gradient.png (revealed)"
+    ],
+    "reveal": "gauge_arc_gradient, gauge_glow and boost_arc_gradient are full 270 degree sweeps; each is revealed by a rotating UIGradient transparency mask from start_deg. The colour runs along the sweep (speed: cyan, violet, pink; boost: blue to pale cyan), so a part-filled arc always ends in its own colour.",
+    "leading_edge": "the bright tip of the speed arc is not a new image: glow_soft.png (white) as a small dot, about 0.09 of the gauge frame across, placed on arc_radius at the current angle."
+  },
+  "title_slash_gradient.png": {
+    "size": [
+      160,
+      192
+    ],
+    "design_box": [
+      34,
+      60
+    ],
+    "px_per_design_px": 3,
+    "use": "screen-title slash mark, pink to violet; frame = 53.3 x 64 design px centred on the mark"
+  },
+  "colours": {
+    "Pink": [
+      255,
+      45,
+      149
+    ],
+    "Violet": [
+      154,
+      61,
+      255
+    ],
+    "Cyan": [
+      34,
+      228,
+      255
+    ],
+    "White": [
+      243,
+      240,
+      255
+    ],
+    "Slate": [
+      14,
+      13,
+      26
+    ],
+    "Ink": [
+      7,
+      6,
+      13
+    ]
+  },
+  "boost_arc_gradient.png": {
+    "stops_along_sweep": [
+      [
+        0,
+        [
+          58,
+          112,
+          255
+        ]
+      ],
+      [
+        0.6,
+        [
+          34,
+          228,
+          255
+        ]
+      ],
+      [
+        1,
+        [
+          200,
+          250,
+          255
+        ]
+      ]
+    ],
+    "glow_sigma": 4,
+    "glow_peak_alpha": 0.4
+  }
+}

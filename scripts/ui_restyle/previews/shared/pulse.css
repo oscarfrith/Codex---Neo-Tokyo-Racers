@@ -14,6 +14,9 @@
   --cyan:#22E4FF; --cyan-rgb:34,228,255; --yellow:#FFE433;
   --text2:#D9D3F5; --muted:#B9B3D6; --danger:#C4394B;
   --medal-bronze:#C9853F; --medal-silver:#C9CEDA; --medal-gold:#F2C230; --medal-plat:#8FE9F2;
+  /* tier colours (review 2, 2026-10-09). Source: the game's own set, GarageUI.tierColours (same table in
+     OwnedGarageWorkspaceUI, DesktopFreeRoamHudUI, MobileFreeRoamHudUI). Named exception to the five colour roles. */
+  --tier-e:#848E91; --tier-d:#69BE81; --tier-c:#4ACCD3; --tier-b:#5289EB; --tier-a:#F4BC41; --tier-s:#EC5CA8;
   /* hairlines */
   --hair-top:rgba(243,240,255,.85); --hair-bot:rgba(243,240,255,.22); --hair:2px;
   /* type roles: cap height / 0.70 (Barlow cap = 0.70 em) */
@@ -83,6 +86,9 @@ body{font-family:"Barlow",sans-serif;color:var(--white);-webkit-font-smoothing:a
 /* ---- Screen title + tabs ------------------------------------------------ */
 .title{position:absolute;left:var(--margin);top:64px;display:flex;align-items:center;gap:20px}
 .titlemark{flex:none;width:34px;height:60px;transform:skewX(-14deg);background:repeating-linear-gradient(135deg,var(--pink) 0 8px,transparent 8px 15px)}
+/* review 3: the slash mark runs pink to violet (title_slash_gradient.png in Roblox) */
+.titlemark{background:linear-gradient(180deg,var(--pink),var(--violet)) !important;-webkit-mask-image:repeating-linear-gradient(135deg,#000 0 8px,transparent 8px 15px);mask-image:repeating-linear-gradient(135deg,#000 0 8px,transparent 8px 15px)}
+.modal .mhead .titlemark,.sidepanel .titlemark{-webkit-mask-image:repeating-linear-gradient(135deg,#000 0 6px,transparent 6px 11px);mask-image:repeating-linear-gradient(135deg,#000 0 6px,transparent 6px 11px)}
 .title .sub{margin-left:8px;align-self:flex-end;padding-bottom:9px}
 .tabs{position:absolute;left:var(--margin);top:140px;display:flex;gap:34px}
 .tabs.static{position:static}
@@ -263,7 +269,7 @@ body{font-family:"Barlow",sans-serif;color:var(--white);-webkit-font-smoothing:a
 
 /* ---- HUD pieces --------------------------------------------------------- */
 .round{border-radius:50%}
-.minimap{position:absolute;left:var(--hud-margin);bottom:92px;width:307px;height:307px;border-radius:50%;background:#1a1830;border:5px solid var(--pink);border-right-color:var(--cyan);border-bottom-color:var(--cyan);box-shadow:var(--glow-ring);overflow:hidden}
+.minimap{position:absolute;left:var(--hud-margin);bottom:92px;width:307px;height:307px;border-radius:50%;background:#1a1830;border:5px solid transparent;overflow:hidden} /* review 3: the ring is minimap_ring_gradient.png, drawn over it by P.minimap */
 .pip{width:26px;height:8px;background:rgba(243,240,255,.25);transform:skewX(-14deg)}
 .pip.on{background:var(--cyan)}
 .pips{display:flex;gap:5px}
@@ -303,3 +309,53 @@ body{font-family:"Barlow",sans-serif;color:var(--white);-webkit-font-smoothing:a
 .sidepanel .row.sel .tierrating{background:var(--ink);color:var(--white)}
 .sidepanel .row.sel .chip{background:var(--ink);color:var(--white)}
 .sidepanel .scrollbar{position:absolute;right:0;top:0;width:5px;height:42%;background:var(--cyan)}
+
+/* ---- review 2 (2026-10-09): tier badges ---------------------------------
+   .tb = tier badge: letter cell filled with the tier colour (ink letter) + number cell.
+   Markup: <span class="tb tb-d"><b>D</b><i>321</i></span>   (letter only: omit <i>)
+   Number cell: white with ink text by default; ink with white text on a white surface
+   (.tile.sel, .row.sel, .row.you, or add .on-light). Sizes: default 46 high, .md 38, .sm 34, .lg 54.
+   Dimmed (locked / unaffordable): .dim, or inside .tile.locked / .tile.unaff.
+   Colour: .tb-e ... .tb-s (or style="--tc:var(--tier-x)"). */
+.tb{--tc:var(--tier-e);display:inline-flex;align-items:stretch;flex:none;height:46px;font:italic 900 var(--fs-status)/1 Barlow;text-transform:uppercase;white-space:nowrap;vertical-align:middle}
+.tb > b{display:flex;align-items:center;justify-content:center;min-width:42px;padding:0 9px 0 6px;background:var(--tc);color:var(--ink);font:inherit}
+.tb > i{display:flex;align-items:center;justify-content:center;padding:0 12px 0 10px;background:var(--white);color:var(--ink);font:inherit}
+.tb.sm{height:34px;font-size:24px}.tb.sm > b{min-width:30px;padding:0 7px 0 4px}.tb.sm > i{padding:0 9px 0 8px}
+.tb.md{height:38px;font-size:27px}.tb.md > b{min-width:34px;padding:0 8px 0 5px}.tb.md > i{padding:0 10px 0 9px}
+.tb.lg{height:54px;font-size:40px}.tb.lg > b{min-width:50px}
+.tb-e{--tc:var(--tier-e)}.tb-d{--tc:var(--tier-d)}.tb-c{--tc:var(--tier-c)}.tb-b{--tc:var(--tier-b)}.tb-a{--tc:var(--tier-a)}.tb-s{--tc:var(--tier-s)}
+.tb.on-light > i,.tile.sel .tb > i,.row.sel .tb > i,.row.you .tb > i{background:var(--ink);color:var(--white)}
+.tb.dim,.tile.unaff .tb{opacity:.45}
+/* tier button (race entry tier choice): tier-colour letter and base line, filled with the tier colour when chosen */
+.tierbtn{display:inline-flex;align-items:center;justify-content:center;flex:none;width:100px;height:66px;background:var(--slate);color:var(--tc,var(--tier-e));border-top:var(--hair) solid var(--hair-bot);border-bottom:6px solid var(--tc,var(--tier-e));font:italic 900 var(--fs-status)/1 Barlow;padding-right:3px}
+.tierbtn.on{background:var(--tc,var(--tier-e));color:var(--ink);border-top-color:var(--tc,var(--tier-e));border-bottom-color:var(--white)}
+.tierbtn.locked{opacity:.4}
+
+/* ---- review 2 (2026-10-09): menu button row ------------------------------
+   One size for the back / secondary / main row on every menu: 64 high (was 88), text cap 20 (main 24).
+   .btnrow.bar  = that size, in the bottom-right slot (screens without a rail).
+   .btnrow.line = that size, on the rail heading line, right-aligned to the margin (screens with a rail). */
+.btnrow.bar .btn,.btnrow.line .btn{height:64px;padding:0 30px 0 24px;font-size:var(--fs-tab);gap:12px}
+.btnrow.bar .btn .ic,.btnrow.line .btn .ic{font-size:30px}
+.btnrow.bar .btn.main,.btnrow.line .btn.main,.btnrow.bar .btn.buy,.btnrow.line .btn.buy{font-size:34px;padding:0 36px 0 32px;min-width:250px}
+.btnrow.bar .btn.main .ic,.btnrow.line .btn.main .ic{font-size:36px}
+.btnrow.bar,.btnrow.line{gap:10px}
+.btnrow.line{bottom:302px}
+
+/* ---- review 2 (2026-10-09): Roblox's own top-left UI ----------------------
+   Placeholders (not ours) and the rule that the title block starts below the 58 px top bar.
+   --rbx-top etc. are set on the stage by frames.js in design pixels (real pixels / scale). */
+.rbxbar,.rbxchat{position:absolute;left:0;top:0;z-index:9;pointer-events:none;font:500 12px/1.15 Barlow;font-style:normal;text-transform:none;color:rgba(243,240,255,.5)}
+.rbxbar{border-right:1px dashed rgba(243,240,255,.28);border-bottom:1px dashed rgba(243,240,255,.28)}
+.rbxbar > i{position:absolute;border-radius:50%;border:2px solid rgba(243,240,255,.45);background:rgba(7,6,13,.25)}
+.rbxbar > span,.rbxchat > span{position:absolute;white-space:nowrap}
+.rbxchat{border:2px dashed rgba(243,240,255,.38);background:rgba(7,6,13,.18)}
+.stage.rbx .title{top:calc(var(--rbx-top) + 12px)}
+.stage.rbx .tabs:not(.static){top:calc(var(--rbx-top) + 88px)}
+.stage.rbx .sidepanel{padding-top:calc(var(--rbx-top) + 10px)}
+
+/* ---- review 3 (2026-10-09): small gradients where one UIGradient or one image is enough ----
+   Selected tile and row: the base line runs Pink to Violet (UIGradient on the 6 px frame), as the main button does.
+   Cash chip: Yellow to a warmer yellow (UIGradient). Rings, gauge and touch controls are baked images (pulse.js). */
+.tile.sel,.row.sel{border-image:linear-gradient(90deg,var(--pink),var(--violet)) 1}
+.cash{background:linear-gradient(90deg,var(--yellow),#FFC62E)}

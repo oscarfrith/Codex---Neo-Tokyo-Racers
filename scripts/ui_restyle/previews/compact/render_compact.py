@@ -21,6 +21,7 @@ CHROME = os.environ.get("CHROME") or r"C:/Program Files/Google/Chrome/Applicatio
 REF = (844, 390)
 EXTRA = [(932, 430), (640, 360), (568, 320)]
 EXTRA_FRAMES = ("c02", "c05", "c12")
+SHEETS = {"c20": (844, 1010)}   # annotated sheets, not device frames: own canvas size, no coverage figure
 
 
 def chrome(args, prof):
@@ -69,7 +70,10 @@ def main():
         if not f.endswith(".html") or (a.only and not any(f.startswith(p) for p in a.only)):
             continue
         path, stem = os.path.join(a.src, f), f[:-5]
-        jobs.append((path, os.path.join(a.out, stem + ".jpg"), REF[0], REF[1], a.dsf, a.debug, a.src))
+        w0, h0 = SHEETS.get(stem[:3], REF)
+        jobs.append((path, os.path.join(a.out, stem + ".jpg"), w0, h0, a.dsf, a.debug, a.src))
+        if stem[:3] in SHEETS:
+            continue
         if a.all_sizes or stem.startswith(EXTRA_FRAMES):
             for w, h in EXTRA:
                 jobs.append((path, os.path.join(a.out, f"{stem}_{w}x{h}.jpg"), w, h, a.dsf, a.debug, a.src))

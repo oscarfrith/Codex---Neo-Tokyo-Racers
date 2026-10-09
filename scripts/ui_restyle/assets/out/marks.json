@@ -15,56 +15,7 @@
       174
     ]
   },
-  "touch": {
-    "size": [
-      1024,
-      1024
-    ],
-    "cell": 512,
-    "images": {
-      "accelerate": {
-        "ImageRectOffset": [
-          0,
-          0
-        ],
-        "ImageRectSize": [
-          512,
-          512
-        ]
-      },
-      "brake": {
-        "ImageRectOffset": [
-          512,
-          0
-        ],
-        "ImageRectSize": [
-          512,
-          512
-        ]
-      },
-      "drift": {
-        "ImageRectOffset": [
-          0,
-          512
-        ],
-        "ImageRectSize": [
-          512,
-          512
-        ]
-      },
-      "boost": {
-        "ImageRectOffset": [
-          512,
-          512
-        ],
-        "ImageRectSize": [
-          512,
-          512
-        ]
-      }
-    },
-    "note": "drift points left; rotate 180 for the right-hand control as Classic does. Turn arrows use icons.png chevron_left."
-  },
+  "touch": "moved to touch_controls.json",
   "chequer": {
     "size": [
       256,

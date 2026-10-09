@@ -1,6 +1,7 @@
 /* Pulse preview helpers, Compact class (phones, landscape). Review 1 rework (2026-10-09):
-   small edge clusters, outlined touch controls, slim garage rail. Uses ../shared/pulse.js only for
-   P.ic, P.scene, P.route, P.medal, P.toast, P.fact and P.sil; every phone composition lives here.
+   small edge clusters, slim garage rail. Review 2 (2026-10-09): free-roam buttons top centre, always-visible
+   stat block, tier colours. Review 3 (2026-10-09): Classic touch controls restyled, gradient ring and gauge images.
+   Uses ../shared/pulse.js only for P.ic, P.scene, P.route, P.medal, P.toast, P.fact, P.sil, P.layer, P.reveal and P.gaugeArt; every phone composition lives here.
    Device size = window size (or ?w=&h=). Scale = clamp(height / 390, 0.85, 1.10), applied with CSS
    zoom to the .cx stage, which is laid out in Compact design units inside the device safe area.
    C.measure() rasterises every painted rectangle (fills, borders, images, text runs) onto the
@@ -103,7 +104,7 @@
   C.actions = (btns, cls = "") => `<div class="c-actions ${cls}">${btns.join("")}</div>`;
   C.title = (text, sub) => `<div class="c-title"><div class="titlemark"></div>${text ? `<div class="t-title shadow">${text}</div>` : ""}${sub ? `<div class="sub t-label c-2 shadow">${sub}</div>` : ""}</div>`;
   C.tabs = (items, style = "") => `<div class="c-tabs" style="${style}">` + items.map((t) => `<div class="c-tab shadow ${t.on ? "on" : ""}">${t.i ? ic(t.i) : ""}${t.l}</div>`).join("") + `</div>`;
-  C.tr = (tier, pi) => `<span class="c-tr">${tier}${pi ? ` ${pi}` : ""}</span>`;
+  C.tr = (tier, pi) => `<span class="c-tr" data-t="${tier}">${tier}${pi ? ` ${pi}` : ""}</span>`;
   /* one-line status strip, top-right. o: {car:{name,tier,pi,open,fixed}, garage:"3 / 4", cash} */
   C.strip = (o = {}) => `<div class="c-strip">` +
     (o.car ? `<div class="c-seg ${o.car.open ? "on" : ""}">${o.car.name ? `<span>${o.car.name}</span>` : ""}${C.tr(o.car.tier, o.car.pi)}${o.car.fixed ? "" : ic(o.car.open ? "up" : "down", "chev")}</div>` : "") +
@@ -115,6 +116,13 @@
     return `<div class="c-stat"><span class="lab t-label">${s[0]}</span><span class="bar"><i style="width:${base * 6}px"></i>${gain ? `<i class="gain" style="width:${gseg * 6}px"></i>` : ""}</span>` +
       `<span class="val ${gain > 0 ? "c-cyan" : ""}">${s[1]}</span><span class="gn">${gain ? `<span class="chip cyan">+${gain}</span>` : ""}</span></div>`;
   }).join("") + `</div>`;
+  /* always-visible stat block (review 2). o: {tier, pi, name, price, sub, stats:[[label, value, gain]]} */
+  C.statblock = (o) => {
+    const rows = C.stats("", o.stats).replace(/^<div class="c-stats">/, "").replace(/<\/div>$/, "");
+    return `<div class="c-sb ${o.stats.some((s) => s[2]) ? "g" : ""}"><div class="hd">${C.tr(o.tier, o.pi)}<span>${o.name}</span></div>` +
+      (o.price ? `<div class="pr"><span class="t-label c-2">PRICE</span><span class="chip yellow">${o.price}</span></div>` : "") +
+      (o.sub ? `<div class="sub t-label c-2">${o.sub}</div>` : "") + rows + `</div>`;
+  };
   /* rail tile: image plus one line. o: {name, vis, sel, tick, price, unaff, corner, tier, locked, cls} */
   C.tile = (o) => `<div class="ct ${o.sel ? "sel" : ""} ${o.locked ? "locked" : ""} ${o.cls || ""}">${o.tier ? `<span class="tl">${C.tr(o.tier)}</span>` : ""}` +
     (o.price ? `<span class="cr chip price ${o.unaff ? "unaff" : ""}">${o.price}</span>` : o.corner ? `<span class="cr chip">${o.corner}</span>` : o.tick ? `<span class="cr tk">${ic("tick")}</span>` : "") +
@@ -123,53 +131,54 @@
   /* modal slot: the block is centred in the area to the right of the Roblox top bar */
   C.modalSlot = (inner) => `<div class="abs" style="left:var(--tbw);right:var(--m);top:var(--m);bottom:var(--m);display:flex;align-items:center;justify-content:center">${inner}</div>`;
 
-  /* minimap 92 dp with the driver-rank arc around its upper-left edge; rank number at the arc's start */
+  /* minimap 92 dp with the driver-rank arc around its upper-left edge; rank number at the arc's start.
+     Review 3: the ring and the rank arc are the baked gradient images (minimap_ring_gradient.png,
+     rank_arc_gradient.png), the same files and colours as the desktop HUD. */
   C.minimap = (rank = 6, p = 0.42) => {
     const c = 56, R = 51, pt = (a) => [(c + R * Math.cos(a * Math.PI / 180)).toFixed(1), (c + R * Math.sin(a * Math.PI / 180)).toFixed(1)];
-    const A0 = 165, A1 = 285, [x0, y0] = pt(A0), [x1, y1] = pt(A1), [xp, yp] = pt(A0 + (A1 - A0) * p);
-    return `<div class="c-map"><svg viewBox="-8 0 112 104" width="112" height="104" style="display:block;overflow:visible">
+    const A0 = 165, A1 = 285, [x0, y0] = pt(A0), X = c + 8, ring = 46.5 * 2 * 512 / 480, arc = 52.5 * 2 * 256 / 244;
+    const box = `viewBox="-8 0 112 104" width="112" height="104" style="position:absolute;left:0;top:0;overflow:visible"`;
+    return `<div class="c-map"><svg ${box}>
       <defs><clipPath id="mm"><circle cx="${c}" cy="${c}" r="45"/></clipPath></defs>
       <g clip-path="url(#mm)"><g transform="translate(${c - 45} ${c - 45}) scale(0.3)">
         <rect width="300" height="300" fill="#1b1932"/>
         <g stroke="#5a5680" stroke-width="22" fill="none"><path d="M-10 70 L320 240"/><path d="M190 -10 V320"/><path d="M90 320 L260 20"/><path d="M-10 222 H320" stroke-width="10"/></g>
         <path d="M148 168 L206 40" stroke="#FF2D95" stroke-width="10" fill="none"/>
         <g fill="#F3F0FF" stroke="#07060D" stroke-width="5"><circle cx="100" cy="92" r="11"/><circle cx="206" cy="124" r="11"/><circle cx="182" cy="226" r="11"/></g>
-        <path d="M148 138 L174 196 L148 182 L122 196 Z" fill="#F3F0FF" transform="rotate(20 148 170)"/></g></g>
-      <circle cx="${c}" cy="${c}" r="45.5" fill="none" stroke="#FF2D95" stroke-width="2"/>
-      <path d="M${x0} ${y0} A${R} ${R} 0 0 1 ${x1} ${y1}" fill="none" stroke="rgba(243,240,255,.28)" stroke-width="3"/>
-      <path d="M${x0} ${y0} A${R} ${R} 0 0 1 ${xp} ${yp}" fill="none" stroke="#22E4FF" stroke-width="3"/>
-      <circle cx="${x0}" cy="${y0}" r="9.5" fill="#07060D" stroke="#22E4FF" stroke-width="1.5"/>
+        <path d="M148 138 L174 196 L148 182 L122 196 Z" fill="#F3F0FF" transform="rotate(20 148 170)"/></g></g></svg>` +
+      P.layer("minimap_ring_gradient.png", ring, X, c) +
+      P.layer("rank_arc_gradient.png", arc, X, c, "opacity:.25;" + P.reveal(A0, A1 - A0)) +
+      P.layer("rank_arc_gradient.png", arc, X, c, P.reveal(A0, (A1 - A0) * p)) + `<svg data-nocov ${box}>
+      <circle cx="${x0}" cy="${y0}" r="9.5" fill="#07060D" stroke="#9A3DFF" stroke-width="1.5"/>
       <text x="${x0 - 0.6}" y="${+y0 + 4.8}" text-anchor="middle" font-family="Barlow" font-style="italic" font-weight="800" font-size="13.8" fill="#F3F0FF">${rank}</text>
       <circle cx="${c}" cy="97" r="6.5" fill="#07060D" stroke="rgba(243,240,255,.3)" stroke-width="1"/>
       <text x="${c - 0.4}" y="100.2" text-anchor="middle" font-family="Barlow" font-style="italic" font-weight="800" font-size="9" fill="#F3F0FF">N</text></svg></div>`;
   };
 
-  /* speed readout: image digits under a thin arc, boost as a thin bar */
-  C.speed = (speed, boost) => {
-    const cx = 52, cy = 74, r = 70, a0 = 222, a1 = 318, f = Math.min(1, speed / 240);
-    const pt = (a) => [(cx + r * Math.cos(a * Math.PI / 180)).toFixed(1), (cy + r * Math.sin(a * Math.PI / 180)).toFixed(1)];
-    const arc = (b0, b1) => { const [ax, ay] = pt(b0), [bx, by] = pt(b1); return `M${ax} ${ay} A${r} ${r} 0 0 1 ${bx} ${by}`; };
-    const end = a0 + (a1 - a0) * f + 0.01, hot = a0 + (a1 - a0) * 0.8;
-    return `<div class="c-speed" data-x><svg viewBox="0 0 104 30" width="104" height="30" style="display:block;overflow:visible">
-        <path d="${arc(a0, a1)}" stroke="rgba(243,240,255,.25)" stroke-width="2.5" fill="none"/>
-        <path d="${arc(a0, Math.min(end, hot))}" stroke="#F3F0FF" stroke-width="2.5" fill="none"/>
-        ${end > hot ? `<path d="${arc(hot, end)}" stroke="#FF2D95" stroke-width="2.5" fill="none"/>` : ""}</svg>
-      <div class="num n shadow">${speed}</div><div class="t-label c-2 u shadow">MPH</div><div class="bst"><i style="width:${boost}%"></i></div></div>`;
-  };
+  /* speed readout, review 3: the desktop gauge in small (the same five images, 92 dp across): image digits in the
+     middle, boost as the inner arc. The .cov span is the painted area the coverage measure counts. */
+  C.speed = (speed, boost) => `<div class="c-speed" data-x><span class="cov"></span>${P.gaugeArt(92, Math.min(1, speed / 240), boost)}
+      <div class="num n">${speed}</div><div class="t-label c-2 u">MPH</div></div>`;
 
-  /* touch drive controls: outlined shapes, no panels, no labels. o: {on:[names], off:bool, noExit} */
-  const driftIcon = (flip) => `<svg viewBox="0 0 24 24" width="22" height="22" style="display:block;${flip ? "transform:scaleX(-1)" : ""}"><path d="M12 5 L5 12 L12 19 M20 5 L13 12 L20 19" fill="none" stroke="currentColor" stroke-width="2.6"/></svg>`;
+  /* touch drive controls, review 3: the Classic controls restyled (square Slate plate, gradient outline, Classic
+     pictograms). Each is one baked image; the frames show the generator's own SVG (../../assets/touch_svg/).
+     C.ctl(name, state, charge) draws one control; state = "idle" | "on" (pressed) | "off" (disabled).
+     .k is the hit box (dashed on the sheet), .art is the plate (what the coverage measure counts), the image
+     overhangs it by the glow margin. Right-hand turn and drift are the left images mirrored. */
+  const TOUCH = { turn: [52, 52], drift: [52, 52], accelerate: [72, 100], brake: [76, 64], boost: [48, 48] };   // plate dp, as in touch.json
+  C.ctl = (name, st = "idle", charge = 100) => {
+    const kind = { TurnLeft: "turn", TurnRight: "turn", DriftLeft: "drift", DriftRight: "drift", Accelerator: "accelerate", Brake: "brake", Boost: "boost" }[name];
+    const side = /Left$/.test(name) ? " l" : /Right$/.test(name) ? " r" : "", [w, h] = TOUCH[kind], v = Math.max(w, h) + 10;
+    const img = `<img data-nocov src="../../assets/touch_svg/touch_${kind}${st === "on" ? "_pressed" : ""}.svg" style="width:${(100 * v / w).toFixed(3)}%;${/Right$/.test(name) ? "transform:translate(-50%,-50%) scaleX(-1);" : ""}${st === "off" ? "opacity:.38;" : ""}">`;
+    /* boost charge: rank_arc_gradient.png in the same frame, revealed clockwise from 12 o'clock */
+    const ring = kind === "boost" ? `<span class="chg">${P.layer("rank_arc_gradient.png", 60, 30, 30, "opacity:.25;")}${st === "off" ? "" : P.layer("rank_arc_gradient.png", 60, 30, 30, P.reveal(270, 3.6 * charge))}</span>` : "";
+    return `<div class="k hit ${kind}${side}"><span class="art">${img}${ring}</span></div>`;
+  };
+  /* o: {on:[names], off:bool, boost:charge %} */
   C.touch = (o = {}) => {
-    const on = (n) => (o.on || []).includes(n) ? " on" : "", off = o.off ? " off" : "";
-    return `<div class="tc-left">
-        <div class="boosthit hit"><div class="tc boost${on("Boost")}${off}">${ic("bolt")}</div></div>
-        <div class="tc drift l${on("DriftLeft")}${off}">${driftIcon(0)}</div>
-        <div class="tc drift r${on("DriftRight")}${off}">${driftIcon(1)}</div>
-        <div class="tc turn l${on("TurnLeft")}${off}">${ic("left")}</div>
-        <div class="tc turn r${on("TurnRight")}${off}">${ic("right")}</div></div>
-      <div class="tc-right">
-        <div class="pd brake hit"><div class="tc${on("Brake")}${off}">${ic("down")}</div></div>
-        <div class="pd accel hit"><div class="tc${on("Accelerator")}${off}">${ic("up")}</div></div></div>`;
+    const k = (n) => C.ctl(n, o.off ? "off" : (o.on || []).includes(n) ? "on" : "idle", o.boost ?? 100);
+    return `<div class="tc-left">${k("Boost")}${k("DriftLeft")}${k("DriftRight")}${k("TurnLeft")}${k("TurnRight")}</div>
+      <div class="tc-right">${k("Brake")}${k("Accelerator")}</div>`;
   };
   C.exit = () => `<div class="c-exit hit"><div class="tc">${ic("exit")}<span>EXIT</span></div></div>`;
 
@@ -179,7 +188,7 @@
     const drive = o.mode === "drive";
     return `<div class="${o.panel ? "c-shift" : ""}">` + (o.panel ? "" : C.minimap()) + C.nav(o.open) +
       `<div class="c-hudcash c-cash">${ic("coin")}<span>${o.cash || "$3.61M"}</span></div></div>` +
-      (drive ? C.speed(o.speed ?? 0, o.boost ?? 100) + (o.noExit ? "" : C.exit()) + C.touch({ on: o.on }) : "");
+      (drive ? C.speed(o.speed ?? 0, o.boost ?? 100) + (o.noExit ? "" : C.exit()) + C.touch({ on: o.on, boost: o.boost ?? 100 }) : "");
   };
 
   /* garage shell. o: {title, tabs, tabsExtra, strip, stats, head, rail, railCls, actions} */

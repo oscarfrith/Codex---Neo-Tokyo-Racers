@@ -1,4 +1,4 @@
-"""PIL-only art: three 9-slice glows, gauge ring + tick ring, minimap ring + vignette,
+"""PIL-only art: three 9-slice glows, gauge ring + tick ring, minimap ring + vignette + driver-rank ring,
 player arrow, segmented bar strip, key cap 9-slice. Deterministic, no Chrome."""
 import math
 from PIL import Image, ImageDraw
@@ -14,6 +14,15 @@ GAUGE = {"size": 512, "centre": [256, 256], "start_deg": 135, "sweep_deg": 270,
          "tick_minor": {"per_gap": 4, "length": 13, "width": 3}}
 MINIMAP = {"size": 512, "ring_outer_radius": 254, "ring_thickness": 8,
            "vignette_start_radius": 140, "vignette_end_radius": 250, "vignette_peak_alpha": 0.9}
+# Driver-rank arc: a full ring that sits just outside minimap_ring.png. Derived from the preview
+# (map 307 px across, 8 px gap, 10 px wide arc): frame = minimap frame * frame_scale, same centre.
+RANK = {"size": 512, "ring_outer_radius": 248, "ring_thickness": 14.5, "frame_scale_vs_minimap": 1.1453,
+        "gap_fraction_of_minimap_frame": 0.0261, "width_fraction_of_minimap_frame": 0.0326,
+        "start_deg": 180, "sweep_deg": 90,
+        "angle_convention": "degrees clockwise from +X (screen space): 180 is 9 o'clock, 270 is 12 o'clock",
+        "use": "full white ring; the track is the same image at low opacity and the fill is revealed clockwise "
+               "from 9 o'clock to 12 o'clock by a rotating UIGradient (XP fraction of the 90 degree sweep). "
+               "Frame: centred on the minimap, size = minimap frame * frame_scale_vs_minimap"}
 GLOWS = {
     "glow_soft.png": {"size": [128, 128], "edge_inset": 44, "sigma": 13, "SliceCenter": [62, 62, 66, 66],
                       "use": "selected tile outer glow; frame = tile grown by edge_inset * SliceScale on every side"},
@@ -99,6 +108,15 @@ def minimap_ring():
     return white_from_alpha(_down(m, k["size"]))
 
 
+def rank_ring():
+    k = RANK; n = k["size"] * SS; c = n / 2
+    m = Image.new("L", (n, n), 0); d = ImageDraw.Draw(m)
+    ro = k["ring_outer_radius"] * SS; ri = ro - k["ring_thickness"] * SS
+    d.ellipse((c - ro, c - ro, c + ro, c + ro), fill=255)
+    d.ellipse((c - ri, c - ri, c + ri, c + ri), fill=0)
+    return white_from_alpha(_down(m, k["size"]))
+
+
 def minimap_vignette():
     k = MINIMAP; n = k["size"]; c = n / 2
     r0, r1, peak = k["vignette_start_radius"], k["vignette_end_radius"], k["vignette_peak_alpha"]
@@ -139,16 +157,16 @@ def main():
     save(glow_box(128, 44, 13), "glow_soft.png")
     save(glow_box(64, 20, 5.5), "glow_tight.png")
     save(glow_line(64, 20, 7), "glow_line.png")
-    save(gauge_ring(), "gauge_ring.png")
-    save(gauge_ticks(), "gauge_ticks.png")
-    save(minimap_ring(), "minimap_ring.png")
+    # review 3 (2026-10-09): the gauge ring and ticks, the minimap ring and the rank ring are now the baked
+    # gradient images made by gen_rings.py (geometry in rings.json); the white versions are no longer written.
     save(minimap_vignette(), "minimap_vignette.png")
     save(player_arrow(), "map_player_arrow.png")
     save(keycap(), "keycap_9slice.png")
     save(segment_strip(), "segment_strip.png")
-    write_json({"gauge": GAUGE, "minimap": MINIMAP, "glow": GLOWS, "keycap": KEYCAP, "segment": SEGMENT},
-               "static_geometry.json")
-    print("static art: 10 files")
+    write_json({"minimap": {k: v for k, v in MINIMAP.items() if k.startswith(("size", "vignette"))},
+                "rings": "see rings.json (gauge, minimap ring, rank arc; review 3)",
+                "glow": GLOWS, "keycap": KEYCAP, "segment": SEGMENT}, "static_geometry.json")
+    print("static art: 7 files")
 
 
 if __name__ == "__main__":

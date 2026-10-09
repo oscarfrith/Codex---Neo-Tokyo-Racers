@@ -38,6 +38,6 @@ P.page(`
     ${[["A","WAYPOINT"],["X","CLEAR"],["Y","CENTRE"]].map(g=>`<span class="flex ac g8"><span class="glyph" style="width:34px;height:34px;font-size:20px">${g[0]}</span><span class="t-label c-2">${g[1]}</span></span>`).join("")}
     <span class="flex ac g8"><span class="glyph bumper" style="height:30px;min-width:44px;font-size:18px">LB</span><span class="glyph bumper" style="height:30px;min-width:44px;font-size:18px">RB</span><span class="t-label c-2">ZOOM</span></span>
   </div>
-  ${P.btnrow([P.btn("CLOSE","back"),P.btn("LEGEND","info"),P.btn("CLEAR WAYPOINT","close")])}
+  ${P.btnrow([P.btn("CLOSE","back"),P.btn("LEGEND","info"),P.btn("CLEAR WAYPOINT","close")],"bar")}
 `);
 </script></body></html>

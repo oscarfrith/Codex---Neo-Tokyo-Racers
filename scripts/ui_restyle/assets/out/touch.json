@@ -1,0 +1,233 @@
+{
+  "note": "Review 3 (2026-10-09). Baked full-colour images: leave ImageColor3 white. Sizes are dp at Compact scale 1 (844 x 390). frame_dp is the ImageLabel size that draws the plate at plate_dp (the image carries 5.0 dp of glow room on each side of the longer plate edge). Swap to the _pressed image while held; do not layer it.",
+  "style": {
+    "plate": "Slate at 0.86, square corners",
+    "outline_dp": 1.25,
+    "outline": "Pink, Violet, Cyan from top-left to bottom-right",
+    "pressed": "White plate at 0.95, Ink pictogram, 2.5 dp Pink to Violet base line, Pink glow",
+    "disabled": "idle image at ImageTransparency 0.6"
+  },
+  "images": {
+    "touch_accelerate": {
+      "file": "touch_accelerate.png",
+      "svg": "touch_svg/touch_accelerate.svg",
+      "size": [
+        512,
+        512
+      ],
+      "plate_rect_px": [
+        88.4,
+        23.3,
+        335.1,
+        465.5
+      ],
+      "pressed": "touch_accelerate_pressed.png",
+      "plate_dp": [
+        72,
+        100
+      ],
+      "frame_dp": [
+        110.0,
+        110.0
+      ],
+      "hit_box_dp": [
+        96,
+        112
+      ],
+      "anchor": "bottom right"
+    },
+    "touch_accelerate_pressed": {
+      "file": "touch_accelerate_pressed.png",
+      "svg": "touch_svg/touch_accelerate_pressed.svg",
+      "size": [
+        512,
+        512
+      ],
+      "plate_rect_px": [
+        88.4,
+        23.3,
+        335.1,
+        465.5
+      ],
+      "pressed_state_of": "touch_accelerate"
+    },
+    "touch_brake": {
+      "file": "touch_brake.png",
+      "svg": "touch_svg/touch_brake.svg",
+      "size": [
+        512,
+        512
+      ],
+      "plate_rect_px": [
+        29.8,
+        65.5,
+        452.5,
+        381.0
+      ],
+      "pressed": "touch_brake_pressed.png",
+      "plate_dp": [
+        76,
+        64
+      ],
+      "frame_dp": [
+        86.0,
+        86.0
+      ],
+      "hit_box_dp": [
+        80,
+        64
+      ],
+      "anchor": "bottom centre"
+    },
+    "touch_brake_pressed": {
+      "file": "touch_brake_pressed.png",
+      "svg": "touch_svg/touch_brake_pressed.svg",
+      "size": [
+        512,
+        512
+      ],
+      "plate_rect_px": [
+        29.8,
+        65.5,
+        452.5,
+        381.0
+      ],
+      "pressed_state_of": "touch_brake"
+    },
+    "touch_turn": {
+      "file": "touch_turn.png",
+      "svg": "touch_svg/touch_turn.svg",
+      "size": [
+        512,
+        512
+      ],
+      "plate_rect_px": [
+        41.3,
+        41.3,
+        429.4,
+        429.4
+      ],
+      "pressed": "touch_turn_pressed.png",
+      "plate_dp": [
+        52,
+        52
+      ],
+      "frame_dp": [
+        62.0,
+        62.0
+      ],
+      "hit_box_dp": [
+        52,
+        60
+      ],
+      "anchor": "centre"
+    },
+    "touch_turn_pressed": {
+      "file": "touch_turn_pressed.png",
+      "svg": "touch_svg/touch_turn_pressed.svg",
+      "size": [
+        512,
+        512
+      ],
+      "plate_rect_px": [
+        41.3,
+        41.3,
+        429.4,
+        429.4
+      ],
+      "pressed_state_of": "touch_turn"
+    },
+    "touch_drift": {
+      "file": "touch_drift.png",
+      "svg": "touch_svg/touch_drift.svg",
+      "size": [
+        512,
+        512
+      ],
+      "plate_rect_px": [
+        41.3,
+        41.3,
+        429.4,
+        429.4
+      ],
+      "pressed": "touch_drift_pressed.png",
+      "plate_dp": [
+        52,
+        52
+      ],
+      "frame_dp": [
+        62.0,
+        62.0
+      ],
+      "hit_box_dp": [
+        52,
+        52
+      ],
+      "anchor": "centre"
+    },
+    "touch_drift_pressed": {
+      "file": "touch_drift_pressed.png",
+      "svg": "touch_svg/touch_drift_pressed.svg",
+      "size": [
+        512,
+        512
+      ],
+      "plate_rect_px": [
+        41.3,
+        41.3,
+        429.4,
+        429.4
+      ],
+      "pressed_state_of": "touch_drift"
+    },
+    "touch_boost": {
+      "file": "touch_boost.png",
+      "svg": "touch_svg/touch_boost.svg",
+      "size": [
+        512,
+        512
+      ],
+      "plate_rect_px": [
+        44.1,
+        44.1,
+        423.7,
+        423.7
+      ],
+      "pressed": "touch_boost_pressed.png",
+      "plate_dp": [
+        48,
+        48
+      ],
+      "frame_dp": [
+        58.0,
+        58.0
+      ],
+      "hit_box_dp": [
+        52,
+        52
+      ],
+      "anchor": "centre"
+    },
+    "touch_boost_pressed": {
+      "file": "touch_boost_pressed.png",
+      "svg": "touch_svg/touch_boost_pressed.svg",
+      "size": [
+        512,
+        512
+      ],
+      "plate_rect_px": [
+        44.1,
+        44.1,
+        423.7,
+        423.7
+      ],
+      "pressed_state_of": "touch_boost"
+    }
+  },
+  "derived": {
+    "turn_right": "touch_turn.png mirrored: ImageRectOffset (512, 0), ImageRectSize (-512, 512)",
+    "drift_right": "touch_drift.png mirrored the same way",
+    "boost_charge": "rank_arc_gradient.png in a frame the size of the boost frame * 1.02, same centre, revealed clockwise from 12 o'clock by the charge fraction; the same image at 25% opacity is its track"
+  },
+  "layout_dp": "Classic positions: turn pair bottom-left with the drift pair above it and boost above that; brake then accelerate bottom-right; speed bottom-centre. See previews/compact/compact.css (.tc-left, .tc-right)."
+}

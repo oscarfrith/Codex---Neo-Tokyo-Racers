@@ -2,13 +2,16 @@
 /* Review 1 (2026-10-09): the four-column grid became a bottom rail so the button row can sit under the entry
    summary without crossing tiles. The freed area shows the selected vehicle's picture. */
 const car = P.sil("car");
+/* Review 2 (2026-10-09): no eligibility count, no CATEGORY / SORT drop-downs. The rail is in the game's default
+   order: rating, highest first (RaceEntryPresentationClient sorts by Rating descending and does not move
+   ineligible vehicles to the end), so locked vehicles keep their place by rating. */
 const v = [
+  {tier:"S",rating:939,sub:"TIER C ONLY",name:"SERAPH",locked:1},
+  {tier:"B",rating:675,sub:"TIER C ONLY",name:"ENDURA",locked:1},
   {tier:"C",rating:540,sub:"EXOTIC",name:"AURORA",sel:1},
   {tier:"C",rating:512,sub:"PIERCER",name:"KESTREL"},
   {tier:"C",rating:498,sub:"EXOTIC",name:"ZEPHYR"},
-  {tier:"D",rating:316,sub:"TIER C ONLY",name:"STINGER",locked:1},
-  {tier:"S",rating:939,sub:"TIER C ONLY",name:"SERAPH",locked:1},
-  {tier:"B",rating:675,sub:"TIER C ONLY",name:"ENDURA",locked:1}];
+  {tier:"D",rating:316,sub:"TIER C ONLY",name:"STINGER",locked:1}];
 P.page(`
   ${P.scene("city")}<div class="scrim-menu"></div>
   ${P.title("SHOWROOM LOOP")}
@@ -17,15 +20,15 @@ P.page(`
   <div class="abs" style="left:68px;top:222px;width:1280px;height:478px;display:flex;align-items:center;justify-content:center">
     <div class="sil car" style="width:760px;height:250px;background:rgba(243,240,255,.14)"></div>
     <div class="abs t-label c-muted" style="left:0;right:0;bottom:26px;text-align:center;opacity:.7">PICTURE OF THE SELECTED VEHICLE (THE TILE IMAGE, LARGE)</div>
-    <div class="abs flex ac g12" style="left:0;top:0"><span class="tierrating"><span>C</span><span>540</span></span><span class="t-sect" style="font-size:46px">AURORA</span><span class="t-label c-2" style="margin-left:6px">EXOTIC &middot; ELIGIBLE</span></div>
+    <div class="abs flex ac g12" style="left:0;top:0">${P.tb("C",540)}<span class="t-sect" style="font-size:46px">AURORA</span><span class="t-label c-2" style="margin-left:6px">EXOTIC &middot; ELIGIBLE</span></div>
   </div>
   <div class="statpanel panel slot" style="padding:0 22px 0">
     <div style="height:192px;margin:0 -22px;display:flex;align-items:center;justify-content:center;border-bottom:2px solid var(--hair-bot)">${P.route("loop","var(--cyan)",270,9)}</div>
     ${P.fact("flag","MODE","TIME TRIAL")}${P.fact("laps","LAPS","3 &middot; 17 CHECKPOINTS")}${P.fact("clock","YOUR BEST","01:03.275")}
     <div class="fact"><span class="t-label c-2">PLATINUM PRIZE</span><span class="v chip yellow lg">$25,000</span></div>
   </div>
-  ${P.btnrow([P.btn("BACK","back"),P.btn("START TIME TRIAL","flag","main")],"mid")}
-  ${P.railhead("TIER C 1/6",`<div class="t-label c-2 shadow">3 OF 6 VEHICLES ELIGIBLE</div><div class="flex g8" style="margin-left:20px">${P.dropdown("CATEGORY","ALL",270)}${P.dropdown("SORT","RATING",250)}</div>`)}
+  ${P.btnrow([P.btn("BACK","back"),P.btn("START TIME TRIAL","flag","main")],"line")}
+  ${P.railhead("TIER C 3/6")}
   <div class="rail">${v.map(x => P.tile({...x, vis:car})).join("")}</div>
 `);
 </script></body></html>

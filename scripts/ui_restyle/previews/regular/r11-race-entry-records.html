@@ -9,11 +9,11 @@ P.page(`
   ${P.title("SHOWROOM LOOP","RECORDS")}
   ${P.tabs([{l:"TIME TRIAL",on:1},{l:"RACE"}])}
   ${P.status({tier:"S",rating:939,cash:"$3,613,709"})}
-  <div class="abs flex g8" style="left:68px;top:204px">${tiers.map(t => `<div class="btn ${t === "C" ? "focus" : ""} ${t === "A" || t === "S" ? "dis" : ""}" style="width:100px;height:66px;padding:0;font-size:var(--fs-status)">${t}</div>`).join("")}</div>
+  <div class="abs flex g8" style="left:68px;top:204px">${tiers.map(t => `<div class="tierbtn tb-${t.toLowerCase()} ${t === "C" ? "on" : ""} ${t === "A" || t === "S" ? "locked" : ""}">${t}</div>`).join("")}</div>
   <div class="abs col" style="left:68px;top:290px;width:832px;gap:10px">
     <div class="panel flex ac g24" style="height:176px">
       <div style="width:120px;height:120px;background:#221f3a;display:flex;align-items:center;justify-content:center" class="t-sect c-muted">?</div>
-      <div class="grow"><div class="t-label c-2">WORLD RECORD &middot; TIER C</div><div class="num" style="font-size:76px;margin:14px 0 10px">00:57.412</div><div class="t-value">NEONRIDER <span class="c-2">&middot; SERAPH</span></div></div>
+      <div class="grow"><div class="flex ac g12">${P.tb("C",null,"sm")}<span class="t-label c-2">WORLD RECORD &middot; TIER C</span></div><div class="num" style="font-size:76px;margin:14px 0 10px">00:57.412</div><div class="t-value">NEONRIDER <span class="c-2">&middot; SERAPH</span></div></div>
     </div>
     <div class="panel" style="padding:12px 22px">${medal("plat","PLATINUM","00:58.000")}${medal("","GOLD","01:02.000",1)}${medal("silver","SILVER","01:08.000")}<div style="margin-bottom:-2px">${medal("bronze","BRONZE","01:15.000")}</div></div>
     <div class="panel flex ac jb" style="height:176px">
@@ -26,6 +26,6 @@ P.page(`
     <div class="hairline"></div>
     ${board.map(trow).join("")}
   </div>
-  ${P.btnrow([P.btn("BACK","back"),P.btn("CHOOSE VEHICLE","car","main")])}
+  ${P.btnrow([P.btn("BACK","back"),P.btn("CHOOSE VEHICLE","car","main")],"bar")}
 `);
 </script></body></html>

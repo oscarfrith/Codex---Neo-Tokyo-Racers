@@ -3,8 +3,8 @@ const SP = "position:relative;right:auto;top:auto";
 P.page(`
   ${P.scene("city", "", 0.5)}${sheetHead("COMPONENT SHEET 3 / 3","STAT PANEL &middot; SEGMENTED BAR &middot; FACT LIST &middot; STATUS CLUSTER &middot; CASH CHIP &middot; MODAL &middot; TOAST &middot; PROMPT BANNER")}
   <div class="sec rowx" style="top:112px;gap:20px;align-items:flex-start">
-    ${cell("StatPanel", P.statpanel({style:SP,name:"ZEPHYR",badge:"<span>D</span><span>390</span>",sub:[["EXOTIC &middot; PERFORMANCE",""]],stats:[["SPEED",77],["ACCEL",74],["HANDLING",74],["DRIFT",72],["BRAKING",73],["BOOST",72]]}))}
-    ${cell("StatPanel &middot; preview: gain cyan, loss pink, each with an arrow", P.statpanel({style:SP,name:"STINGER",badge:"<span>D</span><span>321</span>",sub:[["FITTED WING","Spine Wing Standard"],["PREVIEWING","Spine Wing EVO"]],stats:[["SPEED",80],["ACCEL",74],["HANDLING",66,3],["DRIFT",63,2],["BRAKING",62],["BOOST",59,-2]]}))}
+    ${cell("StatPanel", P.statpanel({style:SP,name:"ZEPHYR",badge:["D",390],sub:[["EXOTIC &middot; PERFORMANCE",""]],stats:[["SPEED",77],["ACCEL",74],["HANDLING",74],["DRIFT",72],["BRAKING",73],["BOOST",72]]}))}
+    ${cell("StatPanel &middot; preview: gain cyan, loss pink, each with an arrow", P.statpanel({style:SP,name:"STINGER",badge:["D",321],sub:[["FITTED WING","Spine Wing Standard"],["PREVIEWING","Spine Wing EVO"]],stats:[["SPEED",80],["ACCEL",74],["HANDLING",66,3],["DRIFT",63,2],["BRAKING",62],["BOOST",59,-2]]}))}
     <div class="col g24">
       ${cell("StatusCluster &middot; driving (HUD, menus)", P.status({static:1,tier:"S",rating:939}))}
       ${cell("StatusCluster &middot; garage screens: spaces, with + buttons", P.status({static:1,garage:"3 / 4",plus:1}))}
@@ -36,5 +36,5 @@ P.page(`
     <div class="flex g8">${P.prompt("ENTER","VEHICLE",P.key("E"),"").replace('class="prompt','style="min-width:330px;height:60px" class="prompt')}${P.prompt("ENTER","VEHICLE",P.glyph("X"),"").replace('class="prompt','style="min-width:330px;height:60px" class="prompt')}${P.prompt("ENTER","VEHICLE","","touch").replace('class="prompt','style="min-width:330px;height:60px" class="prompt')}
       <div style="align-self:center;margin-left:14px">${L("PromptBanner &middot; key cap, glyph, touch (the banner is the button)")}</div></div>
   </div>
-`);
+`,{noRbx:1});
 </script></body></html>

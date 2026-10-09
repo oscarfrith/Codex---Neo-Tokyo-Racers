@@ -8,15 +8,15 @@
   "h": 390
  },
  "c02-free-roam-HUD-driving": {
-  "ui": 13.2,
-  "centre": 0,
+  "ui": 16.1,
+  "centre": 0.9,
   "minTextSize": 16.6,
   "minText": "MPH",
   "w": 844,
   "h": 390
  },
  "c02-free-roam-HUD-driving_568x320": {
-  "ui": 17.5,
+  "ui": 21.8,
   "centre": 0,
   "minTextSize": 14.1,
   "minText": "MPH",
@@ -24,7 +24,7 @@
   "h": 320
  },
  "c02-free-roam-HUD-driving_640x360": {
-  "ui": 16.1,
+  "ui": 19.7,
   "centre": 0,
   "minTextSize": 15.3,
   "minText": "MPH",
@@ -32,18 +32,18 @@
   "h": 360
  },
  "c02-free-roam-HUD-driving_932x430": {
-  "ui": 12.9,
-  "centre": 0.1,
+  "ui": 15.6,
+  "centre": 0.9,
   "minTextSize": 18.2,
   "minText": "MPH",
   "w": 932,
   "h": 430
  },
  "c03-car-panel": {
-  "ui": 27.2,
+  "ui": 27.1,
   "centre": 23.3,
   "minTextSize": 16.6,
-  "minText": "CLASS",
+  "minText": "7",
   "w": 844,
   "h": 390
  },
@@ -112,23 +112,23 @@
   "h": 390
  },
  "c08-in-race-HUD": {
-  "ui": 12.7,
-  "centre": 0,
+  "ui": 15.6,
+  "centre": 0.9,
   "minTextSize": 16.6,
   "minText": "/ 8",
   "w": 844,
   "h": 390
  },
  "c09-countdown": {
-  "ui": 12.8,
-  "centre": 0,
+  "ui": 15.8,
+  "centre": 0.9,
   "minTextSize": 16.6,
   "minText": "SHOWROOM LOOP \u00b7 RA",
   "w": 844,
   "h": 390
  },
  "c10-results": {
-  "ui": 26.3,
+  "ui": 26.5,
   "centre": 23.3,
   "minTextSize": 16.6,
   "minText": "SHIFTED CANAL SPRI",
@@ -136,48 +136,48 @@
   "h": 390
  },
  "c11-dealership": {
-  "ui": 20.3,
-  "centre": 9.3,
+  "ui": 27.9,
+  "centre": 16,
   "minTextSize": 16.6,
-  "minText": "OWNED",
+  "minText": "PRICE",
   "w": 844,
   "h": 390
  },
  "c12-customise-parts": {
-  "ui": 20.3,
-  "centre": 9.9,
+  "ui": 26.8,
+  "centre": 15.5,
   "minTextSize": 16.6,
-  "minText": "FRONT ENGINE \u00b7 STA",
+  "minText": "SPEED",
   "w": 844,
   "h": 390
  },
  "c12-customise-parts_568x320": {
-  "ui": 24.4,
-  "centre": 7.5,
+  "ui": 32.8,
+  "centre": 14,
   "minTextSize": 14.1,
-  "minText": "FRONT ENGINE \u00b7 STA",
+  "minText": "SPEED",
   "w": 568,
   "h": 320
  },
  "c12-customise-parts_640x360": {
-  "ui": 23.6,
-  "centre": 5.8,
+  "ui": 31.5,
+  "centre": 11,
   "minTextSize": 15.3,
-  "minText": "FRONT ENGINE \u00b7 STA",
+  "minText": "SPEED",
   "w": 640,
   "h": 360
  },
  "c12-customise-parts_932x430": {
-  "ui": 19.9,
-  "centre": 9.1,
+  "ui": 26.3,
+  "centre": 14.9,
   "minTextSize": 18.2,
-  "minText": "FRONT ENGINE \u00b7 STA",
+  "minText": "SPEED",
   "w": 932,
   "h": 430
  },
  "c13-module-shop": {
-  "ui": 27,
-  "centre": 16.3,
+  "ui": 28.4,
+  "centre": 20.1,
   "minTextSize": 16.6,
   "minText": "PREVIEW \u00b7 SPINE WI",
   "w": 844,
@@ -192,10 +192,10 @@
   "h": 390
  },
  "c15-purchase-confirm": {
-  "ui": 39.8,
-  "centre": 63.6,
+  "ui": 46.6,
+  "centre": 67.9,
   "minTextSize": 16.6,
-  "minText": "OWNED",
+  "minText": "PRICE",
   "w": 844,
   "h": 390
  },
@@ -208,16 +208,16 @@
   "h": 390
  },
  "c17-world-prompt-and-event-card": {
-  "ui": 16.6,
-  "centre": 0,
+  "ui": 19.6,
+  "centre": 2.7,
   "minTextSize": 16.6,
   "minText": "MPH",
   "w": 844,
   "h": 390
  },
  "c18-toast-and-onboarding-callout": {
-  "ui": 21.8,
-  "centre": 13.1,
+  "ui": 24.7,
+  "centre": 14.8,
   "minTextSize": 16.6,
   "minText": "MPH",
   "w": 844,

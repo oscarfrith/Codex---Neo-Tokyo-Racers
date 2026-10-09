@@ -1,11 +1,18 @@
 {
   "batch": "Pulse UI restyle, Phase 0, one upload batch",
   "note": "Nothing is uploaded. Each file needs Oscar's yes from out/contact_sheet.png. Uploads cannot be edited; a revision is a new id. No existing asset id changes.",
-  "count": 18,
+  "notes": {
+    "tier_colours": "Tier badges need no art: each is a coloured frame with text. Oscar asked for one colour per vehicle tier (E, D, C, B, A, S); the values are being chosen in the previews and will be recorded as colour tokens, not as uploads.",
+    "touch_controls": "Review 3 (2026-10-09): the slanted two-sheet set is withdrawn. The touch controls are the Classic controls restyled: ten baked-colour 512 px images (five controls, idle and pressed). Right-hand turn and drift are the left images mirrored; disabled is the idle image dimmed.",
+    "baked_colour": "Review 3 (2026-10-09): Oscar allowed images for the rings, gauge and touch controls. Rows with tintable_white false and a purpose starting BAKED COLOUR carry their own colours and are never tinted. Icons, digits, glows, vignette, arrow, key cap, chequer and wordmark stay white and tintable.",
+    "icons_second_pass": "Redrawn 2026-10-09 after Oscar's review. Names and cell positions are unchanged; drift and gauge were appended in row 7.",
+    "revision": "Third pass, after review 3. Nothing has been uploaded, so no asset id is superseded."
+  },
+  "count": 32,
   "files": [
     {
       "file": "out/icons.png",
-      "purpose": "UI glyphs, 128 px cells, 96 px ink box; rects in icons.json",
+      "purpose": "58 UI glyphs (second pass), 128 px cells, 96 px ink box; rects in icons.json",
       "config_key": "Config.UI.Pulse.Assets.IconSheet",
       "data": {
         "rects": "icons.json"
@@ -18,12 +25,12 @@
         1024,
         1024
       ],
-      "bytes": 59326,
-      "pixel_sha1": "73a761d84ea366181c5b81adce7ec1a3ce06ab82"
+      "bytes": 71078,
+      "pixel_sha1": "57f52f1219e7dd8547a86fd55037192e7fe28fc2"
     },
     {
       "file": "out/map_icons.png",
-      "purpose": "14 map icons redrawn white, 128 px cells; rects in map_icons.json",
+      "purpose": "14 map icons, white badges with the second-pass glyphs cut out, 128 px cells; rects in map_icons.json",
       "config_key": "Config.UI.Pulse.Assets.MapIconSheet",
       "data": {
         "rects": "map_icons.json",
@@ -37,8 +44,8 @@
         512,
         512
       ],
-      "bytes": 20767,
-      "pixel_sha1": "5d09cd07318d2a5dfab84e8367c02788c124c760"
+      "bytes": 23855,
+      "pixel_sha1": "da6b57e71de88394b6832eebb8daa564b23514b1"
     },
     {
       "file": "out/glow_soft.png",
@@ -167,13 +174,13 @@
       "pixel_sha1": "fb78f0b9c0082115181a64fe8085858c9ffa0bf8"
     },
     {
-      "file": "out/gauge_ring.png",
-      "purpose": "Speed gauge 270 degree arc; revealed by a rotating UIGradient",
-      "config_key": "Config.UI.Pulse.Assets.GaugeRing",
+      "file": "out/minimap_ring_gradient.png",
+      "purpose": "BAKED COLOUR. Round minimap ring, pink to violet to cyan round the circle, soft glow",
+      "config_key": "Config.UI.Pulse.Assets.MinimapRing",
       "data": {
-        "geometry": "static_geometry.json gauge"
+        "geometry": "rings.json minimap_ring_gradient.png"
       },
-      "tintable_white": true,
+      "tintable_white": false,
       "alternative": false,
       "status": "not uploaded",
       "asset_id": null,
@@ -181,17 +188,53 @@
         512,
         512
       ],
-      "bytes": 14555,
-      "pixel_sha1": "8e1da442dd2f35e8627f99d6da313258e9e2efe7"
+      "bytes": 114071,
+      "pixel_sha1": "4abb3aa911d5c4349d199b7e965cb94c6c93c732"
+    },
+    {
+      "file": "out/rank_arc_gradient.png",
+      "purpose": "BAKED COLOUR. Driver-rank arc: full gradient ring outside the minimap ring, revealed at run time; also the touch boost charge ring",
+      "config_key": "Config.UI.Pulse.Assets.RankArc",
+      "data": {
+        "geometry": "rings.json rank_arc_gradient.png"
+      },
+      "tintable_white": false,
+      "alternative": false,
+      "status": "not uploaded",
+      "asset_id": null,
+      "size": [
+        512,
+        512
+      ],
+      "bytes": 114369,
+      "pixel_sha1": "6d397672c81984b11b389d8682125cb727d813f3"
+    },
+    {
+      "file": "out/gauge_track.png",
+      "purpose": "BAKED COLOUR. Speed gauge plate with its rim and the dim speed and boost tracks",
+      "config_key": "Config.UI.Pulse.Assets.GaugeTrack",
+      "data": {
+        "geometry": "rings.json gauge"
+      },
+      "tintable_white": false,
+      "alternative": false,
+      "status": "not uploaded",
+      "asset_id": null,
+      "size": [
+        512,
+        512
+      ],
+      "bytes": 62638,
+      "pixel_sha1": "3b0cdfd7cd263224e26cfa9bfb3e043b72c81172"
     },
     {
       "file": "out/gauge_ticks.png",
-      "purpose": "Speed gauge tick ring, 11 major and 40 minor ticks over the same 270 degrees",
+      "purpose": "BAKED COLOUR. Speed gauge ticks in three weights, 61 over 270 degrees, pink in the top band",
       "config_key": "Config.UI.Pulse.Assets.GaugeTicks",
       "data": {
-        "geometry": "static_geometry.json gauge"
+        "geometry": "rings.json gauge"
       },
-      "tintable_white": true,
+      "tintable_white": false,
       "alternative": false,
       "status": "not uploaded",
       "asset_id": null,
@@ -199,17 +242,17 @@
         512,
         512
       ],
-      "bytes": 13784,
-      "pixel_sha1": "a6d1d8790170709e60c011571a802d69462352d8"
+      "bytes": 15394,
+      "pixel_sha1": "fc77c37cd929def1312a015d8919c5008707e2a4"
     },
     {
-      "file": "out/minimap_ring.png",
-      "purpose": "Round minimap ring (pink to cyan UIGradient at run time); also the gauge track",
-      "config_key": "Config.UI.Pulse.Assets.MinimapRing",
+      "file": "out/gauge_glow.png",
+      "purpose": "BAKED COLOUR. Soft glow behind the speed arc; revealed with it",
+      "config_key": "Config.UI.Pulse.Assets.GaugeGlow",
       "data": {
-        "geometry": "static_geometry.json minimap"
+        "geometry": "rings.json gauge"
       },
-      "tintable_white": true,
+      "tintable_white": false,
       "alternative": false,
       "status": "not uploaded",
       "asset_id": null,
@@ -217,8 +260,62 @@
         512,
         512
       ],
-      "bytes": 20244,
-      "pixel_sha1": "631d57734a24b15c3765fcf5fb7a529a86556105"
+      "bytes": 70482,
+      "pixel_sha1": "ffa06c5a71a93e6380ed7ab95df2655d6761e0e1"
+    },
+    {
+      "file": "out/gauge_arc_gradient.png",
+      "purpose": "BAKED COLOUR. Speed arc, full 270 degree sweep, cyan to violet to pink along the sweep; revealed by a rotating UIGradient",
+      "config_key": "Config.UI.Pulse.Assets.GaugeArc",
+      "data": {
+        "geometry": "rings.json gauge"
+      },
+      "tintable_white": false,
+      "alternative": false,
+      "status": "not uploaded",
+      "asset_id": null,
+      "size": [
+        512,
+        512
+      ],
+      "bytes": 52743,
+      "pixel_sha1": "01326e5357917fec30728b6c966b1c55766f6c7b"
+    },
+    {
+      "file": "out/boost_arc_gradient.png",
+      "purpose": "BAKED COLOUR. Boost meter, inner 270 degree arc, blue to pale cyan along the sweep; revealed",
+      "config_key": "Config.UI.Pulse.Assets.BoostArc",
+      "data": {
+        "geometry": "rings.json gauge"
+      },
+      "tintable_white": false,
+      "alternative": false,
+      "status": "not uploaded",
+      "asset_id": null,
+      "size": [
+        512,
+        512
+      ],
+      "bytes": 54489,
+      "pixel_sha1": "6c03602dff8818581acc03cd67addfa99f694f39"
+    },
+    {
+      "file": "out/title_slash_gradient.png",
+      "purpose": "BAKED COLOUR. Screen-title slash mark, pink to violet",
+      "config_key": "Config.UI.Pulse.Assets.TitleSlash",
+      "data": {
+        "geometry": "rings.json title_slash_gradient.png"
+      },
+      "tintable_white": false,
+      "alternative": false,
+      "status": "not uploaded",
+      "asset_id": null,
+      "size": [
+        160,
+        192
+      ],
+      "bytes": 2198,
+      "pixel_sha1": "5d769c1c8e1bbbb35ea800b29040302264c2602d"
     },
     {
       "file": "out/minimap_vignette.png",
@@ -329,22 +426,184 @@
       "pixel_sha1": "3434d0657fda81858d0f1fb3537374da13836af6"
     },
     {
-      "file": "out/touch_controls.png",
-      "purpose": "Four touch-control images, 512 px cells: accelerate, brake, drift, boost",
-      "config_key": "Config.UI.Pulse.Assets.TouchControls",
+      "file": "out/touch_accelerate.png",
+      "purpose": "BAKED COLOUR. Touch accelerate: upright pedal on a Slate plate (Classic pictogram)",
+      "config_key": "Config.UI.Pulse.Assets.TouchAccelerate",
       "data": {
-        "rects": "marks.json touch"
+        "sizes": "touch.json"
       },
-      "tintable_white": true,
+      "tintable_white": false,
       "alternative": false,
       "status": "not uploaded",
       "asset_id": null,
       "size": [
-        1024,
-        1024
+        512,
+        512
       ],
-      "bytes": 37181,
-      "pixel_sha1": "45a148722000ccdef097233c6bf952e8412dd549"
+      "bytes": 64187,
+      "pixel_sha1": "6c0b3a0bbb2b1b968577f5b884ed3b5e9bc3adb0"
+    },
+    {
+      "file": "out/touch_accelerate_pressed.png",
+      "purpose": "BAKED COLOUR. Touch accelerate, pressed: upright pedal on a Slate plate (Classic pictogram)",
+      "config_key": "Config.UI.Pulse.Assets.TouchAcceleratePressed",
+      "data": {
+        "sizes": "touch.json"
+      },
+      "tintable_white": false,
+      "alternative": false,
+      "status": "not uploaded",
+      "asset_id": null,
+      "size": [
+        512,
+        512
+      ],
+      "bytes": 59029,
+      "pixel_sha1": "949c323947bed4db5a2c86c948c9aeda13ac1026"
+    },
+    {
+      "file": "out/touch_brake.png",
+      "purpose": "BAKED COLOUR. Touch brake: wide pedal with a bar beneath (Classic pictogram)",
+      "config_key": "Config.UI.Pulse.Assets.TouchBrake",
+      "data": {
+        "sizes": "touch.json"
+      },
+      "tintable_white": false,
+      "alternative": false,
+      "status": "not uploaded",
+      "asset_id": null,
+      "size": [
+        512,
+        512
+      ],
+      "bytes": 56322,
+      "pixel_sha1": "466666d59db2eda604303d22b7525b7bafcf9e61"
+    },
+    {
+      "file": "out/touch_brake_pressed.png",
+      "purpose": "BAKED COLOUR. Touch brake, pressed: wide pedal with a bar beneath (Classic pictogram)",
+      "config_key": "Config.UI.Pulse.Assets.TouchBrakePressed",
+      "data": {
+        "sizes": "touch.json"
+      },
+      "tintable_white": false,
+      "alternative": false,
+      "status": "not uploaded",
+      "asset_id": null,
+      "size": [
+        512,
+        512
+      ],
+      "bytes": 42893,
+      "pixel_sha1": "4d5860118253c948da14e16283bf976691c0a21f"
+    },
+    {
+      "file": "out/touch_turn.png",
+      "purpose": "BAKED COLOUR. Touch turn: single chevron, drawn pointing left; mirrored for right",
+      "config_key": "Config.UI.Pulse.Assets.TouchTurn",
+      "data": {
+        "sizes": "touch.json"
+      },
+      "tintable_white": false,
+      "alternative": false,
+      "status": "not uploaded",
+      "asset_id": null,
+      "size": [
+        512,
+        512
+      ],
+      "bytes": 54263,
+      "pixel_sha1": "99375dfa453167b11a38d2253191135e87d7beab"
+    },
+    {
+      "file": "out/touch_turn_pressed.png",
+      "purpose": "BAKED COLOUR. Touch turn, pressed: single chevron, drawn pointing left; mirrored for right",
+      "config_key": "Config.UI.Pulse.Assets.TouchTurnPressed",
+      "data": {
+        "sizes": "touch.json"
+      },
+      "tintable_white": false,
+      "alternative": false,
+      "status": "not uploaded",
+      "asset_id": null,
+      "size": [
+        512,
+        512
+      ],
+      "bytes": 34155,
+      "pixel_sha1": "bf599ca6888492f6de7cbb1da022aac66cbed72e"
+    },
+    {
+      "file": "out/touch_drift.png",
+      "purpose": "BAKED COLOUR. Touch drift: double chevron, drawn pointing left; mirrored for right",
+      "config_key": "Config.UI.Pulse.Assets.TouchDrift",
+      "data": {
+        "sizes": "touch.json"
+      },
+      "tintable_white": false,
+      "alternative": false,
+      "status": "not uploaded",
+      "asset_id": null,
+      "size": [
+        512,
+        512
+      ],
+      "bytes": 67840,
+      "pixel_sha1": "9b1b2356dc652c404c26f255886f42440b13131c"
+    },
+    {
+      "file": "out/touch_drift_pressed.png",
+      "purpose": "BAKED COLOUR. Touch drift, pressed: double chevron, drawn pointing left; mirrored for right",
+      "config_key": "Config.UI.Pulse.Assets.TouchDriftPressed",
+      "data": {
+        "sizes": "touch.json"
+      },
+      "tintable_white": false,
+      "alternative": false,
+      "status": "not uploaded",
+      "asset_id": null,
+      "size": [
+        512,
+        512
+      ],
+      "bytes": 46023,
+      "pixel_sha1": "6efe88c507d4ee2716b3b101ea789ba59bd4cdd0"
+    },
+    {
+      "file": "out/touch_boost.png",
+      "purpose": "BAKED COLOUR. Touch boost: round button with the bolt; charge ring is rank_arc_gradient.png",
+      "config_key": "Config.UI.Pulse.Assets.TouchBoost",
+      "data": {
+        "sizes": "touch.json"
+      },
+      "tintable_white": false,
+      "alternative": false,
+      "status": "not uploaded",
+      "asset_id": null,
+      "size": [
+        512,
+        512
+      ],
+      "bytes": 163244,
+      "pixel_sha1": "7abe28b335f9d2c862e8ca77b1963b4358d63bdf"
+    },
+    {
+      "file": "out/touch_boost_pressed.png",
+      "purpose": "BAKED COLOUR. Touch boost, pressed: round button with the bolt; charge ring is rank_arc_gradient.png",
+      "config_key": "Config.UI.Pulse.Assets.TouchBoostPressed",
+      "data": {
+        "sizes": "touch.json"
+      },
+      "tintable_white": false,
+      "alternative": false,
+      "status": "not uploaded",
+      "asset_id": null,
+      "size": [
+        512,
+        512
+      ],
+      "bytes": 112968,
+      "pixel_sha1": "08bb1fd270c769f1ad1452c4245047f5784f384e"
     },
     {
       "file": "out/chequer_corner_two_tone.png",

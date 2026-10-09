@@ -1,7 +1,9 @@
 <!doctype html><html><head><meta charset="utf-8"><title>r16a World prompts: race start with event card and Start banner</title><script src="../shared/boot.js"></script></head><body><script>
+/* Review 2 (2026-10-09): the chat window takes the top-left corner in free roam and the card does not fit between
+   it and the minimap, so the event card sits on the right under the action bar (route strip 156 high). */
 P.page(`
   ${P.freeroam({speed:0})}
-  ${P.eventCard({name:"SHOWROOM LOOP",sub:"TIME TRIAL &middot; 3 LAPS &middot; 17 CHECKPOINTS",route:"loop",you:"S 939",entry:"01:03.275",entryLabel:"YOUR BEST",prize:"$10,000"})}
+  ${P.eventCard({name:"SHOWROOM LOOP",sub:"TIME TRIAL &middot; 3 LAPS &middot; 17 CHECKPOINTS",route:"loop",you:P.tb("S",939,"on-light"),entry:"01:03.275",entryLabel:"YOUR BEST",prize:"$10,000",right:40,y:204,routeH:140})}
   <div class="promptstack" style="bottom:330px">
     ${P.prompt("START TIME TRIAL","TIME TRIAL",P.key("E"),"main")}
     ${P.prompt("RIDE","NEONRIDER",P.key("F"))}

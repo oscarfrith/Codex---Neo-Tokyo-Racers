@@ -1,6 +1,6 @@
 <!doctype html><html><head><meta charset="utf-8"><title>r20b Component sheet 2: Button, Tabs, Switch, Chip, TierBadge, key caps</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,500;0,600;1,600;1,800;1,900&family=Barlow+Condensed:ital,wght@1,800&display=block">
-<link rel="stylesheet" href="../shared/pulse.css"><script src="../shared/pulse.js"></script><script src="../shared/sheet.js"></script></head><body><script>
+<link rel="stylesheet" href="../shared/pulse.css"><script src="../shared/pulse.js"></script><script src="../shared/frames.js"></script><script src="../shared/sheet.js"></script></head><body><script>
 P.page(`
   ${P.scene("city", "", 0.5)}${sheetHead("COMPONENT SHEET 2 / 3","BUTTON &middot; TABS &middot; SWITCH &middot; CHIP &middot; TIER BADGE &middot; KEY CAP AND GLYPH")}
   <div class="sec rowx" style="top:128px;gap:14px">
@@ -30,8 +30,8 @@ P.page(`
     <div class="col g12" style="width:330px"><div class="slider" style="margin:14px 0"><i style="width:62%"></i><b style="left:62%"></b></div>${L("Slider (paint shop)")}</div>
   </div>
   <div class="sec rowx" style="top:740px;gap:70px">
-    <div class="col g12"><div class="flex g8 ac">${["E","D","C","B","A","S"].map(t=>`<span class="tier">${t}</span>`).join("")}<span style="width:16px"></span><span class="tier inv">C</span><span class="tier locked">A</span><span style="width:16px"></span><span class="tierrating"><span>D</span><span>316</span></span><span style="width:16px"></span><span class="tier sm">S</span></div>
-      ${L("TierBadge E&ndash;S (no tier colours) &middot; on white &middot; locked &middot; with rating &middot; small")}</div>
+    <div class="col g12"><div class="flex g8 ac">${["E","D","C","B","A","S"].map(t=>P.tb(t)).join("")}<span style="width:16px"></span>${P.tb("D",316)}<span style="background:var(--white);padding:6px;display:inline-flex">${P.tb("C",540,"on-light")}</span>${P.tb("A",800,"dim")}<span style="width:16px"></span>${P.tb("S",null,"sm")}</div>
+      ${L("TierBadge E&ndash;S in the tier colours &middot; with rating &middot; on white &middot; dimmed &middot; small")}</div>
     <div class="col g12"><div class="flex g12 ac">${P.key("E")}${P.key("F")}${P.key("M")}${P.key("SPACE",1)}${P.key("ESC",1)}<span style="width:16px"></span>${P.glyph("X")}${P.glyph("A")}${P.glyph("B")}${P.glyph("Y")}${P.glyph("LB",1)}${P.glyph("RT",1)}</div>
       ${L("Key cap (keyboard) &middot; gamepad glyphs (image sprites in the build)")}</div>
   </div>
@@ -41,5 +41,5 @@ P.page(`
     ${L("Chip &middot; neutral, count, variant, variant on white, price, unaffordable, gain, loss, prize, lap delta faster / slower, empty slot, danger")}
   </div>
   <div class="abs note" style="left:60px;top:990px;width:1700px">Focus is always white fill with ink text. Filled buttons keep a 6 px base line in their role colour when focused (pink for Main, yellow for Buy, red for Danger) so the role survives; that base line is an addition to the style sheet. No key caps on buttons or tabs.</div>
-`);
+`,{noRbx:1});
 </script></body></html>

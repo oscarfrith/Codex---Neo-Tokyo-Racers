@@ -1,11 +1,36 @@
 /* Shared compositions for the regular previews: free-roam HUD, garage frame, paint panel, race HUD parts. */
 (function () {
   const P = window.P;
+
+  /* ---- review 2 (2026-10-09) -------------------------------------------------------------------------
+     Tier badge in the tier colour: letter cell filled with the tier colour, number on the usual cell. */
+  P.tb = (tier, rating, cls = "") => `<span class="tb tb-${String(tier).toLowerCase()} ${cls}"><b>${tier}</b>${rating != null && rating !== "" ? `<i>${rating}</i>` : ""}</span>`;
+  P.tierBadge = (tier, rating) => P.tb(tier, rating);
+
+  /* Roblox's own top-left UI. These are real screen pixels (they do not scale with our UI), so in design
+     pixels they are divided by the stage scale: 208 x 58 top-bar buttons, chat window 475 x 274 under the bar.
+     P.page adds the placeholder to every screen frame; opts.noRbx skips it (component and state sheets),
+     opts.chat / P.freeroam show the chat window as well. The stage gets --rbx-top / --rbx-w / --chat-b / --chat-r
+     and the class "rbx", which moves the title block below the top bar (pulse.css). */
+  const RBX = { barH: 58, barW: 208, chat: [8, 70, 475, 274] };
+  const basePage = P.page;
+  P.page = (html, opts = {}) => {
+    if (opts.noRbx) { P._chat = 0; return basePage(html, opts); }
+    const k = 1 / (opts.noscale ? 1 : P.scale()), d = (n) => (n * k).toFixed(1) + "px";
+    const chat = opts.chat ?? P._chat; P._chat = 0;
+    const circ = (x) => `<i style="left:${d(x)};top:${d(7)};width:${d(44)};height:${d(44)}"></i>`;
+    html += `<div class="rbxbar" style="width:${d(RBX.barW)};height:${d(RBX.barH)}">${circ(12)}${circ(64)}<span style="left:${d(118)};top:${d(15)};font-size:${d(12)}">ROBLOX<br>BUTTONS</span></div>`;
+    if (chat) html += `<div class="rbxchat" style="left:${d(RBX.chat[0])};top:${d(RBX.chat[1])};width:${d(RBX.chat[2])};height:${d(RBX.chat[3])}"><span style="font-size:${d(13)};left:${d(12)};top:${d(10)}">ROBLOX CHAT WINDOW &middot; 475 x 274 px &middot; shown in free roam, hidden in full menus</span></div>`;
+    basePage(html, { ...opts, cls: (opts.cls || "") + " rbx" });
+    const st = document.querySelector(".stage");
+    st.style.setProperty("--rbx-top", d(RBX.barH)); st.style.setProperty("--rbx-w", d(RBX.barW));
+    st.style.setProperty("--chat-b", d(RBX.chat[1] + RBX.chat[3])); st.style.setProperty("--chat-r", d(RBX.chat[0] + RBX.chat[2]));
+  };
   const HEAD_TABS = [{ l: "PARTS", i: "wrench" }, { l: "UPGRADES", i: "upgrade" }, { l: "PAINT", i: "brush" }];
   P.customiseTabs = (on) => P.tabs(HEAD_TABS.map((t, i) => ({ ...t, on: i === on })));
 
   /* free-roam HUD. o:{onfoot, speed, boost, open (action index), tier, rating, district, noRow, dimmed, cash} */
-  P.freeroam = (o = {}) => `
+  P.freeroam = (o = {}) => (P._chat = o.sidePanel || o.dimmed ? 0 : 1, "") + `
     ${P.scene("city")}<div class="scrim-hud"></div>
     ${P.status({ hud: 1, tier: o.onfoot ? null : (o.tier || "S"), rating: o.rating || 939, cash: o.cash || "$3,613,709", rank: 6 })}
     ${P.actionbar(o.open ?? -1)}
@@ -52,15 +77,15 @@
 
   /* event card (race start). o:{name, sub, route, you, entry, entryLabel, prize, prizeLabel, x, y} */
   P.eventCard = (o) => `
-    <div class="abs" style="left:${o.x ?? 40}px;top:${o.y ?? 58}px;width:500px">
+    <div class="abs" style="${o.right != null ? `right:${o.right}px` : `left:${o.x ?? 40}px`};top:${o.y ?? 58}px;width:500px">
       <div class="panel" style="border-bottom:0;padding:22px 24px 20px">
         <div class="t-tile" style="font-size:44px">${o.name}</div>
         <div class="t-label c-2" style="margin-top:10px">${o.sub}</div>
         <div class="abs" style="right:0;top:-18px;width:76px;height:60px;transform:skewX(-10deg);background:repeating-conic-gradient(var(--white) 0 25%,var(--ink) 0 50%) 0 0/20px 20px"></div>
       </div>
-      <div style="background:rgba(26,24,50,.92);height:200px;display:flex;align-items:center;justify-content:center">${P.route(o.route || "loop", "var(--cyan)", 270, 10, "var(--pink)")}</div>
+      <div style="background:rgba(26,24,50,.92);height:${o.routeH || 200}px;display:flex;align-items:center;justify-content:center">${P.route(o.route || "loop", "var(--cyan)", o.routeH ? 230 : 270, 10, "var(--pink)")}</div>
       <div class="flex" style="height:112px;background:var(--slate)">
-        <div style="width:250px;background:var(--white);color:var(--ink);padding:18px 24px;clip-path:polygon(0 0,100% 0,90% 100%,0 100%)"><div class="t-label">YOU</div><div class="t-tile" style="font-size:44px;margin-top:8px">${o.you}</div></div>
+        <div style="width:250px;background:var(--white);color:var(--ink);padding:18px 24px;clip-path:polygon(0 0,100% 0,90% 100%,0 100%)"><div class="t-label">YOU</div><div class="t-tile" style="font-size:44px;margin-top:8px;height:46px;display:flex;align-items:center">${o.you}</div></div>
         <div style="padding:18px 12px"><div class="t-label c-2">${o.entryLabel || "ENTRY"}</div><div class="t-tile" style="font-size:44px;margin-top:8px">${o.entry}</div></div>
       </div>
       <div class="flex ac jb" style="height:68px;background:var(--slate);border-top:2px solid var(--hair-bot);padding-left:24px">

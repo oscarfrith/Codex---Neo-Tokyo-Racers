@@ -50,7 +50,7 @@ html,body{width:100%;height:100%;background:#000}
 .guide-safe .notch{position:absolute;left:0;top:50%;width:30px;height:150px;margin-top:-75px;background:#000;border-radius:0 18px 18px 0;opacity:.85}
 .guide-safe .home{position:absolute;left:50%;bottom:7px;width:150px;height:5px;margin-left:-75px;border-radius:3px;background:rgba(243,240,255,.45);opacity:.5}
 .guide-safe .tag{position:absolute;font:500 8px/1 Barlow;color:rgba(34,228,255,.95);white-space:nowrap;background:rgba(7,6,13,.6);padding:1px 3px}
-.guide-safe .tag b{font-weight:600;color:#FFE433}
+.guide-safe .tag b{font-weight:500;color:#FFE433}
 .guide-top{position:absolute;top:4px;height:44px;width:104px;border:1px dashed rgba(243,240,255,.45);display:flex;gap:12px;align-items:center;justify-content:center;pointer-events:none}
 .guide-top i{width:40px;height:40px;border-radius:50%;border:1px solid rgba(243,240,255,.5);background:rgba(7,6,13,.35)}
 .guide-top b{position:absolute;left:0;top:46px;font:500 8px/1 Barlow;color:rgba(243,240,255,.6);white-space:nowrap}
@@ -61,7 +61,7 @@ html,body{width:100%;height:100%;background:#000}
 /* ---- shared components re-sized for Compact ----------------------------- */
 .cx .panel{padding:var(--pad)}
 .cx .panel.flush{padding:0}
-.cx .titlemark{width:9px;height:17px;background:repeating-linear-gradient(135deg,var(--pink) 0 2.5px,transparent 2.5px 5px)}
+.cx .titlemark{width:9px;height:17px;-webkit-mask-image:repeating-linear-gradient(135deg,#000 0 2.5px,transparent 2.5px 5px);mask-image:repeating-linear-gradient(135deg,#000 0 2.5px,transparent 2.5px 5px)}  /* review 3: pink to violet, colour from pulse.css */
 .cx .c-title{position:absolute;left:calc(var(--tbw) + 2px);top:0;height:var(--tbh);display:flex;align-items:center;gap:6px}
 .cx .c-title .sub{margin-left:4px;padding-top:4px}
 /* tabs: text plus a pink underline; the hit box is a full --t tall */
@@ -80,10 +80,12 @@ html,body{width:100%;height:100%;background:#000}
 .cx .c-seg .ic{font-size:14px}
 .cx .c-seg .chev{font-size:9px;color:var(--text2)}
 .cx .c-seg.on{background:var(--white);color:var(--ink)}
-.cx .c-seg.on .c-tr{background:var(--ink);color:var(--white)}
 .cx .c-seg.on .chev{color:var(--ink)}
 .cx .c-tr{display:inline-flex;align-items:center;height:18px;padding:0 5px 0 4px;background:var(--white);color:var(--ink);font:italic 900 var(--fs-status)/1 Barlow;white-space:nowrap}
-.cx .c-cash{display:flex;align-items:center;gap:4px;padding:0 7px 0 6px;background:var(--yellow);color:var(--ink);font:italic 800 var(--fs-status)/1 Barlow;white-space:nowrap}
+.cx .c-tr[data-t=E]{background:var(--tier-e,#848E91)}.cx .c-tr[data-t=D]{background:var(--tier-d,#69BE81)}.cx .c-tr[data-t=C]{background:var(--tier-c,#4ACCD3)}
+.cx .c-tr[data-t=B]{background:var(--tier-b,#5289EB)}.cx .c-tr[data-t=A]{background:var(--tier-a,#F4BC41)}.cx .c-tr[data-t=S]{background:var(--tier-s,#EC5CA8)}
+.cx .c-seg.on .c-tr,.cx .ct.sel .c-tr{box-shadow:inset 0 0 0 1px var(--ink)}
+.cx .c-cash{display:flex;align-items:center;gap:4px;padding:0 7px 0 6px;background:linear-gradient(90deg,var(--yellow),#FFC62E);color:var(--ink);font:italic 800 var(--fs-status)/1 Barlow;white-space:nowrap}
 .cx .c-cash .ic{font-size:14px}
 /* expanded stat card */
 .cx .c-stats{position:absolute;right:var(--m);top:calc(var(--tbh) - 9px);width:186px;background:var(--slate);border-top:1px solid var(--hair-top);border-bottom:1px solid var(--hair-bot);padding:6px 8px 5px}
@@ -95,6 +97,16 @@ html,body{width:100%;height:100%;background:#000}
 .cx .c-stat .val{width:20px;text-align:right;font:italic 800 var(--fs-value)/1 Barlow;margin-left:auto}
 .cx .c-stat .gn{width:26px;flex:none;display:flex}
 .cx .c-stat .gn .chip{width:26px;height:15px;padding:0;justify-content:center}
+
+/* always-visible stat block: right column between the status strip and the button row (review 2) */
+.cx .c-sb{position:absolute;right:var(--m);top:calc(var(--tbh) - 7px);width:176px;background:var(--slate);border-top:1px solid var(--hair-top);border-bottom:1px solid var(--hair-bot);padding:6px 8px 5px}
+.cx .c-sb.g{width:208px}
+.cx .c-sb .hd{display:flex;align-items:center;gap:6px;height:20px;margin-bottom:5px;font:italic 800 var(--fs-status)/1 Barlow;text-transform:uppercase;white-space:nowrap}
+.cx .c-sb .pr{display:flex;align-items:center;justify-content:space-between;height:19px;margin-bottom:3px}
+.cx .c-sb .sub{height:17px;display:flex;align-items:center;white-space:nowrap;overflow:hidden}
+.cx .c-sb .c-stat .lab{width:67px}
+.cx .c-sb .c-stat .val{width:22px}
+.cx .c-sb:not(.g) .gn{display:none}
 
 /* chips, tier */
 .cx .chip{height:17px;gap:3px;padding:0 5px 0 4px}
@@ -134,11 +146,11 @@ html,body{width:100%;height:100%;background:#000}
 .cx .ct .tk .ic{font-size:10px}
 .cx .ct .sil{width:54px;height:19px}
 .cx .ct .sil.car{width:66px;height:21px}
-.cx .ct.sel{height:66px;background:var(--white);color:var(--ink);border-bottom:3px solid var(--pink)}
+.cx .ct.sel{height:66px;background:var(--white);color:var(--ink);border-bottom:3px solid var(--pink);border-image:linear-gradient(90deg,var(--pink),var(--violet)) 1}
 .cx .ct.sel .vis{top:11px}
 .cx .ct.sel .nm{padding-bottom:5px}
 .cx .ct.sel .sil{background:var(--ink)}
-.cx .ct.sel .c-tr,.cx .ct.sel .chip:not(.price){background:var(--ink);color:var(--white)}
+.cx .ct.sel .chip:not(.price){background:var(--ink);color:var(--white)}
 .cx .ct.locked{background:rgba(14,13,26,.6)}
 .cx .ct.locked .nm{color:var(--muted)}
 .cx .ct.car{min-width:100px}
@@ -157,7 +169,7 @@ html,body{width:100%;height:100%;background:#000}
 /* modal */
 .cx .modal{padding:10px 12px 10px;width:auto}
 .cx .modal .mhead{gap:6px;margin-bottom:calc(var(--hx) + 4px)}
-.cx .modal .mhead .titlemark{width:9px;height:17px;background:repeating-linear-gradient(135deg,var(--pink) 0 2.5px,transparent 2.5px 5px)}
+.cx .modal .mhead .titlemark{width:9px;height:17px;-webkit-mask-image:repeating-linear-gradient(135deg,#000 0 2.5px,transparent 2.5px 5px);mask-image:repeating-linear-gradient(135deg,#000 0 2.5px,transparent 2.5px 5px)}
 .cx .modal .mbody{margin-bottom:calc(var(--hx) + var(--g))}
 .cx .modal .mbtns{gap:var(--g);margin-bottom:var(--hx)}
 .cx .modal .ic.close{position:static}
@@ -187,44 +199,51 @@ html,body{width:100%;height:100%;background:#000}
 
 /* ---- HUD (free roam and race) ------------------------------------------- */
 .cx .c-map{position:absolute;right:calc(var(--m) - 2px);top:var(--m);width:112px;height:104px}
-.cx .c-nav{position:absolute;right:calc(var(--m) + 110px + var(--g));top:0;display:flex;gap:var(--g)}
+.cx .c-nav{position:absolute;left:50%;top:0;transform:translateX(-50%);display:flex;gap:var(--g)}  /* top centre, one row (review 2) */
 .cx .nb{width:var(--t);height:var(--t);display:flex;align-items:flex-start;justify-content:center;padding-top:var(--m)}
 .cx .nbv{width:32px;height:32px;display:flex;align-items:center;justify-content:center;background:rgba(14,13,26,.62);color:var(--white)}
 .cx .nbv .ic{font-size:18px}
 .cx .nbv.on{background:var(--white);color:var(--ink)}
 .cx .c-hudcash{position:absolute;right:var(--m);top:calc(var(--m) + 104px + 4px);width:92px;height:22px;justify-content:center}
-.cx .c-shift .c-nav{right:calc(var(--m) + 232px + var(--g))}
+.cx .c-shift .c-nav{left:calc((var(--tbw) + 100% - var(--m) - 232px - var(--g)) / 2)}  /* centred in the space left of the vehicles panel */
 .cx .c-shift .c-hudcash{right:calc(var(--m) + 232px + var(--g));top:var(--t)}
-.cx .c-speed{position:absolute;left:50%;bottom:var(--m);width:104px;height:64px;margin-left:-52px}
-.cx .c-speed .n{position:absolute;left:0;right:3px;top:12px;text-align:center;font-size:var(--fs-speed)}
-.cx .c-speed .u{position:absolute;left:0;right:0;top:43px;text-align:center}
-.cx .c-speed .bst{position:absolute;left:16px;right:16px;bottom:0;height:3px;background:rgba(243,240,255,.25)}
-.cx .c-speed .bst i{display:block;height:100%;background:var(--cyan)}
+/* review 3: the speed readout is the desktop gauge in small, 92 dp, bottom centre */
+.cx .c-speed{position:absolute;left:50%;bottom:calc(var(--m) - 2px);width:92px;height:92px;margin-left:-46px}
+.cx .c-speed .cov{position:absolute;inset:4px;border-radius:50%;background-image:linear-gradient(transparent,transparent)}
+.cx .c-speed .n{position:absolute;left:0;right:2px;top:28px;text-align:center;font-size:var(--fs-speed)}
+.cx .c-speed .u{position:absolute;left:0;right:0;top:59px;text-align:center}
 .cx .c-exit{position:absolute;right:calc(50% + 60px);bottom:var(--m);height:var(--t);display:flex;align-items:flex-end}
 .cx .c-exit .tc{position:static;height:28px;padding:0 8px 0 7px;gap:5px;font:italic 800 var(--fs-btn)/1 Barlow}
 .cx .c-exit .tc .ic{font-size:14px}
 
-/* touch drive controls (MobileDriveControls_Phase1 names kept): outlined, no slabs, no labels */
+/* Exit keeps the plain outlined chip */
 .cx .tc{position:absolute;display:flex;align-items:center;justify-content:center;background:rgba(14,13,26,.26);border:1px solid rgba(243,240,255,.55);color:var(--white)}
-.cx .tc .ic{font-size:22px}
-.cx .tc.on{background:rgba(243,240,255,.92);color:var(--ink);border-color:var(--white)}
-.cx .tc.off{opacity:.4}
-.cx .tc-left{position:absolute;left:var(--m);bottom:var(--m);width:calc(var(--sw) * 2 + var(--g));height:calc(60px + var(--g) + var(--t))}
-.cx .tc-left .turn{width:var(--sw);height:60px;bottom:0}
-.cx .tc-left .drift{width:var(--sw);height:var(--bh);bottom:calc(60px + var(--g) + var(--hx))}  /* 36 visible in a --t hit box */
-.cx .tc-left .drift::before{content:"";position:absolute;left:-1px;right:-1px;top:calc(var(--hx) * -1);bottom:calc(var(--hx) * -1);outline:1px dashed rgba(243,240,255,.20);outline-offset:-1px}
+/* touch drive controls (MobileDriveControls_Phase1 names kept). Review 3 (2026-10-09): the Classic controls
+   restyled, one baked image each. .k is the hit box (dashed on the sheet), .art is the plate. Positions are
+   Classic's: turn pair bottom-left, drift pair above it, boost above that; brake then accelerate bottom-right. */
+.cx .k{display:flex;align-items:center;justify-content:center;flex:none}
+.cx .k .art{position:relative;flex:none;display:block;background-image:linear-gradient(transparent,transparent)}  /* counted by C.measure as the painted plate */
+.cx .k .art > img{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:block;max-width:none}
+.cx .k.turn{width:var(--sw);height:60px}
+.cx .k.turn .art,.cx .k.drift .art{width:var(--sw);height:var(--sw)}
+.cx .k.drift{width:var(--sw);height:max(var(--sw),var(--t))}
+.cx .k.boost{width:max(52px,var(--t));height:max(52px,var(--t))}
+.cx .k.boost .art{width:48px;height:48px;border-radius:50%}
+.cx .k.boost .chg{position:absolute;left:-6px;top:-6px;width:60px;height:60px}
+.cx .k.accelerate{width:96px;height:112px;align-items:flex-end;justify-content:flex-end}
+.cx .k.accelerate .art{width:72px;height:100px}
+.cx .k.brake{width:80px;height:max(64px,var(--t));align-items:flex-end}
+.cx .k.brake .art{width:76px;height:64px}
+.cx .tc-left{position:absolute;left:var(--m);bottom:var(--m);width:calc(var(--sw) * 2 + var(--g));height:calc(60px + var(--g) + max(var(--sw),var(--t)))}
+.cx .tc-left .k{position:absolute}
+.cx .tc-left .turn{bottom:0}
+.cx .tc-left .drift{bottom:calc(60px + var(--g))}
 .cx .tc-left .l{left:0}.cx .tc-left .r{right:0}
-.cx .boosthit{position:absolute;left:50%;width:max(52px,var(--t));height:max(52px,var(--t));margin-left:calc(max(52px,var(--t)) / -2);bottom:calc(100% + var(--g));display:flex;align-items:center;justify-content:center}
-.cx .boosthit .tc{position:static;width:44px;height:44px;border-radius:50%;border-color:var(--cyan);color:var(--cyan)}
-.cx .boosthit .tc.on{background:var(--cyan);color:var(--ink)}
+.cx .tc-left .boost{left:50%;margin-left:calc(max(52px,var(--t)) / -2);bottom:calc(100% + var(--g) + 2px)}
 .cx .tc-right{position:absolute;right:var(--m);bottom:var(--m);width:calc(96px + var(--g) + 80px);height:112px}
-.cx .pd{position:absolute;bottom:0;display:flex;align-items:flex-end;justify-content:center}
-.cx .pd .tc{position:static;border-radius:50%}
-.cx .pd.accel{right:0;width:96px;height:112px;justify-content:flex-end;padding:0 4px 2px 0}
-.cx .pd.accel .tc{width:68px;height:68px}
-.cx .pd.accel .ic{font-size:28px}
-.cx .pd.brake{left:0;width:80px;height:max(64px,var(--t));padding-bottom:2px}
-.cx .pd.brake .tc{width:44px;height:44px}
+.cx .tc-right .k{position:absolute;bottom:0}
+.cx .tc-right .accelerate{right:0}
+.cx .tc-right .brake{left:0}
 
 /* vehicles list (side panel; hides the minimap and rank while open) */
 .cx .c-side{position:absolute;right:var(--m);top:var(--m);bottom:var(--m);width:232px;background:var(--slate);border-top:1px solid var(--hair-top);border-bottom:1px solid var(--hair-bot);padding:var(--hx) 8px;display:flex;flex-direction:column;gap:calc(var(--hx) + var(--g))}
@@ -245,8 +264,11 @@ html,body{width:100%;height:100%;background:#000}
 
 /* race entry */
 .cx .tierbtn{position:relative;width:var(--bh);height:var(--bh);display:flex;align-items:center;justify-content:center;background:var(--slate);border-bottom:2px solid transparent;font:italic 900 var(--fs-sect)/1 Barlow;padding-right:2px}
+.cx .tierbtn{color:var(--ink)}
+.cx .tierbtn[data-t=E]{background:var(--tier-e,#848E91)}.cx .tierbtn[data-t=D]{background:var(--tier-d,#69BE81)}.cx .tierbtn[data-t=C]{background:var(--tier-c,#4ACCD3)}
+.cx .tierbtn[data-t=B]{background:var(--tier-b,#5289EB)}.cx .tierbtn[data-t=A]{background:var(--tier-a,#F4BC41)}.cx .tierbtn[data-t=S]{background:var(--tier-s,#EC5CA8)}
 .cx .tierbtn.done{border-bottom-color:var(--white)}
-.cx .tierbtn.on{background:var(--white);color:var(--ink)}
+.cx .tierbtn.on{outline:2px solid var(--white);outline-offset:2px}
 .cx .tierbtn.locked{opacity:.45}
 
 /* paint */
@@ -270,3 +292,12 @@ html,body{width:100%;height:100%;background:#000}
 .cx .c-objective{position:absolute;left:calc(var(--tbw) + 4px);top:calc((var(--tbh) - 26px) / 2);height:26px;display:flex;align-items:center;gap:6px;padding:0 9px 0 6px;background:var(--slate);border-left:3px solid var(--pink)}
 .cx .c-event{position:absolute;left:calc(var(--tbw) + 4px);top:5px;background:var(--slate);border-top:1px solid var(--hair-top);border-bottom:1px solid var(--hair-bot);padding:5px 8px 5px}
 .cx .chk{flex:none;width:18px;height:12px;background:conic-gradient(var(--white) 25%,var(--ink) 0 50%,var(--white) 0 75%,var(--ink) 0) 0 0/6px 6px}
+
+/* c20 touch-control sheet */
+.sheet{position:relative;background:#12101f;overflow:hidden;color:var(--white)}
+.sheet .cx{position:static}
+.sheet .grid20{display:grid;grid-template-columns:64px repeat(5,auto);gap:10px 14px;align-items:end;justify-content:start;padding:8px 10px}
+.sheet .z{zoom:2}
+.sheet .z .k{outline:1px dashed rgba(34,228,255,.7);outline-offset:-1px}
+.sheet .scn{position:relative;overflow:hidden;background:#15131f center/cover}
+.sheet .cap{font:italic 800 13.8px/1 Barlow;text-transform:uppercase;color:var(--text2)}

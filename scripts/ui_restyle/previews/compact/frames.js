@@ -11,15 +11,15 @@
 
   /* ---- c01 / c02 free roam -------------------------------------------------- */
   F.c01 = () => C.page({ scene: "city", scrim: "hud", foot: 1 }, C.hud({ mode: "foot" }));
-  F.c02 = () => C.page({ scene: "city", scrim: "hud" }, C.hud({ mode: "drive", speed: 142, boost: 64 }));
+  F.c02 = () => C.page({ scene: "city", scrim: "hud" }, C.hud({ mode: "drive", speed: 142, boost: 64, on: ["Accelerator", "Boost"] }));
 
   /* ---- c03 vehicles list (side panel) --------------------------------------- */
-  const cars = [["S", "SERAPH", 1], ["D", "STINGER"], ["D", "ZEPHYR"], ["C", "AURORA"], ["B", "ENDURA"], ["A", "ROSSO"], ["E", "PIERCER MK1"]];
+  /* review 3: no class or sort drop-downs; the list is always sorted by rating, highest first */
+  const cars = [["S", "SERAPH", 1], ["A", "ROSSO"], ["B", "ENDURA"], ["C", "AURORA"], ["D", "ZEPHYR"], ["D", "STINGER"], ["E", "PIERCER MK1"]];
   F.c03 = () => C.page({ scene: "city", scrim: "hud", foot: 1 }, C.hud({ mode: "foot", open: 0, panel: 1 }) + `
     <div class="c-side">
-      <div class="flex" style="gap:var(--g)">
-        <div class="btn dd">${lab("CLASS")}<span>ALL</span>${ic("down")}</div>
-        <div class="btn dd">${lab("SORT")}<span>TIER</span>${ic("down")}</div>${C.ibtn("close")}
+      <div class="flex ac" style="gap:6px">
+        <div class="titlemark"></div><div class="t-sect">MY VEHICLES</div><div class="t-label c-2" style="margin-left:2px">7</div><div style="flex:1"></div>${C.ibtn("close")}
       </div>
       <div class="grid">
         <div class="ct"><div class="vis">${ic("plus")}</div><div class="nm">BUY MORE</div></div>` +
@@ -85,7 +85,7 @@
   F.c07 = () => C.page({ scene: "city", scrim: "menu" },
     C.title("SHOWROOM LOOP") + C.tabs([{ l: "TIME TRIAL", on: 1 }, { l: "RACE" }]) + raceStrip() + `
     <div class="abs flex" style="right:var(--m);top:${ROWY};gap:calc(var(--hx) * 2 + var(--g))">` +
-      [["E", "done"], ["D", "done"], ["C", "on"], ["B", ""], ["A", "locked"], ["S", "locked"]].map((t) => `<div class="tierbtn ${t[1]}">${t[0]}</div>`).join("") + `</div>
+      [["E", "done"], ["D", "done"], ["C", "on"], ["B", ""], ["A", "locked"], ["S", "locked"]].map((t) => `<div class="tierbtn ${t[1]}" data-t="${t[0]}">${t[0]}</div>`).join("") + `</div>
     <div class="panel abs col" style="left:var(--m);right:calc(var(--m) + 196px + var(--g) + 196px + var(--g));top:${TOP2};bottom:${BAND}">
       ${lab("3 LAPS &middot; 17 CP")}
       <div style="flex:1;display:flex;align-items:center;justify-content:center;min-height:0;overflow:hidden">${P.route("loop", "var(--cyan)", 170, 10)}</div>
@@ -100,7 +100,7 @@
       ${lab("TIER C &middot; PLATINUM PRIZE")}
       <div class="chip yellow" style="height:24px;font-size:var(--fs-sect);font-weight:900;margin-top:6px;padding:0 7px 0 6px">$25,000</div>
       <div class="t-label c-2" style="margin-top:8px">DAILY BONUS READY</div>
-      <div class="num abs" style="right:8px;bottom:8px;font-size:var(--fs-pos)">C</div>
+      <div class="num abs" style="right:8px;bottom:8px;font-size:var(--fs-pos);color:var(--tier-c,#4ACCD3)">C</div>
     </div>` +
     C.actions([btn("EXIT", "exit"), btn("RECORDS", "trophy"), btn("CHOOSE VEHICLE", "car", "main")], "low"));
 
@@ -116,7 +116,7 @@
     <div class="c-timer"><div class="box"><div class="num" style="font-size:var(--fs-timer)">01:03.275</div></div>
       <div class="chip cyan">LAP &minus;0.412</div>
       <div class="pips">${Array.from({ length: 12 }, (_, i) => `<i class="pip ${i < 7 ? "on" : ""}"></i>`).join("")}</div></div>` +
-    board() + sessionBtns() + C.speed(187, 30) + C.touch({ on: ["Accelerator", "TurnRight"] }));
+    board() + sessionBtns() + C.speed(187, 30) + C.touch({ on: ["Accelerator", "TurnRight"], boost: 30 }));
 
   F.c09 = () => C.page({ scene: "race", scrim: "hud", dim: 0.25 }, `
     <div class="abs col" data-x style="left:0;right:0;top:var(--tbh);align-items:center">
@@ -134,7 +134,7 @@
   const resrow = (p, name, time, you) => `<div class="row ${you ? "you" : "bare"}" style="min-height:22px;height:22px;padding:0 8px 0 0;gap:6px;border-bottom:0"><span class="t-label" style="font-weight:800;width:20px;text-align:center">${p}</span><span class="t-label" style="font-weight:800">${name}</span><span class="right t-label ${you ? "" : "c-2"}">${time}</span></div>`;
   F.c10 = () => C.page({ scene: "race", scrim: "menu" },
     C.title("RACE COMPLETE") + `
-    <div class="abs t-label c-2" style="left:var(--m);top:calc(var(--tbh) + 2px)">SHIFTED CANAL SPRINT &middot; 3 LAPS &middot; SERAPH</div>
+    <div class="abs flex ac t-label c-2" style="left:var(--m);top:calc(var(--tbh) + 2px);gap:6px">SHIFTED CANAL SPRINT &middot; 3 LAPS &middot; SERAPH ${C.tr("S", 939)}</div>
     <div class="abs col" style="left:var(--m);top:calc(var(--tbh) + 30px);gap:14px">
       <div class="flex" style="gap:28px">${hero("BANKED", "$20,000", "c-yellow")}${hero("DRIVER XP", "+120", "c-pink")}</div>
       <div class="panel flush flex" style="width:330px">${cell("FINISH", "2ND OF 8")}${cell("TIME", "03:11.842")}${cell("BEST LAP", "01:02.966")}</div>
@@ -151,7 +151,8 @@
   const sw = (a, b) => `<div class="flex" style="gap:var(--g);margin-left:4px"><div class="c-tab on shadow">${a}</div><div class="c-tab shadow">${b}</div></div>`;
   const dealer = () => C.garage({
     title: "DEALERSHIP", tabs: [{ l: "ALL" }, { l: "EXOTIC", on: 1 }, { l: "PIERCER" }, { l: "MUSCLE" }],
-    strip: { car: { name: "ZEPHYR", tier: "D", pi: 390 }, garage: "0 / 2", cash: "$1.00M" },
+    strip: { garage: "0 / 2", cash: "$1.00M" },
+    stats: C.statblock({ tier: "D", pi: 390, name: "ZEPHYR", price: "$150,000", stats: [["SPEED", 58], ["ACCEL", 52], ["HANDLING", 47], ["DRIFT", 44], ["BRAKING", 49], ["BOOST", 40]] }),
     head: head("EXOTIC 2/6", sw("FOR SALE", "OWNED")),
     rail: [["E", "STINGER", 0, "OWNED"], ["D", "ZEPHYR", "$150K"], ["C", "AURORA", "$440K"], ["B", "ENDURA", "$1.40M", 0, 1], ["A", "ROSSO", "$4.40M", 0, 1], ["S", "SERAPH", "$9.80M", 0, 1], ["S", "HALO", "$12.0M", 0, 1]]
       .map((c, i) => C.tile({ cls: "car", tier: c[0], name: c[1], price: c[2] || null, unaff: c[4], corner: c[3] || null, vis: P.sil("car"), sel: i === 1 })).join(""),
@@ -162,7 +163,8 @@
   const slots = [["FRONT BODY", "nose"], ["REAR BODY", ""], ["FRONT ENGINE", "eng"], ["REAR ENGINE", "eng"], ["DRIFT THRUSTERS", ""], ["OVERDRIVE", ""], ["WING", "wing"]];
   F.c12 = () => C.page({ scene: "garage", scrim: "garage" }, C.garage({
     title: "CUSTOMISE", tabs: gtabs(0),
-    strip: { car: { name: "STINGER", tier: "D", pi: 316 }, garage: "3 / 4" },
+    strip: { garage: "3 / 4" },
+    stats: C.statblock({ tier: "D", pi: 316, name: "STINGER", stats: C.STATS }),
     head: head("PARTS 3/7", `<div class="t-label c-2 shadow">FRONT ENGINE &middot; STANDARD &middot; FITTED</div>`),
     rail: slots.map((s, i) => C.tile({ name: s[0], vis: P.sil(s[1]), sel: i === 2, tick: 1 })).join(""),
     actions: [btn("BACK", "back"), btn("DRIVE", "wheel", "main")],
@@ -170,8 +172,8 @@
 
   F.c13 = () => C.page({ scene: "garage", scrim: "garage" }, C.garage({
     title: "CUSTOMISE", tabs: gtabs(0),
-    strip: { car: { name: "STINGER", tier: "D", pi: 318, open: 1 }, garage: "3 / 4" },
-    stats: C.stats("PREVIEW &middot; SPINE WING EVO", [["SPEED", 80], ["ACCEL", 74], ["HANDLING", 66, 3], ["DRIFT", 63, 2], ["BRAKING", 62], ["BOOST", 61]]),
+    strip: { garage: "3 / 4" },
+    stats: C.statblock({ tier: "D", pi: 318, name: "STINGER", sub: "PREVIEW &middot; SPINE WING EVO", stats: [["SPEED", 80], ["ACCEL", 74], ["HANDLING", 66, 3], ["DRIFT", 63, 2], ["BRAKING", 62], ["BOOST", 61]] }),
     head: head("WING 3/9", sw("SHOP", "OWNED")),
     rail: [["SPINE STD", 0, 0, 1], ["SPINE GT", "$3,000"], ["SPINE EVO", "$6,000", "OWNED"], ["BRIDGE STD", "$42,000", 0, 0, 1], ["BRIDGE GT", "$84,000", 0, 0, 1], ["BRIDGE EVO", "$120K", 0, 0, 1], ["DUCKTAIL STD", "$18,000"]]
       .map((c, i) => C.tile({ name: c[0], price: c[2] ? null : c[1] || null, corner: c[2] || null, tick: c[3], vis: P.sil("wing"), sel: i === 2, locked: c[4], unaff: c[4] })).join(""),
@@ -223,7 +225,7 @@
 
   /* ---- c17 world prompt + event card --------------------------------------- */
   F.c17 = () => C.page({ scene: "city", scrim: "hud" }, C.hud({ mode: "drive", speed: 0, boost: 100 }) + `
-    <div class="c-event">
+    <div class="c-event" style="left:var(--m);top:calc(var(--tbh) + 14px)">
       <div class="flex ac" style="gap:6px"><div class="chk"></div><div class="t-tile">SHOWROOM LOOP</div></div>
       <div class="flex ac" style="gap:6px;margin-top:3px"><span class="t-label c-2">CIRCUIT &middot; 3 LAPS</span><span class="chip yellow">$10,000</span></div>
     </div>
@@ -239,7 +241,7 @@
     <div class="panel abs flex ac" style="left:calc(${BX} + ${BS} + 14px);bottom:calc(${BY} + 2px);width:236px;gap:8px;padding:8px;border-left:2px solid var(--pink)">
       <div class="t-body" style="flex:1;color:var(--white)">Hold <b>BOOST</b> for a burst of speed. It refills as you drive.</div>
       <div class="btn main nochev"><span>NEXT</span></div></div>
-    <div class="c-objective">${ic("target", "c-pink")}<span class="t-label c-2">2 / 3</span><span class="t-value">ENTER AN EVENT</span></div>
+    <div class="c-objective" style="left:var(--m);top:calc(var(--tbh) + 14px)">${ic("target", "c-pink")}<span class="t-label c-2">2 / 3</span><span class="t-value">ENTER AN EVENT</span></div>
     <div class="toastslot">${P.toast("Route set to Showroom Loop", "ok", "route")}</div>`);
 
   /* ---- c19 loading / start -------------------------------------------------- */
@@ -252,6 +254,23 @@
       <div class="flex jb" style="margin-bottom:5px"><div class="t-value">LOADING WORLD</div><div class="t-value c-cyan">64%</div></div>
       <div class="progress"><i style="width:64%"></i></div></div>`);
   F.c19b = () => C.page({ scene: "city", dim: 0.3, scrim: "hud" }, logo() + C.actions([btn("PLAY", "wheel", "main lg")], "low"));
+
+  /* ---- c20 touch-control sheet (review 3): the Classic controls restyled, at 2x, idle / pressed / disabled,
+     hit box dashed; then the whole set in place on a scene at 1x ---- */
+  F.c20 = () => {
+    const m = C.metrics(), names = [["TurnLeft", "TURN"], ["DriftLeft", "DRIFT"], ["Boost", "BOOST"], ["Brake", "BRAKE"], ["Accelerator", "ACCELERATE"]];
+    const row = (st, label, charge) => `<div class="cap" style="align-self:center">${label}</div>` + names.map((n) => `<div class="z">${C.ctl(n[0], st, charge)}</div>`).join("");
+    const sv = `--t:48px;--g:8px;--sw:52px;--m:8px`;
+    document.body.innerHTML = `<div class="sheet" style="width:${m.w}px;height:${m.h}px"><div class="cx" style="width:${m.w}px;${sv}">
+      <div class="flex ac" style="gap:10px;padding:10px 10px 0"><div class="titlemark"></div><div class="t-sect">TOUCH DRIVE CONTROLS</div><div class="t-label c-2">THE CURRENT CONTROLS, RESTYLED &middot; DRAWN AT 2X</div></div>
+      <div class="t-label c-2" style="padding:6px 10px 0">DASHED CYAN = HIT BOX (48 DP OR MORE) &middot; RIGHT-HAND TURN AND DRIFT ARE THE SAME IMAGES MIRRORED &middot; BOOST RING = CHARGE LEFT</div>
+      <div class="grid20"><div></div>${names.map((n) => `<div class="cap">${n[1]}</div>`).join("")}
+        ${row("idle", "IDLE", 64)}${row("on", "PRESSED", 40)}${row("off", "DISABLED", 0)}</div>
+      <div class="t-label c-2" style="padding:2px 10px 6px">IN PLACE AT 1X (CLASSIC POSITIONS): ACCELERATE AND TURN RIGHT HELD</div>
+      <div class="scn" style="margin:0 10px;width:${m.w - 20}px;height:204px;background-image:url(../shared/bg/city.jpg)"><div class="scrim-hud"></div>
+        <div style="position:absolute;inset:0">${C.speed(142, 64)}${C.touch({ on: ["Accelerator", "TurnRight"], boost: 64 })}</div></div>
+      </div></div>`;
+  };
 
   window.F = F;
 })();

@@ -5,7 +5,7 @@ const lap = (n, t, best) => `<div class="row bare" style="min-height:50px;paddin
 const hero = (label, v, cls) => `<div style="text-align:center"><div class="t-status shadow">${label}</div><div class="num shadow ${cls}" style="font-size:200px;margin-top:22px">${v}</div></div>`;
 P.page(`
   ${P.scene("race")}<div class="scrim-menu"></div>
-  <div class="abs" style="left:0;right:0;top:50px;text-align:center"><div class="t-title shadow">TIME TRIAL COMPLETE</div><div class="t-label c-2" style="margin-top:12px">SHOWROOM LOOP &middot; TIER C &middot; 3 LAPS &middot; AURORA</div></div>
+  <div class="abs" style="left:0;right:0;top:50px;text-align:center"><div class="t-title shadow">TIME TRIAL COMPLETE</div><div class="t-label c-2" style="margin-top:12px">SHOWROOM LOOP &middot; ${P.tb("C",540,"sm")} &middot; 3 LAPS &middot; AURORA</div></div>
   <div class="abs flex" style="left:0;right:0;top:186px;justify-content:center;gap:90px">${hero("BEST LAP","01:01.842","")}${hero("BANKED","$12,500","c-yellow")}</div>
   <div class="panel abs flex ac" style="left:50%;transform:translateX(-50%);top:442px;height:70px;padding:0 34px;gap:44px">
     <span class="flex ac g12">${P.medal("")}<span class="t-value">GOLD MEDAL</span></span>

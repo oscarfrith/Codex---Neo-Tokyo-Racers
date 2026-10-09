@@ -42,7 +42,7 @@ One desktop layout (1600 x 900 reference) shrunk by `scale = 0.42` at 844x390.
 ## What the rework takes from it
 
 - Corner clusters and the same thumb positions: steering, drift, boost, pedals, speed and Exit are where Classic has them.
-- No backing panel behind drive controls; glyphs and outlines only.
+- Review 3 (2026-10-09): the drive controls are the Classic ones restyled (same pictograms, square Slate plate, gradient outline), one baked image each, no labels. The slanted shapes of review 2 were rejected. Plates: turn and drift 52 x 52, boost 48 round, brake 76 x 64, accelerate 72 x 100 dp. The speed readout is the desktop gauge at 92 dp.
 - Cash and rank as the whole free-roam status (no tier / PI block).
 - Garage order: rail on the bottom edge, buttons above it on the right, stats top-right.
-- What changes: every target is 48 dp or more, no text under TextSize 14, the safe area is respected, and the footprint goes down (13.2% driving, 20.3% customise).
+- What changes: every target is 48 dp or more, no text under TextSize 14, the safe area is respected, and the footprint goes down (16.1% driving after review 3, 14.1% after review 2, 26.8% customise and 27.9% dealership after review 2, with the action row at the top centre and the stat block always visible).

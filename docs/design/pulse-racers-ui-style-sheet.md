@@ -80,7 +80,7 @@ Changes to earlier approved rules, for Oscar to confirm at the gate:
 - Cash moves from electric blue to yellow (free-roam and racing design systems).
 - Selection moves from a cyan outline to a white fill (both design systems).
 - Structural pink outlines are removed. Pink becomes an accent line only.
-- Tier badges E to S become white with dark letters. The Phase AO tier palette leaves the UI (see Open questions).
+- **Tier colours (review 2, 2026-10-09), a named exception to the five colour roles.** Each tier has its own colour, used only on tier badges and the race entry tier buttons, wherever a tier is shown. The set is the game's own (`GarageUI.tierColours`, repeated in `OwnedGarageWorkspaceUI`, `DesktopFreeRoamHudUI` and `MobileFreeRoamHudUI`): E `#848E91`, D `#69BE81`, C `#4ACCD3`, B `#5289EB`, A `#F4BC41`, S `#EC5CA8`. Classic's race entry uses a second, different set (A and S purple); Pulse uses the one set above everywhere. Tier colour never marks state: selection stays white, Cash stays yellow. Before review 2 the badges were white with dark letters.
 - Dealership price text was green when affordable and red when not. Now: yellow chip when affordable, `TextMuted` on the same dark chip when not.
 
 ### Typography
@@ -141,6 +141,8 @@ Barlow `TextSize` at four scales (the scale rule is in Responsive and input). Fi
   - speed gauge arcs and the minimap ring: `Cyan` and `Pink`, about 10 px, 0.45 opacity.
   At most twelve glows on screen. The engine's own shadow object replaces the images only if it is seen working on a live phone and PC.
 - **Shadow:** titles and section heads over the 3D scene carry a soft dark drop shadow for legibility. No coloured offset shadows.
+- **Baked gradient images (review 3, 2026-10-09).** Oscar asked for the map ring, the speedo and similar parts to be "more dynamic with colour gradients", and allowed images wherever they give a better effect. Full-colour images with the gradient and the glow baked in are allowed for: the minimap ring, the driver-rank arc, the speed gauge (plate and tracks, ticks, speed arc, its glow, boost arc), the touch drive controls and the title mark. They run `Pink` to `Violet` to `Cyan`, are never tinted (`ImageColor3` stays white) and cost nothing per frame: an arc is one image revealed by a rotating gradient mask, and its colour runs along the sweep. Icons, digits, the three glows, the vignette, the map arrow and the key cap stay white and tintable. Elsewhere the look stays slate, white and small neon accents; a gradient that needs no image is used only on the main button, the selected base line (`Pink` to `Violet`) and the cash chip (`Yellow` to a warmer yellow). Geometry: `scripts/ui_restyle/assets/out/rings.json`.
+- **Touch drive controls keep the Classic pictograms and positions (review 3, 2026-10-09).** They are the current game's controls restyled, not a redesign: the upright accelerate pedal, the wide brake pedal with its bar, one chevron for turn, two for drift, a round boost button with the bolt, in the places and at about the sizes they have today. Each sits on a square `Slate` plate at 0.86 with a thin `Pink` to `Violet` to `Cyan` outline (the minimap ring's colours), drawn in white with cyan and pink accents and a small glow. Pressed is the selected-tile language: `White` plate, `Ink` pictogram, `Pink` to `Violet` base line, `Pink` glow. Disabled is the idle image dimmed. Right-hand turn and drift are the left images mirrored. Sizes: `scripts/ui_restyle/assets/out/touch.json`.
 
 ### Scene treatment
 
@@ -155,7 +157,7 @@ Each component is built once in the kit and reused. Screens place components in 
 | Component | Spec | States |
 |---|---|---|
 | **Panel** | `Slate` 0.86, hairlines, square, padding 22 px | - |
-| **Screen title** | Title mark + `ScreenTitle`, top-left at the screen margin (68 px; review 1, 2026-10-09) | - |
+| **Screen title** | Title mark + `ScreenTitle`, top-left at the screen margin (68 px; review 1, 2026-10-09), starting 12 px below Roblox's 58 px top bar, measured in real pixels (review 2, 2026-10-09; see Screens) | - |
 | **Tabs** | Row under the title, `Tab` size, icon + label, 34 px gap | Active: `White` with 4 px `Pink` underline. Inactive: `TextMuted`. Locked: 0.45 opacity |
 | **Status cluster** | Top-right. One slate strip: car icon + tier badge + rating, rank ring, cash chip. Garage screens show garage spaces in place of the car rating | - |
 | **Cash chip** | `Yellow` fill, `Ink` text, coin icon. Same position on every screen. Uses the shared money formatter and the existing cash binding | Counts up on change; width fixed during a count |
@@ -166,10 +168,10 @@ Each component is built once in the kit and reused. Screens place components in 
 | **Main button** | `Pink` to `Violet` gradient, white text, pink glow, trailing chevrons. One per screen, right-most | Same hover/disabled rules |
 | **Buy button** | `Yellow` fill, `Ink` text, price in the label. Used only where the action spends Cash | Unaffordable: disabled style, label unchanged |
 | **Destructive button** | `Danger` fill, white text | - |
-| **Button row** | On a screen with a tile rail: right-aligned directly under the stat or info panel, above the rail (y 612 to 700 at 1080p), never under the rail (review 1, 2026-10-09). On screens without a rail: bottom-right at the screen margin. Centred on results and in the free-roam HUD. Order: back or exit, secondary, main. No key caps | - |
+| **Button row** | On a screen with a tile rail: on the rail heading line, right-aligned to the right margin (y 714 to 778 at 1080p, 14 px above a selected tile), never under the rail (review 2, 2026-10-09; review 1 had it directly under the stat panel). On screens without a rail: bottom-right at the screen margin. One size on every menu: 64 px high (was 88), text cap 20, main and buy cap 24 with a 250 px minimum width, 10 px gap. The main button stays dominant through its gradient, glow and larger text. Centred on results and in the free-roam HUD. Order: back or exit, secondary, main. No key caps | - |
 | **Stat panel** | 480 px wide panel, top-right under the status cluster. Car name + tier badge, one or two sub-lines, six rows: label, segmented bar, value | Preview: gained part of the bar in `Cyan`, a `Cyan` chip with the gain. A loss uses a `Pink` chip |
 | **Segmented bar** | Segments 10 px wide, 3 px gap, 10 px tall. Filled `White`, empty white at 0.2. Drawn as tiled image strips | - |
-| **Tier badge** | `White` fill, `Ink` letter | On a selected tile: `Ink` fill, `White` letter |
+| **Tier badge** | Letter cell filled with the tier colour, `Ink` letter. With a rating, the number sits beside it on a `White` cell with `Ink` text. Heights 46, 38 and 34 (review 2, 2026-10-09) | On a selected (white) tile or row the number cell is `Ink` with `White` text; the letter cell keeps its tier colour. Locked and unaffordable tiles show the badge dimmed |
 | **Fact list** | Rows of icon + label left, value right, hairline between rows. Prize row ends in a yellow chip | - |
 | **Event list row** | Route thumbnail left, small label, name, modes | Selected as Tile |
 | **Big number** | Image digits in fixed cells | - |
@@ -196,22 +198,24 @@ The 14 map icons have baked colours. A redrawn white set tinted by role is part 
 
 ## Screens
 
-Positions are at 1920x1080. Outer margins (review 1, 2026-10-09, reduced to about two thirds): menus 68 px at the sides and 30 px at the bottom (were 100 and 44); in-play HUD 40 px at the sides and top-right and 28 px at the bottom (were 58 and 40). Top-left items keep their height (title at 64 px, HUD cards at 58 px) so they stay clear of Roblox's top-bar buttons.
+Positions are at 1920x1080. Outer margins (review 1, 2026-10-09, reduced to about two thirds): menus 68 px at the sides and 30 px at the bottom (were 100 and 44); in-play HUD 40 px at the sides and top-right and 28 px at the bottom (were 58 and 40). Top-left items start below Roblox's top bar (next paragraph).
+
+**Roblox's own top-left UI (review 2, 2026-10-09).** Roblox draws its menu and chat buttons in the top-left corner: a bar 58 px tall whose buttons reach x 208, measured in Studio. The chat window, when shown, is 475 x 274 px under that bar (drawn in the previews at x 8, y 70). These are real pixels: they do not scale with our UI, so at a smaller viewport they take more of the design canvas. Rules: (1) nothing of ours is drawn in the 208 x 58 corner; (2) every top-left title and tab block keeps the 68 px left margin and starts 12 px below the bar, that is at (58 / scale) + 12 design pixels: y 70 at 1080p, y 99 at 720p, and left-column content under the title moves down with it; (3) in play, top-left HUD content starts 12 px below the chat window while the chat shows, and what does not fit between the chat and the minimap goes to the right column under the action bar (the race-start event card does this); (4) chat is hidden while a full menu, the My Vehicles side panel or a modal is open, because the dimmer cannot cover it. Rule 4's side panel and modal cases, and chat during a race, are open with Oscar.
 
 ### Free-roam HUD
 
 - **Top-right:** status cluster, then the action bar: five 77 x 60 px icon tiles. The open one is white.
-- **Bottom-left:** round minimap, 307 px, with a 5 px ring (pink to cyan gradient) and a soft glow. North marker on the rim. District name beneath. Driver rank is an arc round the map (review 1, 2026-10-09): a constant 10 px arc 8 px outside the ring, from 9 o'clock to 12 o'clock, track in white at 0.30, filled clockwise in `Cyan` to the XP fraction, with the rank number outside the arc at about 10 o'clock. It is a ring image revealed by a gradient. There is no separate rank block beside the map. The map sits 18 px inside the HUD margin so the arc's outer edge is on the margin.
-- **Bottom-right:** one speed gauge, 403 px. Outer arc is speed (white, turning pink in the last fifth), inner arc is boost (cyan). Speed number and unit inside, boost percentage beneath.
+- **Bottom-left:** round minimap, 307 px, with a 6 px ring that blends pink, violet and cyan round the circle with a soft glow (a baked image; review 3, 2026-10-09; the rank arc is the matching gradient ring, violet to cyan, in place of flat `Cyan`). North marker on the rim. District name beneath. Driver rank is an arc round the map (review 1, 2026-10-09): a constant 10 px arc 8 px outside the ring, from 9 o'clock to 12 o'clock, track in white at 0.30, filled clockwise in `Cyan` to the XP fraction, with the rank number outside the arc at about 10 o'clock. It is a ring image revealed by a gradient. There is no separate rank block beside the map. The map sits 18 px inside the HUD margin so the arc's outer edge is on the margin.
+- **Bottom-right:** one speed gauge, 403 px. Review 3 (2026-10-09): five stacked baked images. The outer arc is speed and runs cyan, violet, pink along its sweep with a soft glow and a bright tip; ticks come in three weights and turn pink in the last fifth; the inner arc is boost (blue to pale cyan). Phones show the same gauge at 92 dp, bottom-centre. Speed number and unit inside, boost percentage beneath.
 - **Bottom-centre:** two small buttons, Controls and Exit vehicle (driving only).
 - **At a race start:** event card top-left (name, type and laps, route, YOU against ENTRY in a diagonal split, prize in a yellow corner) and a Start banner. The banner carries the single interact key cap.
-- **On a touch device** the minimap is top-right and the gauge bottom-centre, because steering holds the bottom-left. Touch drive controls are redrawn in white; their input behaviour is unchanged.
+- **On a touch device** the minimap is top-right and the gauge bottom-centre, because steering holds the bottom-left. Touch drive controls are the Classic controls restyled as baked images (review 3, 2026-10-09; see Shape, line and glow); their input behaviour is unchanged. The phone My Vehicles panel has no class or sort drop-downs; it is always sorted by rating, highest first (review 3).
 - The car panel, settings, controls and cash-store modals use Panel, Tile and Button as above. The car panel ("My Vehicles") is a full-height side panel on the left, 600 px wide, opened by the Car button as today (review 1, 2026-10-09): title, Category and Sort, a vertical scrolling list of ListRows (picture, tier badge, name, SPAWNED or PARKED), Despawn fixed at the bottom. While it is open the minimap, district name and rank arc are hidden, and so is any top-left card. It keeps its rules: Buy more first, no prices, Despawn fixed. Settings shows only rows that do something: passenger access, minimap mode and, on touch, control mode.
 
 ### Race menu and race entry
 
 - **Race menu:** full-screen tint. Title RACES with filter tabs. Event list on the left (480 px wide). Detail on the right: event art with the name over it and a pink rule beneath, then the route map and the fact list side by side. Buttons: Exit, Set route, Teleport (main).
-- **Race entry:** keeps the approved racing layout (tabs, tier rail, map left, prize and times right). Title is the track name. The viewed tier is a white tile; completed tiers carry a white underline; locked tiers are dimmed. Prize in a yellow chip beside the tier letter. Medal rows: the one you hold is white with a pink "yours". Buttons: Exit, View records, Choose vehicle (main). These are shortcuts; the pages and their order stay.
+- **Race entry:** keeps the approved racing layout (tabs, tier rail, map left, prize and times right). Title is the track name. Each tier button carries its tier colour as letter and base line; the viewed tier is filled with its colour; locked tiers are dimmed (review 2, 2026-10-09). The vehicle choice has no eligibility count and no Category or Sort drop-downs; its rail is sorted by rating, highest first (review 2). Prize in a yellow chip beside the tier letter. Medal rows: the one you hold is white with a pink "yours". Buttons: Exit, View records, Choose vehicle (main). These are shortcuts; the pages and their order stay.
 
 ### In-race HUD and results
 
@@ -221,7 +225,7 @@ Positions are at 1920x1080. Outer margins (review 1, 2026-10-09, reduced to abou
 
 ### Dealership, customisation and paint
 
-- **Shared frame:** title top-left with tabs, status cluster top-right, stat panel beneath it (fixed height, ending at y 600), button row directly under the stat panel, tile rail with its heading along the bottom of the screen (review 1, 2026-10-09; the row used to sit under the rail).
+- **Shared frame:** title top-left with tabs, status cluster top-right, stat panel beneath it (fixed height, ending at y 600), tile rail with its heading along the bottom of the screen, button row on the rail heading line at the right margin (review 2, 2026-10-09; review 1 had the row directly under the stat panel, and before that under the rail).
 - **Dealership:** tabs are the categories. Rail of cars with tier badge, rating, name and price chip. Buttons: Exit, Buy (yellow).
 - **Customise:** Add Modules, Upgrade Modules and Paint Shop become three tabs (Parts, Upgrades, Paint), removing the hub screen. Parts shows one rail of the car's slots, each naming the fitted part. Buttons: Back, Drive (main).
 - **Module shop:** Owned Modules and Buy Modules become a Shop / Owned switch beside the section head. Tiles carry a variant chip (STD, GT, EVO) and a price or Fitted chip. The stat panel names the fitted and previewed part and shows gains. Buttons: Back, Drive, Equip or Buy.
@@ -244,7 +248,7 @@ Applied only under Pulse; Classic is as today. Mechanics are in the contract, se
 |---|---|
 | Player list, health bar, backpack | Hidden. The status cluster shows Cash |
 | Chat | Kept in play and in races. Hidden while a full menu, garage screen, results or the full map is open, then restored. The top-left slot starts below it |
-| Top bar | Top slots start below it |
+| Top bar | Top slots start below it: nothing of ours in the 208 x 58 px corner, titles 12 px below the bar in real pixels (review 2, 2026-10-09; see Screens) |
 | Gamepad selection box | Replaced by each component's own selected look. The engine's automatic selection is off; HUD tiles are not selectable while driving |
 | On-foot touch controls | Roblox defaults; bottom corners stay clear on foot |
 | Name tags, core notifications, Esc menu, purchase prompts, emotes | Unchanged |
@@ -286,7 +290,7 @@ No existing config value or asset id changes. The Classic colour, layout and the
 
 ## Assets to upload
 
-One batch from one contact sheet, each needing Oscar's yes; about 14 to 18 files:
+One batch from one contact sheet, each needing Oscar's yes. After review 3 (2026-10-09) the batch is 32 files (`scripts/ui_restyle/assets/upload_manifest.json`): 14 white tintable files as listed below, 8 baked gradient images (minimap ring, rank arc, five gauge layers, title mark) and 10 baked touch-control images (five controls, idle and pressed). The list below is the plan as first written:
 
 - the icon sheet;
 - three glow 9-slices;
@@ -304,7 +308,7 @@ The contract's phase list (section 9): spike and previews, foundation and switch
 
 ## Open questions
 
-1. **Tier and affordability colour.** Tier badges are white and unaffordable prices are muted, which removes six tier colours plus green and red. Keep it that way (this sheet's default), or bring tier colour back as a thin line under the letter?
+1. **Tier and affordability colour.** Tier colour: answered in review 2 (2026-10-09), each tier has its own colour on the badge (see Colour). Still open: unaffordable prices are muted, with no green or red.
 2. **Controller hints on tabs.** No hints appear on buttons or tabs (this sheet's default). Should bumper and trigger glyphs appear beside the tabs and the Shop / Owned switch when a gamepad is in use?
 
 Typeface is no longer open: Barlow.
