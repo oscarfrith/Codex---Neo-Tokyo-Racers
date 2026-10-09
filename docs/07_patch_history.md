@@ -2,6 +2,15 @@
 
 Recent deliveries, newest first. Entries before September 2026 live in [the archive](history/patch-history-2026-05-to-2026-08.md).
 
+## 2026-10-09 - PR98 (published place): Exotic and Muscle classes always on
+
+Fast lane, config only, in **PR98** (103397770260610), now the working place. Script: `scripts/release/pr98_vehicle_classes_always_on.lua`.
+
+- **Cause:** after publishing, the dealership listed no vehicles. Exotic and Muscle are gated by `Core.FeatureFlags` keys with default off; Studio turns them on through `ServerStorage.Config@Flag_*` overrides, which live servers ignore, and PR98's new universe has no Creator Dashboard configs.
+- **Changed:** the `FeatureFlag` attribute is removed from the `EXOTIC` and `MUSCLE` category folders (no attribute = always enabled, like Piercer). The dashboard can no longer switch a class off.
+- **Checked:** attribute values read back; not tested on a live server. **Needs a republish by Oscar.** PR98 has its own DataStores, so saves from v3 do not exist there.
+- **Lesson:** before a publish, list every `FeatureFlags` key whose live default differs from the Studio override.
+
 ## 2026-10-09 - Day/night cycle is 10 minutes
 
 Fast lane. `ReplicatedStorage.Config.World.Lighting@ContinuousCycleDurationSeconds` 180 -> 600 (Oscar). Config only; not Play-tested. Back: set 180.

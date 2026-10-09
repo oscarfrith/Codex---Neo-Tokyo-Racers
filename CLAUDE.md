@@ -4,12 +4,12 @@
 
 AGENTS.md (imported above) is the single source of project rules, shared with any other assistant. Put durable rules there, not here. This file only covers how Claude Code applies them.
 
-The game is currently titled **Space Racers**; the working place is **Space Racers v3 (93959280828322)** since 2026-10-04 (Oscar: "working in space racers v3 now"). v3 is the Backup v2 place with the Exotic category, minus the vehicle category blockouts. Space Racers v2 (71491191583884), Backup v2 (133417340424236) and v1 (121304917315753) are historical. Older docs and the repo name say Neo Tokyo Racers or Codex. They are the same project.
+The game's player-facing title is **Pulse Racers** (2098). The working place is **PR98 (103397770260610)** since 2026-10-09 (Oscar: "pr98 is the working place for now"); it is the published place, in its own universe (10770056977), so it has its own DataStores and Creator Dashboard configs. Space Racers v3 (93959280828322) was the working place before that; v2 (71491191583884), Backup v2 (133417340424236) and v1 (121304917315753) are historical. Older docs and the repo name say Space Racers, Neo Tokyo Racers or Codex. They are the same project. The UI restyle installers under scripts/ui_restyle still assert the v3 place id; change that deliberately before running them in PR98.
 
 ## Studio connection
 
 - Studio is reached through the Roblox Studio built-in MCP server (Studio: Assistant → … → Manage MCP Servers). Tool mapping, permissions and rules are in [Claude Code setup](docs/architecture/claude-code-setup.md). Read it before the first Studio call of a session.
-- Every session: `list_roblox_studios` → pick the instance named `Space Racers v3 (placeId: 93959280828322)` → `get_studio_state`. Never reuse a studio_id from an earlier session.
+- Every session: `list_roblox_studios` → pick the instance named `PR98 (placeId: 103397770260610)` → `get_studio_state`. Never reuse a studio_id from an earlier session.
 - Read-only inspection (`search_game_tree`, `inspect_instance`, `script_read`, `script_grep`, `get_console_output`, `screen_capture`) needs no ceremony.
 - Game changes go through the delivery routes in docs/13 and docs/architecture/proportional-mcp-delivery.md. `multi_edit` and the generate/insert tools are direct writes; the setup doc says when they are allowed.
 
