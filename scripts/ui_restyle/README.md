@@ -1,6 +1,6 @@
 # UI restyle (Pulse Racers): working folder
 
-**Status, 2026-10-09:** design phase, paused overnight at Oscar's request. Nothing is installed. No game script, config or asset in Studio has been changed. Oscar has not yet been given recommendations and has approved no build.
+**Status, 2026-10-09:** design phase complete; recommendations put to Oscar; awaiting his decisions. Nothing is installed. No game script, config or asset in Studio has been changed, and no build is approved.
 
 ## What Oscar asked for (2026-10-08)
 
@@ -15,7 +15,9 @@ Build the UI shown in the previews, improved to scale and align better and to be
 | `audit/*.md` | Read-only audit of every UI owner in live v3 source, one file per group, with line references. Also project delivery rules, Roblox platform research and fonts/assets. `critic.md` lists gaps, contradictions and open questions. |
 | `audit/structured-summaries.json` | The same audit as short structured summaries (defects, risks, seams) per group. |
 | `design/proposal-*.md` | Three independent build proposals (safest backup, most cohesive, quality and speed). |
-| `design/review-*.md`, `design/recommended-plan.md`, `design/fact-check.md` | Added when the design pass finishes. If they are missing, the pass was interrupted: see "To resume". |
+| `design/review-*.md` | Three adversarial reviews of the proposals (rules and regression, platform and performance, completeness and UX). |
+| `design/recommended-plan.md` | The synthesised plan: switch, kit, scaling, budgets, phases, delivery route. **Read with `fact-check.md`**, which lists ten corrections not yet folded in. |
+| `design/fact-check.md` | The plan's key claims checked against live v3 source: 20 confirmed, 3 partly, 1 wrong, plus ten plan errors to fix when the contract is written. |
 | `workflows/*.js` | The two agent workflows that produced the audit and the design pass. |
 
 Paths inside the notes point at a session scratch folder; the files were copied here unchanged.
@@ -38,6 +40,6 @@ Play sessions in v3 used Oscar's real profile: Cash rose by $13 from a short dri
 
 ## To resume
 
-1. Read `design/recommended-plan.md` and `design/fact-check.md`. If missing, re-run `workflows/design-panel.js` after changing its `ROOT` constant to this folder's `audit` path (the three proposals already exist, so the review, synthesis and fact-check stages are what remain).
-2. Give Oscar the recommendations and the decisions he must make. Do not build before he answers.
-3. After his answers: correct the style sheet, write `CONTRACT.md` here, then a rendering spike and a one-screen pilot before any wider build.
+1. Get Oscar's answers to the decisions in `design/recommended-plan.md` (approach and phases, look and uploads, Roblox core UI and navigation, test mode). Do not build before he answers.
+2. Fold the ten fact-check corrections into the plan, correct the style sheet, and write `CONTRACT.md` here.
+3. Phase 0: rendering spike, preview frames for the screens the mockups do not cover, asset contact sheet. Nothing installed.

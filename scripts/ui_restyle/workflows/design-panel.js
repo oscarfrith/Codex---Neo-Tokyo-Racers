@@ -38,6 +38,7 @@ KEY FACTS FROM THE AUDIT (verify in the notes or live source before relying on a
 
 const clip = (s, n) => (typeof s === 'string' && s.length > n ? s.slice(0, n) + ' [...]' : s)
 const clipArr = (a, n, m) => (Array.isArray(a) ? a.slice(0, n).map(x => (typeof x === 'string' ? clip(x, m) : x)) : a)
+const SID_NOTE = 'IMPORTANT: Studio was restarted since the brief above was written. The studio_id in the brief is stale. Use studio_id "1071f5cf-8bbe-4913-acf7-1c4c410323d9" (the instance named "Space Racers v3 (placeId: 93959280828322)", Edit mode); if it is rejected, call list_roblox_studios.\n\n'
 
 const PROPOSAL_SCHEMA = {
   type: 'object',
@@ -103,7 +104,7 @@ const REVIEWERS = [
 ]
 const reviewPrompt = r => `${BRIEF}
 
-YOUR TASK: adversarial review. Three independent proposals are in ${ROOT}/design/ : ${proposals.map(p => p.proposalFile).join(' ; ')}. Read all three in full, plus the audit notes you need. Your lens: ${r.lens}
+${SID_NOTE}YOUR TASK: adversarial review. Three independent proposals are in ${ROOT}/design/ : ${proposals.map(p => p.proposalFile).join(' ; ')}. Read all three in full, plus the audit notes you need. Your lens: ${r.lens}
 
 Try to break each proposal. Default to treating an unverified claim as wrong until you have checked it. Write your review to ${ROOT}/design/review-${r.key}.md with, for each proposal: fatal flaws, serious flaws, claims you checked and the result, and its best ideas. End with the plan you would build from the best parts.
 
@@ -145,7 +146,7 @@ const PLAN_SCHEMA = {
 }
 const plan = await agent(`${BRIEF}
 
-YOUR TASK: synthesise ONE recommended plan. Proposals: ${proposals.map(p => p.proposalFile).join(' ; ')}. Reviews: ${reviews.map(r => r.reviewFile).join(' ; ')}. Read all of them in full. Start from the proposal the reviewers rank highest, fix every fatal flaw and must-fix item, and graft the best ideas from the others. Where reviewers disagree, decide and say why. Do not invent facts: anything unverified must be labelled as needing a spike or a check.
+${SID_NOTE}YOUR TASK: synthesise ONE recommended plan. Proposals: ${proposals.map(p => p.proposalFile).join(' ; ')}. Reviews: ${reviews.map(r => r.reviewFile).join(' ; ')}. Read all of them in full. Start from the proposal the reviewers rank highest, fix every fatal flaw and must-fix item, and graft the best ideas from the others. Where reviewers disagree, decide and say why. Do not invent facts: anything unverified must be labelled as needing a spike or a check.
 
 Write the full plan to ${ROOT}/design/recommended-plan.md, structured as: switch model and exact list of edited existing scripts; shared kit (modules, components, contracts); scale, safe-area and form-factor service; type and number rules; performance budgets and how they are measured; fonts and assets; Roblox core UI and prompt policy; navigation changes; phases with scope, lane, build split (parallel agents versus integrator) and exit gate; delivery and test route in v3; what is out of scope; risks.
 
@@ -178,7 +179,7 @@ let check = null
 if (plan) {
   check = await agent(`${BRIEF}
 
-YOUR TASK: fact check. A recommended plan is at ${plan.planFile}. Read it in full. Check each of these claims against LIVE Studio source and config (script_read, inspect_instance, read-only execute_luau), not against the audit notes:
+${SID_NOTE}YOUR TASK: fact check. A recommended plan is at ${plan.planFile}. Read it in full. Check each of these claims against LIVE Studio source and config (script_read, inspect_instance, read-only execute_luau), not against the audit notes:
 ${(plan.checkableClaims || []).map((c, i) => (i + 1) + '. ' + c).join('\n')}
 Then read the plan once more looking for anything else that is factually wrong, internally inconsistent, or that breaks a project rule in AGENTS.md.
 In particular confirm from live source: how ClientBase resolves and starts modules and whether one path per entry can be chosen there; whether an attribute or value under ReplicatedStorage.Config is readable from ReplicatedFirst code before the loading screen draws; which scripts require RacingUIComponents and GarageComponents; whether a ModuleScript created at Edit time under ReplicatedStorage.Modules.Game.UI would be picked up without other registration.

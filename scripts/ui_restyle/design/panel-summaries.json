@@ -1,0 +1,475 @@
+{
+ "proposals": [
+  {
+   "name": "Proposal A: safest backup (parallel Pulse modules, one latched switch, Classic frozen and hash-checked)",
+   "file": "C:/Users/Oscar/AppData/Local/Temp/claude/C--Users-Oscar-Documents-LUCIDITY-Codex---Neo-Tokyo-Racers/7ae7a4c9-9cc9-42f4-963e-128daf46addb/scratchpad/ui_restyle_audit/design/proposal-A-safest-backup.md",
+   "switchModel": "One string attribute, UIStyle, on ReplicatedStorage.Config.UI, saved in the place (default Classic), plus a preview user list and a per-group Classic override. A new latch module, game.ReplicatedFirst.UIStyleSwitch, reads it once per client session; ClientBase's resolver then picks the Classic or Pulse path for each unchanged entry name, so only one module of a pair is ever required. Each group is decided all-or-nothing before any start, falling back to Classic with one warning. A fresh server's first joiner gets the saved value with no wait. Switching back is setting the attribute to Classic; full removal is ROLLBACK in reverse. No shared module is made style-aware.",
+   "editedOldScripts": [
+    "game.StarterPlayer.StarterPlayerScripts.ClientBase",
+    "game.ReplicatedFirst.Loading.LoadingTransitionRuntime",
+    "game.ReplicatedFirst.Loading.InitialLoadingAndStartScreenClient"
+   ]
+  },
+  {
+   "name": "Proposal B: one kit, one switch, every surface",
+   "file": "C:/Users/Oscar/AppData/Local/Temp/claude/C--Users-Oscar-Documents-LUCIDITY-Codex---Neo-Tokyo-Racers/7ae7a4c9-9cc9-42f4-963e-128daf46addb/scratchpad/ui_restyle_audit/design/proposal-B-most-cohesive.md",
+   "switchModel": "String attribute UIStyle (Classic or Pulse) on ReplicatedStorage.Config.UI, plus UIStylePreviewUserIds for owner preview. New Core.UIStyle reads it once at first require and latches it; ClientBase's resolver (L105-108), the loading runtime and the start screen all ask it, and Pulse paths come from a manifest filled phase by phase. Only one module of each pair is ever required; Pulse owners also call Claim, and there is no fallback after a partial start. First joiners get the place value: no server timing. Switch back by setting the attribute and rejoining; per-phase ROLLBACK and a place baseline sit behind it. Classic is frozen; nine shared scripts get small seam edits.",
+   "editedOldScripts": [
+    "game.StarterPlayer.StarterPlayerScripts.ClientBase",
+    "game.ReplicatedFirst.Loading.LoadingTransitionRuntime",
+    "game.ReplicatedFirst.Loading.InitialLoadingAndStartScreenClient",
+    "game.ReplicatedStorage.Modules.Game.UI.OwnedGarageWorkspaceUI",
+    "game.ReplicatedStorage.Modules.Game.UI.MapIconLayer",
+    "game.ReplicatedStorage.Modules.Game.UI.RouteGuide",
+    "game.ReplicatedStorage.Modules.Game.Racing.RaceTransitionClient",
+    "game.ReplicatedStorage.Modules.Game.Dealership.GarageEntranceClient",
+    "game.ReplicatedStorage.Modules.Game.Vehicles.MobileDriveControlsClient"
+   ]
+  },
+  {
+   "name": "Proposal C: quality and speed first (rendering spike, race-menu pilot, then families by value)",
+   "file": "C:/Users/Oscar/AppData/Local/Temp/claude/C--Users-Oscar-Documents-LUCIDITY-Codex---Neo-Tokyo-Racers/7ae7a4c9-9cc9-42f4-963e-128daf46addb/scratchpad/ui_restyle_audit/design/proposal-C-quality-and-speed.md",
+   "switchModel": "A second UI is built beside the old one and chosen once per session. The value is a place-authored attribute, ReplicatedStorage.Config.UI.Style@Active (Classic by default), plus an owner preview list of user ids. New Core.UiStyle latches it at first read; ClientBase passes its entry list through UiStyle.Compose, which swaps module paths under unchanged entry names from a new Routes module. Only one module of each pair is ever required. A first joiner gets exactly what was published. Switching back is one attribute plus a new session. Four old scripts are edited; an optional fifth (ServerBase) adds a dashboard kill switch at the flip.",
+   "editedOldScripts": [
+    "game.StarterPlayer.StarterPlayerScripts.ClientBase",
+    "game.ReplicatedStorage.Modules.Game.UI.RouteGuide",
+    "game.ReplicatedFirst.Loading.LoadingTransitionRuntime",
+    "game.ReplicatedFirst.Loading.InitialLoadingAndStartScreenClient"
+   ]
+  }
+ ],
+ "reviews": [
+  {
+   "file": "C:/Users/Oscar/AppData/Local/Temp/claude/C--Users-Oscar-Documents-LUCIDITY-Codex---Neo-Tokyo-Racers/7ae7a4c9-9cc9-42f4-963e-128daf46addb/scratchpad/ui_restyle_audit/design/review-rules-and-regression.md",
+   "ranking": [
+    "A (safest backup): three edited scripts, strongest proof Classic is unchanged (221 hashes, config dump, Play record), automatic remote parity for money controllers, like-for-like garage. Weak on timing-based group fallback and old layout numbers carried into Pulse.",
+    "C (quality and speed): four edits, family-atomic routes, best gallery and probe tooling. Breaks more interim coupling: race-menu pilot meets Classic touch suppression, hand-forked touch controls, dealership tutorial gap, navigation change bundled with first Pulse purchases.",
+    "B (most cohesive): nine edited scripts including style branches in the driving-input owner and two shared renderers, non-atomic fallback, second place as test route, and a retirement phase in a plan meant to keep the old UI."
+   ],
+   "fatalFlaws": [
+    "B: Missing-module fallback is per entry, not atomic. If the Pulse HUD module is missing, DesktopFreeRoamHudUI falls back to Classic (which returns early on phones) while MobileFreeRoamHudUI still resolves to the inert module: phones get no HUD. Other single misses give a Classic HUD beside a Pulse map, or anchor-based onboarding beside Classic screens.",
+    "B: Nine edited scripts, six of them style branches or option growth inside Classic code (MobileDriveControlsClient, GarageEntranceClient, RaceTransitionClient, OwnedGarageWorkspaceUI, MapIconLayer, RouteGuide). The backup is no longer provably the old UI, and full removal needs reverse rollbacks across six phases. Seam edit 9 is not 20 lines: that script has 26 instance builders, 6 corners, 5 strokes, 7 colour litera [...]",
+    "A: No unfixable flaw found. Nearest: the automatic per-group fallback uses 5 second waits and pre-start requires, first evaluated from ReplicatedFirst, so a slow client can get a mixed set; 'every mix must work' is 64 combinations with only single-group smoke tests.",
+    "C: No unfixable flaw found. Nearest: Phase 2 pilots the race menu while Classic HUDs still run, but on touch the Classic menu hides all other ScreenGuis by force (RaceBrowserClient 402-411) and does not publish presentation mode; the gate does not test this.",
+    "C: Nearest second: tabs and the Shop/Owned switch ship inside the first Pulse garage, so purchase, equip and preview-clearing flows cannot be compared like for like against Classic, and there is no Pulse hub if Oscar rejects the tabs."
+   ],
+   "mustFix": [
+    "Pulse owners must never write ScreenGui.Enabled; show and hide with a root Visible. Classic RaceBrowserClient 402-411, RaceEntryPresentationClient 348-361 and TrailerModeClient save and restore Enabled on every ScreenGui, so a Pulse Enabled write during that window is overwritten with a stale value.",
+    "Two supported states only: all Classic, or every delivered family Pulse. No timing-based, per-entry or per-group automatic fallback. One all-or-nothing existence check before lifecycle.start; AUDIT guarantees modules exist; no fallback after any start.",
+    "Generate the coupling contract from Classic source, not by hand. Each proposal misses items: AccessControls (A, C), DriftLeft, DriftRight, Boost (C), and player attributes MobileMajorMenuOpen and MobileFreeRoamCarMenuOpen read by FullMapUI 450, OnboardingClient 474, GarageInteriorModeUI 273. Enforce by lint and a Play probe.",
+    "Touch drive controls: use a generated copy of MobileDriveControlsClient with an input-write parity check. Do not hand-fork it (A, C) or branch it in place (B); it writes driving input.",
+    "Deliver garage and owned garage in one phase, like for like, keeping the CanonicalGarageGui names so Classic onboarding keeps working. The desk fork must replace all three requires on OwnedGarageWorkspaceUI line 12; A's 'only the view require' is wrong.",
+    "Start-screen contract must list the config-edit hand-off (InitialLoadingAndStartScreenClient 26-46: TimeoutSeconds 86400 and artwork flags, then restore) and place the style guard after the line 15-18 early return. Name the design-pixel frame for activity views as the one UIScale exception.",
+    "World prompts: add a run-time fail-safe back to Style Default if a banner cannot be built, since on touch the banner is the only tap target. Give triggering a High-Risk gate, and check the event card's new race-request call site against Net's busy lock.",
+    "Profile safety: agent Play only in a guarded Studio sandbox window with Oscar's yes (any driving in v3 pays saved Cash). No second experience as the test route. No agent time-trial finish until PB-01 is fixed; use gallery fixtures.",
+    "Backup policy: record the switch and the in-game backup as exceptions in AGENTS.md with owner and review condition; no retirement phase in this programme; later deliveries that touch payloads or config Classic reads run a Classic smoke check; live preview needs a separately approved publish.",
+    "Core UI policy must handle TrailerModeClient re-enabling the player list on exit (lines 28-42, 68). Measurement must not require kit modules through MCP. Approve the whole phase list up front, with the reviewer before APPLY on every existing-script edit."
+   ]
+  },
+  {
+   "file": "C:/Users/Oscar/AppData/Local/Temp/claude/C--Users-Oscar-Documents-LUCIDITY-Codex---Neo-Tokyo-Racers/7ae7a4c9-9cc9-42f4-963e-128daf46addb/scratchpad/ui_restyle_audit/design/review-platform-and-performance.md",
+   "ranking": [
+    "C: best from this lens. Spike before any install, absolute budgets measured by outside probes (instance census, churn, static-layer writes, layout lint), and real per-frame fixes (own map layers, loops off when hidden). Its flaws are fixable by taking B's foundations.",
+    "B: best engine foundations (layout class from geometry, engine-owned safe area, stepped scale, a live-client sandbox place). But its per-entry non-yielding fallback can leave a phone with no HUD, and its budgets are weakly measured.",
+    "A: strongest backup, weakest here. The layout family depends on preferred input, and generated copies plus reused map renderers keep the per-click rebuilds and per-frame writes the rebuild is meant to remove."
+   ],
+   "fatalFlaws": [
+    "A, B, C: 'whole pixels so crisp' is false on scaled displays. Probe: this Studio's viewport is 2065.33 x 1152 (1.5 device pixels per unit). Roblox staff (2026-03-05): offset is 'a logical unit that is scaled by the device display setting'. No script can read the ratio. Hairlines of one unit are 1.5 device pixels on a 1080p laptop at 150%.",
+    "A: the layout family comes from preferred input at start. A phone with a gamepad, a laptop whose scaled viewport is under about 650 units tall, or a small window gets the Desktop family at the 0.60 floor and overflows the screen.",
+    "A: its budgets contradict its method. Generated GarageUI keeps the Classic controller, which rebuilds the page and the 3D preview on every click; the minimap reuses MapIconLayer and the route renderer, which write per marker per frame. '20 instances per click' and '12 writes per frame' cannot hold.",
+    "B: PathFor falls back per entry using a non-yielding FindFirstChild, and nothing in ClientBase waits for loading. A late or missing Pulse HUD module gives the Classic desktop HUD (which exits on touch) plus the inert mobile entry: a phone with no HUD.",
+    "C: its sharpness gate measures the wrong thing. It rests on 'a logical pixel is a whole number of device pixels', which the probe and staff statement disprove. The whole-number geometry lint can pass while hairlines render soft at 125% and 150% display scale.",
+    "C: Compose uses a non-yielding existence walk, and the switch sits on a new child folder behind a 10 second bounded wait. If a family is late, style depends on replication timing and Pulse onboarding can meet a Classic HUD it cannot find targets in. Likelihood unverified; nothing waits for loading today."
+   ],
+   "mustFix": [
+    "Treat metrics as logical pixels. In Phase 0 test hairlines, text and glow in the player client at 100%, 125% and 150% Windows scale and on an iPhone and an Android phone, judged from device-resolution screenshots. Record ViewportSize with every capture; Studio on this PC runs at 1.5.",
+    "Choose the layout class from geometry only. Specify desktop compositions at their smallest canvas (about 1500 x 900 design units) as well as 1920 x 1080, because a 1080p laptop at 150% sits on the 0.667 floor. Phone at 844x390, 640x360 and 568x320.",
+    "Style selection must never depend on timing. Put the switch attribute on Config.UI, decide families atomically, resolve with unconditional WaitForChild, and drop bounded waits, FindFirstChild existence tests and up-front requires. The installer AUDIT proves the modules exist.",
+    "Define the rounding rule: round edges, not sizes; no flex Fill or Grow; no scale anchors for centred content; hairline and spacing tokens even where the design allows. State sharpness as best effort, since no script can read the device pixel ratio.",
+    "Text above TextSize 100 is the normal case: this Studio viewport gives scale 1.067, where a Barlow title needs about 102. Cap non-title roles at 100, cap scale at 2.0, and settle the title route by capture before the kit. Avoid a kerning-table sprite renderer unless forced.",
+    "Digit sprites: author two sizes so reduction stays near 2x, ten digits per 1024 sheet, and test minification at the 0.667 floor and on a phone. Test OpenTypeFeatures tnum in Play; if it works, cash, timers and stats need no per-digit cells.",
+    "Budgets must be counted from outside the code: census, churn, writes per frame on the live layer, distinct text sizes. Include shared map modules in HUD numbers, count UITextSizeConstraints, and drop phone millisecond and 'any sample pair' targets unless a real-device MicroProfiler capture is planned.",
+    "Glow: 9-slice default until UIShadow is seen on a live phone and PC client; a Studio check is not enough. Rails must reserve padding for glow and selected growth, because a ScrollingFrame always clips.",
+    "Gamepad: AutoSelectGuiEnabled is true and never set, and FullMapUI binds ButtonSelect. Decide it, keep HUD tiles non-selectable while driving, define focus entry and exit, and keep a visible selection image on Classic screens until every screen is Pulse.",
+    "Fonts and exceptions: preload exact faces through TextLabel instances, gate first show on the face, re-measure when it arrives. Name the activity frame as the one static UIScale. Add no kit multiplier for the Text Size setting; the engine already scales unconstrained text."
+   ]
+  },
+  {
+   "file": "C:/Users/Oscar/AppData/Local/Temp/claude/C--Users-Oscar-Documents-LUCIDITY-Codex---Neo-Tokyo-Racers/7ae7a4c9-9cc9-42f4-963e-128daf46addb/scratchpad/ui_restyle_audit/design/review-completeness-and-ux.md",
+   "ranking": [
+    "C (quality and speed): best scaling, alignment and legibility rules (three composition frames, phone type set, layout lint, budgets), matches the previews by including tabs, only four edits. Weak on phase order (activity HUD, onboarding and full map come last) and it leaves the race fade label in the old face.",
+    "B (most cohesive): covers the most surfaces and has the strictest kit (anchored slots, role-only colours, core UI and chat restyle), but edits nine backup scripts, leaves the phone drive controls old-shaped, missed the existing no-save sandbox and asks 15 decisions.",
+    "A (safest backup): strongest proof that Classic is unchanged and the best switch mechanics (atomic groups, hash manifest, three edits), but generated copies carry Classic layout and scale into Pulse, and the phone layout is chosen from input, so the result is not cohesive everywhere."
+   ],
+   "fatalFlaws": [
+    "A: Pulse onboarding is a generated copy with about ten replacements. Checked live: OnboardingClient has 48 UDim2 and 17 TextSize sites, and ownerScale falls back to a clamp of 0.68 to 1.08 when the target has no UIScale. Callouts stop at 1.08 while Pulse is 1.33 at 1440p and 2.0 at 4K; the 5 Hz PlayerGui walks and missing controller path survive.",
+    "A: the layout family is chosen from PreferredInput, once, at start. A phone with a gamepad attached gets the Desktop layout at the 0.60 clamp on a 390-unit-tall screen for the whole session. Geometry must choose the layout; input should only change affordances.",
+    "B: touch drive controls get a 20-line tint and margin seam. Checked live: 41 UDim2 sites and 7 tiny branches stay. The audit records round corners, strokes, fixed 125 px pedals and Boost at 44 px below 500 px of height, which is every phone. That breaks B's own 48 px, square, one-scale rules on the main phone surface.",
+    "A, B, C: switching back is not one action for the owner. Each has a preview user list that gives Pulse while the style is Classic. Oscar will be on that list, so setting Classic still shows him Pulse in Studio Play and in the live game.",
+    "C: nothing that sinks it. As written it leaves the race fade label (GothamBold then Michroma, unscaled, also held under race results) in the old face under Pulse, and keeps the free-roam screen mixed, with a Classic job strip and objective cards over a Pulse HUD, from Phase 3 to Phase 8."
+   ],
+   "mustFix": [
+    "Make Classic absolute: one UIStyle value with states Classic, Pulse and PulsePreview, and read the preview list only in PulsePreview. Have the client honour a ForceClassic attribute from Phase 1, so a no-publish kill switch can be added later without editing ClientBase again.",
+    "Choose the layout family from safe-area geometry only (phone under 600 on the short side, with hysteresis); input changes affordances only. Use one HUD owner. Specify full menus on ultrawide as a centred block.",
+    "Rebuild onboarding and the garage controller as a headless model plus kit view on the shared scale service. No RacingCompat and no generated copy of fused owners. Keep mechanical forks only for scripts that are already pure controllers.",
+    "Put touch drive controls on the kit scale, safe area and 48 px floor: a fork with text-identical input logic and a new view, an input-state parity test, and a real-phone check. Not a tint-only seam and not an unchecked rewrite.",
+    "Ship a surface ledger in Phase 0: every critic.md item marked Pulse, style-neutral or excluded with a reason. Rule explicitly on the race fade label, map icon colours, guide trail gold, the Duel CHALLENGE button, health and backpack, checkpoint colours and world signs.",
+    "Switch garage and owned garage as one atomic family, and deliver the activity HUD with the free-roam HUD. Classic onboarding then keeps working on Pulse screens and the main screen is not half old for five phases.",
+    "Detect missing Pulse modules with a bounded wait, per family, before any start(); never per entry and never with a non-yielding walk. Allow any single family to be held on Classic after the flip, and test each retreat.",
+    "Use the existing Studio no-save sandbox (ProfileServer 178-185 and 252, confirmed live, currently off) through a guarded toggle. No agent time-trial finishes; verify results by payload replay. No PB-01 server fix inside this programme; a private test place is optional.",
+    "Before each family is built, show Oscar a preview frame or gallery capture for un-mocked screens and for the phone composition. Freeze the kit API after the pilot and the HUD, not at the Phase 1 gate.",
+    "Cut owner load: about eight bundled decisions at Phase 0, and blocking gates only at foundation, garage purchases, start-up path and flip. State the edited-script budget (five) and the Classic freeze policy, including a new vehicle category landing mid-programme."
+   ]
+  }
+ ],
+ "plan": {
+  "planFile": "C:/Users/Oscar/AppData/Local/Temp/claude/C--Users-Oscar-Documents-LUCIDITY-Codex---Neo-Tokyo-Racers/7ae7a4c9-9cc9-42f4-963e-128daf46addb/scratchpad/ui_restyle_audit/design/recommended-plan.md",
+  "headline": "Build Pulse as a second UI set from one shared kit, chosen once per session by one switch value; Classic stays installed, frozen and hash-checked. Start from proposal C, with A's switch and backup proof and B's scaling foundations. Five small edits to existing scripts, ten phases, default stays Classic until Oscar flips it. Settle the rendering unknowns in a spike first.",
+  "recommendations": [
+   {
+    "title": "Build a second UI beside the old",
+    "what": "Build the new UI as its own set of scripts next to the old ones. The game picks one set when a player joins. The old UI stays installed and untouched.",
+    "why": "The old screens share building blocks. Restyling those in place would change the old UI too, so there would be no real backup to switch back to.",
+    "tradeoff": "The game logic for each screen exists twice while the backup is kept. Later features must go into both, or you end the backup."
+   },
+   {
+    "title": "One switch value, with a private preview",
+    "what": "One setting with three states: Classic for everyone, Pulse for everyone, or Pulse only for listed players such as you. Classic always wins when set.",
+    "why": "You can try the new UI in the live game while everyone else keeps the old one, and switching back is one value in Studio.",
+    "tradeoff": "In the live game switching back needs a publish and a server restart, and players keep their style until they rejoin. A no-publish kill switch is optional extra work."
+   },
+   {
+    "title": "Only five small edits to old scripts",
+    "what": "Only five existing scripts change, by a few lines each: the start-up list, two loading scripts, the route guide and the race fade label. Each edit is independently reviewed.",
+    "why": "Three of them are where the game chooses which screens to start; two expose one value and one label. Every install checks all 221 scripts against a recorded list.",
+    "tradeoff": "The backup is not 100% untouched. With the switch on Classic those scripts run the same steps as today plus one check."
+   },
+   {
+    "title": "Test the unknowns before building anything",
+    "what": "Run a short throwaway test in Studio and on real screens: fonts, very large text, thin lines, glow, round minimap, custom prompts, safe areas. Nothing is installed.",
+    "why": "Several Roblox behaviours the look depends on are unconfirmed. Each one changes how the shared kit is built, so guessing wrong means rework on every screen.",
+    "tradeoff": "A few days before any visible progress, and it needs your screens and a phone for the sharpness checks."
+   },
+   {
+    "title": "Approve pictures of the missing screens first",
+    "what": "Before code, draw preview frames for every screen the mockups do not cover: phone layouts, car panel, settings, full map, owned garage, onboarding, prompts, results.",
+    "why": "You chose the direction from pictures, but most of what will be built has no picture yet. Changing a drawing is far cheaper than changing a built screen.",
+    "tradeoff": "One longer review sitting for you at the start."
+   },
+   {
+    "title": "One shared kit for every screen",
+    "what": "Every panel, button, tab, tile, cash chip and number comes from one kit. One tile is used for parts, cars, events and listings. Screens cannot set their own colours or positions.",
+    "why": "This is what makes the UI consistent and aligned everywhere, and a later look change is one edit instead of dozens.",
+    "tradeoff": "The kit must be proven on two real screens before it is fixed, so the first two screens take longer than the rest."
+   },
+   {
+    "title": "One scaling rule and real phone layouts",
+    "what": "One service decides size for everything. The UI stays the same share of the screen from 720p to 4K. Phones get their own layouts with 48-point buttons and readable text.",
+    "why": "Today three different rules cap the UI, so it is tiny at 4K, and phones get the desktop screen shrunk to under half size with 4 to 9 pixel text.",
+    "tradeoff": "Each screen is designed twice, once for large screens and once for phones, in the same phase."
+   },
+   {
+    "title": "Barlow font; big numbers drawn as images",
+    "what": "Use Barlow from the Roblox store, the closest match to the mockups. Draw speed, cash and results numbers as image digits made from the exact mockup font.",
+    "why": "The mockup font is not available in Roblox, and Roblox text cannot go above size 100, so large numbers would otherwise look soft or too small.",
+    "tradeoff": "Text is about a fifth wider than in the mockups. It needs your approval to fetch the font file and upload digit images."
+   },
+   {
+    "title": "Set speed budgets and measure every phase",
+    "what": "Fix limits per screen for objects created, per-frame updates and smallest text, and measure them at every gate. Rebuild nothing on a click; build menus only when first opened.",
+    "why": "Today the garage rebuilds about 300 objects on every click and the HUD builds about 420 objects for menus most sessions never open. The new UI should look better and cost less.",
+    "tradeoff": "Phone speed can only be confirmed on a real phone, so that check waits for you."
+   },
+   {
+    "title": "Hide Roblox's own UI where it clashes",
+    "what": "Under the new UI, turn off the Roblox player list, health bar and backpack, keep chat but hide it in full menus, and replace default interact prompts with matching banners.",
+    "why": "The player list sits exactly where the cash and status strip goes, chat sits where titles go, and default prompts look like a different game.",
+    "tradeoff": "Players lose the Roblox player list. Custom prompts depend on a test passing; if it fails, prompts stay as they are."
+   },
+   {
+    "title": "Garage tabs go in after your sign-off",
+    "what": "Build the Customise screen with Parts, Upgrades and Paint tabs and a Shop/Owned switch, as in the previews. You approve the flow in a test gallery before it is wired up.",
+    "why": "The previews show tabs. Building the old hub first would be throwaway work. Purchases are protected by automatic checks that the same requests reach the server.",
+    "tradeoff": "The first new garage is not like for like with the old one, so its testing is heavier and it is a High-Risk phase."
+   },
+   {
+    "title": "Start small: race menu, then the HUD",
+    "what": "Prove the whole pipeline on the race menu, a simple screen with a real mockup. Then build the free-roam screen you see most, then the rest.",
+    "why": "The first install of a new system always finds problems. Better to find them on a small screen than on the HUD, which runs every frame.",
+    "tradeoff": "For several phases the preview shows new and old screens mixed. Only you see that; players stay on the old UI."
+   },
+   {
+    "title": "Test in the no-save sandbox",
+    "what": "Let my test sessions use the existing Studio sandbox, which gives a temporary profile and saves nothing. I restore the setting afterwards. I never finish a time trial.",
+    "why": "Normal Play in this place spends your real in-game Cash and writes your personal bests.",
+    "tradeoff": "You turned the sandbox off on purpose, so it needs your yes. Real purchases and real time-trial finishes remain your own confirmation runs."
+   },
+   {
+    "title": "Approve the phases once; few blocking checks",
+    "what": "Approve the ten phases as one plan. You must sign off only the decisions, the foundation, the garage, the start-up screens and the final flip. Other screens you review when convenient.",
+    "why": "Project rules do not let me split or add phases later without asking, and waiting on you after every screen would stall the work.",
+    "tradeoff": "Some screens will be built on before you have confirmed their look, so late changes there cost more."
+   }
+  ],
+  "decisions": [
+   {
+    "question": "Do you accept the backup as a second set of scripts chosen at start-up, with the old UI frozen and five old scripts edited by a few lines?",
+    "recommended": "Yes. Record it in the project rules as the explicit exception to 'no in-game backups', with a review at the default flip.",
+    "why": "It is the only form where the old UI can be proven unchanged. Styling the old scripts in place would change the backup itself."
+   },
+   {
+    "question": "Where does the switch live, and do you want a way to force the old UI in the live game without publishing?",
+    "recommended": "A three-state setting saved in the place, with a preview list. Decide the no-publish kill switch at the flip; the client is ready for it from the start.",
+    "why": "Clients cannot read the dashboard flags. A saved value gives every joiner the same answer; the kill switch adds a server script."
+   },
+   {
+    "question": "Which typeface, and may I download the Barlow Condensed font files to draw the big-number images offline?",
+    "recommended": "Barlow, confirmed on a three-font capture of the Customise screen. Yes to the download; the licence allows images.",
+    "why": "Barlow is the mockup's own design at normal width with the heavy italics. Without digit images, large numbers stop at size 100."
+   },
+   {
+    "question": "Will you approve one batch of about 14 to 18 image uploads from a single contact sheet?",
+    "recommended": "Yes, after seeing the sheet: icons, glow images, digit sheets, gauge and minimap rings, recoloured map icons, white touch-control art.",
+    "why": "Uploads cannot be edited and each needs moderation, so one reviewed batch early avoids delays and stray assets in your inventory."
+   },
+   {
+    "question": "Do you confirm the colour changes: yellow cash, white selection, white tier badges, muted unaffordable prices, white-and-pink tutorial, cyan guide trail, recoloured map icons?",
+    "recommended": "Confirm all. Checkpoint, finish and world sign colours stay as world art.",
+    "why": "They reverse rules you approved earlier, so they need your word. Gold tutorial highlights would be confused with cash yellow."
+   },
+   {
+    "question": "Under the new UI, may the Roblox player list, health bar and backpack be turned off, with chat kept but hidden in full menus?",
+    "recommended": "Yes. Keep chat during races.",
+    "why": "The player list covers the status strip and repeats Cash. Hiding chat in races would change a multiplayer feature, not just the look."
+   },
+   {
+    "question": "Should the garage tabs and Shop/Owned switch ship in the garage phase, and should interact prompts become custom banners?",
+    "recommended": "Yes to both: tabs after you accept the flow in the gallery; banners only if the Phase 0 prompt tests pass.",
+    "why": "Both are in the previews. The gallery sign-off and the prompt fail-safe keep purchases and world interactions safe."
+   },
+   {
+    "question": "May my test sessions use the Studio no-save sandbox, and do you want a blank private test experience for real-phone rendering checks?",
+    "recommended": "Yes to the sandbox, restored after each session. The blank test experience is optional but gives the best sharpness evidence early.",
+    "why": "Normal Play spends your real Cash and writes personal bests. Studio cannot show how thin lines and glow look on a real phone."
+   },
+   {
+    "question": "Do you approve the ten phases as one scope, with your sign-off blocking only at Phases 0, 1, 7, 8 and 9?",
+    "recommended": "Yes. Review the other screens through the preview setting when convenient.",
+    "why": "Project rules need the phase list approved up front, and a blocking check after every screen would stall an end-to-end build."
+   }
+  ],
+  "phases": [
+   "0. Spike, previews, decisions - throwaway rendering tests, Classic record and baselines, preview frames, sheet v2, asset sheet; nothing installed - Fast - Oscar approves sheet, typeface, previews, assets, decisions and phase list; every unknown resolved to a method",
+   "1. Foundation and switch - installer and first module create, latch, routes, kit core, toasts, confirm, gallery, probes, ClientBase edit - High-Risk - create proven with save and reopen; Classic Play record identical; Pulse differs only in toasts; reviewer passed; Oscar accepts gallery",
+   "2. Pilot: race menu - RaceBrowser for large screens, phones and gamepad - Standard, gates on teleport and set route - lint and budgets pass; zero rebuild per click; Classic onboarding and Classic HUD still work beside it on touch; kit API reviewed",
+   "3. Free-roam screen - one HUD owner, gauge, minimap, car panel, modals, touch controls fork, activity HUD, core UI policy, RouteGuide getter - Standard, High-Risk gates on spawn, teleport, driving input - budgets met; input trace equals Classic; kit API frozen",
+   "4. World and map - full map, prompt banners for ten families, event card and Start banner - Standard, High-Risk gate on prompt triggering - prompts fire the same server handlers by key, pad and touch; forced banner error falls back to default",
+   "5. Race session and results - in-race HUD, countdown, queue, wrong-way prompt, results, race fade label seam - Standard, results from payload only - staging handshake intact; HUD does not return after finish; every result state from fixtures; no agent-written personal best",
+   "6. Race entry - setup, records, vehicle choice on the shared tile - Standard, gates on queue and vehicle start - names and texts kept for onboarding; no stale page under rapid clicks; start payload identical to Classic",
+   "7. Garage - dealership, Customise with tabs, shop, upgrades, paint, modals, owned-garage browser, desk, interior HUD, entrance; one atomic family - High-Risk - navigation accepted in gallery first; request table matches; sandbox end state equals Classic; reviewer passed; Oscar confirms one real purchase",
+   "8. Shell - onboarding rebuilt with the same page ids, guide trail colour, loading view, start screen, two ReplicatedFirst edits - High-Risk - Classic Play record identical; start reachable by pad and keyboard; full tutorial replay on a fresh sandbox profile; Oscar confirms",
+   "9. Hardening and flip - whole-game matrix in both styles, budgets, real-device frame time, live preview, optional kill switch, docs - High-Risk - every row passes; switch back proven after the flip; Oscar says flip; Classic stays installed"
+  ],
+  "editedOldScripts": [
+   "game.StarterPlayer.StarterPlayerScripts.ClientBase - Phase 1, about six lines between 104 and 105: read the latch and swap entry paths through Routes; resolver untouched; edited once",
+   "game.ReplicatedStorage.Modules.Game.UI.RouteGuide - Phase 3, one additive read-only GetRouteState() getter after line 91; no behaviour change for Classic",
+   "game.ReplicatedStorage.Modules.Game.Racing.RaceTransitionClient - Phase 5, about four lines at 57-72: fade label font, colour and size from Pulse tokens when Pulse, today's literals otherwise",
+   "game.ReplicatedFirst.Loading.LoadingTransitionRuntime - Phase 8, line 8 only: choose the Pulse or Classic loading view",
+   "game.ReplicatedFirst.Loading.InitialLoadingAndStartScreenClient - Phase 8, one guard after line 18: hand over to the Pulse start screen and return",
+   "game.ServerScriptService.ServerBase - optional, Phase 9: one entry for a kill-switch projection server, only if the owner wants a no-publish retreat"
+  ],
+  "newModules": [
+   "ReplicatedFirst.UIStyleSwitch - the latch: reads the switch once per session, Claim, report",
+   "UIPulse.Routes - data: delivered families, entry-to-Pulse paths, Pulse-only entries, Compose",
+   "UIPulse.Kit.Tokens - colour roles, cap heights, spacing, glow, asset ids; read once",
+   "UIPulse.Kit.Metrics - the one scale, safe-area, class, arrangement, input and text service",
+   "UIPulse.Kit.Layers - ScreenGui factory, DisplayOrder ladder, anchored slots, reserved and trap names",
+   "UIPulse.Kit.Text - Text, BigNumber digit sprites, measurement cache, font preload",
+   "UIPulse.Kit.Surface - Panel, Hairline, Scrim, Glow, Icon",
+   "UIPulse.Kit.Controls - Button variants, ButtonRow, Tabs, Switch, Stepper, Dropdown, Slider",
+   "UIPulse.Kit.Collections - the shared Tile, Rail, ListRow, Chip, TierBadge, Pool",
+   "UIPulse.Kit.Data - StatusCluster, CashChip, StatPanel, SegmentedBar, FactList, Gauge, MinimapFrame",
+   "UIPulse.Kit.Overlay - Modal, Confirm, Toast, PromptBanner",
+   "UIPulse.Kit.Input - focus groups, back and bumper binding, tutorial Mark, audio attributes",
+   "UIPulse.Kit.Contracts - generated tables of names, texts and attributes other scripts depend on",
+   "UIPulse.Kit.Perf - one frame-binding point; counters published as attributes",
+   "UIPulse.Shell.{ToastHost, Noop, CoreUiPolicy} - toast owner, inert entry, Roblox core UI policy",
+   "UIPulse.Dev.Gallery - Studio-only fixture gallery for every view and state",
+   "UIPulse.Racing.RaceMenu{Model,View,Client} - the pilot race menu",
+   "UIPulse.Hud.{HudModel, HudRegular, HudCompact, CarPanel, Modals, HudClient} - one free-roam HUD owner",
+   "UIPulse.Hud.DriveControlsTouch - fork of the touch controls with input code unchanged",
+   "UIPulse.Activity.ActivityHudClient - same ctx contract for the five untouched activity views",
+   "UIPulse.Map.{MinimapView, IconLayer, RouteLayer} - round minimap and pooled Pulse map layers",
+   "UIPulse.Map.FullMap{Model,View,Client} - full map with the same Open/Close/Toggle API",
+   "UIPulse.World.{WorldPromptView, EventCard} - client-only prompt banners with fail-safe; event card",
+   "UIPulse.Racing.{RaceSessionModel, RaceHud, Countdown, Queue, Results, RouteGuidePrompt} - race session family",
+   "UIPulse.Racing.RaceEntry{Model,View,Client} - race entry with one render token",
+   "UIPulse.Garage.{GarageModel, GarageRoutes, GarageScreen, PaintPanel, Modals, GarageClient} - garage rebuilt as model plus views",
+   "UIPulse.Garage.{OwnedGarageClient, OwnedGarageBrowser, WorkspaceView, OwnedGarageWorkspaceUI fork, ComponentsShim} - owned garage and desk",
+   "UIPulse.Garage.{InteriorHud, InteriorTouchCameraGuard, GarageInteriorTransitionUI fork, GarageEntranceClient fork} - interior and entrance",
+   "UIPulse.Onboarding.{OnboardingModel, OnboardingView, OnboardingClient} - tutorial on marks, same page ids",
+   "ReplicatedFirst.Loading.{LoadingScreenViewPulse, PulseLoadingTokens, StartScreenPulse} - loading view and start screen"
+  ],
+  "notInScope": [
+   "Removing or retiring the Classic UI. It stays installed and switchable; retirement is a separate High-Risk scope only on Oscar's say.",
+   "Any edit to RacingUIComponents, GarageComponents, ResponsiveUIFoundation, MapIconLayer, the five activity views or any server script; no new remote, payload, saved field or economy value.",
+   "Fixing Classic defects, including the duel stake-menu bug in the shared view and PB-01 (time trials writing personal bests in the sandbox).",
+   "Hiding on-screen pedals when keyboard or gamepad is preferred on touch devices. That changes the only writer of driving input and needs its own contract.",
+   "Driving, VFX, audio, world art, speed lines, start-screen artwork, name tags, world signs, checkpoint colours, dev panels and the switched-off dealership intro pill.",
+   "A live free-roam minimap during races, per-checkpoint personal-best deltas, a working UI SCALE setting, cash packs and the unreachable owned-garage Access pages.",
+   "Portrait layouts and localisation.",
+   "Changing the capture place guard or the generic delivery tools, and fixing docs that still name the v2 place."
+  ],
+  "risks": [
+   "A rendering assumption is wrong: text above size 100, thin lines on scaled displays, glow on live phones, local prompt style, font preload. Each is unverified until the Phase 0 spike.",
+   "Rebuilt controller logic may differ from Classic, worst where Cash is spent. Contained by generated request tables, logic-identical forks, sandbox end-state comparison and independent review, not eliminated.",
+   "Game logic exists twice (about 3,400 lines) while the backup is kept. A later change such as a new vehicle category must land in both or the backup ends.",
+   "Onboarding can break silently if a name, text or page id is lost. Classic onboarding runs against Pulse screens for several phases before its replacement exists.",
+   "Testing in v3 can change Oscar's real Cash or personal bests if the sandbox window is not open; time trials write personal bests even in the sandbox.",
+   "Creating new ModuleScripts in v3 is unproven and a mixed install once lost config values. The first Phase 1 step tests create, save, reopen and rollback.",
+   "On touch, a custom prompt banner is the only tap target for entering cars, garages and races. A banner fault without the fail-safe would block those actions.",
+   "Phone frame cost and real-device sharpness cannot be measured in Studio. They depend on Oscar's devices and a publish, which is a separate approval."
+  ]
+ },
+ "check": {
+  "checkFile": "C:/Users/Oscar/AppData/Local/Temp/claude/C--Users-Oscar-Documents-LUCIDITY-Codex---Neo-Tokyo-Racers/7ae7a4c9-9cc9-42f4-963e-128daf46addb/scratchpad/ui_restyle_audit/design/fact-check.md",
+  "results": [
+   {
+    "claim": "1. ClientBase lines 105-109 are the only code that turns an entry into a module; 46 entries; StartupState folder created on line 104",
+    "verdict": "CONFIRMED",
+    "evidence": "ClientBase L104 creates StartupState. L105-109 walk entry.path with WaitForChild then require. Only two require( in the script: L3 (ClientLifecycle) and L108. Parsed entries table: 46 entries, clean names, every path resolves."
+   },
+   {
+    "claim": "2. ClientLifecycle (49 lines): line 36 blocks an entry when a dependency is not ready; line 29 marks disabled tool entries skipped",
+    "verdict": "CONFIRMED",
+    "evidence": "ClientLifecycle L29 sets skipped. L36 sets blocked ('Dependency failed') for any status other than ready, so a skipped entry blocks dependants. L30-33 also block dependants after a 30 second wait."
+   },
+   {
+    "claim": "3. Config.UI has zero attributes, 17 children, no Style or Pulse; no UIPulse; ReplicatedFirst holds only Loading; FeatureFlags only under ServerStorage",
+    "verdict": "CONFIRMED",
+    "evidence": "Config.UI: 0 attributes, 17 Folder children, no Style or Pulse. Modules.Game has 10 folders, no UIPulse. ReplicatedFirst has only Loading (4 scripts). One FeatureFlags instance: ServerStorage.Modules.Core.FeatureFlags."
+   },
+   {
+    "claim": "4. Race menu and entry set touch = touchDevice and not scaledDesktop; IsEnabled true on touch unless Enabled is false; attribute is true; ScreenGui.Enabled save/restore branches unreachable",
+    "verdict": "CONFIRMED",
+    "evidence": "RaceBrowserClient L16, L26, L27; RaceEntryPresentationClient L17, L30, L31. RacingMobileScaledDesktopLayout L15-17. MobileScaledDesktop@Enabled is boolean true. touch is assigned once per script, so L406-410 and L351-357 never run."
+   },
+   {
+    "claim": "5. GarageComponents 294-311 CanonicalHost adopts CanonicalGarageGui, forces 1600x900 and DisplayOrder 40, deletes other UIScales; only callers GarageUI, GarageBrowserUI, GarageWorkspaceUI",
+    "verdict": "CONFIRMED",
+    "evidence": "GarageComponents L298-301 adopt or create the ScreenGui, DisplayOrder 40; L305 canvas 1600x900; L309 destroys other UIScales on the canvas. Callers: GarageUI L131 and L156, GarageBrowserUI L26, GarageWorkspaceUI L142."
+   },
+   {
+    "claim": "6. OnboardingClient 666-671 applyLocks sets Active, Selectable and AutoButtonColor on every GuiButton under PlayerGui named Car, Race or Garage",
+    "verdict": "CONFIRMED",
+    "evidence": "OnboardingClient L666-671: L669 walks playerGui:GetDescendants() and sets the three properties on each GuiButton whose Name is Car, Race or Garage."
+   },
+   {
+    "claim": "7. FullMapUI 464-478 needs an Enabled HUD ScreenGui with a visible Minimap for keyboard or controller open; line 20 Open() false if never started; HUDs use FindFirstChild(\"FullMapUI\")",
+    "verdict": "CONFIRMED",
+    "evidence": "FullMapUI L464-478 minimapShowing, used by toggle() L541 (M key L676-677, ButtonSelect L721-723). L20 returns false when api is nil. DesktopFreeRoamHudUI L960 and MobileFreeRoamHudUI L260 use FindFirstChild."
+   },
+   {
+    "claim": "8. RouteGuide route and progress are module-private locals (36-38); only public state reader is GetActive() at 89-91; nothing returns route points or remaining distance",
+    "verdict": "CONFIRMED",
+    "evidence": "RouteGuide L36 local route, L37 routeVersion, L38 progress. GetActive L89-91. Other public members (SetDestination, Clear, Destinations, SetDestinationById, Update, newMapRenderer, two signals) return no points or distance."
+   },
+   {
+    "claim": "9. LoadingTransitionRuntime line 8 requires LoadingScreenView at load; InitialLoadingAndStartScreenClient L13 wait, L15-18 early return, L22 RacingUIComponents, L26-46 temporary TimeoutSeconds 86400 and artwork Enabled",
+    "verdict": "CONFIRMED",
+    "evidence": "LoadingTransitionRuntime L8. InitialLoadingAndStartScreenClient L13 waits Config.UI.LoadingSystem; L15-18 return when StartScreenEnabled is false; L22 requires RacingUIComponents; L26-36 save and set (86400 at L36); L40-46 restore."
+   },
+   {
+    "claim": "10. ProfileServer line 183 returns nil unless StudioVehicleSandboxEveryPlay is true; line 252 sets noSave; both Studio flags are false live",
+    "verdict": "CONFIRMED",
+    "evidence": "ServerStorage.Modules.Game.Player.ProfileServer L183 and L252 (noSave = not enabledAtLoad or studioVehicleSandboxConfig() ~= nil). Config.Player.Onboarding: both attributes are boolean false."
+   },
+   {
+    "claim": "11. OwnedGarageWorkspaceUI: 189 lines, line 12 holds the three requires, no Instance.new; OwnedGarageClient 8-10 start four controllers by name and set OwnedGarageClientStarted",
+    "verdict": "CONFIRMED",
+    "evidence": "OwnedGarageWorkspaceUI: 189 lines, every require( on L12 (plus PresentationAudioBridge), no Instance.new. Uses Shared.ConfirmationModal, Shared.ProjectEconomy, UI.Asset. OwnedGarageClient L8 order list, L9 Start(), L10 attribute."
+   },
+   {
+    "claim": "12. MobileDriveControlsClient L12 and MobileFreeRoamHudUI L13 return unless TouchEnabled; DesktopFreeRoamHudUI 16-19 returns only for touch without keyboard or mouse; no script references PreferredInput",
+    "verdict": "CONFIRMED",
+    "evidence": "MobileDriveControlsClient L12, MobileFreeRoamHudUI L13, DesktopFreeRoamHudUI L16-19. Touch with a keyboard or a mouse starts both HUDs. PreferredInput appears in 0 of 221 scripts."
+   },
+   {
+    "claim": "One path per entry can be chosen in ClientBase",
+    "verdict": "CONFIRMED",
+    "evidence": "ClientBase entries is a local table (L5-103) passed at L105; changing path strings before L105 changes what L107-108 requires. ClientLifecycle L21 validate asserts duplicate names, missing dependencies and cycles."
+   },
+   {
+    "claim": "An attribute under ReplicatedStorage.Config is readable from ReplicatedFirst code before the loading screen draws",
+    "verdict": "PARTLY",
+    "evidence": "InitialLoadingAndStartScreenClient already reads LoadingSystem attributes at L15 and L26-36, after WaitForChild at L13 and before Begin (L38) and RemoveDefaultLoadingScreen (L53). Cold-start attribute arrival cannot be shown in Edit.",
+    "fix": "Keep it as a Phase 0 spike on a cold start; the latch must yield on WaitForChild for Config.UI as the loading script does."
+   },
+   {
+    "claim": "19 scripts require RacingUIComponents and 9 require GarageComponents",
+    "verdict": "CONFIRMED",
+    "evidence": "Source sweep of 221 scripts: WaitForChild(\"RacingUIComponents\") in 19 (including GarageComponents L6 and InitialLoadingAndStartScreenClient L22); WaitForChild(\"GarageComponents\") in 9. Full lists are in fact-check.md."
+   },
+   {
+    "claim": "A ModuleScript created at Edit time under ReplicatedStorage.Modules.Game.UI would be picked up without other registration",
+    "verdict": "PARTLY",
+    "evidence": "No script enumerates Modules folders and no manifest exists, so it replicates and can be required by path. ClientBase L1 and L5-103 start only listed entries. Creation through the tools was not tested.",
+    "fix": "Each new owner needs a ClientBase entry (through Routes.Compose) or a require from a started module; prove the create op in Phase 1 as planned."
+   },
+   {
+    "claim": "221 scripts in the place (plan 1.8)",
+    "verdict": "CONFIRMED",
+    "evidence": "LuaSourceContainer count: ReplicatedStorage 140, ServerStorage 73, ReplicatedFirst 4, Workspace 2, ServerScriptService 1, StarterPlayer 1."
+   },
+   {
+    "claim": "The other module of a pair is never required (plan 1.5 rule 2)",
+    "verdict": "CONFIRMED",
+    "evidence": "No script outside ClientBase requires a Classic owner except within the garage family (GarageUI L13, OwnedGarageClient L8-9, GarageInteriorModeUI L52, GarageInteriorTransitionUI L6) and the two HUDs' FullMapUI lookup."
+   },
+   {
+    "claim": "The touch camera guard at GarageInteriorModeUI 48 to 270 can be moved unchanged into its own module (plan 1.7)",
+    "verdict": "WRONG",
+    "evidence": "GarageInteriorModeUI L52, inside that range, requires Classic OwnedGarageWorkspaceUI by path. Unstarted, its IsCameraTouchBlocked returns false (OwnedGarageWorkspaceUI L3-6).",
+    "fix": "List L52's require target as a replaced span pointing at the Pulse fork, with the same parity check as the other forks."
+   },
+   {
+    "claim": "OwnedGarageWorkspaceUI fork needs a two-function GarageComponents shim and a one-function RacingUIComponents shim (plan 1.7)",
+    "verdict": "CONFIRMED",
+    "evidence": "OwnedGarageWorkspaceUI uses Shared.ConfirmationModal and Shared.ProjectEconomy, UI.Asset, and WorkspaceUI.new only."
+   },
+   {
+    "claim": "Four other scripts read MobileMajorMenuOpen (plan 2.3)",
+    "verdict": "CONFIRMED",
+    "evidence": "Writer: MobileFreeRoamHudUI. Readers: MobileDriveControlsClient, OnboardingClient, GarageInteriorModeUI, and FullMapUI through its BLOCKING list at L449-450."
+   },
+   {
+    "claim": "Game testing uses the existing Studio no-save sandbox (plan section 0)",
+    "verdict": "PARTLY",
+    "evidence": "The sandbox code exists (ProfileServer L178-185, L252) but StudioVehicleSandboxEveryPlay is false in v3. Using it needs an Edit write to Config.Player.Onboarding and Oscar's yes.",
+    "fix": "Say in section 0 and the Phase 0 row that the sandbox is off today and every Play gate depends on Oscar approving the test window."
+   },
+   {
+    "claim": "Shared route renderer holds 4 instances per segment and its chip takes an Enum.Font; RaceTransitionClient label is at 57-72; TimeTrialServer 1298 and 1311 set Default",
+    "verdict": "CONFIRMED",
+    "evidence": "RouteGuide L259-282 (two Frames, two UICorners) and L234. RaceTransitionClient L57-72 (L68, L70 fonts). TimeTrialServer L1298 and L1311."
+   },
+   {
+    "claim": "Kit.Confirm facts: overlay SharedConfirmationOverlay, DisplayOrder 1250, Escape and ButtonB at priority 10000; SetCoreGuiEnabled has one caller",
+    "verdict": "CONFIRMED",
+    "evidence": "ResponsiveUIFoundation L326-332 and L426. SetCoreGuiEnabled appears only in TrailerModeClient."
+   }
+  ],
+  "planErrors": [
+   "Touch camera guard cannot move unchanged: GarageInteriorModeUI L52 (inside 48-270) requires Classic OwnedGarageWorkspaceUI. A copy would query an unstarted module, so IsCameraTouchBlocked is always false, and it fails the plan's own lint rule 7. Make L52 a listed replaced span.",
+   "The fallback is not all-or-nothing from Phase 8. If Compose fails, ClientBase runs Classic, but LoadingTransitionRuntime, InitialLoadingAndStartScreenClient and RaceTransitionClient read the latch themselves and stay Pulse. The fallback must downgrade the latch before they read it, or be dropped.",
+   "Lifecycle.validate runs inside lifecycle.start (ClientLifecycle L21, asserts L5-8), outside the protected Compose. A composed list with a duplicate name or missing dependency throws there and no client entry starts. Call lifecycle.validate on the composed list inside the protected block.",
+   "Phase 3 conflicts with lint rule 7. Opening the Classic map by click means the Pulse HUD requires Modules.Game.UI.FullMapUI and calls Open(), as the Classic HUDs do at L960 and L260. That is a Pulse module requiring a Classic owner. Resolve the map through Routes.",
+   "Lanes: docs/13 L28 lists 'uncertain or multiple runtime owners' as High-Risk. Phases 2 to 6 each add a second owner per surface but are labelled Standard, and Phases 2, 4 and 6 list no delivery-reviewer despite calling teleport, prompt and queue remotes.",
+   "Phase 0 is labelled Fast, read-only, 'nothing installed', but its Play sessions need either the sandbox window (an Edit write to Config.Player.Onboarding, live value false, Oscar's yes) or Oscar's real profile. State that dependency in the Phase 0 row and section 0.",
+   "ClientLifecycle L30-36 blocks dependants after 30 seconds. Pulse replacements for SharedTopNotificationUI and GarageUI are dependencies of ActivityClient, DealershipIntroClient and GarageEntranceClient. The plan must state that font and sheet preload by 'the first Pulse owner' never yields inside start().",
+   "Classic OnboardingClient L235-244 takes callout scale from the first UIScale above its target. Pulse screens have none, so from Phase 2 to Phase 7 callouts use the default or 0.6 phone scale. Gates only check targets are found; add a callout size check.",
+   "Section 9 runs agents' tests in Edit through loadstring. AGENTS.md forbids gameplay module require through MCP and separate module caches. Limit this explicitly to pure model and kit code with fakes, never owners, and record it in the programme contract.",
+   "Edit count: 'five edited, 216 of 221 byte-identical' becomes six and 215 if the optional kill switch is taken, because ServerBase gains an entry. AGENTS.md is also edited in Phase 1. State both counts."
+  ]
+ }
+}
