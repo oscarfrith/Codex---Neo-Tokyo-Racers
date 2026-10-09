@@ -1,0 +1,9 @@
+{
+ "source": "ReplicatedStorage.Modules.Game.UI.GarageInteriorTransitionUI",
+ "_target": "ReplicatedStorage.Modules.Game.UIPulse.Garage.GarageInteriorTransitionUI",
+ "_reference": "API2 5.7 fork table row 3; PC 1.7",
+ "replace": [
+  {"lines": [6, 6], "with": "GarageInteriorTransitionUI.span6.lua",
+   "_what": "the two require targets only: Browser -> Garage.OwnedGarageBrowserUI, Workspace -> Garage.OwnedGarageWorkspaceUI (both keep Close(reason)); the presentation lookup on the same line is byte-identical"}
+ ]
+}

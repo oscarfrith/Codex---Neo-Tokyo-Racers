@@ -1,0 +1,102 @@
+{
+ "_note": "RaceEntry family (install 5). Hierarchy only: one Folder and six ModuleScripts. UIPulse.Dev.Fixtures exists since Phase 1. No existing script is edited by this family; the Routes source op is the integrator's (generated from routes.json). ClientBase keeps the entry name RaceEntryPresentationClient and its dependency LoadingTransitionUI.",
+ "ops": [
+  {
+   "id": "raceentry",
+   "kind": "create",
+   "class": "Folder",
+   "path": [
+    "ReplicatedStorage",
+    "Modules",
+    "Game",
+    "UIPulse",
+    "RaceEntry"
+   ]
+  },
+  {
+   "id": "raceentry.model",
+   "kind": "create",
+   "class": "ModuleScript",
+   "path": [
+    "ReplicatedStorage",
+    "Modules",
+    "Game",
+    "UIPulse",
+    "RaceEntry",
+    "RaceEntryModel"
+   ],
+   "after": "after/ReplicatedStorage.Modules.Game.UIPulse.RaceEntry.RaceEntryModel.lua"
+  },
+  {
+   "id": "raceentry.setupview",
+   "kind": "create",
+   "class": "ModuleScript",
+   "path": [
+    "ReplicatedStorage",
+    "Modules",
+    "Game",
+    "UIPulse",
+    "RaceEntry",
+    "SetupView"
+   ],
+   "after": "after/ReplicatedStorage.Modules.Game.UIPulse.RaceEntry.SetupView.lua"
+  },
+  {
+   "id": "raceentry.recordsview",
+   "kind": "create",
+   "class": "ModuleScript",
+   "path": [
+    "ReplicatedStorage",
+    "Modules",
+    "Game",
+    "UIPulse",
+    "RaceEntry",
+    "RecordsView"
+   ],
+   "after": "after/ReplicatedStorage.Modules.Game.UIPulse.RaceEntry.RecordsView.lua"
+  },
+  {
+   "id": "raceentry.vehicleview",
+   "kind": "create",
+   "class": "ModuleScript",
+   "path": [
+    "ReplicatedStorage",
+    "Modules",
+    "Game",
+    "UIPulse",
+    "RaceEntry",
+    "VehicleView"
+   ],
+   "after": "after/ReplicatedStorage.Modules.Game.UIPulse.RaceEntry.VehicleView.lua"
+  },
+  {
+   "id": "raceentry.client",
+   "kind": "create",
+   "class": "ModuleScript",
+   "path": [
+    "ReplicatedStorage",
+    "Modules",
+    "Game",
+    "UIPulse",
+    "RaceEntry",
+    "RaceEntryClient"
+   ],
+   "after": "after/ReplicatedStorage.Modules.Game.UIPulse.RaceEntry.RaceEntryClient.lua"
+  },
+  {
+   "id": "raceentry.fixtures",
+   "kind": "create",
+   "class": "ModuleScript",
+   "path": [
+    "ReplicatedStorage",
+    "Modules",
+    "Game",
+    "UIPulse",
+    "Dev",
+    "Fixtures",
+    "RaceEntry"
+   ],
+   "after": "after/ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.RaceEntry.lua"
+  }
+ ]
+}

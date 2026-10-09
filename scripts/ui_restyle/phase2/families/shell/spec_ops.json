@@ -1,0 +1,121 @@
+[
+ {
+  "id": "shell",
+  "kind": "create",
+  "class": "Folder",
+  "path": [
+   "ReplicatedStorage",
+   "Modules",
+   "Game",
+   "UIPulse",
+   "Shell"
+  ],
+  "_note": "UIPulse.Shell is first created by the FreeRoam install (Shell.CoreUiPolicy, API2 5.3). The integrator drops this op when the folder is already in the chain; it is here so the family is complete on its own."
+ },
+ {
+  "id": "shell.onboardingmodel",
+  "kind": "create",
+  "class": "ModuleScript",
+  "path": [
+   "ReplicatedStorage",
+   "Modules",
+   "Game",
+   "UIPulse",
+   "Shell",
+   "OnboardingModel"
+  ],
+  "after": "after/ReplicatedStorage.Modules.Game.UIPulse.Shell.OnboardingModel.lua"
+ },
+ {
+  "id": "shell.onboardingview",
+  "kind": "create",
+  "class": "ModuleScript",
+  "path": [
+   "ReplicatedStorage",
+   "Modules",
+   "Game",
+   "UIPulse",
+   "Shell",
+   "OnboardingView"
+  ],
+  "after": "after/ReplicatedStorage.Modules.Game.UIPulse.Shell.OnboardingView.lua"
+ },
+ {
+  "id": "shell.onboardingclient",
+  "kind": "create",
+  "class": "ModuleScript",
+  "path": [
+   "ReplicatedStorage",
+   "Modules",
+   "Game",
+   "UIPulse",
+   "Shell",
+   "OnboardingClient"
+  ],
+  "after": "after/ReplicatedStorage.Modules.Game.UIPulse.Shell.OnboardingClient.lua"
+ },
+ {
+  "id": "shell.fixtures",
+  "kind": "create",
+  "class": "ModuleScript",
+  "path": [
+   "ReplicatedStorage",
+   "Modules",
+   "Game",
+   "UIPulse",
+   "Dev",
+   "Fixtures",
+   "Shell"
+  ],
+  "after": "after/ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Shell.lua"
+ },
+ {
+  "id": "shell.loadingview",
+  "kind": "create",
+  "class": "ModuleScript",
+  "path": [
+   "ReplicatedFirst",
+   "Loading",
+   "LoadingScreenViewPulse"
+  ],
+  "after": "after/ReplicatedFirst.Loading.LoadingScreenViewPulse.lua"
+ },
+ {
+  "id": "shell.startscreen",
+  "kind": "create",
+  "class": "ModuleScript",
+  "path": [
+   "ReplicatedFirst",
+   "Loading",
+   "StartScreenPulse"
+  ],
+  "after": "after/ReplicatedFirst.Loading.StartScreenPulse.lua",
+  "_note": "Fork output (forks/StartScreenPulse.json); the after/ file in this folder is the hand assembly for review."
+ },
+ {
+  "id": "shell.runtime",
+  "kind": "source",
+  "class": "ModuleScript",
+  "path": [
+   "ReplicatedFirst",
+   "Loading",
+   "LoadingTransitionRuntime"
+  ],
+  "before": "before/ReplicatedFirst.Loading.LoadingTransitionRuntime.lua",
+  "after": "after/ReplicatedFirst.Loading.LoadingTransitionRuntime.lua",
+  "_note": "API2 5.8: line 8 becomes two lines. Reviewer."
+ },
+ {
+  "id": "shell.initialloading",
+  "kind": "source",
+  "class": "LocalScript",
+  "path": [
+   "ReplicatedFirst",
+   "Loading",
+   "InitialLoadingAndStartScreenClient"
+  ],
+  "before": "before/ReplicatedFirst.Loading.InitialLoadingAndStartScreenClient.lua",
+  "after": "after/ReplicatedFirst.Loading.InitialLoadingAndStartScreenClient.lua",
+  "_note": "API2 5.8: two lines inserted after line 18. Reviewer."
+ }
+]

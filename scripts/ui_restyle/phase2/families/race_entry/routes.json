@@ -1,0 +1,7 @@
+{
+ "family": "RaceEntry",
+ "swap": {
+  "RaceEntryPresentationClient": "ReplicatedStorage.Modules.Game.UIPulse.RaceEntry.RaceEntryClient"
+ },
+ "add": []
+}

@@ -1,0 +1,107 @@
+[
+ {
+  "owner": "ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.HudClient",
+  "half": "F2a (HUD). Agent F2b's owners (TouchControlsClient, ActivityHudClient, Shell.CoreUiPolicy) are in its own fragment; the integrator joins the two lists into contract.json.",
+  "replaces": ["DesktopFreeRoamHudUI", "MobileFreeRoamHudUI"],
+  "modules": [
+   "ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.HudModel",
+   "ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.HudView",
+   "ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.HudMinimap",
+   "ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.CarPanelView",
+   "ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.HudModals",
+   "ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.HudClient",
+   "ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.FreeRoam"
+  ],
+  "claim": "FreeRoamHud",
+  "publicApi": ["start", "IsMinimapShowing"],
+  "screenGuis": [
+   {"name": "DesktopFreeRoamHud", "displayOrder": 85, "frame": "Hud", "rootName": "DesignRoot"},
+   {"name": "DesktopFreeRoamHudLive", "displayOrder": 86, "frame": "Hud", "rootName": "DesignRoot"}
+  ],
+  "remotes": [
+   {"remote": "Remotes.Garage.GarageInvoke", "kind": "invoke", "action": "SpawnOwnedVehicleFromFreeRoam", "keys": ["VehicleId", "CockpitId"], "classic": "D748, M294", "pulse": "HudModel.SpawnVehicle"},
+   {"remote": "Remotes.Garage.GarageInvoke", "kind": "invoke", "action": "DespawnVehicle", "keys": [], "classic": "D829, M310", "pulse": "HudModel.Despawn"},
+   {"remote": "Remotes.Garage.GarageInvoke", "kind": "invoke", "action": "ExitVehicle", "keys": [], "classic": "D1002, M316", "pulse": "HudModel.ExitVehicle"},
+   {"remote": "Remotes.Garage.GarageInvoke", "kind": "invoke", "action": "GetInitial", "keys": [], "via": "GarageCatalogClient.Fetch(garageInvoke, {})", "classic": "D353, M70/M270", "pulse": "HudModel readInitial"},
+   {"remote": "Remotes.UI.FreeRoamHudTeleportInvoke", "kind": "invoke", "action": "TeleportToDealership", "keys": [], "argCount": 1, "classic": "D519, M243", "pulse": "HudModel.RequestTeleport, behind Overlay.Confirm"},
+   {"remote": "Remotes.Activities.ActivityInvoke", "kind": "invoke", "action": "SetPassengerAccess", "keys": ["Access"], "values": ["Friends", "Anyone", "Nobody"], "classic": "D612, M210", "pulse": "HudModel.SetPassengerAccess"}
+  ],
+  "listens": [],
+  "bindables": [
+   {"name": "Runtime.UI.ShowTopNotification", "dir": "fire", "args": ["text", 2.2], "classic": "D365, M78"},
+   {"name": "Runtime.UI.FreeRoamVehicleSpawned", "dir": "fire", "keys": [], "classic": "D749, M294"},
+   {"name": "Runtime.UI.FreeRoamVehicleExited", "dir": "fire", "keys": [], "classic": "D522, D828, D1001, M245, M310, M316"},
+   {"name": "Runtime.UI.OpenOwnedGarageBrowser", "dir": "fire", "keys": [], "classic": "D879, M315"},
+   {"name": "Runtime.UI.OpenRaceBrowser", "dir": "fire", "keys": [], "classic": "D883, M314"},
+   {"name": "Runtime.UI.LoadingTransitionInvoke", "dir": "invoke", "action": "Begin", "keys": ["Destination", "Status"], "classic": "D517, M242"},
+   {"name": "Runtime.UI.LoadingTransitionInvoke", "dir": "invoke", "action": "Complete", "keys": ["Generation", "Status"], "classic": "D524, M246"},
+   {"name": "Runtime.UI.LoadingTransitionInvoke", "dir": "invoke", "action": "Fail", "keys": ["Generation", "Status", "Reason"], "classic": "D528, M250"},
+   {"name": "Runtime.UI.OpenDrivingControlsFromOnboarding", "dir": "connect", "classic": "D986-994"},
+   {"name": "Runtime.UI.FreeRoamHudPresentationMode", "dir": "connect", "classic": "D1337-1348, M319-328"}
+  ],
+  "signals": [
+   {"name": "RouteGuide.Arrived", "dir": "connect", "classic": "D964, M266"},
+   {"name": "RouteGuide.Changed", "dir": "connect", "note": "marks the cached route state stale; replaces the Classic map renderer's own read", "reason": "API2 5.3 (Minimap content), 5.4"}
+  ],
+  "sharedCalls": [
+   {"call": "RouteGuide.Update(position)", "where": "HudMinimap.Step, once per frame, never while the layer is hidden", "classic": "D1250, M486"},
+   {"call": "RouteGuide.GetRouteState()", "where": "HudMinimap.Step, at most 10 times a second", "reason": "API2 5.3"},
+   {"call": "GameplayInputGate.Acquire(\"FirstDriveControls\", \"V1\") / Release(token, true)", "classic": "D991, D435"},
+   {"call": "FreeRoamMapPlayerMarkers.new / ResolveRotation / MapHeading / StepHeading / :Step / :SetVisible / :Destroy", "classic": "D943, D1211-1238"},
+   {"call": "Routes.Resolve(\"FullMapUI\").Open()", "classic": "D960-962, M260-262", "reason": "API2 4, PC 1.5 rule 7"},
+   {"call": "MobileDriveInputState.IsDriving / SpeedMph / BoostPercent (read)", "classic": "D1278-1286, M403, M493"},
+   {"call": "humanoid.Sit = false", "classic": "D832, D1005"}
+  ],
+  "attributes": [
+   {"on": "Player", "name": "DrivingControlsOpen", "dir": "write", "classic": "D434, D470"},
+   {"on": "Player", "name": "FirstDrivePresentationPending", "dir": "write", "classic": "D459, D990"},
+   {"on": "Player", "name": "MinimapMode", "dir": "write", "classic": "D634"},
+   {"on": "Player", "name": "MobileFreeRoamCarMenuOpen", "dir": "write", "when": "TouchEnabled", "classic": "M168, M284"},
+   {"on": "Player", "name": "MobileMajorMenuOpen", "dir": "write", "when": "TouchEnabled; Settings and Get Cash only", "classic": "M187, M188, M190"},
+   {"on": "Player", "name": "MobileControlMode", "dir": "write", "when": "TouchEnabled", "classic": "M201"},
+   {"on": "Player", "name": "GarageSessionActive", "dir": "read", "classic": "D380, M330"},
+   {"on": "Player", "name": "FullMapOpen", "dir": "read", "classic": "D1116, D1351, M330-331"},
+   {"on": "Player", "name": "OwnedGarageInside", "dir": "read", "classic": "D1132, M400"},
+   {"on": "Player", "name": "Rank", "dir": "read", "classic": "D920"},
+   {"on": "Player", "name": "XpIntoRank", "dir": "read", "classic": "D920"},
+   {"on": "Player", "name": "XpForNext", "dir": "read", "classic": "D920"},
+   {"on": "Player", "name": "PassengerAccess", "dir": "read", "classic": "D598, D617"},
+   {"on": "Player", "name": "MinimapMode", "dir": "read", "classic": "D632; FreeRoamMapPlayerMarkers.ResolveRotation"},
+   {"on": "Player", "name": "MobileControlMode", "dir": "read", "classic": "M200"},
+   {"on": "PlayerGui", "name": "OwnedGarageManagementOpen", "dir": "read", "classic": "D1125, M330"},
+   {"on": "<vehicle Model>", "name": "OwnerUserId", "dir": "read", "classic": "D402"},
+   {"on": "ReplicatedStorage.Config.UI.FreeRoamMapPlayerMarkers", "name": "MapPanResponse", "dir": "read", "classic": "D1194"}
+  ],
+  "names": ["DesignRoot", "ModalLayer", "Controls", "CarPanel", "Minimap", "Car", "Garage", "Race"],
+  "marks": ["Car", "Garage", "Race"],
+  "contextActions": [],
+  "renderSteps": [{"name": "FreeRoamHud", "via": "Kit.Perf.Bind on DesktopFreeRoamHudLive.DesignRoot"}],
+  "audio": [],
+  "dropped": [
+   {"item": "ScreenGui MobileFreeRoamHud_Phase1 and the second (mobile) HUD owner", "reason": "API2 5.3 (ScreenGuis); PC 1.7"},
+   {"item": "Start gates D16-19 and M13 (the HUD is built on every device)", "reason": "API2 5.3; API2 4 (every form factor)"},
+   {"item": "gui.Enabled writes (D1114-1128, D1346, M398)", "reason": "API2 6.2; PC 1.5 rule 8. The root Visible is written instead"},
+   {"item": "isMajorMenuOpen PlayerGui walk every 0.1 s for GarageRoot / DealershipRoot / CustomisationRoot (D377-393, D1121-1124)", "reason": "API2 5.3 (HUD model: what hides the HUD); PC 5.1 rule 7. GarageSessionActive is kept"},
+   {"item": "ScreenGui attributes DesktopInputEligible and SuppressedByMajorMenu (D1042, D1127); no reader", "reason": "API2 5.3 (attributes written list)"},
+   {"item": "Render step name PCFreeRoamHudPhase4A and the 13 legacy unbinds (D1355-1368); RenderStepped (M391)", "reason": "API2 5.3 (Per frame: one Perf.Bind)"},
+   {"item": "Settings rows with no behaviour: GRAPHICS, LIGHTING, CAMERA SHAKE, REDUCE FLASHES, MUSIC, SFX, UI SCALE, HUD OPACITY, SPEED UNIT, RESET DEFAULTS and its toast (D590-593, D627-641, M203-205)", "reason": "PC 8 (Settings rows that do nothing); API2 5.3 target frames r10b, c04a"},
+   {"item": "Cash pack price strings ($10,000 / 49 ROBUX ...) and the Secure line (D563-581)", "reason": "API2 5.3 (cash modal has no purchase remote); target r10c"},
+   {"item": "Modal close by clicking the backdrop (D543, M189) and the car menu outside-tap layer (M149, M307)", "reason": "API2 3.7 (Modal: back through Input.BindBack, CloseButton)"},
+   {"item": "Car panel drop-downs on Compact (M151-159, M308-309)", "reason": "API2 5.3 target c03; task rule (no drop-downs on phone)"},
+   {"item": "MapIconLayer and RouteGuide.newMapRenderer (D949-956, M98-104)", "reason": "API2 5.3 (Minimap content); 5.4"},
+   {"item": "North arrow placement by FreeRoamMapPlayerMarkers.PlaceNorth and MapNorthArrowMode (D1225, M471)", "reason": "API2 3.3 (Minimap.SetHeading)"},
+   {"item": "GarageComponents.VehicleCard, RacingUIComponents, ResponsiveUIFoundation and VehicleDisplayNames requires (D24-28)", "reason": "API2 6.6 rule 1; the category-name rule is carried in HudModel"},
+   {"item": "Per-frame ownedVehicleSeat for telemetry visibility (D1130-1141); driving is MobileDriveInputState.IsDriving", "reason": "API2 5.3 (Per frame)"},
+   {"item": "Moving the cash chip into the minimap position inside an owned garage (D1137, M353-355)", "reason": "API2 2.4 (HudStatus slot)"},
+   {"item": "Cash and rank hidden while the car panel is open (D866, D1135); only the minimap and its rank arc hide", "reason": "API2 5.3 target r09"}
+  ],
+  "added": [
+   {"item": "Escape and ButtonB close a modal and the car panel (refused during the first-drive reveal, as D442)", "reason": "API2 3.7"},
+   {"item": "Strings from the previews: 'SELECT A VEHICLE TO SPAWN IT', 'DEALERSHIP' (buy-more sub-line), 'CURRENT' chip, 'TOUCH CONTROLS' (Classic: MOBILE CONTROLS), 'PACK n' / 'CASH PACK' / 'NOT ENABLED', the two settings sub-lines, the 'M / MAP' controls row", "reason": "API2 6.6 rule 8; targets r09, r10a, r10b, r10c, c04a"},
+   {"item": "The spawned vehicle's tier and rating in the status cluster, taken from the row that was spawned (no extra request)", "reason": "API2 3.4 (StatusCluster Mode Vehicle); target r00"},
+   {"item": "Speed-zoom tuning read with the mobile reader (value child, then attribute), so the Layout attributes now also apply on desktop", "reason": "API2 5.3 (one owner; config cached at start)"},
+   {"item": "Car panel also closes on touch when the HUD is hidden, and a hidden HUD keeps its state otherwise", "reason": "API2 5.3 (mobile state M268-286)"},
+   {"item": "An empty Frame named Minimap under DesktopFreeRoamHud.DesignRoot mirroring the minimap's visibility (the kit minimap is on the live gui)", "reason": "API2 5.3 (Names kept); PC 5.1 rule 1"}
+  ]
+ }
+]

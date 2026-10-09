@@ -1,0 +1,11 @@
+{
+ "source": "ReplicatedStorage.Modules.Game.Dealership.GarageEntranceClient",
+ "_target": "ReplicatedStorage.Modules.Game.UIPulse.Garage.GarageEntranceClient",
+ "_reference": "API2 5.7 fork table row 4; PC 1.7",
+ "replace": [
+  {"lines": [65, 91], "with": "GarageEntranceClient.span65-91.lua",
+   "_what": "old-gui destroy, the GarageEntranceStatus ScreenGui, the status label, its corner and stroke are removed; the span now holds Claim(\"GarageEntrance\")"},
+  {"lines": [93, 106], "with": "GarageEntranceClient.span93-106.lua",
+   "_what": "statusSerial and flash: every message now goes to ShowTopNotification:Fire(text), the statement Classic already used for one message (line 97)"}
+ ]
+}

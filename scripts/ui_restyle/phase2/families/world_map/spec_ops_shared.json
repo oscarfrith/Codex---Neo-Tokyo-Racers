@@ -1,0 +1,59 @@
+{
+ "_note": "WorldMap family, shared map layers. Installed WITH the FreeRoam family (API2 5.4): the HUD minimap requires them. 'after' paths are relative to families/world_map/.",
+ "ops": [
+  {
+   "id": "map",
+   "kind": "create",
+   "class": "Folder",
+   "path": [
+    "ReplicatedStorage",
+    "Modules",
+    "Game",
+    "UIPulse",
+    "Map"
+   ]
+  },
+  {
+   "id": "map.MapCanvas",
+   "kind": "create",
+   "class": "ModuleScript",
+   "path": [
+    "ReplicatedStorage",
+    "Modules",
+    "Game",
+    "UIPulse",
+    "Map",
+    "MapCanvas"
+   ],
+   "after": "after/ReplicatedStorage.Modules.Game.UIPulse.Map.MapCanvas.lua"
+  },
+  {
+   "id": "map.MapIcons",
+   "kind": "create",
+   "class": "ModuleScript",
+   "path": [
+    "ReplicatedStorage",
+    "Modules",
+    "Game",
+    "UIPulse",
+    "Map",
+    "MapIcons"
+   ],
+   "after": "after/ReplicatedStorage.Modules.Game.UIPulse.Map.MapIcons.lua"
+  },
+  {
+   "id": "map.MapRoute",
+   "kind": "create",
+   "class": "ModuleScript",
+   "path": [
+    "ReplicatedStorage",
+    "Modules",
+    "Game",
+    "UIPulse",
+    "Map",
+    "MapRoute"
+   ],
+   "after": "after/ReplicatedStorage.Modules.Game.UIPulse.Map.MapRoute.lua"
+  }
+ ]
+}

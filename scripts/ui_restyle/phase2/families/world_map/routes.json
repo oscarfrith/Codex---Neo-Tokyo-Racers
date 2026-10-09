@@ -1,0 +1,16 @@
+{
+ "family": "WorldMap",
+ "swap": {
+  "FullMapUI": "ReplicatedStorage.Modules.Game.UIPulse.WorldMap.FullMapClient"
+ },
+ "add": [
+  {
+   "name": "PulseWorldPrompts",
+   "family": "WorldMap",
+   "path": "ReplicatedStorage.Modules.Game.UIPulse.World.WorldPromptView",
+   "dependencies": [
+    "SharedTopNotificationUI"
+   ]
+  }
+ ]
+}

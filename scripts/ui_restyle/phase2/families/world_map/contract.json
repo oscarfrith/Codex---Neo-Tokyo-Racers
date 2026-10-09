@@ -1,0 +1,432 @@
+[
+ {
+  "owner": "ReplicatedStorage.Modules.Game.UIPulse.WorldMap.FullMapClient",
+  "replaces": [
+   "FullMapUI"
+  ],
+  "modules": [
+   "ReplicatedStorage.Modules.Game.UIPulse.WorldMap.FullMapModel",
+   "ReplicatedStorage.Modules.Game.UIPulse.WorldMap.FullMapView",
+   "ReplicatedStorage.Modules.Game.UIPulse.Map.MapCanvas",
+   "ReplicatedStorage.Modules.Game.UIPulse.Map.MapIcons",
+   "ReplicatedStorage.Modules.Game.UIPulse.Map.MapRoute"
+  ],
+  "claim": "FullMap",
+  "screenGuis": [
+   {
+    "name": "FullMapScrim",
+    "displayOrder": 89
+   },
+   {
+    "name": "FullMap",
+    "displayOrder": 90
+   },
+   {
+    "name": "FullMapLive",
+    "displayOrder": 91
+   }
+  ],
+  "publicApi": [
+   "Open",
+   "Close",
+   "Toggle",
+   "IsOpen",
+   "start"
+  ],
+  "remotes": [],
+  "listens": [],
+  "bindables": [
+   {
+    "name": "Runtime.UI.FreeRoamHudPresentationMode",
+    "dir": "connect",
+    "keys": [
+     "Owner",
+     "Active"
+    ]
+   }
+  ],
+  "moduleSignals": [
+   {
+    "module": "UI.RouteGuide",
+    "signal": "Changed",
+    "dir": "connect"
+   },
+   {
+    "module": "UI.RouteGuide",
+    "signal": "Arrived",
+    "dir": "connect"
+   },
+   {
+    "module": "UI.MapMarkers",
+    "signal": "Changed",
+    "dir": "connect"
+   }
+  ],
+  "sharedCalls": [
+   "RouteGuide.Clear(\"Player\")",
+   "RouteGuide.SetDestination(\"Waypoint\", position, {Label, Priority = 5})",
+   "RouteGuide.Clear(\"Waypoint\")",
+   "RouteGuide.Update(position) (frame step, only while open)",
+   "RouteGuide.GetRouteState()",
+   "MapMarkers.Set(\"Waypoint\", {Position, Icon, Label, Kind, Priority = 50, EdgeClamp = true})",
+   "MapMarkers.Remove(\"Waypoint\")",
+   "MapMarkers.Get",
+   "MapMarkers.All",
+   "GameplayInputGate.Acquire(\"FullMap\", \"V1\")",
+   "GameplayInputGate.Release(token, true)",
+   "FreeRoamMapPlayerMarkers.new / :Step / :Destroy",
+   "MapTileSet.new / :Cull / :Destroy",
+   "Routes.Resolve(\"DesktopFreeRoamHudUI\").IsMinimapShowing()"
+  ],
+  "attributes": [
+   {
+    "on": "Player",
+    "name": "FullMapOpen",
+    "dir": "write"
+   },
+   {
+    "on": "Player",
+    "name": "GarageSessionActive",
+    "dir": "read"
+   },
+   {
+    "on": "Player",
+    "name": "OwnedGarageInside",
+    "dir": "read"
+   },
+   {
+    "on": "Player",
+    "name": "RaceSessionActive",
+    "dir": "read"
+   },
+   {
+    "on": "Player",
+    "name": "RaceQueueActive",
+    "dir": "read"
+   },
+   {
+    "on": "Player",
+    "name": "DrivingControlsOpen",
+    "dir": "read"
+   },
+   {
+    "on": "Player",
+    "name": "FirstDrivePresentationPending",
+    "dir": "read"
+   },
+   {
+    "on": "Player",
+    "name": "MobileMajorMenuOpen",
+    "dir": "read"
+   },
+   {
+    "on": "Player",
+    "name": "MobileFreeRoamCarMenuOpen",
+    "dir": "read"
+   },
+   {
+    "on": "PlayerGui",
+    "name": "OwnedGarageManagementOpen",
+    "dir": "read"
+   },
+   {
+    "on": "<owned vehicle model>",
+    "name": "OwnerUserId",
+    "dir": "read"
+   },
+   {
+    "on": "<owned vehicle model>",
+    "name": "RaceParticipant",
+    "dir": "read"
+   },
+   {
+    "on": "<owned vehicle model>",
+    "name": "RaceRunId",
+    "dir": "read"
+   },
+   {
+    "on": "ReplicatedStorage.Config.UI.FullMap",
+    "dir": "read",
+    "name": "Enabled, RememberZoom, LegendOpen, LockGameplayInput, BoundsMarginStuds, PanMinX, PanMaxX, PanMinZ, PanMaxZ, OpenVisibleStuds, MinVisibleStuds, MaxVisibleStuds, ZoomStep, MobileLegendMinViewport, DragThresholdPixels, WaypointY, KeyboardPanSpeed, GamepadPanSpeed, CentreResponse, DistrictName"
+   },
+   {
+    "on": "ReplicatedStorage.Config.UI.DesktopFreeRoamHud.Layout / Defaults",
+    "dir": "read",
+    "name": "MapPixels, MapCalibrationPixels, MapCalibrationStuds, MapWorldCenterX, MapWorldCenterZ, MapCoordinateRotationDegrees, MapRotationOffsetDegrees, MapFlipX, MapFlipZ"
+   },
+   {
+    "on": "ReplicatedStorage.Config.UI.RouteGuide",
+    "dir": "read",
+    "name": "Enabled, ChipEnabled, StudsPerMile"
+   }
+  ],
+  "names": [
+   "FullMap",
+   "FullMapLive",
+   "FullMapScrim"
+  ],
+  "contextActions": [
+   {
+    "name": "FullMapToggle",
+    "keys": [
+     "ButtonSelect"
+    ],
+    "priority": "High.Value",
+    "bound": "permanent"
+   },
+   {
+    "name": "FullMapPad",
+    "keys": [
+     "ButtonA",
+     "ButtonB",
+     "ButtonX",
+     "ButtonY",
+     "ButtonL1",
+     "ButtonR1",
+     "Thumbstick1"
+    ],
+    "priority": "High.Value + 50",
+    "bound": "while open"
+   }
+  ],
+  "keys": [
+   "M toggle",
+   "Escape close",
+   "E / Equals / KeypadPlus zoom in",
+   "Q / Minus / KeypadMinus zoom out",
+   "C centre",
+   "F whole map",
+   "Backspace / Delete clear waypoint",
+   "W A S D and arrows pan",
+   "mouse wheel zoom",
+   "drag pan",
+   "pinch zoom",
+   "click or tap waypoint"
+  ],
+  "renderSteps": [
+   {
+    "name": "Perf.Bind(\"FullMap\") on FullMapLive.Root",
+    "replaces": "BindToRenderStep \"FullMapUI\" (FullMapUI 533)"
+   }
+  ],
+  "audio": [],
+  "dropped": [
+   {
+    "item": "RunService:BindToRenderStep(\"FullMapUI\", Last + 10) and UnbindFromRenderStep (486, 533)",
+    "reason": "API1 11 rule 7 (Perf.Bind is the only frame binding); API2 5.4"
+   },
+   {
+    "item": "ScreenGui.Enabled writes (112, 501, 504, 525)",
+    "reason": "PC 1.5 rule 8; API2 6.2 (layer.SetVisible)"
+   },
+   {
+    "item": "DisplayOrder from Config.UI.FullMap@DisplayOrder (113)",
+    "reason": "API2 5.4 (the ladder); wave contract 9 item 8"
+   },
+   {
+    "item": "minimapShowing PlayerGui walk (464-478)",
+    "reason": "API2 5.4 (Routes.Resolve(\"DesktopFreeRoamHudUI\").IsMinimapShowing())"
+   },
+   {
+    "item": "require of RacingUIComponents and MapIconLayer; RouteGuide.newMapRenderer (33, 36, 137)",
+    "reason": "API2 5.4; 6.6 rule 1"
+   },
+   {
+    "item": "open and close tween of a UIScale and of the backdrop (121, 497-503, 526-529); config OpenTweenSeconds, CloseTweenSeconds, BackdropTransparency",
+    "reason": "API1 11 rule 5 (no tween of a UIScale); NOTES B1"
+   },
+   {
+    "item": "a press outside the panel closes the map (621-628)",
+    "reason": "API2 5.4 target frames r08, c16: the Pulse map is full-screen; NOTES B2"
+   },
+   {
+    "item": "blocked() polled every frame (773)",
+    "reason": "API1 11 rule 7 (no GetAttribute in a step); the same attributes close the map through their changed signals; NOTES B3"
+   },
+   {
+    "item": "config read at use each frame (cfg / flag, 70-78)",
+    "reason": "PC 5.1 rule 4 (config cached); read at start and on every open"
+   },
+   {
+    "item": "bindable fire ShowTopNotification (91-94)",
+    "reason": "dead code in Classic (toast() is defined and never called); API2 5.4 lists no toast"
+   },
+   {
+    "item": "camera ViewportSize and CurrentCamera listeners (763-767)",
+    "reason": "API1 6 (Metrics is the only camera listener)"
+   },
+   {
+    "item": "Config.UI.FullMap LegendWidth, MobileLegendWidth, TapRadiusPixels, TouchTapRadiusPixels, RouteLineScale; Config.UI.MapIconLayer; Config.UI.MapIcons asset ids; Assets.MapPlayerIcon",
+    "reason": "API2 5.4 (own layers; sizes are tokens; glyphs are the MapIconSheet; HitTest takes a point only); NOTES B4"
+   },
+   {
+    "item": "marker Pulse animation (UIScale), route outline, destination blip, Activity route colour",
+    "reason": "API1 11 rule 5; API2 5.4 (route in Cyan); NOTES B5"
+   },
+   {
+    "item": "ADD MAP TILE IDS label (134)",
+    "reason": "API2 5.4 (MapCanvas owns the tile set); developer message; NOTES B6"
+   },
+   {
+    "item": "print \"[FullMapUI] Full map ready\" (850)",
+    "reason": "API1 11 rule 12"
+   }
+  ],
+  "added": [
+   {
+    "item": "Presence.Open(\"FullMap\", \"Map\") while open",
+    "reason": "API2 3.9, 5.4"
+   },
+   {
+    "item": "key hints as key caps with the texts PAN, ZOOM, CENTRE ON ME, WHOLE MAP, SET WAYPOINT, CLEAR, CLOSE, WAYPOINT, CENTRE (Classic: one line of text; the touch line is unchanged)",
+    "reason": "API2 5.4 (Surface.KeyCap), target frame r08; 6.6 rule 8"
+   },
+   {
+    "item": "button text CLOSE (Classic X); Compact controls are glyph buttons",
+    "reason": "API2 5.4 target frames r08, c16; 6.6 rule 8"
+   },
+   {
+    "item": "route chip text LABEL, middle dot, distance (Classic used three spaces)",
+    "reason": "API2 5.4 target frame r08; 6.6 rule 8"
+   },
+   {
+    "item": "vehicle RaceParticipant / RaceRunId attribute-changed listeners while open; Humanoid SeatPart listener",
+    "reason": "API1 11 rule 7: they replace the per-frame blocked() and subject() polls; NOTES B3"
+   }
+  ]
+ },
+ {
+  "owner": "ReplicatedStorage.Modules.Game.UIPulse.World.WorldPromptView",
+  "replaces": [],
+  "modules": [
+   "ReplicatedStorage.Modules.Game.UIPulse.World.WorldPromptModel",
+   "ReplicatedStorage.Modules.Game.UIPulse.World.EventCardView"
+  ],
+  "claim": "WorldPrompts",
+  "screenGuis": [
+   {
+    "name": "PulseWorldPrompts",
+    "displayOrder": 80
+   },
+   {
+    "name": "PulseEventCard",
+    "displayOrder": 81
+   }
+  ],
+  "remotes": [
+   {
+    "remote": "Remotes.Racing.RaceRequest",
+    "kind": "invoke",
+    "action": "GetEntryDetails",
+    "keys": [
+     "EventId",
+     "Mode"
+    ]
+   },
+   {
+    "remote": "Remotes.Racing.RaceRequest",
+    "kind": "invoke",
+    "action": "GetTimeTrialPersonalBest",
+    "keys": [
+     "EventId",
+     "VehicleTier"
+    ]
+   }
+  ],
+  "listens": [],
+  "bindables": [],
+  "engineSignals": [
+   "ProximityPromptService.PromptShown",
+   "ProximityPromptService.PromptHidden",
+   "ProximityPrompt.PromptButtonHoldBegan / PromptButtonHoldEnded",
+   "DescendantAdded / DescendantRemoving on five roots under Workspace.World"
+  ],
+  "promptWrites": [
+   {
+    "property": "Style",
+    "values": [
+     "Custom",
+     "Default"
+    ],
+    "local": true
+   }
+  ],
+  "promptCalls": [
+   "InputHoldBegin",
+   "InputHoldEnd"
+  ],
+  "neverDone": [
+   "ProximityPrompt.Enabled write",
+   "Triggered or PromptTriggered connection",
+   "a remote call for a prompt's action",
+   "any write to a prompt whose name is not one of the twelve known names"
+  ],
+  "attributes": [
+   {
+    "on": "Player",
+    "name": "OwnedGarageVisitor",
+    "dir": "read"
+   },
+   {
+    "on": "<vehicle model>",
+    "name": "OwnerUserId",
+    "dir": "read"
+   },
+   {
+    "on": "<own vehicle model>",
+    "name": "PerformanceTier",
+    "dir": "read"
+   },
+   {
+    "on": "<own vehicle model>",
+    "name": "PerformanceIndex",
+    "dir": "read"
+   },
+   {
+    "on": "<start zone part>",
+    "name": "EventId",
+    "dir": "read"
+   },
+   {
+    "on": "<start zone part>",
+    "name": "Mode",
+    "dir": "read"
+   },
+   {
+    "on": "<start zone part>",
+    "name": "RouteId",
+    "dir": "read"
+   }
+  ],
+  "names": [
+   "PulseWorldPrompts",
+   "PulseEventCard"
+  ],
+  "contextActions": [],
+  "renderSteps": [],
+  "audio": [],
+  "dropped": [],
+  "added": [
+   {
+    "item": "the whole owner (Pulse-only entry PulseWorldPrompts)",
+    "reason": "API2 4 (Routes.Add), 5.4; PC 7.2"
+   },
+   {
+    "item": "RaceRequest GetEntryDetails {EventId, Mode} and GetTimeTrialPersonalBest {EventId, VehicleTier} from a new call site",
+    "reason": "API2 5.4 (event card): existing rate-limited reads, once per show, cached per event"
+   },
+   {
+    "item": "fifth scoped root Workspace.World.Dealership (the three client-made Canonical prompts)",
+    "reason": "API2 5.4 with PC 7.2 (the three client-made families); NOTES A3"
+   },
+   {
+    "item": "zone attribute PromptActionText is not read: the banner shows the prompt's live ActionText, which the server sets from it",
+    "reason": "API2 5.4 target frame r16b; NOTES A6"
+   },
+   {
+    "item": "strings YOU, YOUR BEST, PRIZE, n LAPS, n CHECKPOINTS on the event card; prompt texts upper-cased",
+    "reason": "API2 5.4 target frames r16a, r16b; 6.6 rule 8"
+   }
+  ]
+ }
+]

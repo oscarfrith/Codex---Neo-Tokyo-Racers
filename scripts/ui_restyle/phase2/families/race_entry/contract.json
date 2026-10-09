@@ -1,0 +1,133 @@
+[
+ {
+  "owner": "ReplicatedStorage.Modules.Game.UIPulse.RaceEntry.RaceEntryClient",
+  "replaces": ["RaceEntryPresentationClient"],
+  "modules": [
+   "ReplicatedStorage.Modules.Game.UIPulse.RaceEntry.RaceEntryModel",
+   "ReplicatedStorage.Modules.Game.UIPulse.RaceEntry.SetupView",
+   "ReplicatedStorage.Modules.Game.UIPulse.RaceEntry.RecordsView",
+   "ReplicatedStorage.Modules.Game.UIPulse.RaceEntry.VehicleView",
+   "ReplicatedStorage.Modules.Game.UIPulse.RaceEntry.RaceEntryClient",
+   "ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.RaceEntry"
+  ],
+  "claim": "RaceEntry",
+  "screenGuis": [
+   {"name": "RaceEntryPresentation", "displayOrder": 180},
+   {"name": "RaceEntryPresentationScrim", "displayOrder": 179}
+  ],
+  "remotes": [
+   {"remote": "Remotes.Garage.GarageInvoke", "kind": "invoke", "action": "GetInitial", "keys": [],
+    "via": "Garage.GarageCatalogClient.Fetch(remote, {}) (it adds KnownCatalogRevision, as under Classic)",
+    "classicLine": 213, "wrapperLine": 73, "site": "RaceEntryModel: call() from Open()", "when": "every open", "retried": false},
+   {"remote": "Remotes.Racing.RaceRequest", "kind": "invoke", "action": "GetTimeTrialPersonalBest",
+    "keys": ["EventId", "VehicleTier"], "classicLine": [763, 516], "site": "RaceEntryModel: call() from requestBest()",
+    "when": "once per event and tier per open, on the time-trial Setup and Records pages", "retried": false},
+   {"remote": "Remotes.Racing.RaceRequest", "kind": "invoke", "action": "GetTimeTrialLeaderboard",
+    "keys": ["EventId", "VehicleTier", "Limit"], "literals": {"Limit": 20}, "classicLine": 521,
+    "site": "RaceEntryModel: call() from requestBoard()", "when": "once per event and tier per open, on entering Records",
+    "retried": false}
+  ],
+  "listens": [],
+  "bindables": [
+   {"name": "Runtime.Racing.RaceEntryPresentationRequest", "dir": "connect", "classicLine": 880,
+    "payloadFieldsRead": ["Summary", "EventId", "RaceEventId", "TimeTrialEventId"], "site": "RaceEntryClient: wire()"},
+   {"name": "Runtime.Racing.RaceEntryLegacyAction", "dir": "fire", "args": ["\"Close\""], "keys": [],
+    "classicLine": [481, 807], "site": "RaceEntryModel: Exit()", "order": "presentation off and the page hidden first, then the fire (Classic setOpen(false) then Fire)"},
+   {"name": "Runtime.Racing.RaceEntryLegacyAction", "dir": "fire", "args": ["\"StartSelectedVehicle\"", "payload"],
+    "keys": ["Mode", "EventId", "VehicleId", "CockpitId", "Tier", "LapCount"], "classicLine": 679,
+    "site": "RaceEntryModel: Start()", "guard": "closed before the fire (Classic 676); a second press finds the screen closed",
+    "retried": false,
+    "note": "This one fire is both the time-trial start and the race queue join: RaceEntryMenuClient 63-85 spawns the vehicle and then calls StartStagedTimeTrial or fires StartRaceQueueRequest. This owner sends neither."},
+   {"name": "Runtime.UI.FreeRoamHudPresentationMode", "dir": "fire", "keys": ["Owner", "Active", "KeepTelemetry"],
+    "literals": {"Owner": "RaceEntry", "KeepTelemetry": false}, "classicLine": 346, "site": "RaceEntryModel: publishPresentation()",
+    "lookup": "FindFirstChild on every fire, BindableEvent only, as Classic 344-346"}
+  ],
+  "attributes": [
+   {"on": "ReplicatedStorage.Config.Racing.Rewards.Race", "name": "GoldRewardMultiplier", "dir": "read", "classicLine": 104},
+   {"on": "ReplicatedStorage.Config.Racing.Rewards.Race", "name": "SilverRewardMultiplier", "dir": "read", "classicLine": 104},
+   {"on": "ReplicatedStorage.Config.Racing.Rewards.Race", "name": "BronzeRewardMultiplier", "dir": "read", "classicLine": 104},
+   {"on": "ReplicatedStorage.Config.Racing.Rewards.Race", "name": "RewardRoundToNearest", "dir": "read", "classicLine": 105},
+   {"on": "ReplicatedStorage.Config.Racing.Rewards.Race", "name": "MinReward", "dir": "read", "classicLine": 107},
+   {"on": "ReplicatedStorage.Config.Racing.Rewards.Race", "name": "MaxReward", "dir": "read", "classicLine": 107},
+   {"on": "ReplicatedStorage.Config.Racing.RaceCatalog.<pairedEventId(\"Race\")>", "name": "TrackLengthMiles", "dir": "read", "classicLine": 407},
+   {"on": "ReplicatedStorage.Assets.VehiclePreviews.Categories.*.COCKPITS_ReplaceAssetsHere.<model>", "name": "CockpitId", "dir": "read", "classicLine": 253},
+   {"on": "ReplicatedStorage.Assets.VehiclePreviews.Categories.*.COCKPITS_ReplaceAssetsHere.<model>", "name": "MenuImage", "dir": "read", "classicLine": 254},
+   {"on": "ReplicatedStorage.Assets.VehiclePreviews.Categories.*.COCKPITS_ReplaceAssetsHere.<model>", "name": "DisplayName", "dir": "read", "classicLine": 255}
+  ],
+  "config": [
+   {"path": "ReplicatedStorage.Config.UI.Racing.Copy.DailyBonusDisplay", "class": "StringValue", "dir": "read", "classicLine": 759}
+  ],
+  "sharedModules": [
+   {"module": "ReplicatedStorage.Modules.Game.Garage.GarageCatalogClient", "members": ["Fetch"], "classicLine": 73},
+   {"module": "ReplicatedStorage.Modules.Game.Racing.RaceConfigReader", "members": ["GetEventSummary", "GetTimeTrialMedals"], "classicLine": [317, 333, 515, 762]},
+   {"module": "ReplicatedStorage.Modules.Core.ConnectionScope", "members": ["new"]}
+  ],
+  "presence": [{"surface": "RaceEntry", "kind": "FullMenu"}],
+  "names": ["TierE", "TierD", "TierC", "TierB", "TierA", "TierS", "LapSelector", "PrizeSummary", "MedalTargets", "RaceFormat"],
+  "texts": ["TIME TRIAL", "RACE"],
+  "marks": [
+   {"key": "Text.TimeTrial", "on": "the TIME TRIAL mode tab (Setup and Records headers)"},
+   {"key": "Text.Race", "on": "the RACE mode tab (Setup and Records headers)"},
+   {"key": "TierE..TierS", "on": "the six tier buttons of the time-trial Setup page only"},
+   {"key": "LapSelector", "on": "the lap Stepper of the time-trial Setup page only"},
+   {"key": "PrizeSummary", "on": "the prize panel holder, time-trial Setup page"},
+   {"key": "MedalTargets", "on": "the medal targets panel holder, time-trial Setup page"},
+   {"key": "RaceFormat", "on": "the race format panel holder, race Setup page"}
+  ],
+  "contextActions": [],
+  "renderSteps": [],
+  "audio": [],
+  "dropped": [
+   {"item": "ScreenGui.Enabled writes on other ScreenGuis and the PlayerGui.ChildAdded watcher (348-359)",
+    "reason": "API2 5.6 (bindables): FreeRoamHudPresentationMode fires on every device; PC 1.5 rule 8. The branch is unreachable with live config (touch is always false)"},
+   {"item": "UserInputService.TouchEnabled read (17) and the RacingMobileScaledDesktopLayout require (29-31)",
+    "reason": "API2 6.6 rule 1: form factor is Kit.Metrics; the module is not a listed shared module"},
+   {"item": "RacingUIComponents and GarageComponents requires (27-28); every Config.UI.Racing colour, layout, type and asset read; the medal and racing icon atlases; the tier colour literals (41-45)",
+    "reason": "API2 5.6 and 6.6 rules 1 and 3: view lines are replaced by the kit; tier colours are Tokens.Tier"},
+   {"item": "Private money formatter (82-89)", "reason": "API2 5.6: money through Data.Money(v, false)"},
+   {"item": "Destroying an existing PlayerGui.RaceEntryPresentation at start (825-826)",
+    "reason": "API2 6.2 and API1 8: Layers.Create refuses a second gui of that name; one owner by Claim"},
+   {"item": "Category and Sort drop-downs, vehicleCategory and vehicleSort state, the NAME and CLASS sort orders (62-63, 285-286, 617-622, 635-652)",
+    "reason": "API2 5.6: Pulse always sorts by rating, highest first, with no Category or Sort drop-downs"},
+   {"item": "Mode tabs on the Vehicles page (the Classic tabs stay live on every page, 869-870)",
+    "reason": "API2 5.6 target frame r12 shows no tabs there; SelectMode still works from every page in the model"},
+   {"item": "A second GetTimeTrialPersonalBest when Records is drawn (516) and a repeat on every re-render of Setup",
+    "reason": "API2 5.6 required fixes: fetched once per event and tier per open"},
+   {"item": "A repeat GetTimeTrialLeaderboard each time Records is drawn again in one open (521)",
+    "reason": "API2 5.6 required fixes (fetch first, then draw): cached per event and tier per open"},
+   {"item": "The stale last page shown, and clickable, between opening and the profile reply (880-892)",
+    "reason": "API2 5.6 required fixes; PC 5.1 rule 8"},
+   {"item": "Classic instance names GradientOverlay, MapTitleShade, RaceLeftColumn, RaceRightColumn, RaceStats, RecordsLeftColumn, RecordsRightColumn, LapControlRow, TimeTrialMapColumn, TimeTrialRightColumn, DailyBonus, <medal>Target, Rank<n>, Vehicle_<id>, UnavailableVehicle, VehicleGrid, VehicleContext, CardEdgeSafePadding, Category, Sort, Options",
+    "reason": "API2 5.6: only RaceEntryPresentation, TierE..TierS, LapSelector, PrizeSummary, MedalTargets and RaceFormat are kept; no other script reads the rest"},
+   {"item": "The tier buttons on the Records page are named TierE..TierS in Classic (497); in Pulse they carry no mark",
+    "reason": "API2 5.6: the tier marks are on the Setup page"},
+   {"item": "The world-record avatar placeholder (527-528), the map title shade with the words TIME TRIAL and MULTIPLAYER RACE over the map (151-167, 715), medal atlas icons",
+    "reason": "API2 5.6 target frames 03, r11, c07 (view lines are replaced)"}
+  ],
+  "added": [
+   {"item": "CHOOSE VEHICLE on the time-trial Setup page goes straight to Vehicles (same ownership gate as Records); NEXT is relabelled VIEW RECORDS (RECORDS on Compact)",
+    "reason": "API2 5.6 target frames 03 and c07; PC 8 (a shortcut only: pages and their order stay, Back from Vehicles still goes to Records)"},
+   {"item": "Every owned vehicle is listed on the rail; the ones this event does not take are Locked tiles with the sub-line TIER <X> ONLY and cannot be chosen. What can be chosen and started is exactly the Classic list (268)",
+    "reason": "API2 2.9 (Tile Locked: race-entry vehicle rail shows locked cars) and target frame r12"},
+   {"item": "Sort tie-break after rating and name: vehicle id (Classic leaves equal rows in table.sort order)",
+    "reason": "API2 5.6 (sorted by rating, highest first); a total order keeps the pooled rail stable"},
+   {"item": "While the profile reply is outstanding the gated footer button reads LOADING and is disabled; tier, NEXT and CHOOSE wait for it",
+    "reason": "API2 5.6 required fixes: footer buttons exist before any remote returns"},
+   {"item": "Leaderboard message LOADING while GetTimeTrialLeaderboard is outstanding",
+    "reason": "API2 5.6 required fixes: fetch first, then draw"},
+   {"item": "Changed strings: TIER <X> · PLATINUM PRIZE (Classic PLATINUM PRIZE beside a tier badge); DAILY BONUS <value> on one line; <n> LAPS · <n> CHECKPOINTS (CP on Compact) over the map; WORLD RECORD · TIER <X>; GOLD · YOURS on the medal row that equals the personal best medal; rail heading TIER <X> (Classic <X> CLASS VEHICLES) with a position count; header count RECORDS; the Vehicles sub-title is the Classic header text (CHOOSE TIME TRIAL VEHICLE, CHOOSE RACE VEHICLE) under the event name; event facts MODE, LAPS, YOUR BEST, PLATINUM PRIZE, PLAYERS, 1ST PRIZE on the Vehicles page",
+    "reason": "API2 6.6 rule 8: changed by target frames 03, r11, r12 and c07"},
+   {"item": "1ST PRIZE on the race Vehicles page is roundedRacePrize(BaseReward, Gold), the same Classic rule as the Setup page",
+    "reason": "API2 5.6 (prize preview rule) and 6.7 (the one allowed client prize arithmetic)"},
+   {"item": "Money text is FormatFullMoney (floors, never negative) instead of the Classic private formatter (rounds half up)",
+    "reason": "API2 3.5 and 5.6; identical for whole-number rewards, which the rule and the catalogue produce"},
+   {"item": "Kit.Presence.Open(\"RaceEntry\", \"FullMenu\") while open", "reason": "API2 3.9"},
+   {"item": "GetTimeTrialMedals and GetEventSummary are called inside pcall; reply fields are type-checked before use",
+    "reason": "API2 5.6 required fixes and 6.6 rule 6"},
+   {"item": "If a view cannot draw, the screen closes as EXIT does (presentation off, Close fired) and warns once",
+    "reason": "API2 6.6 rule 6: a failure never leaves a page without a way out"},
+   {"item": "start() does not wait for the two remotes and two bindables; when one is not there yet the screen is wired when it arrives and a warning names what is missing after 10 s",
+    "reason": "API2 4 (every Pulse start reaches ready without waiting) and 6.2"}
+  ]
+ }
+]

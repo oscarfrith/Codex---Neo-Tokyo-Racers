@@ -1,0 +1,88 @@
+[
+ {
+  "owner": "ReplicatedStorage.Modules.Game.UIPulse.RaceMenu.RaceMenuClient",
+  "replaces": ["RaceBrowserClient"],
+  "modules": [
+   "ReplicatedStorage.Modules.Game.UIPulse.RaceMenu.RaceMenuModel",
+   "ReplicatedStorage.Modules.Game.UIPulse.RaceMenu.RaceMenuView",
+   "ReplicatedStorage.Modules.Game.UIPulse.RaceMenu.RaceMenuClient",
+   "ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.RaceMenu"
+  ],
+  "claim": "RaceBrowser",
+  "screenGuis": [
+   {"name": "RaceBrowser", "displayOrder": 170},
+   {"name": "RaceBrowserScrim", "displayOrder": 169}
+  ],
+  "remotes": [
+   {"remote": "Remotes.Racing.RaceBrowserTeleportInvoke", "kind": "invoke", "action": "TeleportToRaceStart",
+    "keys": ["EventId", "Mode"], "classicLine": 427, "site": "RaceMenuModel: call() from Teleport()",
+    "guard": "teleportBusy (Classic 417, 420, 429)", "retried": false}
+  ],
+  "listens": [],
+  "bindables": [
+   {"name": "Runtime.UI.OpenRaceBrowser", "dir": "connect", "classicLine": 606},
+   {"name": "Runtime.Racing.RaceTransitionRequest", "dir": "fire", "keys": ["Step", "Reason", "Label", "Delay"],
+    "payloads": [
+     {"Step": "FadeOut", "Reason": "BrowserTeleport", "Label": "TELEPORTING", "classicLine": 423},
+     {"Step": "FadeIn", "Reason": "BrowserTeleportFailed", "Delay": 0.08, "classicLine": 432},
+     {"Step": "RestoreCamera", "Reason": "BrowserTeleport", "classicLine": 439},
+     {"Step": "FadeIn", "Reason": "BrowserTeleport", "Delay": 0.3, "classicLine": 440}
+    ]},
+   {"name": "Runtime.UI.FreeRoamVehicleExited", "dir": "fire", "keys": [], "classicLine": 385},
+   {"name": "Runtime.UI.FreeRoamHudPresentationMode", "dir": "fire", "keys": ["Owner", "Active", "KeepTelemetry"],
+    "literals": {"Owner": "RaceBrowser", "KeepTelemetry": false}, "classicLine": 400},
+   {"name": "Runtime.UI.ShowTopNotification", "dir": "fire",
+    "args": ["\"ROUTE SET: \" .. string.upper(DisplayName)", "2.2"], "classicLine": 453}
+  ],
+  "attributes": [
+   {"on": "ReplicatedStorage.Config.Racing.<catalog>.<event>", "name": "EventId", "dir": "read", "classicLine": 81}
+  ],
+  "sharedModules": [
+   {"module": "ReplicatedStorage.Modules.Game.Racing.RaceConfigReader", "members": ["GetEventSummary"], "classicLine": 82},
+   {"module": "ReplicatedStorage.Modules.Game.UI.RouteGuide", "members": ["SetDestinationById"], "classicLine": 446}
+  ],
+  "names": ["CardContent", "TeleportToStart"],
+  "contextActions": [],
+  "renderSteps": [],
+  "audio": [],
+  "dropped": [
+   {"item": "Enabled writes on other ScreenGuis and the PlayerGui.ChildAdded watcher (406-410)",
+    "reason": "API2 5.2: the Classic touch branch is not carried; FreeRoamHudPresentationMode fires on every device"},
+   {"item": "UserInputService.TouchEnabled read (16) and the RacingMobileScaledDesktopLayout require (25-27)",
+    "reason": "API2 5.2 and 6.6 rule 1: form factor is Kit.Metrics; the module is not a listed shared module"},
+   {"item": "RacingUIComponents require (23) and every Config.UI.Racing colour, layout, type and asset read",
+    "reason": "API2 6.6 rule 1: view lines are replaced by the kit"},
+   {"item": "Private money formatter (61-68)", "reason": "API2 5.2: Data.Money(v, false) replaces it"},
+   {"item": "Destroying an existing PlayerGui.RaceBrowser at start (457-458)",
+    "reason": "API2 6.2 and API1 8: Layers.Create refuses a second gui of that name; one owner by Claim"},
+   {"item": "Classic instance names Overlay, RacingShell, Title, Content, AvailableEvents, EventList, EventDetail, TrackImage, TrackMap, EventDetails, Event_<key>, Select, Thumbnail, PrizeAmount, Exit (Compact detail page), SetRoute as a Classic name",
+    "reason": "API2 5.2: only RaceBrowser, CardContent and TeleportToStart are kept; no other script reads the rest"},
+   {"item": "The Mode of a teleport is read after the 0.25 s wait (425) while the EventId is read before it (418)",
+    "reason": "API2 5.2 teleportSelected and 6.7: same remote, action and keys; both values come from the row selected when the button was pressed"},
+   {"item": "A teleport failure text drawn into a later opening of the menu (433-434)",
+    "reason": "API2 6.6 rule 7: one render token"},
+   {"item": "Unbounded WaitForChild chain in start (20-34)",
+    "reason": "API2 4: every Pulse start reaches ready without waiting; hops are bounded and a late OpenRaceBrowser is connected when it appears"},
+   {"item": "print(\"[RaceBrowserClient] Shared-shell Race Browser active.\") (611)",
+    "reason": "API2 6.6 (API1 11 rule 12): Pulse modules only warn"}
+  ],
+  "added": [
+   {"item": "Filter tabs ALL EVENTS / TIME TRIALS / RACES (ids All, TimeTrials, Races): a client-side filter of the same rows, reset to All on every open",
+    "reason": "API2 5.2 New in Pulse"},
+   {"item": "Escape and ButtonB: the Compact detail page goes back to the list, otherwise the menu closes (Input.BindBack, bound only while open)",
+    "reason": "API2 5.2 New in Pulse"},
+   {"item": "ButtonL1 and ButtonR1 step through the filter tabs (Input.BindBumpers, bound only while open)",
+    "reason": "API2 2.8 Tabs and 5.2"},
+   {"item": "Compact: list page, then detail page; BACK returns to the list", "reason": "API2 5.2 New in Pulse"},
+   {"item": "Kit.Presence.Open(\"RaceBrowser\", \"FullMenu\") on open, released on close", "reason": "API2 5.2 and 3.9"},
+   {"item": "Cash chip: Data.StatusCluster Mode CashOnly; Cash.Bind(player) reads leaderstats.Cash",
+    "reason": "API2 3.4 and 3.5; target frames of 5.2 (NOTES Q3)"},
+   {"item": "Changed strings: title RACE BROWSER becomes RACES; new BACK, EVENT n OF m, n EVENTS; fact rows drawn as label and value (ROUTE, LAPS, CHECKPOINTS, PLAYERS 'a TO b', PRIZE) instead of '3 LAPS', '17 CHECKPOINTS', '2-6 PLAYERS'; the EVENT DETAILS heading and the TRACK IMAGE placeholder are not drawn",
+    "reason": "API2 6.6 rule 8; target frames of 5.2"},
+   {"item": "Gamepad focus on open (GuiService.SelectedObject on the selected row), cleared on close",
+    "reason": "API2 5.2 target 'gamepad'; API1 9 Input.ShouldEnterFocus (NOTES Q7)"},
+   {"item": "RouteGuide.SetDestinationById is protected: an error reads as NO ROUTE FOR THIS EVENT YET",
+    "reason": "API2 6.6 rule 6"}
+  ]
+ }
+]

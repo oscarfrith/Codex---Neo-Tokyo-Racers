@@ -1,0 +1,128 @@
+{
+ "_note": "WorldMap family (install 3). UIPulse.Map.* is in spec_ops_shared.json and is installed by then. Dev.Fixtures exists since Phase 1. The Routes source op is the integrator's (generated from routes.json).",
+ "ops": [
+  {
+   "id": "worldmap",
+   "kind": "create",
+   "class": "Folder",
+   "path": [
+    "ReplicatedStorage",
+    "Modules",
+    "Game",
+    "UIPulse",
+    "WorldMap"
+   ]
+  },
+  {
+   "id": "worldmap.FullMapModel",
+   "kind": "create",
+   "class": "ModuleScript",
+   "path": [
+    "ReplicatedStorage",
+    "Modules",
+    "Game",
+    "UIPulse",
+    "WorldMap",
+    "FullMapModel"
+   ],
+   "after": "after/ReplicatedStorage.Modules.Game.UIPulse.WorldMap.FullMapModel.lua"
+  },
+  {
+   "id": "worldmap.FullMapView",
+   "kind": "create",
+   "class": "ModuleScript",
+   "path": [
+    "ReplicatedStorage",
+    "Modules",
+    "Game",
+    "UIPulse",
+    "WorldMap",
+    "FullMapView"
+   ],
+   "after": "after/ReplicatedStorage.Modules.Game.UIPulse.WorldMap.FullMapView.lua"
+  },
+  {
+   "id": "worldmap.FullMapClient",
+   "kind": "create",
+   "class": "ModuleScript",
+   "path": [
+    "ReplicatedStorage",
+    "Modules",
+    "Game",
+    "UIPulse",
+    "WorldMap",
+    "FullMapClient"
+   ],
+   "after": "after/ReplicatedStorage.Modules.Game.UIPulse.WorldMap.FullMapClient.lua"
+  },
+  {
+   "id": "world",
+   "kind": "create",
+   "class": "Folder",
+   "path": [
+    "ReplicatedStorage",
+    "Modules",
+    "Game",
+    "UIPulse",
+    "World"
+   ]
+  },
+  {
+   "id": "world.WorldPromptModel",
+   "kind": "create",
+   "class": "ModuleScript",
+   "path": [
+    "ReplicatedStorage",
+    "Modules",
+    "Game",
+    "UIPulse",
+    "World",
+    "WorldPromptModel"
+   ],
+   "after": "after/ReplicatedStorage.Modules.Game.UIPulse.World.WorldPromptModel.lua"
+  },
+  {
+   "id": "world.EventCardView",
+   "kind": "create",
+   "class": "ModuleScript",
+   "path": [
+    "ReplicatedStorage",
+    "Modules",
+    "Game",
+    "UIPulse",
+    "World",
+    "EventCardView"
+   ],
+   "after": "after/ReplicatedStorage.Modules.Game.UIPulse.World.EventCardView.lua"
+  },
+  {
+   "id": "world.WorldPromptView",
+   "kind": "create",
+   "class": "ModuleScript",
+   "path": [
+    "ReplicatedStorage",
+    "Modules",
+    "Game",
+    "UIPulse",
+    "World",
+    "WorldPromptView"
+   ],
+   "after": "after/ReplicatedStorage.Modules.Game.UIPulse.World.WorldPromptView.lua"
+  },
+  {
+   "id": "fixtures.WorldMap",
+   "kind": "create",
+   "class": "ModuleScript",
+   "path": [
+    "ReplicatedStorage",
+    "Modules",
+    "Game",
+    "UIPulse",
+    "Dev",
+    "Fixtures",
+    "WorldMap"
+   ],
+   "after": "after/ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.WorldMap.lua"
+  }
+ ]
+}

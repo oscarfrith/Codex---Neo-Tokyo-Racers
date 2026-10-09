@@ -1,0 +1,586 @@
+-- Owns the race menu drawing for Regular and Compact (header and filter tabs, event list, detail, action row, status line); it does not own the menu state, any remote, bindable or attribute, nor the ScreenGui (the client's Layer).
+-- Pulse UI (phase2). ReplicatedStorage.Modules.Game.UIPulse.RaceMenu.RaceMenuView. Requires: Tokens, Text, Surface, Controls, Collections, Data, Input.
+local GuiService = game:GetService("GuiService")
+
+local kit = script.Parent.Parent.Kit
+local Tokens = require(kit.Tokens)
+local Text = require(kit.Text)
+local Surface = require(kit.Surface)
+local Controls = require(kit.Controls)
+local Collections = require(kit.Collections)
+local Data = require(kit.Data)
+local Input = require(kit.Input)
+
+local View = {}
+
+-- Strings. EXIT, SET ROUTE and the empty and placeholder texts are Classic (576, 586, 229, 254); the title,
+-- the tab names, BACK and the event count are from the previews (mockup 02, c05, c06) and are listed in contract.json.
+local STRINGS = table.freeze({
+	Title = "RACES",
+	Exit = "EXIT",
+	Back = "BACK",
+	SetRoute = "SET ROUTE",
+	Empty = "NO EVENTS AVAILABLE",
+	TrackMap = "TRACK MAP",
+	Event = "EVENT",
+	Events = "EVENTS",
+	Of = "OF",
+	Laps = "LAPS",
+})
+
+local TAB_TEXT = table.freeze({ All = "ALL EVENTS", TimeTrials = "TIME TRIALS", Races = "RACES" })
+local TAB_ORDER = table.freeze({ "All", "TimeTrials", "Races" }) -- RaceMenuModel.Filters
+
+-- Fact row id -> icon. The route row keeps the Classic circuit / point-to-point split (269).
+local FACT_ICON = table.freeze({ Laps = "laps", Checkpoints = "checkpoints", Players = "players" })
+
+local warned = {}
+local function warnOnce(message)
+	if not warned[message] then
+		warned[message] = true
+		warn("[Pulse.RaceMenuView] " .. message)
+	end
+end
+
+local function newFrame(name, parent)
+	local frame = Instance.new("Frame")
+	frame.Name = name
+	frame.BackgroundTransparency = 1
+	frame.BorderSizePixel = 0
+	frame.Parent = parent
+	return frame
+end
+
+local function newPicture(name, parent, scaleType)
+	local picture = Instance.new("ImageLabel")
+	picture.Name = name
+	picture.BackgroundTransparency = 1
+	picture.BorderSizePixel = 0
+	picture.Size = UDim2.fromScale(1, 1)
+	picture.ScaleType = scaleType
+	picture.Image = ""
+	picture.Parent = parent
+	return picture
+end
+
+local function setProperty(instance, property, value)
+	if instance[property] ~= value then
+		instance[property] = value
+	end
+end
+
+function View.Mount(layer, model, scope)
+	assert(type(layer) == "table" and layer.Root, "[Pulse.RaceMenuView] Mount needs a Layer")
+	assert(type(model) == "table" and model.Changed, "[Pulse.RaceMenuView] Mount needs a model")
+	local ctx = layer.Metrics
+	local root = layer.Root
+
+	local view = {}
+	local destroyed = false
+	local built = nil -- the current tree (one class)
+	local shown = nil -- last value given to layer.SetVisible
+	local cashPlayer = nil
+
+	-- The scrim covers the whole screen on the live layer; a stage (gallery, tests) has no scrim gui.
+	local scrim = Surface.Scrim(layer.ScrimRoot or root, { Kind = "Menu" }, scope)
+
+	-- A kit size prop is a design value; this turns a real-pixel target back into one (Px(design) == pixels).
+	local function design(pixels)
+		return pixels / ctx.Scale
+	end
+
+	local function slotPoint(name)
+		local position = layer.Slot(name).Position
+		return position.X.Offset, position.Y.Offset
+	end
+
+	-- API1 8: a child of a slot takes the slot's anchor and sits at zero.
+	local function place(component, slotName)
+		local slot = layer.Slot(slotName)
+		component.Instance.AnchorPoint = slot.AnchorPoint
+		component.Instance.Position = UDim2.new()
+	end
+
+	-- Sends a component only the props that differ from the last ones sent.
+	local function patch(tree, id, component, props)
+		local last = tree.Cache[id]
+		if not last then
+			last = {}
+			tree.Cache[id] = last
+		end
+		local delta, any = {}, false
+		for key, value in pairs(props) do
+			if last[key] ~= value then
+				last[key] = value
+				delta[key] = value
+				any = true
+			end
+		end
+		if any then
+			component.Set(delta)
+		end
+	end
+
+	local function bindCash(tree)
+		local player = cashPlayer
+		if not player then
+			return
+		end
+		-- Data's first Foundation read may yield once (API2 3.5), so never on the caller's thread.
+		task.spawn(function()
+			local ok, problem = pcall(function()
+				tree.Status.Cash.Bind(player)
+			end)
+			if not ok then
+				warnOnce("cash chip bind failed: " .. tostring(problem))
+			end
+		end)
+	end
+
+	-- Build: one tree per class ------------------------------------------------------------------------------------
+	local function build()
+		local compact = ctx.Class == "Compact"
+		local tree = { Compact = compact, Cache = {}, Components = {}, Instances = {} }
+		local function keep(component)
+			table.insert(tree.Components, component)
+			return component
+		end
+
+		local tabItems = {}
+		for _, id in ipairs(TAB_ORDER) do
+			table.insert(tabItems, { Id = id, Text = TAB_TEXT[id] })
+		end
+		-- Bumpers are bound by the client only while the menu is open, never by the tabs.
+		tree.Header = keep(Controls.Header(layer.Slot("TopLeft"), {
+			Title = STRINGS.Title,
+			Count = "",
+			Tabs = {
+				Tabs = tabItems,
+				Selected = model.Filter(),
+				Bumpers = false,
+				OnSelected = function(id)
+					model.SetFilter(id)
+				end,
+			},
+		}, scope))
+		tree.Filter = model.Filter()
+		if compact then
+			-- Compact detail page: the title is the event name (c06). A second header, shown instead of the first.
+			tree.DetailHeader = keep(Controls.Header(layer.Slot("TopLeft"), { Name = "DetailHeader", Title = "", Visible = false }, scope))
+		end
+
+		tree.Status = keep(Data.StatusCluster(layer.Slot("TopRight"), { Mode = "CashOnly" }, scope))
+		place(tree.Status, "TopRight")
+
+		local body = newFrame("MenuBody", root)
+		table.insert(tree.Instances, body)
+		tree.Body = body
+
+		tree.ListHost = newFrame("EventListHost", body)
+		local listProps = {
+			OnSelected = function(key)
+				model.Select(key)
+				if tree.Compact then
+					model.SetPage("Detail")
+				end
+			end,
+		}
+		if compact then
+			listProps.RowHeight = Tokens.Space.TouchMin
+		end
+		tree.List = keep(Collections.List(tree.ListHost, listProps, scope))
+		Input.Mark(tree.List.Instance, "CardContent") -- onboarding N1
+
+		tree.Empty = keep(Text.Label(body, {
+			Name = "EmptyState",
+			Text = STRINGS.Empty,
+			Role = "SectionHead",
+			Colour = "TextMuted",
+			Align = "Left",
+			Visible = false,
+		}, scope))
+
+		tree.Hero = keep(Surface.Panel(body, { Name = "Hero", Pad = 0, Hairlines = false, Visible = false }, scope))
+		tree.HeroPicture = newPicture("TrackPicture", tree.Hero.Content, Enum.ScaleType.Crop)
+		tree.HeroIndex = keep(Text.Label(tree.Hero.Content, {
+			Name = "EventIndex",
+			Text = "",
+			Role = "Label",
+			Colour = "TextSecondary",
+			Align = "Left",
+			Shadow = true,
+		}, scope))
+		tree.HeroTitle = keep(Text.Label(tree.Hero.Content, {
+			Name = "EventName",
+			Text = "",
+			Role = compact and "Status" or "SectionHead",
+			Align = "Left",
+			Shadow = true,
+		}, scope))
+		tree.HeroTitle.Instance.AnchorPoint = Vector2.new(0, 1)
+		tree.HeroLine = keep(Surface.Hairline(tree.Hero.Content, { Edge = "Bottom", Colour = "Pink" }, scope))
+
+		tree.Map = keep(Surface.Panel(body, { Name = "TrackMapPanel", Pad = 0, Visible = false }, scope))
+		tree.MapPicture = newPicture("MapPicture", tree.Map.Content, Enum.ScaleType.Fit)
+		tree.MapPlaceholder = keep(Text.Label(tree.Map.Content, {
+			Name = "Placeholder",
+			Text = STRINGS.TrackMap,
+			Role = "Label",
+			Colour = "TextMuted",
+			Align = "Left",
+		}, scope))
+
+		tree.Facts = keep(Surface.Panel(body, { Name = "EventFacts", Visible = false }, scope))
+		tree.FactList = keep(Data.FactList(tree.Facts.Content, { Rows = {} }, scope))
+
+		tree.StatusLine = keep(Text.Label(layer.Slot("BottomLeft"), {
+			Name = "StatusLine",
+			Text = "",
+			Role = "Label",
+			Colour = "Danger",
+			Align = "Left",
+			Wrap = true,
+			Visible = false,
+		}, scope))
+		place(tree.StatusLine, "BottomLeft")
+
+		local function onTeleport()
+			task.spawn(model.Teleport) -- yields (fade wait and the server call)
+		end
+		local function onRoute()
+			model.SetRoute()
+		end
+		local function onExit()
+			model.SetOpen(false)
+		end
+		local first
+		if compact then
+			first = { Id = "Back", Variant = "Default", Text = STRINGS.Back, Icon = "back", OnActivated = function()
+				model.SetPage("List")
+			end }
+		else
+			first = { Id = "Exit", Variant = "Default", Text = STRINGS.Exit, Icon = "exit", OnActivated = onExit }
+		end
+		-- Order: back or exit, secondary, main (API1 7.3).
+		tree.Buttons = keep(Controls.ButtonRow(layer.Slot("BottomRight"), {
+			Align = "Right",
+			Visible = not compact,
+			Buttons = {
+				first,
+				{ Id = "SetRoute", Variant = "Default", Text = STRINGS.SetRoute, Icon = "set_route", Disabled = true, OnActivated = onRoute },
+				{ Id = "Teleport", Variant = "Main", Text = model.TeleportText(), Icon = "pin", Disabled = true, OnActivated = onTeleport },
+			},
+		}, scope))
+		tree.RouteButton = tree.Buttons.Button("SetRoute")
+		tree.TeleportButton = tree.Buttons.Button("Teleport")
+		Input.Mark(tree.TeleportButton.Instance, "TeleportToStart") -- onboarding N6
+		tree.FirstButton = tree.Buttons.Button(first.Id)
+		if compact then
+			-- Compact list page: EXIT alone (c05).
+			tree.ListButtons = keep(Controls.ButtonRow(layer.Slot("BottomRight"), {
+				Name = "ListButtons",
+				Align = "Right",
+				Buttons = { { Id = "Exit", Variant = "Default", Text = STRINGS.Exit, Icon = "exit", OnActivated = onExit } },
+			}, scope))
+			tree.FirstButton = tree.ListButtons.Button("Exit")
+		end
+
+		bindCash(tree)
+		return tree
+	end
+
+	local function destroyTree(tree)
+		for index = #tree.Components, 1, -1 do
+			tree.Components[index].Destroy()
+		end
+		for _, instance in ipairs(tree.Instances) do
+			instance:Destroy()
+		end
+		tree.Components = {}
+		tree.Instances = {}
+	end
+
+	local function detailPageOf(tree)
+		local item = model.Detail()
+		return tree.Compact and model.Page() == "Detail" and item ~= nil
+	end
+
+	-- Layout: every number is a slot position or a ctx result; whole pixels ------------------------------------------
+	local function panelRect(tree, id, component, x, y, width, height)
+		setProperty(component.Instance, "Position", UDim2.fromOffset(x, y))
+		patch(tree, id, component, { Width = design(width), Height = design(height) })
+	end
+
+	local function layout(tree)
+		local detailPage = detailPageOf(tree)
+		tree.LayoutPage = detailPage
+		local left, top = slotPoint("TopLeft")
+		local right, bottom = slotPoint("BottomRight")
+		local gap = ctx.Px(Tokens.Space.Gap)
+		local header = if detailPage then tree.DetailHeader else tree.Header
+		local buttonHeight = if tree.Compact then ctx.Touch(Tokens.Space.CompactButtonDrawn) else ctx.Px(Tokens.Space.ButtonHeight)
+		local bodyTop = top + header.Height() + gap
+		local width = math.max(0, right - left)
+		local height = math.max(0, bottom - buttonHeight - gap - bodyTop)
+		setProperty(tree.Body, "Position", UDim2.fromOffset(left, bodyTop))
+		setProperty(tree.Body, "Size", UDim2.fromOffset(width, height))
+
+		local listWidth, detailX, heroWidth, heroHeight, pad
+		local mapY, mapWidth, factsX, factsY, factsWidth, factsHeight
+		if tree.Compact then
+			-- c05: the list fills the page. c06: hero strip over the map on the left, facts on the right.
+			pad = gap
+			listWidth = width
+			detailX = 0
+			factsWidth = math.min(ctx.Px(Tokens.Space.CompactSidePanelWidth), width)
+			heroWidth = math.max(0, width - factsWidth - gap)
+			heroHeight = math.min(ctx.Px(Tokens.Space.CompactTileHeight), height)
+			mapY = heroHeight + gap
+			mapWidth = heroWidth
+			factsX = heroWidth + gap
+			factsY = 0
+			factsHeight = height
+		else
+			-- Mockup 02: list on the left; hero over map and facts on the right.
+			pad = ctx.Px(Tokens.Space.Pad)
+			listWidth = math.min(ctx.Px(Tokens.Space.ListWidth), width)
+			detailX = listWidth + gap
+			heroWidth = math.max(0, width - detailX)
+			heroHeight = math.max(0, math.floor((height - gap) / 2))
+			mapY = heroHeight + gap
+			factsWidth = math.min(ctx.Px(Tokens.Space.StatPanelWidth), heroWidth)
+			mapWidth = math.max(0, heroWidth - factsWidth - gap)
+			factsX = detailX + mapWidth + gap
+			factsY = mapY
+			factsHeight = math.max(0, height - mapY)
+		end
+		local mapHeight = math.max(0, height - mapY)
+
+		setProperty(tree.ListHost, "Position", UDim2.fromOffset(0, 0))
+		setProperty(tree.ListHost, "Size", UDim2.fromOffset(listWidth, height))
+		setProperty(tree.Empty.Instance, "Position", UDim2.fromOffset(detailX, 0))
+		panelRect(tree, "HeroRect", tree.Hero, detailX, 0, heroWidth, heroHeight)
+		panelRect(tree, "MapRect", tree.Map, detailX, mapY, mapWidth, mapHeight)
+		panelRect(tree, "FactsRect", tree.Facts, factsX, factsY, factsWidth, factsHeight)
+
+		setProperty(tree.HeroIndex.Instance, "Position", UDim2.fromOffset(pad, pad))
+		setProperty(tree.HeroTitle.Instance, "Position", UDim2.fromOffset(pad, heroHeight - pad))
+		setProperty(tree.MapPlaceholder.Instance, "Position", UDim2.fromOffset(pad, pad))
+		patch(tree, "HeroTitleWidth", tree.HeroTitle, { MaxWidth = design(math.max(1, heroWidth - pad - pad)) })
+		patch(tree, "StatusWidth", tree.StatusLine, { MaxWidth = design(math.max(1, if tree.Compact then math.floor(width / 3) else listWidth)) })
+	end
+
+	-- Render: patches only -----------------------------------------------------------------------------------------
+	local function listItems(tree)
+		local result = {}
+		for index, item in ipairs(model.Items()) do
+			local row = { Key = item.Key, Title = item.Title }
+			if item.Thumbnail ~= "" then
+				row.Image = item.Thumbnail
+			end
+			if tree.Compact then
+				-- c05: name, type and modes, laps and players, prize chip.
+				row.Sub = item.TypeLine
+				row.Right = item.Laps .. " " .. STRINGS.Laps .. "  \u{00B7}  " .. item.Players
+				row.Chip = item.Prize
+				row.ChipKind = "Yellow"
+			else
+				-- Mockup 02: the route line as a small tag, the modes under the name.
+				row.Sub = item.Availability
+				row.Chip = item.Descriptor
+				row.ChipKind = "Neutral"
+			end
+			result[index] = row
+		end
+		return result
+	end
+
+	local function factRows(item)
+		local result = {}
+		for index, fact in ipairs(item.Facts) do
+			local icon = FACT_ICON[fact.Id]
+			if fact.Id == "Route" then
+				icon = if fact.Circuit then "loop" else "route"
+			end
+			result[index] = { Id = fact.Id, Icon = icon, Label = fact.Label, Value = fact.Value, Kind = fact.Kind }
+		end
+		return result
+	end
+
+	local function focusOnOpen(tree)
+		if not Input.ShouldEnterFocus(ctx) then
+			return
+		end
+		local key = model.SelectedKey()
+		local row = key and tree.List.Row(key) or nil
+		local target = (row and row.Instance) or tree.FirstButton.Instance
+		pcall(function()
+			GuiService.SelectedObject = target
+		end)
+	end
+
+	local function focusOnClose()
+		pcall(function()
+			local current = GuiService.SelectedObject
+			if current and current:IsDescendantOf(root) then
+				GuiService.SelectedObject = nil
+			end
+		end)
+	end
+
+	local function render(_reason)
+		if destroyed or not built then
+			return
+		end
+		local tree = built
+		local compact = tree.Compact
+		local item, index, count = model.Detail()
+		local hasDetail = item ~= nil
+		local detailPage = compact and model.Page() == "Detail" and hasDetail
+		if tree.LayoutPage ~= detailPage then
+			layout(tree) -- the Compact pages have different headers
+		end
+
+		-- Header and filter tabs.
+		patch(tree, "Header", tree.Header, {
+			Count = tostring(count) .. " " .. (if count == 1 then STRINGS.Event else STRINGS.Events),
+			Visible = not detailPage,
+		})
+		local filter = model.Filter()
+		if tree.Filter ~= filter then
+			tree.Filter = filter
+			tree.Header.Tabs.Select(filter)
+		end
+		if compact then
+			patch(tree, "DetailHeader", tree.DetailHeader, { Title = if hasDetail then item.Title else "", Visible = detailPage })
+		end
+
+		-- List: the keyed pool takes new items only when the rows changed; a selection is one Select call.
+		local version = model.RowsVersion()
+		if tree.RowsVersion ~= version then
+			tree.RowsVersion = version
+			tree.SelectedKey = nil
+			tree.List.SetItems(listItems(tree))
+		end
+		local selectedKey = model.SelectedKey()
+		if tree.SelectedKey ~= selectedKey then
+			tree.SelectedKey = selectedKey
+			if selectedKey then
+				tree.List.Select(selectedKey)
+			end
+		end
+		setProperty(tree.ListHost, "Visible", not detailPage)
+
+		-- Detail.
+		local showDetail = hasDetail and (detailPage or not compact)
+		patch(tree, "Hero", tree.Hero, { Visible = showDetail })
+		patch(tree, "Map", tree.Map, { Visible = showDetail })
+		patch(tree, "Facts", tree.Facts, { Visible = showDetail })
+		patch(tree, "Empty", tree.Empty, { Visible = not hasDetail })
+		if hasDetail then
+			patch(tree, "HeroIndex", tree.HeroIndex, {
+				Text = STRINGS.Event .. " " .. tostring(index) .. " " .. STRINGS.Of .. " " .. tostring(count),
+			})
+			patch(tree, "HeroTitle", tree.HeroTitle, { Text = if compact then item.TypeLine else item.Title })
+			setProperty(tree.HeroPicture, "Image", item.TrackImage)
+			setProperty(tree.MapPicture, "Image", item.MapImage)
+			patch(tree, "MapPlaceholder", tree.MapPlaceholder, { Visible = item.MapImage == "" })
+			if tree.FactsItem ~= item then
+				tree.FactsItem = item
+				tree.FactList.SetRows(factRows(item))
+			end
+		end
+
+		-- Actions (230-239): both disabled without a selection.
+		local canAct = model.CanAct()
+		patch(tree, "Teleport", tree.TeleportButton, { Disabled = not canAct, Text = model.TeleportText() })
+		patch(tree, "Route", tree.RouteButton, { Disabled = not canAct })
+		if compact then
+			patch(tree, "Buttons", tree.Buttons, { Visible = detailPage })
+			patch(tree, "ListButtons", tree.ListButtons, { Visible = not detailPage })
+		end
+
+		-- The inline error line (433, 447).
+		local status = model.Status()
+		patch(tree, "StatusLine", tree.StatusLine, {
+			Text = status or "",
+			Visible = status ~= nil and (detailPage or not compact),
+		})
+
+		-- Drawn first, shown after. Root Visible only; never ScreenGui.Enabled.
+		local isOpen = model.IsOpen() == true
+		if shown ~= isOpen then
+			shown = isOpen
+			layer.SetVisible(isOpen)
+			if isOpen then
+				focusOnOpen(tree)
+			else
+				focusOnClose()
+			end
+		end
+	end
+
+	local function rebuild()
+		if built then
+			destroyTree(built)
+		end
+		built = build()
+		layout(built)
+		if not built.Compact and model.Page() ~= "List" then
+			model.SetPage("List") -- the page exists on Compact only
+		end
+		render("Rebuild")
+	end
+
+	built = build()
+	layout(built)
+	render("Mount")
+
+	scope:connect(model.Changed, function(reason)
+		render(reason)
+	end)
+	if ctx.Changed then
+		scope:connect(ctx.Changed, function(change)
+			if destroyed or (type(change) == "table" and change.Layout == false) then
+				return
+			end
+			-- Deferred so the layer has moved its slots first.
+			task.defer(function()
+				if destroyed or not built then
+					return
+				end
+				if (ctx.Class == "Compact") ~= built.Compact then
+					rebuild()
+				else
+					layout(built)
+				end
+			end)
+		end)
+	end
+
+	view.Render = render
+
+	-- The client hands over the player; the kit chip then reads leaderstats.Cash itself (API2 3.5).
+	function view.BindCash(player)
+		cashPlayer = player
+		if built then
+			bindCash(built)
+		end
+	end
+
+	function view.Destroy()
+		if destroyed then
+			return
+		end
+		destroyed = true
+		if built then
+			destroyTree(built)
+			built = nil
+		end
+		scrim.Destroy()
+	end
+
+	return view
+end
+
+return View

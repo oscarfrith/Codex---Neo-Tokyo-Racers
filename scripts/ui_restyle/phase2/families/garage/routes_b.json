@@ -1,0 +1,9 @@
+{
+ "family": "Garage",
+ "_half": "B (owned garage and forks). Half A adds the GarageUI row; the integrator merges the two swap maps.",
+ "swap": {
+  "OwnedGarageClient": "ReplicatedStorage.Modules.Game.UIPulse.Garage.OwnedGarageClient",
+  "GarageEntranceClient": "ReplicatedStorage.Modules.Game.UIPulse.Garage.GarageEntranceClient"
+ },
+ "add": []
+}

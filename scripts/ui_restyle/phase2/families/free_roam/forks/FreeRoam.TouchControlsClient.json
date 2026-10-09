@@ -1,0 +1,10 @@
+{
+ "module": "ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.TouchControlsClient",
+ "source": "ReplicatedStorage.Modules.Game.Vehicles.MobileDriveControlsClient",
+ "replace": [
+  {"lines": [22, 103], "with": "FreeRoam.TouchControlsClient.span1.lua"},
+  {"lines": [176, 192], "with": "FreeRoam.TouchControlsClient.span2.lua"}
+ ],
+ "_kept": "1-21, 104-175, 193-208 byte-identical (gate at 12; input, thumbstick, tilt and mode code 105-174; render step 194-201)",
+ "_review_copy": "after/ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.TouchControlsClient.lua, made by forks/assemble_touch_fork.py"
+}

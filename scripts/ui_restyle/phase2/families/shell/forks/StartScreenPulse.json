@@ -1,0 +1,14 @@
+{
+  "source": "ReplicatedFirst.Loading.InitialLoadingAndStartScreenClient",
+  "module": "ReplicatedFirst.Loading.StartScreenPulse",
+  "_note": "Kept Classic lines: 20-21, 23-37, 39-112, 230, 281, 292-327. API2 5.8 names 22, 38, 113-229, 231-280 and 282-291 as the replaced spans. Two more are needed to make the script a module: 1-19 becomes the header (services, the kit loader, the menu builder, the opening of Run and the locals of Classic 8-10 and 13) and 328 (a print) becomes the closing of Run.",
+  "replace": [
+    { "lines": [1, 19], "with": "StartScreenPulse.01_header.lua" },
+    { "lines": [22, 22], "with": "StartScreenPulse.02_kit.lua" },
+    { "lines": [38, 38], "with": "StartScreenPulse.03_begin.lua" },
+    { "lines": [113, 229], "with": "StartScreenPulse.04_menu.lua" },
+    { "lines": [231, 280], "with": "StartScreenPulse.05_layout.lua" },
+    { "lines": [282, 291], "with": "StartScreenPulse.06_busy.lua" },
+    { "lines": [328, 328], "with": "StartScreenPulse.07_footer.lua" }
+  ]
+}

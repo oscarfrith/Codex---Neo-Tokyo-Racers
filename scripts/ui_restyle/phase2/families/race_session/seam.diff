@@ -1,0 +1,11 @@
+--- before/RaceTransitionClient
++++ after/RaceTransitionClient
+@@ -69,4 +69,8 @@
+ pcall(function()
+ 	label.FontFace = Font.new("rbxasset://fonts/families/Michroma.json", Enum.FontWeight.Bold)
++end)
++pcall(function()
++	local switch = require(game:GetService("ReplicatedFirst"):FindFirstChild("UIStyleSwitch"))
++	if switch.Active("RaceSession") then require(game:GetService("ReplicatedStorage").Modules.Game.UIPulse.Kit.Text).StyleForeign(label, "Label") end
+ end)
+ label.Parent = fade

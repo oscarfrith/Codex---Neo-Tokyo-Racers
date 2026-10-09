@@ -1,0 +1,28 @@
+{
+ "_note": "F2a (HUD) half of the FreeRoam family ops. 'after' paths are relative to families/free_roam. The Folder op 'freeroam' may also be declared by agent F2b: keep one. The three UIPulse.Map modules (world_map/spec_ops_shared.json) and the RouteGuide source op (F2b) must come before these in the same install; Dev.Fixtures already exists (Phase 1).",
+ "ops": [
+  {"id": "freeroam", "kind": "create", "class": "Folder",
+   "path": ["ReplicatedStorage", "Modules", "Game", "UIPulse", "FreeRoam"]},
+  {"id": "freeroam.HudModel", "kind": "create", "class": "ModuleScript",
+   "path": ["ReplicatedStorage", "Modules", "Game", "UIPulse", "FreeRoam", "HudModel"],
+   "after": "after/ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.HudModel.lua"},
+  {"id": "freeroam.HudMinimap", "kind": "create", "class": "ModuleScript",
+   "path": ["ReplicatedStorage", "Modules", "Game", "UIPulse", "FreeRoam", "HudMinimap"],
+   "after": "after/ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.HudMinimap.lua"},
+  {"id": "freeroam.CarPanelView", "kind": "create", "class": "ModuleScript",
+   "path": ["ReplicatedStorage", "Modules", "Game", "UIPulse", "FreeRoam", "CarPanelView"],
+   "after": "after/ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.CarPanelView.lua"},
+  {"id": "freeroam.HudModals", "kind": "create", "class": "ModuleScript",
+   "path": ["ReplicatedStorage", "Modules", "Game", "UIPulse", "FreeRoam", "HudModals"],
+   "after": "after/ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.HudModals.lua"},
+  {"id": "freeroam.HudView", "kind": "create", "class": "ModuleScript",
+   "path": ["ReplicatedStorage", "Modules", "Game", "UIPulse", "FreeRoam", "HudView"],
+   "after": "after/ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.HudView.lua"},
+  {"id": "freeroam.HudClient", "kind": "create", "class": "ModuleScript",
+   "path": ["ReplicatedStorage", "Modules", "Game", "UIPulse", "FreeRoam", "HudClient"],
+   "after": "after/ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.HudClient.lua"},
+  {"id": "fixtures.FreeRoam", "kind": "create", "class": "ModuleScript",
+   "path": ["ReplicatedStorage", "Modules", "Game", "UIPulse", "Dev", "Fixtures", "FreeRoam"],
+   "after": "after/ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.FreeRoam.lua"}
+ ]
+}

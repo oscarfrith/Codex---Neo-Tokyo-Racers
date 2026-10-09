@@ -1,0 +1,70 @@
+{
+ "source": "ReplicatedStorage.Modules.Game.UI.GarageInteriorModeUI",
+ "_target": "ReplicatedStorage.Modules.Game.UIPulse.Garage.TouchCameraGuard",
+ "_reference": "API2 5.7 fork table row 2; PC 1.7; fact-check 4.1",
+ "_kept": "lines 48-51 and 53-270, byte-identical",
+ "replace": [
+  {
+   "lines": [
+    1,
+    47
+   ],
+   "with": "TouchCameraGuard.span1-47.lua",
+   "_what": "header: module table, Start guard, and the outer locals the kept range reads (services, player, playerGui, settings from Classic line 5; number from Classic line 6, verbatim). The interior HUD of these lines is Garage.GarageInteriorHud"
+  },
+  {
+   "lines": [
+    52,
+    52
+   ],
+   "with": "TouchCameraGuard.span52.lua",
+   "_what": "the require target only: Classic OwnedGarageWorkspaceUI -> Garage.OwnedGarageWorkspaceUI (the desk fork, which keeps IsCameraTouchBlocked)"
+  },
+  {
+   "lines": [
+    271,
+    280
+   ],
+   "with": "TouchCameraGuard.span271-280.lua",
+   "_what": "footer: started flag and return. The HUD visibility and wiring of these lines is Garage.GarageInteriorHud"
+  }
+ ],
+ "_moved": [
+  {
+   "call": "playerGui:SetAttribute(\"OwnedGarageInteriorMode\",player:GetAttribute(\"OwnedGarageInside\")==true)",
+   "classic_line": 10,
+   "to": "ReplicatedStorage.Modules.Game.UIPulse.Garage.GarageInteriorHud",
+   "expect": "SetAttribute(\"OwnedGarageInteriorMode\""
+  },
+  {
+   "call": "remote:InvokeServer(action,argsor{})",
+   "classic_line": 19,
+   "to": "ReplicatedStorage.Modules.Game.UIPulse.Garage.GarageInteriorHud",
+   "expect": ":InvokeServer(action, args or {})"
+  },
+  {
+   "call": "call(\"GetManagementState\",{})",
+   "classic_line": 27,
+   "to": "ReplicatedStorage.Modules.Game.UIPulse.Garage.GarageInteriorHud",
+   "expect": "call(\"GetManagementState\", {})"
+  },
+  {
+   "call": "mutate(\"SetAccessMode\",{AccessMode=row.Id},\"ACCESSMODESAVED\")",
+   "classic_line": 38,
+   "to": "ReplicatedStorage.Modules.Game.UIPulse.Garage.GarageInteriorHud",
+   "expect": "mutate(\"SetAccessMode\", { AccessMode = row.Id }, \"ACCESS MODE SAVED\")"
+  },
+  {
+   "call": "mutate(\"SetInvitation\",{Action=row.Invitedand\"Revoke\"or\"Invite\",TargetUserId=row.Id},row.Invitedand\"INVITATIONREVOKED\"or\"PLAYERINVITED\")",
+   "classic_line": 42,
+   "to": "ReplicatedStorage.Modules.Game.UIPulse.Garage.GarageInteriorHud",
+   "expect": "mutate(\"SetInvitation\", { Action = row.Invited and \"Revoke\" or \"Invite\", TargetUserId = row.Id }, row.Invited and \"INVITATION REVOKED\" or \"PLAYER INVITED\")"
+  },
+  {
+   "call": "toast:SetAttribute(\"Stamp\",stamp)",
+   "classic_line": 18,
+   "to": null,
+   "reason": "the private GarageStatus label and its timer stamp are replaced by the shared toast (API2 5.7 target r07, 2.11)"
+  }
+ ]
+}

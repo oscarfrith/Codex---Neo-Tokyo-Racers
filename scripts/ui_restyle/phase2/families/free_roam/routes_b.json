@@ -1,0 +1,16 @@
+{
+ "family": "FreeRoam",
+ "_half": "b; the a half supplies DesktopFreeRoamHudUI and MobileFreeRoamHudUI",
+ "swap": {
+  "MobileDriveControlsClient": "ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.TouchControlsClient",
+  "ActivityClient": "ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.ActivityHudClient"
+ },
+ "add": [
+  {
+   "name": "PulseCoreUiPolicy",
+   "family": "FreeRoam",
+   "path": "ReplicatedStorage.Modules.Game.UIPulse.Shell.CoreUiPolicy",
+   "dependencies": []
+  }
+ ]
+}

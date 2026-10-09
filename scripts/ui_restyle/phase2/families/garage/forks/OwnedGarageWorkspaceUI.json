@@ -1,0 +1,9 @@
+{
+ "source": "ReplicatedStorage.Modules.Game.UI.OwnedGarageWorkspaceUI",
+ "_target": "ReplicatedStorage.Modules.Game.UIPulse.Garage.OwnedGarageWorkspaceUI",
+ "_reference": "API2 5.7 fork table row 1; PC 1.7",
+ "replace": [
+  {"lines": [12, 12], "with": "OwnedGarageWorkspaceUI.span12.lua",
+   "_what": "the three require targets only: WorkspaceUI -> Garage.OwnedGarageDeskView, Shared and UI -> Garage.GarageCompat; every other statement of line 12 is byte-identical"}
+ ]
+}

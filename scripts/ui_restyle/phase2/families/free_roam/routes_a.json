@@ -1,0 +1,9 @@
+{
+ "family": "FreeRoam",
+ "half": "F2a (HUD). The integrator merges this with agent F2b's fragment (MobileDriveControlsClient, ActivityClient, PulseCoreUiPolicy) into routes.json.",
+ "swap": {
+  "DesktopFreeRoamHudUI": "ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.HudClient",
+  "MobileFreeRoamHudUI": "ReplicatedStorage.Modules.Game.UIPulse.NoOp"
+ },
+ "add": []
+}

@@ -1,0 +1,845 @@
+[
+ {
+  "owner": "ReplicatedStorage.Modules.Game.UIPulse.RaceSession.RaceHudClient",
+  "replaces": [
+   "RaceSessionPresentationClient"
+  ],
+  "modules": [
+   "ReplicatedStorage.Modules.Game.UIPulse.RaceSession.RaceHudModel",
+   "ReplicatedStorage.Modules.Game.UIPulse.RaceSession.RaceHudView",
+   "ReplicatedStorage.Modules.Game.UIPulse.RaceSession.RaceHudClient"
+  ],
+  "claim": "RaceHud",
+  "screenGuis": [
+   {
+    "name": "SharedInRaceHUD",
+    "displayOrder": 155
+   },
+   {
+    "name": "SharedInRaceHUDLive",
+    "displayOrder": 156
+   }
+  ],
+  "remotes": [
+   {
+    "remote": "Remotes.Racing.RaceRequest",
+    "kind": "invoke",
+    "action": "GetTimeTrialPersonalBest",
+    "keys": [
+     "EventId",
+     "VehicleTier"
+    ],
+    "classicLine": 271,
+    "site": "RaceHudModel: call() from queryPersonalBest()",
+    "guard": "time trial with a VehicleTier only (Classic 271)",
+    "retried": false
+   },
+   {
+    "remote": "Remotes.Racing.RaceQueueRequest",
+    "kind": "invoke",
+    "action": "ResetToLastCheckpoint",
+    "keys": [
+     "RunId",
+     "EventId"
+    ],
+    "classicLine": 193,
+    "site": "RaceHudModel: call() from invoke(Reset), race",
+    "guard": "busy (Classic 188, 191)",
+    "retried": false
+   },
+   {
+    "remote": "Remotes.Racing.RaceQueueRequest",
+    "kind": "invoke",
+    "action": "ExitRaceToStart",
+    "keys": [
+     "RunId",
+     "EventId"
+    ],
+    "classicLine": 193,
+    "site": "RaceHudModel: call() from invoke(Exit), race, after the confirmation",
+    "guard": "busy (Classic 188, 191)",
+    "retried": false
+   },
+   {
+    "remote": "Remotes.Racing.RaceRequest",
+    "kind": "invoke",
+    "action": "ResetActiveTimeTrial",
+    "keys": [
+     "RunId",
+     "EventId"
+    ],
+    "classicLine": 193,
+    "site": "RaceHudModel: call() from invoke(Reset), time trial",
+    "guard": "busy (Classic 188, 191)",
+    "retried": false
+   },
+   {
+    "remote": "Remotes.Racing.RaceRequest",
+    "kind": "invoke",
+    "action": "ExitActiveTimeTrial",
+    "keys": [
+     "RunId",
+     "EventId"
+    ],
+    "classicLine": 193,
+    "site": "RaceHudModel: call() from invoke(Exit), time trial, after the confirmation",
+    "guard": "busy (Classic 188, 191)",
+    "retried": false
+   }
+  ],
+  "listens": [
+   {
+    "remote": "Remotes.Racing.RaceEvent",
+    "kinds": [
+     "TimeTrialStaged",
+     "TimeTrialCountdown",
+     "TimeTrialStarted",
+     "TimeTrialCheckpoint",
+     "TimeTrialLapCompleted",
+     "TimeTrialReset",
+     "RaceStaged",
+     "RaceCountdown",
+     "RaceStarted",
+     "RaceCheckpoint",
+     "RaceLapCompleted",
+     "RacePositionUpdate",
+     "TimeTrialFinished",
+     "RaceFinished",
+     "RaceEnded",
+     "TimeTrialEnded",
+     "TimeTrialError",
+     "RaceExitedToStart"
+    ],
+    "classicLine": 303
+   }
+  ],
+  "bindables": [
+   {
+    "name": "Runtime.UI.FreeRoamHudPresentationMode",
+    "dir": "fire",
+    "keys": [
+     "Owner",
+     "Active",
+     "KeepTelemetry"
+    ],
+    "literals": {
+     "Owner": "RaceSession",
+     "KeepTelemetry": true
+    },
+    "classicLine": 164
+   },
+   {
+    "name": "Runtime.Racing.RaceTransitionRequest",
+    "dir": "fire",
+    "keys": [
+     "Step",
+     "Reason",
+     "Label",
+     "Delay",
+     "Success"
+    ],
+    "payloads": [
+     {
+      "Step": "FadeOut",
+      "Reason": "Reset | Exit",
+      "Label": "RESETTING | EXITING",
+      "classicLine": 191
+     },
+     {
+      "Step": "RestoreCamera",
+      "Reason": "Reset | Exit",
+      "classicLine": 194
+     },
+     {
+      "Step": "FadeIn",
+      "Reason": "Reset | Exit",
+      "Delay": "0.3 on success, 0.08 on failure",
+      "Success": "boolean",
+      "classicLine": 194
+     }
+    ]
+   }
+  ],
+  "attributes": [
+   {
+    "on": "ReplicatedStorage.Config.Racing.<catalog>.<event>",
+    "name": "EventId",
+    "dir": "read",
+    "classicLine": 30
+   },
+   {
+    "on": "ReplicatedStorage.Config.Racing.<catalog>.<event>",
+    "name": "RaceHudMapImage",
+    "dir": "read",
+    "classicLine": 31
+   },
+   {
+    "on": "ReplicatedStorage.Config.Racing.<catalog>.<event>",
+    "name": "RouteId",
+    "dir": "read",
+    "classicLine": 43
+   },
+   {
+    "on": "ReplicatedStorage.Config.Racing.<catalog>.<event>",
+    "name": "RaceRouteId",
+    "dir": "read",
+    "classicLine": 43
+   }
+  ],
+  "names": [
+   "SharedInRaceHUD",
+   "SessionControls",
+   "PlayerMarker",
+   "LapProgress",
+   "PrimaryMetric",
+   "SessionBoard",
+   "RaceMap",
+   "SimplifiedRaceMap"
+  ],
+  "contextActions": [],
+  "renderSteps": [],
+  "audio": [],
+  "dropped": [
+   {
+    "item": "Enabled writes on other ScreenGuis: suppress() sets Enabled false on the legacy HUD names RaceHud, RaceHud_Phase3, RaceCheckpointBadge_Phase5D, RaceQueue_Phase8, RaceSessionControls_Phase8D (118-125)",
+    "reason": "API2 6.6 (API1 rule 4: no write to ScreenGui.Enabled) and API2 5.5: those are kill-list names RaceLifecyclePresentationClient already destroys"
+   },
+   {
+    "item": "RacePositionUpdate showing the HUD when no session is active (313)",
+    "reason": "API2 5.5: the fix carried by the model; an update with no session or for another RunId is ignored"
+   },
+   {
+    "item": "RenderStepped connection (317)",
+    "reason": "API2 6.6 rule 5 (API1 rule 7): the one frame step is Kit.Perf.Bind on the live layer, running only while it is shown"
+   },
+   {
+    "item": "GuiService GetInsetArea, the ReferenceCanvas UIScale, the CurrentCamera and ViewportSize listeners (83-116), UserInputService.TouchEnabled (23) and every Config.UI.Racing.InRace size, colour and Mobile value",
+    "reason": "API2 6.6 rule 3 and API1 6: geometry, safe area and form factor are Kit.Metrics and Kit.Layers; view lines are replaced by the kit"
+   },
+   {
+    "item": "RacingUIComponents require (18) and the ResponsiveUIFoundation ConfirmationLayout require (177); the hand-built ExitConfirmation panel and backdrop (175-187)",
+    "reason": "API2 5.5 and 6.6 rule 1: the exit confirmation is Overlay.Confirm"
+   },
+   {
+    "item": "Avatar headshots in the race board (GetUserThumbnailAsync, 201-202, 293) and the first-six-rows rule (289)",
+    "reason": "API2 5.5 budgets (HUD 140, 0 per event) and target frame r13a: four pooled rows round the player, no images"
+   },
+   {
+    "item": "Throttled marker subject lookup inside the frame step (240-244, Config.Racing.PresentationPerformance HudMapSubjectResolveSeconds) and the per-frame re-prepare check (236)",
+    "reason": "API2 6.6 rule 5 (API1 rule 7: no FindFirstChild in a Perf.Bind step, no presence polling): the subject is resolved on every show and on SeatPart and CharacterAdded events"
+   },
+   {
+    "item": "Live listener on Config.UI.Racing.InRace.MapOpacity (205-208) and the MapPlayerIcon and MapPlayerIconSize config reads (152, 265)",
+    "reason": "API2 6.6 rule 3: the opacity is read on each show; the marker is the kit map glyph at a token size"
+   },
+   {
+    "item": "Destroying an existing PlayerGui.SharedInRaceHUD at start (79) and the start-up print (318)",
+    "reason": "API2 6.2 and API1 8: Layers.Create refuses a second gui of that name; one owner by Claim"
+   },
+   {
+    "item": "Classic instance names ReferenceCanvas, ExitConfirmationFullScreenBackdrop, ExitConfirmationShade, ExitConfirmation",
+    "reason": "API2 5.5: no other script reads these names; SessionControls, PlayerMarker and the four panel names are kept"
+   }
+  ],
+  "added": [
+   {
+    "item": "ScreenGui SharedInRaceHUDLive at 156",
+    "reason": "API2 5.5 and 2.4: the live layer for the timer, delta chip, pips and route-map marker"
+   },
+   {
+    "item": "Race timer (RACE TIME) from the client clock at RaceStarted",
+    "reason": "API2 5.5: the timer is the client clock, as today; target frame r13a; programme contract section 8"
+   },
+   {
+    "item": "Checkpoint pips from NextGateIndex and GateCount; these two fields and DisplayName are read from the payloads Classic already handles, and from TimeTrialReset",
+    "reason": "API2 5.5: checkpoint pips use only fields already in the payloads"
+   },
+   {
+    "item": "Lap delta chip: the completed lap (TimeTrialLapCompleted.Elapsed, RaceLapCompleted.LapElapsed) against the best lap known before it; new string LAP <n> <delta>",
+    "reason": "API2 5.5: the delta chip is lap against best lap only"
+   },
+   {
+    "item": "A checkpoint or lap payload of the run that already ended is ignored while no session is active",
+    "reason": "API2 5.5 gate: the HUD does not return after finish or exit"
+   },
+   {
+    "item": "A session that ends during the 0.25 s fade sends no reset or exit call and gets RestoreCamera and FadeIn (Classic errors at 192 and leaves the fade up)",
+    "reason": "API2 6.6 rule 6: a failed or late step never leaves the screen in a half state; no remote is sent for a session that is gone"
+   },
+   {
+    "item": "Escape and ButtonB cancel, focus on NO, in the exit confirmation",
+    "reason": "API2 5.5: the exit confirmation is Overlay.Confirm (API1 7.5)"
+   },
+   {
+    "item": "Kit.Presence entry RaceHud of kind Race while the HUD shows",
+    "reason": "API2 3.9"
+   },
+   {
+    "item": "New strings: RACE TIME, TIER <tier>, LAP <n> in the time-trial board rows, PB",
+    "reason": "API2 6.6 rule 8 and target frames r13a, r13b"
+   },
+   {
+    "item": "SeatPart and CharacterAdded listeners on the local character for the marker subject",
+    "reason": "API2 6.6 rule 5: replaces the timed lookup"
+   }
+  ]
+ },
+ {
+  "owner": "ReplicatedStorage.Modules.Game.UIPulse.RaceSession.CountdownClient",
+  "replaces": [
+   "RaceCountdownPresentationClient"
+  ],
+  "modules": [
+   "ReplicatedStorage.Modules.Game.UIPulse.RaceSession.CountdownClient"
+  ],
+  "claim": "RaceCountdown",
+  "screenGuis": [
+   {
+    "name": "RaceCountdown",
+    "displayOrder": 205
+   }
+  ],
+  "remotes": [],
+  "listens": [
+   {
+    "remote": "Remotes.Racing.RaceEvent",
+    "kinds": [
+     "TimeTrialStaged",
+     "RaceStaged",
+     "TimeTrialCountdownReveal",
+     "RaceCountdownReveal",
+     "TimeTrialCountdownScheduled",
+     "RaceCountdownScheduled",
+     "TimeTrialCountdown",
+     "RaceCountdown",
+     "TimeTrialStarted",
+     "RaceStarted",
+     "TimeTrialFinished",
+     "TimeTrialEnded",
+     "TimeTrialError",
+     "RaceFinished",
+     "RaceDNF",
+     "RaceEnded",
+     "RaceExitedToStart",
+     "RaceQueueError"
+    ],
+    "classicLine": 53
+   }
+  ],
+  "bindables": [],
+  "attributes": [
+   {
+    "on": "Players.LocalPlayer.PlayerScripts.Runtime.Racing",
+    "name": "CountdownPresentationReady",
+    "dir": "write",
+    "value": true,
+    "classicLine": 61,
+    "site": "CountdownClient: last statement of run(), after connecting"
+   }
+  ],
+  "names": [
+   "RaceCountdown",
+   "CountdownCard"
+  ],
+  "contextActions": [],
+  "renderSteps": [],
+  "audio": [],
+  "dropped": [
+   {
+    "item": "RacingUIComponents require (15), the CountdownCard panel, gradient and corner, the UIScale and the camera ViewportSize listener (21-27), Config.Racing.FlowUI sizes CountdownCardSize, CountdownCardTransparency, CountdownGradientRotation, CountdownTextSize, GoTextSize",
+    "reason": "API2 6.6 rules 1 and 3 and target frame r14: no panel; digits are BigNumber role Countdown"
+   },
+   {
+    "item": "Destroying an existing PlayerGui.RaceCountdown at start (19) and the start-up print (62)",
+    "reason": "API2 6.2 and API1 8: Layers.Create refuses a second gui of that name; one owner by Claim"
+   },
+   {
+    "item": "WaitForChild on Config.Racing.FlowUI at start (17)",
+    "reason": "API2 6.2: start() waits only where it must; GoDuration and CountdownSeconds are read at use with the Classic fallbacks"
+   }
+  ],
+  "added": []
+ },
+ {
+  "owner": "ReplicatedStorage.Modules.Game.UIPulse.RaceSession.QueueClient",
+  "replaces": [
+   "RaceQueueClient"
+  ],
+  "modules": [
+   "ReplicatedStorage.Modules.Game.UIPulse.RaceSession.QueueClient"
+  ],
+  "claim": "RaceQueue",
+  "screenGuis": [
+   {
+    "name": "RaceQueueBanner",
+    "displayOrder": 190
+   }
+  ],
+  "remotes": [
+   {
+    "remote": "Remotes.Racing.RaceQueueRequest",
+    "kind": "invoke",
+    "action": "JoinQueue",
+    "keys": [
+     "EventId",
+     "VehicleId"
+    ],
+    "classicLine": 44,
+    "site": "QueueClient: call() from model.Start()",
+    "guard": "none in Classic; single listener of StartRaceQueueRequest",
+    "retried": false
+   },
+   {
+    "remote": "Remotes.Racing.RaceQueueRequest",
+    "kind": "invoke",
+    "action": "LeaveQueue",
+    "keys": [],
+    "classicLine": 45,
+    "site": "QueueClient: call() from model.Leave()",
+    "guard": "queued; LEAVE disabled during the call (Classic 45)",
+    "retried": false
+   }
+  ],
+  "listens": [
+   {
+    "remote": "Remotes.Racing.RaceQueueEvent",
+    "kinds": [
+     "QueueJoined",
+     "QueueUpdate",
+     "QueueLeft",
+     "RaceQueueError",
+     "RaceStaged",
+     "RaceStarted",
+     "RaceFinished",
+     "RaceDNF",
+     "RaceEnded",
+     "RaceExitedToStart"
+    ],
+    "classicLine": 46
+   }
+  ],
+  "bindables": [
+   {
+    "name": "Runtime.Racing.StartRaceQueueRequest",
+    "dir": "connect",
+    "keys": [
+     "DisplayName",
+     "EventId",
+     "VehicleId"
+    ],
+    "classicLine": 44
+   },
+   {
+    "name": "Runtime.UI.FreeRoamHudPresentationMode",
+    "dir": "fire",
+    "keys": [
+     "Owner",
+     "Active",
+     "KeepTelemetry"
+    ],
+    "literals": {
+     "Owner": "RaceQueue",
+     "KeepTelemetry": true
+    },
+    "classicLine": 25
+   },
+   {
+    "name": "Runtime.UI.FreeRoamVehicleSpawned",
+    "dir": "fire",
+    "keys": [],
+    "classicLine": 26
+   }
+  ],
+  "attributes": [
+   {
+    "on": "Player",
+    "name": "LastRacingEventId",
+    "dir": "write",
+    "classicLine": 44
+   },
+   {
+    "on": "Player",
+    "name": "LastRacingVehicleId",
+    "dir": "write",
+    "classicLine": 44
+   },
+   {
+    "on": "Player",
+    "name": "RaceQueueActive",
+    "dir": "read",
+    "classicLine": 44
+   }
+  ],
+  "names": [
+   "RaceQueueBanner",
+   "QueueBanner"
+  ],
+  "contextActions": [],
+  "renderSteps": [],
+  "audio": [],
+  "dropped": [
+   {
+    "item": "Destroying PlayerGui.RaceQueue_Phase8 at start (29)",
+    "reason": "API2 5.5: a kill-list name of RaceLifecyclePresentationClient 23-35, which already destroys it; Pulse never names a trap gui"
+   },
+   {
+    "item": "FreeRoamHudPresentationMode fired on every show and hide (42-43)",
+    "reason": "API2 5.5: presentation owner RaceQueue is fired on change only"
+   },
+   {
+    "item": "RacingUIComponents require (20), the UIScale and camera ViewportSize listener (31-33), Config.Racing.FlowUI QueueBannerWidth, QueueBannerHeight, QueueBannerTop",
+    "reason": "API2 6.6 rules 1 and 3: view lines are replaced by the kit and its tokens"
+   },
+   {
+    "item": "The details label text (count / max, newline, seconds) as one label (43)",
+    "reason": "API2 5.5 target frame r14: the same two values are drawn under PLAYERS and STARTS IN"
+   },
+   {
+    "item": "The start-up print (54)",
+    "reason": "API2 6.6 (API1 rule 12)"
+   }
+  ],
+  "added": [
+   {
+    "item": "New strings PLAYERS and STARTS IN",
+    "reason": "API2 6.6 rule 8 and target frame r14"
+   }
+  ]
+ },
+ {
+  "owner": "ReplicatedStorage.Modules.Game.UIPulse.RaceSession.ResultsClient",
+  "replaces": [
+   "RaceTimeTrialResultCoachClient"
+  ],
+  "modules": [
+   "ReplicatedStorage.Modules.Game.UIPulse.RaceSession.ResultsModel",
+   "ReplicatedStorage.Modules.Game.UIPulse.RaceSession.ResultsView",
+   "ReplicatedStorage.Modules.Game.UIPulse.RaceSession.ResultsClient"
+  ],
+  "claim": "RaceResults",
+  "screenGuis": [
+   {
+    "name": "UnifiedRaceResults",
+    "displayOrder": 220
+   },
+   {
+    "name": "UnifiedRaceResultsScrim",
+    "displayOrder": 219
+   }
+  ],
+  "remotes": [
+   {
+    "remote": "Remotes.Racing.RaceRequest",
+    "kind": "invoke",
+    "action": "GetTimeTrialLeaderboard",
+    "keys": [
+     "EventId",
+     "VehicleTier",
+     "Limit"
+    ],
+    "classicLine": 140,
+    "site": "ResultsModel: call() from loadLeaderboard(), once per time-trial result",
+    "guard": "render token (showToken)",
+    "retried": false
+   },
+   {
+    "remote": "Remotes.Racing.RaceRequest",
+    "kind": "invoke",
+    "action": "ExitFinishedTimeTrial",
+    "keys": [],
+    "classicLine": 145,
+    "site": "ResultsModel: call() from exit(), time trial",
+    "guard": "busy (added; Classic has none)",
+    "retried": false
+   },
+   {
+    "remote": "Remotes.Racing.RaceRequest",
+    "kind": "invoke",
+    "action": "StartStagedTimeTrial",
+    "keys": [
+     "EventId",
+     "VehicleId",
+     "LapCount"
+    ],
+    "classicLine": 147,
+    "site": "ResultsModel: call() from again(), time trial",
+    "guard": "busy (added; Classic has none)",
+    "retried": false
+   },
+   {
+    "remote": "Remotes.Racing.RaceQueueRequest",
+    "kind": "invoke",
+    "action": "ExitRaceToStart",
+    "keys": [],
+    "classicLine": 191,
+    "site": "ResultsModel: call() from exit(), race",
+    "guard": "busy (added; Classic has none)",
+    "retried": false
+   }
+  ],
+  "listens": [
+   {
+    "remote": "Remotes.Racing.RaceEvent",
+    "kinds": [
+     "RacePositionUpdate",
+     "RaceFinished",
+     "TimeTrialFinished",
+     "TimeTrialEnded",
+     "RaceStaged",
+     "RaceStarted",
+     "TimeTrialStaged",
+     "TimeTrialStarted",
+     "RaceExitedToStart"
+    ],
+    "classicLine": 214
+   }
+  ],
+  "bindables": [
+   {
+    "name": "Runtime.UI.FreeRoamHudPresentationMode",
+    "dir": "fire",
+    "keys": [
+     "Owner",
+     "Active",
+     "KeepTelemetry"
+    ],
+    "literals": {
+     "Owner": "RaceResults",
+     "KeepTelemetry": false
+    },
+    "classicLine": 95
+   },
+   {
+    "name": "Runtime.UI.FreeRoamVehicleExited",
+    "dir": "fire",
+    "keys": [],
+    "classicLine": 103
+   },
+   {
+    "name": "Runtime.Racing.RaceTransitionRequest",
+    "dir": "fire",
+    "keys": [
+     "Step",
+     "Destination",
+     "Status",
+     "Reason"
+    ],
+    "payloads": [
+     {
+      "Step": "BeginLoading",
+      "Destination": "RaceStart",
+      "Status": "RETURNING TO START",
+      "classicLine": "144, 190"
+     },
+     {
+      "Step": "CompleteLoading",
+      "Status": "READY",
+      "classicLine": "146, 192"
+     },
+     {
+      "Step": "FailLoading",
+      "Status": "RETURNING",
+      "Reason": "reply Message",
+      "classicLine": "146, 192"
+     }
+    ]
+   },
+   {
+    "name": "Runtime.Racing.StartRaceQueueRequest",
+    "dir": "fire",
+    "keys": [
+     "EventId",
+     "VehicleId",
+     "DisplayName"
+    ],
+    "classicLine": 193
+   }
+  ],
+  "attributes": [
+   {
+    "on": "Player",
+    "name": "LastRacingEventId",
+    "dir": "read",
+    "classicLine": 193
+   },
+   {
+    "on": "Player",
+    "name": "LastRacingVehicleId",
+    "dir": "read",
+    "classicLine": 193
+   },
+   {
+    "on": "Player",
+    "name": "Rank",
+    "dir": "read"
+   },
+   {
+    "on": "Player",
+    "name": "XpIntoRank",
+    "dir": "read"
+   },
+   {
+    "on": "Player",
+    "name": "Rank",
+    "dir": "listen"
+   },
+   {
+    "on": "Player",
+    "name": "XpIntoRank",
+    "dir": "listen"
+   }
+  ],
+  "names": [
+   "UnifiedRaceResults",
+   "RaceResults",
+   "SessionLaps"
+  ],
+  "contextActions": [],
+  "renderSteps": [],
+  "audio": [],
+  "dropped": [
+   {
+    "item": "Enabled writes on PlayerGui.RaceQueue_Phase8 on touch devices (97-100) and the touch branch that skipped FreeRoamHudPresentationMode",
+    "reason": "API2 6.6 (API1 rule 4: no write to ScreenGui.Enabled) and API2 5.5: owner RaceResults is fired on every device; RaceQueue_Phase8 is a kill-list name"
+   },
+   {
+    "item": "The leaderboard call blocking the footer buttons (140 before 143)",
+    "reason": "API2 5.5: the buttons exist before that call returns"
+   },
+   {
+    "item": "RacingUIComponents and RacingMobileScaledDesktopLayout requires (25-27), UserInputService.TouchEnabled (15), Config.UI.Racing layout, type and colour reads",
+    "reason": "API2 6.6 rules 1 and 3: view lines are replaced by the kit; form factor is Kit.Metrics"
+   },
+   {
+    "item": "Medal icons from Config.UI.Racing.Assets MedalAtlas and MedalAtlasCellSize (58-64, 130, 160-161)",
+    "reason": "API2 6.6 rule 3 and API2 1.1: a family source holds no asset outside the 31 kit keys; the medal name stays as text"
+   },
+   {
+    "item": "Avatar headshots PlayerHeadshot in the race rows (GetUserThumbnailAsync, 65-90, 184)",
+    "reason": "API2 5.5 budget: results 150, rows pooled"
+   },
+   {
+    "item": "Scrolling lists showing every row: all session laps (136-137), up to 20 leaderboard rows (142), every racer (178-187)",
+    "reason": "API2 5.5 budget (results 150) and target frames r15a, r15b: six pooled rows windowed round the local player, the last four laps; the request still asks for Limit 20"
+   },
+   {
+    "item": "Private money formatter (46-50)",
+    "reason": "API2 3.5: Data.Money is the only money formatting in Pulse"
+   },
+   {
+    "item": "Classic instance names PlayerHeadshot, GlobalTop20, YourResult, RaceHighlights and the start-up print (224)",
+    "reason": "API2 5.5: no other script reads these names"
+   }
+  ],
+  "added": [
+   {
+    "item": "ScreenGui UnifiedRaceResultsScrim at 219",
+    "reason": "API2 5.5 and 2.4: UnifiedRaceResults is created with Scrim = true"
+   },
+   {
+    "item": "Player attributes Rank and XpIntoRank read and listened for two seconds after a result (driver XP hero number)",
+    "reason": "API2 5.5: driver XP is the change in player attributes Rank and XpIntoRank after the result, hidden if none arrives within 2 s"
+   },
+   {
+    "item": "In-flight guard (busy) on EXIT TO START and TRY AGAIN; both buttons disabled while a call is out",
+    "reason": "API2 6.7: never retried, never sent twice; API2 6.6 rule 6"
+   },
+   {
+    "item": "A late leaderboard reply is dropped when the result it belongs to is gone",
+    "reason": "API2 6.6 rule 7: one render token per screen"
+   },
+   {
+    "item": "Kit.Presence entry RaceResults of kind Results while the results show",
+    "reason": "API2 3.9"
+   },
+   {
+    "item": "New strings: BANKED (was PRIZE), DRIVER XP, RANK UP, FINISH, LOADING GLOBAL RANKINGS; the hero BEST LAP label",
+    "reason": "API2 6.6 rule 8 and target frames r15a, r15b, c10"
+   }
+  ]
+ },
+ {
+  "owner": "ReplicatedStorage.Modules.Game.UIPulse.RaceSession.RouteGuideClient",
+  "replaces": [
+   "RaceRouteGuideClient"
+  ],
+  "modules": [
+   "ReplicatedStorage.Modules.Game.UIPulse.RaceSession.RouteGuideClient"
+  ],
+  "fork": {
+   "source": "ReplicatedStorage.Modules.Game.Racing.RaceRouteGuideClient",
+   "spans": [
+    [
+     271,
+     300
+    ]
+   ],
+   "file": "forks/RouteGuideClient.json"
+  },
+  "claim": "RaceRouteGuide",
+  "screenGuis": [
+   {
+    "name": "RaceRouteGuide_Phase5",
+    "displayOrder": 78
+   }
+  ],
+  "remotes": [],
+  "listens": [
+   {
+    "remote": "Remotes.Racing.RaceEvent",
+    "kinds": [
+     "TimeTrialStaged",
+     "TimeTrialCountdown",
+     "RaceStaged",
+     "RaceCountdown",
+     "TimeTrialStarted",
+     "RaceStarted",
+     "TimeTrialCheckpoint",
+     "RaceCheckpoint",
+     "TimeTrialLapCompleted",
+     "RaceLapCompleted",
+     "TimeTrialFinished",
+     "TimeTrialEnded",
+     "TimeTrialError",
+     "RaceFinished",
+     "RaceEnded"
+    ],
+    "classicLine": 418,
+    "note": "kept Classic lines"
+   }
+  ],
+  "bindables": [],
+  "attributes": [
+   {
+    "on": "Workspace.World.Runtime.PlayerVehicles.<vehicle>",
+    "name": "OwnerUserId",
+    "dir": "read",
+    "classicLine": 307,
+    "note": "kept Classic line"
+   }
+  ],
+  "names": [
+   "RaceRouteGuide_Phase5",
+   "WrongWayPrompt",
+   "ClientOnly",
+   "RaceRouteGuide",
+   "ActiveGuide",
+   "NextGateLabel"
+  ],
+  "contextActions": [],
+  "renderSteps": [],
+  "audio": [],
+  "dropped": [
+   {
+    "item": "The Classic wrong-way TextLabel: colours, Michroma face, corner and UIStroke (278-300), including the Config.Racing.RouteGuide WarningColor read for it (287)",
+    "reason": "API2 5.5: the one replaced span 271-300 becomes a kit label styled as a PromptBanner in RaceRouteGuide_Phase5"
+   }
+  ],
+  "added": [
+   {
+    "item": "Claim RaceRouteGuide, Layers.Create and one Core.ConnectionScope inside the replaced span",
+    "reason": "API2 5.5 and 6.2: Claim first; ScreenGuis come only from Layers.Create"
+   }
+  ]
+ }
+]

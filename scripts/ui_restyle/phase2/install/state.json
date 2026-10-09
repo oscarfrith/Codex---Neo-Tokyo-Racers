@@ -1,0 +1,266 @@
+{
+ "units": {
+  "00_kit": {
+   "unit": "kit",
+   "scripts": {
+    "ReplicatedStorage.Modules.Game.UIPulse.Kit.Sprites": {
+     "file": "00_kit/after/ReplicatedStorage.Modules.Game.UIPulse.Kit.Sprites.lua",
+     "fp": "3521630484-2425041178-9471",
+     "class": "ModuleScript",
+     "kind": "create"
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.Kit.Presence": {
+     "file": "00_kit/after/ReplicatedStorage.Modules.Game.UIPulse.Kit.Presence.lua",
+     "fp": "3697653828-1742439006-4189",
+     "class": "ModuleScript",
+     "kind": "create"
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.Kit.BigNumber": {
+     "file": "00_kit/after/ReplicatedStorage.Modules.Game.UIPulse.Kit.BigNumber.lua",
+     "fp": "1111708803-947825977-13453",
+     "class": "ModuleScript",
+     "kind": "create"
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.Kit.Data": {
+     "file": "00_kit/after/ReplicatedStorage.Modules.Game.UIPulse.Kit.Data.lua",
+     "fp": "3840631725-3282828073-57060",
+     "class": "ModuleScript",
+     "kind": "create"
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.Kit.Gauge": {
+     "file": "00_kit/after/ReplicatedStorage.Modules.Game.UIPulse.Kit.Gauge.lua",
+     "fp": "4258431485-411862015-14598",
+     "class": "ModuleScript",
+     "kind": "create"
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.Kit.Minimap": {
+     "file": "00_kit/after/ReplicatedStorage.Modules.Game.UIPulse.Kit.Minimap.lua",
+     "fp": "1127224829-3758095913-18705",
+     "class": "ModuleScript",
+     "kind": "create"
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.Kit.Touch": {
+     "file": "00_kit/after/ReplicatedStorage.Modules.Game.UIPulse.Kit.Touch.lua",
+     "fp": "1821150973-3277238551-10374",
+     "class": "ModuleScript",
+     "kind": "create"
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.BigNumber": {
+     "file": "00_kit/after/ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.BigNumber.lua",
+     "fp": "3765722420-2845179858-3015",
+     "class": "ModuleScript",
+     "kind": "create"
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Data": {
+     "file": "00_kit/after/ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Data.lua",
+     "fp": "2451726006-2796756588-8209",
+     "class": "ModuleScript",
+     "kind": "create"
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Gauge": {
+     "file": "00_kit/after/ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Gauge.lua",
+     "fp": "2664637028-3852216940-5423",
+     "class": "ModuleScript",
+     "kind": "create"
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Minimap": {
+     "file": "00_kit/after/ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Minimap.lua",
+     "fp": "3102471882-3391241064-4676",
+     "class": "ModuleScript",
+     "kind": "create"
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Touch": {
+     "file": "00_kit/after/ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Touch.lua",
+     "fp": "3353222574-2542141774-2758",
+     "class": "ModuleScript",
+     "kind": "create"
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.NoOp": {
+     "file": "00_kit/after/ReplicatedStorage.Modules.Game.UIPulse.NoOp.lua",
+     "fp": "167653259-85221519-234",
+     "class": "ModuleScript",
+     "kind": "create"
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.Kit.Contracts": {
+     "file": "00_kit/after/ReplicatedStorage.Modules.Game.UIPulse.Kit.Contracts.lua",
+     "fp": "1718602022-4226520730-38861",
+     "class": "ModuleScript",
+     "kind": "source",
+     "classic": false
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.Kit.Tokens": {
+     "file": "00_kit/after/ReplicatedStorage.Modules.Game.UIPulse.Kit.Tokens.lua",
+     "fp": "2106424898-3910910052-11644",
+     "class": "ModuleScript",
+     "kind": "source",
+     "classic": false
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.Kit.Metrics": {
+     "file": "00_kit/after/ReplicatedStorage.Modules.Game.UIPulse.Kit.Metrics.lua",
+     "fp": "685872700-1840105876-13502",
+     "class": "ModuleScript",
+     "kind": "source",
+     "classic": false
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.Kit.Layers": {
+     "file": "00_kit/after/ReplicatedStorage.Modules.Game.UIPulse.Kit.Layers.lua",
+     "fp": "3139279021-1369871623-15569",
+     "class": "ModuleScript",
+     "kind": "source",
+     "classic": false
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.Kit.Text": {
+     "file": "00_kit/after/ReplicatedStorage.Modules.Game.UIPulse.Kit.Text.lua",
+     "fp": "2230192600-2719451094-19414",
+     "class": "ModuleScript",
+     "kind": "source",
+     "classic": false
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.Kit.Surface": {
+     "file": "00_kit/after/ReplicatedStorage.Modules.Game.UIPulse.Kit.Surface.lua",
+     "fp": "436945601-1769409703-24104",
+     "class": "ModuleScript",
+     "kind": "source",
+     "classic": false
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.Kit.Input": {
+     "file": "00_kit/after/ReplicatedStorage.Modules.Game.UIPulse.Kit.Input.lua",
+     "fp": "2239479341-4124056033-10880",
+     "class": "ModuleScript",
+     "kind": "source",
+     "classic": false
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.Kit.Controls": {
+     "file": "00_kit/after/ReplicatedStorage.Modules.Game.UIPulse.Kit.Controls.lua",
+     "fp": "1449704148-2064408556-77924",
+     "class": "ModuleScript",
+     "kind": "source",
+     "classic": false
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.Kit.Collections": {
+     "file": "00_kit/after/ReplicatedStorage.Modules.Game.UIPulse.Kit.Collections.lua",
+     "fp": "388635571-1873263153-71547",
+     "class": "ModuleScript",
+     "kind": "source",
+     "classic": false
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.Kit.Overlay": {
+     "file": "00_kit/after/ReplicatedStorage.Modules.Game.UIPulse.Kit.Overlay.lua",
+     "fp": "2630634820-25154472-57855",
+     "class": "ModuleScript",
+     "kind": "source",
+     "classic": false
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Collections": {
+     "file": "00_kit/after/ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Collections.lua",
+     "fp": "803879344-3839434962-19040",
+     "class": "ModuleScript",
+     "kind": "source",
+     "classic": false
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Controls": {
+     "file": "00_kit/after/ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Controls.lua",
+     "fp": "4174119552-1246915250-18290",
+     "class": "ModuleScript",
+     "kind": "source",
+     "classic": false
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Overlay": {
+     "file": "00_kit/after/ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Overlay.lua",
+     "fp": "3144432066-4054004808-20761",
+     "class": "ModuleScript",
+     "kind": "source",
+     "classic": false
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Surface": {
+     "file": "00_kit/after/ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Surface.lua",
+     "fp": "706645927-2662877963-10738",
+     "class": "ModuleScript",
+     "kind": "source",
+     "classic": false
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Text": {
+     "file": "00_kit/after/ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Text.lua",
+     "fp": "4106675855-3600151987-8766",
+     "class": "ModuleScript",
+     "kind": "source",
+     "classic": false
+    }
+   },
+   "folders": [],
+   "tests": {
+    "ReplicatedStorage.Modules.Game.UIPulse.Kit.Contracts": "00_kit/tests/ReplicatedStorage.Modules.Game.UIPulse.Kit.Contracts_test.lua",
+    "ReplicatedStorage.Modules.Game.UIPulse.Kit.Layers": "00_kit/tests/ReplicatedStorage.Modules.Game.UIPulse.Kit.Layers_test.lua",
+    "ReplicatedStorage.Modules.Game.UIPulse.Kit.Metrics": "00_kit/tests/ReplicatedStorage.Modules.Game.UIPulse.Kit.Metrics_test.lua",
+    "ReplicatedStorage.Modules.Game.UIPulse.Kit.Presence": "00_kit/tests/ReplicatedStorage.Modules.Game.UIPulse.Kit.Presence_test.lua",
+    "ReplicatedStorage.Modules.Game.UIPulse.Kit.Sprites": "00_kit/tests/ReplicatedStorage.Modules.Game.UIPulse.Kit.Sprites_test.lua",
+    "ReplicatedStorage.Modules.Game.UIPulse.Kit.Tokens": "00_kit/tests/ReplicatedStorage.Modules.Game.UIPulse.Kit.Tokens_test.lua",
+    "ReplicatedStorage.Modules.Game.UIPulse.Kit.Collections": "00_kit/tests/ReplicatedStorage.Modules.Game.UIPulse.Kit.Collections_test.lua",
+    "ReplicatedStorage.Modules.Game.UIPulse.Kit.Controls": "00_kit/tests/ReplicatedStorage.Modules.Game.UIPulse.Kit.Controls_test.lua",
+    "ReplicatedStorage.Modules.Game.UIPulse.Kit.Input": "00_kit/tests/ReplicatedStorage.Modules.Game.UIPulse.Kit.Input_test.lua",
+    "ReplicatedStorage.Modules.Game.UIPulse.Kit.Surface": "00_kit/tests/ReplicatedStorage.Modules.Game.UIPulse.Kit.Surface_test.lua",
+    "ReplicatedStorage.Modules.Game.UIPulse.Kit.Text": "00_kit/tests/ReplicatedStorage.Modules.Game.UIPulse.Kit.Text_test.lua",
+    "ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Gauge": "00_kit/tests/ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Gauge_test.lua",
+    "ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Minimap": "00_kit/tests/ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Minimap_test.lua",
+    "ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Overlay": "00_kit/tests/ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Overlay_test.lua",
+    "ReplicatedStorage.Modules.Game.UIPulse.Kit.Gauge": "00_kit/tests/ReplicatedStorage.Modules.Game.UIPulse.Kit.Gauge_test.lua",
+    "ReplicatedStorage.Modules.Game.UIPulse.Kit.Minimap": "00_kit/tests/ReplicatedStorage.Modules.Game.UIPulse.Kit.Minimap_test.lua",
+    "ReplicatedStorage.Modules.Game.UIPulse.Kit.Overlay": "00_kit/tests/ReplicatedStorage.Modules.Game.UIPulse.Kit.Overlay_test.lua",
+    "ReplicatedStorage.Modules.Game.UIPulse.Kit.BigNumber": "00_kit/tests/ReplicatedStorage.Modules.Game.UIPulse.Kit.BigNumber_test.lua",
+    "ReplicatedStorage.Modules.Game.UIPulse.Kit.Data": "00_kit/tests/ReplicatedStorage.Modules.Game.UIPulse.Kit.Data_test.lua",
+    "ReplicatedStorage.Modules.Game.UIPulse.Kit.Touch": "00_kit/tests/ReplicatedStorage.Modules.Game.UIPulse.Kit.Touch_test.lua"
+   },
+   "installable": true,
+   "provisional": []
+  },
+  "01_race_menu": {
+   "unit": "race_menu",
+   "scripts": {
+    "ReplicatedStorage.Modules.Game.UIPulse.RaceMenu.RaceMenuModel": {
+     "file": "01_race_menu/after/ReplicatedStorage.Modules.Game.UIPulse.RaceMenu.RaceMenuModel.lua",
+     "fp": "2757659207-2985201443-18785",
+     "class": "ModuleScript",
+     "kind": "create"
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.RaceMenu.RaceMenuView": {
+     "file": "01_race_menu/after/ReplicatedStorage.Modules.Game.UIPulse.RaceMenu.RaceMenuView.lua",
+     "fp": "823200064-2144548226-19288",
+     "class": "ModuleScript",
+     "kind": "create"
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.RaceMenu.RaceMenuClient": {
+     "file": "01_race_menu/after/ReplicatedStorage.Modules.Game.UIPulse.RaceMenu.RaceMenuClient.lua",
+     "fp": "3866981857-1436495577-6774",
+     "class": "ModuleScript",
+     "kind": "create"
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.RaceMenu": {
+     "file": "01_race_menu/after/ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.RaceMenu.lua",
+     "fp": "3873893541-95878411-8460",
+     "class": "ModuleScript",
+     "kind": "create"
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.Routes": {
+     "file": "01_race_menu/after/ReplicatedStorage.Modules.Game.UIPulse.Routes.lua",
+     "fp": "3328559365-1444162203-8219",
+     "class": "ModuleScript",
+     "kind": "source",
+     "classic": false
+    }
+   },
+   "folders": [
+    "ReplicatedStorage.Modules.Game.UIPulse.RaceMenu"
+   ],
+   "tests": {
+    "ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.RaceMenu": "01_race_menu/tests/ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.RaceMenu_test.lua",
+    "ReplicatedStorage.Modules.Game.UIPulse.RaceMenu.RaceMenuClient": "01_race_menu/tests/ReplicatedStorage.Modules.Game.UIPulse.RaceMenu.RaceMenuClient_test.lua",
+    "ReplicatedStorage.Modules.Game.UIPulse.RaceMenu.RaceMenuModel": "01_race_menu/tests/ReplicatedStorage.Modules.Game.UIPulse.RaceMenu.RaceMenuModel_test.lua",
+    "ReplicatedStorage.Modules.Game.UIPulse.RaceMenu.RaceMenuView": "01_race_menu/tests/ReplicatedStorage.Modules.Game.UIPulse.RaceMenu.RaceMenuView_test.lua",
+    "ReplicatedStorage.Modules.Game.UIPulse.Routes": "01_race_menu/tests/ReplicatedStorage.Modules.Game.UIPulse.Routes_test.lua"
+   },
+   "installable": true,
+   "provisional": []
+  }
+ },
+ "_note": "GENERATED by phase2/tools/assemble.py: the install chain. Do not edit."
+}

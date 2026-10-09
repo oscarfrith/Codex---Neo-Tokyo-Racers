@@ -1,0 +1,7 @@
+{
+  "source": "ReplicatedStorage.Modules.Game.Racing.RaceRouteGuideClient",
+  "path": "ReplicatedStorage.Modules.Game.UIPulse.RaceSession.RouteGuideClient",
+  "replace": [
+    {"lines": [271, 300], "with": "RouteGuideClient.wrongway.lua"}
+  ]
+}

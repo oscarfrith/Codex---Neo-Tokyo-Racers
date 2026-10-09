@@ -1,0 +1,156 @@
+[
+ {
+  "owner": "ReplicatedStorage.Modules.Game.UIPulse.Garage.OwnedGarageClient",
+  "replaces": ["OwnedGarageClient", "OwnedGarageBrowserUI", "GarageInteriorModeUI", "OwnedGarageWorkspaceUI", "GarageInteriorTransitionUI"],
+  "modules": [
+   "ReplicatedStorage.Modules.Game.UIPulse.Garage.OwnedGarageClient",
+   "ReplicatedStorage.Modules.Game.UIPulse.Garage.OwnedGarageBrowserModel",
+   "ReplicatedStorage.Modules.Game.UIPulse.Garage.OwnedGarageBrowserUI",
+   "ReplicatedStorage.Modules.Game.UIPulse.Garage.OwnedGarageWorkspaceUI",
+   "ReplicatedStorage.Modules.Game.UIPulse.Garage.OwnedGarageDeskView",
+   "ReplicatedStorage.Modules.Game.UIPulse.Garage.GarageCompat",
+   "ReplicatedStorage.Modules.Game.UIPulse.Garage.GarageInteriorHud",
+   "ReplicatedStorage.Modules.Game.UIPulse.Garage.TouchCameraGuard",
+   "ReplicatedStorage.Modules.Game.UIPulse.Garage.GarageInteriorTransitionUI",
+   "ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.GarageOwned"
+  ],
+  "claim": "OwnedGarage",
+  "startOrder": ["OwnedGarageBrowserUI", "OwnedGarageWorkspaceUI", "GarageInteriorHud (starts TouchCameraGuard)", "GarageInteriorTransitionUI"],
+  "screenGuis": [
+   {"name": "OwnedGarageBrowser", "displayOrder": 171},
+   {"name": "OwnedGarageBrowserScrim", "displayOrder": 168},
+   {"name": "OwnedGarageInteriorHUD", "displayOrder": 58}
+  ],
+  "forks": [
+   {"module": "Garage.OwnedGarageWorkspaceUI", "classic": "UI.OwnedGarageWorkspaceUI", "spans": ["12"],
+    "callSites": "36 found by the extraction of fork_check.py (wrapped and direct), identical by construction",
+    "notes": "single writer of PlayerGui@OwnedGarageManagementOpen (Classic 35); every purchase, equip, save, access and invitation call of the desk lives here unchanged, behind the Classic `busy` guard of `operate` (Classic 51)"},
+   {"module": "Garage.TouchCameraGuard", "classic": "UI.GarageInteriorModeUI", "spans": ["1-47", "52", "271-280"],
+    "callSites": "none in the kept range 48-51, 53-270; the six of the removed ranges are listed under _moved in forks/TouchCameraGuard.json"},
+   {"module": "Garage.GarageInteriorTransitionUI", "classic": "UI.GarageInteriorTransitionUI", "spans": ["6"], "callSites": "none"}
+  ],
+  "remotes": [
+   {"remote": "Remotes.Garage.OwnedGarageInvoke", "kind": "invoke", "action": "GetState", "keys": [], "classicLine": 108,
+    "site": "OwnedGarageBrowserModel: _call() from Open()", "guard": "generation token (Classic 108)", "retried": false},
+   {"remote": "Remotes.Garage.OwnedGarageInvoke", "kind": "invoke", "action": "GetVisitableGarages", "keys": [], "classicLine": 87,
+    "site": "OwnedGarageBrowserModel: _call() from _refreshVisits()", "guard": "generation token and mode (Classic 87)", "retried": false},
+   {"remote": "Remotes.Garage.OwnedGarageInvoke", "kind": "invoke", "action": "EnterSelectedGarage", "keys": ["PropertyId"], "classicLine": 116,
+    "site": "OwnedGarageBrowserModel: _call() from Enter()", "guard": "busy (Classic 113, 116)", "retried": false},
+   {"remote": "Remotes.Garage.OwnedGarageInvoke", "kind": "invoke", "action": "EnterSelectedGarage", "keys": ["PropertyId", "ReplacementSlotId"], "classicLine": 101,
+    "site": "OwnedGarageBrowserModel: _call() from ChooseReplacement()", "guard": "busy (Classic 99, 101)", "retried": false},
+   {"remote": "Remotes.Garage.OwnedGarageInvoke", "kind": "invoke", "action": "ExitOnFoot", "keys": [], "classicLine": 116,
+    "site": "OwnedGarageBrowserModel: _call() from Enter()", "guard": "busy (Classic 113, 116)", "retried": false},
+   {"remote": "Remotes.Garage.OwnedGarageInvoke", "kind": "invoke", "action": "VisitGarage", "keys": ["OwnerUserId"], "classicLine": 91,
+    "site": "OwnedGarageBrowserModel: _call() from _visitAction()", "guard": "busy (Classic 90, 91)", "retried": false},
+   {"remote": "Remotes.Garage.OwnedGarageInvoke", "kind": "invoke", "action": "LeaveVisit", "keys": [], "classicLine": 91,
+    "site": "OwnedGarageBrowserModel: _call() from _visitAction()", "guard": "busy (Classic 90, 91)", "retried": false},
+   {"remote": "Remotes.Garage.OwnedGarageEvent", "kind": "fire", "action": null, "keys": ["Type", "Token", "Success", "Message"],
+    "literals": {"Type": "OwnedGarageStreamReady"}, "classicLine": 138,
+    "site": "OwnedGarageBrowserModel: OnPush(), the one stream-ready acknowledgement", "retried": false},
+   {"remote": "Remotes.Garage.OwnedGarageInvoke", "kind": "invoke", "action": "GetManagementState", "keys": [], "classicLine": 27,
+    "classicOwner": "GarageInteriorModeUI", "site": "GarageInteriorHud: call() from refresh()", "guard": "refreshing (Classic 27)", "retried": false},
+   {"remote": "Remotes.Garage.OwnedGarageInvoke", "kind": "invoke", "action": "SetAccessMode", "keys": ["AccessMode", "BaseRevision", "RequestId"], "classicLine": 38,
+    "classicOwner": "GarageInteriorModeUI", "site": "GarageInteriorHud: mutate() from chooseAccess()", "guard": "busy (Classic 31)", "retried": false},
+   {"remote": "Remotes.Garage.OwnedGarageInvoke", "kind": "invoke", "action": "SetInvitation", "keys": ["Action", "TargetUserId", "BaseRevision", "RequestId"], "classicLine": 42,
+    "classicOwner": "GarageInteriorModeUI", "site": "GarageInteriorHud: mutate() from chooseInvite()", "guard": "busy (Classic 31)", "retried": false}
+  ],
+  "listens": [
+   {"remote": "Remotes.Garage.OwnedGarageEvent", "signal": "OnClientEvent", "site": "OwnedGarageBrowserUI -> OwnedGarageBrowserModel:OnPush",
+    "types": ["OwnedGarageStreamRequest", "DriveOut", "DriveOutResult", "FootExitResult", "VisitEnded"], "classicLine": 135},
+   {"remote": "Remotes.Garage.OwnedGarageEvent", "signal": "OnClientEvent", "site": "GarageInteriorHud",
+    "types": ["DriveOutResult", "ManagementUpdated"], "classicLine": 277, "classicOwner": "GarageInteriorModeUI"},
+   {"remote": "Remotes.Garage.OwnedGarageEvent", "signal": "OnClientEvent", "site": "OwnedGarageWorkspaceUI (fork, kept)",
+    "types": ["OpenManagement", "DriveOut", "ManagementUpdated", "DriveOutResult"], "classicLine": 176, "classicOwner": "OwnedGarageWorkspaceUI"}
+  ],
+  "bindables": [
+   {"name": "Runtime.UI.OpenOwnedGarageBrowser", "dir": "connect", "classicLine": 119, "note": "the only listener under Pulse"},
+   {"name": "Runtime.UI.OpenOwnedGarageWorkspace", "dir": "connect", "classicLine": 175, "classicOwner": "OwnedGarageWorkspaceUI", "note": "fork, kept"},
+   {"name": "Runtime.UI.FreeRoamHudPresentationMode", "dir": "fire", "keys": ["Owner", "Active", "KeepTelemetry"],
+    "literals": {"Owner": "OwnedGarageBrowser", "KeepTelemetry": false}, "classicLine": 55},
+   {"name": "Runtime.UI.FreeRoamHudPresentationMode", "dir": "connect", "classicLine": 10, "classicOwner": "GarageInteriorTransitionUI", "note": "fork, kept"},
+   {"name": "Runtime.UI.ShowTopNotification", "dir": "fire", "args": ["text", 2.2], "classicLine": 143, "note": "VisitEnded texts, unchanged"},
+   {"name": "Runtime.UI.LoadingTransitionInvoke", "dir": "invoke", "action": "Begin", "keys": ["Destination", "Status"], "classicLines": [58, 91, 100, 115]},
+   {"name": "Runtime.UI.LoadingTransitionInvoke", "dir": "invoke", "action": "Complete", "keys": ["Generation", "Status", "Reason"], "classicLines": [59, 92, 102, 117],
+    "note": "Reason only from _finishPhysicalLoading (Classic 59); the three other sites send {Generation, Status}"},
+   {"name": "Runtime.UI.LoadingTransitionInvoke", "dir": "invoke", "action": "Fail", "keys": ["Generation", "Status", "Reason"], "classicLines": [59, 92, 102, 117]}
+  ],
+  "attributes": [
+   {"on": "Players.LocalPlayer.PlayerScripts.Runtime.UI", "name": "OwnedGarageClientStarted", "dir": "write", "classicLine": 10, "classicOwner": "OwnedGarageClient",
+    "note": "set true by OwnedGarageClient after every part's Start() returned ok, as Classic"},
+   {"on": "PlayerGui", "name": "OwnedGarageInteriorMode", "dir": "write", "classicLine": 10, "classicOwner": "GarageInteriorModeUI", "site": "GarageInteriorHud: publish()"},
+   {"on": "PlayerGui", "name": "OwnedGarageManagementOpen", "dir": "write", "classicLine": 35, "classicOwner": "OwnedGarageWorkspaceUI", "site": "fork, kept: the single writer"},
+   {"on": "PlayerGui", "name": "OwnedGarageManagementOpen", "dir": "read", "site": "GarageInteriorHud, TouchCameraGuard (fork)"},
+   {"on": "Player", "name": "OwnedGarageInside", "dir": "read", "site": "browser model, interior HUD, transition fork, guard fork"},
+   {"on": "Player", "name": "OwnedGarageVisitor", "dir": "read", "site": "browser model (Classic 124), interior HUD (Classic 273)"},
+   {"on": "Player", "name": "MobileMajorMenuOpen", "dir": "read", "site": "interior HUD (Classic 273)"},
+   {"on": "Player", "name": "GarageSessionActive", "dir": "read", "site": "guard fork, kept"},
+   {"on": "Player", "name": "RaceSessionActive", "dir": "read", "site": "guard fork, kept"},
+   {"on": "ProximityPrompt", "name": "OwnedGarageEntryPrompt", "dir": "read", "classicLine": 125},
+   {"on": "ProximityPrompt", "name": "OwnedGaragePropertyId", "dir": "read", "classicLine": 126}
+  ],
+  "names": ["OwnedGarageBrowser", "GarageList", "Garage_*", "Visit_*", "Enter", "Exit", "OwnedGarageInteriorHUD", "AccessControls", "Access", "Invite",
+   "OwnedGarageCanonicalWorkspace", "TutorialCardScroller", "Categories", "Card", "Card.DisplayCars", "Card.BuildGarage", "Card.StyleGarage",
+   "Card.Structure", "Card.Decorations", "Card.Lighting", "Page.GarageHome", "Page.DisplayCars", "Page.GarageAssetFamilies", "Page.BuildStructure", "Page.BuildDecorations"],
+  "contextActions": [],
+  "renderSteps": [{"name": "OwnedGarageTouchCameraGuard", "site": "TouchCameraGuard (fork, kept: BindToRenderStep at Camera + 1, Classic 170)"}],
+  "audio": [{"call": "PresentationAudioBridge.Result(kind, result, {Action})", "site": "OwnedGarageWorkspaceUI (fork, kept, Classic 56)"}],
+  "dropped": [
+   {"item": "GarageInteriorModeUI toast:SetAttribute(\"Stamp\") and the private GarageStatus label (16, 18)", "reason": "API2 5.7 (target r07) and 2.11: the shared toast shows the same text"},
+   {"item": "OwnedGarageBrowserUI attribute writes SkipTouchHardening and OwnedGarageOriginalSize, and hardenTouch (18-19, 44-45, 71)", "reason": "API2 2.8: kit buttons are at least 48 dp; no view-level hardening"},
+   {"item": "Config reads of GarageReplacement.OwnedGarageIcons.Browser / .Access and Config.Garage.Interior InteriorHud* layout values (browser 15-17, HUD 6-9, 29, 45)", "reason": "API2 6.6 rule 3 and API1 11 rule 6: icons and sizes come from the kit"},
+   {"item": "Title text MY GARAGES / VISIT GARAGES (20, 70, 88)", "reason": "API2 5.7 target r05: the title is GARAGES and the tabs carry MY GARAGES and VISIT"},
+   {"item": "Invite list stays open after a press, and the list is re-opened after a refresh (HUD 42, 275, 277)", "reason": "API2 3.6 Dropdown: it closes on selection and has no open or close call"},
+   {"item": "Left category cards with artwork, scroll memory, card popup placement, the Classic runtime geometry audit (GarageWorkspaceUI 204-217, 321-349)", "reason": "API2 5.7 fork table row 1: the desk view is OwnedGarageDeskView; PC 8 keeps behaviour, not look"},
+   {"item": "Cash and Spaces plus buttons on the desk (GarageWorkspaceUI 221, 223)", "reason": "API2 3.4: ShowPlus false. The desk fork passes no OnCash or OnCapacity handler, so the Classic buttons did nothing"},
+   {"item": "print lines \"[Owned Garage] ...\" (OwnedGarageClient 11, browser 145, HUD 278)", "reason": "API1 11 rule 12"}
+  ],
+  "added": [
+   {"item": "Switch.Claim(\"OwnedGarage\") before anything is required", "reason": "API2 6.2"},
+   {"item": "Runtime.UI.ShowTopNotification fire from GarageInteriorHud: ({Text, Icon, Kind}, 2.4) for the texts Classic drew in its GarageStatus label", "reason": "API2 5.7 target r07; 2.11 Toast kinds"},
+   {"item": "Presence.Open(\"OwnedGarageBrowser\", \"FullMenu\") and Presence.Open(\"OwnedGarageWorkspace\", \"Garage\")", "reason": "API2 3.9"},
+   {"item": "Status strip (display spaces, leaderstats Cash) on the browser", "reason": "API2 3.4, 3.5; target r05"},
+   {"item": "Strings: GARAGES; <filled> / <capacity> SPACES FILLED; DISTRICT, CAPACITY, FILLED, HOST, VISITORS; <n> SPACES; EMPTY; MANAGE; <name> - INVITE / - REVOKE; ACCESS label", "reason": "API2 6.6 rule 8; targets r05, r06, r07, c12"},
+   {"item": "GarageCompat.ConfirmationModal returns an object with Destroy (Classic Foundation.Confirmation returns none, so Classic closeModal throws while a confirmation is open)", "reason": "API2 5.7 fork table row 1"},
+   {"item": "GarageInteriorHud heading with the current garage name", "reason": "API2 5.7 target r07"},
+   {"item": "A view build failure leaves the browser closed (CanOpen) or the HUD without controls, with one warning; stream acknowledgement, exit prompts and the attribute keep working", "reason": "API2 4: start() must reach ready; PC 1.3"}
+  ]
+ },
+ {
+  "owner": "ReplicatedStorage.Modules.Game.UIPulse.Garage.GarageEntranceClient",
+  "replaces": ["GarageEntranceClient"],
+  "modules": ["ReplicatedStorage.Modules.Game.UIPulse.Garage.GarageEntranceClient"],
+  "claim": "GarageEntrance",
+  "screenGuis": [],
+  "forks": [
+   {"module": "Garage.GarageEntranceClient", "classic": "Dealership.GarageEntranceClient", "spans": ["65-91", "93-106"],
+    "callSites": "9, identical (fork_check.py)"}
+  ],
+  "remotes": [
+   {"remote": "Remotes.UI.GarageSessionRequest", "kind": "invoke", "action": "Begin", "keys": ["Mode"], "classicLine": 178, "site": "fork, kept", "guard": "busy and GarageEntryMode (Classic 168, 175)", "retried": false},
+   {"remote": "Remotes.UI.GarageSessionRequest", "kind": "invoke", "action": "End", "keys": ["ReturnToEntry"], "classicLine": 196, "site": "fork, kept", "retried": false}
+  ],
+  "listens": [],
+  "bindables": [
+   {"name": "Runtime.UI.LoadingTransitionInvoke", "dir": "invoke", "action": "Begin", "keys": ["Destination", "Status"], "classicLine": 189},
+   {"name": "Runtime.UI.LoadingTransitionInvoke", "dir": "invoke", "action": "Fail", "keys": ["Generation", "Status", "Reason"], "classicLine": 198},
+   {"name": "Runtime.Dealership.OpenGarageFromIntro", "dir": "fire", "keys": ["LoadingGeneration", "LoadingDestination"], "classicLine": 194},
+   {"name": "Runtime.Dealership.OpenOwnedCockpitCustomisation", "dir": "fire", "keys": ["LoadingGeneration", "LoadingDestination"], "classicLine": 194},
+   {"name": "Runtime.Dealership.OpenDrivingVehicleCustomisation", "dir": "fire", "keys": ["LoadingGeneration", "LoadingDestination"], "classicLine": 194},
+   {"name": "Runtime.UI.ShowTopNotification", "dir": "fire", "args": ["text"], "classicLine": 97, "note": "now every flash message, not only OWN A VEHICLE TO CUSTOMISE"}
+  ],
+  "attributes": [
+   {"on": "Player", "name": "GarageEntryMode", "dir": "write", "classicLines": [190, 197]},
+   {"on": "Player", "name": "GarageEntryMode", "dir": "read", "classicLines": [130, 206]}
+  ],
+  "names": ["CanonicalDealership", "CanonicalCustomisation", "CanonicalDriveIn"],
+  "contextActions": [], "renderSteps": [],
+  "audio": [{"call": "PresentationAudioBridge.Emit(\"UI.PurchaseRejected\", {Reason, Route})", "site": "fork, kept, Classic 182"}],
+  "dropped": [
+   {"item": "ScreenGui GarageEntranceStatus (DisplayOrder 90), its label, corner and stroke, and the destroy of an old one (65-91)", "reason": "API2 5.7 fork table row 4; 2.4 ladder: not created"},
+   {"item": "The 2 s private status label for every message but one (99-105)", "reason": "API2 5.7 fork table row 4: flash becomes the toast (its default 2.5 s)"}
+  ],
+  "added": [
+   {"item": "Switch.Claim(\"GarageEntrance\") inside span 65-91, before any prompt is created", "reason": "API2 6.2"}
+  ]
+ }
+]

@@ -1,0 +1,502 @@
+{
+ "generated_by": "scripts/ui_restyle/phase2/families/garage/gen_actions.py",
+ "sources": {
+  "ReplicatedStorage.Modules.Game.Garage.GarageUI.lua": "4323acbf8d3b92b2fceb0dff9c44553cd260a8511df35d3f624d38e9aa2420d6",
+  "ReplicatedStorage.Modules.Game.Garage.GarageCatalogClient.lua": "530229dc138ebce0c439ee649cd8e3c9ce2dbdb3a1ff81a27fa21d3caa35abdb"
+ },
+ "count": 24,
+ "actions": [
+  {
+   "id": "L35.GetInitial",
+   "remote": "Remotes.Garage.GarageInvoke",
+   "kind": "invoke",
+   "wrapper": "Adapter:Call",
+   "action": "GetInitial",
+   "payload_keys": [],
+   "payload_values": {},
+   "line": 35,
+   "in_function": "Adapter:Refresh",
+   "closure": null,
+   "state": "open(): every entry, after the access check; through GarageCatalogClient.Fetch",
+   "called_from_lines": [
+    689
+   ]
+  },
+  {
+   "id": "L115.SetVehicleCosmeticColor",
+   "remote": "Remotes.Garage.GarageInvoke",
+   "kind": "invoke",
+   "wrapper": "Adapter:Call",
+   "action": "SetVehicleCosmeticColor",
+   "payload_keys": [
+    "CosmeticId",
+    "Color",
+    "ReturnProfile"
+   ],
+   "payload_values": {
+    "CosmeticId": "\"ThrustColour\"",
+    "Color": "color",
+    "ReturnProfile": "true"
+   },
+   "line": 115,
+   "in_function": "handlePaint",
+   "closure": null,
+   "state": "Paint, colour committed (slider release or swatch), target THRUST_COLOR"
+  },
+  {
+   "id": "L116.SetVehicleCosmeticColor",
+   "remote": "Remotes.Garage.GarageInvoke",
+   "kind": "invoke",
+   "wrapper": "Adapter:Call",
+   "action": "SetVehicleCosmeticColor",
+   "payload_keys": [
+    "CosmeticId",
+    "Color",
+    "ReturnProfile"
+   ],
+   "payload_values": {
+    "CosmeticId": "\"Underglow\"",
+    "Color": "color",
+    "ReturnProfile": "true"
+   },
+   "line": 116,
+   "in_function": "handlePaint",
+   "closure": null,
+   "state": "Paint, colour committed, target UNDERGLOW"
+  },
+  {
+   "id": "L117.SetCockpitColor",
+   "remote": "Remotes.Garage.GarageInvoke",
+   "kind": "invoke",
+   "wrapper": "Adapter:Call",
+   "action": "SetCockpitColor",
+   "payload_keys": [
+    "Channel",
+    "Color",
+    "Scope",
+    "ReturnProfile"
+   ],
+   "payload_values": {
+    "Channel": "channel",
+    "Color": "color",
+    "Scope": "\"WholeVehicle\"",
+    "ReturnProfile": "true"
+   },
+   "line": 117,
+   "in_function": "handlePaint",
+   "closure": null,
+   "state": "Post-purchase paint (Stage Paint), colour committed, target WholeVehicle"
+  },
+  {
+   "id": "L119.SetAllNeonColor",
+   "remote": "Remotes.Garage.GarageInvoke",
+   "kind": "invoke",
+   "wrapper": "Adapter:Call",
+   "action": "SetAllNeonColor",
+   "payload_keys": [
+    "Color",
+    "ReturnProfile"
+   ],
+   "payload_values": {
+    "Color": "color",
+    "ReturnProfile": "true"
+   },
+   "line": 119,
+   "in_function": "handlePaint",
+   "closure": null,
+   "state": "Paint, colour committed, target ALL, channel Neon"
+  },
+  {
+   "id": "L120.SetCockpitColor",
+   "remote": "Remotes.Garage.GarageInvoke",
+   "kind": "invoke",
+   "wrapper": "Adapter:Call",
+   "action": "SetCockpitColor",
+   "payload_keys": [
+    "Channel",
+    "Color",
+    "Scope",
+    "ReturnProfile"
+   ],
+   "payload_values": {
+    "Channel": "channel",
+    "Color": "color",
+    "Scope": "\"WholeVehicle\"",
+    "ReturnProfile": "true"
+   },
+   "line": 120,
+   "in_function": "handlePaint",
+   "closure": null,
+   "state": "Paint, colour committed, target ALL, channel other than Neon"
+  },
+  {
+   "id": "L121.SetCockpitColor",
+   "remote": "Remotes.Garage.GarageInvoke",
+   "kind": "invoke",
+   "wrapper": "Adapter:Call",
+   "action": "SetCockpitColor",
+   "payload_keys": [
+    "Channel",
+    "Color",
+    "Scope",
+    "ReturnProfile"
+   ],
+   "payload_values": {
+    "Channel": "channel",
+    "Color": "color",
+    "Scope": "\"CockpitOnly\"",
+    "ReturnProfile": "true"
+   },
+   "line": 121,
+   "in_function": "handlePaint",
+   "closure": null,
+   "state": "Paint, colour committed, target Cockpit"
+  },
+  {
+   "id": "L122.SetModuleColor",
+   "remote": "Remotes.Garage.GarageInvoke",
+   "kind": "invoke",
+   "wrapper": "Adapter:Call",
+   "action": "SetModuleColor",
+   "payload_keys": [
+    "SlotId",
+    "Channel",
+    "Color",
+    "ReturnProfile"
+   ],
+   "payload_values": {
+    "SlotId": "target",
+    "Channel": "channel",
+    "Color": "color",
+    "ReturnProfile": "true"
+   },
+   "line": 122,
+   "in_function": "handlePaint",
+   "closure": null,
+   "state": "Paint, colour committed, target is a slot id"
+  },
+  {
+   "id": "L174.BuyGarageProperty",
+   "remote": "Remotes.Garage.GarageInvoke",
+   "kind": "invoke",
+   "wrapper": "Adapter:Call",
+   "action": "BuyGarageProperty",
+   "payload_keys": [
+    "PropertyId"
+   ],
+   "payload_values": {
+    "PropertyId": "property.PropertyId"
+   },
+   "line": 174,
+   "in_function": "showProperties",
+   "closure": null,
+   "state": "Garage properties modal (Spaces plus), a property that is not owned is pressed"
+  },
+  {
+   "id": "L183.End",
+   "remote": "Remotes.UI.GarageSessionRequest",
+   "kind": "invoke",
+   "wrapper": "Adapter:Session",
+   "action": "End",
+   "payload_keys": [
+    "ReturnToEntry"
+   ],
+   "payload_values": {
+    "ReturnToEntry": "true"
+   },
+   "line": 183,
+   "in_function": "driveFromGarage",
+   "closure": null,
+   "state": "Drive pressed with engine, stabilisers and boost fitted (before SpawnVehicle)"
+  },
+  {
+   "id": "L185.SpawnVehicle",
+   "remote": "Remotes.Garage.GarageInvoke",
+   "kind": "invoke",
+   "wrapper": "Adapter:Call",
+   "action": "SpawnVehicle",
+   "payload_keys": [],
+   "payload_values": {},
+   "line": 185,
+   "in_function": "driveFromGarage",
+   "closure": null,
+   "state": "Drive pressed, after the session End succeeded"
+  },
+  {
+   "id": "L194.SelectVehicleInstance",
+   "remote": "Remotes.Garage.GarageInvoke",
+   "kind": "invoke",
+   "wrapper": "Adapter:Call",
+   "action": "SelectVehicleInstance",
+   "payload_keys": [
+    "VehicleId",
+    "CockpitId"
+   ],
+   "payload_values": {
+    "VehicleId": "row.VehicleId",
+    "CockpitId": "row.CockpitId"
+   },
+   "line": 194,
+   "in_function": "renderBrowser",
+   "closure": "OnPrimary",
+   "state": "Browser, ShopMode Customisation, primary action on the selected owned vehicle"
+  },
+  {
+   "id": "L194.BuyCockpitInstance.1",
+   "remote": "Remotes.Garage.GarageInvoke",
+   "kind": "invoke",
+   "wrapper": "Adapter:Call",
+   "action": "BuyCockpitInstance",
+   "payload_keys": [
+    "CockpitId",
+    "CategoryId"
+   ],
+   "payload_values": {
+    "CockpitId": "row.CockpitId",
+    "CategoryId": "row.CategoryId"
+   },
+   "line": 194,
+   "in_function": "renderBrowser",
+   "closure": "OnPrimary",
+   "state": "Browser, ShopMode Dealership, primary action (BUY) on the selected cockpit"
+  },
+  {
+   "id": "L195.End",
+   "remote": "Remotes.UI.GarageSessionRequest",
+   "kind": "invoke",
+   "wrapper": "Adapter:Session",
+   "action": "End",
+   "payload_keys": [
+    "ReturnToEntry"
+   ],
+   "payload_values": {
+    "ReturnToEntry": "true"
+   },
+   "line": 195,
+   "in_function": "renderBrowser",
+   "closure": "OnExit",
+   "state": "Browser, Exit pressed"
+  },
+  {
+   "id": "L288.EquipModuleInstance",
+   "remote": "Remotes.Garage.GarageInvoke",
+   "kind": "invoke",
+   "wrapper": "Adapter:Call",
+   "action": "EquipModuleInstance",
+   "payload_keys": [
+    "ModuleInstanceId",
+    "VehicleId",
+    "SlotId",
+    "AllowReassign"
+   ],
+   "payload_values": {
+    "ModuleInstanceId": "row.Id",
+    "VehicleId": "State.Profile.CurrentVehicleId",
+    "SlotId": "State.SelectedSlot",
+    "AllowReassign": "allowReassign==true"
+   },
+   "line": 288,
+   "in_function": "equipInstance",
+   "closure": null,
+   "state": "Parts, Owned list, EQUIP on the selected instance (AllowReassign true only after the move confirmation)"
+  },
+  {
+   "id": "L358.BuyModuleInstance",
+   "remote": "Remotes.Garage.GarageInvoke",
+   "kind": "invoke",
+   "wrapper": "Adapter:Call",
+   "action": "BuyModuleInstance",
+   "payload_keys": [
+    "ModuleId",
+    "VehicleId",
+    "SlotId"
+   ],
+   "payload_values": {
+    "ModuleId": "row.Id",
+    "VehicleId": "State.Profile.CurrentVehicleId",
+    "SlotId": "State.SelectedSlot"
+   },
+   "line": 358,
+   "in_function": "renderBuild",
+   "closure": "OnAction",
+   "state": "Parts, Shop list, BUY on the selected unlocked module"
+  },
+  {
+   "id": "L437.UpgradeModule",
+   "remote": "Remotes.Garage.GarageInvoke",
+   "kind": "invoke",
+   "wrapper": "Adapter:Call",
+   "action": "UpgradeModule",
+   "payload_keys": [
+    "SlotId",
+    "ModuleId",
+    "UpgradeId"
+   ],
+   "payload_values": {
+    "SlotId": "target",
+    "ModuleId": "moduleId",
+    "UpgradeId": "u.UpgradeId"
+   },
+   "line": 437,
+   "in_function": "addUpgradeCards",
+   "closure": "OnAction",
+   "state": "Upgrades, UPGRADE on the selected upgrade that is not maxed and within budget"
+  },
+  {
+   "id": "L558.BuyVehicleCosmetic",
+   "remote": "Remotes.Garage.GarageInvoke",
+   "kind": "invoke",
+   "wrapper": "Adapter:Call",
+   "action": "BuyVehicleCosmetic",
+   "payload_keys": [
+    "CosmeticId"
+   ],
+   "payload_values": {
+    "CosmeticId": "id"
+   },
+   "line": 558,
+   "in_function": "addCosmeticPurchaseCard",
+   "closure": "OnAction",
+   "state": "Paint, target THRUST_COLOR or UNDERGLOW not yet owned, BUY on the selected cosmetic"
+  },
+  {
+   "id": "L604.BuyNeon",
+   "remote": "Remotes.Garage.GarageInvoke",
+   "kind": "invoke",
+   "wrapper": "Adapter:Call",
+   "action": "BuyNeon",
+   "payload_keys": [
+    "SlotId"
+   ],
+   "payload_values": {
+    "SlotId": "target"
+   },
+   "line": 604,
+   "in_function": "addPaintOverviewCards",
+   "closure": "OnAction",
+   "state": "Paint, slot target, BUY on the selected Neon Lights card that is not owned"
+  },
+  {
+   "id": "L678.EnsureCustomisationAccess",
+   "remote": "Remotes.Garage.GarageInvoke",
+   "kind": "invoke",
+   "wrapper": "Adapter:Call",
+   "action": "EnsureCustomisationAccess",
+   "payload_keys": [],
+   "payload_values": {},
+   "line": 678,
+   "in_function": "open",
+   "closure": null,
+   "state": "open() with mode Customisation or DriveIn, before anything else"
+  },
+  {
+   "id": "L684.End",
+   "remote": "Remotes.UI.GarageSessionRequest",
+   "kind": "invoke",
+   "wrapper": "Adapter:Session",
+   "action": "End",
+   "payload_keys": [
+    "ReturnToEntry"
+   ],
+   "payload_values": {
+    "ReturnToEntry": "true"
+   },
+   "line": 684,
+   "in_function": "open",
+   "closure": null,
+   "state": "open(): EnsureCustomisationAccess refused"
+  },
+  {
+   "id": "L689.End",
+   "remote": "Remotes.UI.GarageSessionRequest",
+   "kind": "invoke",
+   "wrapper": "Adapter:Session",
+   "action": "End",
+   "payload_keys": [
+    "ReturnToEntry"
+   ],
+   "payload_values": {
+    "ReturnToEntry": "true"
+   },
+   "line": 689,
+   "in_function": "open",
+   "closure": null,
+   "state": "open(): GetInitial failed"
+  },
+  {
+   "id": "L691.DespawnVehicle",
+   "remote": "Remotes.Garage.GarageInvoke",
+   "kind": "invoke",
+   "wrapper": "Adapter:Call",
+   "action": "DespawnVehicle",
+   "payload_keys": [],
+   "payload_values": {},
+   "line": 691,
+   "in_function": "open",
+   "closure": null,
+   "state": "open() with mode DriveIn, after GetInitial"
+  },
+  {
+   "id": "L691.SelectVehicleInstance.1",
+   "remote": "Remotes.Garage.GarageInvoke",
+   "kind": "invoke",
+   "wrapper": "Adapter:Call",
+   "action": "SelectVehicleInstance",
+   "payload_keys": [
+    "VehicleId"
+   ],
+   "payload_values": {
+    "VehicleId": "vehicleId"
+   },
+   "line": 691,
+   "in_function": "open",
+   "closure": null,
+   "state": "open() with mode DriveIn, when Profile.CurrentVehicleId was set before the despawn"
+  }
+ ],
+ "wrappers": [
+  {
+   "line": 24,
+   "receiver": "garageInvoke",
+   "arguments": "actionName,payload or {}"
+  },
+  {
+   "line": 24,
+   "receiver": "CatalogTransport.Fetch",
+   "arguments": "garageInvoke,payload"
+  },
+  {
+   "line": 36,
+   "receiver": "sessionRequest",
+   "arguments": "actionName,payload or {}"
+  }
+ ],
+ "transport": {
+  "remote": "Remotes.Garage.GarageInvoke",
+  "invoke_sites": [
+   {
+    "line": 33,
+    "action": "GetInitial",
+    "payload": "request"
+   },
+   {
+    "line": 37,
+    "action": "GetInitial",
+    "payload": "request"
+   }
+  ],
+  "request_fields": [
+   {
+    "line": 32,
+    "key": "KnownCatalogRevision",
+    "value": "revision"
+   },
+   {
+    "line": 36,
+    "key": "KnownCatalogRevision",
+    "value": "nil"
+   }
+  ],
+  "note": "GetInitial is sent by this shared module (reused unchanged). The second site is its one read-only recovery request; no other action is ever sent twice."
+ }
+}

@@ -1,0 +1,131 @@
+[
+ {
+  "owner": "ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.TouchControlsClient",
+  "replaces": ["MobileDriveControlsClient"],
+  "route": "logic-identical fork (forks/FreeRoam.TouchControlsClient.json): Classic lines 22-103 and 176-192 replaced, 1-21, 104-175 and 193-208 kept byte for byte",
+  "claim": "TouchControls",
+  "screenGuis": [{"name": "MobileDriveControls_Phase1", "displayOrder": 96, "frame": "Bare"}],
+  "remotes": [],
+  "listens": [],
+  "bindables": [],
+  "attributes": [
+   {"on": "Player", "name": "MobileControlMode", "dir": "write", "where": "kept 166, 173"},
+   {"on": "Player", "name": "MobileControlMode", "dir": "read", "where": "kept 153, 172-174"},
+   {"on": "Player", "name": "MobileFreeRoamCarMenuOpen", "dir": "read", "where": "kept 197"},
+   {"on": "Player", "name": "MobileMajorMenuOpen", "dir": "read", "where": "kept 197"},
+   {"on": "<each control button>", "name": "ControlVisual", "dir": "write", "where": "span 1; Classic 54; same values Arrow / Pedal / Default"},
+   {"on": "<each control button, ThumbstickHit>", "name": "UIAudioSuppressClick", "dir": "write", "where": "span 1; Classic 54, 95; true"},
+   {"on": "ReplicatedStorage.Config.UI.MobileFreeRoamHud", "name": "DefaultControlMode, TiltDeadzoneDegrees, TiltMaxDegrees, TiltSmoothing", "dir": "read", "where": "kept 154, 165, 173, 200 through A()"},
+   {"on": "ReplicatedStorage.Config.Vehicles.MobileControls", "name": "DriftEnterThreshold, DriftExitThreshold", "dir": "read", "where": "kept 132-133"}
+  ],
+  "inputState": [
+   {"write": "M.State[action] = on", "where": "kept 114"},
+   {"write": "M.AnalogDrift = on (TiltDrift)", "where": "kept 114"},
+   {"write": "M.Refresh() (or the fallback assignments of 109)", "where": "kept 108-109, called from 115 and 162"},
+   {"write": "M.SetSteering(steer, drift) (or the fallback of 126)", "where": "kept 126, called from 137, 139, 200"},
+   {"write": "M.State[key] = false for every key", "where": "kept 161"},
+   {"write": "M.AnalogDrift = false", "where": "kept 162"},
+   {"read": "M.IsDriving, M.AnalogDrift", "where": "kept 197, 200"},
+   {"read": "M.BoostPercent", "where": "span 2 (added: the boost charge ring)"}
+  ],
+  "names": ["MobileDriveControls_Phase1", "DriftLeft", "DriftRight", "Boost", "TurnLeft", "TurnRight", "Accelerator", "Brake", "ThumbstickHit", "TiltDrift", "TiltRecenter", "TiltStatus", "OuterDriftRing", "Knob", "DriftLabel"],
+  "marks": ["DriftLeft", "DriftRight", "Boost"],
+  "contextActions": [],
+  "renderSteps": [{"signal": "RunService.RenderStepped", "where": "kept 196-201", "note": "kept by the fork route; not Kit.Perf (NOTES_b Q3)"}],
+  "userInput": ["UserInputService.InputEnded (kept 121, 142)", "UserInputService.InputChanged (kept 141)", "UserInputService.DeviceRotationChanged (kept 151)", "per-button InputBegan / InputEnded (kept 118-119)", "ThumbstickHit.InputBegan (kept 140)", "TiltRecenter.Activated (kept 150)"],
+  "audio": [],
+  "dropped": [
+   {"item": "Destroy of an earlier MobileDriveControls_Phase1 (41) and the hand-made ScreenGui (42)", "reason": "API2 5.3 ScreenGuis: the gui comes from Layers.Create, which refuses an existing one"},
+   {"item": "ScreenGui.Enabled read at 197", "reason": "API2 5.3 touch fork: gui.Enabled is read as the layer root Visible; the kept line is unchanged and reads a proxy"},
+   {"item": "Config reads of the builders and layout: ArrowCardOpacity, ArrowCardGradientRotation, ArrowImageOpacity, ArrowPressedOpacityBoost, ArrowWidthMultiplier, BoostIconScale, BoostPlateGradientRotation, BoostPlateScale, ControlPressedImageOpacityBoost, PedalBottomOffset, PedalCardOpacity, PedalGap, PedalImageOpacity, PedalRightOffset, PedalSize; the Assets lookups TurnArrowImage, DriftArrowImage, AcceleratorImage, BrakeImage, BoostIcon", "reason": "API2 5.3 touch fork: replaced spans 22-103 and 176-192; Classic positions, ctx.Dp sizes from Sprites.Touch; images through Kit.Touch (API2 3.8)"},
+   {"item": "ControlVisual attribute read in pressed() (67)", "reason": "API2 5.3 touch fork: pressed calls SetPressed; the attribute is still written"},
+   {"item": "Child names CardGradient, Fallback, BoostPlate, BoostIcon, InnerTurnRing; UICorner, UIStroke, UIGradient instances", "reason": "API2 3.8 and 6.6 (API1 rule 5): the art is the uploaded images"},
+   {"item": "Thumbstick outer stroke as a UIStroke", "reason": "API1 rule 5; the kept writes of outerStroke.Color (136, 139) recolour two hairlines through a proxy"}
+  ],
+  "added": [
+   {"item": "Layers.Switch().Claim(\"TouchControls\") as the first statement of span 1", "reason": "API2 6.2"},
+   {"item": "Pressed art on every control, Boost included (Classic Boost had no pressed look)", "reason": "API2 3.8, 5.3 (pressed calls SetPressed) [seen c20]"},
+   {"item": "Boost charge ring from MobileDriveInputState.BoostPercent, written on a whole-percent change", "reason": "API2 3.8 (SetCharge) [seen c20]; the read is the one API2 5.3 'Per frame' already names for the HUD"},
+   {"item": "Onboarding marks DriftLeft, DriftRight, Boost through Input.Mark (PulseMark attribute)", "reason": "API2 2.10, 5.3"}
+  ]
+ },
+ {
+  "owner": "ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.ActivityHudClient",
+  "replaces": ["ActivityClient"],
+  "claim": "ActivityHud",
+  "screenGuis": [{"name": "ActivityHud", "displayOrder": 84, "frame": "Hud", "rootName": "DesignRoot"}, {"name": "ActivityHudLive", "displayOrder": 87, "frame": "Hud"}],
+  "remotes": [
+   {"remote": "Remotes.Activities.ActivityInvoke", "kind": "invoke", "action": "Cancel", "keys": []},
+   {"remote": "Remotes.Activities.ActivityInvoke", "kind": "invoke", "action": "<ctx.Invoke(action, args): passed through from the shared views>", "keys": ["<args or {}>"]}
+  ],
+  "listens": [{"remote": "Remotes.Activities.ActivityEvent", "signal": "OnClientEvent", "kinds": ["Rank:Up", "<every payload is forwarded to the mounted views>"]}],
+  "bindables": [
+   {"name": "Runtime.UI.ShowTopNotification", "dir": "fire", "keys": ["text", "seconds (default 2.4)"]},
+   {"name": "Runtime.UI.OpenJobs", "dir": "create", "note": "created only if absent; nothing listens (Classic 52-57)"}
+  ],
+  "attributes": [
+   {"on": "Player", "name": "FullMapOpen", "dir": "read"},
+   {"on": "Player", "name": "RaceQueueActive", "dir": "read"},
+   {"on": "<seated vehicle>", "name": "RaceParticipant", "dir": "read"},
+   {"on": "<seated vehicle>", "name": "RaceRunId", "dir": "read"}
+  ],
+  "names": ["ActivityHud", "DesignRoot", "JobStrip", "Offer", "Countdown", "RankUp", "Text", "Cancel", "Title", "Body", "Timer", "Number", "Label", "Kicker", "Rank", "Reward", "DuelChallengeButton (parented by the shared view)", "ActivityBeacon_<id> (world Part under the camera)"],
+  "contextActions": [],
+  "renderSteps": [{"name": "Perf.Bind \"ActivityHud\"", "layer": "ActivityHudLive"}],
+  "audio": [],
+  "publicApi": ["start", "Context"],
+  "sharedModulesRequired": ["UI.RouteGuide", "Activities.CourierClientView", "Activities.PassengerClientView", "Activities.TaxiClientView", "Activities.DuelClientView", "Core.ConnectionScope"],
+  "dropped": [
+   {"item": "ScreenGui.Enabled write (75)", "reason": "API2 5.3 Player attributes: the activity root is hidden with root Visible while FullMapOpen"},
+   {"item": "Destroy of an earlier ActivityHud (71-72) and the hand-made ScreenGui (73)", "reason": "API2 5.3 ScreenGuis"},
+   {"item": "Requires of RacingUIComponents and ResponsiveUIFoundation (23-24); Config.UI.Racing.Colours lookups (41)", "reason": "API2 6.6 rule 1; the theme comes from Tokens (PC 2.3 named exception)"},
+   {"item": "Classic root scale rule clamp(vp.Y / 720, 0.55, 1) / clamp(min(x / 1920, y / 1080), 0.72, 1.12) and the camera ViewportSize listener (80-88)", "reason": "API2 5.3 Activity: ctx.Root is a design-pixel frame with the one named UIScale; the scale is the kit scale (Kit.Metrics is the only viewport listener, API1 6)"},
+   {"item": "RenderStepped connection of the countdown (201)", "reason": "API1 rule 7: one Perf.Bind on the live layer"},
+   {"item": "task.wait(1) loop while racing() (255)", "reason": "API2 6.6 rule 5: no polling loop; the same racing() rule is re-checked on RaceQueueActive, SeatPart, vehicle attribute and character signals, with the same 600 s limit"},
+   {"item": "UIScale pop tween on the rank-up card (264-265)", "reason": "API1 rule 5: no tween of a UIScale"},
+   {"item": "TweenService tween of the offer timer (181)", "reason": "API2 6.6 rule 5 / PC 5.1 rule 5: the timer line is written from the live step, on a whole-pixel change"},
+   {"item": "Strip text coloured by the entry colour (118) and the Stroke lookup (119-120)", "reason": "API2 5.3 target r17: white text, coloured edge; API1 rule 5 (no UIStroke)"},
+   {"item": "Several rank-up cards at once", "reason": "API2 5.3 names one RankUp; a newer rank-up replaces the showing card"}
+  ],
+  "added": [
+   {"item": "ActivityHudLive layer (offer, countdown, rank-up)", "reason": "API2 5.3 ScreenGuis"},
+   {"item": "String \"REWARD\" beside the rank-up Cash chip; the amount is \"+\" .. Data.Money(cash, false)", "reason": "API2 3.5 (the only money formatting), 5.3 target r17, 6.6 rule 8"},
+   {"item": "Offer buttons: an option with the Telemetry accent is the main button and goes right-most; an option with the HighSpeed accent is a Buy button", "reason": "API2 5.3 target r17; API2 2.8 ButtonRow order rule"},
+   {"item": "Changed is fired, and the strip redrawn, only when the showing line changes", "reason": "PC 5.1 rule 5"},
+   {"item": "The design root is shortened from the bottom so the Duel button clears the Pulse bottom row", "reason": "API2 5.3 Activity; PC Appendix A"}
+  ]
+ },
+ {
+  "owner": "ReplicatedStorage.Modules.Game.UIPulse.Shell.CoreUiPolicy",
+  "replaces": [],
+  "route": "Pulse-only entry PulseCoreUiPolicy (API2 section 4)",
+  "claim": "CoreUi",
+  "screenGuis": [],
+  "remotes": [],
+  "listens": [],
+  "bindables": [],
+  "attributes": [],
+  "names": [],
+  "contextActions": [],
+  "renderSteps": [],
+  "audio": [],
+  "starterGuiCore": [
+   {"call": "SetCoreGuiEnabled", "type": "PlayerList", "value": false},
+   {"call": "SetCoreGuiEnabled", "type": "Health", "value": false},
+   {"call": "SetCoreGuiEnabled", "type": "Backpack", "value": false},
+   {"call": "SetCoreGuiEnabled", "type": "Chat", "value": "false while Presence.Any(kind) for a kind other than Race, else the value read at start"},
+   {"call": "GetCoreGuiEnabled", "type": "Chat", "when": "once, at start"}
+  ],
+  "guiService": [{"property": "AutoSelectGuiEnabled", "value": false}],
+  "textChatService": [{"instance": "ChatWindowConfiguration", "properties": ["FontFace", "TextColor3", "BackgroundColor3"]}],
+  "dropped": [],
+  "added": [{"item": "The whole owner", "reason": "API2 5.3 Shell.CoreUiPolicy; PC 7.1"}]
+ },
+ {
+  "owner": "ReplicatedStorage.Modules.Game.UI.RouteGuide",
+  "replaces": [],
+  "route": "edited existing script (before/ and after/): three lines inserted after line 91",
+  "added": [{"item": "RouteGuide.GetRouteState(): read-only; returns a new table with a clone of the route points", "reason": "API2 5.3 Edit to an existing script; PC 1.6 row 2"}],
+  "dropped": []
+ }
+]

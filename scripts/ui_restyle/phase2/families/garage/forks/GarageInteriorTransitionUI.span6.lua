@@ -1,0 +1,1 @@
+	local Browser=require(script.Parent:WaitForChild("OwnedGarageBrowserUI")); local Workspace=require(script.Parent:WaitForChild("OwnedGarageWorkspaceUI")); local presentation=game:GetService("Players").LocalPlayer:WaitForChild("PlayerScripts"):WaitForChild("Runtime"):WaitForChild("UI"):WaitForChild("FreeRoamHudPresentationMode")

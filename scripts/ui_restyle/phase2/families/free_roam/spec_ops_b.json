@@ -1,0 +1,130 @@
+[
+ {
+  "id": "b_folder_freeroam",
+  "kind": "create",
+  "class": "Folder",
+  "path": [
+   "ReplicatedStorage",
+   "Modules",
+   "Game",
+   "UIPulse",
+   "FreeRoam"
+  ],
+  "_note": "shared with the a half; keep one"
+ },
+ {
+  "id": "b_folder_shell",
+  "kind": "create",
+  "class": "Folder",
+  "path": [
+   "ReplicatedStorage",
+   "Modules",
+   "Game",
+   "UIPulse",
+   "Shell"
+  ],
+  "_note": "first module of UIPulse.Shell; the Shell family adds to it later"
+ },
+ {
+  "id": "b_touch_view",
+  "kind": "create",
+  "class": "ModuleScript",
+  "path": [
+   "ReplicatedStorage",
+   "Modules",
+   "Game",
+   "UIPulse",
+   "FreeRoam",
+   "TouchControlsView"
+  ],
+  "after": "after/ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.TouchControlsView.lua"
+ },
+ {
+  "id": "b_touch_client",
+  "kind": "create",
+  "class": "ModuleScript",
+  "path": [
+   "ReplicatedStorage",
+   "Modules",
+   "Game",
+   "UIPulse",
+   "FreeRoam",
+   "TouchControlsClient"
+  ],
+  "after": "after/ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.TouchControlsClient.lua",
+  "_fork": "forks/FreeRoam.TouchControlsClient.json; the after file here is the hand-assembled review copy, the fork tool output replaces it"
+ },
+ {
+  "id": "b_activity_view",
+  "kind": "create",
+  "class": "ModuleScript",
+  "path": [
+   "ReplicatedStorage",
+   "Modules",
+   "Game",
+   "UIPulse",
+   "FreeRoam",
+   "ActivityHudView"
+  ],
+  "after": "after/ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.ActivityHudView.lua"
+ },
+ {
+  "id": "b_activity_client",
+  "kind": "create",
+  "class": "ModuleScript",
+  "path": [
+   "ReplicatedStorage",
+   "Modules",
+   "Game",
+   "UIPulse",
+   "FreeRoam",
+   "ActivityHudClient"
+  ],
+  "after": "after/ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.ActivityHudClient.lua"
+ },
+ {
+  "id": "b_core_ui_policy",
+  "kind": "create",
+  "class": "ModuleScript",
+  "path": [
+   "ReplicatedStorage",
+   "Modules",
+   "Game",
+   "UIPulse",
+   "Shell",
+   "CoreUiPolicy"
+  ],
+  "after": "after/ReplicatedStorage.Modules.Game.UIPulse.Shell.CoreUiPolicy.lua"
+ },
+ {
+  "id": "b_fixtures_activity",
+  "kind": "create",
+  "class": "ModuleScript",
+  "path": [
+   "ReplicatedStorage",
+   "Modules",
+   "Game",
+   "UIPulse",
+   "Dev",
+   "Fixtures",
+   "FreeRoamActivity"
+  ],
+  "after": "after/ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.FreeRoamActivity.lua",
+  "_note": "a 13th module, not in the API2 5.3 list: Dev.Fixtures.FreeRoam belongs to the a half (NOTES_b Q1)"
+ },
+ {
+  "id": "b_route_guide",
+  "kind": "source",
+  "class": "ModuleScript",
+  "path": [
+   "ReplicatedStorage",
+   "Modules",
+   "Game",
+   "UI",
+   "RouteGuide"
+  ],
+  "before": "before/ReplicatedStorage.Modules.Game.UI.RouteGuide.lua",
+  "after": "after/ReplicatedStorage.Modules.Game.UI.RouteGuide.lua",
+  "_note": "API2 5.3: one read-only function inserted after line 91; reviewer reads this op"
+ }
+]

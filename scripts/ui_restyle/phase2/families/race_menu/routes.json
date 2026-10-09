@@ -1,0 +1,7 @@
+{
+ "family": "RaceMenu",
+ "swap": {
+  "RaceBrowserClient": "ReplicatedStorage.Modules.Game.UIPulse.RaceMenu.RaceMenuClient"
+ },
+ "add": []
+}

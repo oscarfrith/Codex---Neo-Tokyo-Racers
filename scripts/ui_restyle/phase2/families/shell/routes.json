@@ -1,0 +1,7 @@
+{
+ "family": "Shell",
+ "swap": {
+  "OnboardingClient": "ReplicatedStorage.Modules.Game.UIPulse.Shell.OnboardingClient"
+ },
+ "add": []
+}

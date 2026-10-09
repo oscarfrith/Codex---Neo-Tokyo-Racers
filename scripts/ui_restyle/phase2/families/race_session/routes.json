@@ -1,0 +1,11 @@
+{
+ "family": "RaceSession",
+ "swap": {
+  "RaceSessionPresentationClient": "ReplicatedStorage.Modules.Game.UIPulse.RaceSession.RaceHudClient",
+  "RaceCountdownPresentationClient": "ReplicatedStorage.Modules.Game.UIPulse.RaceSession.CountdownClient",
+  "RaceQueueClient": "ReplicatedStorage.Modules.Game.UIPulse.RaceSession.QueueClient",
+  "RaceRouteGuideClient": "ReplicatedStorage.Modules.Game.UIPulse.RaceSession.RouteGuideClient",
+  "RaceTimeTrialResultCoachClient": "ReplicatedStorage.Modules.Game.UIPulse.RaceSession.ResultsClient"
+ },
+ "add": []
+}
