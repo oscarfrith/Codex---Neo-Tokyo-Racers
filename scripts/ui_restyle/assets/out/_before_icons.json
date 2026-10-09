@@ -1,0 +1,1195 @@
+{
+  "image": "icons.png",
+  "size": [
+    1024,
+    1024
+  ],
+  "cell": 128,
+  "ink_box": [
+    16,
+    16,
+    112,
+    112
+  ],
+  "stroke": 9,
+  "bold_stroke": 13,
+  "corner": "mitred joins, butt caps, chamfered boxes",
+  "slant_deg": 8,
+  "glyphs": {
+    "garage": {
+      "cell": [
+        0,
+        0
+      ],
+      "ImageRectOffset": [
+        0,
+        0
+      ],
+      "ImageRectSize": [
+        128,
+        128
+      ],
+      "ink": [
+        16,
+        16,
+        112,
+        112
+      ]
+    },
+    "dealership": {
+      "cell": [
+        1,
+        0
+      ],
+      "ImageRectOffset": [
+        128,
+        0
+      ],
+      "ImageRectSize": [
+        128,
+        128
+      ],
+      "ink": [
+        16,
+        16,
+        112,
+        112
+      ],
+      "note": "price tag"
+    },
+    "customise": {
+      "cell": [
+        2,
+        0
+      ],
+      "ImageRectOffset": [
+        256,
+        0
+      ],
+      "ImageRectSize": [
+        128,
+        128
+      ],
+      "ink": [
+        18,
+        16,
+        112,
+        110
+      ],
+      "note": "combination spanner"
+    },
+    "race_flag": {
+      "cell": [
+        3,
+        0
+      ],
+      "ImageRectOffset": [
+        384,
+        0
+      ],
+      "ImageRectSize": [
+        128,
+        128
+      ],
+      "ink": [
+        16,
+        16,
+        114,
+        112
+      ]
+    },
+    "map": {
+      "cell": [
+        4,
+        0
+      ],
+      "ImageRectOffset": [
+        512,
+        0
+      ],
+      "ImageRectSize": [
+        128,
+        128
+      ],
+      "ink": [
+        16,
+        18,
+        112,
+        110
+      ]
+    },
+    "settings_cog": {
+      "cell": [
+        5,
+        0
+      ],
+      "ImageRectOffset": [
+        640,
+        0
+      ],
+      "ImageRectSize": [
+        128,
+        128
+      ],
+      "ink": [
+        16,
+        16,
+        112,
+        112
+      ]
+    },
+    "controls": {
+      "cell": [
+        6,
+        0
+      ],
+      "ImageRectOffset": [
+        768,
+        0
+      ],
+      "ImageRectSize": [
+        128,
+        128
+      ],
+      "ink": [
+        16,
+        19,
+        112,
+        109
+      ],
+      "note": "settings sliders (HUD nav); the CONTROLS button uses gamepad"
+    },
+    "gamepad": {
+      "cell": [
+        7,
+        0
+      ],
+      "ImageRectOffset": [
+        896,
+        0
+      ],
+      "ImageRectSize": [
+        128,
+        128
+      ],
+      "ink": [
+        16,
+        34,
+        112,
+        95
+      ]
+    },
+    "car": {
+      "cell": [
+        0,
+        1
+      ],
+      "ImageRectOffset": [
+        0,
+        128
+      ],
+      "ImageRectSize": [
+        128,
+        128
+      ],
+      "ink": [
+        15,
+        35,
+        113,
+        94
+      ],
+      "note": "low hover car, side view, nose right"
+    },
+    "passenger": {
+      "cell": [
+        1,
+        1
+      ],
+      "ImageRectOffset": [
+        128,
+        128
+      ],
+      "ImageRectSize": [
+        128,
+        128
+      ],
+      "ink": [
+        28,
+        16,
+        100,
+        112
+      ],
+      "note": "also single player / profile"
+    },
+    "players": {
+      "cell": [
+        2,
+        1
+      ],
+      "ImageRectOffset": [
+        256,
+        128
+      ],
+      "ImageRectSize": [
+        128,
+        128
+      ],
+      "ink": [
+        16,
+        20,
+        112,
+        112
+      ]
+    },
+    "taxi": {
+      "cell": [
+        3,
+        1
+      ],
+      "ImageRectOffset": [
+        384,
+        128
+      ],
+      "ImageRectSize": [
+        128,
+        128
+      ],
+      "ink": [
+        16,
+        16,
+        112,
+        108
+      ]
+    },
+    "parcel": {
+      "cell": [
+        4,
+        1
+      ],
+      "ImageRectOffset": [
+        512,
+        128
+      ],
+      "ImageRectSize": [
+        128,
+        128
+      ],
+      "ink": [
+        22,
+        16,
+        106,
+        111
+      ]
+    },
+    "exit": {
+      "cell": [
+        5,
+        1
+      ],
+      "ImageRectOffset": [
+        640,
+        128
+      ],
+      "ImageRectSize": [
+        128,
+        128
+      ],
+      "ink": [
+        17,
+        15,
+        112,
+        113
+      ]
+    },
+    "back": {
+      "cell": [
+        6,
+        1
+      ],
+      "ImageRectOffset": [
+        768,
+        128
+      ],
+      "ImageRectSize": [
+        128,
+        128
+      ],
+      "ink": [
+        16,
+        26,
+        108,
+        102
+      ]
+    },
+    "steering_wheel": {
+      "cell": [
+        7,
+        1
+      ],
+      "ImageRectOffset": [
+        896,
+        128
+      ],
+      "ImageRectSize": [
+        128,
+        128
+      ],
+      "ink": [
+        15,
+        15,
+        113,
+        113
+      ],
+      "note": "DRIVE button"
+    },
+    "trophy": {
+      "cell": [
+        0,
+        2
+      ],
+      "ImageRectOffset": [
+        0,
+        256
+      ],
+      "ImageRectSize": [
+        128,
+        128
+      ],
+      "ink": [
+        15,
+        16,
+        113,
+        112
+      ]
+    },
+    "medal": {
+      "cell": [
+        1,
+        2
+      ],
+      "ImageRectOffset": [
+        128,
+        256
+      ],
+      "ImageRectSize": [
+        128,
+        128
+      ],
+      "ink": [
+        26,
+        16,
+        102,
+        112
+      ]
+    },
+    "star": {
+      "cell": [
+        2,
+        2
+      ],
+      "ImageRectOffset": [
+        256,
+        256
+      ],
+      "ImageRectSize": [
+        128,
+        128
+      ],
+      "ink": [
+        16,
+        18,
+        112,
+        109
+      ]
+    },
+    "coin": {
+      "cell": [
+        3,
+        2
+      ],
+      "ImageRectOffset": [
+        384,
+        256
+      ],
+      "ImageRectSize": [
+        128,
+        128
+      ],
+      "ink": [
+        17,
+        17,
+        111,
+        111
+      ]
+    },
+    "timer": {
+      "cell": [
+        4,
+        2
+      ],
+      "ImageRectOffset": [
+        512,
+        256
+      ],
+      "ImageRectSize": [
+        128,
+        128
+      ],
+      "ink": [
+        21,
+        16,
+        107,
+        113
+      ]
+    },
+    "loop": {
+      "cell": [
+        5,
+        2
+      ],
+      "ImageRectOffset": [
+        640,
+        256
+      ],
+      "ImageRectSize": [
+        128,
+        128
+      ],
+      "ink": [
+        19,
+        16,
+        109,
+        113
+      ]
+    },
+    "laps": {
+      "cell": [
+        6,
+        2
+      ],
+      "ImageRectOffset": [
+        768,
+        256
+      ],
+      "ImageRectSize": [
+        128,
+        128
+      ],
+      "ink": [
+        15,
+        22,
+        113,
+        106
+      ]
+    },
+    "checkpoints": {
+      "cell": [
+        7,
+        2
+      ],
+      "ImageRectOffset": [
+        896,
+        256
+      ],
+      "ImageRectSize": [
+        128,
+        128
+      ],
+      "ink": [
+        20,
+        16,
+        108,
+        113
+      ],
+      "note": "pennant marker on a ground ring"
+    },
+    "pin": {
+      "cell": [
+        0,
+        3
+      ],
+      "ImageRectOffset": [
+        0,
+        384
+      ],
+      "ImageRectSize": [
+        128,
+        128
+      ],
+      "ink": [
+        29,
+        16,
+        99,
+        112
+      ]
+    },
+    "set_route": {
+      "cell": [
+        1,
+        3
+      ],
+      "ImageRectOffset": [
+        128,
+        384
+      ],
+      "ImageRectSize": [
+        128,
+        128
+      ],
+      "ink": [
+        18,
+        18,
+        110,
+        110
+      ],
+      "note": "directions sign: turn arrow in a diamond"
+    },
+    "route": {
+      "cell": [
+        2,
+        3
+      ],
+      "ImageRectOffset": [
+        256,
+        384
+      ],
+      "ImageRectSize": [
+        128,
+        128
+      ],
+      "ink": [
+        15,
+        19,
+        112,
+        109
+      ]
+    },
+    "north": {
+      "cell": [
+        3,
+        3
+      ],
+      "ImageRectOffset": [
+        384,
+        384
+      ],
+      "ImageRectSize": [
+        128,
+        128
+      ],
+      "ink": [
+        24,
+        15,
+        104,
+        112
+      ],
+      "note": "minimap north marker"
+    },
+    "boost": {
+      "cell": [
+        4,
+        3
+      ],
+      "ImageRectOffset": [
+        512,
+        384
+      ],
+      "ImageRectSize": [
+        128,
+        128
+      ],
+      "ink": [
+        28,
+        16,
+        100,
+        112
+      ]
+    },
+    "upgrade": {
+      "cell": [
+        5,
+        3
+      ],
+      "ImageRectOffset": [
+        640,
+        384
+      ],
+      "ImageRectSize": [
+        128,
+        128
+      ],
+      "ink": [
+        22,
+        16,
+        106,
+        110
+      ]
+    },
+    "lock": {
+      "cell": [
+        6,
+        3
+      ],
+      "ImageRectOffset": [
+        768,
+        384
+      ],
+      "ImageRectSize": [
+        128,
+        128
+      ],
+      "ink": [
+        26,
+        16,
+        102,
+        112
+      ]
+    },
+    "tick": {
+      "cell": [
+        7,
+        3
+      ],
+      "ImageRectOffset": [
+        896,
+        384
+      ],
+      "ImageRectSize": [
+        128,
+        128
+      ],
+      "ink": [
+        15,
+        27,
+        113,
+        106
+      ]
+    },
+    "chevron_left": {
+      "cell": [
+        0,
+        4
+      ],
+      "ImageRectOffset": [
+        0,
+        512
+      ],
+      "ImageRectSize": [
+        128,
+        128
+      ],
+      "ink": [
+        31,
+        17,
+        87,
+        111
+      ]
+    },
+    "chevron_right": {
+      "cell": [
+        1,
+        4
+      ],
+      "ImageRectOffset": [
+        128,
+        512
+      ],
+      "ImageRectSize": [
+        128,
+        128
+      ],
+      "ink": [
+        41,
+        17,
+        97,
+        111
+      ]
+    },
+    "chevron_up": {
+      "cell": [
+        2,
+        4
+      ],
+      "ImageRectOffset": [
+        256,
+        512
+      ],
+      "ImageRectSize": [
+        128,
+        128
+      ],
+      "ink": [
+        17,
+        31,
+        111,
+        87
+      ]
+    },
+    "chevron_down": {
+      "cell": [
+        3,
+        4
+      ],
+      "ImageRectOffset": [
+        384,
+        512
+      ],
+      "ImageRectSize": [
+        128,
+        128
+      ],
+      "ink": [
+        17,
+        41,
+        111,
+        97
+      ]
+    },
+    "plus": {
+      "cell": [
+        4,
+        4
+      ],
+      "ImageRectOffset": [
+        512,
+        512
+      ],
+      "ImageRectSize": [
+        128,
+        128
+      ],
+      "ink": [
+        20,
+        20,
+        108,
+        108
+      ]
+    },
+    "minus": {
+      "cell": [
+        5,
+        4
+      ],
+      "ImageRectOffset": [
+        640,
+        512
+      ],
+      "ImageRectSize": [
+        128,
+        128
+      ],
+      "ink": [
+        20,
+        57,
+        108,
+        71
+      ]
+    },
+    "close": {
+      "cell": [
+        6,
+        4
+      ],
+      "ImageRectOffset": [
+        768,
+        512
+      ],
+      "ImageRectSize": [
+        128,
+        128
+      ],
+      "ink": [
+        21,
+        21,
+        107,
+        107
+      ]
+    },
+    "title_mark": {
+      "cell": [
+        7,
+        4
+      ],
+      "ImageRectOffset": [
+        896,
+        512
+      ],
+      "ImageRectSize": [
+        128,
+        128
+      ],
+      "ink": [
+        20,
+        18,
+        112,
+        110
+      ],
+      "note": "three slashes before a screen title (Pink)"
+    },
+    "warning": {
+      "cell": [
+        0,
+        5
+      ],
+      "ImageRectOffset": [
+        0,
+        640
+      ],
+      "ImageRectSize": [
+        128,
+        128
+      ],
+      "ink": [
+        16,
+        17,
+        112,
+        108
+      ]
+    },
+    "info": {
+      "cell": [
+        1,
+        5
+      ],
+      "ImageRectOffset": [
+        128,
+        640
+      ],
+      "ImageRectSize": [
+        128,
+        128
+      ],
+      "ink": [
+        17,
+        17,
+        111,
+        111
+      ]
+    },
+    "duel": {
+      "cell": [
+        2,
+        5
+      ],
+      "ImageRectOffset": [
+        256,
+        640
+      ],
+      "ImageRectSize": [
+        128,
+        128
+      ],
+      "ink": [
+        17,
+        21,
+        111,
+        113
+      ]
+    },
+    "paint": {
+      "cell": [
+        3,
+        5
+      ],
+      "ImageRectOffset": [
+        384,
+        640
+      ],
+      "ImageRectSize": [
+        128,
+        128
+      ],
+      "ink": [
+        16,
+        16,
+        112,
+        112
+      ]
+    },
+    "keycap_blank": {
+      "cell": [
+        4,
+        5
+      ],
+      "ImageRectOffset": [
+        512,
+        640
+      ],
+      "ImageRectSize": [
+        128,
+        128
+      ],
+      "ink": [
+        18,
+        18,
+        110,
+        110
+      ],
+      "note": "square key; wide keys use keycap_9slice.png"
+    },
+    "dpad": {
+      "cell": [
+        5,
+        5
+      ],
+      "ImageRectOffset": [
+        640,
+        640
+      ],
+      "ImageRectSize": [
+        128,
+        128
+      ],
+      "ink": [
+        16,
+        16,
+        112,
+        112
+      ]
+    },
+    "pad_select": {
+      "cell": [
+        6,
+        5
+      ],
+      "ImageRectOffset": [
+        768,
+        640
+      ],
+      "ImageRectSize": [
+        128,
+        128
+      ],
+      "ink": [
+        17,
+        17,
+        111,
+        111
+      ],
+      "note": "View / Select"
+    },
+    "pad_start": {
+      "cell": [
+        7,
+        5
+      ],
+      "ImageRectOffset": [
+        896,
+        640
+      ],
+      "ImageRectSize": [
+        128,
+        128
+      ],
+      "ink": [
+        17,
+        17,
+        111,
+        111
+      ],
+      "note": "Menu / Start"
+    },
+    "pad_a": {
+      "cell": [
+        0,
+        6
+      ],
+      "ImageRectOffset": [
+        0,
+        768
+      ],
+      "ImageRectSize": [
+        128,
+        128
+      ],
+      "ink": [
+        17,
+        17,
+        111,
+        111
+      ]
+    },
+    "pad_b": {
+      "cell": [
+        1,
+        6
+      ],
+      "ImageRectOffset": [
+        128,
+        768
+      ],
+      "ImageRectSize": [
+        128,
+        128
+      ],
+      "ink": [
+        17,
+        17,
+        111,
+        111
+      ]
+    },
+    "pad_x": {
+      "cell": [
+        2,
+        6
+      ],
+      "ImageRectOffset": [
+        256,
+        768
+      ],
+      "ImageRectSize": [
+        128,
+        128
+      ],
+      "ink": [
+        17,
+        17,
+        111,
+        111
+      ]
+    },
+    "pad_y": {
+      "cell": [
+        3,
+        6
+      ],
+      "ImageRectOffset": [
+        384,
+        768
+      ],
+      "ImageRectSize": [
+        128,
+        128
+      ],
+      "ink": [
+        17,
+        17,
+        111,
+        111
+      ]
+    },
+    "pad_lb": {
+      "cell": [
+        4,
+        6
+      ],
+      "ImageRectOffset": [
+        512,
+        768
+      ],
+      "ImageRectSize": [
+        128,
+        128
+      ],
+      "ink": [
+        16,
+        28,
+        112,
+        100
+      ]
+    },
+    "pad_rb": {
+      "cell": [
+        5,
+        6
+      ],
+      "ImageRectOffset": [
+        640,
+        768
+      ],
+      "ImageRectSize": [
+        128,
+        128
+      ],
+      "ink": [
+        16,
+        28,
+        112,
+        100
+      ]
+    },
+    "pad_lt": {
+      "cell": [
+        6,
+        6
+      ],
+      "ImageRectOffset": [
+        768,
+        768
+      ],
+      "ImageRectSize": [
+        128,
+        128
+      ],
+      "ink": [
+        24,
+        16,
+        104,
+        112
+      ]
+    },
+    "pad_rt": {
+      "cell": [
+        7,
+        6
+      ],
+      "ImageRectOffset": [
+        896,
+        768
+      ],
+      "ImageRectSize": [
+        128,
+        128
+      ],
+      "ink": [
+        24,
+        16,
+        104,
+        112
+      ]
+    },
+    "drift": {
+      "cell": [
+        0,
+        7
+      ],
+      "ImageRectOffset": [
+        0,
+        896
+      ],
+      "ImageRectSize": [
+        128,
+        128
+      ],
+      "ink": [
+        16,
+        25,
+        112,
+        111
+      ],
+      "note": "stat / tip glyph; the touch control art is in touch_controls*.png"
+    },
+    "gauge": {
+      "cell": [
+        1,
+        7
+      ],
+      "ImageRectOffset": [
+        128,
+        896
+      ],
+      "ImageRectSize": [
+        128,
+        128
+      ],
+      "ink": [
+        15,
+        21,
+        113,
+        105
+      ],
+      "note": "speed stat glyph"
+    }
+  }
+}

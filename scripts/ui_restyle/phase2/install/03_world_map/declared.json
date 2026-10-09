@@ -25,9 +25,9 @@
    "class": "ModuleScript"
   },
   "ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Collections": {
-   "length": 19219,
-   "djb2": 396849307,
-   "fnv1a32": 903334191,
+   "length": 19548,
+   "djb2": 3960965073,
+   "fnv1a32": 2989794721,
    "class": "ModuleScript"
   },
   "ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Controls": {
@@ -121,9 +121,9 @@
    "class": "ModuleScript"
   },
   "ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.CarPanelView": {
-   "length": 9666,
-   "djb2": 2653463492,
-   "fnv1a32": 366271510,
+   "length": 9946,
+   "djb2": 1167113449,
+   "fnv1a32": 4211398439,
    "class": "ModuleScript"
   },
   "ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.HudClient": {
@@ -175,9 +175,9 @@
    "class": "ModuleScript"
   },
   "ReplicatedStorage.Modules.Game.UIPulse.Kit.Collections": {
-   "length": 74498,
-   "djb2": 1721489920,
-   "fnv1a32": 3301257708,
+   "length": 84352,
+   "djb2": 1647272556,
+   "fnv1a32": 3143147270,
    "class": "ModuleScript"
   },
   "ReplicatedStorage.Modules.Game.UIPulse.Kit.Contracts": {
@@ -205,9 +205,9 @@
    "class": "ModuleScript"
   },
   "ReplicatedStorage.Modules.Game.UIPulse.Kit.Input": {
-   "length": 11462,
-   "djb2": 1997541636,
-   "fnv1a32": 999945936,
+   "length": 13498,
+   "djb2": 2694737324,
+   "fnv1a32": 1908707770,
    "class": "ModuleScript"
   },
   "ReplicatedStorage.Modules.Game.UIPulse.Kit.Layers": {
@@ -248,8 +248,8 @@
   },
   "ReplicatedStorage.Modules.Game.UIPulse.Kit.Sprites": {
    "length": 9471,
-   "djb2": 3521630484,
-   "fnv1a32": 2425041178,
+   "djb2": 2790620180,
+   "fnv1a32": 1814382376,
    "class": "ModuleScript"
   },
   "ReplicatedStorage.Modules.Game.UIPulse.Kit.Surface": {
@@ -265,9 +265,9 @@
    "class": "ModuleScript"
   },
   "ReplicatedStorage.Modules.Game.UIPulse.Kit.Tokens": {
-   "length": 11644,
-   "djb2": 2106424898,
-   "fnv1a32": 3910910052,
+   "length": 11642,
+   "djb2": 1046315732,
+   "fnv1a32": 2680875912,
    "class": "ModuleScript"
   },
   "ReplicatedStorage.Modules.Game.UIPulse.Kit.Touch": {
@@ -323,9 +323,9 @@
    "_unpinned": "changed by 03_world_map"
   },
   "ReplicatedStorage.Modules.Game.UIPulse.Shell.CoreUiPolicy": {
-   "length": 5334,
-   "djb2": 2497083317,
-   "fnv1a32": 165809797,
+   "length": 5557,
+   "djb2": 1081851677,
+   "fnv1a32": 1124463485,
    "class": "ModuleScript"
   },
   "ReplicatedStorage.Modules.Game.UIPulse.Toasts.ToastClient": {
@@ -373,11 +373,16 @@
  },
  "configNodes": [
   "UI.Pulse",
-  "UI.Pulse.Assets"
+  "UI.Pulse.Assets",
+  "UI.LoadingSystem.Artworks.PulseSunset01"
  ],
  "configAttrs": [
   "UI@UIStyle",
   "UI@UIStyleDevFamilies",
   "Development.ClientTools@PulseGalleryEnabled"
+ ],
+ "configChanged": [
+  "UI.LoadingSystem@DefaultArtworkId",
+  "UI.LoadingSystem.Artworks.NeoTokyoStreet01@Enabled"
  ]
 }

@@ -212,7 +212,7 @@ return function(M: any, env: any): { { name: string, ok: boolean, detail: string
 		for _, key in retiredAssetKeys do
 			assert(M.Defaults.Assets[key] == nil and M.Assets[key] == nil, key .. " is still an asset key")
 		end
-		assert(M.Defaults.Assets.IconSheet == "rbxassetid://118261730871486", "IconSheet id")
+		assert(M.Defaults.Assets.IconSheet == "rbxassetid://75923195736638", "IconSheet id")
 		assert(M.Defaults.Assets.TitleSlash == "rbxassetid://72834960725330", "TitleSlash id")
 		assert(M.Defaults.Assets.TouchBoostPressed == "rbxassetid://113577162843584", "TouchBoostPressed id")
 		local before = M.Assets.GlowSoft

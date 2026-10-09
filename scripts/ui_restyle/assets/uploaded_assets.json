@@ -51,7 +51,10 @@
   },
   "IconSheet": {
    "file": "out/icons.png",
-   "id": "rbxassetid://118261730871486"
+   "id": "rbxassetid://75923195736638",
+   "was": [
+    "rbxassetid://118261730871486"
+   ]
   },
   "KeyCap": {
    "file": "out/keycap_9slice.png",
@@ -59,7 +62,10 @@
   },
   "MapIconSheet": {
    "file": "out/map_icons.png",
-   "id": "rbxassetid://118485943810175"
+   "id": "rbxassetid://80578954881108",
+   "was": [
+    "rbxassetid://118485943810175"
+   ]
   },
   "MapPlayerArrow": {
    "file": "out/map_player_arrow.png",
@@ -127,5 +133,28 @@
   }
  },
  "note": "Uploads cannot be edited; a revision is a new id. Not uploaded: wordmark_placeholder.png (placeholder, start screen keeps its logo), chequer_corner.png (two-tone chosen).",
- "uploaded": "2026-10-09"
+ "uploaded": "2026-10-09",
+ "superseded": {
+  "IconSheet (first car, dealership, race glyphs)": "rbxassetid://118261730871486",
+  "MapIconSheet (first Race, Dealership badges)": "rbxassetid://118485943810175"
+ },
+ "other_uploads": {
+  "Logo": {
+   "file": "out/logo_pulse_racers.png",
+   "id": "rbxassetid://86895264649881",
+   "note": "neon-tube logo, 1024x519; source assets/ui/logo/candidates/pulse-racers-logo-1-neon-tube; read by StartScreenPulse (Config.UI.Pulse.Assets@Logo)"
+  },
+  "LoadingPulseSunset01": {
+   "file": "loading/out/PulseSunset01_*.png",
+   "single": "rbxassetid://134802359668816",
+   "tiles": {
+    "R1C1": "rbxassetid://98078115872444",
+    "R1C2": "rbxassetid://107069420770225",
+    "R1C3": "rbxassetid://86155062738808",
+    "R2C1": "rbxassetid://84185869986030",
+    "R2C2": "rbxassetid://135255712114951",
+    "R2C3": "rbxassetid://137420408722691"
+   }
+  }
+ }
 }

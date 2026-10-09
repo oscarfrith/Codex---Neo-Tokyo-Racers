@@ -237,8 +237,12 @@ class Build:
             if not isinstance(asset_id, str) or not re.fullmatch(r"rbxassetid://\d+", asset_id):
                 self.problems.append("assets/uploaded_assets.json: %s has no rbxassetid id (%r)" % (key, asset_id))
                 continue
-            self.attributes.append({"id": "asset." + key, "kind": "attribute", "path": CONFIG_UI + ["Pulse", "Assets"],
-                                    "key": key, "before": "" if key in phase1_keys else None, "after": asset_id})
+            op = {"id": "asset." + key, "kind": "attribute", "path": CONFIG_UI + ["Pulse", "Assets"],
+                  "key": key, "before": "" if key in phase1_keys else None, "after": asset_id}
+            # Earlier uploads of the same asset (uploaded_assets.json "was"): APPLY replaces them.
+            if uploaded[key].get("was"):
+                op["was"] = list(uploaded[key]["was"])
+            self.attributes.append(op)
         self.notes.append("asset attributes: %d (%d existed as \"\", %d new); removed Phase 1 keys stay \"\": %s" % (
             len(ASSET_KEYS), len(phase1_keys & set(ASSET_KEYS)), len(set(ASSET_KEYS) - phase1_keys),
             ", ".join(sorted(phase1_keys - set(ASSET_KEYS)))))
@@ -486,6 +490,13 @@ class Build:
         base = common.read_json(PHASE1_DECLARED)
         declared = {"scripts": {}, "addedScripts": {}, "configNodes": list(base.get("configNodes", [])),
                     "configAttrs": list(base.get("configAttrs", []))}
+        # Config changes made on purpose after Phase 1 (loading artwork and the like): phase2/declared_config.json.
+        extra_file = os.path.join(common.PHASE2, "declared_config.json")
+        if os.path.exists(extra_file):
+            extra = common.read_json(extra_file)
+            for key in ("configNodes", "configAttrs", "configChanged"):
+                declared.setdefault(key, [])
+                declared[key] += [item for item in extra.get(key, []) if item not in declared[key]]
         manifest = common.classic_manifest()
         for path in sorted(scripts_after):
             data, klass, _, changed = scripts_after[path]

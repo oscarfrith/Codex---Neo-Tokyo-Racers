@@ -1,88 +1,120 @@
 {
-  "wave": "phase2 (programme phases 2 to 8)",
+ "wave": "phase2 (programme phases 2 to 8)",
+ "date": "2026-10-09",
+ "place": "Space Racers v3 (93959280828322)",
+ "status": "installed; default UIStyle = Pulse; agent-verified in Studio on desktop only (three sandbox test passes, 2026-10-09); not user-confirmed",
+ "installed_units": [
+  "00_kit",
+  "01_race_menu",
+  "02_free_roam",
+  "03_world_map",
+  "04_race_session",
+  "05_race_entry",
+  "06_garage",
+  "07_shell"
+ ],
+ "pulse_modules_in_place": 97,
+ "classic_scripts_edited": [
+  "ClientBase (Phase 1)",
+  "UI.RouteGuide (one read-only getter)",
+  "Racing.RaceTransitionClient (4-line label seam)",
+  "ReplicatedFirst.Loading.LoadingTransitionRuntime",
+  "ReplicatedFirst.Loading.InitialLoadingAndStartScreenClient"
+ ],
+ "final_audit": "07_shell all after; Classic verify 216 scripts same plus 5 declared edits, 0 failures, 0 config diffs",
+ "edit_harness": {
+  "00_kit": "34+ sources compile; 914 of 915 (one Minimap opacity expectation)",
+  "01_race_menu": "130 of 144 (14 instance-budget rows)",
+  "02_free_roam": "255 of 256 (one row-placement expectation)",
+  "03_world_map": "145 of 145",
+  "04_race_session": "261 of 261",
+  "05_race_entry": "226 of 233 (budget and pool-growth rows, one test global)",
+  "06_garage": "286 of 315 (29 instance-budget rows)",
+  "07_shell": "197 of 198"
+ },
+ "reviews": {
+  "free_roam": "READY WITH FIXES (touch fork Enabled read) - applied",
+  "race_session": "READY, no code fix",
+  "shell": "READY WITH FIXES (3 fallback fixes) - applied, not re-reviewed",
+  "garage": "READY WITH FIXES; all 24 call sites and the desk's 36 match Classic; 5 risk fixes applied, not re-reviewed"
+ },
+ "play_pulse_sandbox": {
+  "startup": "45 ready, 4 skipped, none failed; no errors in the log; only Freecam and RaceTransitionFade remain unmarked ScreenGuis",
+  "start_screen": "Pulse start screen shown; PLAY enters the game; HUD buttons active (OnboardingStage 4 profile)",
+  "free_roam": "HUD on foot and seated; action bar on screen; gauge with image digits at 71 mph; status cluster tier and rating; My Vehicles side panel",
+  "race_menu": "opens, select event, set route, exit; names fit",
+  "full_map": "opens with M, legend, markers and player arrow drawn, closes, HUD returns",
+  "prompts": "dealership desk banner shown and opens the dealership; teleport confirmation title fits",
+  "race_entry": "opens from the race-start prompt trigger; tier tabs, laps, medals, prize; EXIT returns to the HUD",
+  "garage": "dealership with car images; vehicle purchase debited exactly 50,000 once (3,614,558 to 3,564,558); post-purchase paint page; Customise with tabs; DRIVE seated the player, session ended, HUD back, no garage UI left on screen"
+ },
+ "not_verified": [
+  "results screens (no finished run; agents never finish one)",
+  "desk purchases, capacity purchase, Owned filter and equip of an owned module, unequip, a server-rejected purchase",
+  "Controls and Get Cash modals, activity strip, job offers, rank-up",
+  "onboarding on a fresh profile",
+  "every phone, tablet, touch and gamepad path (reviewed and fixed by reading code only)",
+  "the fixes installed in the last pass that were not re-opened: paint tabs, desk layout, in-race PB label, hidden gauge under modals"
+ ],
+ "known_defects": [
+  "Part tiles: with a two-line name the sub-line overlapped the icon; fix installed (kit Tile shrinks its picture box), compiles and its test passes, not yet seen in Play",
+  "One Roblox core camera error seen once (PlayerModule CameraUtils:103) during a scripted teleport and prompt sequence; cause not established",
+  "Desktop My Vehicles panel still has category and sort drop-downs",
+  "Garage Back is disabled on the Parts slot list",
+  "Instance budgets exceeded on race menu, race entry records and garage pages",
+  "Edit harness: 6 non-budget expectations fail (Kit.Input action count, Kit.Minimap track opacity, HudView bottom row, ResultsModel driving exit, RaceEntry pool growth and a test global, OnboardingClient page signal)"
+ ],
+ "recovery": "Set Config.UI@UIStyle to Classic for the old UI. Full removal: run out_rollback.lua twice for each unit in reverse order (07 to 00) from scripts/ui_restyle/phase2/install/, then scripts/ui_restyle/phase1/out_rollback.lua twice, with scripts/ui_restyle/tools/serve.py running.",
+ "test_pass_2_and_3": {
+  "garage": "module purchase debited exactly 6,000 and equipped; upgrade debited 500 (level 0 to 1, points 1/6); paint preset recoloured the car and persisted into the race; owned-garage browser, enter garage, interior HUD, desk (Garage Management, Build Garage families), desk exit, exit door all work after fixes",
+  "race": "race-start banner and event card show on foot; records page; vehicle choice; time trial start with countdown and in-race HUD (lap, timer, pips, route map, gauge); EXIT asks for confirmation and returns to free roam; no finish was run",
+  "free_roam": "spawn from My Vehicles works after the fix (the row was pre-selected so the press never reached the spawn call); Settings modal opens at the right size; start screen placement is stable",
+  "fixed_from_play": [
+   "My Vehicles spawn",
+   "garage desk not opening (attach to the Pulse-marked CanonicalGarageGui)",
+   "owned-garage browser layout",
+   "race entry vehicle page overlap",
+   "paint channel tabs overflow",
+   "ACCEL label",
+   "two-line part names",
+   "in-race PB label",
+   "desk status cluster and button row",
+   "start-screen buttons moving between cold starts"
+  ],
+  "fixed_from_preflight": "static kit-call checker (0 errors over 439 calls); HUD modals (screen-tall panels, phone buttons off-screen); results (exit always built first, XP ordering, empty vehicle names); onboarding (3 unresolved targets, locks always release); phone and gamepad paths for race menu, map, prompts, race entry; garage: purchase-on-focus in Properties and replace-on-focus in GARAGE FULL now need activation; 11 definite garage bugs; kit: 48 dp tabs on touch, strong focus records, Panel FitContent, uniform OnActivated",
+  "install_note": "the engine refuses to roll back the free_roam sources transaction once the shell unit has filled the UIPulse.Shell folder that free_roam created, so refreshing an earlier unit needed one guarded manual write of UIPulse.Routes to the race_menu unit's recorded source before re-applying forward; the engine rule should scope rollback blockers to the transaction being rolled back"
+ },
+ "review_pass_4": {
   "date": "2026-10-09",
-  "place": "Space Racers v3 (93959280828322)",
-  "status": "installed; default UIStyle = Pulse; agent-verified in Studio on desktop only (three sandbox test passes, 2026-10-09); not user-confirmed",
-  "installed_units": [
-    "00_kit",
-    "01_race_menu",
-    "02_free_roam",
-    "03_world_map",
-    "04_race_session",
-    "05_race_entry",
-    "06_garage",
-    "07_shell"
+  "request": "Oscar's first play review: loading art, logo, garage movement, dealership and car-panel images, icons, WASD cycling menus",
+  "installed": [
+   "PulseSunset01 loading artwork (Grid3x2, 6 tiles + single; NeoTokyoStreet01 disabled, kept)",
+   "neon-tube logo on the Pulse start screen (code default id; Config.UI.Pulse.Assets@Logo overrides)",
+   "icon sheets re-uploaded: car, dealership, race glyphs and the Race and Dealership map badges",
+   "Tile PictureMode Full/Wide/Box and ListRow PictureMode Wide + TierSide Right; dealership rail Full, free-roam vehicles list Wide with tier on the right",
+   "Kit.Input: engine focus only for gamepads; Input.StartFocusGuard (started by Shell.CoreUiPolicy) clears focus on keyboard, mouse and touch",
+   "engine: ROLLBACK child blockers apply only to the transaction being rolled back (chain refresh no longer needs a manual Routes write)",
+   "Classic verify: declared changed config values (phase2/declared_config.json)"
   ],
-  "pulse_modules_in_place": 97,
-  "classic_scripts_edited": [
-    "ClientBase (Phase 1)",
-    "UI.RouteGuide (one read-only getter)",
-    "Racing.RaceTransitionClient (4-line label seam)",
-    "ReplicatedFirst.Loading.LoadingTransitionRuntime",
-    "ReplicatedFirst.Loading.InitialLoadingAndStartScreenClient"
+  "root_cause_garage_and_wasd": "a button left with engine focus (GuiService.SelectedObject) makes the engine steer focus with WASD and the character does not move; reproduced in the garage: moved 0 studs with the Access button selected, 17 studs with none",
+  "agent_verified_in_play_sandbox": [
+   "start screen: new artwork tiles and logo",
+   "new icons on the HUD and Shop button",
+   "dealership rail full-frame tiles",
+   "customise rail unchanged; two-line tile name fix seen (DRIFT THRUSTERS)",
+   "My Vehicles list: whole car in a 3:2 picture, tier and rating on the right",
+   "focus guard: a selected object set by script is cleared with mouse and with keyboard as last input; W drove the car 206 studs with the panel open",
+   "Classic smoke: UIStyle Classic starts with no failed owner and shows the new artwork; UIStyle restored to Pulse"
   ],
-  "final_audit": "07_shell all after; Classic verify 216 scripts same plus 5 declared edits, 0 failures, 0 config diffs",
-  "edit_harness": {
-    "00_kit": "34+ sources compile; 914 of 915 (one Minimap opacity expectation)",
-    "01_race_menu": "130 of 144 (14 instance-budget rows)",
-    "02_free_roam": "255 of 256 (one row-placement expectation)",
-    "03_world_map": "145 of 145",
-    "04_race_session": "261 of 261",
-    "05_race_entry": "226 of 233 (budget and pool-growth rows, one test global)",
-    "06_garage": "286 of 315 (29 instance-budget rows)",
-    "07_shell": "197 of 198"
-  },
-  "reviews": {
-    "free_roam": "READY WITH FIXES (touch fork Enabled read) - applied",
-    "race_session": "READY, no code fix",
-    "shell": "READY WITH FIXES (3 fallback fixes) - applied, not re-reviewed",
-    "garage": "READY WITH FIXES; all 24 call sites and the desk's 36 match Classic; 5 risk fixes applied, not re-reviewed"
-  },
-  "play_pulse_sandbox": {
-    "startup": "45 ready, 4 skipped, none failed; no errors in the log; only Freecam and RaceTransitionFade remain unmarked ScreenGuis",
-    "start_screen": "Pulse start screen shown; PLAY enters the game; HUD buttons active (OnboardingStage 4 profile)",
-    "free_roam": "HUD on foot and seated; action bar on screen; gauge with image digits at 71 mph; status cluster tier and rating; My Vehicles side panel",
-    "race_menu": "opens, select event, set route, exit; names fit",
-    "full_map": "opens with M, legend, markers and player arrow drawn, closes, HUD returns",
-    "prompts": "dealership desk banner shown and opens the dealership; teleport confirmation title fits",
-    "race_entry": "opens from the race-start prompt trigger; tier tabs, laps, medals, prize; EXIT returns to the HUD",
-    "garage": "dealership with car images; vehicle purchase debited exactly 50,000 once (3,614,558 to 3,564,558); post-purchase paint page; Customise with tabs; DRIVE seated the player, session ended, HUD back, no garage UI left on screen"
-  },
+  "final_audit": "07_shell all after; Classic verify same=216 failures=0 cfgDiffs=0; sandbox window closed; UIStyle Pulse",
+  "edit_harness": "00_kit 971 of 972 (the Minimap track-opacity expectation, already known)",
   "not_verified": [
-    "results screens (no finished run; agents never finish one)",
-    "desk purchases, capacity purchase, Owned filter and equip of an owned module, unequip, a server-rejected purchase",
-    "Controls and Get Cash modals, activity strip, job offers, rank-up",
-    "onboarding on a fresh profile",
-    "every phone, tablet, touch and gamepad path (reviewed and fixed by reading code only)",
-    "a Play in Classic since Phase 1",
-    "the fixes installed in the last pass that were not re-opened: paint tabs, desk layout, in-race PB label, hidden gauge under modals"
-  ],
-  "known_defects": [
-    "Part tiles: with a two-line name the sub-line overlapped the icon; fix installed (kit Tile shrinks its picture box), compiles and its test passes, not yet seen in Play",
-    "One Roblox core camera error seen once (PlayerModule CameraUtils:103) during a scripted teleport and prompt sequence; cause not established",
-    "Desktop My Vehicles panel still has category and sort drop-downs",
-    "Garage Back is disabled on the Parts slot list",
-    "Instance budgets exceeded on race menu, race entry records and garage pages",
-    "Edit harness: 6 non-budget expectations fail (Kit.Input action count, Kit.Minimap track opacity, HudView bottom row, ResultsModel driving exit, RaceEntry pool growth and a test global, OnboardingClient page signal)"
-  ],
-  "recovery": "Set Config.UI@UIStyle to Classic for the old UI. Full removal: run out_rollback.lua twice for each unit in reverse order (07 to 00) from scripts/ui_restyle/phase2/install/, then scripts/ui_restyle/phase1/out_rollback.lua twice, with scripts/ui_restyle/tools/serve.py running.",
-  "test_pass_2_and_3": {
-    "garage": "module purchase debited exactly 6,000 and equipped; upgrade debited 500 (level 0 to 1, points 1/6); paint preset recoloured the car and persisted into the race; owned-garage browser, enter garage, interior HUD, desk (Garage Management, Build Garage families), desk exit, exit door all work after fixes",
-    "race": "race-start banner and event card show on foot; records page; vehicle choice; time trial start with countdown and in-race HUD (lap, timer, pips, route map, gauge); EXIT asks for confirmation and returns to free roam; no finish was run",
-    "free_roam": "spawn from My Vehicles works after the fix (the row was pre-selected so the press never reached the spawn call); Settings modal opens at the right size; start screen placement is stable",
-    "fixed_from_play": [
-      "My Vehicles spawn",
-      "garage desk not opening (attach to the Pulse-marked CanonicalGarageGui)",
-      "owned-garage browser layout",
-      "race entry vehicle page overlap",
-      "paint channel tabs overflow",
-      "ACCEL label",
-      "two-line part names",
-      "in-race PB label",
-      "desk status cluster and button row",
-      "start-screen buttons moving between cold starts"
-    ],
-    "fixed_from_preflight": "static kit-call checker (0 errors over 439 calls); HUD modals (screen-tall panels, phone buttons off-screen); results (exit always built first, XP ordering, empty vehicle names); onboarding (3 unresolved targets, locks always release); phone and gamepad paths for race menu, map, prompts, race entry; garage: purchase-on-focus in Properties and replace-on-focus in GARAGE FULL now need activation; 11 definite garage bugs; kit: 48 dp tabs on touch, strong focus records, Panel FitContent, uniform OnActivated",
-    "install_note": "the engine refuses to roll back the free_roam sources transaction once the shell unit has filled the UIPulse.Shell folder that free_roam created, so refreshing an earlier unit needed one guarded manual write of UIPulse.Routes to the race_menu unit's recorded source before re-applying forward; the engine rule should scope rollback blockers to the transaction being rolled back"
-  }
+   "garage movement after the fix through Oscar's own keyboard path (the cause was reproduced before the fix; the guard was verified in free roam, not re-run inside the garage)",
+   "gamepad focus after the change (no pad here): focus is entered only when a pad is the last input, and handed back to an open modal when a pad is picked up",
+   "phone layouts of the dealership tiles and vehicles panel",
+   "dealership Locked and Unaffordable tiles over a full-frame picture",
+   "logo on phone"
+  ]
+ },
+ "recovery_note_engine": "install_note in test_pass_2_and_3 is superseded: the engine rule was fixed in review_pass_4"
 }

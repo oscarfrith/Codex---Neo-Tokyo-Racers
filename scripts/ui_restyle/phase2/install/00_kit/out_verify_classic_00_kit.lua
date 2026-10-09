@@ -716,7 +716,7 @@ local DECLARED = {
 		["ReplicatedStorage.Modules.Game.UIPulse.Kit.Overlay"] = true,
 		["ReplicatedStorage.Modules.Game.UIPulse.Kit.Perf"] = {"ReplicatedStorage.Modules.Game.UIPulse.Kit.Perf","ModuleScript",4144,2497918401,3863359297,false},
 		["ReplicatedStorage.Modules.Game.UIPulse.Kit.Presence"] = {"ReplicatedStorage.Modules.Game.UIPulse.Kit.Presence","ModuleScript",4189,3697653828,1742439006,false},
-		["ReplicatedStorage.Modules.Game.UIPulse.Kit.Sprites"] = {"ReplicatedStorage.Modules.Game.UIPulse.Kit.Sprites","ModuleScript",9471,3521630484,2425041178,false},
+		["ReplicatedStorage.Modules.Game.UIPulse.Kit.Sprites"] = {"ReplicatedStorage.Modules.Game.UIPulse.Kit.Sprites","ModuleScript",9471,2790620180,1814382376,false},
 		["ReplicatedStorage.Modules.Game.UIPulse.Kit.Surface"] = true,
 		["ReplicatedStorage.Modules.Game.UIPulse.Kit.Text"] = true,
 		["ReplicatedStorage.Modules.Game.UIPulse.Kit.Tokens"] = true,
@@ -726,6 +726,7 @@ local DECLARED = {
 		["ReplicatedStorage.Modules.Game.UIPulse.Toasts.ToastClient"] = {"ReplicatedStorage.Modules.Game.UIPulse.Toasts.ToastClient","ModuleScript",3239,733354054,398291088,false},
 	},
 	configNodes = {
+		["UI.LoadingSystem.Artworks.PulseSunset01"] = true,
 		["UI.Pulse"] = true,
 		["UI.Pulse.Assets"] = true,
 	},
@@ -733,6 +734,10 @@ local DECLARED = {
 		["Development.ClientTools@PulseGalleryEnabled"] = true,
 		["UI@UIStyle"] = true,
 		["UI@UIStyleDevFamilies"] = true,
+	},
+	configChanged = {
+		["UI.LoadingSystem.Artworks.NeoTokyoStreet01@Enabled"] = true,
+		["UI.LoadingSystem@DefaultArtworkId"] = true,
 	},
 	services = {},
 }
@@ -943,6 +948,8 @@ local function compare(path, attr, exp, value)
 	local t, v = typed(value)
 	if sameValue(exp, t, v) then
 		config.same += 1
+	elseif DECLARED.configChanged[path .. "@" .. attr] then
+		push(declared.config, path .. "@" .. attr .. " (changed)")
 	else
 		push(config.diffs, { path = path, attr = attr, was = show(exp[1], exp[2]), now = show(t, v) })
 	end

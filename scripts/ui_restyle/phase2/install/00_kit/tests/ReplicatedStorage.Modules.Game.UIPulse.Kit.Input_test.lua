@@ -92,6 +92,15 @@ return function(M: any, env: any): { { name: string, ok: boolean, detail: string
 		assert(type(M.ShouldEnterFocus(other)) == "boolean", "not a boolean")
 	end)
 
+	case("keyboard, mouse and touch clear engine focus; a gamepad keeps it", function()
+		local button = env.Detached("TextButton")
+		assert(M._clearsFocus(Enum.UserInputType.Keyboard, button) == true, "keyboard kept focus")
+		assert(M._clearsFocus(Enum.UserInputType.MouseMovement, button) == true, "mouse kept focus")
+		assert(M._clearsFocus(Enum.UserInputType.Touch, button) == true, "touch kept focus")
+		assert(M._clearsFocus(Enum.UserInputType.Gamepad1, button) == false, "gamepad lost focus")
+		assert(M._clearsFocus(Enum.UserInputType.Keyboard, nil) == false, "nothing to clear")
+	end)
+
 	case("Mark applies a legacy name and registers the instance once", function()
 		local button = env.Detached("TextButton")
 		button.Name = "PulseButton"

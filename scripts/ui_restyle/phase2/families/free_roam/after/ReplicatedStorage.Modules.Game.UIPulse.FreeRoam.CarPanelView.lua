@@ -49,15 +49,19 @@ function CarPanelView._withActivation(items, onActivated)
 	return items
 end
 
--- Pure: model rows -> list rows (Regular). The first row is always BUY MORE (D775-777).
+-- Pure: model rows -> list rows (Regular). The first row is always BUY MORE (D775-777). The card picture is shown
+-- whole in a box of its own shape (the square crop cut the car's nose and tail off), and the tier letter and the
+-- rating and class line stand at the right edge with the name between.
 function CarPanelView._listItems(rows, buyMoreKey, onActivated)
-	local items = { { Key = buyMoreKey, Title = "BUY MORE", Sub = "DEALERSHIP" } }
+	local items = { { Key = buyMoreKey, Title = "BUY MORE", Sub = "DEALERSHIP", TierSide = "Right" } }
 	for _, row in ipairs(rows) do
 		table.insert(items, {
 			Key = row.VehicleId,
 			Title = row.Name,
 			Sub = string.format("%d  %s", math.floor(row.Rating), row.Category),
 			Image = row.Image ~= "" and row.Image or nil,
+			PictureMode = "Wide",
+			TierSide = "Right",
 			Tier = TIERS[row.Tier] and row.Tier or nil,
 			Chip = row.Selected and "CURRENT" or nil,
 			ChipKind = row.Selected and "Cyan" or nil,

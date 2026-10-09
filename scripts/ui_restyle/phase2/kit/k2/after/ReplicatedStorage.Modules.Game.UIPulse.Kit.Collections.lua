@@ -24,6 +24,11 @@ local BADGE_LETTER = 0.9 -- tier letter cell width against the badge height (42 
 local TWO_LINES = 1.5 -- text taller than this many lines' worth is laid out as two lines
 local GRID_ROWS = 3 -- cell rows a grid rail shows when its parent gives it no height
 local LIST_ROWS = 5 -- rows a list shows when its parent gives it no height
+local PICTURE_ASPECT = 1.5 -- a vehicle card picture is 3 wide to 2 high (the 1536 by 1024 card renders)
+local PICTURE_FOCUS_X = 0.54 -- the car's centre across a card picture (it sits a little right of the middle)
+local PICTURE_FOCUS_Y = 0.52 -- and down it (a little below the middle, on the floor)
+local SCRIM_START = 0.35 -- how far down a full-frame picture its text scrim starts to darken
+local QUARTER_TURN = 90 -- UIGradient rotation of a top to bottom gradient
 
 ---------------------------------------------------------------------------------------------------
 -- Shared helpers (Kit.Controls carries the same block; the two modules may not require each other)
@@ -242,6 +247,84 @@ local function paintLine(line, gradient, look)
 	put(line, "BackgroundTransparency", 1 - look.LineOpacity)
 end
 
+-- A picture that covers a box (PictureMode): an oversized ImageLabel in a clipping Frame named Picture, behind
+-- everything else of its plate. A Crop ImageLabel alone cuts about its centre; here the car is held in view
+-- (Collections._cover). The scrim is made on first use.
+local function newCover(parent)
+	local box = newFrame(parent, "Picture")
+	box.ClipsDescendants = true
+	box.ZIndex = 0
+	local image = Instance.new("ImageLabel")
+	image.Name = "Image"
+	image.BackgroundTransparency = 1
+	image.BorderSizePixel = 0
+	image.Parent = box
+	return { Box = box, Image = image }
+end
+
+-- fit: the box already has the picture's shape, so the picture is shown whole (Fit); else it covers the box (Crop).
+local function placeCover(cover, image, width, height, opacity, fit)
+	local x, y, drawWidth, drawHeight = Collections._cover(width, height, PICTURE_ASPECT, PICTURE_FOCUS_X, PICTURE_FOCUS_Y)
+	put(cover.Box, "Size", UDim2.fromOffset(width, height))
+	put(cover.Image, "ScaleType", fit and Enum.ScaleType.Fit or Enum.ScaleType.Crop)
+	put(cover.Image, "Image", image)
+	put(cover.Image, "Position", UDim2.fromOffset(x, y))
+	put(cover.Image, "Size", UDim2.fromOffset(drawWidth, drawHeight))
+	put(cover.Image, "ImageTransparency", 1 - opacity)
+	put(cover.Box, "Visible", true)
+end
+
+-- The Slate scrim over a full-frame picture: `dim` over all of it, rising to ScrimBottom at the foot, where the
+-- name is. A change of dim rewrites one NumberSequence; it creates nothing.
+local function shadeCover(cover, dim)
+	if cover.Scrim == nil then
+		local scrim = newFrame(cover.Box, "Scrim")
+		scrim.BackgroundColor3 = colourOf("Slate")
+		scrim.BackgroundTransparency = 0
+		scrim.Size = UDim2.fromScale(1, 1)
+		scrim.ZIndex = 2
+		local gradient = Instance.new("UIGradient")
+		gradient.Name = "Gradient"
+		gradient.Rotation = QUARTER_TURN
+		gradient.Parent = scrim
+		cover.Scrim = scrim
+		cover.Gradient = gradient
+	end
+	if cover.Dim ~= dim then
+		cover.Dim = dim
+		cover.Gradient.Transparency = NumberSequence.new({
+			NumberSequenceKeypoint.new(0, 1 - dim),
+			NumberSequenceKeypoint.new(SCRIM_START, 1 - dim),
+			NumberSequenceKeypoint.new(1, 1 - Opacity.ScrimBottom),
+		})
+	end
+	put(cover.Scrim, "Visible", true)
+end
+
+local function hideCover(cover)
+	if cover ~= nil then
+		put(cover.Box, "Visible", false)
+	end
+end
+
+local function checkTilePicture(value)
+	if value ~= nil and value ~= "Box" and value ~= "Full" and value ~= "Wide" then
+		error("[Pulse.Collections] Tile: PictureMode is \"Box\", \"Full\" or \"Wide\", got " .. tostring(value), 3)
+	end
+end
+
+local function checkRowPicture(value)
+	if value ~= nil and value ~= "Square" and value ~= "Wide" then
+		error("[Pulse.Collections] ListRow: PictureMode is \"Square\" or \"Wide\", got " .. tostring(value), 3)
+	end
+end
+
+local function checkTierSide(value)
+	if value ~= nil and value ~= "Left" and value ~= "Right" then
+		error("[Pulse.Collections] ListRow: TierSide is \"Left\" or \"Right\", got " .. tostring(value), 3)
+	end
+end
+
 -- Badge height: the size token on Regular; on Compact one height, the status strip less a hairline each side.
 local function badgePx(ctx, design, textSize)
 	if isCompact(ctx) then
@@ -334,6 +417,46 @@ function Collections._resolveTile(state, status, flags)
 		end
 	end
 	return look
+end
+
+-- Pure. Changes a resolved look for a tile whose picture fills it (PictureMode "Full") and returns it. The text is
+-- always light, on the scrim; the selected tile has no White fill (it keeps the thick Pink to Violet line, the
+-- growth and the glow); the neutral chips get an Ink plate. Dim is how much Slate lies over the whole picture: none
+-- when selected, less under the pointer, so the selected picture is the bright one.
+function Collections._overPicture(look, flags)
+	look.Fill = "Slate"
+	look.FillOpacity = Opacity.Panel
+	look.Ink = "White"
+	look.Sub = look.Selected and "White" or "TextSecondary"
+	look.ChipFill = "Ink"
+	look.ChipFillOpacity = Opacity.Panel
+	look.ChipInk = "White"
+	look.OnLight = false
+	if look.Selected then
+		look.Dim = 0
+	elseif flags.Hover or flags.Pressed then
+		look.Dim = Opacity.ChipNeutral
+	else
+		look.Dim = Opacity.RankTrack
+	end
+	return look
+end
+
+-- Pure. Where a picture `aspect` wide for one high sits so that it covers a box: x, y, width, height in whole px
+-- against the box. The point (focusX, focusY) of the picture is held as near the box centre as its edges allow.
+function Collections._cover(boxWidth, boxHeight, aspect, focusX, focusY)
+	if boxWidth <= 0 or boxHeight <= 0 then
+		return 0, 0, 0, 0
+	end
+	local width, height = boxWidth, boxHeight
+	if boxWidth > boxHeight * aspect then
+		height = math.ceil(boxWidth / aspect)
+	else
+		width = math.ceil(boxHeight * aspect)
+	end
+	local x = math.clamp(math.floor(boxWidth * HALF - width * focusX + HALF), boxWidth - width, 0)
+	local y = math.clamp(math.floor(boxHeight * HALF - height * focusY + HALF), boxHeight - height, 0)
+	return x, y, width, height
 end
 
 -- Pure. What the top-right corner of a tile shows: text and its kind ("Price", or the ChipRightKind: "Neutral",
@@ -617,6 +740,7 @@ local TILE_KEYS = keySet({
 	"OnActivated",
 	"ChipRightKind",
 	"Selectable",
+	"PictureMode",
 })
 local TILE_DEFAULTS = { Title = "", State = "Default", Status = "None" }
 
@@ -625,6 +749,7 @@ local TILE_DEFAULTS = { Title = "", State = "Default", Status = "None" }
 -- Returns the component, a whole-props replace function and a re-render function.
 local function buildTile(parent, props, scope, host)
 	local state = readProps("Tile", TILE_KEYS, TILE_DEFAULTS, props)
+	checkTilePicture(state.PictureMode)
 	local ctx = Metrics.Of(parent)
 	local bag = {}
 	local flags = { Hover = false, Pressed = false, Focused = false }
@@ -647,6 +772,7 @@ local function buildTile(parent, props, scope, host)
 	title.TextYAlignment = Enum.TextYAlignment.Bottom
 
 	local sub, chipLeft, corner, tierLetter, tierRating, lock, tick, glow = nil, nil, nil, nil, nil, nil, nil, nil
+	local cover = nil -- the full-frame or wide picture, made the first time PictureMode asks for one
 	if not (host and host.NoGlow) then
 		glow = newGlow(root, scope, bag, "Tile")
 	end
@@ -674,6 +800,18 @@ local function buildTile(parent, props, scope, host)
 		end
 		flags.Selectable = state.Selectable
 		local look = Collections._resolveTile(state.State, state.Status, flags)
+		-- PictureMode changes a tile that has a picture, and nothing else: "Full" lays the picture over the whole
+		-- tile under the text, "Wide" over its full width down to the text.
+		local image = textOf(state.Image)
+		local pictureMode = image and state.PictureMode or "Box"
+		local full = pictureMode == "Full"
+		local framed = full or pictureMode == "Wide"
+		if full then
+			look = Collections._overPicture(look, flags)
+		elseif framed and not look.Selected then
+			look.ChipFill = "Ink" -- the chips stand on the picture
+			look.ChipFillOpacity = Opacity.Panel
+		end
 		local compact = isCompact(ctx)
 		local seven = state.Compact7 == true
 		local inset = ctx.Px(unit(ctx, Space.Pad * TILE_INSET))
@@ -871,16 +1009,24 @@ local function buildTile(parent, props, scope, host)
 		-- A two-line name raises the text block into the picture box (capture module_shop_v2): the box then
 		-- keeps its top and shrinks until the drawn picture, selected growth included, ends a gap above the
 		-- text. One-line tiles are not touched.
-		local pictureLimit = twoLine and (textTop - gap) or nil
+		local pictureLimit = (twoLine and not framed) and (textTop - gap) or nil
 		if pictureLimit then
 			local scale = look.Selected and Space.TileSelectedGrow or 1
 			local fit = math.floor((pictureLimit - boxTop - math.floor(grow * HALF)) / ((1 + scale) * HALF))
 			boxHeight = math.max(0, math.min(boxHeight, fit))
 		end
-		local image = textOf(state.Image)
 		local glyph = textOf(state.Icon)
 		local boxWidth = boxHeight
-		if image then
+		if framed then
+			cover = cover or newCover(fill)
+			boxHeight = full and fillHeight or math.max(0, textTop - gap)
+			placeCover(cover, image, width, boxHeight, opacity, false)
+			if full then
+				shadeCover(cover, look.Dim)
+			elseif cover.Scrim ~= nil then
+				put(cover.Scrim, "Visible", false)
+			end
+		elseif image then
 			boxWidth = math.max(0, width - inset - inset)
 			put(visual, "Image", image)
 			put(visual, "ImageRectOffset", Vector2.zero)
@@ -900,14 +1046,20 @@ local function buildTile(parent, props, scope, host)
 			put(visual, "Image", "")
 		end
 		local centreY = boxTop + math.floor(boxHeight * HALF) + math.floor(grow * HALF)
-		local drawWidth, drawHeight = boxWidth, boxHeight
-		if look.Selected then
-			drawWidth = math.floor(boxWidth * Space.TileSelectedGrow + HALF)
-			drawHeight = math.floor(boxHeight * Space.TileSelectedGrow + HALF)
+		if framed then
+			centreY = math.floor(boxHeight * HALF) -- the lock stands on the middle of the picture
+		else
+			hideCover(cover)
+			local drawWidth, drawHeight = boxWidth, boxHeight
+			if look.Selected then
+				drawWidth = math.floor(boxWidth * Space.TileSelectedGrow + HALF)
+				drawHeight = math.floor(boxHeight * Space.TileSelectedGrow + HALF)
+			end
+			put(visual, "Position", UDim2.fromOffset(math.floor((width - drawWidth) * HALF), centreY - math.floor(drawHeight * HALF)))
+			put(visual, "Size", UDim2.fromOffset(drawWidth, drawHeight))
+			put(visual, "ImageTransparency", 1 - opacity)
 		end
-		put(visual, "Position", UDim2.fromOffset(math.floor((width - drawWidth) * HALF), centreY - math.floor(drawHeight * HALF)))
-		put(visual, "Size", UDim2.fromOffset(drawWidth, drawHeight))
-		put(visual, "ImageTransparency", 1 - opacity)
+		put(visual, "Visible", not framed)
 
 		-- Lock icon over the picture.
 		if look.Lock then
@@ -996,6 +1148,9 @@ local function buildTile(parent, props, scope, host)
 	local self = { Instance = root }
 
 	function self.Set(patch)
+		if type(patch) == "table" then
+			checkTilePicture(patch.PictureMode)
+		end
 		if destroyed or not mergePatch("Tile", TILE_KEYS, state, patch) then
 			return
 		end
@@ -1022,6 +1177,7 @@ local function buildTile(parent, props, scope, host)
 			return
 		end
 		local fresh = readProps("Tile", TILE_KEYS, TILE_DEFAULTS, nextProps)
+		checkTilePicture(fresh.PictureMode)
 		local changed = false
 		for key in pairs(TILE_KEYS) do
 			if state[key] ~= fresh[key] then
@@ -1541,7 +1697,7 @@ end
 
 local ROW_KEYS = keySet({
 	"Title", "Sub", "Image", "Right", "Tier", "State", "Locked", "MarkKey", "OnActivated",
-	"Chip", "ChipKind", "Height", "Columns", "Accent",
+	"Chip", "ChipKind", "Height", "Columns", "Accent", "PictureMode", "TierSide",
 })
 local ROW_DEFAULTS = { Title = "", State = "Default" }
 
@@ -1567,6 +1723,8 @@ end
 -- Returns the component, a whole-props replace function and a re-render function.
 local function buildRow(parent, props, scope, host)
 	local state = readProps("ListRow", ROW_KEYS, ROW_DEFAULTS, props)
+	checkRowPicture(state.PictureMode)
+	checkTierSide(state.TierSide)
 	local ctx = Metrics.Of(parent)
 	local bag = {}
 	local flags = { Hover = false, Pressed = false, Focused = false }
@@ -1582,6 +1740,7 @@ local function buildRow(parent, props, scope, host)
 	local title = newText(fill, "Title")
 	title.TextTruncate = Enum.TextTruncate.AtEnd
 	local picture, sub, right, tierLetter, lock, chip, accent = nil, nil, nil, nil, nil, nil, nil
+	local cover = nil -- the wide picture, made the first time PictureMode asks for one
 	local extra = {} -- [column index] = label, for the columns between the first and the last
 	local glow = nil
 	if not (host and host.NoGlow) then
@@ -1612,6 +1771,7 @@ local function buildRow(parent, props, scope, host)
 		local first = ctx.Px(unit(ctx, Space.BadgeLarge))
 		local nameColumn = count >= 3 and 2 or 1
 		hide(picture)
+		hideCover(cover)
 		hide(sub)
 		hide(tierLetter)
 		hide(chip)
@@ -1713,7 +1873,16 @@ local function buildRow(parent, props, scope, host)
 		-- Left: picture, then the tier letter.
 		local x = pad
 		local image = textOf(state.Image)
-		if image then
+		if image and state.PictureMode == "Wide" then
+			-- The whole picture in a box of its own shape, as tall as the row (the square crop cut a car's nose and
+			-- tail off).
+			cover = cover or newCover(fill)
+			local pictureHeight = height - lineHeight
+			local pictureWidth = math.floor(pictureHeight * PICTURE_ASPECT + HALF)
+			placeCover(cover, image, pictureWidth, pictureHeight, opacity, true)
+			hide(picture)
+			x = pictureWidth + pad
+		elseif image then
 			if picture == nil then
 				picture = Instance.new("ImageLabel")
 				picture.Name = "Image"
@@ -1726,11 +1895,17 @@ local function buildRow(parent, props, scope, host)
 			put(picture, "Size", UDim2.fromOffset(height, height - lineHeight))
 			put(picture, "ImageTransparency", 1 - opacity)
 			put(picture, "Visible", true)
+			hideCover(cover)
 			x = height + pad
 		else
 			hide(picture)
+			hideCover(cover)
 		end
 
+		-- TierSide "Right": the tier letter and the sub-line leave the left and stand at the right edge (placed
+		-- below, after the lock); the name is then alone between the picture and them.
+		local metaRight = state.TierSide == "Right"
+		local metaBadgeWidth, metaBadgeHeight = 0, 0
 		local tier = textOf(state.Tier)
 		if tier then
 			tierLetter = tierLetter or textPart("TierLetter")
@@ -1741,14 +1916,19 @@ local function buildRow(parent, props, scope, host)
 			local letterWidth = math.max(math.floor(badgeHeight * BADGE_LETTER + HALF), textWidth(tierLetter) + hair + hair)
 			local badgeOpacity = look.BadgeDim and math.min(Opacity.Locked, opacity) or opacity
 			put(tierLetter, "TextXAlignment", Enum.TextXAlignment.Center)
-			put(tierLetter, "Position", UDim2.fromOffset(x, math.floor((height - badgeHeight) * HALF)))
 			put(tierLetter, "Size", UDim2.fromOffset(letterWidth, badgeHeight))
 			put(tierLetter, "BackgroundColor3", tierColour(tier))
 			put(tierLetter, "BackgroundTransparency", 1 - badgeOpacity)
 			put(tierLetter, "TextColor3", colourOf("Ink"))
 			put(tierLetter, "TextTransparency", 1 - badgeOpacity)
 			put(tierLetter, "Visible", true)
-			x = x + letterWidth + gap
+			if metaRight then
+				metaBadgeWidth, metaBadgeHeight = letterWidth, badgeHeight
+			else
+				put(tierLetter, "AnchorPoint", Vector2.new(0, 0))
+				put(tierLetter, "Position", UDim2.fromOffset(x, math.floor((height - badgeHeight) * HALF)))
+				x = x + letterWidth + gap
+			end
 		else
 			hide(tierLetter)
 		end
@@ -1770,7 +1950,21 @@ local function buildRow(parent, props, scope, host)
 			lock.Set({ Visible = false })
 		end
 
+		-- The sub-line is measured here: with TierSide "Right" it is part of the right-hand block.
+		local subText = textOf(state.Sub)
+		local subSize = 0
+		if subText then
+			sub = sub or textPart("Sub")
+			put(sub, "Text", string.upper(subText))
+			subSize = face(sub, "Label", ctx)
+		end
+		local subRight = metaRight and subText ~= nil
+		if subRight then
+			put(sub, "TextTruncate", Enum.TextTruncate.None) -- measured whole, like the right-hand text
+		end
+
 		local chipText = textOf(state.Chip)
+		local chipWidth, chipHeight = 0, 0
 		if chipText then
 			chip = chip or textPart("Chip")
 			local kind = state.ChipKind or "Neutral"
@@ -1778,18 +1972,55 @@ local function buildRow(parent, props, scope, host)
 			if kind == "Neutral" then
 				chipFill, chipOpacity, chipInk = look.ChipFill, look.ChipFillOpacity, look.ChipInk
 			end
-			local chipWidth, chipHeight = boxText(chip, string.upper(chipText), kind == "Price" and "Value" or "Label", ctx, Space.BadgeMedium, Space.Gap)
+			chipWidth, chipHeight = boxText(chip, string.upper(chipText), kind == "Price" and "Value" or "Label", ctx, Space.BadgeMedium, Space.Gap)
 			put(chip, "AnchorPoint", Vector2.new(1, 0))
-			put(chip, "Position", UDim2.new(1, -reserve, 0, math.floor((height - chipHeight) * HALF)))
 			put(chip, "Size", UDim2.fromOffset(chipWidth, chipHeight))
 			put(chip, "BackgroundColor3", colourOf(chipFill))
 			put(chip, "BackgroundTransparency", 1 - chipOpacity * opacity)
 			put(chip, "TextColor3", colourOf(chipInk))
 			put(chip, "TextTransparency", 1 - opacity)
 			put(chip, "Visible", true)
-			reserve = reserve + chipWidth + gap
 		else
 			hide(chip)
+		end
+
+		-- The right-hand block of TierSide "Right": the sub-line then the tier letter on one line, both against the
+		-- right edge. A chip goes under that line when the row is tall enough for the two, else beside it as usual.
+		local metaWidth, metaHeight, metaTop, chipTop = 0, 0, 0, nil
+		if metaRight and (tier ~= nil or subRight) then
+			local subWidth = subRight and textWidth(sub) or 0
+			metaHeight = tier and metaBadgeHeight or subSize
+			metaWidth = metaBadgeWidth + ((tier ~= nil and subRight) and gap or 0) + subWidth
+			metaTop = math.floor((height - metaHeight) * HALF)
+			if chipText and metaHeight + gap + chipHeight <= height - lineHeight then
+				metaTop = math.floor((height - metaHeight - gap - chipHeight) * HALF)
+				chipTop = metaTop + metaHeight + gap
+				metaWidth = math.max(metaWidth, chipWidth)
+			end
+		end
+		if chipText then
+			put(chip, "Position", UDim2.new(1, -reserve, 0, chipTop or math.floor((height - chipHeight) * HALF)))
+			if chipTop == nil then
+				reserve = reserve + chipWidth + gap
+			end
+		end
+		if metaWidth > 0 then
+			local edge = reserve
+			if tier then
+				put(tierLetter, "AnchorPoint", Vector2.new(1, 0))
+				put(tierLetter, "Position", UDim2.new(1, -edge, 0, metaTop))
+				edge = edge + metaBadgeWidth + gap
+			end
+			if subRight then
+				put(sub, "TextXAlignment", Enum.TextXAlignment.Right)
+				put(sub, "AnchorPoint", Vector2.new(1, 0))
+				put(sub, "Position", UDim2.new(1, -edge, 0, metaTop + math.floor((metaHeight - subSize) * HALF)))
+				put(sub, "Size", UDim2.fromOffset(textWidth(sub), subSize))
+				put(sub, "TextColor3", colourOf(look.Sub))
+				put(sub, "TextTransparency", 1 - opacity)
+				put(sub, "Visible", true)
+			end
+			reserve = reserve + metaWidth + gap
 		end
 
 		local rightText = textOf(state.Right)
@@ -1814,16 +2045,16 @@ local function buildRow(parent, props, scope, host)
 		-- Middle: sub-line above the title, the pair centred on the row.
 		put(title, "Text", string.upper(tostring(state.Title)))
 		local titleSize = face(title, "TileNameSmall", ctx)
-		local subText = textOf(state.Sub)
-		local subSize = 0
-		if subText then
-			sub = sub or textPart("Sub")
-			put(sub, "Text", string.upper(subText))
-			subSize = face(sub, "Label", ctx)
+		if subRight then
+			subSize = 0 -- the sub-line is at the right: the name is centred on its own
 		end
 		local top = math.floor((height - subSize - titleSize) * HALF)
-		if subText then
+		if subRight then
+			-- placed above
+		elseif subText then
 			put(sub, "TextTruncate", Enum.TextTruncate.AtEnd)
+			put(sub, "TextXAlignment", Enum.TextXAlignment.Left)
+			put(sub, "AnchorPoint", Vector2.new(0, 0))
 			put(sub, "Position", UDim2.fromOffset(x, top))
 			put(sub, "Size", UDim2.new(1, -(x + reserve), 0, subSize))
 			put(sub, "TextColor3", colourOf(look.Sub))
@@ -1901,6 +2132,10 @@ local function buildRow(parent, props, scope, host)
 	local self = { Instance = root }
 
 	function self.Set(patch)
+		if type(patch) == "table" then
+			checkRowPicture(patch.PictureMode)
+			checkTierSide(patch.TierSide)
+		end
 		if destroyed or not mergePatch("ListRow", ROW_KEYS, state, patch) then
 			return
 		end
@@ -1927,6 +2162,8 @@ local function buildRow(parent, props, scope, host)
 			return
 		end
 		local fresh = readProps("ListRow", ROW_KEYS, ROW_DEFAULTS, nextProps)
+		checkRowPicture(fresh.PictureMode)
+		checkTierSide(fresh.TierSide)
 		local changed = false
 		for key in pairs(ROW_KEYS) do
 			if state[key] ~= fresh[key] then

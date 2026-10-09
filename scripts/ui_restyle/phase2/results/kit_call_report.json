@@ -124,6 +124,14 @@
   "Touch": "phase2/kit/k4/after/ReplicatedStorage.Modules.Game.UIPulse.Kit.Touch.lua"
  },
  "kit_not_extracted": {},
+ "kit_tables_not_key_checked": [
+  "Input.Focusable(opts): reads Decorative, OnFocus",
+  "Layers.Create(opts): reads Frame, Live, RootName, Scrim",
+  "Metrics.Compute(input): reads PreferredInput, SafeSize, TouchEnabled, WasCompact",
+  "Metrics.Fixed(spec): reads ChatKeepOut, Dp, Input, Size, TopBarHeight, TopBarKeepOut, TouchEnabled",
+  "Overlay.Confirm(options): reads Body, CancelText, ConfirmText, Host, OnCancel, OnConfirm, Title",
+  "Tokens.Flatten(t): reads Cap, NumberCap"
+ ],
  "findings": [
   {
    "level": "NOTE",
@@ -676,5 +684,129 @@
    "kit": "Kit.Touch:53"
   }
  ],
+ "reach": {
+  "race_menu": {
+   "enum value": [
+    36,
+    31
+   ],
+   "prop key": [
+    64,
+    62
+   ],
+   "slot name": [
+    6,
+    6
+   ]
+  },
+  "free_roam": {
+   "enum value": [
+    83,
+    78
+   ],
+   "prop key": [
+    199,
+    163
+   ],
+   "slot name": [
+    11,
+    11
+   ],
+   "set key": [
+    31,
+    31
+   ]
+  },
+  "world_map": {
+   "enum value": [
+    44,
+    41
+   ],
+   "prop key": [
+    96,
+    52
+   ],
+   "set key": [
+    14,
+    14
+   ],
+   "slot name": [
+    10,
+    10
+   ]
+  },
+  "race_session": {
+   "enum value": [
+    105,
+    87
+   ],
+   "slot name": [
+    11,
+    11
+   ],
+   "prop key": [
+    183,
+    178
+   ],
+   "set key": [
+    50,
+    50
+   ]
+  },
+  "race_entry": {
+   "enum value": [
+    91,
+    72
+   ],
+   "prop key": [
+    159,
+    141
+   ],
+   "slot name": [
+    8,
+    8
+   ],
+   "set key": [
+    52,
+    52
+   ]
+  },
+  "garage": {
+   "enum value": [
+    116,
+    67
+   ],
+   "slot name": [
+    25,
+    25
+   ],
+   "prop key": [
+    296,
+    168
+   ],
+   "set key": [
+    69,
+    69
+   ]
+  },
+  "shell": {
+   "enum value": [
+    27,
+    25
+   ],
+   "prop key": [
+    73,
+    48
+   ],
+   "slot name": [
+    2,
+    2
+   ],
+   "set key": [
+    16,
+    16
+   ]
+  }
+ },
  "assembled_copy_findings": []
 }

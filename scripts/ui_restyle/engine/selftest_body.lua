@@ -323,9 +323,12 @@ case("ROLLBACK refuses when a created instance has children it did not create", 
 	make("Folder", "Stray", pulse(world))
 	local audit = run("AUDIT", world)
 	expect(audit.ok and opRow(audit, "kit").rollback:find("Stray", 1, true) ~= nil, "AUDIT does not name the child")
+	-- The sources transaction removes nothing, so the stray child does not stop it; the hierarchy one is refused.
+	local first = run("ROLLBACK", world)
+	expect(first.ok and first.transaction == "sources" and pulse(world) ~= nil, "sources ROLLBACK was refused")
 	local report, counters = run("ROLLBACK", world)
-	expect(not report.ok and report.wrote == 0 and counters.writes == 0, "ROLLBACK ran")
-	expect(world.existing.Source == AFTER and pulse(world) ~= nil, "something was rolled back")
+	expect(not report.ok and report.wrote == 0 and counters.writes == 0, "hierarchy ROLLBACK ran")
+	expect(pulse(world) ~= nil, "the created folder was removed")
 end)
 
 case("ROLLBACK refuses when an attribute was edited since", function()

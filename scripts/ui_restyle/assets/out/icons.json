@@ -50,12 +50,12 @@
         128
       ],
       "ink": [
-        16,
-        16,
-        112,
-        112
+        15,
+        18,
+        113,
+        110
       ],
-      "note": "price tag"
+      "note": "car with a $ coin (a car for sale)"
     },
     "customise": {
       "cell": [
@@ -96,7 +96,8 @@
         16,
         114,
         112
-      ]
+      ],
+      "note": "chequered flag, 3 x 3 chequers"
     },
     "map": {
       "cell": [
@@ -193,12 +194,12 @@
         128
       ],
       "ink": [
-        15,
-        35,
-        113,
-        94
+        16,
+        24,
+        112,
+        110
       ],
-      "note": "low hover car, side view, nose right"
+      "note": "wheeled car, front view"
     },
     "passenger": {
       "cell": [

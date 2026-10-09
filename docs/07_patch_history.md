@@ -2,6 +2,16 @@
 
 Recent deliveries, newest first. Entries before September 2026 live in [the archive](history/patch-history-2026-05-to-2026-08.md).
 
+## 2026-10-09 - UI restyle: first play-review fixes (loading art, logo, focus guard, bigger car images, icons)
+
+Standard lane on top of wave 2; the install chain was refreshed through `scripts/ui_restyle/phase2/install/`. Ten images uploaded (six loading tiles and a fallback, two icon sheets, the logo).
+
+- **Changed:** the loading and start screens use the PulseSunset01 artwork (`Config.UI.LoadingSystem.Artworks`; the old one is disabled, not removed; both UI sets show it). The Pulse start screen shows the new neon logo. Dealership tiles show the car full frame; the free-roam vehicles list shows the whole car in a 3:2 picture with tier and rating on the right. Car, dealership and race icons redrawn.
+- **Fixed:** you could not move in the player garage and WASD stepped through menus. One cause: the kit gave keyboard players engine focus (`GuiService.SelectedObject`), and the engine then takes WASD for focus. Engine focus is now for gamepads only and a session guard (`Kit.Input.StartFocusGuard`, started by `Shell.CoreUiPolicy`) clears it on keyboard, mouse and touch.
+- **Tooling:** the installer's ROLLBACK no longer refuses a sources transaction because a folder made by the hierarchy transaction was filled by a later unit; the Classic verify accepts declared changes to recorded config values (`phase2/declared_config.json`).
+- **Checked:** engine tests 37 of 37; kit harness 971 of 972; AUDIT and Classic verify clean (216 same, no config differences); Play in the sandbox for each change and a Classic start. Not user-confirmed. Details: `phase2/verification.json` (`review_pass_4`).
+- **Lesson:** a Play check that moves the character with `Humanoid:MoveTo` does not prove the keys work; press the keys.
+
 ## 2026-10-09 - UI restyle wave 2: every remaining screen in Pulse; default flipped to Pulse (v3)
 
 High-Risk lane. Eight install units through `scripts/ui_restyle/phase2/install/` (kit additions, race menu, free roam, map and prompts, race session, race entry, garage, shell). 31 images uploaded. Four more Classic scripts carry small edits (`RouteGuide`, `RaceTransitionClient`, two loading scripts). Contract and evidence: `scripts/ui_restyle/phase2/`.

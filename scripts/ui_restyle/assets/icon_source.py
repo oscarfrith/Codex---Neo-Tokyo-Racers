@@ -8,7 +8,7 @@ House rules for the family:
   * square, mitred joins and butt caps; boxes get a small chamfer (CR) instead of a radius
   * filled masses where a solid reads better at 24 px; inner detail is cut out at 7 to 8 px so it
     survives the downscale
-  * motion glyphs (race_flag, car, drift, gauge needle, boost) lean forward about 8 degrees (SL)
+  * motion glyphs (race_flag, drift, gauge needle, boost) lean forward about 8 degrees (SL)
 Classes:  f = white fill   s = 9 px stroke   b = 13 px stroke   t = text (Barlow ExtraBold upright)
 Helpers:  F(d) fill path, S(d, w) stroke path, B(d) bold stroke path, C(x,y,r) disc, RING,
           CR(...) chamfered box path, SL(markup) forward slant,
@@ -117,12 +117,18 @@ def _cog(cx, cy, ro, ri, hole, teeth=8):
 PIN = "M64 16 C43 16 29 31 29 50 C29 76 64 112 64 112 C64 112 99 76 99 50 C99 31 85 16 64 16 Z"
 PIN_HOLE = " M64 35 a14 14 0 1 0 0.01 0 Z"
 
-# low hover car, side view, nose right: wedge body, fastback, tail wing, side glass, two hover pads
-CAR_SIDE = SL(
-    F("M16 82 V47 H26 L30 55 L56 38 H74 L94 54 L109 60 L112 70 V82 H99 a13 13 0 0 0 -26 0 H55 a13 13 0 0 0 -26 0 Z "
-      "M58 45 H72 L84 55 H43 Z") +
-    F("M32 88 H52 V97 H32 Z") + F("M76 88 H96 V97 H76 Z"), 8, 70)
-CAR_SIDE = G(CAR_SIDE, "translate(1 -3)")
+# Third pass (2026-10-09, Oscar: "more clear, doesn't need to be a hover car"): the car, dealership and
+# race glyphs are plain wheeled-car / chequered-flag pictograms chosen by legibility at 24 px
+# (comparison sheet: out/icon_variants_car_dealer_race.png).
+# car: front view, one solid mass with a windscreen and two round headlights cut out, two tyres below
+CAR = F("M40 24 H88 L100 52 L112 62 V98 H102 V110 H82 V98 H46 V110 H26 V98 H16 V62 L28 52 Z "
+        "M47 34 H81 L89 52 H39 Z "
+        "M35 66 a9 9 0 1 0 0.01 0 Z M93 66 a9 9 0 1 0 0.01 0 Z")
+
+# small side-on wheeled car, nose right (used inside the dealership glyph)
+CAR_SIDE = (F("M14 86 V68 L20 60 L42 55 L57 37 H85 L102 55 L110 59 L114 67 V86 H103 a15 15 0 0 0 -30 0 "
+              "H55 a15 15 0 0 0 -30 0 Z M61 45 H69 V55 H53 Z M77 45 H82 L91 55 H77 Z") +
+            C(40, 86, 10.5) + C(88, 86, 10.5))
 
 # sporty front view with a roof sign (the taxi; also the small in-badge car)
 CAR_FRONT = ("M41 34 H87 L99 57 L112 66 V98 H100 V108 H80 V98 H48 V108 H28 V98 H16 V66 L29 57 Z "
@@ -139,19 +145,22 @@ BOLT = "M76 14 L27 71 H56 L45 114 L101 54 H70 Z"
 GARAGE = ("M64 16 L112 48 V112 H100 V58 H28 V112 H16 V48 Z M55 37 H73 V46 H55 Z "
           "M36 66 H92 V74 H36 Z M36 82 H92 V90 H36 Z M36 98 H92 V106 H36 Z")
 
-TAG = KO(F("M16 16 H66 L112 62 L62 112 L16 66 Z M39 29 a10 10 0 1 0 0.01 0 Z"),
-         S("M49 79 L79 49", 7) + S("M69 81 L81 69", 7))
+# dealership: a car for sale = side-on car with a "$" coin over its shoulder (the coin is haloed out of the car)
+DEALER = G(KO(G(CAR_SIDE, "translate(-5 18)"), C(90, 40, 33)) + KO(C(90, 40, 27), T("$", 44, y=55.5, x=90)),
+           "translate(64 64) scale(0.9) translate(-63 -64)")
 
 
 def _flag():
+    """Chequered flag on a pole: 3 x 3 large chequers, no outline, waving, leaning forward."""
+    x0, x1, y0, y1, amp = 32, 106, 16, 82, 7
+    cw, ch = (x1 - x0) / 3.0, (y1 - y0 + 2 * amp) / 3.0
     cells = []
     for r in range(3):
-        for c in range(4):
+        for c in range(3):
             if (r + c) % 2 == 0:
-                cells.append("M%d %d h19 v20 h-19 Z" % (30 + c * 19, 14 + r * 20))
-    wave = "M30 20 C50 12 70 28 106 18 V70 C70 80 50 64 30 72 Z"
-    edge = S("M30 20 C50 12 70 28 106 18 V70 C70 80 50 64 30 72", 4)
-    return G(SL(F("M22 16 H30 V112 H22 Z") + CLIP(F(" ".join(cells)) + edge, wave), 8, 64), "translate(1 0)")
+                cells.append("M%.1f %.1f h%.1f v%.1f h-%.1f Z" % (x0 + c * cw, y0 - amp + r * ch, cw, ch, cw))
+    wave = "M32 20 C52 9 72 30 106 18 V78 C72 91 52 70 32 82 Z"
+    return G(SL(F("M22 16 H32 V112 H22 Z") + CLIP(F(" ".join(cells)), wave), 8, 64), "translate(1 0)")
 
 
 FLAG = _flag()
@@ -222,7 +231,7 @@ def _drift():
 GLYPHS = [
     # --- row 0: navigation / places
     ("garage", F(GARAGE)),
-    ("dealership", TAG),
+    ("dealership", DEALER),
     ("customise", SPANNER_PLACED),
     ("race_flag", FLAG),
     ("map", KO(F("M16 30 L48 18 L80 30 L112 18 V98 L80 110 L48 98 L16 110 Z"),
@@ -235,7 +244,7 @@ GLYPHS = [
                     "M82 60 a6.5 6.5 0 1 0 0.01 0 Z M96 46 a6.5 6.5 0 1 0 0.01 0 Z"),
                   "translate(64 64) scale(0.92) translate(-64 -66)")),
     # --- row 1: vehicle / people
-    ("car", CAR_SIDE),
+    ("car", CAR),
     ("passenger", F(PERSON)),
     ("players", _players()),
     ("taxi", TAXI),
@@ -308,8 +317,9 @@ GLYPHS = [
 
 PURPOSE = {
     "controls": "settings sliders (HUD nav); the CONTROLS button uses gamepad",
-    "dealership": "price tag", "customise": "combination spanner",
-    "car": "low hover car, side view, nose right",
+    "dealership": "car with a $ coin (a car for sale)", "customise": "combination spanner",
+    "car": "wheeled car, front view",
+    "race_flag": "chequered flag, 3 x 3 chequers",
     "title_mark": "three slashes before a screen title (Pink)",
     "pad_select": "View / Select", "pad_start": "Menu / Start",
     "keycap_blank": "square key; wide keys use keycap_9slice.png",
@@ -357,7 +367,7 @@ MAP_ICONS = [
     ("TaxiDrop", KO(_badge_pin(), _in(TAXI, 0.5, 50))),
     ("CourierDrop", KO(_badge_pin(), _in(PARCEL, 0.5, 51))),
     ("Customisation", KO(_badge_square(), _in(SPANNER_PLACED, 0.68))),
-    ("Dealership", KO(_badge_square(), _in(TAG, 0.64))),
+    ("Dealership", KO(_badge_square(), _in(DEALER, 0.7))),
     ("Garage", KO(_badge_square(), _in(F(GARAGE), 0.64, 62))),
     ("Waypoint", KO(_badge_pin(), C(64, 52, 18))),
     ("Player", F(NAV_ARROW)),

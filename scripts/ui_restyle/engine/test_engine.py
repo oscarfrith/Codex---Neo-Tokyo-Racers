@@ -297,8 +297,16 @@ def rollback_refuses_children_it_did_not_create():
     world = dict(vectors.WORLDS["all after"], kit="children added")
     observations = vectors.observations_for(world)
     results = plan.classify_all(vectors.OPS, observations)
+    # The sources transaction removes nothing, so the children do not stop it.
     rollback = plan.decide("ROLLBACK", vectors.OPS, results, GATE)
+    assert rollback["transaction"] == "sources" and rollback["write"] and rollback["blockers"] == []
+    # With the sources back at before, the hierarchy transaction would remove the folder: refused.
+    plan.perform(vectors.OPS, observations, rollback["actions"])
+    results = plan.classify_all(vectors.OPS, observations)
+    rollback = plan.decide("ROLLBACK", vectors.OPS, results, GATE)
+    assert rollback["transaction"] == "hierarchy"
     assert not rollback["write"] and any("Notes, Stray" in b for b in rollback["blockers"])
+    results = plan.classify_all(vectors.OPS, vectors.observations_for(world))
     # APPLY and AUDIT are not affected by it.
     assert plan.decide("APPLY", vectors.OPS, results, GATE)["blockers"] == []
     assert plan.decide("AUDIT", vectors.OPS, results, GATE)["blockers"] == []
@@ -732,7 +740,7 @@ def vectors_cover_the_block_matrix():
     v = by_name["all before / APPLY"]["decision"]
     assert v["transaction"] == "hierarchy" and v["write"] and len(v["actions"]) == 4
     v = by_name["all after, kit children added / ROLLBACK"]["decision"]
-    assert not v["write"] and v["blockers"] == ["kit: has children this installer did not create: Notes, Stray"]
+    assert v["write"] and v["transaction"] == "sources" and v["blockers"] == []
     v = by_name["all before, base unknown / APPLY"]["decision"]
     assert not v["write"] and v["states"] == {"hierarchy": "before", "sources": "blocked"}
 

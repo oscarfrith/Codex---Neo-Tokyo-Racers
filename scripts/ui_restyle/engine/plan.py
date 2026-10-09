@@ -148,6 +148,7 @@ def decide(mode, ops, results, gate):
         "write": bool}
     """
     blockers = []
+    held = []
     if mode not in MODES:
         blockers.append("unknown mode " + str(mode))
     if not gate.get("placeOk"):
@@ -167,7 +168,8 @@ def decide(mode, ops, results, gate):
         if result["state"] == "blocked":
             blockers.append("%s: %s" % (op["id"], result["reason"]))
         elif mode == "ROLLBACK" and result["rollback"]:
-            blockers.append("%s: %s" % (op["id"], result["rollback"]))
+            # Held until the transaction is known: a create op's children only matter when this run removes it.
+            held.append((txn, "%s: %s" % (op["id"], result["rollback"])))
     states = {name: transaction_state(name, ops, results) for name in TRANSACTIONS}
     want = "before" if mode == "ROLLBACK" else "after"
     order = list(TRANSACTIONS)
@@ -184,6 +186,7 @@ def decide(mode, ops, results, gate):
                 actions = [{"id": op["id"], "action": action_for(mode, op, results[op["id"]]["state"])}
                            for op in pending if results[op["id"]]["state"] != "blocked"]
                 break
+    blockers += [text for txn, text in held if txn == transaction]
     return {"blockers": blockers, "states": states, "transaction": transaction, "actions": actions,
             "write": not blockers and len(actions) > 0}
 

@@ -18,6 +18,8 @@ Usage:  py -3 scripts/ui_restyle/phase2/tools/check_kit_calls.py [--unit <family
         --kit    working (default): kit/k*/after where a module has a working copy, else install/00_kit/after;
                  assembled: install/00_kit/after only
         --write  write results/kit_call_report.md and .json (always the full run, both kit copies compared)
+        --probe  also measure reach: break one literal at a time (in memory, never on disk) and count how many
+                 of those breaks the checker reports; about a minute
         --model  print what was extracted from the kit and stop
 Exit code 1 when there is at least one ERROR, 2 for a bad argument. Stdlib only. No Studio access, no network.
 """
@@ -894,6 +896,7 @@ class Kit:
         self._evbusy = set()
         self._fnsum = {}
         self.unparsed = {}   # module -> [reasons]
+        self.unvalidated = []  # "Module.Function(param)": a table argument the kit reads without a key check
         self.model = {}
         self._build()
 
@@ -1924,6 +1927,30 @@ class Kit:
                 else:
                     tv = self.export_value(name, ex)
                     entry["values"][ex] = tv if isinstance(tv, TableVal) else None
+        for name, entry in sorted(self.model.items()):
+            mod = self.mods[name]
+            P = mod.P
+            for fn, info in sorted(entry["functions"].items()):
+                if fn.startswith("_"):
+                    continue
+                f = P.fns[mod.exports[fn][1]]
+                for idx, pname in enumerate(info["params"]):
+                    here = info["sites"].get((idx, ()), {}).values()
+                    if any(c.kind == "keys" for c in here):
+                        continue
+                    if any(c.kind == "type" and "Instance" in c.values for c in here)                             or pname in ("parent", "instance", "root", "button", "label", "gui"):
+                        continue  # an Instance, not a table of options
+                    reads = set()
+                    alias = {pname}
+                    for i in range(f.pclose + 1, f.close):
+                        if P.kw(i, "local") and P.isname(i + 1) and P.sym(i + 2, "=") and P.isname(i + 3, pname) \
+                                and P.kw(i + 4, "or") and P.sym(i + 5, "{"):
+                            alias.add(P.V[i + 1])
+                        if P.isname(i) and P.V[i] in alias and P.sym(i + 1, ".") and P.isname(i + 2) and not P.sym(i - 1, ".") \
+                                and not P.sym(i + 3, "(") and P.V[i + 2][:1].isupper():
+                            reads.add(P.V[i + 2])
+                    if len(reads) >= 2:
+                        self.unvalidated.append("%s.%s(%s): reads %s" % (name, fn, pname, ", ".join(sorted(reads))))
         # modules whose components take props but for which no key set was found
         for name, entry in self.model.items():
             mod = self.mods[name]
@@ -3381,8 +3408,47 @@ def accepted_text(acc, limit=28):
     return ", ".join(acc[:limit]) + ", ... (%d in all; full list in the .json)" % len(acc)
 
 
-def render_md(kit, findings, stats, units, other=None):
-    """other: (label, findings of the same units against the other kit copy) or None."""
+PROBES = [
+    ("enum value", re.compile(r'\b(Role|Variant|Colour|Icon|Kind|Frame|Align|Tier|Status|State|Style|Mode|Side|Scrim|Edge|Unit|'
+                              r'Control|ChipKind|Place|SelectOn) = "([A-Za-z_/]+)"')),
+    ("slot name", re.compile(r'\.Slot\("([A-Za-z]+)"\)')),
+    ("prop key", re.compile(r'[{,]\s*(Text|Title|Visible|Name|LayoutOrder|OnActivated|Disabled|Selected|Width|MaxWidth) = ')),
+    ("set key", re.compile(r'\.Set\(\{ ([A-Za-z]+) = ')),
+]
+
+
+def probe(kit, units, phase2=PHASE2):
+    """{unit: {label: [written, caught]}}. Each break is made on a copy of the text; no file is written."""
+    out = {}
+    for unit in units:
+        if unit == FIXTURES_UNIT:
+            continue
+        res = {}
+        for path in unit_files(unit, phase2):
+            if FIXTURE_RE.search(path.name):
+                continue
+            text = path.read_text(encoding="utf-8")
+            base, _s = check_text(kit, text, unit, path.name)
+            nbase = sum(1 for f in base if f.level == "ERROR" or f.kind == "suspect")
+            for label, pat in PROBES:
+                for m in pat.finditer(text):
+                    ls = text.rfind("\n", 0, m.start()) + 1
+                    if text[ls:m.start()].lstrip().startswith("--"):
+                        continue
+                    a = m.start(m.lastindex)
+                    fs, _s = check_text(kit, text[:a] + "Zz" + text[a:], unit, path.name)
+                    n = sum(1 for f in fs if f.level == "ERROR" or f.kind == "suspect")
+                    cell = res.setdefault(label, [0, 0])
+                    cell[0] += 1
+                    if n > nbase:
+                        cell[1] += 1
+        out[unit] = res
+    return out
+
+
+def render_md(kit, findings, stats, units, other=None, reach=None):
+    """other: (label, findings of the same units against the other kit copy) or None.
+    reach: the result of probe() or None."""
     c = counts(findings, units)
     L = []
     L.append("# Pulse kit call check")
@@ -3437,6 +3503,43 @@ def render_md(kit, findings, stats, units, other=None):
     else:
         L.append("None. Every exported function that takes `props` has a key set for its constructor and for its Set.")
     L.append("")
+    if kit.unvalidated:
+        L.append("### Table arguments the kit does not key-check")
+        L.append("")
+        L.append("These functions read fields from a table argument without refusing unknown keys, so a misspelt key "
+                 "there is silently ignored at run time and cannot be an ERROR here. Only the fields the kit tests "
+                 "(values, types, required) are checked.")
+        L.append("")
+        for line in kit.unvalidated:
+            L.append("- Kit." + line)
+        L.append("")
+    if reach is not None:
+        L.append("## Reach")
+        L.append("")
+        L.append("One literal at a time was broken in memory (a prefix added to a prop key, an enumerated value, a "
+                 "key of a `Set` patch, a slot name) and the checker was run again; *caught* counts the breaks it "
+                 "reported as an ERROR or a suspect NOTE. *Written* counts every literal of that shape in the unit's "
+                 "sources except the fixtures, including model data that never reaches the kit, so the share is a "
+                 "lower bound on how much of the kit-bound code is reached.")
+        L.append("")
+        labels = ["set key", "slot name", "enum value", "prop key"]
+        L.append("| Unit | " + " | ".join("%s (caught / written)" % x for x in labels) + " |")
+        L.append("|---|" + "---|" * len(labels))
+        total = {x: [0, 0] for x in labels}
+        for u in units:
+            if u not in reach:
+                continue
+            cells = []
+            for x in labels:
+                n, hit = reach[u].get(x, [0, 0])
+                total[x][0] += n
+                total[x][1] += hit
+                cells.append("%d / %d" % (hit, n))
+            L.append("| %s | %s |" % (u, " | ".join(cells)))
+        L.append("| **all** | %s |" % " | ".join("%d / %d (%d%%)" % (total[x][1], total[x][0],
+                                                                    round(100.0 * total[x][1] / max(1, total[x][0])))
+                                                for x in labels))
+        L.append("")
     if other is not None:
         label, ofind = other
 
@@ -3513,7 +3616,7 @@ def known_units(phase2=PHASE2):
 
 
 def main(argv, phase2=PHASE2):
-    units, as_json, write, model, which = [], False, False, False, "working"
+    units, as_json, write, model, which, want_probe = [], False, False, False, "working", False
     i = 0
     while i < len(argv):
         a = argv[i]
@@ -3533,6 +3636,8 @@ def main(argv, phase2=PHASE2):
             write = True
         elif a == "--model":
             model = True
+        elif a == "--probe":
+            want_probe = True
         elif a in ("-h", "--help"):
             print(__doc__)
             return 0
@@ -3565,15 +3670,19 @@ def main(argv, phase2=PHASE2):
         "stats": stats,
         "kit_sources": {name: entry["path"] for name, entry in sorted(kit.model.items())},
         "kit_not_extracted": kit.unparsed,
+        "kit_tables_not_key_checked": kit.unvalidated,
         "findings": [f.as_dict() for f in findings],
     }
+    reach = probe(kit, units, phase2) if want_probe else None
+    if reach is not None:
+        payload["reach"] = reach
     if write:
         _k2, ofind, _s2 = run_units(units, phase2, "assembled")
         payload["assembled_copy_findings"] = [f.as_dict() for f in ofind if f.level == "ERROR" or f.kind == "suspect"]
         out = phase2 / "results"
         out.mkdir(exist_ok=True)
         (out / "kit_call_report.json").write_text(json.dumps(payload, indent=1) + "\n", encoding="utf-8", newline="\n")
-        (out / "kit_call_report.md").write_text(render_md(kit, findings, stats, units, ("assembled", ofind)),
+        (out / "kit_call_report.md").write_text(render_md(kit, findings, stats, units, ("assembled", ofind), reach),
                                                 encoding="utf-8", newline="\n")
     if as_json:
         print(json.dumps(payload, indent=1))
@@ -3590,6 +3699,8 @@ def main(argv, phase2=PHASE2):
         for name, reasons in sorted(kit.unparsed.items()):
             for r in reasons:
                 print("not extracted: Kit.%s: %s" % (name, r))
+        for u, res in (reach or {}).items():
+            print("reach %-13s %s" % (u, "   ".join("%s %d/%d" % (k, v[1], v[0]) for k, v in sorted(res.items()))))
     return 1 if any(f.level == "ERROR" for f in findings) else 0
 
 

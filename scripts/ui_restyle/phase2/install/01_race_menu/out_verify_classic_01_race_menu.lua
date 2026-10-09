@@ -693,7 +693,7 @@ local DECLARED = {
 	addedScripts = {
 		["ReplicatedFirst.UIStyleSwitch"] = {"ReplicatedFirst.UIStyleSwitch","ModuleScript",4512,1672133424,2187953912,false},
 		["ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.BigNumber"] = {"ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.BigNumber","ModuleScript",3015,3765722420,2845179858,false},
-		["ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Collections"] = {"ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Collections","ModuleScript",19219,396849307,903334191,false},
+		["ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Collections"] = {"ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Collections","ModuleScript",19548,3960965073,2989794721,false},
 		["ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Controls"] = {"ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Controls","ModuleScript",18290,4174119552,1246915250,false},
 		["ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Data"] = {"ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Data","ModuleScript",8209,2451726006,2796756588,false},
 		["ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Gauge"] = {"ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Gauge","ModuleScript",5423,2664637028,3852216940,false},
@@ -705,22 +705,22 @@ local DECLARED = {
 		["ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Touch"] = {"ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Touch","ModuleScript",2758,3353222574,2542141774,false},
 		["ReplicatedStorage.Modules.Game.UIPulse.Dev.Gallery"] = {"ReplicatedStorage.Modules.Game.UIPulse.Dev.Gallery","ModuleScript",21243,4102633886,2988313662,false},
 		["ReplicatedStorage.Modules.Game.UIPulse.Kit.BigNumber"] = {"ReplicatedStorage.Modules.Game.UIPulse.Kit.BigNumber","ModuleScript",13453,1111708803,947825977,false},
-		["ReplicatedStorage.Modules.Game.UIPulse.Kit.Collections"] = {"ReplicatedStorage.Modules.Game.UIPulse.Kit.Collections","ModuleScript",74498,1721489920,3301257708,false},
+		["ReplicatedStorage.Modules.Game.UIPulse.Kit.Collections"] = {"ReplicatedStorage.Modules.Game.UIPulse.Kit.Collections","ModuleScript",84352,1647272556,3143147270,false},
 		["ReplicatedStorage.Modules.Game.UIPulse.Kit.Contracts"] = {"ReplicatedStorage.Modules.Game.UIPulse.Kit.Contracts","ModuleScript",38861,1718602022,4226520730,false},
 		["ReplicatedStorage.Modules.Game.UIPulse.Kit.Controls"] = {"ReplicatedStorage.Modules.Game.UIPulse.Kit.Controls","ModuleScript",78786,980415541,575136399,false},
 		["ReplicatedStorage.Modules.Game.UIPulse.Kit.Data"] = {"ReplicatedStorage.Modules.Game.UIPulse.Kit.Data","ModuleScript",57060,3840631725,3282828073,false},
 		["ReplicatedStorage.Modules.Game.UIPulse.Kit.Gauge"] = {"ReplicatedStorage.Modules.Game.UIPulse.Kit.Gauge","ModuleScript",14598,4258431485,411862015,false},
-		["ReplicatedStorage.Modules.Game.UIPulse.Kit.Input"] = {"ReplicatedStorage.Modules.Game.UIPulse.Kit.Input","ModuleScript",11462,1997541636,999945936,false},
+		["ReplicatedStorage.Modules.Game.UIPulse.Kit.Input"] = {"ReplicatedStorage.Modules.Game.UIPulse.Kit.Input","ModuleScript",13498,2694737324,1908707770,false},
 		["ReplicatedStorage.Modules.Game.UIPulse.Kit.Layers"] = {"ReplicatedStorage.Modules.Game.UIPulse.Kit.Layers","ModuleScript",15569,3139279021,1369871623,false},
 		["ReplicatedStorage.Modules.Game.UIPulse.Kit.Metrics"] = {"ReplicatedStorage.Modules.Game.UIPulse.Kit.Metrics","ModuleScript",13502,685872700,1840105876,false},
 		["ReplicatedStorage.Modules.Game.UIPulse.Kit.Minimap"] = {"ReplicatedStorage.Modules.Game.UIPulse.Kit.Minimap","ModuleScript",19093,3877836414,359801508,false},
 		["ReplicatedStorage.Modules.Game.UIPulse.Kit.Overlay"] = {"ReplicatedStorage.Modules.Game.UIPulse.Kit.Overlay","ModuleScript",59243,2746146027,2521000165,false},
 		["ReplicatedStorage.Modules.Game.UIPulse.Kit.Perf"] = {"ReplicatedStorage.Modules.Game.UIPulse.Kit.Perf","ModuleScript",4144,2497918401,3863359297,false},
 		["ReplicatedStorage.Modules.Game.UIPulse.Kit.Presence"] = {"ReplicatedStorage.Modules.Game.UIPulse.Kit.Presence","ModuleScript",4189,3697653828,1742439006,false},
-		["ReplicatedStorage.Modules.Game.UIPulse.Kit.Sprites"] = {"ReplicatedStorage.Modules.Game.UIPulse.Kit.Sprites","ModuleScript",9471,3521630484,2425041178,false},
+		["ReplicatedStorage.Modules.Game.UIPulse.Kit.Sprites"] = {"ReplicatedStorage.Modules.Game.UIPulse.Kit.Sprites","ModuleScript",9471,2790620180,1814382376,false},
 		["ReplicatedStorage.Modules.Game.UIPulse.Kit.Surface"] = {"ReplicatedStorage.Modules.Game.UIPulse.Kit.Surface","ModuleScript",25057,1968655930,3092837744,false},
 		["ReplicatedStorage.Modules.Game.UIPulse.Kit.Text"] = {"ReplicatedStorage.Modules.Game.UIPulse.Kit.Text","ModuleScript",19414,2230192600,2719451094,false},
-		["ReplicatedStorage.Modules.Game.UIPulse.Kit.Tokens"] = {"ReplicatedStorage.Modules.Game.UIPulse.Kit.Tokens","ModuleScript",11644,2106424898,3910910052,false},
+		["ReplicatedStorage.Modules.Game.UIPulse.Kit.Tokens"] = {"ReplicatedStorage.Modules.Game.UIPulse.Kit.Tokens","ModuleScript",11642,1046315732,2680875912,false},
 		["ReplicatedStorage.Modules.Game.UIPulse.Kit.Touch"] = {"ReplicatedStorage.Modules.Game.UIPulse.Kit.Touch","ModuleScript",10374,1821150973,3277238551,false},
 		["ReplicatedStorage.Modules.Game.UIPulse.NoOp"] = {"ReplicatedStorage.Modules.Game.UIPulse.NoOp","ModuleScript",234,167653259,85221519,false},
 		["ReplicatedStorage.Modules.Game.UIPulse.RaceMenu.RaceMenuClient"] = {"ReplicatedStorage.Modules.Game.UIPulse.RaceMenu.RaceMenuClient","ModuleScript",6947,1050655728,2960839894,false},
@@ -730,6 +730,7 @@ local DECLARED = {
 		["ReplicatedStorage.Modules.Game.UIPulse.Toasts.ToastClient"] = {"ReplicatedStorage.Modules.Game.UIPulse.Toasts.ToastClient","ModuleScript",3239,733354054,398291088,false},
 	},
 	configNodes = {
+		["UI.LoadingSystem.Artworks.PulseSunset01"] = true,
 		["UI.Pulse"] = true,
 		["UI.Pulse.Assets"] = true,
 	},
@@ -737,6 +738,10 @@ local DECLARED = {
 		["Development.ClientTools@PulseGalleryEnabled"] = true,
 		["UI@UIStyle"] = true,
 		["UI@UIStyleDevFamilies"] = true,
+	},
+	configChanged = {
+		["UI.LoadingSystem.Artworks.NeoTokyoStreet01@Enabled"] = true,
+		["UI.LoadingSystem@DefaultArtworkId"] = true,
 	},
 	services = {},
 }
@@ -947,6 +952,8 @@ local function compare(path, attr, exp, value)
 	local t, v = typed(value)
 	if sameValue(exp, t, v) then
 		config.same += 1
+	elseif DECLARED.configChanged[path .. "@" .. attr] then
+		push(declared.config, path .. "@" .. attr .. " (changed)")
 	else
 		push(config.diffs, { path = path, attr = attr, was = show(exp[1], exp[2]), now = show(t, v) })
 	end

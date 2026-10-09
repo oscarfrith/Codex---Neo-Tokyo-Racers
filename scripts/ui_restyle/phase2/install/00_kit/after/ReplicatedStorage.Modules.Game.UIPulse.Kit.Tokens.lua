@@ -255,8 +255,8 @@ Tokens.Scale = {
 -- Config.UI.Pulse.Assets equal these keys; an attribute set to "" gives the flat state (Tokens.Asset returns nil).
 -- BEGIN GENERATED ASSETS (gen_sprites.py, from scripts/ui_restyle/assets/uploaded_assets.json; never edit by hand)
 Tokens.Assets = {
-	IconSheet = "rbxassetid://118261730871486",
-	MapIconSheet = "rbxassetid://118485943810175",
+	IconSheet = "rbxassetid://75923195736638",
+	MapIconSheet = "rbxassetid://80578954881108",
 	GlowSoft = "rbxassetid://135935339855364",
 	GlowTight = "rbxassetid://117888228227601",
 	GlowLine = "rbxassetid://97131611895302",

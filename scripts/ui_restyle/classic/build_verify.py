@@ -12,6 +12,7 @@ declared.json (all keys optional; paths as in manifest.json / config.json):
     "addedScripts": {"<script path>": {} or the same hash forms, optional "class"},
     "configNodes":  ["UI.Pulse"],              added instances under Config (the node and everything below it)
     "configAttrs":  ["UI.Some.Folder@Attr"],   added attributes on recorded nodes
+    "configChanged": ["UI.Some.Folder@Attr"],  recorded attributes whose value a later delivery changed on purpose
     "services":     {"StarterGuiChildren": 1}  declared new values of the recorded service settings
   }
 """
@@ -64,6 +65,7 @@ local DECLARED = {
 	addedScripts = @@DECLARED_ADDED@@,
 	configNodes = @@DECLARED_NODES@@,
 	configAttrs = @@DECLARED_ATTRS@@,
+	configChanged = @@DECLARED_CHANGED@@,
 	services = @@DECLARED_SERVICES@@,
 }
 
@@ -263,6 +265,8 @@ local function compare(path, attr, exp, value)
 	local t, v = typed(value)
 	if sameValue(exp, t, v) then
 		config.same += 1
+	elseif DECLARED.configChanged[path .. "@" .. attr] then
+		push(declared.config, path .. "@" .. attr .. " (changed)")
 	else
 		push(config.diffs, { path = path, attr = attr, was = show(exp[1], exp[2]), now = show(t, v) })
 	end
@@ -451,7 +455,7 @@ def declared_tables(path, baseline):
         with io.open(path, encoding="utf-8") as handle:
             declared = json.load(handle)
     base_dir = os.path.dirname(os.path.abspath(path)) if path else HERE
-    known = {"scripts", "addedScripts", "configNodes", "configAttrs", "services"}
+    known = {"scripts", "addedScripts", "configNodes", "configAttrs", "configChanged", "services"}
     unknown = set(declared) - known
     if unknown:
         raise SystemExit("declared: unknown keys %s" % sorted(unknown))
@@ -494,6 +498,7 @@ def declared_tables(path, baseline):
         "@@DECLARED_ADDED@@": lua_map(added),
         "@@DECLARED_NODES@@": lua_map((key, "true") for key in sorted(declared.get("configNodes") or [])) if declared.get("configNodes") else "{}",
         "@@DECLARED_ATTRS@@": lua_map((key, "true") for key in sorted(declared.get("configAttrs") or [])) if declared.get("configAttrs") else "{}",
+        "@@DECLARED_CHANGED@@": lua_map((key, "true") for key in sorted(declared.get("configChanged") or [])) if declared.get("configChanged") else "{}",
         "@@DECLARED_SERVICES@@": lua_map((key, lua_value(services[key])) for key in sorted(services)) if services else "{}",
     }
 

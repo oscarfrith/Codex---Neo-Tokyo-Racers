@@ -1,5 +1,5 @@
--- Owns the Roblox core UI policy under Pulse: player list, health and backpack off, chat hidden while a full-screen Pulse surface is open, engine GUI auto-selection off, chat window colours; not the top bar, the Esc menu, name tags, prompts or anything in Classic (this module is never required in Classic).
--- Pulse UI (phase2). ReplicatedStorage.Modules.Game.UIPulse.Shell.CoreUiPolicy. Requires: Layers, Presence, Tokens, Text, Core.ConnectionScope (all resolved inside start).
+-- Owns the Roblox core UI policy under Pulse: player list, health and backpack off, chat hidden while a full-screen Pulse surface is open, engine GUI auto-selection off, the keyboard/mouse focus guard (Kit.Input.StartFocusGuard), chat window colours; not the top bar, the Esc menu, name tags, prompts or anything in Classic (this module is never required in Classic).
+-- Pulse UI (phase2). ReplicatedStorage.Modules.Game.UIPulse.Shell.CoreUiPolicy. Requires: Layers, Presence, Tokens, Text, Input, Core.ConnectionScope (all resolved inside start).
 local GuiService = game:GetService("GuiService")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local StarterGui = game:GetService("StarterGui")
@@ -127,6 +127,8 @@ local function run()
 	})
 	policy.Start()
 	scope:connect(Presence.Changed, policy.OnPresenceChanged)
+	-- Keyboard, mouse and touch never keep engine focus (WASD would steer menus and the character would not move).
+	require(kit.Input).StartFocusGuard(scope)
 
 	local okStyle, styled = pcall(restyleChat, Tokens, Text)
 	if not okStyle then

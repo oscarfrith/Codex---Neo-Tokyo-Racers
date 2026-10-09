@@ -1,0 +1,302 @@
+{
+  "image": "map_icons.png",
+  "size": [
+    512,
+    512
+  ],
+  "cell": 128,
+  "pin_tip_y": 0.921875,
+  "pin_icons": [
+    "Waypoint",
+    "TaxiDrop",
+    "CourierDrop"
+  ],
+  "families": {
+    "circle": "activity",
+    "rounded square": "place",
+    "hexagon": "job",
+    "pin": "destination"
+  },
+  "glyphs": {
+    "Race": {
+      "cell": [
+        0,
+        0
+      ],
+      "ImageRectOffset": [
+        0,
+        0
+      ],
+      "ImageRectSize": [
+        128,
+        128
+      ],
+      "ink": [
+        12,
+        12,
+        116,
+        116
+      ]
+    },
+    "TimeTrial": {
+      "cell": [
+        1,
+        0
+      ],
+      "ImageRectOffset": [
+        128,
+        0
+      ],
+      "ImageRectSize": [
+        128,
+        128
+      ],
+      "ink": [
+        12,
+        12,
+        116,
+        116
+      ]
+    },
+    "Duel": {
+      "cell": [
+        2,
+        0
+      ],
+      "ImageRectOffset": [
+        256,
+        0
+      ],
+      "ImageRectSize": [
+        128,
+        128
+      ],
+      "ink": [
+        12,
+        12,
+        116,
+        116
+      ]
+    },
+    "Job": {
+      "cell": [
+        3,
+        0
+      ],
+      "ImageRectOffset": [
+        384,
+        0
+      ],
+      "ImageRectSize": [
+        128,
+        128
+      ],
+      "ink": [
+        8,
+        15,
+        120,
+        113
+      ]
+    },
+    "TaxiFare": {
+      "cell": [
+        0,
+        1
+      ],
+      "ImageRectOffset": [
+        0,
+        128
+      ],
+      "ImageRectSize": [
+        128,
+        128
+      ],
+      "ink": [
+        8,
+        15,
+        120,
+        113
+      ]
+    },
+    "CourierPickup": {
+      "cell": [
+        1,
+        1
+      ],
+      "ImageRectOffset": [
+        128,
+        128
+      ],
+      "ImageRectSize": [
+        128,
+        128
+      ],
+      "ink": [
+        8,
+        15,
+        120,
+        113
+      ]
+    },
+    "TaxiDrop": {
+      "cell": [
+        2,
+        1
+      ],
+      "ImageRectOffset": [
+        256,
+        128
+      ],
+      "ImageRectSize": [
+        128,
+        128
+      ],
+      "ink": [
+        18,
+        8,
+        110,
+        118
+      ]
+    },
+    "CourierDrop": {
+      "cell": [
+        3,
+        1
+      ],
+      "ImageRectOffset": [
+        384,
+        128
+      ],
+      "ImageRectSize": [
+        128,
+        128
+      ],
+      "ink": [
+        18,
+        8,
+        110,
+        118
+      ]
+    },
+    "Customisation": {
+      "cell": [
+        0,
+        2
+      ],
+      "ImageRectOffset": [
+        0,
+        256
+      ],
+      "ImageRectSize": [
+        128,
+        128
+      ],
+      "ink": [
+        12,
+        12,
+        116,
+        116
+      ]
+    },
+    "Dealership": {
+      "cell": [
+        1,
+        2
+      ],
+      "ImageRectOffset": [
+        128,
+        256
+      ],
+      "ImageRectSize": [
+        128,
+        128
+      ],
+      "ink": [
+        12,
+        12,
+        116,
+        116
+      ]
+    },
+    "Garage": {
+      "cell": [
+        2,
+        2
+      ],
+      "ImageRectOffset": [
+        256,
+        256
+      ],
+      "ImageRectSize": [
+        128,
+        128
+      ],
+      "ink": [
+        12,
+        12,
+        116,
+        116
+      ]
+    },
+    "Waypoint": {
+      "cell": [
+        3,
+        2
+      ],
+      "ImageRectOffset": [
+        384,
+        256
+      ],
+      "ImageRectSize": [
+        128,
+        128
+      ],
+      "ink": [
+        18,
+        8,
+        110,
+        118
+      ]
+    },
+    "Player": {
+      "cell": [
+        0,
+        3
+      ],
+      "ImageRectOffset": [
+        0,
+        384
+      ],
+      "ImageRectSize": [
+        128,
+        128
+      ],
+      "ink": [
+        24,
+        14,
+        104,
+        112
+      ]
+    },
+    "OtherPlayer": {
+      "cell": [
+        1,
+        3
+      ],
+      "ImageRectOffset": [
+        128,
+        384
+      ],
+      "ImageRectSize": [
+        128,
+        128
+      ],
+      "ink": [
+        24,
+        24,
+        104,
+        104
+      ]
+    }
+  }
+}

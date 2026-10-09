@@ -57,6 +57,32 @@ Not checked: values that are not literals (a value read from data, a function re
 
 None. Every exported function that takes `props` has a key set for its constructor and for its Set.
 
+### Table arguments the kit does not key-check
+
+These functions read fields from a table argument without refusing unknown keys, so a misspelt key there is silently ignored at run time and cannot be an ERROR here. Only the fields the kit tests (values, types, required) are checked.
+
+- Kit.Input.Focusable(opts): reads Decorative, OnFocus
+- Kit.Layers.Create(opts): reads Frame, Live, RootName, Scrim
+- Kit.Metrics.Compute(input): reads PreferredInput, SafeSize, TouchEnabled, WasCompact
+- Kit.Metrics.Fixed(spec): reads ChatKeepOut, Dp, Input, Size, TopBarHeight, TopBarKeepOut, TouchEnabled
+- Kit.Overlay.Confirm(options): reads Body, CancelText, ConfirmText, Host, OnCancel, OnConfirm, Title
+- Kit.Tokens.Flatten(t): reads Cap, NumberCap
+
+## Reach
+
+One literal at a time was broken in memory (a prefix added to a prop key, an enumerated value, a key of a `Set` patch, a slot name) and the checker was run again; *caught* counts the breaks it reported as an ERROR or a suspect NOTE. *Written* counts every literal of that shape in the unit's sources except the fixtures, including model data that never reaches the kit, so the share is a lower bound on how much of the kit-bound code is reached.
+
+| Unit | set key (caught / written) | slot name (caught / written) | enum value (caught / written) | prop key (caught / written) |
+|---|---|---|---|---|
+| race_menu | 0 / 0 | 6 / 6 | 31 / 36 | 62 / 64 |
+| free_roam | 31 / 31 | 11 / 11 | 78 / 83 | 163 / 199 |
+| world_map | 14 / 14 | 10 / 10 | 41 / 44 | 52 / 96 |
+| race_session | 50 / 50 | 11 / 11 | 87 / 105 | 178 / 183 |
+| race_entry | 52 / 52 | 8 / 8 | 72 / 91 | 141 / 159 |
+| garage | 69 / 69 | 25 / 25 | 67 / 116 | 168 / 296 |
+| shell | 16 / 16 | 2 / 2 | 25 / 27 | 48 / 73 |
+| **all** | 232 / 232 (100%) | 73 / 73 (100%) | 401 / 502 (80%) | 812 / 1070 (76%) |
+
 ## Against the assembled kit copy
 
 The same units checked against `install/00_kit/after` alone (what the last assembly holds), to catch a screen that relies on a kit working copy that has not been assembled yet.

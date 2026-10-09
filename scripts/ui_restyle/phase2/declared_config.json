@@ -1,0 +1,6 @@
+{
+ "_note": "Config.UI changes made on purpose after Phase 1; merged into every unit's declared.json by assemble.py. 2026-10-09: PulseSunset01 loading artwork replaces NeoTokyoStreet01 (disabled, kept).",
+ "configNodes": ["UI.LoadingSystem.Artworks.PulseSunset01"],
+ "configAttrs": [],
+ "configChanged": ["UI.LoadingSystem@DefaultArtworkId", "UI.LoadingSystem.Artworks.NeoTokyoStreet01@Enabled"]
+}

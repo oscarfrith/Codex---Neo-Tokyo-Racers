@@ -1,4 +1,4 @@
--- Owns the Pulse start-screen menu (Play and Shop) over the loading view; the flow, the loading-runtime calls, the temporary config edits and the Play and Shop behaviours are carried from Classic unchanged.
+-- Owns the Pulse start-screen menu (logo, Play and Shop) over the loading view; the flow, the loading-runtime calls, the temporary config edits and the Play and Shop behaviours are carried from Classic unchanged.
 -- Pulse UI (phase2). ReplicatedFirst.Loading.StartScreenPulse. Requires: Kit.Tokens, Kit.Metrics, Kit.Layers, Kit.Text, Kit.Input, Kit.Controls, Core.ConnectionScope (resolved inside Run), ReplicatedFirst.Loading.LoadingTransitionRuntime.
 
 -- Logic-identical fork of ReplicatedFirst.Loading.InitialLoadingAndStartScreenClient, lines 20 to 328
@@ -111,6 +111,21 @@ end
 -- when the viewport may not be measured yet, and a first answer of Compact used to leave a Regular screen with the
 -- Compact placement for good.
 -- -> {Menu = stage root, Play = Component, Shop = Component, SetBusy = (busy, playText, shopText) -> ()}
+local LOGO_DEFAULT = "rbxassetid://86895264649881" -- scripts/ui_restyle/assets/out/logo_pulse_racers.png, 1024x519
+local LOGO_ASPECT = 1024 / 519
+
+local function logoAsset()
+	local node = game:GetService("ReplicatedStorage")
+	for _, name in ipairs({ "Config", "UI", "Pulse", "Assets" }) do
+		node = node and node:FindFirstChild(name)
+	end
+	local value = node and node:GetAttribute("Logo")
+	if type(value) == "string" then
+		return value
+	end
+	return LOGO_DEFAULT
+end
+
 function StartScreen._buildMenu(kit, safeRoot, ctx, scope, texts)
 	local Tokens, Layers, Text, Input, Controls = kit.Tokens, kit.Layers, kit.Text, kit.Input, kit.Controls
 	local stage = Layers.Stage(safeRoot, ctx, "Menu")
@@ -141,8 +156,26 @@ function StartScreen._buildMenu(kit, safeRoot, ctx, scope, texts)
 		} }, scope)
 	local play, shop = row.Button("Play"), row.Button("Shop")
 
+	-- The game logo, top centre over the artwork's sky. One image; the id is Config.UI.Pulse.Assets@Logo when that
+	-- attribute is set, otherwise the uploaded default. An empty attribute hides it.
+	local logo = Instance.new("ImageLabel")
+	logo.Name = "Logo"
+	logo.AnchorPoint = Vector2.new(0.5, 0)
+	logo.BackgroundTransparency = 1
+	logo.BorderSizePixel = 0
+	logo.ScaleType = Enum.ScaleType.Fit
+	logo.Image = logoAsset()
+	logo.Visible = logo.Image ~= ""
+	local logoAspect = Instance.new("UIAspectRatioConstraint")
+	logoAspect.AspectRatio = LOGO_ASPECT
+	logoAspect.DominantAxis = Enum.DominantAxis.Height
+	logoAspect.Parent = logo
+	logo.Parent = stage.Root
+
 	local function place()
 		local compact = ctx.Class == "Compact"
+		logo.Position = UDim2.fromScale(0.5, compact and 0.03 or 0.05)
+		logo.Size = UDim2.fromScale(0.9, compact and 0.36 or 0.3)
 		local slot = stage.Slot(compact and "BottomRight" or "BottomCentre")
 		holder.AnchorPoint = slot.AnchorPoint
 		list.HorizontalAlignment = compact and Enum.HorizontalAlignment.Right or Enum.HorizontalAlignment.Center
@@ -185,4 +218,3 @@ local player = Players.LocalPlayer or Players.PlayerAdded:Wait()
 local playerGui = player:WaitForChild("PlayerGui")
 local playerScripts = player:WaitForChild("PlayerScripts")
 local config = game:GetService("ReplicatedStorage"):WaitForChild("Config"):WaitForChild("UI"):WaitForChild("LoadingSystem")
-

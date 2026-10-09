@@ -135,8 +135,8 @@
   },
   "ReplicatedStorage.Modules.Game.UIPulse.Kit.Sprites": {
    "length": 9471,
-   "djb2": 3521630484,
-   "fnv1a32": 2425041178,
+   "djb2": 2790620180,
+   "fnv1a32": 1814382376,
    "class": "ModuleScript"
   },
   "ReplicatedStorage.Modules.Game.UIPulse.Kit.Surface": {
@@ -178,11 +178,16 @@
  },
  "configNodes": [
   "UI.Pulse",
-  "UI.Pulse.Assets"
+  "UI.Pulse.Assets",
+  "UI.LoadingSystem.Artworks.PulseSunset01"
  ],
  "configAttrs": [
   "UI@UIStyle",
   "UI@UIStyleDevFamilies",
   "Development.ClientTools@PulseGalleryEnabled"
+ ],
+ "configChanged": [
+  "UI.LoadingSystem@DefaultArtworkId",
+  "UI.LoadingSystem.Artworks.NeoTokyoStreet01@Enabled"
  ]
 }

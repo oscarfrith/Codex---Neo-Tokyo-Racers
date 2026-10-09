@@ -86,12 +86,55 @@ function Input._holdsFocusRecord(button: GuiButton): boolean
 	return focusConnections[button] ~= nil
 end
 
+local function isPadType(inputType: Enum.UserInputType): boolean
+	return string.match(inputType.Name, "^Gamepad") ~= nil
+end
+
+-- Keyboard, mouse and touch never hold engine focus: with a selected object the engine steers focus with WASD and
+-- the arrow keys and the character stops answering them.
+local function isPointerType(inputType: Enum.UserInputType): boolean
+	return inputType == Enum.UserInputType.Keyboard or inputType == Enum.UserInputType.Touch
+		or string.match(inputType.Name, "^Mouse") ~= nil
+end
+
+-- Engine focus is for gamepads only. A keyboard player uses the mouse and the bound keys (Esc, Q/E, Enter).
 function Input.ShouldEnterFocus(ctx: any): boolean
-	if ctx.Input == "Gamepad" then
-		return true
+	return ctx.Input == "Gamepad" or isPadType(UserInputService:GetLastInputType())
+end
+
+-- Pure: should a selected object be cleared for this last input type?
+function Input._clearsFocus(inputType: Enum.UserInputType, selected: any): boolean
+	return selected ~= nil and isPointerType(inputType)
+end
+
+-- One guard per session (the core UI policy starts it). Clears engine focus whenever the player is on keyboard,
+-- mouse or touch, whoever set it, and hands focus back to the newest entered trap group when a gamepad is used.
+local guardStarted = false
+function Input.StartFocusGuard(scope: any)
+	if guardStarted then
+		return
 	end
-	local last = UserInputService:GetLastInputType()
-	return last == Enum.UserInputType.Keyboard or string.match(last.Name, "^Gamepad") ~= nil
+	guardStarted = true
+	local function clear()
+		if Input._clearsFocus(UserInputService:GetLastInputType(), GuiService.SelectedObject) then
+			GuiService.SelectedObject = nil
+		end
+	end
+	scope:connect(GuiService:GetPropertyChangedSignal("SelectedObject"), clear)
+	scope:connect(UserInputService.LastInputTypeChanged, function(inputType)
+		if isPadType(inputType) then
+			local top = trapStack[#trapStack]
+			if top and GuiService.SelectedObject == nil then
+				top.Refocus()
+			end
+		else
+			clear()
+		end
+	end)
+	scope:add(function()
+		guardStarted = false
+	end)
+	clear()
 end
 
 local function canTakeFocus(button: GuiButton): boolean
@@ -193,6 +236,21 @@ function Input.FocusGroup(scope: any, opts: { Trap: boolean? }?): any
 		last = target
 		-- A detached button cannot hold focus.
 		if target and target:IsDescendantOf(game) and Input.ShouldEnterFocus(Metrics.Of(target)) then
+			GuiService.SelectedObject = target
+		end
+	end
+
+	-- The focus guard calls this when a gamepad is picked up while the group is entered and nothing has focus.
+	function group.Refocus()
+		if destroyed or not entered then
+			return
+		end
+		local target = last
+		if not (target and canTakeFocus(target)) then
+			target = firstUsable()
+		end
+		if target and target:IsDescendantOf(game) then
+			last = target
 			GuiService.SelectedObject = target
 		end
 	end

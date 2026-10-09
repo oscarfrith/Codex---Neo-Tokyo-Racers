@@ -33,6 +33,11 @@ local DOT = " \u{00B7} "
 local FIELD = "\30"
 local ROW = "\31"
 
+-- How a vehicle tile of the dealership rail (BUY and MY VEHICLES) shows its card picture; the one place to change it.
+-- "Full": the picture fills the tile, the name and badges over it. "Wide": the picture fills the tile's width
+-- above the name. "Box": the small picture box every other rail has.
+local RAIL_PICTURE = "Full"
+
 -- Pure. The mark key of a tutorial card: Card.<slot id> when the generated contract has one, else Card.
 function View._cardMark(item: any): string
 	local key = item.SlotId ~= nil and ("Card." .. tostring(item.SlotId)) or nil
@@ -493,10 +498,14 @@ function View.Mount(layer: any, model: any, scope: any, opts: any)
 	----------------------------------------------------------------------------------------------------------------
 	-- Patch helpers. Each keeps what it last wrote and writes only on a change.
 	----------------------------------------------------------------------------------------------------------------
-	local function syncRail(rail: any, mem: any, items: { any }, selected: string?, compact: boolean)
+	local function syncRail(rail: any, mem: any, items: { any }, selected: string?, compact: boolean, picture: string?)
 		local list = {}
 		for _, item in ipairs(items) do
-			table.insert(list, View._tileProps(item, compact, money))
+			local props = View._tileProps(item, compact, money)
+			if picture ~= nil and item.Kind == "Vehicle" then
+				props.PictureMode = picture -- the kit tile ignores it without an Image
+			end
+			table.insert(list, props)
 		end
 		local signature = View._signature(list)
 		if mem.Signature == signature and mem.Selected == selected then
@@ -588,7 +597,7 @@ function View.Mount(layer: any, model: any, scope: any, opts: any)
 			b.BrowserHeader.Tabs.Set({ Selected = page.Categories.Selected })
 		end
 
-		syncRail(b.BrowserRail, b.BrowserPage.RailMem, page.Items, page.Selected, b.Compact)
+		syncRail(b.BrowserRail, b.BrowserPage.RailMem, page.Items, page.Selected, b.Compact, RAIL_PICTURE)
 		b.BrowserRail.SetHeading(tostring(page.Heading or ""), View._count(page.Items, page.Selected))
 
 		-- The Compact stat panel carries the price row (preview c11): the catalogue price of the selected vehicle.

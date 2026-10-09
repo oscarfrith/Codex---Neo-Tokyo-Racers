@@ -211,6 +211,8 @@ local listRowItem = {
 		{ Id = "EmptyImageId", Props = { Title = "Showroom loop", Sub = "Time trial \u{00B7} 17 checkpoints", Image = "", Right = "$25,000", OnActivated = nothing } },
 		{ Id = "LongestStrings", Props = { Title = "Shifted canal sprint reverse", Sub = "Time trial \u{00B7} 3 laps \u{00B7} 17 checkpoints", Tier = "A", Chip = "Spawned", Right = "01:03.275", OnActivated = nothing } },
 		{ Id = "LockedSelected", Props = { Title = "Endura", Sub = "Tier C only", Tier = "B", Locked = true, State = "Selected", OnActivated = nothing } },
+		{ Id = "TierRight", Props = { Title = "Endura", Sub = "660  Exotic", Tier = "B", TierSide = "Right", OnActivated = nothing } },
+		{ Id = "TierRightChipSelected", Props = { Title = "Seraph", Sub = "939  Exotic", Tier = "S", TierSide = "Right", Chip = "Current", ChipKind = "Cyan", State = "Selected", OnActivated = nothing } },
 	},
 }
 

@@ -695,7 +695,7 @@ local DECLARED = {
 	addedScripts = {
 		["ReplicatedFirst.UIStyleSwitch"] = {"ReplicatedFirst.UIStyleSwitch","ModuleScript",4512,1672133424,2187953912,false},
 		["ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.BigNumber"] = {"ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.BigNumber","ModuleScript",3015,3765722420,2845179858,false},
-		["ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Collections"] = {"ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Collections","ModuleScript",19219,396849307,903334191,false},
+		["ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Collections"] = {"ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Collections","ModuleScript",19548,3960965073,2989794721,false},
 		["ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Controls"] = {"ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Controls","ModuleScript",18290,4174119552,1246915250,false},
 		["ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Data"] = {"ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Data","ModuleScript",8209,2451726006,2796756588,false},
 		["ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.FreeRoam"] = {"ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.FreeRoam","ModuleScript",9734,2660781893,2108765327,false},
@@ -712,7 +712,7 @@ local DECLARED = {
 		["ReplicatedStorage.Modules.Game.UIPulse.Dev.Gallery"] = {"ReplicatedStorage.Modules.Game.UIPulse.Dev.Gallery","ModuleScript",21243,4102633886,2988313662,false},
 		["ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.ActivityHudClient"] = {"ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.ActivityHudClient","ModuleScript",20335,1261674520,2738025412,false},
 		["ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.ActivityHudView"] = {"ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.ActivityHudView","ModuleScript",23147,4100995586,301997036,false},
-		["ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.CarPanelView"] = {"ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.CarPanelView","ModuleScript",9666,2653463492,366271510,false},
+		["ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.CarPanelView"] = {"ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.CarPanelView","ModuleScript",9946,1167113449,4211398439,false},
 		["ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.HudClient"] = {"ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.HudClient","ModuleScript",11910,111944268,567848318,false},
 		["ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.HudMinimap"] = {"ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.HudMinimap","ModuleScript",10134,2334085733,3555329025,false},
 		["ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.HudModals"] = {"ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.HudModals","ModuleScript",18155,4236126180,2500503292,false},
@@ -721,22 +721,22 @@ local DECLARED = {
 		["ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.TouchControlsClient"] = {"ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.TouchControlsClient","ModuleScript",10581,2028199314,2937671232,false},
 		["ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.TouchControlsView"] = {"ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.TouchControlsView","ModuleScript",13030,6616456,4263596018,false},
 		["ReplicatedStorage.Modules.Game.UIPulse.Kit.BigNumber"] = {"ReplicatedStorage.Modules.Game.UIPulse.Kit.BigNumber","ModuleScript",13453,1111708803,947825977,false},
-		["ReplicatedStorage.Modules.Game.UIPulse.Kit.Collections"] = {"ReplicatedStorage.Modules.Game.UIPulse.Kit.Collections","ModuleScript",74498,1721489920,3301257708,false},
+		["ReplicatedStorage.Modules.Game.UIPulse.Kit.Collections"] = {"ReplicatedStorage.Modules.Game.UIPulse.Kit.Collections","ModuleScript",84352,1647272556,3143147270,false},
 		["ReplicatedStorage.Modules.Game.UIPulse.Kit.Contracts"] = {"ReplicatedStorage.Modules.Game.UIPulse.Kit.Contracts","ModuleScript",38861,1718602022,4226520730,false},
 		["ReplicatedStorage.Modules.Game.UIPulse.Kit.Controls"] = {"ReplicatedStorage.Modules.Game.UIPulse.Kit.Controls","ModuleScript",78786,980415541,575136399,false},
 		["ReplicatedStorage.Modules.Game.UIPulse.Kit.Data"] = {"ReplicatedStorage.Modules.Game.UIPulse.Kit.Data","ModuleScript",57060,3840631725,3282828073,false},
 		["ReplicatedStorage.Modules.Game.UIPulse.Kit.Gauge"] = {"ReplicatedStorage.Modules.Game.UIPulse.Kit.Gauge","ModuleScript",14598,4258431485,411862015,false},
-		["ReplicatedStorage.Modules.Game.UIPulse.Kit.Input"] = {"ReplicatedStorage.Modules.Game.UIPulse.Kit.Input","ModuleScript",11462,1997541636,999945936,false},
+		["ReplicatedStorage.Modules.Game.UIPulse.Kit.Input"] = {"ReplicatedStorage.Modules.Game.UIPulse.Kit.Input","ModuleScript",13498,2694737324,1908707770,false},
 		["ReplicatedStorage.Modules.Game.UIPulse.Kit.Layers"] = {"ReplicatedStorage.Modules.Game.UIPulse.Kit.Layers","ModuleScript",15569,3139279021,1369871623,false},
 		["ReplicatedStorage.Modules.Game.UIPulse.Kit.Metrics"] = {"ReplicatedStorage.Modules.Game.UIPulse.Kit.Metrics","ModuleScript",13502,685872700,1840105876,false},
 		["ReplicatedStorage.Modules.Game.UIPulse.Kit.Minimap"] = {"ReplicatedStorage.Modules.Game.UIPulse.Kit.Minimap","ModuleScript",19093,3877836414,359801508,false},
 		["ReplicatedStorage.Modules.Game.UIPulse.Kit.Overlay"] = {"ReplicatedStorage.Modules.Game.UIPulse.Kit.Overlay","ModuleScript",59243,2746146027,2521000165,false},
 		["ReplicatedStorage.Modules.Game.UIPulse.Kit.Perf"] = {"ReplicatedStorage.Modules.Game.UIPulse.Kit.Perf","ModuleScript",4144,2497918401,3863359297,false},
 		["ReplicatedStorage.Modules.Game.UIPulse.Kit.Presence"] = {"ReplicatedStorage.Modules.Game.UIPulse.Kit.Presence","ModuleScript",4189,3697653828,1742439006,false},
-		["ReplicatedStorage.Modules.Game.UIPulse.Kit.Sprites"] = {"ReplicatedStorage.Modules.Game.UIPulse.Kit.Sprites","ModuleScript",9471,3521630484,2425041178,false},
+		["ReplicatedStorage.Modules.Game.UIPulse.Kit.Sprites"] = {"ReplicatedStorage.Modules.Game.UIPulse.Kit.Sprites","ModuleScript",9471,2790620180,1814382376,false},
 		["ReplicatedStorage.Modules.Game.UIPulse.Kit.Surface"] = {"ReplicatedStorage.Modules.Game.UIPulse.Kit.Surface","ModuleScript",25057,1968655930,3092837744,false},
 		["ReplicatedStorage.Modules.Game.UIPulse.Kit.Text"] = {"ReplicatedStorage.Modules.Game.UIPulse.Kit.Text","ModuleScript",19414,2230192600,2719451094,false},
-		["ReplicatedStorage.Modules.Game.UIPulse.Kit.Tokens"] = {"ReplicatedStorage.Modules.Game.UIPulse.Kit.Tokens","ModuleScript",11644,2106424898,3910910052,false},
+		["ReplicatedStorage.Modules.Game.UIPulse.Kit.Tokens"] = {"ReplicatedStorage.Modules.Game.UIPulse.Kit.Tokens","ModuleScript",11642,1046315732,2680875912,false},
 		["ReplicatedStorage.Modules.Game.UIPulse.Kit.Touch"] = {"ReplicatedStorage.Modules.Game.UIPulse.Kit.Touch","ModuleScript",10374,1821150973,3277238551,false},
 		["ReplicatedStorage.Modules.Game.UIPulse.Map.MapCanvas"] = {"ReplicatedStorage.Modules.Game.UIPulse.Map.MapCanvas","ModuleScript",8064,1370841177,1507353831,false},
 		["ReplicatedStorage.Modules.Game.UIPulse.Map.MapIcons"] = {"ReplicatedStorage.Modules.Game.UIPulse.Map.MapIcons","ModuleScript",9896,2849893803,3901674061,false},
@@ -755,7 +755,7 @@ local DECLARED = {
 		["ReplicatedStorage.Modules.Game.UIPulse.RaceSession.ResultsView"] = {"ReplicatedStorage.Modules.Game.UIPulse.RaceSession.ResultsView","ModuleScript",18712,428875408,3470763352,false},
 		["ReplicatedStorage.Modules.Game.UIPulse.RaceSession.RouteGuideClient"] = {"ReplicatedStorage.Modules.Game.UIPulse.RaceSession.RouteGuideClient","ModuleScript",17208,2788885834,335078846,false},
 		["ReplicatedStorage.Modules.Game.UIPulse.Routes"] = true,
-		["ReplicatedStorage.Modules.Game.UIPulse.Shell.CoreUiPolicy"] = {"ReplicatedStorage.Modules.Game.UIPulse.Shell.CoreUiPolicy","ModuleScript",5334,2497083317,165809797,false},
+		["ReplicatedStorage.Modules.Game.UIPulse.Shell.CoreUiPolicy"] = {"ReplicatedStorage.Modules.Game.UIPulse.Shell.CoreUiPolicy","ModuleScript",5557,1081851677,1124463485,false},
 		["ReplicatedStorage.Modules.Game.UIPulse.Toasts.ToastClient"] = {"ReplicatedStorage.Modules.Game.UIPulse.Toasts.ToastClient","ModuleScript",3239,733354054,398291088,false},
 		["ReplicatedStorage.Modules.Game.UIPulse.World.EventCardView"] = {"ReplicatedStorage.Modules.Game.UIPulse.World.EventCardView","ModuleScript",6177,823154152,3731852164,false},
 		["ReplicatedStorage.Modules.Game.UIPulse.World.WorldPromptModel"] = {"ReplicatedStorage.Modules.Game.UIPulse.World.WorldPromptModel","ModuleScript",10318,775443960,1392915326,false},
@@ -765,6 +765,7 @@ local DECLARED = {
 		["ReplicatedStorage.Modules.Game.UIPulse.WorldMap.FullMapView"] = {"ReplicatedStorage.Modules.Game.UIPulse.WorldMap.FullMapView","ModuleScript",22395,774979560,2302174902,false},
 	},
 	configNodes = {
+		["UI.LoadingSystem.Artworks.PulseSunset01"] = true,
 		["UI.Pulse"] = true,
 		["UI.Pulse.Assets"] = true,
 	},
@@ -772,6 +773,10 @@ local DECLARED = {
 		["Development.ClientTools@PulseGalleryEnabled"] = true,
 		["UI@UIStyle"] = true,
 		["UI@UIStyleDevFamilies"] = true,
+	},
+	configChanged = {
+		["UI.LoadingSystem.Artworks.NeoTokyoStreet01@Enabled"] = true,
+		["UI.LoadingSystem@DefaultArtworkId"] = true,
 	},
 	services = {},
 }
@@ -982,6 +987,8 @@ local function compare(path, attr, exp, value)
 	local t, v = typed(value)
 	if sameValue(exp, t, v) then
 		config.same += 1
+	elseif DECLARED.configChanged[path .. "@" .. attr] then
+		push(declared.config, path .. "@" .. attr .. " (changed)")
 	else
 		push(config.diffs, { path = path, attr = attr, was = show(exp[1], exp[2]), now = show(t, v) })
 	end

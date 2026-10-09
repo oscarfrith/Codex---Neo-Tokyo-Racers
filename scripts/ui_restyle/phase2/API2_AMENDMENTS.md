@@ -67,3 +67,37 @@ optional and replaceable through `Set`.
 `Destroying` (it was weak-keyed by Instance, which can drop a live record). A focusable button must be destroyed,
 not just dropped. `Input._holdsFocusRecord(button)` is a test hook. `Kit.Collections`, `Kit.Controls` and
 `Kit.Surface` hold no weak tables.
+
+## A6. Picture modes on `Collections.Tile` and `Collections.ListRow`, and `ListRow.TierSide` (extends 2.9; 2026-10-09)
+
+```lua
+Collections.Tile(parent, { ..., PictureMode: "Box" | "Full" | "Wide"? }, scope)       -- default "Box"
+Collections.ListRow(parent, { ..., PictureMode: "Square" | "Wide"?, TierSide: "Left" | "Right"? }, scope)
+                                                                                        -- defaults "Square", "Left"
+```
+
+All three are opt-in, are checked like any other prop (an unknown value throws), can be changed through `Set`, and
+may be carried by an item passed to `Rail.SetItems` / `List.SetItems`. A caller that passes none of them gets
+exactly what it had. `PictureMode` only changes a tile or row that has an `Image`; an `Icon` tile is never changed.
+
+- **Tile `"Full"`**: the picture covers the whole tile, behind the text, in a clipping Frame named `Picture`
+  (`Picture.Image`, `Picture.Scrim`). A Slate scrim lies over it and rises to `Opacity.ScrimBottom` at the foot,
+  where the name is. The text is always light. The selected tile has **no White fill**: it keeps the thick Pink to
+  Violet base line, the growth and the glow, its picture is undimmed, and the others are dimmed
+  (`Opacity.RankTrack`; `Opacity.ChipNeutral` under the pointer). Neutral chips get an Ink plate. No `UIStroke`
+  (style sheet: no outlines).
+- **Tile `"Wide"`**: the picture covers the tile's full width from its top down to a gap above the text; the tile
+  keeps its usual looks (White fill when selected).
+- **ListRow `"Wide"`**: the picture is shown whole in a box of its own shape (3 wide to 2 high), as tall as the row,
+  in place of the square crop.
+- **ListRow `TierSide = "Right"`**: the tier letter and the `Sub` line leave the left and stand on one line against
+  the right edge (sub-line, then letter); the name is alone between the picture and them. A `Chip` goes under that
+  line when the row is tall enough for both, else beside it as before.
+- The cover is cut on the car, not on the picture's centre: `Collections._cover(boxWidth, boxHeight, aspect, focusX,
+  focusY)` (pure). The kit holds the card picture's shape and focus as design ratios (`PICTURE_ASPECT` 1.5,
+  `PICTURE_FOCUS_X` 0.54, `PICTURE_FOCUS_Y` 0.52: the 1536 by 1024 vehicle card renders). `Collections._overPicture(look,
+  flags)` (pure) is the look of a `"Full"` tile.
+- Budget: a picture-mode tile or row adds 2 instances (`Picture`, `Image`), a `"Full"` tile 2 more (`Scrim`, its
+  gradient), made on first use and then reused. Nothing is created on a selection change.
+- Users: `garage` dealership rail (`RAIL_PICTURE` in `GarageScreenView`), `free_roam` car panel list.
+- Reason: owner feedback 2026-10-09: dealership pictures too small; the free-roam list cut the cars' noses off.

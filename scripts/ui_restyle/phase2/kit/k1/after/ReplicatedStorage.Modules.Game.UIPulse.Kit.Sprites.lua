@@ -252,12 +252,12 @@ Sprites.Source = table.freeze({
 	Generator = "scripts/ui_restyle/phase2/kit/k1/gen_sprites.py",
 	Inputs = table.freeze({
 		["digits.json"] = "sha256:cfdc8351f131e2fb6a46e5785ee7a812496e80a04201c3a1dd0691c9e93b3bdd",
-		["icons.json"] = "sha256:64e78d2312a2697d9ecfa58e68381c16c954d2bcf1215ff883e7b75639fd0c8a",
+		["icons.json"] = "sha256:5817b4ab33c92b4262dc2215157c6d2c3f51cb9ebdf5822249341567740d219d",
 		["map_icons.json"] = "sha256:0251ee2e1ede79956c21382071345ab4cd21c5e4ada89033586ebb26ad48f0ce",
 		["rings.json"] = "sha256:500633cad3ad551a8006fa8cbf1e62659c129d3b8ab5efc16890085ef7eb44a1",
 		["static_geometry.json"] = "sha256:5e8299357831f9c01befc78f732b9fa139e32fc1088107062fc48b899d2ac6a8",
 		["touch.json"] = "sha256:780e768b00428dfe2ccd23efb85583f22bddcb2e304524e350cd5163e8d74c74",
-		["uploaded_assets.json"] = "sha256:936f1be433bc23aa31b082ea77ec6da0cc541855ee1c71bf49793cd9e9e6e8d2",
+		["uploaded_assets.json"] = "sha256:7fa29b0bb2979c5b16986e3e83f4dc24094ecbb47ddc92054f2e94f1d1d952f1",
 	}),
 })
 

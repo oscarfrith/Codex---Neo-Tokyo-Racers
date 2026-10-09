@@ -172,6 +172,7 @@ end
 -- -> { blockers = {...}, states = { [name] = state }, transaction = name or "", actions = { { id, action } }, write }
 function Plan.decide(mode, ops, results, gate)
 	local blockers = {}
+	local held = {}
 	if not MODES[mode] then
 		table.insert(blockers, "unknown mode " .. tostring(mode))
 	end
@@ -196,7 +197,8 @@ function Plan.decide(mode, ops, results, gate)
 		if result.state == "blocked" then
 			table.insert(blockers, op.id .. ": " .. result.reason)
 		elseif mode == "ROLLBACK" and result.rollback ~= "" then
-			table.insert(blockers, op.id .. ": " .. result.rollback)
+			-- Held until the transaction is known: a create op's children only matter when this run removes it.
+			table.insert(held, { txn = txn, text = op.id .. ": " .. result.rollback })
 		end
 	end
 	local states = {}
@@ -238,6 +240,11 @@ function Plan.decide(mode, ops, results, gate)
 				transaction = name
 				break
 			end
+		end
+	end
+	for _, item in ipairs(held) do
+		if item.txn == transaction then
+			table.insert(blockers, item.text)
 		end
 	end
 	return { blockers = blockers, states = states, transaction = transaction, actions = actions, write = #blockers == 0 and #actions > 0 }
