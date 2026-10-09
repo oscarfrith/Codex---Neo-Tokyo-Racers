@@ -14,7 +14,7 @@ local function A(name, fallback) local v=config:GetAttribute(name); if v==nil th
 local layer=Layers.Create("MobileDriveControls_Phase1",{Frame="Bare"})
 local view=TouchControlsView.Mount(layer,nil,scope)
 -- Classic line 197 reads gui.Enabled and writes root.Visible. Under Pulse "the gui is enabled" is the layer root's Visible (API2 5.3); ScreenGui.Enabled is neither read nor written.
-local gui=setmetatable({},{__index=function(_,key) if key=="Enabled" then return layer.Root.Visible end return layer.Gui[key] end})
+local gui=setmetatable({},{__index=function(_,key) if key=="Enabled" then return layer.Gui.Enabled and layer.Root.Visible end return layer.Gui[key] end})
 local root=view.Root
 
 local function visualKind(name)

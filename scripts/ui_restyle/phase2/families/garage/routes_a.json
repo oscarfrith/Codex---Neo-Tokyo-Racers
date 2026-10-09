@@ -1,0 +1,8 @@
+{
+ "family": "Garage",
+ "_half": "A (dealership and customise). Half B adds OwnedGarageClient and GarageEntranceClient; the integrator merges the two swap maps.",
+ "swap": {
+  "GarageUI": "ReplicatedStorage.Modules.Game.UIPulse.Garage.GarageClient"
+ },
+ "add": []
+}

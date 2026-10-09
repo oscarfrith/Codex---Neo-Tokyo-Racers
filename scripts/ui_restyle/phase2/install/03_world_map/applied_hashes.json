@@ -1,0 +1,26 @@
+{
+ "Routes": [
+  "2915225189-3331066193-9135"
+ ],
+ "fixtures.WorldMap": [
+  "2437570393-2017521289-10263"
+ ],
+ "world.EventCardView": [
+  "823154152-3731852164-6177"
+ ],
+ "world.WorldPromptModel": [
+  "3300486518-4142293448-9844"
+ ],
+ "world.WorldPromptView": [
+  "2448014506-2115322820-11384"
+ ],
+ "worldmap.FullMapClient": [
+  "2459587414-3319354358-16557"
+ ],
+ "worldmap.FullMapModel": [
+  "1295530680-1300119376-18289"
+ ],
+ "worldmap.FullMapView": [
+  "2297422066-201530948-20052"
+ ]
+}

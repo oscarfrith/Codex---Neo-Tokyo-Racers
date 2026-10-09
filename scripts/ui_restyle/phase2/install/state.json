@@ -260,6 +260,309 @@
    },
    "installable": true,
    "provisional": []
+  },
+  "02_free_roam": {
+   "unit": "free_roam",
+   "scripts": {
+    "ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.HudModel": {
+     "file": "02_free_roam/after/ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.HudModel.lua",
+     "fp": "3693285658-3036847774-27365",
+     "class": "ModuleScript",
+     "kind": "create"
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.HudMinimap": {
+     "file": "02_free_roam/after/ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.HudMinimap.lua",
+     "fp": "2334085733-3555329025-10134",
+     "class": "ModuleScript",
+     "kind": "create"
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.CarPanelView": {
+     "file": "02_free_roam/after/ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.CarPanelView.lua",
+     "fp": "682029326-2433073372-7817",
+     "class": "ModuleScript",
+     "kind": "create"
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.HudModals": {
+     "file": "02_free_roam/after/ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.HudModals.lua",
+     "fp": "537128654-803648144-14182",
+     "class": "ModuleScript",
+     "kind": "create"
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.HudView": {
+     "file": "02_free_roam/after/ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.HudView.lua",
+     "fp": "3344258347-2524622675-12095",
+     "class": "ModuleScript",
+     "kind": "create"
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.HudClient": {
+     "file": "02_free_roam/after/ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.HudClient.lua",
+     "fp": "559747611-2459154653-11153",
+     "class": "ModuleScript",
+     "kind": "create"
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.FreeRoam": {
+     "file": "02_free_roam/after/ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.FreeRoam.lua",
+     "fp": "2660781893-2108765327-9734",
+     "class": "ModuleScript",
+     "kind": "create"
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.TouchControlsView": {
+     "file": "02_free_roam/after/ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.TouchControlsView.lua",
+     "fp": "2228301128-978006020-12704",
+     "class": "ModuleScript",
+     "kind": "create"
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.TouchControlsClient": {
+     "file": "02_free_roam/after/ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.TouchControlsClient.lua",
+     "fp": "2028199314-2937671232-10581",
+     "class": "ModuleScript",
+     "kind": "create"
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.ActivityHudView": {
+     "file": "02_free_roam/after/ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.ActivityHudView.lua",
+     "fp": "144785964-147670028-19934",
+     "class": "ModuleScript",
+     "kind": "create"
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.ActivityHudClient": {
+     "file": "02_free_roam/after/ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.ActivityHudClient.lua",
+     "fp": "1261674520-2738025412-20335",
+     "class": "ModuleScript",
+     "kind": "create"
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.Shell.CoreUiPolicy": {
+     "file": "02_free_roam/after/ReplicatedStorage.Modules.Game.UIPulse.Shell.CoreUiPolicy.lua",
+     "fp": "2497083317-165809797-5334",
+     "class": "ModuleScript",
+     "kind": "create"
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.FreeRoamActivity": {
+     "file": "02_free_roam/after/ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.FreeRoamActivity.lua",
+     "fp": "682041023-473743171-7701",
+     "class": "ModuleScript",
+     "kind": "create"
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.Map.MapCanvas": {
+     "file": "02_free_roam/after/ReplicatedStorage.Modules.Game.UIPulse.Map.MapCanvas.lua",
+     "fp": "1370841177-1507353831-8064",
+     "class": "ModuleScript",
+     "kind": "create"
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.Map.MapIcons": {
+     "file": "02_free_roam/after/ReplicatedStorage.Modules.Game.UIPulse.Map.MapIcons.lua",
+     "fp": "1069087350-1994973072-9606",
+     "class": "ModuleScript",
+     "kind": "create"
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.Map.MapRoute": {
+     "file": "02_free_roam/after/ReplicatedStorage.Modules.Game.UIPulse.Map.MapRoute.lua",
+     "fp": "703873268-3273904358-11273",
+     "class": "ModuleScript",
+     "kind": "create"
+    },
+    "ReplicatedStorage.Modules.Game.UI.RouteGuide": {
+     "file": "02_free_roam/after/ReplicatedStorage.Modules.Game.UI.RouteGuide.lua",
+     "fp": "3447005970-3064301258-15849",
+     "class": "ModuleScript",
+     "kind": "source",
+     "classic": true
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.Routes": {
+     "file": "02_free_roam/after/ReplicatedStorage.Modules.Game.UIPulse.Routes.lua",
+     "fp": "501273849-1313003335-8842",
+     "class": "ModuleScript",
+     "kind": "source",
+     "classic": false
+    }
+   },
+   "folders": [
+    "ReplicatedStorage.Modules.Game.UIPulse.FreeRoam",
+    "ReplicatedStorage.Modules.Game.UIPulse.Shell",
+    "ReplicatedStorage.Modules.Game.UIPulse.Map"
+   ],
+   "tests": {
+    "ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.ActivityHudClient": "02_free_roam/tests/ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.ActivityHudClient_test.lua",
+    "ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.ActivityHudView": "02_free_roam/tests/ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.ActivityHudView_test.lua",
+    "ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.CarPanelView": "02_free_roam/tests/ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.CarPanelView_test.lua",
+    "ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.HudMinimap": "02_free_roam/tests/ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.HudMinimap_test.lua",
+    "ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.HudModals": "02_free_roam/tests/ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.HudModals_test.lua",
+    "ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.HudModel": "02_free_roam/tests/ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.HudModel_test.lua",
+    "ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.HudView": "02_free_roam/tests/ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.HudView_test.lua",
+    "ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.TouchControlsView": "02_free_roam/tests/ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.TouchControlsView_test.lua",
+    "ReplicatedStorage.Modules.Game.UIPulse.Map.MapCanvas": "02_free_roam/tests/ReplicatedStorage.Modules.Game.UIPulse.Map.MapCanvas_test.lua",
+    "ReplicatedStorage.Modules.Game.UIPulse.Map.MapIcons": "02_free_roam/tests/ReplicatedStorage.Modules.Game.UIPulse.Map.MapIcons_test.lua",
+    "ReplicatedStorage.Modules.Game.UIPulse.Map.MapRoute": "02_free_roam/tests/ReplicatedStorage.Modules.Game.UIPulse.Map.MapRoute_test.lua",
+    "ReplicatedStorage.Modules.Game.UIPulse.Shell.CoreUiPolicy": "02_free_roam/tests/ReplicatedStorage.Modules.Game.UIPulse.Shell.CoreUiPolicy_test.lua",
+    "ReplicatedStorage.Modules.Game.UIPulse.Routes": "02_free_roam/tests/ReplicatedStorage.Modules.Game.UIPulse.Routes_test.lua"
+   },
+   "installable": true,
+   "provisional": []
+  },
+  "03_world_map": {
+   "unit": "world_map",
+   "scripts": {
+    "ReplicatedStorage.Modules.Game.UIPulse.WorldMap.FullMapModel": {
+     "file": "03_world_map/after/ReplicatedStorage.Modules.Game.UIPulse.WorldMap.FullMapModel.lua",
+     "fp": "1295530680-1300119376-18289",
+     "class": "ModuleScript",
+     "kind": "create"
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.WorldMap.FullMapView": {
+     "file": "03_world_map/after/ReplicatedStorage.Modules.Game.UIPulse.WorldMap.FullMapView.lua",
+     "fp": "2297422066-201530948-20052",
+     "class": "ModuleScript",
+     "kind": "create"
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.WorldMap.FullMapClient": {
+     "file": "03_world_map/after/ReplicatedStorage.Modules.Game.UIPulse.WorldMap.FullMapClient.lua",
+     "fp": "2459587414-3319354358-16557",
+     "class": "ModuleScript",
+     "kind": "create"
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.World.WorldPromptModel": {
+     "file": "03_world_map/after/ReplicatedStorage.Modules.Game.UIPulse.World.WorldPromptModel.lua",
+     "fp": "3300486518-4142293448-9844",
+     "class": "ModuleScript",
+     "kind": "create"
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.World.EventCardView": {
+     "file": "03_world_map/after/ReplicatedStorage.Modules.Game.UIPulse.World.EventCardView.lua",
+     "fp": "823154152-3731852164-6177",
+     "class": "ModuleScript",
+     "kind": "create"
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.World.WorldPromptView": {
+     "file": "03_world_map/after/ReplicatedStorage.Modules.Game.UIPulse.World.WorldPromptView.lua",
+     "fp": "2448014506-2115322820-11384",
+     "class": "ModuleScript",
+     "kind": "create"
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.WorldMap": {
+     "file": "03_world_map/after/ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.WorldMap.lua",
+     "fp": "2437570393-2017521289-10263",
+     "class": "ModuleScript",
+     "kind": "create"
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.Routes": {
+     "file": "03_world_map/after/ReplicatedStorage.Modules.Game.UIPulse.Routes.lua",
+     "fp": "2915225189-3331066193-9135",
+     "class": "ModuleScript",
+     "kind": "source",
+     "classic": false
+    }
+   },
+   "folders": [
+    "ReplicatedStorage.Modules.Game.UIPulse.WorldMap",
+    "ReplicatedStorage.Modules.Game.UIPulse.World"
+   ],
+   "tests": {
+    "ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.WorldMap": "03_world_map/tests/ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.WorldMap_test.lua",
+    "ReplicatedStorage.Modules.Game.UIPulse.World.EventCardView": "03_world_map/tests/ReplicatedStorage.Modules.Game.UIPulse.World.EventCardView_test.lua",
+    "ReplicatedStorage.Modules.Game.UIPulse.World.WorldPromptModel": "03_world_map/tests/ReplicatedStorage.Modules.Game.UIPulse.World.WorldPromptModel_test.lua",
+    "ReplicatedStorage.Modules.Game.UIPulse.World.WorldPromptView": "03_world_map/tests/ReplicatedStorage.Modules.Game.UIPulse.World.WorldPromptView_test.lua",
+    "ReplicatedStorage.Modules.Game.UIPulse.WorldMap.FullMapClient": "03_world_map/tests/ReplicatedStorage.Modules.Game.UIPulse.WorldMap.FullMapClient_test.lua",
+    "ReplicatedStorage.Modules.Game.UIPulse.WorldMap.FullMapModel": "03_world_map/tests/ReplicatedStorage.Modules.Game.UIPulse.WorldMap.FullMapModel_test.lua",
+    "ReplicatedStorage.Modules.Game.UIPulse.WorldMap.FullMapView": "03_world_map/tests/ReplicatedStorage.Modules.Game.UIPulse.WorldMap.FullMapView_test.lua",
+    "ReplicatedStorage.Modules.Game.UIPulse.Routes": "03_world_map/tests/ReplicatedStorage.Modules.Game.UIPulse.Routes_test.lua"
+   },
+   "installable": true,
+   "provisional": []
+  },
+  "04_race_session": {
+   "unit": "race_session",
+   "scripts": {
+    "ReplicatedStorage.Modules.Game.UIPulse.RaceSession.RaceHudModel": {
+     "file": "04_race_session/after/ReplicatedStorage.Modules.Game.UIPulse.RaceSession.RaceHudModel.lua",
+     "fp": "528681045-3401124787-21375",
+     "class": "ModuleScript",
+     "kind": "create"
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.RaceSession.RaceHudView": {
+     "file": "04_race_session/after/ReplicatedStorage.Modules.Game.UIPulse.RaceSession.RaceHudView.lua",
+     "fp": "629688077-1758292525-14845",
+     "class": "ModuleScript",
+     "kind": "create"
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.RaceSession.RaceHudClient": {
+     "file": "04_race_session/after/ReplicatedStorage.Modules.Game.UIPulse.RaceSession.RaceHudClient.lua",
+     "fp": "2819619864-1355296278-9857",
+     "class": "ModuleScript",
+     "kind": "create"
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.RaceSession.CountdownClient": {
+     "file": "04_race_session/after/ReplicatedStorage.Modules.Game.UIPulse.RaceSession.CountdownClient.lua",
+     "fp": "573832707-4727149-8987",
+     "class": "ModuleScript",
+     "kind": "create"
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.RaceSession.QueueClient": {
+     "file": "04_race_session/after/ReplicatedStorage.Modules.Game.UIPulse.RaceSession.QueueClient.lua",
+     "fp": "2710571116-3140682834-12568",
+     "class": "ModuleScript",
+     "kind": "create"
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.RaceSession.RouteGuideClient": {
+     "file": "04_race_session/after/ReplicatedStorage.Modules.Game.UIPulse.RaceSession.RouteGuideClient.lua",
+     "fp": "2788885834-335078846-17208",
+     "class": "ModuleScript",
+     "kind": "create"
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.RaceSession.ResultsModel": {
+     "file": "04_race_session/after/ReplicatedStorage.Modules.Game.UIPulse.RaceSession.ResultsModel.lua",
+     "fp": "2794527790-411829202-15543",
+     "class": "ModuleScript",
+     "kind": "create"
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.RaceSession.ResultsView": {
+     "file": "04_race_session/after/ReplicatedStorage.Modules.Game.UIPulse.RaceSession.ResultsView.lua",
+     "fp": "1977144722-2930222426-14413",
+     "class": "ModuleScript",
+     "kind": "create"
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.RaceSession.ResultsClient": {
+     "file": "04_race_session/after/ReplicatedStorage.Modules.Game.UIPulse.RaceSession.ResultsClient.lua",
+     "fp": "1755991268-2146621934-3737",
+     "class": "ModuleScript",
+     "kind": "create"
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.RaceSession": {
+     "file": "04_race_session/after/ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.RaceSession.lua",
+     "fp": "3637309029-1077267019-20690",
+     "class": "ModuleScript",
+     "kind": "create"
+    },
+    "ReplicatedStorage.Modules.Game.Racing.RaceTransitionClient": {
+     "file": "04_race_session/after/ReplicatedStorage.Modules.Game.Racing.RaceTransitionClient.lua",
+     "fp": "2599529806-3806632348-16018",
+     "class": "ModuleScript",
+     "kind": "source",
+     "classic": true
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.Routes": {
+     "file": "04_race_session/after/ReplicatedStorage.Modules.Game.UIPulse.Routes.lua",
+     "fp": "1944424206-1135165570-9813",
+     "class": "ModuleScript",
+     "kind": "source",
+     "classic": false
+    }
+   },
+   "folders": [
+    "ReplicatedStorage.Modules.Game.UIPulse.RaceSession"
+   ],
+   "tests": {
+    "ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.RaceSession": "04_race_session/tests/ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.RaceSession_test.lua",
+    "ReplicatedStorage.Modules.Game.UIPulse.RaceSession.CountdownClient": "04_race_session/tests/ReplicatedStorage.Modules.Game.UIPulse.RaceSession.CountdownClient_test.lua",
+    "ReplicatedStorage.Modules.Game.UIPulse.RaceSession.QueueClient": "04_race_session/tests/ReplicatedStorage.Modules.Game.UIPulse.RaceSession.QueueClient_test.lua",
+    "ReplicatedStorage.Modules.Game.UIPulse.RaceSession.RaceHudClient": "04_race_session/tests/ReplicatedStorage.Modules.Game.UIPulse.RaceSession.RaceHudClient_test.lua",
+    "ReplicatedStorage.Modules.Game.UIPulse.RaceSession.RaceHudModel": "04_race_session/tests/ReplicatedStorage.Modules.Game.UIPulse.RaceSession.RaceHudModel_test.lua",
+    "ReplicatedStorage.Modules.Game.UIPulse.RaceSession.RaceHudView": "04_race_session/tests/ReplicatedStorage.Modules.Game.UIPulse.RaceSession.RaceHudView_test.lua",
+    "ReplicatedStorage.Modules.Game.UIPulse.RaceSession.ResultsClient": "04_race_session/tests/ReplicatedStorage.Modules.Game.UIPulse.RaceSession.ResultsClient_test.lua",
+    "ReplicatedStorage.Modules.Game.UIPulse.RaceSession.ResultsModel": "04_race_session/tests/ReplicatedStorage.Modules.Game.UIPulse.RaceSession.ResultsModel_test.lua",
+    "ReplicatedStorage.Modules.Game.UIPulse.RaceSession.ResultsView": "04_race_session/tests/ReplicatedStorage.Modules.Game.UIPulse.RaceSession.ResultsView_test.lua",
+    "ReplicatedStorage.Modules.Game.UIPulse.Routes": "04_race_session/tests/ReplicatedStorage.Modules.Game.UIPulse.Routes_test.lua"
+   },
+   "installable": true,
+   "provisional": []
   }
  },
  "_note": "GENERATED by phase2/tools/assemble.py: the install chain. Do not edit."

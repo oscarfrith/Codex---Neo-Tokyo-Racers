@@ -1,0 +1,114 @@
+[
+ {
+  "id": "garage",
+  "kind": "create",
+  "class": "Folder",
+  "path": [
+   "ReplicatedStorage",
+   "Modules",
+   "Game",
+   "UIPulse",
+   "Garage"
+  ],
+  "_note": "first op of the family: half B's fragment has no Folder op and needs this one before it"
+ },
+ {
+  "id": "garage.routes",
+  "kind": "create",
+  "class": "ModuleScript",
+  "path": [
+   "ReplicatedStorage",
+   "Modules",
+   "Game",
+   "UIPulse",
+   "Garage",
+   "GarageRoutes"
+  ],
+  "after": "after/ReplicatedStorage.Modules.Game.UIPulse.Garage.GarageRoutes.lua"
+ },
+ {
+  "id": "garage.model",
+  "kind": "create",
+  "class": "ModuleScript",
+  "path": [
+   "ReplicatedStorage",
+   "Modules",
+   "Game",
+   "UIPulse",
+   "Garage",
+   "GarageModel"
+  ],
+  "after": "after/ReplicatedStorage.Modules.Game.UIPulse.Garage.GarageModel.lua"
+ },
+ {
+  "id": "garage.paintview",
+  "kind": "create",
+  "class": "ModuleScript",
+  "path": [
+   "ReplicatedStorage",
+   "Modules",
+   "Game",
+   "UIPulse",
+   "Garage",
+   "PaintView"
+  ],
+  "after": "after/ReplicatedStorage.Modules.Game.UIPulse.Garage.PaintView.lua"
+ },
+ {
+  "id": "garage.modals",
+  "kind": "create",
+  "class": "ModuleScript",
+  "path": [
+   "ReplicatedStorage",
+   "Modules",
+   "Game",
+   "UIPulse",
+   "Garage",
+   "GarageModals"
+  ],
+  "after": "after/ReplicatedStorage.Modules.Game.UIPulse.Garage.GarageModals.lua"
+ },
+ {
+  "id": "garage.screenview",
+  "kind": "create",
+  "class": "ModuleScript",
+  "path": [
+   "ReplicatedStorage",
+   "Modules",
+   "Game",
+   "UIPulse",
+   "Garage",
+   "GarageScreenView"
+  ],
+  "after": "after/ReplicatedStorage.Modules.Game.UIPulse.Garage.GarageScreenView.lua"
+ },
+ {
+  "id": "garage.client",
+  "kind": "create",
+  "class": "ModuleScript",
+  "path": [
+   "ReplicatedStorage",
+   "Modules",
+   "Game",
+   "UIPulse",
+   "Garage",
+   "GarageClient"
+  ],
+  "after": "after/ReplicatedStorage.Modules.Game.UIPulse.Garage.GarageClient.lua"
+ },
+ {
+  "id": "garage.fixtures",
+  "kind": "create",
+  "class": "ModuleScript",
+  "path": [
+   "ReplicatedStorage",
+   "Modules",
+   "Game",
+   "UIPulse",
+   "Dev",
+   "Fixtures",
+   "Garage"
+  ],
+  "after": "after/ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Garage.lua"
+ }
+]
