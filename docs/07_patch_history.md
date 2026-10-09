@@ -2,6 +2,10 @@
 
 Recent deliveries, newest first. Entries before September 2026 live in [the archive](history/patch-history-2026-05-to-2026-08.md).
 
+## 2026-10-09 - Day/night cycle is 10 minutes
+
+Fast lane. `ReplicatedStorage.Config.World.Lighting@ContinuousCycleDurationSeconds` 180 -> 600 (Oscar). Config only; not Play-tested. Back: set 180.
+
 ## 2026-10-09 - Race checkpoints: mesh-category cars now trigger gates
 
 Standard lane. One line in `ServerStorage.Modules.Game.Garage.VehicleBuildService`, installed through the UI restyle chain (`06_garage`) because that script is hash-checked there.
