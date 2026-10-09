@@ -689,6 +689,13 @@
    "classic": true
   },
   {
+   "path": "ServerStorage.Modules.Game.Garage.VehicleBuildService",
+   "file": "scripts/ui_restyle/phase2/install/06_garage/after/ServerStorage.Modules.Game.Garage.VehicleBuildService.lua",
+   "unit": "06_garage",
+   "class": "ModuleScript",
+   "classic": true
+  },
+  {
    "path": "StarterPlayer.StarterPlayerScripts.ClientBase",
    "file": "scripts/ui_restyle/phase1/after/StarterPlayer.StarterPlayerScripts.ClientBase.lua",
    "unit": "phase1",

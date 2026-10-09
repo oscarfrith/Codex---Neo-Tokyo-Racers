@@ -751,6 +751,13 @@
      "class": "ModuleScript",
      "kind": "create"
     },
+    "ServerStorage.Modules.Game.Garage.VehicleBuildService": {
+     "file": "06_garage/after/ServerStorage.Modules.Game.Garage.VehicleBuildService.lua",
+     "fp": "1303633379-3670977357-14023",
+     "class": "ModuleScript",
+     "kind": "source",
+     "classic": true
+    },
     "ReplicatedStorage.Modules.Game.UIPulse.Routes": {
      "file": "06_garage/after/ReplicatedStorage.Modules.Game.UIPulse.Routes.lua",
      "fp": "2325339107-3784886049-10314",

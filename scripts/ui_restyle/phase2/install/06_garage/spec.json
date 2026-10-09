@@ -283,6 +283,20 @@
    ],
    "before": "before/ReplicatedStorage.Modules.Game.UIPulse.Routes.lua",
    "after": "after/ReplicatedStorage.Modules.Game.UIPulse.Routes.lua"
+  },
+  {
+   "id": "b_vehicle_root_touch",
+   "kind": "source",
+   "class": "ModuleScript",
+   "path": [
+    "ServerStorage",
+    "Modules",
+    "Game",
+    "Garage",
+    "VehicleBuildService"
+   ],
+   "before": "before/ServerStorage.Modules.Game.Garage.VehicleBuildService.lua",
+   "after": "after/ServerStorage.Modules.Game.Garage.VehicleBuildService.lua"
   }
  ]
 }

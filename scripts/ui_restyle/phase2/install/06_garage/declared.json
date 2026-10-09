@@ -20,6 +20,11 @@
    "djb2": 1261491730,
    "fnv1a32": 2693108196
   },
+  "ServerStorage.Modules.Game.Garage.VehicleBuildService": {
+   "length": 14023,
+   "djb2": 1303633379,
+   "fnv1a32": 3670977357
+  },
   "StarterPlayer.StarterPlayerScripts.ClientBase": {
    "length": 8326,
    "djb2": 564541363,

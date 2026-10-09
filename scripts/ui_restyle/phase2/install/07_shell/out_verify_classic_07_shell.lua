@@ -694,6 +694,7 @@ local DECLARED = {
 		["ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI"] = {"ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI","ModuleScript",75271,1917299327,648451391,false},
 		["ReplicatedStorage.Modules.Game.UI.RouteGuide"] = {"ReplicatedStorage.Modules.Game.UI.RouteGuide","ModuleScript",15849,3447005970,3064301258,false},
 		["ReplicatedStorage.Modules.Game.Vehicles.DrivingClient"] = {"ReplicatedStorage.Modules.Game.Vehicles.DrivingClient","ModuleScript",72479,1261491730,2693108196,false},
+		["ServerStorage.Modules.Game.Garage.VehicleBuildService"] = {"ServerStorage.Modules.Game.Garage.VehicleBuildService","ModuleScript",14023,1303633379,3670977357,false},
 		["StarterPlayer.StarterPlayerScripts.ClientBase"] = {"StarterPlayer.StarterPlayerScripts.ClientBase","LocalScript",8326,564541363,3766695237,false},
 	},
 	addedScripts = {

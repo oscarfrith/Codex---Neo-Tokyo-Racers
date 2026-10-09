@@ -2,6 +2,15 @@
 
 Recent deliveries, newest first. Entries before September 2026 live in [the archive](history/patch-history-2026-05-to-2026-08.md).
 
+## 2026-10-09 - Race checkpoints: mesh-category cars now trigger gates
+
+Standard lane. One line in `ServerStorage.Modules.Game.Garage.VehicleBuildService`, installed through the UI restyle chain (`06_garage`) because that script is hash-checked there.
+
+- **Cause:** `TimeTrialServer` and `MatchmakingServer` find a vehicle by a gate's `Touched`. Exotic and Muscle cars had no part with `CanTouch` (mesh parts are built with it off, and the root is cloned from the Piercer root with it off); the old block-built Piercer cars had 96 touchable parts.
+- **Fixed:** the driven vehicle's root (`CockpitRoot_DoNotRename`) gets `CanTouch = true` at build. Templates and their fingerprints are unchanged, so every category, including future ones, is covered.
+- **Checked:** installed; AUDIT and Classic verify clean. **Not Play-tested** (Oscar is testing).
+- **Lesson:** a new vehicle category needs one touchable part; add "drive through a checkpoint" to the category gates.
+
 ## 2026-10-09 - UI restyle: second play-review fixes (race map, vignette order, Space/Shift swap, logo)
 
 Standard lane; chain refreshed through `scripts/ui_restyle/phase2/install/`.
