@@ -192,9 +192,9 @@
    "class": "ModuleScript"
   },
   "ReplicatedStorage.Modules.Game.UIPulse.Kit.Collections": {
-   "length": 73615,
-   "djb2": 1359609387,
-   "fnv1a32": 3515844107,
+   "length": 74498,
+   "djb2": 1721489920,
+   "fnv1a32": 3301257708,
    "class": "ModuleScript"
   },
   "ReplicatedStorage.Modules.Game.UIPulse.Kit.Contracts": {

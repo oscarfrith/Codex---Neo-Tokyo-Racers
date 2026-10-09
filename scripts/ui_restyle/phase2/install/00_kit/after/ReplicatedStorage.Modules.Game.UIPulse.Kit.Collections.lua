@@ -724,6 +724,7 @@ local function buildTile(parent, props, scope, host)
 
 		-- Title, bottom of the tile.
 		local titleTop
+		local twoLine = false
 		if compact then
 			titleTop = fillHeight - inset - titleSize
 			put(title, "TextWrapped", false)
@@ -741,7 +742,9 @@ local function buildTile(parent, props, scope, host)
 			put(title, "Size", UDim2.fromOffset(math.max(0, width - inset - inset), boxHeight))
 			local lines = title.TextBounds.Y > titleSize * TWO_LINES and 2 or 1
 			titleTop = fillHeight - inset - titleSize * lines
+			twoLine = lines == 2
 		end
+		local textTop = titleTop -- top of the text block (name, plus the sub-line when there is one)
 		put(title, "TextColor3", colourOf(look.Ink))
 		put(title, "TextTransparency", 1 - opacity)
 
@@ -752,7 +755,8 @@ local function buildTile(parent, props, scope, host)
 			put(sub, "Text", string.upper(subText))
 			local subSize = face(sub, "Label", ctx)
 			put(sub, "TextTruncate", Enum.TextTruncate.AtEnd)
-			put(sub, "Position", UDim2.fromOffset(inset, titleTop - subSize))
+			textTop = titleTop - subSize
+			put(sub, "Position", UDim2.fromOffset(inset, textTop))
 			put(sub, "Size", UDim2.fromOffset(math.max(0, width - inset - inset), subSize))
 			put(sub, "TextColor3", colourOf(look.Sub))
 			put(sub, "TextTransparency", 1 - opacity)
@@ -864,6 +868,15 @@ local function buildTile(parent, props, scope, host)
 		else
 			boxTop = math.floor(height * VISUAL_TOP)
 		end
+		-- A two-line name raises the text block into the picture box (capture module_shop_v2): the box then
+		-- keeps its top and shrinks until the drawn picture, selected growth included, ends a gap above the
+		-- text. One-line tiles are not touched.
+		local pictureLimit = twoLine and (textTop - gap) or nil
+		if pictureLimit then
+			local scale = look.Selected and Space.TileSelectedGrow or 1
+			local fit = math.floor((pictureLimit - boxTop - math.floor(grow * HALF)) / ((1 + scale) * HALF))
+			boxHeight = math.max(0, math.min(boxHeight, fit))
+		end
 		local image = textOf(state.Image)
 		local glyph = textOf(state.Icon)
 		local boxWidth = boxHeight
@@ -906,7 +919,11 @@ local function buildTile(parent, props, scope, host)
 			else
 				lock.Set({ Colour = look.Ink, Size = lockDesign, Visible = true })
 			end
-			put(lock.Instance, "Position", UDim2.fromOffset(math.floor((width - lockPx) * HALF), centreY - math.floor(lockPx * HALF)))
+			local lockTop = centreY - math.floor(lockPx * HALF)
+			if pictureLimit then
+				lockTop = math.min(lockTop, pictureLimit - lockPx) -- the badge moves up rather than cover the sub-line
+			end
+			put(lock.Instance, "Position", UDim2.fromOffset(math.floor((width - lockPx) * HALF), lockTop))
 		elseif lock ~= nil then
 			lock.Set({ Visible = false })
 		end

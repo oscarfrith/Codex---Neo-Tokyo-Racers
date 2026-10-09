@@ -58,7 +58,7 @@
     "the fixes installed in the last pass that were not re-opened: paint tabs, desk layout, in-race PB label, hidden gauge under modals"
   ],
   "known_defects": [
-    "Part tiles: with a two-line name the sub-line overlaps the icon (fix written, not installed)",
+    "Part tiles: with a two-line name the sub-line overlapped the icon; fix installed (kit Tile shrinks its picture box), compiles and its test passes, not yet seen in Play",
     "One Roblox core camera error seen once (PlayerModule CameraUtils:103) during a scripted teleport and prompt sequence; cause not established",
     "Desktop My Vehicles panel still has category and sort drop-downs",
     "Garage Back is disabled on the Parts slot list",

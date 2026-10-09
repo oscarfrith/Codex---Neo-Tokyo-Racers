@@ -1,0 +1,680 @@
+{
+ "tool": "scripts/ui_restyle/phase2/tools/check_kit_calls.py",
+ "kit": "working",
+ "units": [
+  "race_menu",
+  "free_roam",
+  "world_map",
+  "race_session",
+  "race_entry",
+  "garage",
+  "shell",
+  "kit_fixtures"
+ ],
+ "counts": {
+  "race_menu": {
+   "ERROR": 0,
+   "NOTE": 0,
+   "NOTE_suspect": 0
+  },
+  "free_roam": {
+   "ERROR": 0,
+   "NOTE": 1,
+   "NOTE_suspect": 0
+  },
+  "world_map": {
+   "ERROR": 0,
+   "NOTE": 7,
+   "NOTE_suspect": 0
+  },
+  "race_session": {
+   "ERROR": 0,
+   "NOTE": 1,
+   "NOTE_suspect": 0
+  },
+  "race_entry": {
+   "ERROR": 0,
+   "NOTE": 6,
+   "NOTE_suspect": 0
+  },
+  "garage": {
+   "ERROR": 0,
+   "NOTE": 10,
+   "NOTE_suspect": 0
+  },
+  "shell": {
+   "ERROR": 0,
+   "NOTE": 5,
+   "NOTE_suspect": 0
+  },
+  "kit_fixtures": {
+   "ERROR": 0,
+   "NOTE": 20,
+   "NOTE_suspect": 0
+  }
+ },
+ "stats": {
+  "race_menu": {
+   "files": 4,
+   "kit_calls": 28,
+   "props_checked": 37,
+   "set_calls": 20
+  },
+  "free_roam": {
+   "files": 17,
+   "kit_calls": 81,
+   "props_checked": 80,
+   "set_calls": 31
+  },
+  "world_map": {
+   "files": 7,
+   "kit_calls": 34,
+   "props_checked": 32,
+   "set_calls": 13
+  },
+  "race_session": {
+   "files": 11,
+   "kit_calls": 66,
+   "props_checked": 94,
+   "set_calls": 50
+  },
+  "race_entry": {
+   "files": 6,
+   "kit_calls": 63,
+   "props_checked": 95,
+   "set_calls": 48
+  },
+  "garage": {
+   "files": 18,
+   "kit_calls": 89,
+   "props_checked": 113,
+   "set_calls": 62
+  },
+  "shell": {
+   "files": 8,
+   "kit_calls": 32,
+   "props_checked": 23,
+   "set_calls": 11
+  },
+  "kit_fixtures": {
+   "files": 10,
+   "kit_calls": 46,
+   "props_checked": 26,
+   "set_calls": 5
+  }
+ },
+ "kit_sources": {
+  "BigNumber": "phase2/kit/k4/after/ReplicatedStorage.Modules.Game.UIPulse.Kit.BigNumber.lua",
+  "Collections": "phase2/kit/k2/after/ReplicatedStorage.Modules.Game.UIPulse.Kit.Collections.lua",
+  "Contracts": "phase2/kit/k1/after/ReplicatedStorage.Modules.Game.UIPulse.Kit.Contracts.lua",
+  "Controls": "phase2/kit/k2/after/ReplicatedStorage.Modules.Game.UIPulse.Kit.Controls.lua",
+  "Data": "phase2/kit/k4/after/ReplicatedStorage.Modules.Game.UIPulse.Kit.Data.lua",
+  "Gauge": "phase2/kit/k3/after/ReplicatedStorage.Modules.Game.UIPulse.Kit.Gauge.lua",
+  "Input": "phase2/kit/k2/after/ReplicatedStorage.Modules.Game.UIPulse.Kit.Input.lua",
+  "Layers": "phase2/kit/k1/after/ReplicatedStorage.Modules.Game.UIPulse.Kit.Layers.lua",
+  "Metrics": "phase2/kit/k1/after/ReplicatedStorage.Modules.Game.UIPulse.Kit.Metrics.lua",
+  "Minimap": "phase2/kit/k3/after/ReplicatedStorage.Modules.Game.UIPulse.Kit.Minimap.lua",
+  "Overlay": "phase2/kit/k3/after/ReplicatedStorage.Modules.Game.UIPulse.Kit.Overlay.lua",
+  "Perf": "phase1/after/ReplicatedStorage.Modules.Game.UIPulse.Kit.Perf.lua",
+  "Presence": "phase2/kit/k1/after/ReplicatedStorage.Modules.Game.UIPulse.Kit.Presence.lua",
+  "Sprites": "phase2/kit/k1/after/ReplicatedStorage.Modules.Game.UIPulse.Kit.Sprites.lua",
+  "Surface": "phase2/kit/k2/after/ReplicatedStorage.Modules.Game.UIPulse.Kit.Surface.lua",
+  "Text": "phase2/kit/k2/after/ReplicatedStorage.Modules.Game.UIPulse.Kit.Text.lua",
+  "Tokens": "phase2/kit/k1/after/ReplicatedStorage.Modules.Game.UIPulse.Kit.Tokens.lua",
+  "Touch": "phase2/kit/k4/after/ReplicatedStorage.Modules.Game.UIPulse.Kit.Touch.lua"
+ },
+ "kit_not_extracted": {},
+ "findings": [
+  {
+   "level": "NOTE",
+   "kind": "unchecked",
+   "family": "free_roam",
+   "file": "phase2/families/free_roam/after/ReplicatedStorage.Modules.Game.UIPulse.Map.MapIcons.lua",
+   "line": 181,
+   "call": "item.Component.Set({ Icon = MapIcons.GlyphFor(marker.Icon, marker.Kind), Tint = marker.Color or white })",
+   "what": "`item.Component` could not be traced to a kit component, so this Set is not checked (the patch is valid for: Surface.MapIcon)",
+   "accepted": null,
+   "kit": null
+  },
+  {
+   "level": "NOTE",
+   "kind": "unchecked",
+   "family": "world_map",
+   "file": "phase2/families/world_map/after/ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.WorldMap.lua",
+   "line": 190,
+   "call": "stack.Show(\"Fixture\" .. tostring(index), PromptRules.BannerProps(family, item))",
+   "what": "Overlay.PromptStack handle .Show: bannerProps is not a table literal, so its keys are not checked (the value is computed (`PromptRules.BannerProps(family, item)`))",
+   "accepted": null,
+   "kit": "Kit.Overlay:53"
+  },
+  {
+   "level": "NOTE",
+   "kind": "unchecked",
+   "family": "world_map",
+   "file": "phase2/families/world_map/after/ReplicatedStorage.Modules.Game.UIPulse.World.WorldPromptView.lua",
+   "line": 212,
+   "call": "stack.Show(record.Id, props())",
+   "what": "Overlay.PromptStack handle .Show: bannerProps is not a table literal, so its keys are not checked (the value is computed (`props()`))",
+   "accepted": null,
+   "kit": "Kit.Overlay:53"
+  },
+  {
+   "level": "NOTE",
+   "kind": "unchecked",
+   "family": "world_map",
+   "file": "phase2/families/world_map/after/ReplicatedStorage.Modules.Game.UIPulse.World.WorldPromptView.lua",
+   "line": 217,
+   "call": "stack.Show(record.Id, props())",
+   "what": "Overlay.PromptStack handle .Show: bannerProps is not a table literal, so its keys are not checked (the value is computed (`props()`))",
+   "accepted": null,
+   "kit": "Kit.Overlay:53"
+  },
+  {
+   "level": "NOTE",
+   "kind": "unchecked",
+   "family": "world_map",
+   "file": "phase2/families/world_map/after/ReplicatedStorage.Modules.Game.UIPulse.WorldMap.FullMapView.lua",
+   "line": 168,
+   "call": "Controls.Button(parent, props, scope)",
+   "what": "Kit.Controls.Button: props is not a table literal, so its keys are not checked (the value is the parameter `props`)",
+   "accepted": null,
+   "kit": "Kit.Controls:98"
+  },
+  {
+   "level": "NOTE",
+   "kind": "unchecked",
+   "family": "world_map",
+   "file": "phase2/families/world_map/after/ReplicatedStorage.Modules.Game.UIPulse.WorldMap.FullMapView.lua",
+   "line": 397,
+   "call": "row.Icon.Set({ Icon = MapIcons.GlyphFor(entry.Icon, entry.Kind) })",
+   "what": "`row.Icon` could not be traced to a kit component, so this Set is not checked (the patch is valid for: Collections.Tile, Controls.Button, Controls.IconButton, Surface.Icon, Surface.KeyCap, Surface.MapIcon)",
+   "accepted": null,
+   "kit": null
+  },
+  {
+   "level": "NOTE",
+   "kind": "unchecked",
+   "family": "world_map",
+   "file": "phase2/families/world_map/after/ReplicatedStorage.Modules.Game.UIPulse.WorldMap.FullMapView.lua",
+   "line": 398,
+   "call": "row.Label.Set({ Text = string.upper(entry.Label) })",
+   "what": "`row.Label` could not be traced to a kit component, so this Set is not checked (the patch is valid for: BigNumber.New, Collections.Chip, Controls.Button, Surface.KeyCap, Text.Label)",
+   "accepted": null,
+   "kit": null
+  },
+  {
+   "level": "NOTE",
+   "kind": "unchecked",
+   "family": "world_map",
+   "file": "phase2/families/world_map/after/ReplicatedStorage.Modules.Game.UIPulse.WorldMap.FullMapView.lua",
+   "line": 501,
+   "call": "arrow.Set(shown and ARROW_SHOW or ARROW_HIDE)",
+   "what": "Surface.MapIcon handle .Set: patch is not a table literal, so its keys are not checked (the value is computed (`shown and ARROW_SHOW or ARROW_HIDE`))",
+   "accepted": null,
+   "kit": "Kit.Surface:63"
+  },
+  {
+   "level": "NOTE",
+   "kind": "unchecked",
+   "family": "race_session",
+   "file": "phase2/families/race_session/after/ReplicatedStorage.Modules.Game.UIPulse.RaceSession.ResultsView.lua",
+   "line": 446,
+   "call": "p.Facts.SetRows(rows)",
+   "what": "Data.FactList handle .SetRows: rows is not a table literal, so what it holds is not checked (the value comes from `rows`)",
+   "accepted": null,
+   "kit": "Kit.Data:1237"
+  },
+  {
+   "level": "NOTE",
+   "kind": "unchecked",
+   "family": "race_entry",
+   "file": "phase2/families/race_entry/after/ReplicatedStorage.Modules.Game.UIPulse.RaceEntry.RecordsView.lua",
+   "line": 114,
+   "call": "item.Panel.Set({ Pad = padDesign })",
+   "what": "`item.Panel` could not be traced to a kit component, so this Set is not checked (the patch is valid for: Surface.Panel)",
+   "accepted": null,
+   "kit": null
+  },
+  {
+   "level": "NOTE",
+   "kind": "unchecked",
+   "family": "race_entry",
+   "file": "phase2/families/race_entry/after/ReplicatedStorage.Modules.Game.UIPulse.RaceEntry.SetupView.lua",
+   "line": 141,
+   "call": "list.SetRows(rows)",
+   "what": "Data.FactList handle .SetRows: rows is not a table literal, so what it holds is not checked (the value is the parameter `rows`)",
+   "accepted": null,
+   "kit": "Kit.Data:1237"
+  },
+  {
+   "level": "NOTE",
+   "kind": "unchecked",
+   "family": "race_entry",
+   "file": "phase2/families/race_entry/after/ReplicatedStorage.Modules.Game.UIPulse.RaceEntry.SetupView.lua",
+   "line": 285,
+   "call": "item.Panel.Set({ Pad = padDesign })",
+   "what": "`item.Panel` could not be traced to a kit component, so this Set is not checked (the patch is valid for: Surface.Panel)",
+   "accepted": null,
+   "kit": null
+  },
+  {
+   "level": "NOTE",
+   "kind": "unchecked",
+   "family": "race_entry",
+   "file": "phase2/families/race_entry/after/ReplicatedStorage.Modules.Game.UIPulse.RaceEntry.SetupView.lua",
+   "line": 291,
+   "call": "item.Panel.Set({ Pad = padDesign })",
+   "what": "`item.Panel` could not be traced to a kit component, so this Set is not checked (the patch is valid for: Surface.Panel)",
+   "accepted": null,
+   "kit": null
+  },
+  {
+   "level": "NOTE",
+   "kind": "unchecked",
+   "family": "race_entry",
+   "file": "phase2/families/race_entry/after/ReplicatedStorage.Modules.Game.UIPulse.RaceEntry.SetupView.lua",
+   "line": 385,
+   "call": "Controls.ButtonRow(bottomRight, { Name = \"SetupButtons\", Buttons = buttons }, scope)",
+   "what": "Kit.Controls.ButtonRow: props.Buttons is not a table literal, so what it holds is not checked (the value is the parameter `buttons`)",
+   "accepted": null,
+   "kit": "Kit.Controls:679"
+  },
+  {
+   "level": "NOTE",
+   "kind": "unchecked",
+   "family": "race_entry",
+   "file": "phase2/families/race_entry/after/ReplicatedStorage.Modules.Game.UIPulse.RaceEntry.SetupView.lua",
+   "line": 536,
+   "call": "fact.Set({ Text = data.Facts[index] or \"\" })",
+   "what": "`fact` could not be traced to a kit component, so this Set is not checked (the patch is valid for: BigNumber.New, Collections.Chip, Controls.Button, Surface.KeyCap, Text.Label)",
+   "accepted": null,
+   "kit": null
+  },
+  {
+   "level": "NOTE",
+   "kind": "unchecked",
+   "family": "garage",
+   "file": "phase2/families/garage/after/ReplicatedStorage.Modules.Game.UIPulse.Garage.GarageModals.lua",
+   "line": 178,
+   "call": "list.SetItems(rows)",
+   "what": "Collections.List handle .SetItems: list is not a table literal, so what it holds is not checked (the value comes from the variable `rows`, which is not one plain literal)",
+   "accepted": null,
+   "kit": "Kit.Collections:97"
+  },
+  {
+   "level": "NOTE",
+   "kind": "unchecked",
+   "family": "garage",
+   "file": "phase2/families/garage/after/ReplicatedStorage.Modules.Game.UIPulse.Garage.OwnedGarageDeskView.lua",
+   "line": 358,
+   "call": "self._rail.SetItems(items)",
+   "what": "Collections.Rail handle .SetItems: list is not a table literal, so what it holds is not checked (the value comes from the variable `items`, which is not one plain literal)",
+   "accepted": null,
+   "kit": "Kit.Collections:97"
+  },
+  {
+   "level": "NOTE",
+   "kind": "unchecked",
+   "family": "garage",
+   "file": "phase2/families/garage/after/ReplicatedStorage.Modules.Game.UIPulse.Garage.OwnedGarageDeskView.lua",
+   "line": 455,
+   "call": "tabs.Set({ Visible = false })",
+   "what": "`tabs` could not be traced to a kit component, so this Set is not checked (the patch is valid for: BigNumber.New, Collections.Chip, Collections.List, Collections.ListRow, Collections.Rail, Collections.TierBadge)",
+   "accepted": null,
+   "kit": null
+  },
+  {
+   "level": "NOTE",
+   "kind": "unchecked",
+   "family": "garage",
+   "file": "phase2/families/garage/after/ReplicatedStorage.Modules.Game.UIPulse.Garage.OwnedGarageDeskView.lua",
+   "line": 484,
+   "call": "tabs.Set({ Tabs = list, Selected = chosen, Visible = true })",
+   "what": "`tabs` could not be traced to a kit component, so this Set is not checked (the patch is valid for: Controls.Tabs)",
+   "accepted": null,
+   "kit": null
+  },
+  {
+   "level": "NOTE",
+   "kind": "unchecked",
+   "family": "garage",
+   "file": "phase2/families/garage/after/ReplicatedStorage.Modules.Game.UIPulse.Garage.OwnedGarageDeskView.lua",
+   "line": 487,
+   "call": "tabs.Set({ Visible = true })",
+   "what": "`tabs` could not be traced to a kit component, so this Set is not checked (the patch is valid for: BigNumber.New, Collections.Chip, Collections.List, Collections.ListRow, Collections.Rail, Collections.TierBadge)",
+   "accepted": null,
+   "kit": null
+  },
+  {
+   "level": "NOTE",
+   "kind": "unchecked",
+   "family": "garage",
+   "file": "phase2/families/garage/after/ReplicatedStorage.Modules.Game.UIPulse.Garage.OwnedGarageDeskView.lua",
+   "line": 496,
+   "call": "self._paint.panel.Set({ Visible = false })",
+   "what": "`self._paint.panel` could not be traced to a kit component, so this Set is not checked (the patch is valid for: BigNumber.New, Collections.Chip, Collections.List, Collections.ListRow, Collections.Rail, Collections.TierBadge)",
+   "accepted": null,
+   "kit": null
+  },
+  {
+   "level": "NOTE",
+   "kind": "unchecked",
+   "family": "garage",
+   "file": "phase2/families/garage/after/ReplicatedStorage.Modules.Game.UIPulse.Garage.OwnedGarageDeskView.lua",
+   "line": 607,
+   "call": "paint.sliders[1].Set({ Value = paint.hsv[1] })",
+   "what": "`paint.sliders[1]` could not be traced to a kit component, so this Set is not checked (the patch is valid for: Controls.Slider, Controls.Stepper, Data.SegmentedBar)",
+   "accepted": null,
+   "kit": null
+  },
+  {
+   "level": "NOTE",
+   "kind": "unchecked",
+   "family": "garage",
+   "file": "phase2/families/garage/after/ReplicatedStorage.Modules.Game.UIPulse.Garage.OwnedGarageDeskView.lua",
+   "line": 608,
+   "call": "paint.sliders[2].Set({ Value = paint.hsv[2], Gradient = ColorSequence.new(Color3.fromHSV(0, 0, 1), Color3.fromHSV(hue, 1, 1)) })",
+   "what": "`paint.sliders[2]` could not be traced to a kit component, so this Set is not checked (the patch is valid for: Controls.Slider)",
+   "accepted": null,
+   "kit": null
+  },
+  {
+   "level": "NOTE",
+   "kind": "unchecked",
+   "family": "garage",
+   "file": "phase2/families/garage/after/ReplicatedStorage.Modules.Game.UIPulse.Garage.OwnedGarageDeskView.lua",
+   "line": 609,
+   "call": "paint.sliders[3].Set({ Value = paint.hsv[3], Gradient = ColorSequence.new(Color3.fromHSV(0, 0, 0), Color3.fromHSV(hue, saturation, 1)) })",
+   "what": "`paint.sliders[3]` could not be traced to a kit component, so this Set is not checked (the patch is valid for: Controls.Slider)",
+   "accepted": null,
+   "kit": null
+  },
+  {
+   "level": "NOTE",
+   "kind": "unchecked",
+   "family": "garage",
+   "file": "phase2/families/garage/after/ReplicatedStorage.Modules.Game.UIPulse.Garage.PaintView.lua",
+   "line": 192,
+   "call": "slider.Set({ Value = hsv[index], ValueText = PaintView._valueText(index, hsv[index]), Gradient = ramps[index] })",
+   "what": "`slider` could not be traced to a kit component, so this Set is not checked (the patch is valid for: Controls.Slider)",
+   "accepted": null,
+   "kit": null
+  },
+  {
+   "level": "NOTE",
+   "kind": "unchecked",
+   "family": "shell",
+   "file": "phase2/families/shell/after/ReplicatedStorage.Modules.Game.UIPulse.Shell.OnboardingView.lua",
+   "line": 263,
+   "call": "card.Title.Set({ Role = compact and \"Status\" or \"TileName\", MaxWidth = designWidth })",
+   "what": "`card.Title` could not be traced to a kit component, so this Set is not checked (the patch is valid for: Text.Label)",
+   "accepted": null,
+   "kit": null
+  },
+  {
+   "level": "NOTE",
+   "kind": "unchecked",
+   "family": "shell",
+   "file": "phase2/families/shell/after/ReplicatedStorage.Modules.Game.UIPulse.Shell.OnboardingView.lua",
+   "line": 264,
+   "call": "card.Hint.Set({ MaxWidth = designWidth })",
+   "what": "`card.Hint` could not be traced to a kit component, so this Set is not checked (the patch is valid for: Text.Label)",
+   "accepted": null,
+   "kit": null
+  },
+  {
+   "level": "NOTE",
+   "kind": "unchecked",
+   "family": "shell",
+   "file": "phase2/families/shell/after/ReplicatedStorage.Modules.Game.UIPulse.Shell.OnboardingView.lua",
+   "line": 265,
+   "call": "card.Value.Set({ Role = compact and \"Status\" or \"TileName\" })",
+   "what": "`card.Value` could not be traced to a kit component, so this Set is not checked (the patch is valid for: Text.Label)",
+   "accepted": null,
+   "kit": null
+  },
+  {
+   "level": "NOTE",
+   "kind": "unchecked",
+   "family": "shell",
+   "file": "phase2/families/shell/after/ReplicatedStorage.Modules.Game.UIPulse.Shell.OnboardingView.lua",
+   "line": 287,
+   "call": "card.Value.Set({ Colour = expanded and \"Ink\" or \"White\", Text = compact and (index .. \"/3\") or tostring(index) })",
+   "what": "`card.Value` could not be traced to a kit component, so this Set is not checked (the patch is valid for: BigNumber.New, Text.Label)",
+   "accepted": null,
+   "kit": null
+  },
+  {
+   "level": "NOTE",
+   "kind": "unchecked",
+   "family": "shell",
+   "file": "phase2/families/shell/after/ReplicatedStorage.Modules.Game.UIPulse.Shell.OnboardingView.lua",
+   "line": 288,
+   "call": "card.Hint.Set({ Text = hintText, Visible = expanded and hintText ~= \"\" })",
+   "what": "`card.Hint` could not be traced to a kit component, so this Set is not checked (the patch is valid for: BigNumber.New, Collections.Chip, Controls.Button, Surface.KeyCap, Text.Label)",
+   "accepted": null,
+   "kit": null
+  },
+  {
+   "level": "NOTE",
+   "kind": "unchecked",
+   "family": "kit_fixtures",
+   "file": "phase2/kit/k4/after/ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.BigNumber.lua",
+   "line": 6,
+   "call": "BigNumber.New(parent, props, scope)",
+   "what": "Kit.BigNumber.New: props is not a table literal, so its keys are not checked (the value is the parameter `props`)",
+   "accepted": null,
+   "kit": "Kit.BigNumber:190"
+  },
+  {
+   "level": "NOTE",
+   "kind": "unchecked",
+   "family": "kit_fixtures",
+   "file": "phase2/kit/k2/after/ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Collections.lua",
+   "line": 102,
+   "call": "rail.SetItems(props.Items or {})",
+   "what": "Collections.Rail handle .SetItems: list is not a table literal, so what it holds is not checked (the value is computed (`props.Items or {}`))",
+   "accepted": null,
+   "kit": "Kit.Collections:97"
+  },
+  {
+   "level": "NOTE",
+   "kind": "unchecked",
+   "family": "kit_fixtures",
+   "file": "phase2/kit/k2/after/ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Collections.lua",
+   "line": 107,
+   "call": "Controls.Tabs(rail.HeadingRight, props.Segment, scope)",
+   "what": "Kit.Controls.Tabs: props is not a table literal, so its keys are not checked (the value is computed (`props.Segment`))",
+   "accepted": null,
+   "kit": "Kit.Controls:98"
+  },
+  {
+   "level": "NOTE",
+   "kind": "unchecked",
+   "family": "kit_fixtures",
+   "file": "phase2/kit/k2/after/ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Collections.lua",
+   "line": 122,
+   "call": "list.SetItems(props.Items or {})",
+   "what": "Collections.List handle .SetItems: list is not a table literal, so what it holds is not checked (the value is computed (`props.Items or {}`))",
+   "accepted": null,
+   "kit": "Kit.Collections:97"
+  },
+  {
+   "level": "NOTE",
+   "kind": "unchecked",
+   "family": "kit_fixtures",
+   "file": "phase2/kit/k2/after/ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Controls.lua",
+   "line": 420,
+   "call": "Controls.Dropdown(parent, props, scope)",
+   "what": "Kit.Controls.Dropdown: props is not a table literal, so its keys are not checked (the value is the parameter `props`)",
+   "accepted": null,
+   "kit": "Kit.Controls:98"
+  },
+  {
+   "level": "NOTE",
+   "kind": "unchecked",
+   "family": "kit_fixtures",
+   "file": "phase2/kit/k4/after/ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Data.lua",
+   "line": 38,
+   "call": "Data.SegmentedBar(parent, props, scope)",
+   "what": "Kit.Data.SegmentedBar: props is not a table literal, so its keys are not checked (the value is the parameter `props`)",
+   "accepted": null,
+   "kit": "Kit.Data:99"
+  },
+  {
+   "level": "NOTE",
+   "kind": "unchecked",
+   "family": "kit_fixtures",
+   "file": "phase2/kit/k4/after/ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Data.lua",
+   "line": 42,
+   "call": "Data.DeltaChip(parent, props, scope)",
+   "what": "Kit.Data.DeltaChip: props is not a table literal, so its keys are not checked (the value is the parameter `props`)",
+   "accepted": null,
+   "kit": "Kit.Data:99"
+  },
+  {
+   "level": "NOTE",
+   "kind": "unchecked",
+   "family": "kit_fixtures",
+   "file": "phase2/kit/k4/after/ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Data.lua",
+   "line": 46,
+   "call": "Data.StatPanel(parent, props, scope)",
+   "what": "Kit.Data.StatPanel: props is not a table literal, so its keys are not checked (the value is the parameter `props`)",
+   "accepted": null,
+   "kit": "Kit.Data:99"
+  },
+  {
+   "level": "NOTE",
+   "kind": "unchecked",
+   "family": "kit_fixtures",
+   "file": "phase2/kit/k4/after/ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Data.lua",
+   "line": 50,
+   "call": "Data.FactList(parent, props, scope)",
+   "what": "Kit.Data.FactList: props is not a table literal, so its keys are not checked (the value is the parameter `props`)",
+   "accepted": null,
+   "kit": "Kit.Data:99"
+  },
+  {
+   "level": "NOTE",
+   "kind": "unchecked",
+   "family": "kit_fixtures",
+   "file": "phase2/kit/k3/after/ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Overlay.lua",
+   "line": 138,
+   "call": "status.Set({ Text = string.format(\"%s (CLOSES: %d)\", result, closes) })",
+   "what": "`status` could not be traced to a kit component, so this Set is not checked (the patch is valid for: BigNumber.New, Collections.Chip, Controls.Button, Surface.KeyCap, Text.Label)",
+   "accepted": null,
+   "kit": null
+  },
+  {
+   "level": "NOTE",
+   "kind": "unchecked",
+   "family": "kit_fixtures",
+   "file": "phase2/kit/k3/after/ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Overlay.lua",
+   "line": 246,
+   "call": "status.Set({ Text = string.format(\"Closed (CLOSES: %d)\", closes) })",
+   "what": "`status` could not be traced to a kit component, so this Set is not checked (the patch is valid for: BigNumber.New, Collections.Chip, Controls.Button, Surface.KeyCap, Text.Label)",
+   "accepted": null,
+   "kit": null
+  },
+  {
+   "level": "NOTE",
+   "kind": "unchecked",
+   "family": "kit_fixtures",
+   "file": "phase2/kit/k2/after/ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Surface.lua",
+   "line": 63,
+   "call": "Surface.Panel(parent, props, scope)",
+   "what": "Kit.Surface.Panel: props is not a table literal, so its keys are not checked (the value is the parameter `props`)",
+   "accepted": null,
+   "kit": "Kit.Surface:63"
+  },
+  {
+   "level": "NOTE",
+   "kind": "unchecked",
+   "family": "kit_fixtures",
+   "file": "phase2/kit/k2/after/ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Surface.lua",
+   "line": 70,
+   "call": "Surface.Hairline(host, props, scope)",
+   "what": "Kit.Surface.Hairline: props is not a table literal, so its keys are not checked (the value is the parameter `props`)",
+   "accepted": null,
+   "kit": "Kit.Surface:63"
+  },
+  {
+   "level": "NOTE",
+   "kind": "unchecked",
+   "family": "kit_fixtures",
+   "file": "phase2/kit/k2/after/ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Surface.lua",
+   "line": 83,
+   "call": "Surface.Glow(host, props, scope)",
+   "what": "Kit.Surface.Glow: props is not a table literal, so its keys are not checked (the value is the parameter `props`)",
+   "accepted": null,
+   "kit": "Kit.Surface:63"
+  },
+  {
+   "level": "NOTE",
+   "kind": "unchecked",
+   "family": "kit_fixtures",
+   "file": "phase2/kit/k2/after/ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Surface.lua",
+   "line": 88,
+   "call": "Surface.Icon(host, props, scope)",
+   "what": "Kit.Surface.Icon: props is not a table literal, so its keys are not checked (the value is the parameter `props`)",
+   "accepted": null,
+   "kit": "Kit.Surface:63"
+  },
+  {
+   "level": "NOTE",
+   "kind": "unchecked",
+   "family": "kit_fixtures",
+   "file": "phase2/kit/k2/after/ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Surface.lua",
+   "line": 93,
+   "call": "Surface.MapIcon(host, props, scope)",
+   "what": "Kit.Surface.MapIcon: props is not a table literal, so its keys are not checked (the value is the parameter `props`)",
+   "accepted": null,
+   "kit": "Kit.Surface:63"
+  },
+  {
+   "level": "NOTE",
+   "kind": "unchecked",
+   "family": "kit_fixtures",
+   "file": "phase2/kit/k2/after/ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Surface.lua",
+   "line": 173,
+   "call": "icon.Set({ Colour = patch.Colour })",
+   "what": "`icon` could not be traced to a kit component, so this Set is not checked (the patch is valid for: BigNumber.New, Controls.Swatch, Surface.Glow, Surface.Hairline, Surface.Icon, Surface.MapIcon)",
+   "accepted": null,
+   "kit": null
+  },
+  {
+   "level": "NOTE",
+   "kind": "unchecked",
+   "family": "kit_fixtures",
+   "file": "phase2/kit/k2/after/ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Surface.lua",
+   "line": 227,
+   "call": "Surface.Scrim(parent, props, scope)",
+   "what": "Kit.Surface.Scrim: props is not a table literal, so its keys are not checked (the value is the parameter `props`)",
+   "accepted": null,
+   "kit": "Kit.Surface:63"
+  },
+  {
+   "level": "NOTE",
+   "kind": "unchecked",
+   "family": "kit_fixtures",
+   "file": "phase2/kit/k2/after/ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Text.lua",
+   "line": 237,
+   "call": "Text.Label(parent, props, scope)",
+   "what": "Kit.Text.Label: props is not a table literal, so its keys are not checked (the value is the parameter `props`)",
+   "accepted": null,
+   "kit": "Kit.Text:359"
+  },
+  {
+   "level": "NOTE",
+   "kind": "unchecked",
+   "family": "kit_fixtures",
+   "file": "phase2/kit/k4/after/ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Touch.lua",
+   "line": 6,
+   "call": "Touch.Button(parent, props, scope)",
+   "what": "Kit.Touch.Button: props is not a table literal, so its keys are not checked (the value is the parameter `props`)",
+   "accepted": null,
+   "kit": "Kit.Touch:53"
+  }
+ ],
+ "assembled_copy_findings": []
+}

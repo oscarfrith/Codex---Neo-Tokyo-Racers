@@ -584,6 +584,60 @@ dim(b)
         self.assertEqual(len(fs), 1)
         self.assertIn("unknown key Disabled", fs[0].what)
 
+    def test_patch_helper_that_forwards_to_set(self):
+        fs = errors(check('''
+local cache = {}
+local function patch(id, component, props)
+	local delta, any = {}, false
+	for key, value in pairs(props) do
+		if cache[id .. key] ~= value then
+			cache[id .. key] = value
+			delta[key] = value
+			any = true
+		end
+	end
+	if any then
+		component.Set(delta)
+	end
+end
+local button = Controls.Button(parent, { Text = "a" }, scope)
+patch("Go", button, { Text = "b", Variant = "Main" })
+patch("Go", button, { Caption = "c" })
+'''))
+        self.assertEqual(len(fs), 1)
+        self.assertIn("Controls.Button handle .Set: patch has unknown key Caption", fs[0].what)
+
+    def test_untraced_receiver_with_a_refused_literal(self):
+        fs = check('''
+local View = {}
+function View.new(layer, card, scope)
+	local good = layer.Slot("Centre")
+	local bad = layer.Slot("Middle")
+	card.Slot({ not_a_layer = true })
+	card.Show("anything")
+end
+''')
+        self.assertEqual(errors(fs), [])
+        whats = [f.what for f in notes(fs, "suspect")]
+        self.assertEqual(len(whats), 1, whats)
+        self.assertIn('slot = "Middle" is not an accepted value', whats[0])
+        self.assertIn("could not be traced", whats[0])
+
+    def test_icon_like_keys_are_swept_in_tables_that_reach_no_call(self):
+        kit = make_kit()
+        kit.model["Controls"]["functions"]["Button"]["sites"][(1, ("Icon",))] = {
+            "k": C.Check("value", {"car", "map"}, "error", ("Controls", 1), "glyphs")}
+        fs = check('''
+local ROUTES = {
+	{ Id = "a", Page = "Parts", Icon = "car" },
+	{ Id = "b", Page = "Paint", Icon = "paint_can" },
+	{ Id = "c", Page = "Photo", Icon = "rbxassetid://1" },
+}
+''', kit)
+        whats = [f.what for f in notes(fs, "suspect")]
+        self.assertEqual(len(whats), 1, whats)
+        self.assertIn('Icon = "paint_can"', whats[0])
+
     def test_comments_and_strings_are_not_code(self):
         fs = check('''
 -- Controls.Button(parent, { Bogus = 1 }, scope)

@@ -435,6 +435,35 @@ return function(M, env)
 		tile.Destroy()
 		scope:destroy()
 	end)
+	-- Capture module_shop_v2: a two-line name raised the sub-line into the picture box.
+	case("Tile: with a two-line name the picture and the lock end above the sub-line; one line is unchanged", function()
+		local parent = stage("R1080")
+		local scope = newScope()
+		local function bottom(gui)
+			return gui.Position.Y.Offset + gui.Size.Y.Offset
+		end
+		local short = M.Tile(parent, { Title = "Wing", Sub = "Owned x1", Icon = "upgrade" }, scope)
+		local oneLine = short.Instance.Fill.Visual.Size
+		for _, picture in ipairs({ { Icon = "upgrade" }, { Image = "rbxassetid://1" } }) do
+			local props = { Title = "Teardrop fenders extended wide body", Sub = "Buy Exotic Zephyr to unlock", Status = "Locked" }
+			props.Icon, props.Image = picture.Icon, picture.Image
+			local tile = M.Tile(parent, props, scope)
+			local fill = tile.Instance.Fill
+			for _, state in ipairs({ "Default", "Selected" }) do
+				tile.Set({ State = state })
+				local title = fill.Title
+				if title.TextBounds.Y > title.TextSize * 1.5 then -- the name did wrap on this stage
+					local subTop = fill.Sub.Position.Y.Offset
+					expect(bottom(fill.Visual) <= subTop, state .. ": picture over the sub-line")
+					expect(bottom(fill.Lock) <= subTop, state .. ": lock over the sub-line")
+				end
+			end
+			tile.Destroy()
+		end
+		expect(short.Instance.Fill.Visual.Size == oneLine, "a one-line tile changed")
+		short.Destroy()
+		scope:destroy()
+	end)
 	case("ListRow: selectable GuiButton; Locked sets Active false; selection creates nothing", function()
 		local parent = stage("R1080")
 		local scope = newScope()
