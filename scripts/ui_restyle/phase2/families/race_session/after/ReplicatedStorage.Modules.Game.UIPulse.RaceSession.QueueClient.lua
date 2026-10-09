@@ -195,8 +195,11 @@ function Client._mountView(layer, scope, handlers)
 	anchor.AnchorPoint = slot.AnchorPoint
 	anchor.Parent = slot
 
-	local panel = Surface.Panel(anchor, { Name = "Panel",
-		Width = compact and Space.CompactPromptWidth or Space.ModalMaxWidth,
+	-- Compact: the 22 dp panel padding and row gap alone took 110 of a 300 dp banner, which left no width for the
+	-- event name beside PLAYERS, STARTS IN and LEAVE. The touch gap is the padding there and the banner is wider.
+	local pad = compact and Space.TouchGap or Space.Pad
+	local panel = Surface.Panel(anchor, { Name = "Panel", Pad = pad,
+		Width = compact and (Space.CompactPromptWidth + Space.CompactStatPanelWidth) or Space.ModalMaxWidth,
 		Height = compact and Space.CompactTileHeight or Space.ListRowHeight }, scope)
 	local row, rowList = holder("Row", panel.Content, Enum.FillDirection.Horizontal, 0)
 	row.AutomaticSize = Enum.AutomaticSize.None
@@ -232,7 +235,7 @@ function Client._mountView(layer, scope, handlers)
 		end }, scope)
 
 	local function layout()
-		local padding = UDim.new(0, ctx.Px(Space.Pad))
+		local padding = UDim.new(0, ctx.Px(pad))
 		for _, list in ipairs(lists) do
 			if list.Padding ~= padding then
 				list.Padding = padding

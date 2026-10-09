@@ -946,6 +946,15 @@ function Controls._tabCaption(spec)
 	return caption
 end
 
+-- Pure. Where a tab of `width` goes when the pen is at (x, y): on the same line, or at the start of the next
+-- line (`lineStep` lower) when it would pass `limit`. The first tab of a line never wraps.
+function Controls._tabWrap(x, y, width, lineStep, limit)
+	if x > 0 and x + width > limit then
+		return 0, y + lineStep
+	end
+	return x, y
+end
+
 local function isShown(instance)
 	local current = instance
 	while current ~= nil and current:IsA("GuiObject") do
@@ -995,8 +1004,12 @@ function Controls.Tabs(parent, props, scope)
 		local drawn = math.max(ctx.Px(unit(ctx, drawnDesign)), textSize + underline + underline)
 		local hit = math.max(drawn, ctx.Touch(1))
 		local top = math.floor((hit - drawn) * HALF)
+		-- Touch only: each tab is at least the touch size wide, and a row wider than the safe area wraps.
+		local touchy = isTouchy(ctx)
+		local minWidth = touchy and ctx.Touch(1) or 0
+		local limit = (touchy and ctx.Size ~= nil and ctx.Size.X > 0) and ctx.Size.X or math.huge
 
-		local x = 0
+		local x, y, widest = 0, 0, 0
 		for _, entry in ipairs(entries) do
 			local spec = entry.Spec
 			local button = entry.Button
@@ -1032,8 +1045,12 @@ function Controls.Tabs(parent, props, scope)
 			if tier then
 				width = math.max(drawn, textWidth(button) + gap + gap)
 			end
-			put(button, "TextXAlignment", tier and Enum.TextXAlignment.Center or Enum.TextXAlignment.Right)
-			put(button, "Position", UDim2.fromOffset(x, 0))
+			local widened = width < minWidth
+			width = math.max(width, minWidth)
+			x, y = Controls._tabWrap(x, y, width, hit + between, limit)
+			local centred = tier ~= nil or (widened and iconName == nil)
+			put(button, "TextXAlignment", centred and Enum.TextXAlignment.Center or Enum.TextXAlignment.Right)
+			put(button, "Position", UDim2.fromOffset(x, y))
 			put(button, "Size", UDim2.fromOffset(width, hit))
 			put(button, "TextColor3", look.TierInk and tint or colourOf(look.Ink))
 			put(button, "TextTransparency", 1 - look.Opacity)
@@ -1052,9 +1069,10 @@ function Controls.Tabs(parent, props, scope)
 			put(entry.Underline, "BackgroundTransparency", 1 - look.Opacity)
 			put(entry.Underline, "Visible", look.Underline)
 
+			widest = math.max(widest, x + width)
 			x = x + width + between
 		end
-		put(root, "Size", UDim2.fromOffset(math.max(0, x - between), hit))
+		put(root, "Size", UDim2.fromOffset(widest, y + hit))
 	end
 
 	local function choose(id, notify)

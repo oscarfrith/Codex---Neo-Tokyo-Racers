@@ -890,6 +890,11 @@
    "unit": "06_garage"
   },
   {
+   "path": "ReplicatedStorage.Modules.Game.UIPulse.Garage.GarageInteriorHud",
+   "file": "scripts/ui_restyle/phase2/install/06_garage/tests/ReplicatedStorage.Modules.Game.UIPulse.Garage.GarageInteriorHud_test.lua",
+   "unit": "06_garage"
+  },
+  {
    "path": "ReplicatedStorage.Modules.Game.UIPulse.Garage.GarageModals",
    "file": "scripts/ui_restyle/phase2/install/06_garage/tests/ReplicatedStorage.Modules.Game.UIPulse.Garage.GarageModals_test.lua",
    "unit": "06_garage"
@@ -912,6 +917,11 @@
   {
    "path": "ReplicatedStorage.Modules.Game.UIPulse.Garage.OwnedGarageBrowserModel",
    "file": "scripts/ui_restyle/phase2/install/06_garage/tests/ReplicatedStorage.Modules.Game.UIPulse.Garage.OwnedGarageBrowserModel_test.lua",
+   "unit": "06_garage"
+  },
+  {
+   "path": "ReplicatedStorage.Modules.Game.UIPulse.Garage.OwnedGarageBrowserUI",
+   "file": "scripts/ui_restyle/phase2/install/06_garage/tests/ReplicatedStorage.Modules.Game.UIPulse.Garage.OwnedGarageBrowserUI_test.lua",
    "unit": "06_garage"
   },
   {

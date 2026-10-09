@@ -37,6 +37,12 @@ return function(M, env)
 		expect(module.Rating == nil and string.find(module.Sub, "316", 1, true) ~= nil, "a module rating joins the status line")
 		expect(M._tileProps({ Key = "s", Title = "Slot", Image = "" }, false, money).Image == nil, "empty image is no image")
 		expect(M._tileProps({ Key = "s", Title = "Slot", ChipRightKind = "Tick" }, false, money).ChipRightKind == nil, "no chip, no chip kind")
+		-- A Compact tile draws no left chip: the variant of a module and the level of an upgrade join the name.
+		local variant = { Key = "m", Kind = "Module", Title = "Stinger", ChipLeft = "LIGHTWEIGHT" }
+		expect(M._tileProps(variant, true, money).Title == "Stinger LIGHTWEIGHT", "Compact module tile names its variant")
+		expect(M._tileProps(variant, false, money).Title == "Stinger" and M._tileProps(variant, false, money).ChipLeft == "LIGHTWEIGHT", "Regular keeps the chip")
+		expect(M._tileProps({ Key = "u", Kind = "Upgrade", Title = "Intake", ChipLeft = "LEVEL 2" }, true, money).Title == "Intake LEVEL 2", "Compact upgrade tile names its level")
+		expect(M._tileProps({ Key = "v", Kind = "Vehicle", Title = "Zephyr", ChipLeft = "NEW" }, true, money).Title == "Zephyr", "other tiles are unchanged")
 	end)
 
 	case("tile props: only keys the kit tile takes", function()

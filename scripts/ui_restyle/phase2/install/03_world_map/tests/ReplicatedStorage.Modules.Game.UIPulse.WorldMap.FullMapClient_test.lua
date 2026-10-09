@@ -178,5 +178,12 @@ return function(Client, _env)
 		expect(Client._padCommand(Enum.KeyCode.ButtonSelect), nil, "Select is the toggle action")
 	end)
 
+	case("_inTopBar: a press on the Roblox top-left buttons is not the map's", function()
+		expect(Client._inTopBar(Vector2.new(60, 20), 58, 208), true, "on the Roblox buttons")
+		expect(Client._inTopBar(Vector2.new(300, 20), 58, 208), false, "right of the buttons")
+		expect(Client._inTopBar(Vector2.new(60, 58), 58, 208), false, "under the bar")
+		expect(Client._inTopBar(Vector2.new(60, 20), 0, 0), false, "no bar, no keep-out")
+	end)
+
 	return results
 end

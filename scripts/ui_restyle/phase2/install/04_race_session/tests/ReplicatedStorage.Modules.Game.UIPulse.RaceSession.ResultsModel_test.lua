@@ -79,6 +79,10 @@ return function(M, _env)
 			Delay = function(seconds, fn)
 				table.insert(log.delays, { seconds = seconds, fn = fn })
 			end,
+			-- The driver XP window clock; a test moves log.now.
+			Now = function()
+				return log.now or 0
+			end,
 		})
 		model.Changed:Connect(function(reason)
 			table.insert(log.reasons, reason)
@@ -500,9 +504,230 @@ return function(M, _env)
 		setAttribute("XpIntoRank", 420)
 		log.delays[1].fn()
 		expect(#log.reasons == before, "nothing after hide")
-		for _, entry in ipairs(log.listeners) do
-			expect(entry.connected == false, "listeners released")
+		-- The first two listeners are the model's own session-long watch of Rank and XpIntoRank (the XP window).
+		expect(#log.listeners >= 4 and log.listeners[1].connected and log.listeners[2].connected, "the session watch stays")
+		for index, entry in ipairs(log.listeners) do
+			if index > 2 then
+				expect(entry.connected == false, "result listeners released")
+			end
 		end
+	end)
+
+	case("driver XP: a change that replicated just before the payload still counts (the server grants first)", function()
+		-- TimeTrialServer.sendTimeTrialResult and MatchmakingServer.finishEntry grant the reward (EconomyCashCommitted ->
+		-- ProgressionService.AddXp -> SetAttribute) before they fire the result.
+		local model, log, setAttribute = harness()
+		setAttribute("Rank", 4)
+		setAttribute("XpIntoRank", 300)
+		log.now = 100
+		setAttribute("XpIntoRank", 420)
+		log.now = 100.05
+		model.Handle(raceFinished(2))
+		expect(model.Xp().State == "Xp" and model.Xp().Gain == 120, "gain measured from the value before the change")
+		expect(log.reasons[1] == "xp" or log.reasons[2] == "xp", "the view is told")
+
+		local rank, rankLog, setRank = harness()
+		setRank("Rank", 4)
+		setRank("XpIntoRank", 950)
+		rankLog.now = 10
+		setRank("Rank", 5)
+		setRank("XpIntoRank", 30)
+		rankLog.now = 10.2
+		rank.Handle(trialFinished())
+		expect(rank.Xp().State == "Rank" and rank.Xp().Rank == 5 and rank.Xp().RankGain == 1, "rank up before the payload")
+
+		local old, oldLog, setOld = harness()
+		setOld("Rank", 4)
+		setOld("XpIntoRank", 300)
+		oldLog.now = 10
+		setOld("XpIntoRank", 310) -- drive-to-earn XP, long before the finish
+		oldLog.now = 40
+		old.Handle(raceFinished(2))
+		expect(old.Xp().State == "Pending", "an old change is not this result's")
+		setOld("XpIntoRank", 430)
+		expect(old.Xp().Gain == 120, "then the change after the payload, from the value at the result")
+
+		local twice, twiceLog, setTwice = harness()
+		setTwice("Rank", 4)
+		setTwice("XpIntoRank", 300)
+		twiceLog.now = 5
+		setTwice("XpIntoRank", 420)
+		twice.Handle(raceFinished(2))
+		twice.Handle({ Type = "RaceStaged" })
+		twice.Handle(raceFinished(2))
+		expect(twice.Xp().State == "Pending", "a change is counted for one result only")
+	end)
+
+	case("a Changed listener that errors does not stop the exit call", function()
+		local model, log = harness()
+		log.replies.ExitFinishedTimeTrial = { Ok = true, Success = true, Message = "Exited to race start." }
+		model.Handle(trialFinished())
+		model.Changed:Connect(function()
+			error("the view failed to draw")
+		end)
+		log.calls = {}
+		model.Exit()
+		expect(#log.calls == 1 and log.calls[1].action == "ExitFinishedTimeTrial", "the call is still sent")
+		expect(not model.IsOpen() and not model.Busy(), "and the result closes")
+	end)
+
+	case("TRY AGAIN refused: the server's reason is the title, the result stays, the buttons come back", function()
+		local model, log = harness()
+		log.replies.StartStagedTimeTrial = { Ok = false, Success = false, Message = "Vehicle is not ready." }
+		model.Handle(trialFinished())
+		model.Again()
+		expect(model.IsOpen() and not model.Busy(), "open, not busy")
+		expect(model.Title() == "VEHICLE IS NOT READY.", model.Title())
+	end)
+
+	-- Payloads copied key for key from the server sources (scripts/ui_restyle/classic/sources).
+	case("server shape: TimeTrialServer.sendTimeTrialResult, a first finish with no personal best and no medal", function()
+		local model, log = harness()
+		-- GlobalLeaderboardServer with the DataStore disabled: no Entries key at all.
+		log.replies.GetTimeTrialLeaderboard = { Ok = false, Available = false, Message = "Global leaderboard DataStore disabled." }
+		model.Handle({
+			Type = "TimeTrialFinished", EventId = "showroom_loop_tt", RouteId = "showroom_loop", DisplayName = "Showroom Loop",
+			RunId = "tt_1", Elapsed = 71.25, GateCount = 12, VehicleTier = "E", VehicleIndex = 210, SelectedVehicleId = "aurora",
+			Medals = { Platinum = 58, Gold = 61, Silver = 65, Bronze = 70 }, Medal = "Finished", MedalRank = 0,
+			MedalTargetSeconds = nil, NextMedalName = "Bronze", NextMedalSeconds = 70, NextMedalDelta = 1.25,
+			PreviousBestSeconds = nil, PersonalBestSeconds = 71.25, PersonalBestMedal = "Finished", IsPersonalBest = true,
+			Splits = {}, LapTimes = { { Lap = 1, Elapsed = 74.5 }, { Lap = 2, Elapsed = 71.25 }, { Lap = 3, Elapsed = 72 } },
+			BestLapSeconds = 71.25, BestLapIndex = 2, CompletedLapCount = 3, CurrentLap = 4, LapTarget = 3, RouteType = "Circuit",
+			FinishReason = "LapTarget", CanRetry = true, RewardGranted = true, RewardAmount = 1500, RewardCash = 9000,
+			RewardMessage = "Best session result!", IntegrityRejected = false, Message = "Best session result!  $1500 earned",
+		})
+		expect(model.Title() == "TIME TRIAL COMPLETE" and model.SubTitle() == "SHOWROOM LOOP", model.Title())
+		expect(model.BestLapText() == "1:11.250" and model.RewardAmount() == 1500, "best lap and reward")
+		local strip = model.Strip()
+		expect(strip[1].Value == "FINISHED" and strip[2].Kind == "Chip", "no medal reads FINISHED; first finish is a personal best")
+		local heading, laps = model.Facts(4)
+		expect(heading == "SESSION LAPS" and #laps == 3 and laps[2].Value == "1:11.250  BEST", "laps")
+		local board = model.Table(6)
+		expect(board.Heading == "GLOBAL TOP 20 — TIER E" and #board.Rows == 0, board.Heading)
+		expect(board.Message == "GLOBAL RANKINGS UNAVAILABLE", board.Message)
+		local call = log.calls[1]
+		expect(call.action == "GetTimeTrialLeaderboard" and call.payload.EventId == "showroom_loop_tt"
+			and call.payload.VehicleTier == "E" and call.payload.Limit == 20, "leaderboard request")
+		log.replies.StartStagedTimeTrial = { Ok = true, Success = true, Message = "Staging 3-lap time trial." }
+		model.Again()
+		call = log.calls[#log.calls]
+		expect(call.payload.EventId == "showroom_loop_tt" and call.payload.VehicleId == "aurora" and call.payload.LapCount == 3,
+			"TRY AGAIN keys from the payload")
+	end)
+
+	case("server shape: integrity rejected, point to point, and the quit result", function()
+		local rejected = harness()
+		rejected.Handle({ Type = "TimeTrialFinished", EventId = "canal_tt", DisplayName = "Canal Sprint", RunId = "tt_2", Elapsed = 40,
+			VehicleTier = "C", SelectedVehicleId = "seraph", Medal = "Gold", IsPersonalBest = false, Splits = {}, LapTimes = {},
+			BestLapSeconds = nil, BestLapIndex = nil, CompletedLapCount = 0, CurrentLap = 1, LapTarget = 1, RouteType = "PointToPoint",
+			FinishReason = "PointToPoint", CanRetry = true, RewardGranted = false, RewardAmount = 0,
+			RewardMessage = "Run not counted: checkpoint timing check failed.", IntegrityRejected = true })
+		expect(rejected.BestLapText() == "0:40.000", "no laps: Elapsed is the time")
+		expect(rejected.RewardAmount() == 0 and #rejected.Strip() == 1, "no reward, no best chip")
+		local _, laps = rejected.Facts(4)
+		expect(#laps == 0, "no lap rows")
+
+		-- exitActiveTimeTrial with a best lap: sendTimeTrialResult(player, run, run.BestLapSeconds, "Quit", true).
+		local quit, quitLog, _, quitFired = harness()
+		quitLog.replies.ExitFinishedTimeTrial = { Ok = true, Success = true, Message = "No finished time trial cleanup pending." }
+		quit.Handle({ Type = "TimeTrialFinished", EventId = "showroom_loop_tt", DisplayName = "Showroom Loop", RunId = "tt_3",
+			Elapsed = 71.25, VehicleTier = "E", SelectedVehicleId = "aurora", Medal = "Finished", IsPersonalBest = false,
+			LapTimes = { { Lap = 1, Elapsed = 71.25 } }, BestLapSeconds = 71.25, BestLapIndex = 1, CompletedLapCount = 1,
+			CurrentLap = 2, LapTarget = 0, FinishReason = "Quit", CanRetry = true, RewardGranted = false, RewardAmount = 0 })
+		expect(quit.Title() == "TIME TRIAL ENDED", quit.Title())
+		quit.Exit()
+		expect(not quit.IsOpen(), "EXIT TO START closes it when the server has nothing left to clean up")
+		expect(#quitFired("FreeRoamVehicleExited") == 1, "driving exit")
+	end)
+
+	case("server shape: the exit reply arrives after TimeTrialEnded (exitFinishedTimeTrial fires it first)", function()
+		local fires = {}
+		local calls = {}
+		local model
+		local fake = {}
+		function fake:InvokeServer(action)
+			table.insert(calls, action)
+			if action == "ExitFinishedTimeTrial" then
+				model.Handle({ Type = "TimeTrialEnded", RunId = "t1", EventId = "loop", RouteId = "loop_route", Reason = "Exited results" })
+				return { Ok = true, Success = true, Message = "Exited to race start." }
+			end
+			return { Ok = true, Entries = {} }
+		end
+		local bindable = {}
+		function bindable:Fire(payload)
+			table.insert(fires, payload or false)
+		end
+		model = M.new({
+			Remotes = { RaceRequest = fake, RaceQueueRequest = fake },
+			Bindable = function()
+				return bindable
+			end,
+			UserId = 42,
+			GetAttribute = function()
+				return nil
+			end,
+			OnAttribute = function()
+				return function() end
+			end,
+			Spawn = function(fn, ...)
+				fn(...)
+			end,
+			Delay = function() end,
+		})
+		model.Handle(trialFinished())
+		model.Exit()
+		expect(not model.IsOpen() and not model.Busy(), "closed, not busy")
+		expect(calls[#calls] == "ExitFinishedTimeTrial", "one exit call")
+		local last = fires[#fires]
+		expect(type(last) == "table" and last.Step == "CompleteLoading" and last.Status == "READY", "the loading screen is completed")
+	end)
+
+	case("server shape: MatchmakingServer.finishEntry has no Positions; broadcastPositions follows", function()
+		local model, log = harness()
+		log.replies.ExitRaceToStart = { Ok = true, Success = true, Message = "Exited to race start." }
+		-- A single finisher: the result first, with no rows, then the position update of the same run.
+		model.Handle({ Type = "RaceFinished", RunId = "race_7", EventId = "shifted_canal_sprint_race", RouteId = "shifted_canal",
+			DisplayName = "Shifted Canal Sprint", Place = 1, ParticipantCount = 1, Elapsed = 188.4, GateCount = 17, NextGateIndex = 17,
+			CurrentLap = 3, CompletedLapCount = 3, LapTarget = 3, LapTimes = { { Lap = 1, Elapsed = 63 } }, BestLapSeconds = 62.1,
+			BestLapIndex = 2, RaceMedal = nil, RewardGranted = false, RewardAmount = 0, RewardMessage = "", SelectedVehicleId = "seraph" })
+		expect(model.IsOpen() and #model.Table(6).Rows == 0, "open with no rows and no error")
+		expect(model.Strip()[1].Value == "1ST PLACE" and model.Strip()[2].Value == "3:08.400", "place and time")
+		expect(model.RewardAmount() == 0, "no reward")
+		model.Handle({ Type = "RacePositionUpdate", RunId = "race_7", Place = 1, ParticipantCount = 1, CurrentLap = 3,
+			CompletedLapCount = 3, LapTarget = 3, Positions = {
+				{ UserId = 42, Name = "Oscar", Place = 1, Finished = true, NextGateIndex = 17, CurrentLap = 3, CompletedLapCount = 3,
+					LapTarget = 3, FinishElapsed = 188.4, VehicleId = "seraph", VehicleName = "Seraph" },
+			} })
+		local rows = model.Table(6).Rows
+		expect(#rows == 1 and rows[1].You == true, "own row")
+		expect(table.concat(rows[1].Columns, "|") == "1|OSCAR|3:08.400|SERAPH", table.concat(rows[1].Columns, "|"))
+		expect(log.reasons[#log.reasons] == "positions", "the view is told to draw the rows")
+		-- cleanupRace fires RaceEnded five seconds after the last finisher; the results stay and can still be left.
+		model.Handle({ Type = "RaceEnded", RunId = "race_7", Reason = "Finished" })
+		expect(model.IsOpen(), "RaceEnded leaves the results up")
+		log.calls = {}
+		model.Exit()
+		expect(log.calls[1].remote == "RaceQueueRequest" and log.calls[1].action == "ExitRaceToStart", "exit call")
+		expect(not model.IsOpen(), "closed")
+	end)
+
+	case("server shape: an exited racer's row (Finished, no FinishElapsed) and the real leaderboard entry", function()
+		local model = harness()
+		model.Handle({ Type = "RacePositionUpdate", RunId = "race_8", Place = 1, ParticipantCount = 2, Positions = {
+			{ UserId = 42, Name = "Oscar", Place = 1, Finished = true, FinishElapsed = 100, VehicleId = "seraph", VehicleName = "Seraph" },
+			{ UserId = 7, Name = "Vanta", Place = 2, Finished = true, FinishElapsed = nil, VehicleId = "", VehicleName = "" },
+		} })
+		model.Handle(raceFinished(1))
+		local rows = model.Table(6).Rows
+		expect(rows[2].Columns[3] == "FINISHED" and rows[2].Columns[4] == "--", "exited racer: Classic text; empty names read --")
+
+		local trial, trialLog = harness()
+		trialLog.replies.GetTimeTrialLeaderboard = { Ok = true, Available = true, EventId = "loop", VehicleTier = "C", Entries = {
+			{ Rank = 1, UserId = 42, Username = "oscar", DisplayName = "oscar", BestSeconds = 61.842, VehicleId = "aurora", VehicleName = "" },
+		} }
+		trial.Handle(trialFinished())
+		local row = trial.Table(6).Rows[1]
+		expect(row.You == true and table.concat(row.Columns, "|") == "1|OSCAR|1:01.842|AURORA", table.concat(row.Columns, "|"))
 	end)
 
 	return results

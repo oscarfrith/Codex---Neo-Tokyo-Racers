@@ -211,7 +211,7 @@ local LONG_ROWS = {
 	{ Columns = { "14", "ANOTHER_LONG_NAME_20" } },
 }
 local TRIAL_ROWS = {
-	{ Columns = { "PB", "PERSONAL BEST", "01:03.275" } },
+	{ Columns = { "PB", "BEST", "01:03.275" } },
 	{ Columns = { "01", "LAP 1", "01:04.611" } },
 	{ Columns = { "02", "LAP 2", "01:02.863" } },
 }
@@ -235,7 +235,7 @@ local hudItem = {
 		{ Id = "TimeTrialEndless", Props = { Mode = "TimeTrial", Lap = 14, Target = "∞", Tier = "S", Timer = "00:07.004",
 			Rows = { TRIAL_ROWS[1] } } },
 		{ Id = "TimeTrialNoBest", Props = { Mode = "TimeTrial", Lap = 1, Target = "1",
-			Rows = { { Columns = { "PB", "PERSONAL BEST", "--:--.---" } } } } },
+			Rows = { { Columns = { "PB", "BEST", "--:--.---" } } } } },
 		{ Id = "ResetDone", Props = { Mode = "Race", Place = 3, Suffix = "RD", Participants = 6, Lap = 1, Target = "3",
 			ResetText = "RESET DONE", Rows = RACE_ROWS } },
 		{ Id = "ExitConfirmRace", Props = { Mode = "Race", Place = 2, Suffix = "ND", Participants = 6, Lap = 2, Target = "3",

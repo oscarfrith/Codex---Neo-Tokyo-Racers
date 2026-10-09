@@ -106,44 +106,52 @@ local function claimWhenCommitted(surface)
 end
 
 -- The menu: kit buttons in a Menu stage on SafeRoot. Shop left, Play right and focused for pad and keyboard.
--- Regular: READY over a centred row in BottomCentre. Compact: the row in BottomRight. No portrait branch.
+-- Regular: READY over a centred row in BottomCentre (preview r19b). Compact: the row in BottomRight. No portrait
+-- branch. The size class is read each time the screen context changes, not once: this runs at ReplicatedFirst time,
+-- when the viewport may not be measured yet, and a first answer of Compact used to leave a Regular screen with the
+-- Compact placement for good.
 -- -> {Menu = stage root, Play = Component, Shop = Component, SetBusy = (busy, playText, shopText) -> ()}
 function StartScreen._buildMenu(kit, safeRoot, ctx, scope, texts)
 	local Tokens, Layers, Text, Input, Controls = kit.Tokens, kit.Layers, kit.Text, kit.Input, kit.Controls
-	local compact = ctx.Class == "Compact"
 	local stage = Layers.Stage(safeRoot, ctx, "Menu")
 	stage.Root.Name = "StartScreenActions"
 	stage.Root.ZIndex = MENU_ZINDEX
 	scope:add(stage.Destroy)
 
-	local slot = stage.Slot(compact and "BottomRight" or "BottomCentre")
 	local holder = Instance.new("Frame")
 	holder.Name = "Buttons"
-	holder.AnchorPoint = slot.AnchorPoint
 	holder.AutomaticSize = Enum.AutomaticSize.XY
 	holder.BackgroundTransparency = 1
 	holder.BorderSizePixel = 0
-	holder.Parent = slot
 	local list = Instance.new("UIListLayout")
 	list.Name = "Layout"
 	list.FillDirection = Enum.FillDirection.Vertical
-	list.HorizontalAlignment = compact and Enum.HorizontalAlignment.Right or Enum.HorizontalAlignment.Center
 	list.SortOrder = Enum.SortOrder.LayoutOrder
-	list.Padding = UDim.new(0, ctx.Px(Tokens.Space.Gap))
 	list.Parent = holder
+	holder.Parent = stage.Slot("BottomCentre") -- the parts below read the stage's context through it; place() seats it
 
-	if not compact then
-		Text.Label(holder, { Name = "Ready", Text = "READY", Role = "SectionHead", Colour = "Cyan", Align = "Centre",
-			Shadow = true, LayoutOrder = 1 }, scope)
-	end
+	local ready = Text.Label(holder, { Name = "Ready", Text = "READY", Role = "SectionHead", Colour = "Cyan", Align = "Centre",
+		Shadow = true, LayoutOrder = 1 }, scope)
 	-- The kept handlers further down connect to the buttons' own Activated signal, exactly as Classic does.
 	local function handledByFlow() end
-	local row = Controls.ButtonRow(holder, { Name = "Row", Place = "None", Align = compact and "Right" or "Centre", LayoutOrder = 2,
+	local row = Controls.ButtonRow(holder, { Name = "Row", Place = "None", Align = "Centre", LayoutOrder = 2,
 		Buttons = {
 			{ Id = "Shop", Variant = "Default", Text = texts.Shop, Icon = "dealership", OnActivated = handledByFlow },
 			{ Id = "Play", Variant = "Main", Text = texts.Play, Icon = "steering_wheel", OnActivated = handledByFlow },
 		} }, scope)
 	local play, shop = row.Button("Play"), row.Button("Shop")
+
+	local function place()
+		local compact = ctx.Class == "Compact"
+		local slot = stage.Slot(compact and "BottomRight" or "BottomCentre")
+		holder.AnchorPoint = slot.AnchorPoint
+		list.HorizontalAlignment = compact and Enum.HorizontalAlignment.Right or Enum.HorizontalAlignment.Center
+		list.Padding = UDim.new(0, ctx.Px(Tokens.Space.Gap))
+		ready.Set({ Visible = not compact })
+		row.Set({ Align = compact and "Right" or "Centre" })
+		holder.Parent = slot
+	end
+	place()
 
 	local focus = Input.FocusGroup(scope)
 	focus.Add(shop.Instance, 1)
@@ -152,6 +160,9 @@ function StartScreen._buildMenu(kit, safeRoot, ctx, scope, texts)
 	if ctx.Changed then
 		-- A pad or keyboard picked up after the menu appeared: give it Play.
 		scope:connect(ctx.Changed, function(change)
+			if not (type(change) == "table" and change.Layout == false) then
+				place()
+			end
 			if type(change) == "table" and change.Input == true then
 				focus.Enter(play.Instance)
 			end

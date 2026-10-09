@@ -731,13 +731,16 @@ local function buildTile(parent, props, scope, host)
 			put(title, "Position", UDim2.fromOffset(0, titleTop))
 			put(title, "Size", UDim2.fromOffset(width, titleSize))
 		else
-			local lines = title.TextBounds.Y > titleSize * TWO_LINES and 2 or 1
-			local titleHeight = titleSize * lines
-			titleTop = fillHeight - inset - titleHeight
+			-- The box is always two lines tall and the text sits on its bottom edge: measured in a one-line box,
+			-- a wrapped name never reported its second line, so a two-word name showed its first word only
+			-- (capture module_shop). It is wrapped and sized before it is measured.
+			local boxHeight = titleSize * 2
 			put(title, "TextWrapped", true)
 			put(title, "TextXAlignment", Enum.TextXAlignment.Left)
-			put(title, "Position", UDim2.fromOffset(inset, titleTop))
-			put(title, "Size", UDim2.fromOffset(math.max(0, width - inset - inset), titleHeight))
+			put(title, "Position", UDim2.fromOffset(inset, fillHeight - inset - boxHeight))
+			put(title, "Size", UDim2.fromOffset(math.max(0, width - inset - inset), boxHeight))
+			local lines = title.TextBounds.Y > titleSize * TWO_LINES and 2 or 1
+			titleTop = fillHeight - inset - titleSize * lines
 		end
 		put(title, "TextColor3", colourOf(look.Ink))
 		put(title, "TextTransparency", 1 - opacity)
@@ -1033,7 +1036,9 @@ end
 -- Rail
 ---------------------------------------------------------------------------------------------------
 
-local RAIL_KEYS = keySet({ "Heading", "Count", "CellWidth", "Width", "Rows", "OnSelected", "SelectOn" })
+-- OnSelected(key) fires when the selection CHANGES (highlight, preview). OnActivated(key) fires on EVERY click,
+-- tap or gamepad A on a tile, the selected one included, after any OnSelected: use it for whatever acts.
+local RAIL_KEYS = keySet({ "Heading", "Count", "CellWidth", "Width", "Rows", "OnSelected", "OnActivated", "SelectOn" })
 
 -- Pure. Does this input select a rail tile? cause is "Activate" (click, tap, gamepad A) or "Focus" (a gamepad or
 -- keyboard focus move). SelectOn nil or "Focus": both select (the rail as it has always been). SelectOn
@@ -1301,7 +1306,12 @@ function Collections.Rail(parent, props, scope)
 				return gridCell
 			end,
 			Activated = function()
-				choose(slot.Key)
+				local key = slot.Key
+				choose(key)
+				local callback = state.OnActivated
+				if callback and not destroyed and key ~= nil and items[key] ~= nil then
+					callback(key)
+				end
 			end,
 			Focused = function()
 				if Collections._railSelects(state.SelectOn, "Focus") then
@@ -1931,7 +1941,8 @@ end
 -- List (a vertical keyed pool of ListRows)
 ---------------------------------------------------------------------------------------------------
 
-local LIST_KEYS = keySet({ "RowHeight", "Width", "Header", "OnSelected" })
+-- OnSelected(key) and OnActivated(key): the Rail rule (selection change against every activation).
+local LIST_KEYS = keySet({ "RowHeight", "Width", "Header", "OnSelected", "OnActivated" })
 
 function Collections.List(parent, props, scope)
 	local state = readProps("List", LIST_KEYS, {}, props)
@@ -2101,7 +2112,12 @@ function Collections.List(parent, props, scope)
 				return radius + radius
 			end,
 			Activated = function()
-				choose(slot.Key)
+				local key = slot.Key
+				choose(key)
+				local callback = state.OnActivated
+				if callback and not destroyed and key ~= nil and items[key] ~= nil then
+					callback(key)
+				end
 			end,
 			Focused = function()
 				choose(slot.Key)

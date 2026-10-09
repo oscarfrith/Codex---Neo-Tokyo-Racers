@@ -177,6 +177,18 @@ return function(View, env)
 		expect(View.LegendHeight(500, true), View.LegendHeight(501, true), "Compact cap")
 	end)
 
+	case("LegendFit cuts the Compact legend to the pixels left over", function()
+		local pad2 = Tokens.Space.Pad * 2
+		expect(View.LegendFit(285, 215, 0.9), 238, "844x390: 215 px at scale 0.90")
+		expect(View.LegendFit(285, 168, 0.85), 197, "568x320: 168 px at scale 0.85")
+		expect(View.LegendFit(100, 400, 1), 100, "room to spare keeps the needed height")
+		expect(View.LegendFit(285, -20, 0.9), pad2, "never under the two paddings")
+		expect(View.LegendFit(285, 215, 0), 285, "a zero scale is ignored")
+		-- The fitted panel, drawn at the scale, never passes the space it was given.
+		expect(math.floor(View.LegendFit(285, 215, 0.9) * 0.9 + 0.5) <= 215, true, "fits at 0.90")
+		expect(math.floor(View.LegendFit(285, 168, 0.85) * 0.85 + 0.5) <= 168, true, "fits at 0.85")
+	end)
+
 	local presets = {
 		R1080 = Metrics.Fixed({ Size = Vector2.new(1920, 1080) }),
 		C844 = Metrics.Fixed({ Size = Vector2.new(844, 390), TouchEnabled = true, Input = "Touch" }),

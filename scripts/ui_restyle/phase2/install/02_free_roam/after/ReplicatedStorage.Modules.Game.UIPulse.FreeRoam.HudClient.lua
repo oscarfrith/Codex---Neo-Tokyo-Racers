@@ -6,6 +6,7 @@
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local UserInputService = game:GetService("UserInputService")
+local Workspace = game:GetService("Workspace")
 
 local SURFACE = "FreeRoamHud"
 local LAYER_NAME = "DesktopFreeRoamHud"
@@ -103,8 +104,27 @@ local function run()
 	local layer = Layers.Create(LAYER_NAME, { Frame = "Hud", RootName = ROOT_NAME })
 	local live = Layers.Create(LAYER_NAME, { Frame = "Hud", Live = true, RootName = ROOT_NAME })
 
-	-- 6. Model.
+	-- 6. Model. The vehicles folder is looked up, never waited for; its listeners bind the first time it is found.
+	local vehiclesBound = false
+	local function ownedVehicles()
+		local world = Workspace:FindFirstChild("World")
+		local runtime = world and world:FindFirstChild("Runtime")
+		local folder = runtime and runtime:FindFirstChild("PlayerVehicles")
+		if not folder then return {} end
+		if not vehiclesBound then
+			vehiclesBound = true
+			local function changed()
+				task.defer(function()
+					if model then model.VehiclesChanged() end
+				end)
+			end
+			scope:connect(folder.ChildAdded, changed)
+			scope:connect(folder.ChildRemoved, changed)
+		end
+		return folder:GetChildren()
+	end
 	model = HudModel.new({
+		OwnedVehicles = ownedVehicles,
 		Player = player,
 		PlayerGui = playerGui,
 		Remotes = { GarageInvoke = garageInvoke, TeleportInvoke = teleportInvoke },

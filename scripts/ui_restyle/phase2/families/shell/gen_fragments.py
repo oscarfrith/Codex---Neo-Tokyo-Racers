@@ -127,7 +127,20 @@ onboarding = {
         {"item": "NEXT takes focus for pad and keyboard (trapping focus group)", "reason": A + ": callouts advance by pad and keyboard"},
         {"item": "Guide trail colour overlay: TutorialGold answered with the Pulse Cyan token; every other trail attribute still read from Config.Player.Onboarding",
          "reason": A + " (Phase 0 spike 15)"},
-        {"item": "Retry delay for a missing card target backs off from 0.08 s to 0.64 s", "reason": "API2 6.6 rule 5: no wait loop that polls for presence"}],
+        {"item": "Retry delay for a missing card target backs off from 0.08 s to 0.64 s", "reason": "API2 6.6 rule 5: no wait loop that polls for presence"},
+        {"item": "HUD shortcut lock fallback: Car, Race and Garage are released for the session, with one warning, when GetState fails "
+                 "60 times or when an open page cannot find a card target for TargetGiveUpSeconds (default 10); pages and MarkSeen are unchanged",
+         "reason": A + " pre-flight review 2026-10-09 (integrator brief): the player is never left with dead HUD buttons (Classic kept them locked for the session)"},
+        {"item": "First-drive watchdog: FirstDrivePresentationPending is cleared, with one warning, when DrivingControlsOpen is not true 3 s "
+                 "after OpenDrivingControlsFromOnboarding was fired",
+         "reason": A + " pre-flight review 2026-10-09 (integrator brief): with no listener the flag blocked every page, and so every unlock, for the session"},
+        {"item": "A page completed here stays seen until its MarkSeen reply arrives, whatever state arrives meanwhile",
+         "reason": A + " pre-flight review 2026-10-09 (integrator brief): Classic replaced its state with each reply, so a page could begin twice and a shortcut lock again"},
+        {"item": "Card N6 (TeleportToStart) keeps the RaceBrowser page alive while its own target shows although the page root is hidden",
+         "reason": A + " pre-flight review 2026-10-09 (integrator brief): the Compact race menu shows the teleport button on its detail page, where the list is hidden"},
+        {"item": "A name mark is also carried by an instance whose PulseMark attribute is the key",
+         "reason": A + " pre-flight review 2026-10-09 (integrator brief): Text.Label and Surface.Panel write their root Name again when they draw, which undid "
+                   "the UpgradeBudget and Stats marks"}],
 }
 
 loading = {
@@ -148,7 +161,11 @@ loading = {
     "added": [
         {"item": "LoadingSafeContentScrim ScreenGui (1000) in place of LoadingBackground", "reason": A + " and API2 2.4 ladder rows"},
         {"item": "Presence.Open Loading while shown", "reason": "API2 3.9"},
-        {"item": "Deferred Claim Loading when the latch publishes UIStyleCommitted", "reason": "API2 6.2 claim names; API1 4 (Claim refuses before Commit)"}],
+        {"item": "Deferred Claim Loading when the latch publishes UIStyleCommitted", "reason": "API2 6.2 claim names; API1 4 (Claim refuses before Commit)"},
+        {"item": "Create never raises for a kit reason: the kit is waited for 5 s in total; if it is missing, or the layer or the mount "
+                 "fails, Create warns and returns the Classic LoadingScreenView object (same interface)",
+         "reason": A + " pre-flight review 2026-10-09 (integrator brief): Runtime.Start calls Create once for every later transition; an error left the player "
+                   "with no loading screen and no start screen"}],
 }
 
 ARTWORKS = "ReplicatedStorage.Config.UI.LoadingSystem.Artworks.*"

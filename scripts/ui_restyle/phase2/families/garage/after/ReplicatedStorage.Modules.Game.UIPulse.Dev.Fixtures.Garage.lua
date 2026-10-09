@@ -37,7 +37,7 @@ local function stats(title, tier, rating, preview)
 	local values = { Speed = 80, Acceleration = 74, Handling = 63, Drift = 61, Braking = 62, Boost = 61 }
 	local rows = {}
 	for _, name in ipairs({ "Speed", "Acceleration", "Handling", "Drift", "Braking", "Boost" }) do
-		local row = { Id = name, Label = string.upper(name), Value = values[name], Max = 180 }
+		local row = { Id = name, Label = name == "Acceleration" and "ACCEL" or string.upper(name), Value = values[name], Max = 180 }
 		if preview and preview[name] then
 			row.Preview = values[name] + preview[name]
 		end

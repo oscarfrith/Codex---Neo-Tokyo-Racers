@@ -252,5 +252,12 @@ return function(M, env)
 		end)
 	end
 
+	case("LabelWidth: a one-line label stops at its panel", function()
+		expect(M.LabelWidth(175, 7, 0, 0.9) * 0.9 > 160.99 and M.LabelWidth(175, 7, 0, 0.9) * 0.9 < 161.01, "844x390 column: 161 px")
+		expect(M.LabelWidth(132, 7, 25, 0.85) * 0.85 > 92.99 and M.LabelWidth(132, 7, 25, 0.85) * 0.85 < 93.01, "568x320 with a badge: 93 px")
+		expect(M.LabelWidth(10, 7, 0, 1) == 1, "never under one pixel")
+		expect(M.LabelWidth(100, 10, nil, 0) == 80, "a zero scale is ignored")
+	end)
+
 	return results
 end

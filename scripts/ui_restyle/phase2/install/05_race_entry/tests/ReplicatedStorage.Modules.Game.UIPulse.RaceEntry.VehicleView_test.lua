@@ -263,7 +263,39 @@ return function(M, env)
 			expect(countButtons(stage.Root) == 0, "no row of this page")
 			unmount(stage)
 		end)
+
+		-- The live bindings (B / Escape, focus entry) need a ScreenGui and a running game: a Play check. A stage
+		-- has no Gui, so mounting, showing and hiding here must bind nothing and call nothing on the model.
+		case(presetName .. ": a stage takes no input and showing or hiding the page calls nothing on the model", function()
+			local ContextActionService = game:GetService("ContextActionService")
+			local function pulseBindings()
+				local total = 0
+				for name in pairs(ContextActionService:GetAllBoundActionInfo()) do
+					if string.match(name, "^Pulse_Back_") then
+						total += 1
+					end
+				end
+				return total
+			end
+			local before = pulseBindings()
+			local stage = mount(presetName, find("TimeTrial"))
+			expect(pulseBindings() == before, "a stage bound Back")
+			local snapshot = stage.Model.Snapshot()
+			snapshot.Page = "Setup"
+			snapshot.Vehicles = nil
+			stage.View.Render("Page")
+			expect(#stage.Model.Calls == 0, "showing or hiding the page called the model")
+			unmount(stage)
+		end)
 	end
+
+	case("focusTarget: the selected tile, else START, else BACK", function()
+		expect(M._focusTarget(true, true) == "Tile", "tile first")
+		expect(M._focusTarget(true, false) == "Tile", "tile first when START is disabled")
+		expect(M._focusTarget(false, true) == "Start", "START when there is no usable tile")
+		expect(M._focusTarget(false, false) == "Back", "BACK when nothing else can take focus")
+		expect(M._focusTarget(nil, nil) == "Back", "nil is not usable")
+	end)
 
 	return results
 end

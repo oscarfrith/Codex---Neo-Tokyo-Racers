@@ -29,5 +29,13 @@ return function(M, env)
 		end
 	end)
 
+	case("desk verdict: an open desk says nothing; every other outcome has a reason", function()
+		expect(M._deskVerdict(true, true, true, nil) == nil and M._deskVerdict(false, true, true, "old") == nil, "open: nothing")
+		expect(string.find(M._deskVerdict(false, false, false, nil), "sent no OpenManagement", 1, true), "no push")
+		expect(string.find(M._deskVerdict(true, false, false, "cannot attach"), "desk view failed: cannot attach", 1, true), "view failure")
+		expect(string.find(M._deskVerdict(true, true, false, nil), "half open", 1, true), "attribute without a view")
+		expect(string.find(M._deskVerdict(true, false, false, nil), "closed again", 1, true), "closed by the fork")
+	end)
+
 	return results
 end

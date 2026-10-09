@@ -92,9 +92,9 @@
    "class": "ModuleScript"
   },
   "ReplicatedStorage.Modules.Game.UIPulse.Kit.Collections": {
-   "length": 72642,
-   "djb2": 2937185373,
-   "fnv1a32": 2426268173,
+   "length": 73615,
+   "djb2": 1359609387,
+   "fnv1a32": 3515844107,
    "class": "ModuleScript"
   },
   "ReplicatedStorage.Modules.Game.UIPulse.Kit.Contracts": {
@@ -104,9 +104,9 @@
    "class": "ModuleScript"
   },
   "ReplicatedStorage.Modules.Game.UIPulse.Kit.Controls": {
-   "length": 77924,
-   "djb2": 1449704148,
-   "fnv1a32": 2064408556,
+   "length": 78786,
+   "djb2": 980415541,
+   "fnv1a32": 575136399,
    "class": "ModuleScript"
   },
   "ReplicatedStorage.Modules.Game.UIPulse.Kit.Data": {
@@ -122,9 +122,9 @@
    "class": "ModuleScript"
   },
   "ReplicatedStorage.Modules.Game.UIPulse.Kit.Input": {
-   "length": 10880,
-   "djb2": 2239479341,
-   "fnv1a32": 4124056033,
+   "length": 11462,
+   "djb2": 1997541636,
+   "fnv1a32": 999945936,
    "class": "ModuleScript"
   },
   "ReplicatedStorage.Modules.Game.UIPulse.Kit.Layers": {
@@ -170,9 +170,9 @@
    "class": "ModuleScript"
   },
   "ReplicatedStorage.Modules.Game.UIPulse.Kit.Surface": {
-   "length": 24104,
-   "djb2": 436945601,
-   "fnv1a32": 1769409703,
+   "length": 25057,
+   "djb2": 1968655930,
+   "fnv1a32": 3092837744,
    "class": "ModuleScript"
   },
   "ReplicatedStorage.Modules.Game.UIPulse.Kit.Text": {
@@ -200,9 +200,9 @@
    "class": "ModuleScript"
   },
   "ReplicatedStorage.Modules.Game.UIPulse.RaceMenu.RaceMenuClient": {
-   "length": 6774,
-   "djb2": 3866981857,
-   "fnv1a32": 1436495577,
+   "length": 6947,
+   "djb2": 1050655728,
+   "fnv1a32": 2960839894,
    "class": "ModuleScript"
   },
   "ReplicatedStorage.Modules.Game.UIPulse.RaceMenu.RaceMenuModel": {
@@ -212,9 +212,9 @@
    "class": "ModuleScript"
   },
   "ReplicatedStorage.Modules.Game.UIPulse.RaceMenu.RaceMenuView": {
-   "length": 20831,
-   "djb2": 461382230,
-   "fnv1a32": 2919495214,
+   "length": 22874,
+   "djb2": 1987263441,
+   "fnv1a32": 134120709,
    "class": "ModuleScript"
   },
   "ReplicatedStorage.Modules.Game.UIPulse.Routes": {

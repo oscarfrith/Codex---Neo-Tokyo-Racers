@@ -8,6 +8,8 @@ local Workspace = game:GetService("Workspace")
 local SURFACE = "Onboarding"
 local LAYER_NAME = "Onboarding"
 local TRAIL_COLOUR_ATTRIBUTE = "TutorialGold"
+-- Kit.Input.Mark writes the key of an instance's latest mark here (Kit.Input line 13).
+local MARK_ATTRIBUTE = "PulseMark"
 -- After something changed, look again at these delays (seconds): a screen that opened may draw its marked parts a
 -- moment later (fetch first, then draw). Bounded; nothing runs while the game is idle.
 local SETTLE_SECONDS = { 0.15, 0.4, 1, 2, 4 }
@@ -62,12 +64,15 @@ function Client._targets(Input, Contracts, visible)
 	local Targets = {}
 
 	-- A registered instance still carries the mark (a pooled tile or a shared page body may have been re-marked).
+	-- A name mark is also carried by an instance whose latest mark is this key: several kit components write their
+	-- root's Name again when they draw (Text.Label, and Surface.Panel and so Data.StatPanel), which undid the
+	-- UpgradeBudget and Stats marks a moment after the garage made them.
 	local function matches(instance, key)
 		local mark = Contracts.Marks[key]
 		if not mark then
 			return false
 		end
-		if mark.Name ~= nil and instance.Name ~= mark.Name then
+		if mark.Name ~= nil and instance.Name ~= mark.Name and instance:GetAttribute(MARK_ATTRIBUTE) ~= key then
 			return false
 		end
 		if mark.Text ~= nil then

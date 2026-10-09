@@ -58,9 +58,16 @@ function View._tileProps(item: any, compact: boolean, money: (any, boolean) -> s
 	if image == nil and icon == nil then
 		icon = item.Kind == "Vehicle" and "car" or (item.Kind == "Upgrade" and "upgrade" or "customise")
 	end
+	-- A Compact tile draws neither the sub-line nor the left chip. For a module that chip is the variant (Standard,
+	-- Lightweight, Power) and for an upgrade its level: without it three variants of one source vehicle read the
+	-- same, so on Compact it joins the name.
+	local title = tostring(item.Title or "")
+	if compact and item.ChipLeft ~= nil and (item.Kind == "Module" or item.Kind == "Upgrade") then
+		title = title .. " " .. tostring(item.ChipLeft)
+	end
 	return {
 		Key = item.Key,
-		Title = tostring(item.Title or ""),
+		Title = title,
 		Sub = sub,
 		State = item.Selected and "Selected" or "Default",
 		Status = item.Status or "None",
@@ -330,7 +337,9 @@ function View.Mount(layer: any, model: any, scope: any, opts: any)
 		}, scope))
 		Input.Mark(b.BrowserHeader.Tabs.Instance, "Categories")
 		local browserColumn = browserStage.Slot("RightColumn")
-		b.BrowserStats = keep(page, Data.StatPanel(browserColumn, { Title = "", Rows = {} }, scope))
+		-- Named as its mark names it: the kit stat panel writes its Name again on a render (every Compact render
+		-- changes its height), which put "StatPanel" back over the name the Stats mark gave.
+		b.BrowserStats = keep(page, Data.StatPanel(browserColumn, { Name = "Stats", Title = "", Rows = {} }, scope))
 		seat(b.BrowserStats.Instance, browserColumn)
 		Input.Mark(b.BrowserStats.Instance, "Stats")
 		-- The strip itself is on the live layer; this empty frame of the same box is what the Capacity mark names
@@ -460,7 +469,9 @@ function View.Mount(layer: any, model: any, scope: any, opts: any)
 		if b.BudgetText then
 			return
 		end
-		b.BudgetText = keep(b.WorkspacePage, Text.Label(b.Rail.HeadingRight, { Name = "BudgetText", Text = "", Role = "Label", LayoutOrder = 2 }, scope))
+		-- Named as its mark names it: a kit label writes its Name again on every Set, which put the old name back
+		-- over the one the UpgradeBudget mark gave (onboarding looks the name up).
+		b.BudgetText = keep(b.WorkspacePage, Text.Label(b.Rail.HeadingRight, { Name = "UpgradeBudget", Text = "", Role = "Label", LayoutOrder = 2 }, scope))
 		Input.Mark(b.BudgetText.Instance, "UpgradeBudget")
 		b.BudgetBar = keep(b.WorkspacePage, Data.SegmentedBar(b.Rail.HeadingRight, { Name = "BudgetBar", Value = 0, Segments = 10, LayoutOrder = 3 }, scope))
 	end
@@ -691,8 +702,9 @@ function View.Mount(layer: any, model: any, scope: any, opts: any)
 		-- Paint controls and presets.
 		if colour then
 			ensurePaint(b)
-			b.Paint.Show(page.Paint, page.Token)
+			-- Placed before Show: on Compact the view leaves the presets out when the controls reach them.
 			put(b.Paint.Controls, "Position", UDim2.fromOffset(0, top))
+			b.Paint.Show(page.Paint, page.Token)
 		elseif b.Paint then
 			b.Paint.Hide()
 		end

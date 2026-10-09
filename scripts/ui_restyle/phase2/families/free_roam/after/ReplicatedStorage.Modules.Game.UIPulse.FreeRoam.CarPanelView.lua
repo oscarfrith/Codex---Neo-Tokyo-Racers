@@ -36,8 +36,21 @@ local function frame(name, parent)
 	return item
 end
 
+-- Pure: gives every item its own press callback. The kit's OnSelected fires only when the selection CHANGES, and the
+-- CURRENT row arrives already selected, so a press on it (or a second press on any row) never reached the model.
+-- A card press always asks (D746); OnActivated is the row's own press and does not fire on a focus move.
+function CarPanelView._withActivation(items, onActivated)
+	if onActivated then
+		for _, item in ipairs(items) do
+			local key = item.Key
+			item.OnActivated = function() onActivated(key) end
+		end
+	end
+	return items
+end
+
 -- Pure: model rows -> list rows (Regular). The first row is always BUY MORE (D775-777).
-function CarPanelView._listItems(rows, buyMoreKey)
+function CarPanelView._listItems(rows, buyMoreKey, onActivated)
 	local items = { { Key = buyMoreKey, Title = "BUY MORE", Sub = "DEALERSHIP" } }
 	for _, row in ipairs(rows) do
 		table.insert(items, {
@@ -51,11 +64,11 @@ function CarPanelView._listItems(rows, buyMoreKey)
 			State = row.Selected and "Selected" or "Default",
 		})
 	end
-	return items
+	return CarPanelView._withActivation(items, onActivated)
 end
 
 -- Pure: model rows -> tiles (Compact).
-function CarPanelView._tileItems(rows, buyMoreKey)
+function CarPanelView._tileItems(rows, buyMoreKey, onActivated)
 	local items = { { Key = buyMoreKey, Title = "BUY MORE", Icon = "plus" } }
 	for _, row in ipairs(rows) do
 		table.insert(items, {
@@ -68,7 +81,7 @@ function CarPanelView._tileItems(rows, buyMoreKey)
 			State = row.Selected and "Selected" or "Default",
 		})
 	end
-	return items
+	return CarPanelView._withActivation(items, onActivated)
 end
 
 -- Pure: the line above the footer. An empty garage says so instead of asking for a selection.
@@ -106,7 +119,8 @@ function CarPanelView.Mount(parent, model, scope)
 	local shownOpen = false
 	local shownRows, shownOptions, shownCategory, shownSort, shownHint, shownDespawn
 
-	local function onSelected(key)
+	-- Every press of a row, selected or not (see _withActivation).
+	local function onActivated(key)
 		if syncing then return end
 		if key == buyMoreKey then
 			model.BuyMore()
@@ -160,9 +174,9 @@ function CarPanelView.Mount(parent, model, scope)
 		holder.Position = UDim2.fromOffset(0, top)
 		holder.Size = UDim2.new(1, 0, 1, -(top + bottom))
 		if compact then
-			built.List = k.Collections.Rail(holder, { Name = "VehicleGrid", Rows = 2, OnSelected = onSelected }, own)
+			built.List = k.Collections.Rail(holder, { Name = "VehicleGrid", Rows = 2 }, own)
 		else
-			built.List = k.Collections.List(holder, { Name = "VehicleList", RowHeight = space.ListRowHeight, OnSelected = onSelected }, own)
+			built.List = k.Collections.List(holder, { Name = "VehicleList", RowHeight = space.ListRowHeight }, own)
 		end
 
 		local footer = frame("Footer", content)
@@ -225,7 +239,7 @@ function CarPanelView.Mount(parent, model, scope)
 		if state.Rows ~= shownRows then
 			shownRows = state.Rows
 			syncing = true
-			parts.List.SetItems(compact and CarPanelView._tileItems(shownRows, buyMoreKey) or CarPanelView._listItems(shownRows, buyMoreKey))
+			parts.List.SetItems(compact and CarPanelView._tileItems(shownRows, buyMoreKey, onActivated) or CarPanelView._listItems(shownRows, buyMoreKey, onActivated))
 			syncing = false
 		end
 		if parts.Category and (state.CategoryOptions ~= shownOptions or state.Category ~= shownCategory) then

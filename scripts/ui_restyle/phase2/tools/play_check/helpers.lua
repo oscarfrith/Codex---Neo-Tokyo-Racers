@@ -77,4 +77,60 @@ shared.WAITSTART = function()
 	return shared.STATE()
 end
 
+-- Visible text under a ScreenGui (first `max` labels and buttons with text).
+shared.TEXTS = function(guiName, max)
+	local root = Players.LocalPlayer.PlayerGui:FindFirstChild(guiName)
+	if not root then return "no gui " .. guiName end
+	local out = {}
+	for _, d in root:GetDescendants() do
+		if (d:IsA("TextLabel") or d:IsA("TextButton")) and d.Text ~= "" and #out < (max or 30) then
+			local vis, a = true, d
+			while a and a:IsA("GuiObject") do
+				if not a.Visible then vis = false break end
+				a = a.Parent
+			end
+			if vis then table.insert(out, d.Text:sub(1, 40)) end
+		end
+	end
+	return table.concat(out, " | ")
+end
+
+-- Nearest ProximityPrompt with this name; walks the character into range when `walk` is true, then triggers it.
+shared.PROMPT = function(name, walk)
+	local p = Players.LocalPlayer
+	local hrp = p.Character.HumanoidRootPart
+	local best, bd
+	for _, d in workspace:GetDescendants() do
+		if d:IsA("ProximityPrompt") and d.Name == name and d.Parent:IsA("BasePart") then
+			local dist = (d.Parent.Position - hrp.Position).Magnitude
+			if not bd or dist < bd then best, bd = d, dist end
+		end
+	end
+	if not best then return "no prompt " .. name end
+	if walk then
+		local hum = p.Character.Humanoid
+		local t = 0
+		local want = math.max(6, best.MaxActivationDistance - 4)
+		while (best.Parent.Position - hrp.Position).Magnitude > want and t < 25 do
+			hum:MoveTo(best.Parent.Position)
+			task.wait(0.5)
+			t += 0.5
+		end
+		hum:MoveTo(hrp.Position)
+		task.wait(1.2)
+	end
+	local layer = p.PlayerGui:FindFirstChild("PulseWorldPrompts")
+	local seen = "banner=[" .. shared.TEXTS("PulseWorldPrompts", 6) .. "] shown=" .. tostring(layer and layer:GetAttribute("PulseShownPrompts"))
+		.. " err=" .. tostring(layer and layer:GetAttribute("PulseLastPromptError"))
+	best:InputHoldBegin()
+	task.wait(0.2)
+	best:InputHoldEnd()
+	return name .. " dist=" .. math.floor((best.Parent.Position - hrp.Position).Magnitude) .. " style="
+		.. tostring(best.Style):match("[^.]+$") .. " " .. seen
+end
+
+shared.LOGS = function()
+	return shared.STATE():match('"logs":%b[]')
+end
+
 return true

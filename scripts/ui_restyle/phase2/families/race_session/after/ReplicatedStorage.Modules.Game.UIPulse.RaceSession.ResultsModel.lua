@@ -10,10 +10,13 @@
 --   GetAttribute = (name) -> any,                       on the local player: LastRacingEventId, LastRacingVehicleId,
 --                                                       Rank, XpIntoRank
 --   OnAttribute = (name, handler) -> (() -> ()),        change listener on the local player; returns a disconnect
---   Spawn = task.spawn, Delay = task.delay }
+--   Spawn = task.spawn, Delay = task.delay,
+--   Now = os.clock? }                                   optional clock (seconds), for the driver XP window
 --
 -- Every value shown is a payload field, a leaderboard reply field or a replicated attribute. Nothing is derived
--- except the driver XP change (attribute after minus attribute at the result, programme contract 8).
+-- except the driver XP change (programme contract 8). The server grants the reward (and so the XP, through
+-- EconomyCashCommitted) before it fires the result, so the attributes can replicate just before or just after the
+-- payload: the baseline is the value before a change seen in the last XP_BEFORE_SECONDS, else the value at the result.
 
 local Model = {}
 
@@ -21,6 +24,7 @@ Model.OWNER = "RaceResults" -- R95
 Model.KEEP_TELEMETRY = false -- R95
 Model.LEADERBOARD_LIMIT = 20 -- R140
 Model.XP_WAIT_SECONDS = 2 -- programme contract 8
+Model.XP_BEFORE_SECONDS = 1 -- an attribute change this soon before the payload belongs to the result
 
 local function newSignal()
 	local connections = {}
@@ -41,10 +45,14 @@ local function newSignal()
 		table.insert(connections, connection)
 		return connection
 	end
+	-- A listener that errors (a view that failed to draw) must not stop the exit or again call that fired it.
 	function signal:Fire(...)
 		for _, connection in ipairs(table.clone(connections)) do
 			if connection.Connected then
-				connection.Handler(...)
+				local ok, problem = pcall(connection.Handler, ...)
+				if not ok then
+					warn("[Pulse.ResultsModel] a Changed listener failed: " .. tostring(problem))
+				end
 			end
 		end
 	end
@@ -67,6 +75,18 @@ function Model.PlaceText(place)
 	place = tonumber(place)
 	local suffix = place == 1 and "ST" or place == 2 and "ND" or place == 3 and "RD" or "TH"
 	return (place and tostring(place) .. suffix or "--") .. " PLACE"
+end
+
+-- The first value that is not nil and not an empty string. The server sends "" for a name it does not have
+-- (MatchmakingServer.broadcastPositions, GlobalLeaderboardServer), so `a or b` alone never reaches the fallback.
+function Model.FirstText(...)
+	for index = 1, select("#", ...) do
+		local value = select(index, ...)
+		if value ~= nil and tostring(value) ~= "" then
+			return tostring(value)
+		end
+	end
+	return nil
 end
 
 -- The first index of a window of `count` rows that holds row `index` near its middle. Pure.
@@ -92,6 +112,26 @@ function Model.new(deps)
 	local leaderboard = { State = "None", Entries = {} }
 	local xp = { State = "Hidden" }
 	local xpRelease = {}
+	local now = deps.Now or os.clock
+
+	-- Kept for the session: the values before the latest burst of Rank / XpIntoRank changes, and when it began.
+	local seenRank = tonumber(deps.GetAttribute("Rank"))
+	local seenInto = tonumber(deps.GetAttribute("XpIntoRank"))
+	local recent = nil -- { At, Rank, Into }
+	local function noteAttribute()
+		local rank = tonumber(deps.GetAttribute("Rank"))
+		local into = tonumber(deps.GetAttribute("XpIntoRank"))
+		if rank == seenRank and into == seenInto then
+			return
+		end
+		local at = now()
+		if not recent or at - recent.At > Model.XP_BEFORE_SECONDS then
+			recent = { At = at, Rank = seenRank, Into = seenInto }
+		end
+		seenRank, seenInto = rank, into
+	end
+	deps.OnAttribute("Rank", noteAttribute)
+	deps.OnAttribute("XpIntoRank", noteAttribute)
 
 	local function fire(name, payload)
 		local event = deps.Bindable(name)
@@ -143,13 +183,17 @@ function Model.new(deps)
 		changed:Fire("hide")
 	end
 
-	-- Driver XP (programme contract 8): the change in the replicated Rank and XpIntoRank attributes after the
-	-- result; hidden when none arrives within two seconds.
+	-- Driver XP (programme contract 8): the change in the replicated Rank and XpIntoRank attributes round the
+	-- result (just before it, or within two seconds after it); hidden when there is none.
 	local function watchXp(mine)
 		releaseXp()
 		xp = { State = "Pending" }
 		local baseRank = tonumber(deps.GetAttribute("Rank"))
 		local baseInto = tonumber(deps.GetAttribute("XpIntoRank"))
+		if recent and now() - recent.At <= Model.XP_BEFORE_SECONDS and recent.Rank and recent.Into then
+			baseRank, baseInto = recent.Rank, recent.Into
+		end
+		recent = nil
 		local function check()
 			if mine ~= showToken then
 				return
@@ -167,6 +211,7 @@ function Model.new(deps)
 				changed:Fire("xp")
 			end
 		end
+		check() -- the change came before the payload
 		table.insert(xpRelease, deps.OnAttribute("Rank", check))
 		table.insert(xpRelease, deps.OnAttribute("XpIntoRank", check))
 		deps.Delay(Model.XP_WAIT_SECONDS, function()
@@ -274,6 +319,10 @@ function Model.new(deps)
 		if result.Ok == true or result.Success == true then
 			hide()
 		else
+			-- Classic shows nothing here; the reason goes in the title so a refused retry is not silent.
+			if lastResult == payload then
+				completeText = string.upper(tostring(result.Message or "RETRY FAILED"))
+			end
 			changed:Fire("busy")
 		end
 	end
@@ -422,8 +471,8 @@ function Model.new(deps)
 					local elapsed = tonumber(entry.FinishElapsed) or (you and tonumber(payload.Elapsed))
 					local finish = elapsed and Model.TimeText(elapsed) or (entry.Finished and "FINISHED" or "RACING")
 					table.insert(source, { You = you, Columns = { tostring(entry.Place or index),
-						string.upper(tostring(entry.Name or "PLAYER")), finish,
-						string.upper(tostring(entry.VehicleName or entry.VehicleId or "--")) } })
+						string.upper(Model.FirstText(entry.Name, "PLAYER")), finish,
+						string.upper(Model.FirstText(entry.VehicleName, entry.VehicleId, "--")) } })
 					if you and not mine then
 						mine = #source
 					end
@@ -442,8 +491,8 @@ function Model.new(deps)
 				if type(entry) == "table" then
 					local you = tonumber(entry.UserId) == deps.UserId
 					table.insert(source, { You = you, Columns = { tostring(entry.Rank or index),
-						string.upper(tostring(entry.DisplayName or entry.Username or "PLAYER")), Model.TimeText(entry.BestSeconds),
-						string.upper(tostring(entry.VehicleName or entry.VehicleId or "--")) } })
+						string.upper(Model.FirstText(entry.DisplayName, entry.Username, "PLAYER")), Model.TimeText(entry.BestSeconds),
+						string.upper(Model.FirstText(entry.VehicleName, entry.VehicleId, "--")) } })
 					if you and not mine then
 						mine = #source
 					end

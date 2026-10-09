@@ -62,6 +62,16 @@ function Hud._inviteOptions(state)
 	return options, rows
 end
 
+-- Pure. Everything of an option list that reaches the screen, as one string: two lists with the same key draw the
+-- same dropdown, so the second need not be sent (sending Options closes an open list).
+function Hud._optionsKey(options)
+	local parts = {}
+	for index, option in ipairs(options or {}) do
+		parts[index] = tostring(option.Id) .. "=" .. tostring(option.Text)
+	end
+	return table.concat(parts, "\31")
+end
+
 -- The name of the garage the owner stands in, for the HUD heading; "" when the reply does not carry it.
 function Hud._title(state)
 	if type(state) ~= "table" or type(state.Properties) ~= "table" then
@@ -118,6 +128,7 @@ function Hud.Start()
 	local accessRows, inviteRows = {}, {}
 	local title, access, invite = nil, nil, nil
 	local syncing = false
+	local accessKey, inviteKey = nil, nil -- the option lists the two dropdowns were last given (Hud._optionsKey)
 
 	-- Classic line 18 drew its own label for 2.4 s; Pulse sends the same text to the shared toast.
 	local function show(text, good)
@@ -152,8 +163,19 @@ function Hud.Start()
 			local inviteOptions
 			inviteOptions, inviteRows = Hud._inviteOptions(state)
 			local count = Hud._inviteCount(state)
-			access.Set({ Options = accessOptions, Selected = tostring(state and state.AccessMode or "Private") })
-			invite.Set({ Label = count > 0 and ("INVITE " .. count) or "INVITE", Options = inviteOptions, Selected = "" })
+			-- A dropdown closes its open list whenever it is given Options, so they are sent only when their
+			-- content changed: else every state refresh (the one INVITE itself starts, and every push) shut it.
+			local nextAccess, nextInvite = Hud._optionsKey(accessOptions), Hud._optionsKey(inviteOptions)
+			if nextAccess ~= accessKey then
+				accessKey = nextAccess
+				access.Set({ Options = accessOptions })
+			end
+			access.Set({ Selected = tostring(state and state.AccessMode or "Private") })
+			if nextInvite ~= inviteKey then
+				inviteKey = nextInvite
+				invite.Set({ Options = inviteOptions })
+			end
+			invite.Set({ Label = count > 0 and ("INVITE " .. count) or "INVITE", Selected = "" })
 			if title then
 				title.Set({ Text = Hud._title(state), Visible = Hud._title(state) ~= "" })
 			end

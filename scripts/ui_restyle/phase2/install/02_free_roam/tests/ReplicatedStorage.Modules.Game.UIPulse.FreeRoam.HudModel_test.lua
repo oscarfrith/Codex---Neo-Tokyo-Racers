@@ -221,6 +221,36 @@ return function(M, env)
 		expect(M._accessFromLabel("EVERYONE") == nil, "unknown label")
 	end)
 
+	case("CURRENT follows the player's vehicle in the world, not the profile id alone", function()
+		local mine = node("Vehicle", "Model", { OwnerUserId = 7, OwnedVehicleId = "v2" })
+		local other = node("Vehicle", "Model", { OwnerUserId = 8, OwnedVehicleId = "v1" })
+		local out, id = M._vehicleOut({ node("Loose", "Folder", { OwnerUserId = 7 }), other, mine }, 7)
+		expect(out == true and id == "v2", "the player's own model")
+		out, id = M._vehicleOut({ other }, 7)
+		expect(out == false and id == "", "someone else's vehicle is not mine")
+		expect(M._vehicleOut({ node("Vehicle", "Model", {}) }, nil) == false, "no user id matches nothing")
+		expect(select(2, M._vehicleOut({ node("Vehicle", "Model", { OwnerUserId = "7" }) }, 7)) == "", "an unlabelled vehicle")
+
+		local rows = { { VehicleId = "v1", Selected = true }, { VehicleId = "v2", Selected = false } }
+		expect(M._markCurrent(rows, false, "") == true and not rows[1].Selected and not rows[2].Selected, "no vehicle out: no CURRENT (teleport, despawn)")
+		expect(M._markCurrent(rows, false, "") == false, "nothing changed the second time")
+		expect(M._markCurrent(rows, true, "v2") and rows[2].Selected and not rows[1].Selected, "the vehicle that is out")
+		expect(M._markCurrent(rows, true, "") and rows[1].Selected and not rows[2].Selected, "unlabelled vehicle: the profile's id")
+	end)
+
+	case("the row that was CURRENT still spawns after its vehicle is gone", function()
+		local h = harness()
+		h.Model.ToggleCarPanel()
+		local current
+		for _, row in ipairs(h.Model.GetState().Rows) do
+			if row.Selected then current = row.VehicleId end
+		end
+		h.Replies.SpawnOwnedVehicleFromFreeRoam = { Success = false }
+		h.Model.SpawnVehicle(current or "v1")
+		h.Model.SpawnVehicle(current or "v1")
+		expect(#h.Calls == 2 and h.Calls[2].Action == "SpawnOwnedVehicleFromFreeRoam", "every press asks, as a Classic card does (D746)")
+	end)
+
 	case("rows from the profile (D663-690)", function()
 		local root = categories()
 		local rows = M._rowsFromProfile(profile(), M._cockpitIndex(root), root, M._categoryIndex(root))

@@ -207,10 +207,12 @@ function View.Mount(layer, _model, scope)
 		end,
 	})
 
-	-- Tilt group: status line, RECENTER, the tilt drift button, stacked upward from the bottom-left corner.
+	-- Tilt group: status line, RECENTER, the tilt drift button, stacked upward from the bottom-left corner. The box
+	-- is sized in layout() (the thumbstick pad's square), not by AutomaticSize: an automatic box with a bottom anchor
+	-- is not relied on to stay on its corner (the HUD action bar did not). The stack is bottom-left aligned, so its
+	-- place does not depend on the box being as large as its content.
 	local tiltGroup = anchor("TiltGroup")
 	tiltGroup.AnchorPoint = Vector2.new(0, 1)
-	tiltGroup.AutomaticSize = Enum.AutomaticSize.XY
 	local tiltList = Instance.new("UIListLayout")
 	tiltList.Name = "Stack"
 	tiltList.FillDirection = Enum.FillDirection.Vertical
@@ -289,6 +291,7 @@ function View.Mount(layer, _model, scope)
 		local hair = ctx.Hair(Space.Hairline)
 		local gap = sizes.Gap
 		put(thumbHit, "Size", UDim2.fromOffset(sizes.Stick, sizes.Stick))
+		put(tiltGroup, "Size", UDim2.fromOffset(sizes.Stick, sizes.Stick))
 		put(thumbKnob, "Size", UDim2.fromOffset(sizes.Knob, sizes.Knob))
 		put(hairTop, "Size", UDim2.new(1, 0, 0, hair))
 		put(hairBottom, "Size", UDim2.new(1, 0, 0, hair))

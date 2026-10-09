@@ -78,7 +78,9 @@
    {"remote": "Remotes.Garage.OwnedGarageEvent", "signal": "OnClientEvent", "site": "GarageInteriorHud",
     "types": ["DriveOutResult", "ManagementUpdated"], "classicLine": 277, "classicOwner": "GarageInteriorModeUI"},
    {"remote": "Remotes.Garage.OwnedGarageEvent", "signal": "OnClientEvent", "site": "OwnedGarageWorkspaceUI (fork, kept)",
-    "types": ["OpenManagement", "DriveOut", "ManagementUpdated", "DriveOutResult"], "classicLine": 176, "classicOwner": "OwnedGarageWorkspaceUI"}
+    "types": ["OpenManagement", "DriveOut", "ManagementUpdated", "DriveOutResult"], "classicLine": 176, "classicOwner": "OwnedGarageWorkspaceUI"},
+   {"remote": "Remotes.Garage.OwnedGarageEvent", "signal": "OnClientEvent", "site": "OwnedGarageClient desk watch (listen-only diagnostic, no Classic counterpart; also ProximityPromptService.PromptTriggered for ManageGaragePrompt)",
+    "types": ["OpenManagement"], "classicLine": null, "classicOwner": null}
   ],
   "bindables": [
    {"name": "Runtime.UI.OpenOwnedGarageBrowser", "dir": "connect", "classicLine": 119, "note": "the only listener under Pulse"},

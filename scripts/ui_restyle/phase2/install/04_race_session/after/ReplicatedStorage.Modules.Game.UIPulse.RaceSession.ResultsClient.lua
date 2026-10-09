@@ -75,6 +75,7 @@ local function run()
 		end,
 		Spawn = task.spawn,
 		Delay = task.delay,
+		Now = os.clock,
 	})
 	local view = View.Mount(layer, model, scope)
 	scope:connect(model.Changed, function(reason)

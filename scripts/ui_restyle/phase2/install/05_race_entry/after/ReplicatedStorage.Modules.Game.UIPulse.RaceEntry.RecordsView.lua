@@ -1,5 +1,8 @@
 -- Owns the race-entry Records page drawing (world record, medal targets, your record, global top 20, its header and footer); it owns no state, calls no remote, fires no bindable and writes no attribute.
 -- Pulse UI (phase2). ReplicatedStorage.Modules.Game.UIPulse.RaceEntry.RecordsView. Requires: Tokens, Text, Surface, Controls, Collections, Data.
+local GuiService = game:GetService("GuiService")
+local RunService = game:GetService("RunService")
+
 local kit = script.Parent.Parent.Kit
 local Tokens = require(kit.Tokens)
 local Text = require(kit.Text)
@@ -7,6 +10,7 @@ local Surface = require(kit.Surface)
 local Controls = require(kit.Controls)
 local Collections = require(kit.Collections)
 local Data = require(kit.Data)
+local Input = require(kit.Input)
 
 local View = {}
 
@@ -48,6 +52,31 @@ local function panel(name, parent, scope)
 	local frame = holder(name, parent)
 	local surface = Surface.Panel(frame, {}, scope)
 	return { Holder = frame, Panel = surface, Content = surface.Content }
+end
+
+-- Pure. The widest a one-line label may be, in design units (a Text.Label MaxWidth), for a box `boxPx` wide with
+-- `padPx` on each side and `takenPx` used by something else on the line. Never under one pixel.
+function View.LabelWidth(boxPx, padPx, takenPx, scale)
+	local pixels = math.max(1, boxPx - padPx - padPx - (takenPx or 0))
+	return pixels / (scale > 0 and scale or 1)
+end
+
+-- A scope for the bindings that live only while this page shows (Input.Bind* asks only for :add).
+local function newOpenScope()
+	local items = {}
+	local open = {}
+	function open:add(item)
+		table.insert(items, item)
+		return item
+	end
+	function open:destroy()
+		for index = #items, 1, -1 do
+			local item = items[index]
+			items[index] = nil
+			item()
+		end
+	end
+	return open
 end
 
 function View.Mount(layer, model, scope)
@@ -128,6 +157,12 @@ function View.Mount(layer, model, scope)
 
 		local badge = page.WorldBadge.Instance.Size.X.Offset
 		moveTo(page.WorldLabel.Instance, badge > 0 and (badge + gap) or 0, 0)
+		-- One-line labels stop at their panel (they truncate): the Compact left column is a quarter of the page.
+		local worldBox = page.World.Holder.Size.X.Offset
+		local yourBox = page.Your.Holder.Size.X.Offset
+		page.WorldLabel.Set({ MaxWidth = View.LabelWidth(worldBox, pad, badge > 0 and (badge + gap) or 0, ctx.Scale) })
+		page.WorldName.Set({ MaxWidth = View.LabelWidth(worldBox, pad, 0, ctx.Scale) })
+		page.YourVehicle.Set({ MaxWidth = View.LabelWidth(yourBox, pad, 0, ctx.Scale) })
 		moveTo(page.WorldTime.Instance, 0, label + gap)
 		moveTo(page.WorldName.Instance, 0, label + gap + head + gap)
 		moveTo(page.YourTime.Instance, 0, label + gap)
@@ -141,6 +176,49 @@ function View.Mount(layer, model, scope)
 
 	local function watch(instance)
 		scope:connect(instance:GetPropertyChangedSignal("Size"), layout)
+	end
+
+	-- Input that exists only while this page shows, on the live layer only (a gallery or test stage has no Gui):
+	-- Escape and ButtonB go back as BACK does, the bumpers swap the mode tab (which lands on Setup), and the
+	-- focus enters on the main button when a gamepad or the keyboard is in use.
+	local live = layer.Gui ~= nil and RunService:IsRunning()
+	local openInput = nil
+
+	local function syncInput(mine)
+		if not live or not page then
+			return
+		end
+		if mine and not openInput then
+			local opened = newOpenScope()
+			openInput = opened
+			Input.BindBack(opened, function()
+				model.Back()
+			end)
+			local function swapMode()
+				model.SelectMode(model.Mode() == "Race" and "TimeTrial" or "Race")
+			end
+			Input.BindBumpers(opened, swapMode, swapMode)
+			if Input.ShouldEnterFocus(ctx) then
+				local button = page.Row.Button("Choose")
+				if not (button and button.Instance.Active) then
+					button = page.Row.Button("Back")
+				end
+				pcall(function()
+					GuiService.SelectedObject = button.Instance
+				end)
+			end
+		elseif not mine and openInput then
+			local closing = openInput
+			openInput = nil
+			closing:destroy()
+			pcall(function()
+				local current = GuiService.SelectedObject
+				if current and (current:IsDescendantOf(page.Header.Instance) or current:IsDescendantOf(page.TierHolder)
+					or current:IsDescendantOf(page.Body) or current:IsDescendantOf(page.Row.Instance)) then
+					GuiService.SelectedObject = nil
+				end
+			end)
+		end
 	end
 
 	local function build(records)
@@ -288,6 +366,7 @@ function View.Mount(layer, model, scope)
 			draw(records, snap)
 			layout()
 		end
+		syncInput(records ~= nil)
 	end
 
 	if ctx.Changed then
@@ -304,6 +383,10 @@ function View.Mount(layer, model, scope)
 			return
 		end
 		destroyed = true
+		if openInput then
+			openInput:destroy()
+			openInput = nil
+		end
 		if page then
 			page.Header.Destroy()
 			page.Row.Destroy()

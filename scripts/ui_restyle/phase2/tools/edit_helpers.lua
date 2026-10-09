@@ -103,4 +103,25 @@ shared.INSTALL = function(unit, applies)
 	return table.concat(out, "\n")
 end
 
+-- Runs a list of {unit, "rollback" | "apply" | "audit"} steps with a pause between them (the bridge fetches count
+-- against Studio's HTTP request limit) and returns one short line per step. Used to refresh the install chain:
+-- a unit's sources transaction carries Routes, so later units' sources are rolled back (newest first) before an
+-- earlier unit is re-applied, then everything is applied forward again.
+shared.REFIT = function(steps, pause)
+	local out = {}
+	for _, s in steps do
+		local file = s[2] == "rollback" and "out_rollback.lua" or s[2] == "audit" and "out_audit.lua" or "out_apply.lua"
+		local r = shared.P2RUN(s[1], file, "refit_" .. s[2])
+		local first = r:match("^[^\n]*") or ""
+		local blocked = r:match("BLOCKED[^\n]*") or ""
+		local verify = s[2] == "audit" and (r:match("verify[^\n]*") or "") or ""
+		local blockers = r:match("blockers=%[(.-)%]") or ""
+		if s[2] ~= "audit" and blockers:find("Classic verify") and not blockers:find('","') then blockers = "" end
+		table.insert(out, s[1] .. " " .. first:sub(1, 120) .. (blocked ~= "" and (" || " .. blocked:sub(1, 150)) or "")
+			.. (blockers ~= "" and (" || " .. blockers:sub(1, 180)) or "") .. (verify ~= "" and (" || " .. verify) or ""))
+		task.wait(pause or 5)
+	end
+	return table.concat(out, "\n")
+end
+
 return "helpers ready"

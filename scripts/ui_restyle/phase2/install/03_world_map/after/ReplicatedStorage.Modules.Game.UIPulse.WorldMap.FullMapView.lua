@@ -49,6 +49,18 @@ function View.LegendHeight(rows: number, compact: boolean): number
 	return math.min(needed, Scale.RegularRefHeight - Space.RightColumnTop - Space.ButtonHeight - Space.MenuBottom - Space.Gap * 2)
 end
 
+-- Compact legend height in design units: what the rows need, cut to the real pixels left between the top of the
+-- legend and the bottom controls (the reference-screen cap above is taller than a 320-high phone leaves). Pure.
+function View.LegendFit(needed: number, availablePx: number, scale: number): number
+	if scale <= 0 then
+		return needed
+	end
+	return math.max(Space.Pad * 2, math.min(needed, math.floor(availablePx / scale)))
+end
+
+-- Share of the root width the Compact touch hint may take beside CLEAR WAYPOINT before it wraps.
+View.CompactHintShare = 0.55
+
 local function plain(name, parent)
 	local frame = Instance.new("Frame")
 	frame.Name = name
@@ -56,6 +68,12 @@ local function plain(name, parent)
 	frame.BorderSizePixel = 0
 	frame.Parent = parent
 	return frame
+end
+
+local function put(instance, property, value)
+	if instance[property] ~= value then
+		instance[property] = value
+	end
 end
 
 local function list(parent, vertical, gap)
@@ -182,7 +200,13 @@ function View.Mount(layer: any, model: any, scope: any, extra: any?): any
 			hintRow(gamepad, groups, index)
 		end
 		local touch = stack("Touch", hints, true, gap, Vector2.zero)
-		keep(Text.Label(touch, { Name = "Hint", Text = View.TouchHint, Role = "Label", Colour = "TextSecondary" }, scope))
+		local touchProps = { Name = "Hint", Text = View.TouchHint, Role = "Label", Colour = "TextSecondary" }
+		if ctx.Class == "Compact" then
+			-- One line beside CLEAR WAYPOINT runs off a 568-wide screen, so the line has a width and wraps.
+			touchProps.Wrap = true
+			touchProps.MaxWidth = math.max(1, layer.Root.Size.X.Offset * View.CompactHintShare / ctx.Scale)
+		end
+		keep(Text.Label(touch, touchProps, scope))
 		parts.Hints = { Keyboard = keyboard, Gamepad = gamepad, Touch = touch }
 		return hints
 	end
@@ -221,10 +245,29 @@ function View.Mount(layer: any, model: any, scope: any, extra: any?): any
 			Height = View.LegendHeight(1, compact),
 		}, scope))
 		-- RightColumn is a sized slot of exactly this width, so the panel sits at its origin (NOTES, question 4).
+		parts.Legend = legend
+		-- Regular: the reference cap. Compact: also cut to the space between the header and the bottom controls.
+		parts.LegendHeight = function(rows)
+			local needed = View.LegendHeight(rows, compact)
+			if not compact then
+				return needed
+			end
+			local top = layer.Slot("TopLeft").Position.Y.Offset + header.Height() + ctx.Px(Space.Gap)
+			local floorY = layer.Slot("BottomLeft").Position.Y.Offset - ctx.Touch(Space.CompactHudButton) - ctx.Px(Space.Gap)
+			return View.LegendFit(needed, floorY - top, ctx.Scale)
+		end
 		if compact then
 			legend.Instance.Position = UDim2.fromOffset(0, header.Height() + gap)
+			-- The header grows when the district line arrives; the legend follows it.
+			scope:connect(header.Instance:GetPropertyChangedSignal("Size"), function()
+				if not destroyed and parts.Header == header then
+					put(legend.Instance, "Position", UDim2.fromOffset(0, header.Height() + ctx.Px(Space.Gap)))
+					if parts.LegendCount then
+						legend.Set({ Height = parts.LegendHeight(parts.LegendCount) })
+					end
+				end
+			end)
 		end
-		parts.Legend = legend
 		table.insert(rects, legend.Instance)
 		local legendContent = legend.Content
 		local legendTitleHeight = 0
@@ -335,6 +378,11 @@ function View.Mount(layer: any, model: any, scope: any, extra: any?): any
 			return
 		end
 		local entries = model:LegendEntries()
+		parts.LegendCount = #entries
+		if parts.Compact then
+			put(parts.Legend.Instance, "Position", UDim2.fromOffset(0, parts.Header.Height() + ctx.Px(Space.Gap)))
+		end
+		parts.Legend.Set({ Height = parts.LegendHeight(#entries) })
 		local names = {}
 		for _, entry in entries do
 			table.insert(names, entry.Icon)
@@ -360,7 +408,6 @@ function View.Mount(layer: any, model: any, scope: any, extra: any?): any
 				row.Holder.Visible = false
 			end
 		end
-		parts.Legend.Set({ Height = View.LegendHeight(#entries, parts.Compact) })
 	end
 
 	local function renderInput()

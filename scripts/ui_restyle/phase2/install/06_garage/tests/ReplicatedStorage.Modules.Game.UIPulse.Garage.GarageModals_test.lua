@@ -30,6 +30,36 @@ return function(M, env)
 		expect(#M._propertyRows(nil, money) == 0, "no rows")
 	end)
 
+	case("property rows: a purchase needs an activation; building or selecting rows calls nothing", function()
+		local bought = {}
+		local rows = M._propertyRows({
+			{ Id = "P1", DisplayName = "Kanda Lift Bay", Owned = true, PriceAmount = 50000 },
+			{ Id = "P2", DisplayName = "Shibuya Twin Bay", Owned = false, PriceAmount = 125000 },
+			{ Id = "P3", DisplayName = "Ginza Loft", Owned = false, PriceAmount = 300000 },
+		}, money, function(key)
+			table.insert(bought, key)
+		end)
+		expect(#bought == 0, "building the rows buys nothing")
+		expect(rows[1].OnActivated == nil, "an owned row has no action")
+		expect(type(rows[2].OnActivated) == "function" and type(rows[3].OnActivated) == "function", "rows for sale act on activation")
+		for _, row in ipairs(rows) do
+			expect(row.OnSelected == nil, "no row acts on selection")
+		end
+		rows[3].OnActivated()
+		rows[3].OnActivated()
+		expect(table.concat(bought, ",") == "P3,P3", "each activation asks once, for its own row: " .. table.concat(bought, ","))
+		expect(M._propertyRows({ { Id = "P2", DisplayName = "x", Owned = false, PriceAmount = 1 } }, money)[1].OnActivated == nil, "no buy function, no action")
+	end)
+
+	case("panel size: the tokens on Regular; inside the screen on Compact", function()
+		local width, height = M._panelSize(false, Vector2.new(1920, 1080), 1, 12)
+		expect(width == 650 and height == 448, "Regular: ConfirmWidth by StatPanelHeight")
+		width, height = M._panelSize(true, Vector2.new(844, 390), 1, 12)
+		expect(width == 650 and height == 366, "844x390: " .. width .. "x" .. height)
+		width, height = M._panelSize(true, Vector2.new(568, 320), 0.85, 10)
+		expect(width * 0.85 <= 568 - 20 and height * 0.85 <= 320 - 20, "568x320 fits: " .. width .. "x" .. height)
+	end)
+
 	case("confirm text: the Classic move question; the vehicle purchase shows the price and nothing derived from it", function()
 		local move = M._confirmText({ Kind = "Move", VehicleName = "Zephyr" }, money)
 		expect(move.Title == "MOVE EQUIPPED MODULE", "title")
@@ -99,6 +129,15 @@ return function(M, env)
 			end
 		end
 		expect(panels == 1 and panel.Visible == true, "one panel, still open")
+		expect(#model.Calls == 0, "drawing the list buys nothing and closes nothing: " .. table.concat(model.Calls, ","))
+		expect(panel.ZIndex == 100, "the panel draws over a page built after it")
+		local rows = 0
+		for _, instance in ipairs(panel:GetDescendants()) do
+			if instance:IsA("GuiButton") and instance.Visible and instance.Name == "ListRow" then
+				rows += 1
+			end
+		end
+		expect(rows == 1, "one property row, got " .. rows)
 		model.Set(nil)
 		modals.Sync()
 		expect(panel.Visible == false and #model.Calls == 0, "closed without telling the model")

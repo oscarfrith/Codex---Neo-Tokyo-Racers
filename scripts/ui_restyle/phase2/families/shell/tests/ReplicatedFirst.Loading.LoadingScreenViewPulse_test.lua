@@ -44,6 +44,27 @@ return function(M, env)
 		expect(M.__index == M, "methods are reached through the metatable, as the runtime calls view:Method()")
 	end)
 
+	case("Create fails soft: a missing kit or a failing layer gives the Classic view object, never an error", function()
+		local keptKit, keptClassic = M._kit, M._classic
+		local classicView = { Tag = "classic" }
+		local asked = {}
+		M._classic = function(playerGui, config, colours)
+			table.insert(asked, { playerGui, config, colours })
+			return classicView
+		end
+		M._kit = function() error("Kit did not arrive") end
+		local ok, view = pcall(M.Create, "gui", "config", "colours")
+		M._kit = function()
+			return { Layers = { Create = function() error("no Pulse style") end } }
+		end
+		local okLayer, viewLayer = pcall(M.Create, "gui", "config", "colours")
+		M._kit, M._classic = keptKit, keptClassic
+		expect(ok and view == classicView, "kit missing: Classic view returned, no error")
+		expect(okLayer and viewLayer == classicView, "layer failed: Classic view returned, no error")
+		expect(#asked == 2 and asked[1][1] == "gui" and asked[1][2] == "config" and asked[1][3] == "colours",
+			"the Classic view is created with the runtime's own three arguments")
+	end)
+
 	case("names: Status (TextLabel), ProgressTrack > ProgressFill (childless Frame), and Classic's artwork tree", function()
 		local view, safeRoot, backgroundRoot = mount({ Size = Vector2.new(1920, 1080) })
 		local status = safeRoot:FindFirstChild("Status")

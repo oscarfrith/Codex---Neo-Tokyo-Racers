@@ -180,14 +180,16 @@ function View.Mount(layer, model, scope)
 		tree.Body = body
 
 		tree.ListHost = newFrame("EventListHost", body)
+		-- The kit list calls OnSelected only when the selection changes, and on a focus move as well as a press.
+		-- So it only selects; the Compact detail page opens from the row's own press (hookRows), which also works
+		-- on the row that is already selected (the menu opens with the first event selected).
 		local listProps = {
 			OnSelected = function(key)
 				model.Select(key)
-				if tree.Compact then
-					model.SetPage("Detail")
-				end
 			end,
 		}
+		tree.RowKeys = {} -- row button -> the key it shows now (rows are pooled by the kit list); strong on purpose
+		tree.RowHooked = {} -- row button -> true once its press is connected
 		if compact then
 			listProps.RowHeight = Tokens.Space.TouchMin
 		end
@@ -424,6 +426,31 @@ function View.Mount(layer, model, scope)
 		return result
 	end
 
+	-- Compact (c05 -> c06): a press on a row opens its detail page. Called after every SetItems, because the kit
+	-- list hands its pooled rows to new keys.
+	local function hookRows(tree)
+		table.clear(tree.RowKeys)
+		for _, item in ipairs(model.Items()) do
+			local row = tree.List.Row(item.Key)
+			local button = row and row.Instance
+			if button then
+				tree.RowKeys[button] = item.Key
+				if not tree.RowHooked[button] then
+					tree.RowHooked[button] = true
+					scope:connect(button.Activated, function()
+						local key = tree.RowKeys[button]
+						if destroyed or tree.Destroyed or key == nil or not button.Active then
+							return
+						end
+						if model.Select(key) then
+							model.SetPage("Detail")
+						end
+					end)
+				end
+			end
+		end
+	end
+
 	local function factRows(item)
 		local result = {}
 		for index, fact in ipairs(item.Facts) do
@@ -443,6 +470,24 @@ function View.Mount(layer, model, scope)
 		local key = model.SelectedKey()
 		local row = key and tree.List.Row(key) or nil
 		local target = (row and row.Instance) or tree.FirstButton.Instance
+		pcall(function()
+			GuiService.SelectedObject = target
+		end)
+	end
+
+	-- Compact: the page swap hides whatever held the focus, so the focus follows to the page that shows.
+	local function focusOnPage(tree, detailPage)
+		if not Input.ShouldEnterFocus(ctx) then
+			return
+		end
+		local target
+		if detailPage then
+			target = if model.CanAct() then tree.TeleportButton.Instance else tree.Buttons.Button("Back").Instance
+		else
+			local key = model.SelectedKey()
+			local row = key and tree.List.Row(key) or nil
+			target = (row and row.Instance) or tree.FirstButton.Instance
+		end
 		pcall(function()
 			GuiService.SelectedObject = target
 		end)
@@ -490,6 +535,9 @@ function View.Mount(layer, model, scope)
 			tree.RowsVersion = version
 			tree.SelectedKey = nil
 			tree.List.SetItems(listItems(tree))
+			if compact then
+				hookRows(tree)
+			end
 		end
 		local selectedKey = model.SelectedKey()
 		if tree.SelectedKey ~= selectedKey then
@@ -535,6 +583,14 @@ function View.Mount(layer, model, scope)
 			Text = status or "",
 			Visible = status ~= nil and (detailPage or not compact),
 		})
+
+		if compact and tree.FocusPage ~= detailPage then
+			local moved = tree.FocusPage ~= nil and shown == true and model.IsOpen() == true
+			tree.FocusPage = detailPage
+			if moved then
+				focusOnPage(tree, detailPage)
+			end
+		end
 
 		-- Drawn first, shown after. Root Visible only; never ScreenGui.Enabled.
 		local isOpen = model.IsOpen() == true

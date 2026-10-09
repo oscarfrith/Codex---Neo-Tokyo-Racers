@@ -366,6 +366,147 @@ return function(M, env)
 		expect(not h.Model.Ready, "not ready")
 		expect(#h.Calls == 60 and #h.Waits == 60, "60 attempts")
 		expect(h.Waits[9] == 4.5 and h.Waits[10] == 5 and h.Waits[60] == 5, "wait is min(5, 0.5 x attempt)")
+		-- Pulse: the three HUD buttons are not left dead for the session.
+		local locks = h.Model:Locks()
+		expect(h.Model.LocksReleased and locks.Car and locks.Race and locks.Garage, "locks released when the state never arrives")
+		expect(#h.Warns == 1, "one warning, got " .. #h.Warns)
+		expect(table.find(h.Reasons, "State") ~= nil, "State fired so the client applies the locks")
+		expect(h.Model.ActivePage == nil and not h.Model:ObjectivesVisible() and h.Model:Trail() == nil, "still no page, card or trail")
+	end)
+
+	case("locks fallback: a target missing for TargetGiveUpSeconds on an open page releases the locks, once", function()
+		local h = harness({ Touch = true, Stage = 2, SeenPages = { Dealership = true } })
+		h.PageRoots.MobileDriving = {}
+		h.MissingCards.D7 = true
+		h.Open()
+		h.Step(8)
+		expect(h.Model.ActivePage == "MobileDriving" and h.Model.ActiveObjects == nil, "waiting on D7")
+		expect(h.Model.LocksReleased == false and h.Model:Locks().Car == false, "still locked inside 10 s")
+		h.Step(4)
+		local locks = h.Model:Locks()
+		expect(h.Model.LocksReleased and locks.Car and locks.Race and locks.Garage, "released after 10 s")
+		expect(h.Model.ActivePage == "MobileDriving", "the page keeps waiting, as Classic")
+		local warned = #h.Warns
+		h.Step(30)
+		expect(#h.Warns == warned, "no further warning")
+		expect(#h.MarkSeenCalls() == 0, "nothing marked seen by the fallback")
+		h.MissingCards.D7 = nil
+		h.Step(1)
+		expect(h.Model.ActiveObjects ~= nil and h.Model:CalloutVisible(), "the callout still plays when its target shows")
+
+		local slow = harness({ Touch = true, Stage = 2 })
+		slow.PageRoots.Dealership = {}
+		slow.MissingCards.G1 = true
+		slow.Open()
+		slow.Step(6)
+		slow.MissingCards.G1 = nil
+		slow.Step(1)
+		slow.MissingCards.G4 = true
+		slow.Model:Advance()
+		slow.Step(6)
+		expect(slow.Model:CardId() == "G4" and slow.Model.LocksReleased == false, "the clock starts again for each card")
+	end)
+
+	case("off-root card (N6): the Compact detail page hides the list, the page is kept while its target shows", function()
+		local h = harness({ Touch = true, Stage = 2, SeenPages = { Dealership = true } })
+		local root = {}
+		h.PageRoots.RaceBrowser = root
+		h.Open()
+		h.Step(0.2)
+		expect(h.Model.ActivePage == "RaceBrowser" and h.Model:CardId() == "N1", "N1")
+		h.MissingCards.N6 = true -- the list page: no teleport button
+		h.Model:Advance()
+		h.Step(1)
+		expect(h.Model:CardId() == "N6" and h.Model.ActiveObjects == nil, "N6 waits on the list page")
+		-- The player opens an event: the list (the page root) hides and the teleport button shows.
+		root.Dead = true
+		h.PageRoots.RaceBrowser = nil
+		h.MissingCards.N6 = nil
+		h.Step(5)
+		expect(h.Model.ActivePage == "RaceBrowser" and h.Model.ActiveObjects ~= nil, "pinned on the detail page, not abandoned")
+		expect(h.Model:CalloutVisible() and h.Model:IsAction(), "the action callout shows")
+		h.Model:ActionActivated()
+		h.Step(0.2)
+		expect(h.Model.State.SeenPages.RaceBrowser == true and h.Count(h.MarkSeenCalls(), "RaceBrowser") == 1, "completed once")
+
+		-- Only the cards listed in OffRoot: a dealership card never follows a look-alike target on another screen.
+		local g = harness({ Touch = true, Stage = 2 })
+		local dealership = {}
+		g.PageRoots.Dealership = dealership
+		g.Open()
+		g.Step(0.2)
+		dealership.Dead = true
+		g.PageRoots.Dealership = nil
+		g.Model:TargetLost()
+		g.Step(4)
+		expect(g.Model.ActivePage == nil, "G1 is abandoned with its page although a Categories target would resolve")
+
+		-- With the menu closed (no root, no target) N6 is abandoned like any other card.
+		local c = harness({ Touch = true, Stage = 2, SeenPages = { Dealership = true } })
+		local closing = {}
+		c.PageRoots.RaceBrowser = closing
+		c.Open()
+		c.Step(0.2)
+		c.Model:Advance()
+		c.Step(0.2)
+		closing.Dead = true
+		c.PageRoots.RaceBrowser = nil
+		c.MissingCards.N6 = true
+		c.Model:TargetLost()
+		c.Step(4)
+		expect(c.Model.ActivePage == nil and c.Model.State.SeenPages.RaceBrowser ~= true, "abandoned, not marked")
+	end)
+
+	case("a state that arrives before a MarkSeen reply keeps the completed page seen", function()
+		local h = harness({ Stage = 2, SeenPages = { PCDriving = true } })
+		h.PageRoots.VehicleShortcut = {}
+		local held = {}
+		h.Reply = function(action, payload)
+			if action == "GetState" then return h.Snapshot() end
+			table.insert(held, payload.PageId) -- the server has not recorded it
+			return { Success = false }
+		end
+		h.Open()
+		h.Step(0.2)
+		expect(h.Model.ActivePage == "VehicleShortcut", "B2")
+		h.Model:Advance()
+		h.Step(0.2)
+		expect(h.Model:Locks().Car == true, "Car unlocked on completion")
+		-- OnboardingStateChanged for something else, built before the server recorded the page.
+		h.Server.Completed.GarageManagementEntered = true
+		h.Model:Accept(h.Snapshot())
+		expect(h.Model.State.SeenPages.VehicleShortcut == true and h.Model:Locks().Car == true, "still seen, still unlocked")
+		h.Model:Poll()
+		h.Step(0.2)
+		expect(h.Count(h.Prints, "[Tutorial] begin VehicleShortcut B2") == 1, "VehicleShortcut does not begin a second time")
+		expect(#held == 1 and held[1] == "VehicleShortcut", "one MarkSeen for it")
+	end)
+
+	case("first drive watchdog: a controls modal that never opens does not block the pages for ever", function()
+		local h = harness({ Stage = 2 })
+		h.Open()
+		h.Driving = { RaceDriving = false }
+		h.Model:Poll()
+		expect(#h.Fires == 1 and h.Player.Values.FirstDrivePresentationPending == true, "requested")
+		h.PageRoots.VehicleShortcut = {}
+		h.Step(1)
+		expect(h.Model:Blocked() and h.Model.ActivePage == nil, "blocked while the modal is expected")
+		h.Step(3)
+		expect(h.Player.Values.FirstDrivePresentationPending == false, "flag cleared by the watchdog")
+		expect(#h.Warns == 1, "one warning")
+		h.Model:RefreshGate()
+		h.Step(0.2)
+		expect(h.Model.ActivePage == "VehicleShortcut", "the pages run again")
+		expect(#h.Fires == 1 and h.Count(h.MarkSeenCalls(), "PCDriving") == 1, "the modal is not requested twice")
+
+		-- The modal opened (the HUD wrote DrivingControlsOpen): the watchdog leaves the flag to the HUD.
+		local g = harness({ Stage = 2 })
+		g.Open()
+		g.Driving = { RaceDriving = false }
+		g.Model:Poll()
+		g.Player.Values.DrivingControlsOpen = true
+		g.Step(5)
+		expect(g.Player.Values.FirstDrivePresentationPending == true and #g.Warns == 0, "untouched while the modal is open")
 	end)
 
 	case("untrusted replies: a wrong shape never replaces the state or errors", function()

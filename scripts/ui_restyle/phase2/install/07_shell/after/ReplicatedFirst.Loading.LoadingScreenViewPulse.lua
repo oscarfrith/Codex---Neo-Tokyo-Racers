@@ -1,5 +1,5 @@
 -- Owns the Pulse loading view (status line, progress bar and the unchanged artwork) that LoadingTransitionRuntime drives; not the runtime, the artwork catalogue or the start-screen flow.
--- Pulse UI (phase2). ReplicatedFirst.Loading.LoadingScreenViewPulse. Requires: Kit.Tokens, Kit.Metrics, Kit.Layers, Kit.Text, Kit.Presence (resolved on the first Create, never at require).
+-- Pulse UI (phase2). ReplicatedFirst.Loading.LoadingScreenViewPulse. Requires: Kit.Tokens, Kit.Metrics, Kit.Layers, Kit.Text, Kit.Presence (resolved on the first Create, never at require); ReplicatedFirst.Loading.LoadingScreenView only when the kit cannot be used (Create then returns the Classic view).
 
 -- Same public interface as ReplicatedFirst.Loading.LoadingScreenView (Classic; line numbers below refer to it):
 -- Create, Warm, SetArtwork, Show, SetProgressImmediate, StartMotion, SetStatus, SetProgress, FadeOut, Hide, Destroy.
@@ -18,25 +18,31 @@ local LAYER_NAME = "LoadingSafeContent"
 local SURFACE = "Loading"
 local STATUS_ROLE = "Button"
 local TRACK_Y = 0.81 -- Classic 46: the bar starts at 81% of the safe height (Regular)
-local KIT_WAIT_SECONDS = 20
+local KIT_WAIT_SECONDS = 5 -- one budget for the whole kit, not per instance; then Create returns the Classic view
+local CLASSIC_VIEW = "LoadingScreenView" -- sibling module with the same interface; used only when the kit is unusable
 local KIT_PATH = { "Modules", "Game", "UIPulse", "Kit" }
 -- Every kit module the four used below reach through script.Parent, so none is required before it has replicated.
 local KIT_MODULES = { "Sprites", "Contracts", "Presence", "Tokens", "Metrics", "Layers", "Text" }
 
 local kitCache
--- YIELDS on the first call only, and for at most KIT_WAIT_SECONDS per instance; then errors (a reported failed state).
+-- YIELDS on the first call only, and for at most KIT_WAIT_SECONDS in total; then errors. Create catches the error
+-- and hands back the Classic view, so a missing kit never stops the loading runtime.
 local function loadKit()
 	if kitCache then
 		return kitCache
 	end
+	local deadline = os.clock() + KIT_WAIT_SECONDS
+	local function child(parent, name)
+		return parent:FindFirstChild(name) or parent:WaitForChild(name, math.max(0.05, deadline - os.clock()))
+	end
 	local folder = ReplicatedStorage
 	for _, name in ipairs(KIT_PATH) do
-		local child = folder:WaitForChild(name, KIT_WAIT_SECONDS)
-		assert(child, "[Pulse.LoadingScreenViewPulse] " .. name .. " did not arrive under " .. folder:GetFullName())
-		folder = child
+		local found = child(folder, name)
+		assert(found, "[Pulse.LoadingScreenViewPulse] " .. name .. " did not arrive under " .. folder:GetFullName())
+		folder = found
 	end
 	for _, name in ipairs(KIT_MODULES) do
-		assert(folder:WaitForChild(name, KIT_WAIT_SECONDS), "[Pulse.LoadingScreenViewPulse] Kit." .. name .. " did not arrive")
+		assert(child(folder, name), "[Pulse.LoadingScreenViewPulse] Kit." .. name .. " did not arrive")
 	end
 	kitCache = {
 		Tokens = require(folder.Tokens),
@@ -180,20 +186,51 @@ function View._mount(kit, safeRoot, backgroundRoot, ctx, config, setShown)
 	return self
 end
 
-function View.Create(_playerGui, config, _colours)
-	local kit = View._kit()
-	-- LoadingSafeContent (1001, safe area) holds SafeRoot; LoadingSafeContentScrim (1000, whole screen) holds the
-	-- artwork and the input blocker. Layers.Create is the only ScreenGui factory in Pulse.
-	local layer = kit.Layers.Create(LAYER_NAME, { Frame = "Bare", Scrim = true, RootName = "SafeRoot" })
-	layer.SetVisible(false)
-	local self = View._mount(kit, layer.Root, layer.ScrimRoot, layer.Metrics, config, layer.SetVisible)
+-- The Classic view object: same methods, same arguments, and the names the start-screen flow reads. Only reached when
+-- the Pulse view cannot be built. Test seam.
+function View._classic(playerGui, config, colours)
+	local module = script.Parent:FindFirstChild(CLASSIC_VIEW)
+	assert(module, "[Pulse.LoadingScreenViewPulse] " .. CLASSIC_VIEW .. " is missing as well")
+	return require(module).Create(playerGui, config, colours)
+end
+
+-- Never raises for a kit reason: LoadingTransitionRuntime.Start calls this once, for every later transition, and an
+-- error here would leave the player without a loading screen and without a start screen.
+function View.Create(playerGui, config, colours)
+	local layer = nil
+	local ok, built = pcall(function()
+		local kit = View._kit()
+		-- LoadingSafeContent (1001, safe area) holds SafeRoot; LoadingSafeContentScrim (1000, whole screen) holds the
+		-- artwork and the input blocker. Layers.Create is the only ScreenGui factory in Pulse.
+		layer = kit.Layers.Create(LAYER_NAME, { Frame = "Bare", Scrim = true, RootName = "SafeRoot" })
+		layer.SetVisible(false)
+		return View._mount(kit, layer.Root, layer.ScrimRoot, layer.Metrics, config, layer.SetVisible)
+	end)
+	if not ok then
+		warn("[Pulse.LoadingScreenViewPulse] Pulse loading view unavailable (" .. tostring(built) .. "); using the Classic loading view.")
+		if layer then
+			pcall(layer.Destroy)
+		end
+		-- A layer that failed half way may have left its guis; the Classic view uses one of the two names.
+		if typeof(playerGui) == "Instance" then
+			for _, name in ipairs({ LAYER_NAME, LAYER_NAME .. "Scrim" }) do
+				local stale = playerGui:FindFirstChild(name)
+				if stale then
+					stale:Destroy()
+				end
+			end
+		end
+		return View._classic(playerGui, config, colours)
+	end
+	local self = built
+	local kit = self.Kit
 	self.Layer = layer
 	self.BackgroundGui = layer.ScrimGui
 	self.SafeGui = layer.Gui
 	claimWhenCommitted(SURFACE)
 	task.spawn(function()
-		local ok, problem = pcall(kit.Text.Preload)
-		if not ok then warn("[Pulse.LoadingScreenViewPulse] Text.Preload failed: " .. tostring(problem)) end
+		local okPreload, problem = pcall(kit.Text.Preload)
+		if not okPreload then warn("[Pulse.LoadingScreenViewPulse] Text.Preload failed: " .. tostring(problem)) end
 	end)
 	return self
 end

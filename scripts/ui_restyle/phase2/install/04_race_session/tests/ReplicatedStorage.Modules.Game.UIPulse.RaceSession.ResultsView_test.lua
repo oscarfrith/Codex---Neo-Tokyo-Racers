@@ -208,5 +208,180 @@ return function(M, env)
 		end)
 	end)
 
+	-- The view mounted directly over a hand-written model, so a test can make any part of it fail.
+	local Layers = env.Load("ReplicatedStorage.Modules.Game.UIPulse.Kit.Layers")
+	local function mountOver(model, preset)
+		local stage = env.Detached("Frame")
+		stage.Name = "Stage"
+		stage.Size = UDim2.fromOffset(PRESETS[preset].Size.X, PRESETS[preset].Size.Y)
+		local ctx = Metrics.Fixed(PRESETS[preset])
+		Metrics.Bind(stage, ctx)
+		local layer = Layers.Stage(stage, ctx, "Menu")
+		local scope = env.Scope()
+		local view = M.Mount(layer, model, scope, { NoPresence = true })
+		return stage, layer, view, scope
+	end
+	local function footerTexts(stage)
+		local texts = {}
+		local footer = stage:FindFirstChild("Footer", true)
+		for _, instance in ipairs(footer and footer:GetDescendants() or {}) do
+			if instance:IsA("TextLabel") then
+				table.insert(texts, instance.Text)
+			end
+		end
+		return table.concat(texts, "|")
+	end
+	local function plainModel(overrides)
+		local model = {
+			IsOpen = function()
+				return true
+			end,
+			Mode = function()
+				return "TimeTrial"
+			end,
+			Busy = function()
+				return false
+			end,
+			Title = function()
+				return "TIME TRIAL COMPLETE"
+			end,
+			SubTitle = function()
+				return "SHOWROOM LOOP"
+			end,
+			RewardAmount = function()
+				return 1500
+			end,
+			BestLapText = function()
+				return "1:11.250"
+			end,
+			AgainText = function()
+				return "TRY AGAIN"
+			end,
+			ExitText = function()
+				return "EXIT TO START"
+			end,
+			Xp = function()
+				return { State = "Hidden" }
+			end,
+			Strip = function()
+				return { { Label = "", Value = "FINISHED", Kind = "Text" } }
+			end,
+			Facts = function()
+				return "SESSION LAPS", { { Id = "fact1", Label = "01", Value = "1:11.250  BEST", Kind = "Text" } }
+			end,
+			Table = function()
+				return { Heading = "GLOBAL TOP 20", Header = { "POS", "PLAYER", "TIME", "VEHICLE" }, Rows = {}, Message = "" }
+			end,
+			Exit = function() end,
+			Again = function() end,
+		}
+		for key, value in pairs(overrides or {}) do
+			model[key] = value
+		end
+		return model
+	end
+
+	case("helpers: _money falls back when the Classic formatter is missing; _columns cuts for Compact", function()
+		local original = Data._foundation
+		Data._foundation = function()
+			error("ResponsiveUIFoundation was not found")
+		end
+		local ok, detail = pcall(function()
+			expect(M._money(1234567, false) == "$1,234,567", M._money(1234567, false))
+			expect(M._money(nil, false) == "$0" and M._money(-5, true) == "$0", "nil and negative")
+		end)
+		Data._foundation = original
+		expect(ok, tostring(detail))
+		local cut = M._columns({ "1", "OSCAR", "3:08.400", "SERAPH" }, M.COMPACT_COLUMNS)
+		expect(#cut == 3 and cut[3] == "3:08.400", "position, player, time")
+		local whole = { "1", "OSCAR" }
+		expect(M._columns(whole, math.huge) == whole, "untouched when it fits")
+		expect(M._guard("test part", function()
+			error("expected by the test")
+		end) == false, "a failed part is reported, not raised")
+	end)
+
+	for _, preset in ipairs({ "R1080", "C844" }) do
+		case(preset .. ": every optional part failing still shows the layer with both buttons set", function()
+			local function fail()
+				error("expected by the test")
+			end
+			local original = Data._foundation
+			Data._foundation = fail
+			local ok, detail = pcall(function()
+				local stage, layer, view, scope = mountOver(plainModel({ Title = fail, SubTitle = fail, RewardAmount = fail,
+					BestLapText = fail, Xp = fail, Strip = fail, Facts = fail, Table = fail }), preset)
+				view.Render("test")
+				expect(layer.Root.Visible == true, "shown")
+				local texts = footerTexts(stage)
+				expect(string.find(texts, "EXIT TO START", 1, true) ~= nil, "exit button: " .. texts)
+				expect(string.find(texts, "TRY AGAIN", 1, true) ~= nil, "again button: " .. texts)
+				local exit = view._parts().Buttons.Button("exit")
+				expect(exit ~= nil and exit.Instance.Active == true, "the exit button is live")
+				view.Destroy()
+				scope:destroy()
+				layer.Destroy()
+			end)
+			Data._foundation = original
+			expect(ok, tostring(detail))
+		end)
+	end
+
+	case("the player's row keeps one list key, so the selection follows it between results", function()
+		withMoney(function()
+			local rows = {
+				{ Key = "row1", Columns = { "6", "VANTA", "1:00.027", "ENDURA" }, You = false },
+				{ Key = "row2", Columns = { "7", "OSCAR", "1:01.842", "AURORA" }, You = true },
+				{ Key = "row3", Columns = { "8", "LOWLIGHT", "1:02.618", "AURORA" }, You = false },
+			}
+			local stage, layer, view, scope = mountOver(plainModel({ Table = function()
+				return { Heading = "GLOBAL TOP 20", Header = { "POS", "PLAYER", "TIME", "VEHICLE" }, Rows = rows, Message = "" }
+			end }), "R1080")
+			view.Render("test")
+			local list = view._parts().Table
+			expect(list.Row(M.YOU_KEY) ~= nil and list.Row("row2") == nil, "own row under the one key")
+			-- A later race result where the player is first: the old selection must not stay on the second row.
+			rows = {
+				{ Key = "row1", Columns = { "1", "OSCAR", "3:08.400", "SERAPH" }, You = true },
+				{ Key = "row2", Columns = { "2", "VANTA", "RACING", "ENDURA" }, You = false },
+			}
+			view.Render("test")
+			local own, other = list.Row(M.YOU_KEY), list.Row("row2")
+			expect(own ~= nil and other ~= nil, "both rows")
+			expect(own.Instance.Position.Y.Offset < other.Instance.Position.Y.Offset, "own row is the first row")
+			expect(stage ~= nil, "stage")
+			view.Destroy()
+			scope:destroy()
+			layer.Destroy()
+		end)
+	end)
+
+	case("Compact draws three table columns (position, player, time); Regular draws four", function()
+		withMoney(function()
+			for _, spec in ipairs({ { "C844", 3 }, { "R1080", 4 } }) do
+				local stage, layer, view, scope = mountOver(plainModel({ Table = function()
+					return { Heading = "RACE RESULTS", Header = { "POS", "PLAYER", "FINISH TIME", "VEHICLE" }, Rows = {
+						{ Key = "row1", Columns = { "1", "OSCAR", "3:08.400", "SERAPH" }, You = true },
+					}, Message = "" }
+				end }), spec[1])
+				view.Render("test")
+				local header = stage:FindFirstChild("Header", true)
+				local list = stage:FindFirstChild("List", true)
+				expect(list ~= nil, "list")
+				header = list:FindFirstChild("Header")
+				local shownColumns = 0
+				for _, label in ipairs(header:GetChildren()) do
+					if label:IsA("TextLabel") and label.Visible then
+						shownColumns += 1
+					end
+				end
+				expect(shownColumns == spec[2], spec[1] .. " header columns: " .. tostring(shownColumns))
+				view.Destroy()
+				scope:destroy()
+				layer.Destroy()
+			end
+		end)
+	end)
+
 	return results
 end

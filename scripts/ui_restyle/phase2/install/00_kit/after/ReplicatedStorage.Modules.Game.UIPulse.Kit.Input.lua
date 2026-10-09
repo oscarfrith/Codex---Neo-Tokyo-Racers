@@ -13,8 +13,10 @@ local SELECTION_NAME = "PulseSelection"
 local MARK_ATTRIBUTE = "PulseMark" -- a Play probe lists marks from this, without a require
 local DEFAULT_PRIORITY = Enum.ContextActionPriority.High.Value
 
--- button -> its OnFocus connections, so a second Focusable call replaces them. Values never hold the button.
-local focusConnections: { [GuiButton]: { RBXScriptConnection } } = setmetatable({}, { __mode = "k" }) :: any
+-- button -> its OnFocus connections, so a second Focusable call replaces them. Strong on purpose: an Instance
+-- key in a weak table can drop while the instance is alive, and the record would be lost with its connections
+-- still firing. The entry is removed when the button is destroyed; focusable buttons must be destroyed, not dropped.
+local focusConnections: { [GuiButton]: { RBXScriptConnection } } = {}
 -- mark key -> instances carrying it; an entry leaves when its instance is destroyed.
 local marked: { [string]: { GuiObject } } = {}
 -- Trapping groups that are entered, oldest first. Only the newest one pulls focus back.
@@ -38,6 +40,16 @@ function Input.Focusable(button: GuiButton, opts: { OnFocus: ((focused: boolean)
 		for _, connection in ipairs(previous) do
 			connection:Disconnect()
 		end
+	else
+		button.Destroying:Once(function()
+			local held = focusConnections[button]
+			focusConnections[button] = nil
+			if held then
+				for _, connection in ipairs(held) do
+					connection:Disconnect()
+				end
+			end
+		end)
 	end
 
 	button.Selectable = true
@@ -67,6 +79,11 @@ function Input.Focusable(button: GuiButton, opts: { OnFocus: ((focused: boolean)
 	if options.Decorative == true then
 		Input.Silence(button)
 	end
+end
+
+-- Test hook. True while the button's focus record is held.
+function Input._holdsFocusRecord(button: GuiButton): boolean
+	return focusConnections[button] ~= nil
 end
 
 function Input.ShouldEnterFocus(ctx: any): boolean

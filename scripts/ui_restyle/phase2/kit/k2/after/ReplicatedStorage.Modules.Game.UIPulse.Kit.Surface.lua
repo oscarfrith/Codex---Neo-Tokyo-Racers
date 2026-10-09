@@ -38,7 +38,7 @@ local function keySet(names)
 	return keys
 end
 
-local PANEL_KEYS = keySet({ "Pad", "Hairlines", "Width", "Height" })
+local PANEL_KEYS = keySet({ "Pad", "Hairlines", "Width", "Height", "FitContent" })
 local HAIRLINE_KEYS = keySet({ "Edge", "Colour", "Opacity" })
 local SCRIM_KEYS = keySet({ "Kind" })
 local GLOW_KEYS = keySet({ "Kind", "Colour" })
@@ -177,7 +177,9 @@ local function make(parent, props, scope, def)
 end
 
 -- Panel -------------------------------------------------------------------------------------------------
--- Width or Height nil fills the parent on that axis. Screens parent into component.Content.
+-- Size rule: a nil Width or Height FILLS the parent on that axis; for a panel as tall as what is in it, pass FitContent = true and no Height.
+-- FitContent: Content grows down with its children (give them offset heights, not scale) and the panel is that
+-- plus the pad above and below. A Height wins over FitContent. Screens parent into component.Content.
 local PANEL = {
 	Name = "Surface.Panel",
 	Root = "Panel",
@@ -186,6 +188,9 @@ local PANEL = {
 		checkNumber("Surface.Panel", "Pad", values.Pad, false)
 		checkNumber("Surface.Panel", "Width", values.Width, false)
 		checkNumber("Surface.Panel", "Height", values.Height, false)
+		if values.FitContent ~= nil and type(values.FitContent) ~= "boolean" then
+			error("Surface.Panel: FitContent must be a boolean", 3)
+		end
 	end,
 	Build = function(ctx, state)
 		local root = plainFrame("Panel")
@@ -215,7 +220,13 @@ local PANEL = {
 			local hair = ctx.Hair(Space.Hairline)
 			local hairlines = state.Hairlines ~= false
 			local width = state.Width and UDim.new(0, ctx.Px(state.Width)) or UDim.new(1, 0)
-			local height = state.Height and UDim.new(0, ctx.Px(state.Height)) or UDim.new(1, 0)
+			local fit = state.FitContent == true and state.Height == nil
+			local height = UDim.new(1, 0)
+			if state.Height then
+				height = UDim.new(0, ctx.Px(state.Height))
+			elseif fit then
+				height = UDim.new(0, math.ceil(content.AbsoluteSize.Y) + pad + pad)
+			end
 
 			write(root, "Size", UDim2.new(width, height))
 			write(hairTop, "Size", UDim2.new(1, 0, 0, hair))
@@ -223,8 +234,16 @@ local PANEL = {
 			write(hairBottom, "Size", UDim2.new(1, 0, 0, hair))
 			write(hairBottom, "Visible", hairlines)
 			write(content, "Position", UDim2.fromOffset(pad, pad))
-			write(content, "Size", UDim2.new(1, -pad - pad, 1, -pad - pad))
+			write(content, "AutomaticSize", fit and Enum.AutomaticSize.Y or Enum.AutomaticSize.None)
+			write(content, "Size", fit and UDim2.new(1, -pad - pad, 0, 0) or UDim2.new(1, -pad - pad, 1, -pad - pad))
 		end
+
+		-- Ends with the panel: destroying the root disconnects it.
+		content:GetPropertyChangedSignal("AbsoluteSize"):Connect(function()
+			if state.FitContent == true and state.Height == nil then
+				render()
+			end
+		end)
 
 		return root, render, { Content = content }
 	end,

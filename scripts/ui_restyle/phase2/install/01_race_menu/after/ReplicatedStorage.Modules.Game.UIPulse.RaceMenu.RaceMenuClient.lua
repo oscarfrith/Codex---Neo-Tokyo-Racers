@@ -117,10 +117,15 @@ local function run()
 			Input.BindBack(opened, function()
 				model.Back()
 			end)
+			-- The filter tabs show on the list page only (the Compact detail page has none).
 			Input.BindBumpers(opened, function()
-				model.CycleFilter(-1)
+				if model.Page() == "List" then
+					model.CycleFilter(-1)
+				end
 			end, function()
-				model.CycleFilter(1)
+				if model.Page() == "List" then
+					model.CycleFilter(1)
+				end
 			end)
 		elseif not isOpen and openScope then
 			local closing = openScope

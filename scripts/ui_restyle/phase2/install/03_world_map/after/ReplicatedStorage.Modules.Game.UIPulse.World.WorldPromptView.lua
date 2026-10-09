@@ -103,7 +103,10 @@ local function run()
 	})
 	local card = EventCardView.Mount(cardLayer, model, scope)
 
-	local engineShowing = setmetatable({}, { __mode = "k" }) -- prompt -> true while the engine says it shows
+	-- prompt -> true while the engine says it shows. Strong: an Instance key in a weak table can drop while the
+	-- prompt is alive, and a prompt taken for hidden would be made Custom under the engine UI. Cleared on
+	-- PromptHidden and when the prompt leaves a scoped root.
+	local engineShowing = {}
 	local showing = {} -- prompt -> { Connections, Banner } while our banner is up
 	local cardPrompt
 
@@ -277,6 +280,7 @@ local function run()
 	end
 	local function onRemoving(instance)
 		if instance:IsA("ProximityPrompt") then
+			engineShowing[instance] = nil
 			local record = model:Record(instance)
 			if record then
 				hideBanner(instance, record)

@@ -69,6 +69,15 @@ return function(M: any, env: any): { { name: string, ok: boolean, detail: string
 		assert(button.SelectionImageObject == image, "a second call replaced the selection image")
 	end)
 
+	case("Focusable holds its focus record strongly, and a second call keeps one record", function()
+		local button = env.Detached("TextButton")
+		assert(M._holdsFocusRecord(button) == false, "a record exists before Focusable")
+		M.Focusable(button, { OnFocus = function() end })
+		assert(M._holdsFocusRecord(button) == true, "no record after Focusable")
+		M.Focusable(button)
+		assert(M._holdsFocusRecord(button) == true, "the record was lost by a second call")
+	end)
+
 	case("Focusable Decorative also silences; a non-button errors", function()
 		local button = env.Detached("ImageButton")
 		M.Focusable(button, { Decorative = true })

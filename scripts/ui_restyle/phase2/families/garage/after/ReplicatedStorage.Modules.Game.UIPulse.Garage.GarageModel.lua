@@ -58,6 +58,8 @@ Model.Actions = table.freeze({
 })
 
 local HEADLINE = table.freeze({ "Speed", "Acceleration", "Handling", "Drift", "Braking", "Boost" }) -- GarageComponents L214
+-- Display labels that differ from the headline key (previews r01, r03: "ACCEL"; the full word ran into its bar).
+local HEADLINE_LABEL = table.freeze({ Acceleration = "ACCEL" })
 local TIERS = table.freeze({ E = true, D = true, C = true, B = true, A = true, S = true })
 
 -- GarageUI L413: display names of upgrade effects.
@@ -110,7 +112,7 @@ function Model._statRows(performance: any, baseline: any, reference: number): { 
 		local base = baseValue and math.floor(baseValue + 0.5) or shown
 		table.insert(rows, {
 			Id = name,
-			Label = string.upper(name),
+			Label = HEADLINE_LABEL[name] or string.upper(name),
 			Value = base,
 			Preview = shown ~= base and shown or nil,
 			Max = reference,
@@ -785,6 +787,7 @@ function Model.new(deps: any)
 		State.SelectedModuleInstanceId = nil
 		State.PreviewUpgradeId = nil
 		State.PreviewNeonSlot = nil
+		State.ReturnWorkshop = nil -- a detour left open must not reach the next garage session
 		State.Stage = "Closed"
 	end
 
@@ -826,6 +829,9 @@ function Model.new(deps: any)
 		end
 		if not (result and result.Success) then
 			local text = result and result.Message or TEXT.ColourNotSaved
+			-- ApplyPaint painted the preview directly and the profile did not change, so the key still matches:
+			-- drop it to force the rebuild that restores the saved colours (Classic rebuilt always).
+			previewKey = nil
 			buildPreview()
 			if workspaceVisible then
 				message(text)
@@ -878,7 +884,14 @@ function Model.new(deps: any)
 			if row.Id == id and not row.Owned then
 				local r = call("GarageInvoke", "BuyGarageProperty", { PropertyId = row.PropertyId }) -- GarageUI L174
 				if not r.Success then
-					message(r.Message)
+					message(r.Message or TEXT.PurchaseFailed)
+				else
+					-- The status strip reads page.Spaces, which is from the last page build.
+					local owned, cap = capacity()
+					if page.Spaces ~= nil then
+						page.CapacityText = tostring(owned) .. "/" .. tostring(cap) .. TEXT.Spaces
+						page.Spaces = tostring(owned) .. " / " .. tostring(cap)
+					end
 				end
 				showProperties()
 				return
@@ -1268,6 +1281,9 @@ function Model.new(deps: any)
 		if not tab then
 			return
 		end
+		-- A tab press (or the hub) ends an empty-slot detour: without this the record outlived the detour and the
+		-- next Back, purchase or equip in Parts jumped to the old tab.
+		State.ReturnWorkshop = nil
 		if tab.Workshop == "Add" then
 			-- GarageUI L214 / L303.
 			clearTransientModulePreview()
@@ -1450,7 +1466,7 @@ function Model.new(deps: any)
 				renderBuild()
 			end
 		else
-			message(r.Message)
+			message(r.Message or TEXT.NoReply)
 		end
 	end
 
@@ -1578,7 +1594,7 @@ function Model.new(deps: any)
 					end, function()
 						local buy = call("GarageInvoke", "BuyModuleInstance", { ModuleId = row.Id, VehicleId = State.Profile.CurrentVehicleId, SlotId = State.SelectedSlot }) -- GarageUI L358
 						if not buy.Success then
-							message(buy.Message)
+							message(buy.Message or TEXT.PurchaseFailed)
 							return
 						end
 						clearTransientModulePreview()
@@ -1678,10 +1694,11 @@ function Model.new(deps: any)
 			end, function()
 				local r = call("GarageInvoke", "UpgradeModule", { SlotId = target, ModuleId = moduleId, UpgradeId = u.UpgradeId }) -- GarageUI L437
 				State.PreviewUpgradeId = nil
-				if r.Success then
-					renderUpgrade()
-				else
-					message(r.Message)
+				-- Redrawn on a refusal too: the preview id is cleared, so the card must lose its selection, its stat
+				-- preview and the enabled Upgrade button.
+				renderUpgrade()
+				if not r.Success then
+					message(r.Message or TEXT.PurchaseFailed)
 				end
 			end)
 		end
@@ -1954,7 +1971,7 @@ function Model.new(deps: any)
 				renderPaintShop()
 			else
 				renderPaintShop()
-				message(r.Message)
+				message(r.Message or TEXT.PurchaseFailed)
 			end
 		end)
 	end

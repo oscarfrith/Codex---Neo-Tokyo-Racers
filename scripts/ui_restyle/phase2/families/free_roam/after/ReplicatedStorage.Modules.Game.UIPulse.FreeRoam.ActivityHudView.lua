@@ -90,6 +90,13 @@ function View._timerWidth(trackWidth, elapsed, timeout)
 	return math.floor(trackWidth * fraction + 0.5)
 end
 
+-- The offer card's width: its class width, or wider when the option row needs it. Classic split the card evenly
+-- between its buttons; kit buttons are as wide as their text (a Main or Buy button at least ButtonMainMinWidth),
+-- so a Duel stake menu (FREE, up to three stakes, CANCEL) is wider than the class width.
+function View._cardWidth(base, row, pad)
+	return math.max(base, row + pad + pad)
+end
+
 -- The whole-pixel offset that puts a box of this size on a slot anchor (0.5: centred on it; 1: ending at it).
 function View._boxPlace(width, height, anchor)
 	return -math.floor(width * anchor.X), -math.floor(height * anchor.Y)
@@ -305,9 +312,21 @@ function View.Mount(layer, model, scope, liveLayer)
 	timerFill.BackgroundColor3 = Colour.Cyan
 	attach(offer, liveLayer.Slot("PromptStack"))
 	local offerRow = nil
+	local offerRowSized = nil
 	local shownOffer = nil
 	local offerWidth = 0
+	local offerBase, offerHeight, offerPad = 0, 0, 0
 	local lastTimerWidth = nil
+	-- The card is sized in code from the class width, the layout height and the option row built for this offer.
+	local function sizeOffer()
+		local row = offerRow and offerRow.Instance.Size.X.Offset or 0
+		local width = View._cardWidth(offerBase, row, offerPad)
+		if width ~= offerWidth then
+			offerWidth = width
+			lastTimerWidth = nil
+		end
+		put(offer, "Size", UDim2.fromOffset(width, offerHeight))
+	end
 
 	-- Countdown (live layer): label, image digits, then "GO!".
 	local countdown = plain("Countdown", nil)
@@ -392,9 +411,11 @@ function View.Mount(layer, model, scope, liveLayer)
 		local titleLine = lineOf("SectionHead")
 		local bodyLine = lineOf("Body")
 		local buttonHeight = compact and ctx.Touch(Space.CompactButtonDrawn) or ctx.Px(Space.ButtonHeight)
-		offerWidth = ctx.Px(compact and Space.CompactPromptWidth or Space.ConfirmWidth)
 		local bodyHeight = bodyLine * OFFER_BODY_LINES
-		put(offer, "Size", UDim2.fromOffset(offerWidth, pad + titleLine + gap + bodyHeight + gap + buttonHeight + pad))
+		offerBase = ctx.Px(compact and Space.CompactPromptWidth or Space.ConfirmWidth)
+		offerPad = pad
+		offerHeight = pad + titleLine + gap + bodyHeight + gap + buttonHeight + pad
+		sizeOffer()
 		put(titleRow, "Size", UDim2.new(1, 0, 0, titleLine))
 		put(bodyRow, "Position", UDim2.fromOffset(0, titleLine + gap))
 		put(bodyRow, "Size", UDim2.new(1, 0, 0, bodyHeight))
@@ -447,6 +468,10 @@ function View.Mount(layer, model, scope, liveLayer)
 	end
 
 	local function clearOfferRow()
+		if offerRowSized then
+			offerRowSized:Disconnect()
+			offerRowSized = nil
+		end
 		if offerRow then
 			offerRow.Destroy()
 			offerRow = nil
@@ -481,6 +506,9 @@ function View.Mount(layer, model, scope, liveLayer)
 			})
 		end
 		offerRow = Controls.ButtonRow(buttonsAnchor, { Name = "Options", Buttons = buttons, Align = "Right" }, scope)
+		-- The row's width follows its texts (their bounds can arrive after the build), and the card follows the row.
+		offerRowSized = scope:connect(offerRow.Instance:GetPropertyChangedSignal("Size"), sizeOffer)
+		sizeOffer()
 		put(timerTrack, "Visible", record.Timeout ~= nil)
 		put(timerFill, "Size", UDim2.new(1, 0, 1, 0))
 		put(offer, "Visible", true)

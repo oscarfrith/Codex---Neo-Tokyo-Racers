@@ -88,6 +88,13 @@ function Client._padCommand(code: Enum.KeyCode): string?
 	return nil
 end
 
+-- True when a map-view point (screen pixels from the top-left corner) is on the Roblox top-left buttons: the map
+-- covers the whole screen, so a tap on the Roblox menu or chat button would otherwise also set a waypoint.
+-- barHeight and keepOutX are the Metrics TopBarHeight and TopBarKeepOut.X.
+function Client._inTopBar(point: Vector2, barHeight: number, keepOutX: number): boolean
+	return point.Y < barHeight and point.X < keepOutX
+end
+
 local warned = {}
 local function warnOnce(message)
 	if warned[message] then
@@ -254,6 +261,21 @@ local function run()
 	local function closeIfBlocked()
 		model:CloseIfBlocked()
 	end
+	-- The open map is driven by the pad action (A sets a waypoint at the crosshair), not by GUI selection. A
+	-- selection left on the HUD, or one Roblox makes on ButtonSelect, would take ButtonA and the stick, so it is
+	-- cleared while the map is open and put back on close. A layer drawn above the map keeps its focus.
+	local savedFocus
+	local function clearFocus()
+		local current = GuiService.SelectedObject
+		if not current then
+			return
+		end
+		local gui = current:FindFirstAncestorWhichIsA("ScreenGui")
+		if gui and gui.DisplayOrder > layer.Gui.DisplayOrder then
+			return
+		end
+		GuiService.SelectedObject = nil
+	end
 	scope:connect(model.Changed, function(reason)
 		if reason == "Open" then
 			if openScope then
@@ -268,6 +290,9 @@ local function run()
 			Input.BindAction(openScope, "FullMapPad", padAction, Enum.ContextActionPriority.High.Value + 50,
 				Enum.KeyCode.ButtonA, Enum.KeyCode.ButtonB, Enum.KeyCode.ButtonX, Enum.KeyCode.ButtonY,
 				Enum.KeyCode.ButtonL1, Enum.KeyCode.ButtonR1, Enum.KeyCode.Thumbstick1)
+			savedFocus = GuiService.SelectedObject
+			clearFocus()
+			openScope:connect(GuiService:GetPropertyChangedSignal("SelectedObject"), clearFocus)
 			layer.SetVisible(true)
 			live.SetVisible(true)
 		elseif reason == "Close" then
@@ -277,6 +302,11 @@ local function run()
 			end
 			live.SetVisible(false)
 			layer.SetVisible(false)
+			local back = savedFocus
+			savedFocus = nil
+			if back and back:IsDescendantOf(game) and GuiService.SelectedObject == nil then
+				GuiService.SelectedObject = back
+			end
 		end
 	end)
 	scope:add(function()
@@ -363,6 +393,10 @@ local function run()
 		end
 		local point = view.ToLocal(input.Position)
 		if not model:InsideView(point) then
+			return
+		end
+		local metrics = layer.Metrics
+		if Client._inTopBar(point, metrics.TopBarHeight, metrics.TopBarKeepOut.X) then
 			return
 		end
 		model:PointerBegan(kind == Enum.UserInputType.Touch and input or "Mouse", point)

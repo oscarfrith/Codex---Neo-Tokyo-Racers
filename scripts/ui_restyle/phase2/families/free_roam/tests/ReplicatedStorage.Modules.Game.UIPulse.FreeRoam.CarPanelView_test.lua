@@ -32,6 +32,20 @@ return function(M, env)
 		expect(items[3].Tier == nil, "unknown tier")
 	end)
 
+	case("every row carries its own press, the CURRENT one included (a selected row never fires OnSelected)", function()
+		local pressed = {}
+		local function onActivated(key) table.insert(pressed, key) end
+		for _, items in ipairs({ M._listItems(rows, "BuyMore", onActivated), M._tileItems(rows, "BuyMore", onActivated) }) do
+			expect(items[2].State == "Selected" and type(items[2].OnActivated) == "function", "the current row is pressable")
+			items[2].OnActivated()
+			items[2].OnActivated()
+			items[3].OnActivated()
+			items[1].OnActivated()
+		end
+		expect(table.concat(pressed, ",") == "v1,v1,v2,BuyMore,v1,v1,v2,BuyMore", "each press reports its own key, every time")
+		expect(M._listItems(rows, "BuyMore")[2].OnActivated == nil, "no callback asked, none added")
+	end)
+
 	case("hint and despawn rule", function()
 		expect(M._hint(true, 0, "ALL") == "LOADING VEHICLES...", "loading")
 		expect(M._hint(false, 0, "ALL") == "NO VEHICLES OWNED YET", "an empty garage")

@@ -1,5 +1,8 @@
 -- Owns the race-entry Setup page drawing (time-trial setup and race setup, their header, tier row and footer); it owns no state, calls no remote, fires no bindable and writes no attribute.
 -- Pulse UI (phase2). ReplicatedStorage.Modules.Game.UIPulse.RaceEntry.SetupView. Requires: Tokens, Text, Surface, Controls, Collections, Data, Input.
+local GuiService = game:GetService("GuiService")
+local RunService = game:GetService("RunService")
+
 local kit = script.Parent.Parent.Kit
 local Tokens = require(kit.Tokens)
 local Text = require(kit.Text)
@@ -77,6 +80,31 @@ local function panel(name, parent, markKey, scope)
 	end
 	local surface = Surface.Panel(frame, {}, scope)
 	return { Holder = frame, Panel = surface, Content = surface.Content }
+end
+
+-- Pure. The widest a one-line label may be, in design units (a Text.Label MaxWidth), for a box `boxPx` wide with
+-- `padPx` on each side and `takenPx` used by something else on the line. Never under one pixel.
+function View.LabelWidth(boxPx, padPx, takenPx, scale)
+	local pixels = math.max(1, boxPx - padPx - padPx - (takenPx or 0))
+	return pixels / (scale > 0 and scale or 1)
+end
+
+-- A scope for the bindings that live only while this page shows (Input.Bind* asks only for :add).
+local function newOpenScope()
+	local items = {}
+	local open = {}
+	function open:add(item)
+		table.insert(items, item)
+		return item
+	end
+	function open:destroy()
+		for index = #items, 1, -1 do
+			local item = items[index]
+			items[index] = nil
+			item()
+		end
+	end
+	return open
 end
 
 function View.Mount(layer, model, scope)
@@ -180,8 +208,17 @@ function View.Mount(layer, model, scope)
 
 		moveTo(page.PrizeChip.Instance, 0, label + gap)
 		moveTo(page.Bonus.Instance, 0, label + gap + chipHeight + gap)
-		put(page.Badge.Instance, "AnchorPoint", Vector2.new(1, 0))
-		put(page.Badge.Instance, "Position", UDim2.new(1, 0, 0, 0))
+		-- Regular: the tier badge sits on the label line, at the right. Compact (c07): the column is narrow, so
+		-- the badge goes to the bottom-right corner and the label keeps the whole line.
+		local badgeWidth = page.Badge.Instance.Size.X.Offset
+		put(page.Badge.Instance, "AnchorPoint", Vector2.new(1, compact and 1 or 0))
+		put(page.Badge.Instance, "Position", UDim2.new(1, 0, compact and 1 or 0, 0))
+		-- One-line labels stop at their panel (they truncate) instead of running into the next column.
+		local prizeBox = page.Prize.Holder.Size.X.Offset
+		local bestBox = page.Best.Holder.Size.X.Offset
+		page.PrizeLabel.Set({ MaxWidth = View.LabelWidth(prizeBox, pad, compact and 0 or (badgeWidth + gap), ctx.Scale) })
+		page.Bonus.Set({ MaxWidth = View.LabelWidth(prizeBox, pad, 0, ctx.Scale) })
+		page.BestCaption.Set({ MaxWidth = View.LabelWidth(bestBox, pad, 0, ctx.Scale) })
 		moveTo(page.BestTime.Instance, 0, label + gap)
 		put(page.BestMedal.Instance, "AnchorPoint", Vector2.new(1, 0))
 		put(page.BestMedal.Instance, "Position", UDim2.new(1, 0, 0, label + gap))
@@ -259,6 +296,69 @@ function View.Mount(layer, model, scope)
 
 	local function watch(instance)
 		scope:connect(instance:GetPropertyChangedSignal("Size"), layout)
+	end
+
+	-- Input that exists only while this page shows, on the live layer only (a gallery or test stage has no Gui):
+	-- Escape and ButtonB leave as EXIT does, the bumpers swap the mode tab, and the focus enters on the main
+	-- button when a gamepad or the keyboard is in use. Classic has none of this; nothing is taken while closed.
+	local live = layer.Gui ~= nil and RunService:IsRunning()
+	local openInput = nil
+
+	local function shownPage()
+		if trial and trial.Shown then
+			return trial
+		elseif race and race.Shown then
+			return race
+		end
+		return nil
+	end
+
+	local function ownsFocus(object)
+		if header and object:IsDescendantOf(header.Instance) then
+			return true
+		end
+		local function inPage(page)
+			return page ~= nil and (object:IsDescendantOf(page.Body) or object:IsDescendantOf(page.Row.Instance)
+				or (page.TierHolder ~= nil and object:IsDescendantOf(page.TierHolder)))
+		end
+		return inPage(trial) or inPage(race)
+	end
+
+	local function syncInput(mine)
+		if not live then
+			return
+		end
+		if mine and not openInput then
+			local opened = newOpenScope()
+			openInput = opened
+			Input.BindBack(opened, function()
+				model.Exit()
+			end)
+			local function swapMode()
+				model.SelectMode(model.Mode() == "Race" and "TimeTrial" or "Race")
+			end
+			Input.BindBumpers(opened, swapMode, swapMode)
+			local page = shownPage()
+			if page and Input.ShouldEnterFocus(ctx) then
+				local button = page.Row.Button("Choose")
+				if not (button and button.Instance.Active) then
+					button = page.Row.Button("Exit")
+				end
+				pcall(function()
+					GuiService.SelectedObject = button.Instance
+				end)
+			end
+		elseif not mine and openInput then
+			local closing = openInput
+			openInput = nil
+			closing:destroy()
+			pcall(function()
+				local current = GuiService.SelectedObject
+				if current and ownsFocus(current) then
+					GuiService.SelectedObject = nil
+				end
+			end)
+		end
 	end
 
 	-- Builders (each runs once, on the first render that needs it) ---------------------------------------------
@@ -511,6 +611,7 @@ function View.Mount(layer, model, scope)
 		if mine then
 			layout()
 		end
+		syncInput(mine)
 	end
 
 	if ctx.Changed then
@@ -528,6 +629,10 @@ function View.Mount(layer, model, scope)
 			return
 		end
 		destroyed = true
+		if openInput then
+			openInput:destroy()
+			openInput = nil
+		end
 		if trial then
 			trial.Row.Destroy()
 			trial.Body:Destroy()

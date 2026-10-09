@@ -11,6 +11,7 @@
 --   Confirm = (options) -> (),                          Kit.Overlay.Confirm bound to the HUD root by the client
 --   OpenFullMap = () -> boolean,                        Routes.Resolve("FullMapUI").Open(), may yield
 --   Config = { ProfileRefreshSeconds, PauseFreeRoamMapDuringRace, DefaultControlMode },   cached at start
+--   OwnedVehicles = (() -> {Instance})?,                the children of World.Runtime.PlayerVehicles; absent = profile only
 --   TouchEnabled, GyroscopeEnabled, Clock, Spawn, Delay }
 
 local Model = {}
@@ -220,6 +221,35 @@ function Model._rowsFromProfile(profile, index, categoriesRoot, categoryIndex)
 	return rows
 end
 
+-- Pure. Is a vehicle of this player out, and which owned vehicle is it (VehicleBuildService 268-269)?
+function Model._vehicleOut(vehicles, userId)
+	if userId == nil then return false, "" end
+	for _, vehicle in ipairs(vehicles or {}) do
+		if vehicle:IsA("Model") and tonumber(vehicle:GetAttribute("OwnerUserId")) == userId then
+			return true, tostring(vehicle:GetAttribute("OwnedVehicleId") or "")
+		end
+	end
+	return false, ""
+end
+
+-- Pure. profile.CurrentVehicleId outlives the vehicle (a teleport or a despawn removes the model, not the id), so a
+-- row is CURRENT only while the player's vehicle exists. Returns true when any row changed.
+function Model._markCurrent(rows, out, outId)
+	local changed = false
+	for _, row in ipairs(rows) do
+		if row.ProfileCurrent == nil then row.ProfileCurrent = row.Selected == true end
+		local current = false
+		if out then
+			if outId ~= "" then current = row.VehicleId == outId else current = row.ProfileCurrent end
+		end
+		if row.Selected ~= current then
+			row.Selected = current
+			changed = true
+		end
+	end
+	return changed
+end
+
 -- D761-764.
 function Model._filterRows(rows, category)
 	local filtered = {}
@@ -382,6 +412,20 @@ function Model.new(deps)
 		state.Rows = Model._sortRows(Model._filterRows(allRows, state.Category), state.Sort)
 	end
 
+	local function markRows()
+		if not deps.OwnedVehicles then return false end
+		local out, outId = Model._vehicleOut(deps.OwnedVehicles(), player.UserId)
+		return Model._markCurrent(allRows, out, outId)
+	end
+
+	-- The player's vehicle appeared or went while the panel is open: the CURRENT chip follows it.
+	function self.VehiclesChanged()
+		if not state.CarPanelOpen or state.RowsLoading then return end
+		if not markRows() then return end
+		applyFilter()
+		update("Rows")
+	end
+
 	-- D754-758 in fetch-first form: one token, so a late reply never draws into a newer request (PC 5.1 rule 8).
 	local function loadRows(force)
 		loadToken += 1
@@ -392,6 +436,7 @@ function Model.new(deps)
 			if token ~= loadToken then return end
 			allRows = Model._rowsFromProfile(cachedProfile or {}, Model._cockpitIndex(deps.CategoriesRoot),
 				deps.CategoriesRoot, Model._categoryIndex(deps.CategoriesRoot))
+			markRows()
 			state.RowsLoading = false
 			applyFilter()
 			update("Rows")

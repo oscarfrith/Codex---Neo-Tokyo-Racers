@@ -104,6 +104,14 @@ function HudView._statusPatch(vehicle, _rank)
 	return { Mode = "CashOnly" }, ""
 end
 
+-- Pure: is the gauge or the minimap covered by something drawn on the static layer? The live layer draws above
+-- the static one, so its gauge and minimap would show through an open modal or, on Compact, through the vehicles
+-- side panel (which stands on their side of the screen). Classic keeps one gui, where the modal is simply on top.
+function HudView._liveCovered(state, compact)
+	if state.ActiveModal ~= nil then return true end
+	return compact == true and state.CarPanelOpen == true
+end
+
 -- layer: the static Layer. extra = {
 --   Live: Layer?            the live Layer (the gallery passes none: one stage holds both)
 --   Player: Player?         binds the cash chip; nil in the gallery
@@ -242,7 +250,8 @@ function HudView.Mount(layer, model, scope, extra)
 
 		if buttons.Visible ~= state.ShowBottomButtons then buttons.Visible = state.ShowBottomButtons end
 		show("Status", status, state.ShowStatus)
-		show("Gauge", gauge, state.ShowGauge)
+		local covered = HudView._liveCovered(state, compact)
+		show("Gauge", gauge, state.ShowGauge and not covered)
 
 		local rank = model.GetRank()
 		if not compact then
@@ -254,11 +263,13 @@ function HudView.Mount(layer, model, scope, extra)
 		end
 		-- D919-927: the arc is the XP fraction; with no Rank attribute yet it shows rank 1 with an empty arc.
 		minimap.SetRank(rank.Rank, rank.Visible and rank.Fraction or 0)
-		if shown.Minimap ~= state.ShowMinimap then
-			shown.Minimap = state.ShowMinimap
-			minimap.SetVisible(state.ShowMinimap)
-			if marker then marker.Visible = state.ShowMinimap end
+		-- The marker keeps the model's answer (the full map owner reads it); only the drawn minimap is covered.
+		local minimapShown = state.ShowMinimap and not covered
+		if shown.Minimap ~= minimapShown then
+			shown.Minimap = minimapShown
+			minimap.SetVisible(minimapShown)
 		end
+		if marker and marker.Visible ~= state.ShowMinimap then marker.Visible = state.ShowMinimap end
 
 		carPanel.Render(reason)
 		modals.Render(reason)
@@ -290,7 +301,7 @@ function HudView.Mount(layer, model, scope, extra)
 			if state.MapLive then
 				local part = subject.Part
 				if part then
-					minimap.Step(dt, part, subject.VehiclePart, state.ShowMinimap)
+					minimap.Step(dt, part, subject.VehiclePart, shown.Minimap == true)
 				else
 					minimap.Idle()
 				end

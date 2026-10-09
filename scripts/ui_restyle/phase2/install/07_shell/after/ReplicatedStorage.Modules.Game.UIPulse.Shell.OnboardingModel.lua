@@ -66,6 +66,10 @@ Model.Pages = table.freeze({
 })
 -- 79-80.
 Model.ActionSteps = table.freeze({ N6 = true, X3 = true })
+-- Pulse: a card whose target can sit on another sub-page of the same screen than the page root. The Compact race
+-- menu shows TeleportToStart on its detail page, where the list (the RaceBrowser root, CardContent) is hidden. While
+-- such a card's own target shows, the page is not treated as closed.
+Model.OffRoot = table.freeze({ N6 = true })
 Model.Placement = table.freeze({
 	B2 = "Below", B3 = "Below", B4 = "Below", G4 = "Left", O1 = "Below", L2 = "Above",
 	Z1 = "Above", Z2 = "Above", Z3 = "Above", AA1 = "Above", AB1 = "Above",
@@ -172,6 +176,8 @@ local ADVANCE_DEBOUNCE = 0.18 -- 442
 local RESOLVE_DELAY = 0.08 -- 411
 local RESOLVE_DELAY_MAX = 0.64 -- Pulse: the retry backs off instead of running at 0.08 s for as long as a target is missing
 local GET_STATE_ATTEMPTS = 60 -- 748
+local TARGET_GIVE_UP_SECONDS = 10 -- Pulse: a target missing this long on an open page releases the HUD shortcut locks
+local FIRST_DRIVE_WATCHDOG_SECONDS = 3 -- Pulse: the controls modal must have opened by then, or the pending flag is cleared
 local SHORTCUT_PAGES = table.freeze({ VehicleShortcut = true, RaceShortcut = true, GarageShortcut = true }) -- 643
 
 local function newSignal()
@@ -228,7 +234,13 @@ function Model.new(deps)
 	self._gateGeneration = 0
 	self._resolveDelay = RESOLVE_DELAY
 	self._rootMissingAt = nil
+	self._targetMissingAt = nil
 	self._warnedMissingTarget = false
+	-- Pulse: pages completed here whose MarkSeen reply has not arrived. A state that arrives meanwhile (another reply,
+	-- OnboardingStateChanged) keeps them seen, so a page never begins twice and a shortcut never locks again.
+	self._pendingSeen = {}
+	-- Pulse: true once a fallback released the Car, Race and Garage locks for this session (see _releaseLocks).
+	self.LocksReleased = false
 	self._lastAdvance = 0
 	self._awaitClose = false -- 677
 	self._spawnPending = false -- 678
@@ -368,14 +380,25 @@ function Model:SyncObjectives()
 	self:_fire("Objectives")
 end
 
--- 667: Car, Race and Garage are usable once their shortcut page has been seen.
+-- 667: Car, Race and Garage are usable once their shortcut page has been seen, or once a fallback released them.
 function Model:Locks()
 	local seen = self.State.SeenPages
 	local result = {}
 	for name, pageId in pairs(Model.LockPages) do
-		result[name] = seen[pageId] == true
+		result[name] = self.LocksReleased == true or seen[pageId] == true
 	end
 	return result
+end
+
+-- Pulse: the player is never left with dead HUD buttons. Called when the saved progress never arrived or when an open
+-- page could not find its target. Warns once; the callouts still play when their pages show.
+function Model:_releaseLocks(reason)
+	if self.LocksReleased then
+		return
+	end
+	self.LocksReleased = true
+	self._deps.Warn("[Onboarding] HUD shortcuts unlocked without their callouts: " .. tostring(reason))
+	self:_fire("State")
 end
 
 -- 657-665: which desk the world trail leads to. "Dealership", "GarageDesk" or nil (no trail).
@@ -437,6 +460,7 @@ end
 function Model:_pin(objects)
 	self.ActiveObjects = objects
 	self._rootMissingAt = nil
+	self._targetMissingAt = nil
 	self._warnedMissingTarget = false
 	self._resolveDelay = RESOLVE_DELAY
 	self:_fire("Callout")
@@ -460,12 +484,21 @@ function Model:_scheduleResolve()
 				self.ActiveRoot = newRoot
 				self._rootMissingAt = nil
 			else
+				local offRootId = Model.Pages[self.ActivePage][self.ActiveIndex]
+				if Model.OffRoot[offRootId] then
+					local okOffRoot, found = pcall(deps.Targets.Card, offRootId, Model.Targets[offRootId], nil)
+					if okOffRoot and found then
+						self:_pin(found)
+						return
+					end
+				end
 				self._rootMissingAt = self._rootMissingAt or deps.Clock()
 				if deps.Clock() - self._rootMissingAt >= self:_setting("PageAbandonSeconds", 3) then
 					deps.Print("[Tutorial] page closed before completion: " .. tostring(self.ActivePage))
 					self.ActivePage = nil
 					self.ActiveIndex = nil
 					self.ActiveRoot = nil
+					self._targetMissingAt = nil
 					self._resolveGeneration += 1
 					self._resolveDelay = RESOLVE_DELAY
 					self:_fire("PageEnded")
@@ -485,6 +518,10 @@ function Model:_scheduleResolve()
 				deps.Warn("[Tutorial] waiting for target " .. tostring(self.ActivePage) .. " " .. tostring(id))
 			end
 			self._rootMissingAt = self._rootMissingAt or deps.Clock()
+			self._targetMissingAt = self._targetMissingAt or deps.Clock()
+			if deps.Clock() - self._targetMissingAt >= self:_setting("TargetGiveUpSeconds", TARGET_GIVE_UP_SECONDS) then
+				self:_releaseLocks("no target for " .. tostring(self.ActivePage) .. " " .. tostring(id))
+			end
 			self._resolveDelay = math.min(RESOLVE_DELAY_MAX, self._resolveDelay * 2)
 			self:_scheduleResolve()
 		end
@@ -497,6 +534,7 @@ function Model:_beginPage(pageId, root)
 	self.ActiveIndex = 1
 	self.ActiveRoot = root
 	self._rootMissingAt = nil
+	self._targetMissingAt = nil
 	self._resolveDelay = RESOLVE_DELAY
 	self._deps.Print("[Tutorial] begin " .. pageId .. " " .. Model.Pages[pageId][1])
 	self:_scheduleResolve()
@@ -511,6 +549,9 @@ function Model:_adopt(result)
 		if type(result.Completed) ~= "table" then
 			result.Completed = {}
 		end
+		for pageId in pairs(self._pendingSeen) do
+			result.SeenPages[pageId] = true
+		end
 		self.State = result
 		return true
 	end
@@ -520,6 +561,10 @@ end
 function Model:_markSeen(pageId)
 	local remote = self._deps.Remotes.OnboardingInvoke
 	local ok, result = pcall(call, remote, "MarkSeen", { PageId = pageId })
+	if ok and type(result) == "table" and result.Success then
+		-- The server has it now; a refused or failed call keeps the page seen for this session only.
+		self._pendingSeen[pageId] = nil
+	end
 	if ok and self:_adopt(result) then
 		self:_fire("State")
 	end
@@ -536,10 +581,12 @@ function Model:Advance()
 	if self.ActiveIndex > #Model.Pages[self.ActivePage] then
 		local done = self.ActivePage
 		self.State.SeenPages[done] = true
+		self._pendingSeen[done] = true
 		self.ActivePage = nil
 		self.ActiveIndex = nil
 		self.ActiveRoot = nil
 		self.ActiveObjects = nil
+		self._targetMissingAt = nil
 		self._resolveGeneration += 1
 		self._resolveDelay = RESOLVE_DELAY
 		self:_fire("Callout")
@@ -553,6 +600,7 @@ function Model:Advance()
 		end)
 	else
 		deps.Print("[Tutorial] advance " .. self.ActivePage .. " " .. Model.Pages[self.ActivePage][self.ActiveIndex])
+		self._targetMissingAt = nil
 		self._resolveDelay = RESOLVE_DELAY
 		self:_scheduleResolve()
 	end
@@ -602,9 +650,19 @@ function Model:_tryBeginFirstDriveControls(allowSpawnSignal)
 	self._requestInFlight = true
 	self._awaitClose = true
 	state.SeenPages[Model.FirstDrivePage] = true
+	self._pendingSeen[Model.FirstDrivePage] = true
 	event:Fire({ FirstDrive = true })
 	deps.Spawn(function()
 		self:_markSeen(Model.FirstDrivePage)
+	end)
+	-- Pulse: FirstDrivePresentationPending blocks every page (and so every unlock) until the controls modal clears it.
+	-- If no listener opened the modal, nothing ever would: clear the flag here and say so.
+	deps.Delay(FIRST_DRIVE_WATCHDOG_SECONDS, function()
+		local player = deps.Player
+		if player:GetAttribute("FirstDrivePresentationPending") == true and player:GetAttribute("DrivingControlsOpen") ~= true then
+			deps.Warn("[Onboarding] first-drive controls did not open; FirstDrivePresentationPending cleared")
+			player:SetAttribute("FirstDrivePresentationPending", false)
+		end
 	end)
 	return true
 end
@@ -730,6 +788,10 @@ function Model:Start()
 				return
 			end
 			deps.Wait(math.min(5, 0.5 * attempt))
+		end
+		-- Pulse: Classic left Car, Race and Garage locked for the whole session here.
+		if not self.Ready then
+			self:_releaseLocks("saved progress did not arrive after " .. GET_STATE_ATTEMPTS .. " GetState attempts")
 		end
 	end)
 end

@@ -416,7 +416,61 @@ return function(M, env)
 			local tab = tabs.Instance:FindFirstChild(id)
 			expect(tab ~= nil and tab:IsA("GuiButton") and tab.Selectable == true, id .. " is not a selectable GuiButton")
 			expect(tab.Size.Y.Offset >= ctx.Touch(1), id .. " is under the touch size")
+			expect(tab.Size.X.Offset >= ctx.Touch(1), id .. " is narrower than the touch size")
 		end
+		tabs.Destroy()
+		scope:destroy()
+	end)
+	case("tabWrap: a tab that would pass the limit starts the next line; the first of a line never wraps", function()
+		local x, y = M._tabWrap(100, 0, 48, 56, 140)
+		expect(x == 0 and y == 56, "did not wrap")
+		x, y = M._tabWrap(92, 0, 48, 56, 140)
+		expect(x == 92 and y == 0, "wrapped a tab that fits")
+		x, y = M._tabWrap(0, 56, 300, 56, 140)
+		expect(x == 0 and y == 56, "wrapped the first tab of a line")
+		x, y = M._tabWrap(5000, 0, 48, 56, math.huge)
+		expect(x == 5000 and y == 0, "wrapped with no limit")
+	end)
+	case("Tabs: tier buttons are touch size wide with the touch gap on Compact, and wrap inside the safe area", function()
+		local parent, ctx = stage("C844")
+		local scope = newScope()
+		local items = {}
+		for index, tier in ipairs({ "E", "D", "C", "B", "A", "S" }) do
+			items[index] = { Id = tier, Text = tier, Tier = tier }
+		end
+		local tabs = M.Tabs(parent, { Selected = "E", Tabs = items }, scope)
+		local root = tabs.Instance
+		local floor = ctx.Touch(1)
+		expect(floor >= Tokens.Space.TouchMin, "the touch floor is under TouchMin")
+		expect(root.TabE.Size.X.Offset >= floor and root.TabS.Size.X.Offset >= floor, "a tier tab is narrower than the touch size")
+		expect(root.TabD.Position.X.Offset - (root.TabE.Position.X.Offset + root.TabE.Size.X.Offset) >= Tokens.Space.TouchGap, "touch gap")
+		expect(root.TabS.Position.Y.Offset == 0 and root.Size.Y.Offset == root.TabE.Size.Y.Offset, "six tier tabs wrapped on a phone")
+		local many = {}
+		for index = 1, 20 do
+			many[index] = { Id = "T" .. index, Text = "E", Tier = "E" }
+		end
+		tabs.Set({ Tabs = many, Selected = "T1" })
+		for index = 1, 20 do
+			local tab = root["TabT" .. index]
+			expect(tab.Position.X.Offset + tab.Size.X.Offset <= ctx.Size.X, "a tab passes the safe area")
+		end
+		expect(root.TabT20.Position.Y.Offset > 0 and root.Size.Y.Offset > root.TabT1.Size.Y.Offset, "twenty tabs did not wrap")
+		expect(root.Size.X.Offset <= ctx.Size.X, "the row is wider than the safe area")
+		tabs.Destroy()
+		scope:destroy()
+	end)
+	case("Tabs: Regular with a mouse keeps natural widths on one line", function()
+		local parent = stage("R1080")
+		local scope = newScope()
+		local many = {}
+		for index = 1, 60 do
+			many[index] = { Id = "T" .. index, Text = "E", Tier = "E" }
+		end
+		local tabs = M.Tabs(parent, { Selected = "T1", Tabs = many }, scope)
+		local root = tabs.Instance
+		expect(root.TabT60.Position.Y.Offset == 0 and root.Size.Y.Offset == root.TabT1.Size.Y.Offset, "Regular wrapped")
+		local last = root.TabT60
+		expect(root.Size.X.Offset == last.Position.X.Offset + last.Size.X.Offset, "Regular row width")
 		tabs.Destroy()
 		scope:destroy()
 	end)

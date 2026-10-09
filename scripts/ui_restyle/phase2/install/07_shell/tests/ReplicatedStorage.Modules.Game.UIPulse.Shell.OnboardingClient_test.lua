@@ -158,9 +158,28 @@ return function(M, env)
 		expect(frame.Name == "Race", "a marked frame is not a button and is skipped")
 		targets.ApplyLocks({ Car = true, Garage = true, Race = true })
 		expect(car.Active == true and car.Selectable == true and car.AutoButtonColor == true, "Car unlocked")
-		car.Name = "Renamed"
+		-- A kit component may write its root's Name again; the instance still carries its latest mark.
+		car.Name = "IconButton"
 		targets.ApplyLocks({ Car = false, Garage = true, Race = true })
-		expect(car.Active == true, "an instance that no longer carries the mark is left alone")
+		expect(car.Active == false, "a renamed root is still the Car button while Car is its latest mark")
+		targets.ApplyLocks({ Car = true, Garage = true, Race = true })
+		Input.Mark(car, "Garage")
+		targets.ApplyLocks({ Car = false, Garage = true, Race = true })
+		expect(car.Active == true, "an instance re-marked with another key no longer carries Car")
+	end)
+
+	case("name marks survive a kit rename: Stats and UpgradeBudget (a panel and a label write their Name when they draw)", function()
+		local targets, make = finder()
+		local stats = make("Frame", "Stats")
+		local budget = make("Frame", "UpgradeBudget")
+		expect(stats.Name == "Stats" and budget.Name == "UpgradeBudget", "the mark names them")
+		stats.Name = "StatPanel"
+		budget.Name = "BudgetText"
+		expect(targets.Card("G4", Model.Targets.G4, nil)[1] == stats, "G4 still finds the stat panel")
+		expect(targets.Card("L2", Model.Targets.L2, nil)[1] == budget, "L2 still finds the budget line")
+		Input.Mark(stats, "Capacity")
+		expect(targets.Card("G4", Model.Targets.G4, nil) == nil, "re-marked with another name: no longer Stats")
+		expect(targets.Card("A2", Model.Targets.A2, nil)[1] == stats, "it is Capacity now")
 	end)
 
 	case("follow path: resolves a path that exists, reports nil for one that does not", function()

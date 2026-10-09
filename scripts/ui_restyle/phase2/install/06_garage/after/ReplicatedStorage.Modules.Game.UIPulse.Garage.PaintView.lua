@@ -71,6 +71,22 @@ function PaintView._fit(width: number, side: number, gap: number, count: number)
 	return math.clamp(math.floor((width + gap) / (side + gap)), 0, count)
 end
 
+-- Pure. Do the presets stand clear of the controls? Both are screen px down from the top of the stage. `slack` is
+-- how far the controls' box may reach into the preset row: its lower edge is touch padding under the slider bar.
+function PaintView._presetsClear(controlsBottom: number, paletteTop: number, slack: number): boolean
+	return controlsBottom - slack <= paletteTop
+end
+
+-- Pure. The Regular panel's height: its start height, or what the channel switch and the sliders need with the
+-- gaps between them and the panel padding, whichever is larger.
+function PaintView._panelHeight(start: number, tabsHeight: number, sliderHeights: { number }, gap: number, pad: number): number
+	local height = tabsHeight + pad + pad
+	for _, slider in ipairs(sliderHeights) do
+		height += gap + slider
+	end
+	return math.max(start, height)
+end
+
 local function plainFrame(name: string, parent: Instance): Frame
 	local frame = Instance.new("Frame")
 	frame.Name = name
@@ -110,6 +126,8 @@ function PaintView.New(controlsParent: GuiObject, paletteParent: GuiObject, prop
 	local shownToken: any = nil
 	local channelSig = ""
 	local settingUp = false
+	local wanted = false -- Show was called and Hide was not
+	local fitHeight: any = nil
 
 	-- Controls: a slate panel on Regular (tabs over three sliders); a bare row on Compact (preview c14).
 	local controls = plainFrame("PaintControls", controlsParent)
@@ -145,7 +163,10 @@ function PaintView.New(controlsParent: GuiObject, paletteParent: GuiObject, prop
 	sliderRow.LayoutOrder = 2
 	listLayout(sliderRow, compact, gap)
 	local sliders = {}
+	local sliderHolders = {}
 	local swatches = {}
+	-- The width of one slider. Regular: the panel content width, which grows with the channel switch (below).
+	local holderWidth = compact and sliderWidth or (sliderWidth - ctx.Px(Space.Pad) - ctx.Px(Space.Pad))
 
 	local function colour(): Color3
 		return Color3.fromHSV(hsv[1], hsv[2], hsv[3])
@@ -177,7 +198,7 @@ function PaintView.New(controlsParent: GuiObject, paletteParent: GuiObject, prop
 		local holder = plainFrame("Slider" .. index, sliderRow)
 		holder.LayoutOrder = index
 		-- Sized before the slider is built, so the slider fills it (a slider takes its parent's width).
-		local holderWidth = compact and sliderWidth or (sliderWidth - ctx.Px(Space.Pad) - ctx.Px(Space.Pad))
+		sliderHolders[index] = holder
 		holder.Size = UDim2.fromOffset(holderWidth, ctx.Px(Space.SliderHeight))
 		local slider = Controls.Slider(holder, {
 			Name = LABELS[index],
@@ -205,11 +226,56 @@ function PaintView.New(controlsParent: GuiObject, paletteParent: GuiObject, prop
 			if height > 0 and holder.Size.Y.Offset ~= height then
 				holder.Size = UDim2.fromOffset(holderWidth, height)
 			end
+			if fitHeight then
+				fitHeight()
+			end
 		end
 		fitHolder()
 		table.insert(bag, scope:connect(slider.Instance:GetPropertyChangedSignal("Size"), fitHolder))
 	end
 	sliderRow.AutomaticSize = Enum.AutomaticSize.XY
+
+	-- Regular: the panel is as tall as what it holds. A labelled slider is taller than SliderHeight, and with
+	-- the start height alone the third slider ended below the panel's lower hairline.
+	local startHeight = controls.Size.Y.Offset
+	fitHeight = function()
+		if destroyed or compact then
+			return
+		end
+		local heights = {}
+		for index, holder in ipairs(sliderHolders) do
+			heights[index] = holder.Size.Y.Offset
+		end
+		local height = PaintView._panelHeight(startHeight, tabs.Instance.Size.Y.Offset, heights, gap, ctx.Px(Space.Pad))
+		if controls.Size.Y.Offset ~= height then
+			controls.Size = UDim2.fromOffset(controls.Size.X.Offset, height)
+		end
+	end
+	fitHeight()
+
+	-- Regular: the panel is as wide as its channel switch needs (a car with four channels is wider than the
+	-- default panel: capture paint_tab drew NEON outside it), and the sliders follow.
+	local function fitWidth()
+		if destroyed or compact then
+			return
+		end
+		local pad = ctx.Px(Space.Pad)
+		local width = math.max(sliderWidth, tabs.Instance.Size.X.Offset + pad + pad)
+		if controls.Size.X.Offset ~= width then
+			controls.Size = UDim2.fromOffset(width, controls.Size.Y.Offset)
+		end
+		holderWidth = width - pad - pad
+		for _, holder in ipairs(sliderHolders) do
+			if holder.Size.X.Offset ~= holderWidth then
+				holder.Size = UDim2.fromOffset(holderWidth, holder.Size.Y.Offset)
+			end
+		end
+	end
+	fitWidth()
+	table.insert(bag, scope:connect(tabs.Instance:GetPropertyChangedSignal("Size"), function()
+		fitWidth()
+		fitHeight()
+	end))
 
 	-- Presets, where the tile row is. Regular: both rows. Compact: the first row only, as many as fit.
 	local palette = plainFrame("PaintPalette", paletteParent)
@@ -239,6 +305,24 @@ function PaintView.New(controlsParent: GuiObject, paletteParent: GuiObject, prop
 		end
 	end
 
+	-- Compact: on the shortest phones the slider row reaches down into the preset row (568x320: the sliders end
+	-- on the screen edge, the presets start 55 px above it). The presets are then left out; the three sliders
+	-- reach every colour. Positions are the stage offsets of the two slots and of the frames in them.
+	local function syncPalette()
+		if destroyed then
+			return
+		end
+		local visible = wanted
+		if visible and compact then
+			local bottom = controlsParent.Position.Y.Offset + controls.Position.Y.Offset + controls.Size.Y.Offset
+			local top = paletteParent.Position.Y.Offset - palette.Size.Y.Offset
+			visible = PaintView._presetsClear(bottom, top, gap)
+		end
+		if palette.Visible ~= visible then
+			palette.Visible = visible
+		end
+	end
+
 	local function layoutPalette()
 		if destroyed or #swatches == 0 then
 			return
@@ -252,8 +336,11 @@ function PaintView.New(controlsParent: GuiObject, paletteParent: GuiObject, prop
 			entry.Component.Set({ Visible = entry.Row <= shownRows and column <= columns })
 		end
 		palette.Size = UDim2.fromOffset(columns * side + math.max(0, columns - 1) * gap, shownRows * side + (shownRows - 1) * gap)
+		syncPalette()
 	end
 	layoutPalette()
+	table.insert(bag, scope:connect(controls:GetPropertyChangedSignal("Position"), syncPalette))
+	table.insert(bag, scope:connect(controlsParent:GetPropertyChangedSignal("Position"), syncPalette))
 	table.insert(bag, scope:connect(swatches[1].Component.Instance:GetPropertyChangedSignal("Size"), layoutPalette))
 	table.insert(bag, scope:connect(paletteParent:GetPropertyChangedSignal("Position"), layoutPalette))
 
@@ -291,9 +378,8 @@ function PaintView.New(controlsParent: GuiObject, paletteParent: GuiObject, prop
 		if not controls.Visible then
 			controls.Visible = true
 		end
-		if not palette.Visible then
-			palette.Visible = true
-		end
+		wanted = true
+		syncPalette()
 	end
 
 	function self.Hide()
@@ -301,12 +387,11 @@ function PaintView.New(controlsParent: GuiObject, paletteParent: GuiObject, prop
 			return
 		end
 		shownToken = nil
+		wanted = false
 		if controls.Visible then
 			controls.Visible = false
 		end
-		if palette.Visible then
-			palette.Visible = false
-		end
+		syncPalette()
 	end
 
 	function self.Destroy()

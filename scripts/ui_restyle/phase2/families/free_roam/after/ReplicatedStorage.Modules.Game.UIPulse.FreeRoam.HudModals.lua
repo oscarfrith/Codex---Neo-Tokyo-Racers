@@ -78,6 +78,26 @@ function HudModals._segments(options, lockedOf)
 	return items
 end
 
+-- Pure: the height of a vertical stack of parts with `gap` between them (real pixels).
+function HudModals._stack(parts, gap)
+	local total = 0
+	for index, height in ipairs(parts) do
+		total += height + (index > 1 and gap or 0)
+	end
+	return total
+end
+
+-- Pure: the design Height of the modal panel that holds `content` real pixels under its title row. Overlay.Modal
+-- insets the content by one pad on every side and puts one pad under the title; Surface.Panel scales Height back.
+function HudModals._panelHeight(content, title, pad, scale)
+	return (pad * 3 + title + content) / scale
+end
+
+-- Pure: the height the pack list may take: all of it, or what the screen leaves (never less than one row).
+function HudModals._listRoom(full, row, screen, taken)
+	return math.min(full, math.max(row, screen - taken))
+end
+
 -- root is the static layer's Root (DesignRoot). opts = { Player: Player?, SampleCash: number? } (gallery: no player).
 function HudModals.Mount(root, model, scope, opts)
 	opts = opts or {}
@@ -86,10 +106,17 @@ function HudModals.Mount(root, model, scope, opts)
 	local compact = ctx.Class == "Compact"
 	local space = k.Tokens.Space
 	local px = ctx.Px
-	local gap = px(space.Gap)
-	-- Token request (NOTES_a): CompactModalWidth. Until it exists Compact modals use CompactPromptWidth (300 dp).
+	-- The kit's 1080 px to Compact dp factor (Controls and Collections use the same one for gaps).
+	local unit = compact and space.TouchGap / space.Pad or 1
+	local gap = px(space.Gap * unit)
+	local pad = px(space.Pad)
+	-- Token request (NOTES_a): CompactModalWidth. Until it exists Compact modals use CompactPromptWidth (300 dp);
+	-- Settings takes ListWidth there, as its label and segments share one row (c04a).
 	local width = compact and space.CompactPromptWidth or space.ModalMaxWidth
 	local rowHeight = compact and ctx.Touch(space.CompactButtonDrawn) or px(space.StatRowHeight)
+	local footerHeight = ctx.Touch(compact and space.CompactButtonDrawn or space.ButtonHeight)
+	local titleSize, titleScale = k.Text.SizeFor("SectionHead", ctx)
+	local titleHeight = math.ceil(titleSize * (titleScale or 1))
 
 	local layer = frame("ModalLayer", root)
 	layer.BackgroundColor3 = k.Tokens.Colour.Black
@@ -108,9 +135,10 @@ function HudModals.Mount(root, model, scope, opts)
 	local function footer(content, order)
 		local holder = frame("Footer", content)
 		holder.LayoutOrder = order
-		holder.Size = UDim2.new(1, 0, 0, compact and ctx.Touch(space.CompactButtonDrawn) or px(space.ButtonHeight))
+		holder.Size = UDim2.new(1, 0, 0, footerHeight)
 		local layout = listLayout(holder, Enum.FillDirection.Horizontal, gap)
 		layout.HorizontalAlignment = Enum.HorizontalAlignment.Right
+		layout.VerticalAlignment = Enum.VerticalAlignment.Center
 		return holder
 	end
 
@@ -119,8 +147,12 @@ function HudModals.Mount(root, model, scope, opts)
 		listLayout(content, Enum.FillDirection.Vertical, gap)
 		local columns = frame("Columns", content)
 		columns.LayoutOrder = 1
-		local rows = math.max(#DRIVING_ROWS, #FOOT_ROWS) + 1
-		columns.Size = UDim2.new(1, 0, 0, rows * rowHeight)
+		-- Compact: short rows and small caps, so the title, the seven keys and the footer fit a 320 dp high screen
+		-- (rows of the touch height put DONE under the screen edge).
+		local keyRow = compact and px(space.CompactStatusHeight) or rowHeight
+		local capSize = compact and space.Pad or nil
+		local rows = (compact and #DRIVING_ROWS or math.max(#DRIVING_ROWS, #FOOT_ROWS)) + 1
+		columns.Size = UDim2.new(1, 0, 0, rows * keyRow)
 
 		local function column(name, title, list, order)
 			local holder = frame(name, columns)
@@ -130,15 +162,15 @@ function HudModals.Mount(root, model, scope, opts)
 			listLayout(holder, Enum.FillDirection.Vertical, 0)
 			local head = frame("Head", holder)
 			head.LayoutOrder = 0
-			head.Size = UDim2.new(1, 0, 0, rowHeight)
+			head.Size = UDim2.new(1, 0, 0, keyRow)
 			k.Text.Label(head, { Name = "Title", Text = title, Role = "Label", Colour = "Pink", Align = "Left" }, own)
 			for index, entry in ipairs(list) do
 				local row = frame("Row" .. index, holder)
 				row.LayoutOrder = index
-				row.Size = UDim2.new(1, 0, 0, rowHeight)
+				row.Size = UDim2.new(1, 0, 0, keyRow)
 				local layout = listLayout(row, Enum.FillDirection.Horizontal, gap)
 				layout.VerticalAlignment = Enum.VerticalAlignment.Center
-				k.Surface.KeyCap(row, { Name = "Key", Text = entry[1], LayoutOrder = 1 }, own)
+				k.Surface.KeyCap(row, { Name = "Key", Text = entry[1], Size = capSize, LayoutOrder = 1 }, own)
 				k.Text.Label(row, { Name = "Action", Text = entry[2], Role = "Value", Colour = "White", Align = "Left", LayoutOrder = 2 }, own)
 			end
 			return holder
@@ -148,11 +180,16 @@ function HudModals.Mount(root, model, scope, opts)
 		-- only by a keyboard or gamepad player.
 		if not compact then column("OnFoot", "ON FOOT", FOOT_ROWS, 2) end
 
-		local hint = frame("AutoHint", content)
-		hint.LayoutOrder = 2
-		hint.Size = UDim2.new(1, 0, 0, rowHeight)
-		k.Text.Label(hint, { Name = "HintText", Text = "Controls change automatically when entering a vehicle.", Role = "Body",
-			Colour = "TextMuted", Align = "Left", Wrap = true }, own)
+		local parts = { rows * keyRow }
+		if not compact then
+			local hint = frame("AutoHint", content)
+			hint.LayoutOrder = 2
+			hint.Size = UDim2.new(1, 0, 0, rowHeight)
+			k.Text.Label(hint, { Name = "HintText", Text = "Controls change automatically when entering a vehicle.", Role = "Body",
+				Colour = "TextMuted", Align = "Left", Wrap = true }, own)
+			table.insert(parts, rowHeight)
+		end
+		table.insert(parts, footerHeight)
 
 		local done = k.Controls.Button(footer(content, 3), {
 			Name = "Done", Variant = "Main", Text = "DONE", Icon = "tick",
@@ -160,6 +197,7 @@ function HudModals.Mount(root, model, scope, opts)
 		}, own)
 		local shownText = "DONE"
 		return {
+			Height = HudModals._stack(parts, gap),
 			Sync = function(state)
 				-- D472: NEXT during the first-drive reveal.
 				local text = state.ControlsReveal and "NEXT" or "DONE"
@@ -175,13 +213,20 @@ function HudModals.Mount(root, model, scope, opts)
 	local function buildSettings(content, own)
 		listLayout(content, Enum.FillDirection.Vertical, gap)
 		local syncs = {}
+		local settingHeight = compact and rowHeight or (rowHeight + gap + px(space.Pad))
 
 		local function settingRow(order, name, title, body, options, lockedOf, current, onPick)
 			local row = frame(name, content)
 			row.LayoutOrder = order
 			local labelHeight = px(space.Pad)
-			row.Size = UDim2.new(1, 0, 0, compact and (labelHeight + gap + rowHeight) or (rowHeight + gap + labelHeight))
-			k.Text.Label(row, { Name = "Title", Text = title, Role = compact and "Label" or "Button", Colour = "White", Align = "Left" }, own)
+			row.Size = UDim2.new(1, 0, 0, settingHeight)
+			local heading = k.Text.Label(row, { Name = "Title", Text = title, Role = compact and "Label" or "Button", Colour = "White", Align = "Left" }, own)
+			if compact then
+				-- c04a: the label sits left of its segments on one row (a label above them made three rows taller
+				-- than a phone screen).
+				local line = k.Text.SizeFor("Label", ctx)
+				heading.Instance.Position = UDim2.fromOffset(0, math.floor((rowHeight - line) / 2))
+			end
 			if body and not compact then
 				local sub = frame("Sub", row)
 				sub.Position = UDim2.fromOffset(0, rowHeight)
@@ -198,15 +243,12 @@ function HudModals.Mount(root, model, scope, opts)
 					onPick(id)
 				end,
 			}, own)
-			if compact then
-				tabs.Instance.Position = UDim2.fromOffset(0, labelHeight + gap)
-			else
-				tabs.Instance.AnchorPoint = Vector2.new(1, 0)
-				tabs.Instance.Position = UDim2.fromScale(1, 0)
-			end
+			tabs.Instance.AnchorPoint = Vector2.new(1, 0)
+			tabs.Instance.Position = UDim2.fromScale(1, 0)
 			table.insert(syncs, function()
 				local value = current()
-				if value ~= shown then
+				-- Tabs.Select throws on an id it does not hold (a stray attribute value): keep the shown one then.
+				if value ~= shown and table.find(options, value) then
 					shown = value
 					syncing = true
 					tabs.Select(value)
@@ -233,7 +275,10 @@ function HudModals.Mount(root, model, scope, opts)
 			Name = "Done", Variant = "Main", Text = "DONE", Icon = "tick",
 			OnActivated = function() model.CloseModal() end,
 		}, own)
+		local parts = table.create(order, settingHeight)
+		table.insert(parts, footerHeight)
 		return {
+			Height = HudModals._stack(parts, gap),
 			Sync = function()
 				for _, sync in ipairs(syncs) do sync() end
 			end,
@@ -243,10 +288,18 @@ function HudModals.Mount(root, model, scope, opts)
 	-- GET CASH (D560-582). No purchase remote: every pack toasts through the model (D577). ---------------------------
 	local function buildCash(content, own)
 		listLayout(content, Enum.FillDirection.Vertical, gap)
-		local balance = frame("Balance", content)
-		balance.LayoutOrder = 1
-		balance.Size = UDim2.new(1, 0, 0, px(space.StatusHeight))
-		local chip = k.Data.CashChip(balance, { Name = "BalanceChip", Compact = compact }, own)
+		local foot = footer(content, 4)
+		local parts = {}
+		-- Regular: the balance has its own row. Compact: it sits in the footer beside CLOSE and the note is left out
+		-- (each pack row already says NOT ENABLED), or CLOSE would be under the screen edge on a phone.
+		local chipParent = foot
+		if not compact then
+			chipParent = frame("Balance", content)
+			chipParent.LayoutOrder = 1
+			chipParent.Size = UDim2.new(1, 0, 0, px(space.StatusHeight))
+			table.insert(parts, px(space.StatusHeight))
+		end
+		local chip = k.Data.CashChip(chipParent, { Name = "BalanceChip", Compact = compact, LayoutOrder = 1 }, own)
 		if opts.Player then
 			-- Bind may yield once on its first use (API2 3.5); it never blocks the modal.
 			own:task(function()
@@ -257,38 +310,54 @@ function HudModals.Mount(root, model, scope, opts)
 			chip.SetAmount(opts.SampleCash)
 		end
 
+		-- Collections.List draws rows of this height (never under the touch minimum) with two hairlines between them.
+		local packDesign = compact and space.TouchMin or space.ListRowHeight
+		local packHeight = math.max(px(packDesign), ctx.Touch(1))
+		local packGap = px((space.Hairline + space.Hairline) * unit)
+		local noteHeight = px(space.Pad)
+		-- Everything in the panel but the list: the panel's own insets and title, then the rows around the list.
+		local taken = pad * 3 + titleHeight + gap + footerHeight
+		if not compact then
+			taken += px(space.StatusHeight) + gap + noteHeight + gap
+		end
+		local packsHeight = HudModals._listRoom(HudModals._stack(table.create(PACK_COUNT, packHeight), packGap), packHeight,
+			math.floor(ctx.Size.Y), taken)
 		local packs = frame("Packs", content)
 		packs.LayoutOrder = 2
-		local packHeight = compact and ctx.Touch(space.CompactButtonDrawn) or px(space.ListRowHeight)
-		packs.Size = UDim2.new(1, 0, 0, PACK_COUNT * packHeight)
+		packs.Size = UDim2.new(1, 0, 0, packsHeight)
+		table.insert(parts, packsHeight)
 		local items = {}
 		for index = 1, PACK_COUNT do
 			table.insert(items, {
 				Key = tostring(index), Title = "PACK " .. index, Sub = "CASH PACK",
 				Chip = index == BEST_PACK and "BEST VALUE" or "NOT ENABLED", ChipKind = index == BEST_PACK and "Yellow" or "Neutral",
+				-- Every press toasts (D577). The list's OnSelected fires only when the selection changes, and on a
+				-- gamepad focus move, so it is not used.
+				OnActivated = function() model.CashPackPressed() end,
 			})
 		end
-		local list = k.Collections.List(packs, {
-			Name = "PackList", RowHeight = compact and space.TouchMin or space.ListRowHeight,
-			OnSelected = function() model.CashPackPressed() end,
-		}, own)
+		local list = k.Collections.List(packs, { Name = "PackList", RowHeight = packDesign }, own)
 		list.SetItems(items)
 
-		local note = frame("Secure", content)
-		note.LayoutOrder = 3
-		note.Size = UDim2.new(1, 0, 0, px(space.Pad))
-		k.Text.Label(note, { Name = "NoteText", Text = "CASH PRODUCTS ARE NOT ENABLED YET", Role = "Label", Colour = "TextSecondary", Align = "Left" }, own)
+		if not compact then
+			local note = frame("Secure", content)
+			note.LayoutOrder = 3
+			note.Size = UDim2.new(1, 0, 0, noteHeight)
+			k.Text.Label(note, { Name = "NoteText", Text = "CASH PRODUCTS ARE NOT ENABLED YET", Role = "Label", Colour = "TextSecondary", Align = "Left" }, own)
+			table.insert(parts, noteHeight)
+		end
 
-		k.Controls.Button(footer(content, 4), {
-			Name = "Close", Variant = "Default", Text = "CLOSE", Icon = "back",
+		k.Controls.Button(foot, {
+			Name = "Close", Variant = "Default", Text = "CLOSE", Icon = "back", LayoutOrder = 2,
 			OnActivated = function() model.CloseModal() end,
 		}, own)
-		return {}
+		table.insert(parts, footerHeight)
+		return { Height = HudModals._stack(parts, gap) }
 	end
 
 	local SPECS = {
 		Controls = { Title = "CONTROLS", Build = buildControls },
-		Settings = { Title = "SETTINGS", Build = buildSettings },
+		Settings = { Title = "SETTINGS", Build = buildSettings, CompactWidth = space.ListWidth },
 		Cash = { Title = "GET CASH", Build = buildCash },
 	}
 
@@ -301,10 +370,13 @@ function HudModals.Mount(root, model, scope, opts)
 		entry.Modal = k.Overlay.Modal(layer, {
 			Name = name,
 			Title = spec.Title,
-			Width = width,
+			Width = compact and spec.CompactWidth or width,
 			Scrim = "Confirm",
 			Build = function(content, own)
 				entry.Parts = spec.Build(content, own)
+				-- A modal with no Height gets a panel as tall as the screen (Surface.Panel fills its parent on an
+				-- axis with no size), so the panel is given the height of what was just built.
+				entry.Modal.Set({ Height = HudModals._panelHeight(entry.Parts.Height, titleHeight, pad, ctx.Scale) })
 			end,
 			-- Escape, ButtonB or the kit's own close. The model decides (D441-445: the first-drive reveal refuses);
 			-- when it refuses, the modal is shown again.

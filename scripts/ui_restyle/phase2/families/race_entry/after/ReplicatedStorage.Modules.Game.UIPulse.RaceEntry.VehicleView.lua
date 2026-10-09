@@ -1,9 +1,12 @@
 -- Owns the race-entry vehicle-choice page drawing (header, selected vehicle, event facts, the vehicle rail and its button row); it owns no state, calls no remote, fires no bindable and writes no attribute.
--- Pulse UI (phase2). ReplicatedStorage.Modules.Game.UIPulse.RaceEntry.VehicleView. Requires: Tokens, Text, Surface, Controls, Collections, Data.
+-- Pulse UI (phase2). ReplicatedStorage.Modules.Game.UIPulse.RaceEntry.VehicleView. Requires: Tokens, Text, Surface, Controls, Collections, Data, Input.
 --
 -- Owner's review notes that bind here: no "N of M vehicles eligible" text, no Category or Sort drop-downs, the
 -- rail is in the model's order (rating, highest first), the button row sits in slot RailButtons (the rail heading
 -- line, 64 high), and tier badges use the tier colours (Collections.TierBadge and the tiles' own badges).
+local GuiService = game:GetService("GuiService")
+local RunService = game:GetService("RunService")
+
 local kit = script.Parent.Parent.Kit
 local Tokens = require(kit.Tokens)
 local Text = require(kit.Text)
@@ -11,6 +14,7 @@ local Surface = require(kit.Surface)
 local Controls = require(kit.Controls)
 local Collections = require(kit.Collections)
 local Data = require(kit.Data)
+local Input = require(kit.Input)
 
 local View = {}
 
@@ -43,6 +47,34 @@ end
 -- A tier the kit can draw (the profile may carry "--" for a vehicle with no rating summary, Classic 267).
 local function knownTier(tier)
 	return Tokens.Tier[tier] ~= nil
+end
+
+-- Pure. Where the focus enters when the page opens: the selected vehicle's tile, else START, else BACK.
+function View._focusTarget(tileUsable, startUsable)
+	if tileUsable then
+		return "Tile"
+	elseif startUsable then
+		return "Start"
+	end
+	return "Back"
+end
+
+-- A scope for the bindings that live only while this page shows (Input.Bind* asks only for :add).
+local function newOpenScope()
+	local items = {}
+	local open = {}
+	function open:add(item)
+		table.insert(items, item)
+		return item
+	end
+	function open:destroy()
+		for index = #items, 1, -1 do
+			local item = items[index]
+			items[index] = nil
+			item()
+		end
+	end
+	return open
 end
 
 function View.Mount(layer, model, scope)
@@ -80,7 +112,9 @@ function View.Mount(layer, model, scope)
 		if factsHeight <= 0 then
 			factsHeight = page.FactCount * ctx.Px(compact and Space.StatRowHeight or Space.FactRowHeight)
 		end
-		put(page.FactsHolder, "AnchorPoint", Vector2.new(1, 0))
+		-- RightColumn is a sized slot (API2 2.4): a child fills it from its top-left. Only in a zero-size slot does
+		-- the holder stand on the slot's anchor (capture race_entry_vehicle: anchored, it hung left of the column).
+		put(page.FactsHolder, "AnchorPoint", rightColumn.Size.X.Offset > 0 and Vector2.zero or rightColumn.AnchorPoint)
 		put(page.FactsHolder, "Size", UDim2.fromOffset(factsWidth, pad + factsHeight + pad))
 
 		-- The selected vehicle, under the header: badge, name, category.
@@ -107,6 +141,67 @@ function View.Mount(layer, model, scope)
 
 	local function watch(instance)
 		scope:connect(instance:GetPropertyChangedSignal("Size"), layout)
+	end
+
+	-- Input that exists only while this page shows, on the live layer only (a gallery or test stage has no Gui):
+	-- Escape and ButtonB go back as BACK does, and the focus enters the rail on the selected vehicle when a
+	-- gamepad or the keyboard is in use. A focus move or A on a tile only selects (the rail's OnSelected calls
+	-- model.SelectVehicle); nothing here calls model.Start, which stays on the START button alone.
+	local live = layer.Gui ~= nil and RunService:IsRunning()
+	local openInput = nil
+	local focusBefore = nil
+
+	local function ownsFocus(object)
+		return object:IsDescendantOf(page.Header.Instance) or object:IsDescendantOf(page.Rail.Instance)
+			or object:IsDescendantOf(page.Row.Instance)
+	end
+
+	local function syncInput(mine)
+		if not live or not page then
+			return
+		end
+		if mine and not openInput then
+			local opened = newOpenScope()
+			openInput = opened
+			Input.BindBack(opened, function()
+				model.Back()
+			end)
+			if Input.ShouldEnterFocus(ctx) then
+				pcall(function()
+					focusBefore = GuiService.SelectedObject
+					local chosen = model.SelectedVehicle()
+					local tile = (chosen ~= nil and chosen ~= "" and page.Keys and page.Keys[chosen]) and page.Rail.Tile(chosen) or nil
+					local start = page.Row.Button("Start")
+					local target = View._focusTarget(tile ~= nil and tile.Instance.Active and tile.Instance.Visible,
+						start ~= nil and start.Instance.Active)
+					local button = start
+					if target == "Tile" then
+						button = tile
+					elseif target == "Back" then
+						button = page.Row.Button("Back")
+					end
+					GuiService.SelectedObject = button.Instance
+				end)
+			end
+		elseif not mine and openInput then
+			local closing = openInput
+			openInput = nil
+			closing:destroy()
+			local before = focusBefore
+			focusBefore = nil
+			pcall(function()
+				local current = GuiService.SelectedObject
+				if current and ownsFocus(current) then
+					-- Back to what held the focus before this page, unless that is one of this layer's own
+					-- (now hidden) pages; the page that shows next enters its own focus.
+					if before and before:IsDescendantOf(game) and not before:IsDescendantOf(layer.Gui) then
+						GuiService.SelectedObject = before
+					else
+						GuiService.SelectedObject = nil
+					end
+				end
+			end)
+		end
 	end
 
 	local function build(vehicles)
@@ -265,6 +360,7 @@ function View.Mount(layer, model, scope)
 			draw(vehicles, snap)
 			layout()
 		end
+		syncInput(vehicles ~= nil)
 	end
 
 	if ctx.Changed then
@@ -281,6 +377,10 @@ function View.Mount(layer, model, scope)
 			return
 		end
 		destroyed = true
+		if openInput then
+			openInput:destroy()
+			openInput = nil
+		end
 		if page then
 			page.Header.Destroy()
 			page.Rail.Destroy()

@@ -20,13 +20,39 @@ local PALETTE_HUES = { 0, 0.07, 0.14, 0.31, 0.43, 0.51, 0.60, 0.68, 0.76, 0.86, 
 local DeskView = {}
 DeskView.__index = DeskView
 
-local warned = {}
-local function warnOnce(key, message)
-	if warned[key] then
-		return
+-- The open path never returns quietly: every reason the desk did not open is warned each time it happens (not once),
+-- so a second press says why as clearly as the first. LastFailure is read by Garage.OwnedGarageClient's watch.
+DeskView.LastFailure = nil
+DeskView.LastFailureAt = nil
+local function deskWarn(reason)
+	DeskView.LastFailure = reason
+	DeskView.LastFailureAt = os.clock()
+	warn("[Pulse.OwnedGarageDeskView] " .. reason)
+end
+
+-- Pure. The canvas the desk is drawn in, from PlayerGui's children: the Pulse garage layer's root. A gui of the
+-- same name that is not the Pulse layer (a Classic or StarterGui one) is passed over. Returns canvas, or nil and why.
+function DeskView._hostOf(children)
+	local named, pulse = 0, 0
+	for _, child in ipairs(children) do
+		if child.Name == HOST_GUI then
+			named += 1
+			if child:GetAttribute("UIStyle") == "Pulse" then
+				pulse += 1
+				local canvas = child:FindFirstChild(HOST_ROOT)
+				if canvas and canvas:IsA("GuiObject") then
+					return canvas, nil
+				end
+			end
+		end
 	end
-	warned[key] = true
-	warn("[Pulse.OwnedGarageDeskView] " .. message)
+	if named == 0 then
+		return nil, HOST_GUI .. " does not exist yet (Garage.GarageClient has not created its layer)"
+	end
+	if pulse == 0 then
+		return nil, tostring(named) .. " " .. HOST_GUI .. " found, none is the Pulse layer (UIStyle attribute)"
+	end
+	return nil, "the Pulse " .. HOST_GUI .. " has no " .. HOST_ROOT .. " root"
 end
 
 -- Pure. One desk card row of the fork becomes the props of one kit Tile. `money` formats a price; `marks` is
@@ -92,6 +118,29 @@ function DeskView._spaces(capacityText)
 	return text
 end
 
+-- The desk's buttons, left to right, and what each looks like. A hidden button still takes its width in a kit
+-- ButtonRow, so the row is given only the showing ones (as Garage.GarageScreenView does) and ends at the slot.
+local BUTTONS = {
+	{ Id = "Back", Variant = "Default", Icon = "back" },
+	{ Id = "Exit", Variant = "Default", Icon = "exit" },
+	{ Id = "Next", Variant = "Main" },
+	{ Id = "Action", Variant = "Main" },
+}
+
+-- Pure. `shown` is { [Id] = text or nil }: the ButtonRow specs (no callbacks) of the showing buttons, and a
+-- signature that changes when the list or a text does.
+function DeskView._buttonList(shown)
+	local list, parts = {}, {}
+	for _, button in ipairs(BUTTONS) do
+		local text = shown[button.Id]
+		if text ~= nil then
+			table.insert(list, { Id = button.Id, Variant = button.Variant, Text = tostring(text), Icon = button.Icon })
+			table.insert(parts, button.Id .. "=" .. tostring(text))
+		end
+	end
+	return list, table.concat(parts, "|")
+end
+
 -- The fork calls new() with no argument. `options.Fixture = true` is for the gallery only: the Cash chip is left
 -- unbound and no Presence entry is opened; the fixture parents Root itself before Show.
 function DeskView.new(options)
@@ -121,15 +170,22 @@ function DeskView:_attach()
 	end
 	local player = Players.LocalPlayer
 	local playerGui = player and player:FindFirstChildOfClass("PlayerGui")
-	local gui = playerGui and playerGui:FindFirstChild(HOST_GUI)
-	local canvas = gui and gui:FindFirstChild(HOST_ROOT)
-	if not (canvas and canvas:IsA("GuiObject")) then
-		warnOnce("host", HOST_GUI .. "." .. HOST_ROOT .. " was not found; the desk cannot be drawn")
+	if not playerGui then
+		deskWarn("not opened: PlayerGui is not available")
+		return false
+	end
+	local canvas, reason = DeskView._hostOf(playerGui:GetChildren())
+	if not canvas then
+		deskWarn("not opened: cannot attach, " .. tostring(reason))
 		return false
 	end
 	self.Root.Parent = canvas
 	if not canvas.Visible then
-		warnOnce("hidden", HOST_ROOT .. " is hidden; the desk is drawn under it and will not show until it is visible")
+		deskWarn(HOST_ROOT .. " is hidden; the desk is drawn under it and will not show until it is visible")
+	end
+	local gui = canvas:FindFirstAncestorWhichIsA("ScreenGui")
+	if gui and not gui.Enabled then
+		deskWarn(HOST_GUI .. " is disabled; the desk is drawn in it and will not show until it is enabled")
 	end
 	return true
 end
@@ -205,7 +261,11 @@ function DeskView:_build()
 	tabsHolder.Parent = topLeft
 	self._tabsHolder = tabsHolder
 
-	self._cluster = self:_track(Data.StatusCluster(layer.Slot("TopRight"), { Mode = "Garage", Spaces = "", ShowPlus = false }, scope))
+	-- A component in a zero-size slot stands on the slot's anchor (Garage.GarageScreenView seat): without it the
+	-- strip starts at the right margin and runs off the screen.
+	local statusSlot = layer.Slot("TopRight")
+	self._cluster = self:_track(Data.StatusCluster(statusSlot, { Mode = "Garage", Spaces = "", ShowPlus = false }, scope))
+	self._cluster.Instance.AnchorPoint = statusSlot.AnchorPoint
 	local player = Players.LocalPlayer
 	if player and self._cluster.Cash and not self._fixture then
 		self._cluster.Cash.Bind(player)
@@ -217,6 +277,7 @@ function DeskView:_build()
 		Count = "",
 		SelectOn = "Activate", -- a card here navigates or starts a server preview: gamepad focus only highlights
 		OnSelected = function(key)
+			self._railSelection = key -- the rail has selected this card itself
 			if self._rendering then
 				return
 			end
@@ -224,61 +285,45 @@ function DeskView:_build()
 			if row and row.OnSelect then
 				row.OnSelect()
 			end
+			-- The fork drew no cards after the press (it did nothing, or it left for the colour page): the rail
+			-- still holds the card as selected and reports a selection only when it changes, so a second press
+			-- would be ignored. Put the rail back on the selection the fork last gave.
+			if row and self._rowsByKey[key] == row and row.Selected ~= true and self._railSelection == key then
+				self:_resetRail()
+			end
 		end,
 	}, scope))
 	Input.Mark(self._rail.Instance, "TutorialCardScroller")
 
-	self._buttons = self:_track(Controls.ButtonRow(layer.Slot("RailButtons"), {
-		Align = "Right",
-		Buttons = {
-			{
-				Id = "Back",
-				Variant = "Default",
-				Text = "BACK",
-				Icon = "back",
-				OnActivated = function()
-					local context = self._context
-					if context and context.OnBack then
-						context.OnBack()
-					end
-				end,
-			},
-			{
-				Id = "Exit",
-				Variant = "Default",
-				Text = "EXIT",
-				Icon = "exit",
-				OnActivated = function()
-					local context = self._context
-					if context and context.OnExit then
-						context.OnExit()
-					end
-				end,
-			},
-			{
-				Id = "Next",
-				Variant = "Main",
-				Text = "SAVE",
-				OnActivated = function()
-					local context = self._context
-					if context and context.OnNext then
-						context.OnNext()
-					end
-				end,
-			},
-			{
-				Id = "Action",
-				Variant = "Main",
-				Text = "",
-				OnActivated = function()
-					local action = self._action
-					if action and action.OnActivate then
-						action.OnActivate()
-					end
-				end,
-			},
-		},
-	}, scope))
+	self._buttons = self:_track(Controls.ButtonRow(layer.Slot("RailButtons"), { Align = "Right", Buttons = {} }, scope))
+	self._shown = {}
+	self._buttonsKey = ""
+	self._buttonCalls = {
+		Back = function()
+			local context = self._context
+			if context and context.OnBack then
+				context.OnBack()
+			end
+		end,
+		Exit = function()
+			local context = self._context
+			if context and context.OnExit then
+				context.OnExit()
+			end
+		end,
+		Next = function()
+			local context = self._context
+			if context and context.OnNext then
+				context.OnNext()
+			end
+		end,
+		Action = function()
+			local action = self._action
+			if action and action.OnActivate then
+				action.OnActivate()
+			end
+		end,
+	}
 
 	scope:connect(ctx.Changed, function(change)
 		if type(change) == "table" and change.Layout then
@@ -295,11 +340,50 @@ function DeskView:_layout()
 	self._tabsHolder.Position = UDim2.fromOffset(0, self._header.Height() + ctx.Px(space.HeaderTabsGap))
 end
 
+-- Pure. Must the rail be emptied before it takes this card list? The kit rail keeps its own selection while the
+-- key stays in the list and has no deselect; an empty list drops it (the pool stays, nothing is created or
+-- destroyed). `held` is the key the rail holds, `wanted` the fork's selected card, `present` whether `held` is in
+-- the new list (a key that is gone is dropped by the rail itself).
+function DeskView._railNeedsClear(held, wanted, present)
+	return held ~= nil and wanted == nil and present == true
+end
+
+-- Gives the rail the last card list again, with the fork's selection and not the rail's own.
+function DeskView:_resetRail()
+	local items = self._railItems
+	if not (items and self._rail) then
+		return
+	end
+	self._rail.SetItems({})
+	self._rail.SetItems(items)
+	if self._railSelected then
+		self._rail.Select(self._railSelected)
+	end
+	self._railSelection = self._railSelected
+end
+
+-- Gives the row its showing buttons; writes only when the list or a text changed.
+function DeskView:_syncButtons()
+	local list, key = DeskView._buttonList(self._shown)
+	if key == self._buttonsKey then
+		return
+	end
+	self._buttonsKey = key
+	for _, spec in ipairs(list) do
+		spec.OnActivated = self._buttonCalls[spec.Id]
+	end
+	self._buttons.Set({ Buttons = list })
+end
+
 function DeskView:_ensure()
 	if self._built then
 		return true
 	end
-	if self._buildFailed or not self:_attach() then
+	if self._buildFailed then
+		deskWarn("not opened: the view build failed earlier in this session: " .. tostring(self._buildProblem))
+		return false
+	end
+	if not self:_attach() then
 		return false
 	end
 	local ok, problem = xpcall(function()
@@ -307,7 +391,8 @@ function DeskView:_ensure()
 	end, debug.traceback)
 	if not ok then
 		self._buildFailed = true
-		warnOnce("build", "view build failed; the desk will not be drawn: " .. tostring(problem))
+		self._buildProblem = problem
+		deskWarn("not opened: the view build failed: " .. tostring(problem))
 		return false
 	end
 	return true
@@ -427,11 +512,18 @@ function DeskView:_renderCards(context)
 			selectedKey = item.Key
 		end
 	end
+	local held = self._railSelection
+	if DeskView._railNeedsClear(held, selectedKey, held ~= nil and rowsByKey[held] ~= nil) then
+		rail.SetItems({})
+	end
 	self._rowsByKey = rowsByKey
+	self._railItems = items
+	self._railSelected = selectedKey
 	rail.SetItems(items)
 	if selectedKey then
 		rail.Select(selectedKey)
 	end
+	self._railSelection = selectedKey
 	if #cards == 0 and context.EmptyMessage then
 		rail.SetHeading(tostring(context.EmptyMessage), "")
 	else
@@ -446,7 +538,7 @@ function DeskView:_renderCards(context)
 		action = selectedAction
 	end
 	self._action = action
-	self._buttons.Button("Action").Set({ Visible = action ~= nil, Text = action and string.upper(tostring(action.Text)) or "" })
+	self._shown.Action = action and string.upper(tostring(action.Text)) or nil
 end
 
 -- The colour page (Classic RenderPaint 252-286): channel tabs, hue, saturation and brightness, the current colour
@@ -455,7 +547,7 @@ function DeskView:_renderPaint(context)
 	local parts = self._kit
 	local space = parts.Tokens.Space
 	self._action = nil
-	self._buttons.Button("Action").Set({ Visible = false })
+	self._shown.Action = nil
 	self._rail.Set({ Visible = false })
 	self:_renderChannels("Material", nil, nil, nil, nil)
 
@@ -469,8 +561,9 @@ function DeskView:_renderPaint(context)
 		return
 	end
 	if not paint then
-		paint = { hsv = { 0, 0, 1 }, sliders = {}, swatches = {} }
+		paint = { hsv = { 0, 0, 1 }, sliders = {}, swatches = {}, rows = {} }
 		self._paint = paint
+		-- A start size only: fitPanel() below sizes the panel from what it holds once that is laid out.
 		local width = space.ModalMaxWidth
 		local height = 3 * space.SliderHeight + 3 * space.ButtonHeight + 6 * space.Gap + 2 * space.Pad
 		paint.panel = self:_track(parts.Surface.Panel(self._layer.Slot("BottomLeft"), { Name = "PaintControls", Width = width, Height = height }, self._scope))
@@ -547,6 +640,7 @@ function DeskView:_renderPaint(context)
 		-- Two preset rows as Classic 283: white and grey, dark grey and black, then a light and a deep tone per hue.
 		for rowIndex = 1, 2 do
 			local frame = row("Palette" .. rowIndex, 4 + rowIndex)
+			paint.rows[rowIndex] = frame
 			if rowIndex == 1 then
 				paint.current = parts.Controls.Swatch(frame, { Name = "CurrentColour", Colour = colour(), Selected = true, LayoutOrder = 0, OnActivated = function() end }, self._scope)
 			end
@@ -575,6 +669,19 @@ function DeskView:_renderPaint(context)
 				table.insert(paint.swatches, swatch)
 			end
 		end
+		-- The start size counted a slider without its label line and the presets as one button row each, so the
+		-- second preset row hung below the panel and the first ran past its right edge.
+		local function fitPanel()
+			local size = column.AbsoluteContentSize
+			local wide = math.max(paint.channelRow.AbsoluteSize.X, paint.rows[1].AbsoluteSize.X, paint.rows[2].AbsoluteSize.X)
+			if size.Y <= 0 or wide <= 0 then
+				return -- not laid out yet: the start size stays
+			end
+			local pad, scale = self._ctx.Px(space.Pad), self._ctx.Scale
+			paint.panel.Set({ Width = math.ceil((wide + 2 * pad) / scale), Height = math.ceil((size.Y + 2 * pad) / scale) })
+		end
+		self._scope:connect(column:GetPropertyChangedSignal("AbsoluteContentSize"), fitPanel)
+		fitPanel()
 	end
 	paint.panel.Set({ Visible = true })
 	paint.channel = selected
@@ -599,11 +706,11 @@ function DeskView:_apply(context, full)
 		host.Visible = true
 
 		self._header.Set({ Title = string.upper(tostring(context.Title or "GARAGE")), Sub = tostring(context.Subtitle or "") })
-		local buttons = self._buttons
-		buttons.Button("Back").Set({ Visible = context.BackVisible == true, Text = tostring(context.BackText or "BACK") })
+		local shown = self._shown
+		shown.Back = context.BackVisible == true and tostring(context.BackText or "BACK") or nil
 		if full then
-			buttons.Button("Next").Set({ Visible = context.NextVisible ~= false, Text = tostring(context.NextText or "DRIVE") })
-			buttons.Button("Exit").Set({ Visible = context.ExitVisible == true, Text = tostring(context.ExitText or "EXIT") })
+			shown.Next = context.NextVisible ~= false and tostring(context.NextText or "DRIVE") or nil
+			shown.Exit = context.ExitVisible == true and tostring(context.ExitText or "EXIT") or nil
 			self:_renderTabs(context)
 			self._cluster.Set({ Spaces = DeskView._spaces(context.CapacityText) })
 		end
@@ -612,11 +719,12 @@ function DeskView:_apply(context, full)
 		else
 			self:_renderCards(context)
 		end
+		self:_syncButtons()
 		self:_layout()
 	end, debug.traceback)
 	self._rendering = false
 	if not ok then
-		warnOnce("apply", "render failed: " .. tostring(problem))
+		deskWarn((full and "not opened: the first draw failed: " or "card refresh failed: ") .. tostring(problem))
 	end
 	return ok
 end
@@ -648,17 +756,21 @@ function DeskView:_fail(context)
 	if close then
 		task.defer(close)
 	else
-		warnOnce("close", "the failed desk has no OnExit to close through; OwnedGarageManagementOpen was not cleared")
+		deskWarn("the failed desk has no OnExit to close through; OwnedGarageManagementOpen was not cleared")
 	end
 	local ok, problem = pcall(function()
 		require(script.Parent.GarageCompat).Notify(UNAVAILABLE_TEXT)
 	end)
 	if not ok then
-		warnOnce("notify", "toast failed: " .. tostring(problem))
+		deskWarn("toast failed: " .. tostring(problem))
 	end
 end
 
 function DeskView:Show(context)
+	if type(context) ~= "table" then
+		deskWarn("not opened: Show was called without a view (" .. typeof(context) .. ")")
+		return
+	end
 	if not self:_ensure() then
 		self:_fail(context)
 		return

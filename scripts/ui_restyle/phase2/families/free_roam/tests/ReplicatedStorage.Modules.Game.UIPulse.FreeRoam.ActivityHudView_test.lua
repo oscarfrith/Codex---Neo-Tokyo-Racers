@@ -95,6 +95,13 @@ return function(M, env)
 		expect(M._countdown(-0.9) == "Done" and M._countdown(-5) == "Done", "then done")
 	end)
 
+	case("_cardWidth: the class width, or the option row plus its two pads when that is wider", function()
+		expect(M._cardWidth(650, 400, 22) == 650, "a two-button row keeps the class width")
+		expect(M._cardWidth(650, 606, 22) == 650, "a row that just fits")
+		expect(M._cardWidth(650, 1030, 22) == 1074, "a five-button stake menu widens the card")
+		expect(M._cardWidth(300, 0, 22) == 300, "no row")
+	end)
+
 	case("_timerWidth: whole pixels, clamped", function()
 		expect(M._timerWidth(600, 0, 15) == 600, "full")
 		expect(M._timerWidth(600, 7.5, 15) == 300, "half")

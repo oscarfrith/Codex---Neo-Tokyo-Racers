@@ -559,7 +559,7 @@ function Model.new(deps)
 				end
 			end
 		else
-			table.insert(rows, { Key = "row1", Columns = { "PB", "PERSONAL BEST", Model.TimeText(active.PersonalBest) }, You = false })
+			table.insert(rows, { Key = "row1", Columns = { "PB", "BEST", Model.TimeText(active.PersonalBest) }, You = false })
 			local laps = active.LapTimes
 			local first = math.max(1, #laps - (count - 1) + 1)
 			for index = first, #laps do
