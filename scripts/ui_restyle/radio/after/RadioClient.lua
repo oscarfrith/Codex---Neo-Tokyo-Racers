@@ -1,28 +1,31 @@
--- Owns the radio: one local music Sound in the GameplayMusic group, the playlist read from Config.Audio.Radio, and next / previous. No UI, remote, saved data or server state. Started by the Pulse free-roam HUD (UIPulse.FreeRoam.HudClient), which draws its strip.
+-- Owns game music: three stations read from Config.Audio.Radio (FreeRoam while driving, Race while the driven vehicle is a race participant, StartScreen while the start screen is up), their local Sounds, crossfades, and next / previous. No UI, remote, saved data or server state. Started by the Pulse free-roam HUD (UIPulse.FreeRoam.HudClient).
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local SoundService = game:GetService("SoundService")
+local TweenService = game:GetService("TweenService")
+local Workspace = game:GetService("Workspace")
 
 local LOAD_TIMEOUT_SECONDS = 15
-local AUDIBLE_GROUP_VOLUME = 0.01
-local STARTUP_SETTLE_SECONDS = 2
+local WATCH_SECONDS = 0.25
+local SKIP_FADE_SECONDS = 0.4
 
 local Radio = {}
 local changed = Instance.new("BindableEvent")
--- Fires with Radio.State() when the track changes.
+-- Fires with Radio.State() when the station or the track changes.
 Radio.Changed = changed.Event
 
 local started = false
 local enabled = false
-local volume = 0.5
-local tracks = {}
-local index = 0
-local sound = nil
-local generation = 0
+local showStrip = false
+local crossfadeSeconds = 4
+local fadeSeconds = 1.5
+-- name -> { Name, Tracks, Order, Position, Sound, Row, Group, Volume, FadeOut, Restart }
+-- Restart: leaving the station drops its track and the next entry starts the following one (Race, StartScreen).
+-- Otherwise the track pauses and resumes where it was (FreeRoam).
+local stations = {}
+local active = nil
+local tweens = setmetatable({}, { __mode = "k" })
 local failures = 0
--- Reasons the music is paused: Startup (the first seconds of the session), StartScreen, FirstDrive (the first-drive
--- presentation) and Ducked (the loading mixer has the group at zero).
-local holds = {}
 
 local function assetId(raw)
 	local value = tostring(raw or "")
@@ -45,6 +48,7 @@ local function readTracks(folder)
 					Title = type(title) == "string" and title ~= "" and title or object.Name,
 					Order = tonumber(object:GetAttribute("Order")) or 0,
 					Gain = math.clamp(tonumber(object:GetAttribute("Gain")) or 1, 0, 3),
+					First = object:GetAttribute("First") == true,
 				})
 			end
 		end
@@ -56,129 +60,267 @@ local function readTracks(folder)
 	return rows
 end
 
+-- Pure: the play order as indices into rows. Shuffled: rows marked First keep their place at the front, the rest
+-- are drawn at random for this session. random(n) returns an integer from 1 to n.
+function Radio._order(rows, shuffle, random)
+	local first, rest = {}, {}
+	for index, row in ipairs(rows) do
+		table.insert(shuffle and not row.First and rest or first, index)
+	end
+	for index = #rest, 2, -1 do
+		local other = random(index)
+		rest[index], rest[other] = rest[other], rest[index]
+	end
+	return table.move(rest, 1, #rest, #first + 1, first)
+end
+
 function Radio.State()
-	local row = tracks[index]
+	local station = active and stations[active]
 	return {
 		Enabled = enabled,
-		Index = index,
-		Count = #tracks,
-		Title = row and row.Title or "",
-		Playing = sound ~= nil and sound.IsPlaying,
+		ShowStrip = enabled and showStrip,
+		Station = active,
+		Index = station and station.Position or 0,
+		Count = station and #station.Order or 0,
+		Title = station and station.Row and station.Row.Title or "",
 	}
 end
 
-local play
-
-local function advanceAfterFailure(mine)
-	if mine ~= generation then return end
-	failures += 1
-	if failures >= #tracks then
-		warn("[RadioClient] no track could be loaded; the radio has stopped")
+local function fadeTo(sound, target, seconds, after)
+	local running = tweens[sound]
+	if running then running:Cancel() end
+	if seconds <= 0 then
+		tweens[sound] = nil
+		sound.Volume = target
+		if after then after() end
 		return
 	end
-	play(index + 1)
+	local tween = TweenService:Create(sound, TweenInfo.new(seconds, Enum.EasingStyle.Linear), { Volume = target })
+	tweens[sound] = tween
+	tween.Completed:Once(function(playbackState)
+		if tweens[sound] == tween then tweens[sound] = nil end
+		if after and playbackState == Enum.PlaybackState.Completed then after() end
+	end)
+	tween:Play()
 end
 
-function play(position)
-	if #tracks == 0 then return end
-	index = ((position - 1) % #tracks) + 1
-	generation += 1
-	local mine = generation
-	local row = tracks[index]
-	if sound then
-		sound:Stop()
+local function fadeAway(sound, seconds)
+	fadeTo(sound, 0, seconds, function()
 		sound:Destroy()
-	end
-	local item = Instance.new("Sound")
-	item.Name = "Radio_Local"
-	item.SoundId = row.Id
-	item.Volume = math.clamp(volume * row.Gain, 0, 3)
-	item.Looped = false
-	item.SoundGroup = SoundService:FindFirstChild("GameplayMusic")
-	item.Parent = SoundService
-	sound = item
-	item.Ended:Connect(function()
-		if mine ~= generation then return end
-		failures = 0
-		play(index + 1)
 	end)
-	-- A track that never loads (removed or moderated) would leave the radio silent for good.
+end
+
+local startTrack
+
+-- The new track fades in over fadeIn while the one it replaces fades out over the same time.
+function startTrack(station, position, fadeIn)
+	local count = #station.Order
+	if count == 0 then return end
+	station.Position = ((position - 1) % count) + 1
+	local row = station.Tracks[station.Order[station.Position]]
+	if station.Sound then fadeAway(station.Sound, fadeIn) end
+	local sound = Instance.new("Sound")
+	sound.Name = "Radio_" .. station.Name
+	sound.SoundId = row.Id
+	sound.Volume = 0
+	sound.Looped = count == 1
+	sound.SoundGroup = station.Group
+	sound.Parent = SoundService
+	station.Sound = sound
+	station.Row = row
+	-- The watcher starts the next track early for the crossfade; this covers a track too short for one.
+	sound.Ended:Connect(function()
+		if station.Sound == sound and active == station.Name then
+			failures = 0
+			startTrack(station, station.Position + 1, 0)
+		end
+	end)
+	-- A track that never loads (removed or moderated) would leave the station silent for good.
 	task.delay(LOAD_TIMEOUT_SECONDS, function()
-		if mine == generation and not item.IsLoaded then advanceAfterFailure(mine) end
+		if station.Sound ~= sound or active ~= station.Name or sound.IsLoaded then return end
+		failures += 1
+		if failures >= count then
+			warn("[RadioClient] no " .. station.Name .. " track could be loaded")
+			return
+		end
+		startTrack(station, station.Position + 1, 0)
 	end)
-	if next(holds) == nil then pcall(function() item:Play() end) end
+	pcall(function() sound:Play() end)
+	fadeTo(sound, math.clamp(station.Volume * row.Gain, 0, 3), fadeIn)
 	changed:Fire(Radio.State())
 end
 
-function Radio.Next()
-	if not enabled then return end
-	failures = 0
-	play(index + 1)
-end
-
-function Radio.Previous()
-	if not enabled then return end
-	failures = 0
-	play(index - 1)
-end
-
-local function setHold(reason, value)
-	local wasHeld = next(holds) ~= nil
-	holds[reason] = value and true or nil
-	local held = next(holds) ~= nil
-	if held == wasHeld or not sound then return end
-	if held then
-		sound:Pause()
-	elseif sound.IsPaused then
-		pcall(function() sound:Resume() end)
-	else
-		pcall(function() sound:Play() end)
+local function setActive(name)
+	if name == active then return end
+	local previous = active and stations[active]
+	if previous and previous.Sound then
+		local sound = previous.Sound
+		if previous.Restart then
+			previous.Sound = nil
+			previous.Row = nil
+			fadeAway(sound, previous.FadeOut)
+		else
+			fadeTo(sound, 0, previous.FadeOut, function()
+				sound:Pause()
+			end)
+		end
 	end
+	active = name
+	failures = 0
+	local station = name and stations[name]
+	if station then
+		local sound = station.Sound
+		if sound then
+			if sound.IsPaused then pcall(function() sound:Resume() end) end
+			fadeTo(sound, math.clamp(station.Volume * station.Row.Gain, 0, 3), fadeSeconds)
+		else
+			startTrack(station, station.Restart and station.Position + 1 or station.Position, fadeSeconds)
+		end
+	end
+	changed:Fire(Radio.State())
+end
+
+local function skip(step)
+	local station = enabled and active and stations[active]
+	if not station then return end
+	failures = 0
+	startTrack(station, station.Position + step, SKIP_FADE_SECONDS)
+end
+
+function Radio.Next() skip(1) end
+function Radio.Previous() skip(-1) end
+
+local function usable(name)
+	return stations[name] ~= nil and #stations[name].Order > 0
+end
+
+-- Pure: which station should sound. Start screen first; nothing during the first-drive presentation; race music
+-- while racing; free-roam music only while driving.
+function Radio._resolve(flags, has)
+	if flags.StartScreen and has("StartScreen") then return "StartScreen" end
+	if flags.StartScreen or flags.FirstDrive then return nil end
+	if flags.Racing and has("Race") then return "Race" end
+	if flags.Driving and has("FreeRoam") then return "FreeRoam" end
+	return nil
 end
 
 function Radio.Start()
 	if started then return Radio end
 	started = true
-	local audio = ReplicatedStorage:WaitForChild("Config"):WaitForChild("Audio")
-	local config = audio:FindFirstChild("Radio")
-	if not config then return Radio end
-	enabled = config:GetAttribute("Enabled") == true
-	volume = math.clamp(tonumber(config:GetAttribute("Volume")) or 0.5, 0, 3)
-	tracks = readTracks(config:FindFirstChild("Tracks"))
-	if not enabled or #tracks == 0 then
-		enabled = false
-		return Radio
+	local config = ReplicatedStorage:WaitForChild("Config"):WaitForChild("Audio"):FindFirstChild("Radio")
+	if not config or config:GetAttribute("Enabled") ~= true then return Radio end
+
+	local function number(name, fallback, maximum)
+		return math.clamp(tonumber(config:GetAttribute(name)) or fallback, 0, maximum)
 	end
-	index = 1
-
-	-- The first-drive presentation keeps music silent, as the context audio owner does.
-	local player = Players.LocalPlayer
-	setHold("FirstDrive", player:GetAttribute("FirstDrivePresentationPending") == true)
-	player:GetAttributeChangedSignal("FirstDrivePresentationPending"):Connect(function()
-		setHold("FirstDrive", player:GetAttribute("FirstDrivePresentationPending") == true)
-	end)
-
-	-- The loading mixer takes the GameplayMusic group to zero for the start screen and every loading transition. The
-	-- track pauses while the group is silent, so nothing plays unheard and the first track is heard from its start.
+	local volume = number("Volume", 0.5, 3)
+	crossfadeSeconds = number("CrossfadeSeconds", 4, 20)
+	fadeSeconds = number("FadeSeconds", 1.5, 20)
+	showStrip = config:GetAttribute("ShowStrip") == true
 	local group = SoundService:FindFirstChild("GameplayMusic")
-	if group and group:IsA("SoundGroup") then
-		setHold("Ducked", group.Volume < AUDIBLE_GROUP_VOLUME)
-		group:GetPropertyChangedSignal("Volume"):Connect(function()
-			setHold("Ducked", group.Volume < AUDIBLE_GROUP_VOLUME)
+	if not (group and group:IsA("SoundGroup")) then group = nil end
+	local random = Random.new()
+	local function draw(count) return random:NextInteger(1, count) end
+	local function station(name, folderName, options)
+		local folder = config:FindFirstChild(folderName)
+		local rows = readTracks(folder)
+		stations[name] = {
+			Name = name,
+			Tracks = rows,
+			Order = Radio._order(rows, folder ~= nil and folder:GetAttribute("Shuffle") == true, draw),
+			Position = options.Restart and 0 or 1,
+			Group = options.Group,
+			Volume = options.Volume,
+			FadeOut = options.FadeOut,
+			Restart = options.Restart == true,
+		}
+	end
+	-- The loading mixer holds the GameplayMusic group at zero on the start screen, so that station has no group.
+	station("FreeRoam", "Tracks", { Group = group, Volume = volume, FadeOut = fadeSeconds })
+	station("Race", "RaceTracks", { Group = group, Volume = volume, FadeOut = fadeSeconds, Restart = true })
+	station("StartScreen", "StartScreenTracks", { Volume = number("StartScreenVolume", 0.5, 3),
+		FadeOut = number("StartScreenFadeOutSeconds", 2, 20), Restart = true })
+	if not (usable("FreeRoam") or usable("Race") or usable("StartScreen")) then return Radio end
+	enabled = true
+
+	local player = Players.LocalPlayer
+	local flags = { StartScreen = false, FirstDrive = false, Driving = false, Racing = false }
+	local function update()
+		setActive(Radio._resolve(flags, usable))
+	end
+
+	for flag, attribute in pairs({ StartScreen = "StartScreenActive", FirstDrive = "FirstDrivePresentationPending" }) do
+		flags[flag] = player:GetAttribute(attribute) == true
+		player:GetAttributeChangedSignal(attribute):Connect(function()
+			flags[flag] = player:GetAttribute(attribute) == true
+			update()
 		end)
 	end
 
-	setHold("StartScreen", player:GetAttribute("StartScreenActive") == true)
-	player:GetAttributeChangedSignal("StartScreenActive"):Connect(function()
-		setHold("StartScreen", player:GetAttribute("StartScreenActive") == true)
+	-- Driving: seated in the driver's seat of a vehicle under World.Runtime.PlayerVehicles, as the context audio
+	-- owner tests it. Racing: that vehicle carries the server's RaceParticipant attribute.
+	local vehicle, vehicleConnection, seatConnection, childConnection
+	local function refreshDrive()
+		local character = player.Character
+		local humanoid = character and character:FindFirstChildOfClass("Humanoid")
+		local seat = humanoid and humanoid.SeatPart
+		local world = Workspace:FindFirstChild("World")
+		local runtime = world and world:FindFirstChild("Runtime")
+		local vehicles = runtime and runtime:FindFirstChild("PlayerVehicles")
+		local found = nil
+		if seat and seat:IsA("VehicleSeat") and vehicles and seat:IsDescendantOf(vehicles) then
+			found = seat
+			while found.Parent ~= vehicles do found = found.Parent end
+		end
+		if found ~= vehicle then
+			if vehicleConnection then vehicleConnection:Disconnect() end
+			vehicle = found
+			vehicleConnection = found and found:GetAttributeChangedSignal("RaceParticipant"):Connect(refreshDrive) or nil
+		end
+		flags.Driving = found ~= nil
+		flags.Racing = found ~= nil and found:GetAttribute("RaceParticipant") == true
+		update()
+	end
+	local function bindCharacter(character)
+		if seatConnection then seatConnection:Disconnect() end
+		if childConnection then childConnection:Disconnect() end
+		seatConnection, childConnection = nil, nil
+		if character then
+			local function bindHumanoid(humanoid)
+				if seatConnection then seatConnection:Disconnect() end
+				seatConnection = humanoid:GetPropertyChangedSignal("SeatPart"):Connect(refreshDrive)
+			end
+			local humanoid = character:FindFirstChildOfClass("Humanoid")
+			if humanoid then bindHumanoid(humanoid) end
+			childConnection = character.ChildAdded:Connect(function(child)
+				if child:IsA("Humanoid") then
+					bindHumanoid(child)
+					refreshDrive()
+				end
+			end)
+		end
+		refreshDrive()
+	end
+	player.CharacterAdded:Connect(bindCharacter)
+	player.CharacterRemoving:Connect(function()
+		bindCharacter(nil)
+	end)
+	bindCharacter(player.Character)
+
+	-- Crossfade: the next track starts crossfadeSeconds before the current one ends.
+	task.spawn(function()
+		while true do
+			task.wait(WATCH_SECONDS)
+			local current = active and stations[active]
+			local sound = current and current.Sound
+			if sound and sound.IsPlaying and not sound.Looped and sound.TimeLength > crossfadeSeconds * 2
+				and sound.TimePosition >= sound.TimeLength - crossfadeSeconds then
+				failures = 0
+				startTrack(current, current.Position + 1, crossfadeSeconds)
+			end
+		end
 	end)
 
-	-- The HUD can start before the loading flow has ducked the group or raised the start screen. Holding for a
-	-- moment keeps a second of music from sounding before either hold is in place.
-	setHold("Startup", true)
-	task.delay(STARTUP_SETTLE_SECONDS, setHold, "Startup", false)
-
-	play(1)
 	return Radio
 end
 

@@ -4,7 +4,7 @@ Target: **Space Racers v3, place 93959280828322** (since 2026-10-04; made from B
 
 ## Current task and next action
 
-**Radio installed in PR98 (2026-10-10, agent-verified on desktop, not user-confirmed).** Eight free-roam tracks play in order with previous / next at the bottom centre of the Pulse HUD. Next: Oscar listens and plays; phone layout, driving and races are unchecked; Race tracks are not wired. Details and the context-audio caution: [patch history](07_patch_history.md). Save the place in Studio to keep it.
+**Game music installed in PR98 (2026-10-10, agent-verified on desktop, not user-confirmed).** One owner, `Audio.RadioClient`: shuffled free-roam tracks only while driving, a race playlist while racing, Mellow on the start screen, crossfades, levels matched by measurement. The HUD strip is hidden (`Config.Audio.Radio@ShowStrip`). Next: Oscar listens; a real race and phone are unchecked. Details: [patch history](07_patch_history.md). Save the place in Studio to keep it.
 
 **UI restyle (Pulse Racers): the whole Pulse UI is installed in v3 and is the default (2026-10-09, `Config.UI@UIStyle` = `Pulse`, at Oscar's request so he can test). Agent-verified in Studio on desktop in the no-save sandbox; not user-confirmed. Next: Oscar plays it and reports; then a fix pass on his notes and the untested items below. Save the place in Studio to keep this.**
 - **First play-review fixes installed (2026-10-09, agent-verified, not user-confirmed):** new loading artwork and logo, full-frame dealership tiles, rectangular pictures in the vehicles list, clearer car, dealership and race icons, and the focus guard that fixes "cannot move in the garage" and "WASD steps through menus". Logo alternatives: `assets/ui/logo/candidates/contact_sheet.png`.

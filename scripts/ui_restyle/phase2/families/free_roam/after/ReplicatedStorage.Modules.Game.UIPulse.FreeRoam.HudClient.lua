@@ -80,7 +80,7 @@ local function run()
 	local read = Client._read
 
 	-- The radio (Audio.RadioClient) owns music playback; the HUD starts it and draws its strip. A radio fault never
-	-- fails the HUD, and with no radio, no tracks or Enabled false there is no strip.
+	-- fails the HUD. The strip is drawn only when Config.Audio.Radio@ShowStrip is true (off: it was a test control).
 	local radio = nil
 	local radioModule = gameModules:WaitForChild("Audio"):FindFirstChild("RadioClient")
 	if radioModule then
@@ -89,7 +89,7 @@ local function run()
 		end)
 		if not okRadio then
 			warn("[Pulse.HudClient] radio failed to start: " .. tostring(result))
-		elseif result.State().Enabled then
+		elseif result.State().ShowStrip then
 			radio = result
 		end
 	end

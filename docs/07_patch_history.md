@@ -2,6 +2,17 @@
 
 Recent deliveries, newest first. Entries before September 2026 live in [the archive](history/patch-history-2026-05-to-2026-08.md).
 
+## 2026-10-10 - Music v2: in-car free roam, race and start-screen stations, shuffle, crossfade (PR98)
+
+Standard lane, client presentation only, in **PR98**. Same installer folder, `scripts/ui_restyle/radio/`, plus `tuned_values_v2.lua` for values on instances the first install created (the engine reports changed attributes on its own instances as tuned and does not rewrite them).
+
+- **Contract:** `Audio.RadioClient` stays the one music owner and now runs three stations from `Config.Audio.Radio`. **FreeRoam** (`Tracks`) sounds only while the player is in the driver's seat of a vehicle under `World.Runtime.PlayerVehicles`; leaving the car fades it out and pauses it, getting back in resumes it. **Race** (`RaceTracks`) replaces it while that vehicle carries the server attribute `RaceParticipant`; each race starts on the next track of the list and loops in order. **StartScreen** (`StartScreenTracks`) plays while the player attribute `StartScreenActive` is true and fades out when it clears. Tracks crossfade (`CrossfadeSeconds`, 4); stations fade in and out (`FadeSeconds`, 1.5; `StartScreenFadeOutSeconds`, 2).
+- **Order:** free roam is shuffled once per session (`Tracks@Shuffle`), with tracks marked `First` at the front (Ghosts in the Reverb). Race is Stamina, Space Race, Cyber Drive.
+- **Levels:** each track's `Gain` was set from a measurement of `Sound.PlaybackLoudness` (14 points per track, averaged) against Night Run, eased towards the peak ratio where the two disagreed: Trance Machine 0.95, Dream Chaser 1.1, Nebula Whisper 1.2, Oceanic Liquid Beat 1.3, Soft Resonance 1.6, Ghosts in the Reverb 1.15, Stamina 0.9, Space Race 0.9, Cyber Drive 1.15, Mellow 1.25. Raw average ratios: 0.91, 1.10, 1.28, 1.36, 2.05, 1.36, 0.88, 0.89, 1.16, 1.28. Not a loudness-standard measurement, and not judged by ear.
+- **Other changes:** Starter removed (its value is blank, so it is skipped). The HUD strip is off (`ShowStrip` false; set true to bring the test control back). The start-screen station has no SoundGroup because the loading mixer holds `GameplayMusic` at zero there; its level is `StartScreenVolume`. `Config.Audio.Radio@Volume` was left at Oscar's 0.62.
+- **Not used:** the loading mixer's own `LoadingMusicAssetId` stays blank; setting it would play on every loading screen, not only the start screen.
+- **Checked (agent, Studio Play in PR98, desktop, Oscar's real profile; a vehicle was spawned and sat in, not driven):** Mellow on the start screen and gone after Play; silent on foot; Ghosts in the Reverb first in the car; a crossfade with both tracks sounding; race music on and off by setting `RaceParticipant` on the client's copy of the vehicle (not a real race), with the list advancing per race and at track end; free roam resuming afterwards; pause on leaving the car; no strip; all clients ready; no errors. **Not checked:** by ear, a real race or time trial, a loading screen during music, phone.
+
 ## 2026-10-10 - Mix: vehicle sound 1.5x, radio 0.7x (PR98)
 
 Fast lane, config only, in **PR98**. Script: `scripts/audio/pr98_vehicle_radio_mix.lua` (guarded; `MODE = "ROLLBACK"` restores).

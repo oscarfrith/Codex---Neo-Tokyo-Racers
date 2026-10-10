@@ -1,5 +1,5 @@
 {
- "_note": "Free-roam radio (Oscar, 2026-10-10). Standalone delivery outside the phase2 chain, built for PR98. No Classic script, payload or config that Classic reads is touched, so no Classic verify.",
+ "_note": "Free-roam radio (Oscar, 2026-10-10). Standalone delivery outside the phase2 chain, built for PR98. No Classic script, payload or config that Classic reads is touched, so no Classic verify. v2 (2026-10-10): stations (free roam while driving, race, start screen), shuffle, crossfade, measured gains, strip hidden.",
  "phase": "radio",
  "placeId": 103397770260610,
  "classicVerify": false,
@@ -18,7 +18,12 @@
     "class": "Folder",
     "attributes": {
      "Enabled": true,
-     "Volume": 0.5
+     "Volume": 0.5,
+     "CrossfadeSeconds": 4,
+     "FadeSeconds": 1.5,
+     "ShowStrip": false,
+     "StartScreenVolume": 0.5,
+     "StartScreenFadeOutSeconds": 2
     },
     "children": [
      {
@@ -34,7 +39,8 @@
         "attributes": {
          "Title": "Night Run",
          "Order": 1,
-         "Gain": 1
+         "Gain": 1,
+         "First": false
         }
        },
        {
@@ -46,20 +52,23 @@
         "attributes": {
          "Title": "Trance Machine",
          "Order": 2,
-         "Gain": 1
+         "Gain": 0.95,
+         "First": false
         }
        },
        {
         "name": "Track03",
         "class": "StringValue",
         "properties": {
-         "Value": "9044545921"
+         "Value": ""
         },
         "attributes": {
          "Title": "Starter",
          "Order": 3,
-         "Gain": 1
-        }
+         "Gain": 1,
+         "First": false
+        },
+        "_note": "Starter, removed at Oscar's request: a blank value drops the track from the list"
        },
        {
         "name": "Track04",
@@ -70,7 +79,8 @@
         "attributes": {
          "Title": "Dream Chaser",
          "Order": 4,
-         "Gain": 1
+         "Gain": 1.1,
+         "First": false
         }
        },
        {
@@ -82,7 +92,8 @@
         "attributes": {
          "Title": "Nebula Whisper",
          "Order": 5,
-         "Gain": 1
+         "Gain": 1.2,
+         "First": false
         }
        },
        {
@@ -94,7 +105,8 @@
         "attributes": {
          "Title": "Oceanic Liquid Beat",
          "Order": 6,
-         "Gain": 1
+         "Gain": 1.3,
+         "First": false
         }
        },
        {
@@ -106,7 +118,8 @@
         "attributes": {
          "Title": "Soft Resonance",
          "Order": 7,
-         "Gain": 1
+         "Gain": 1.6,
+         "First": false
         }
        },
        {
@@ -118,10 +131,100 @@
         "attributes": {
          "Title": "Ghosts in the Reverb",
          "Order": 8,
-         "Gain": 1
+         "Gain": 1.15,
+         "First": true
         }
        }
-      ]
+      ],
+      "attributes": {
+       "Shuffle": true
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "race",
+   "kind": "tree",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "Radio",
+    "RaceTracks"
+   ],
+   "tree": {
+    "class": "Folder",
+    "attributes": {
+     "Shuffle": false
+    },
+    "children": [
+     {
+      "name": "Track01",
+      "class": "StringValue",
+      "properties": {
+       "Value": "140461535677127"
+      },
+      "attributes": {
+       "Title": "Stamina",
+       "Order": 1,
+       "Gain": 0.9
+      }
+     },
+     {
+      "name": "Track02",
+      "class": "StringValue",
+      "properties": {
+       "Value": "1842597135"
+      },
+      "attributes": {
+       "Title": "Space Race",
+       "Order": 2,
+       "Gain": 0.9
+      }
+     },
+     {
+      "name": "Track03",
+      "class": "StringValue",
+      "properties": {
+       "Value": "117694248905759"
+      },
+      "attributes": {
+       "Title": "Cyber Drive",
+       "Order": 3,
+       "Gain": 1.15
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "start",
+   "kind": "tree",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "Radio",
+    "StartScreenTracks"
+   ],
+   "tree": {
+    "class": "Folder",
+    "attributes": {
+     "Shuffle": false
+    },
+    "children": [
+     {
+      "name": "Track01",
+      "class": "StringValue",
+      "properties": {
+       "Value": "9044546292"
+      },
+      "attributes": {
+       "Title": "Mellow",
+       "Order": 1,
+       "Gain": 1.25
+      }
      }
     ]
    }
