@@ -21,7 +21,7 @@ import plan  # noqa: E402
 import vectors  # noqa: E402
 
 REPO = os.path.abspath(os.path.join(HERE, "..", "..", ".."))
-PLACE_ID = 93959280828322
+PLACE_ID = 103397770260610
 PR98_PLACE_ID = 103397770260610  # the working place since 2026-10-09; a spec opts in with "placeId"
 ORIGIN = "http://127.0.0.1:8796/"
 MARK_ATTRIBUTE = "UIRestyleInstall"

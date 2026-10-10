@@ -19,7 +19,7 @@ import os
 import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-PLACE_ID = 93959280828322
+PLACE_ID = 103397770260610
 PLACE_NAME = "Space Racers v3"
 TAKEN = "2026-10-09"
 CONFIG_ROOTS = (("configUI", "UI"), ("clientTools", "Development"), ("onboarding", "Player"))

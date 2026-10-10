@@ -540,7 +540,7 @@ def emitted_files_are_small_and_carry_the_spec():
         assert text.count('local MODE = "%s"\n' % mode) == 1
         assert library in text and text.endswith(build.read_text(os.path.join(build.HERE, "bootstrap.lua")))
         data = embedded_data(text)
-        assert data["ops"] == ops and data["placeId"] == 93959280828322 and data["inline"] is False
+        assert data["ops"] == ops and data["placeId"] == 103397770260610 and data["inline"] is False
         assert data["base"] == SAMPLE_BASE and data["origin"] == "http://127.0.0.1:8796/"
         assert data["markAttribute"] == "UIRestyleInstall" and data["installable"] is False
         assert data["classicVerify"] == "scripts/ui_restyle/classic/out_verify_classic.lua"

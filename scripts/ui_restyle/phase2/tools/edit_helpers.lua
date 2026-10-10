@@ -3,7 +3,7 @@
 -- Defines shared.P2TEST, shared.P2RUN, shared.EDITRUN, shared.SANDBOX, shared.INSTALL. Writes nothing by itself.
 local Http = game:GetService("HttpService")
 local ORIGIN = "http://127.0.0.1:8796/"
-assert(game.PlaceId == 93959280828322, "wrong place")
+assert(game.PlaceId == 103397770260610, "wrong place")
 
 shared.EDITRUN = function(path, subs)
 	local src = Http:GetAsync(ORIGIN .. path, true)

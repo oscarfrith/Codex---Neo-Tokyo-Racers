@@ -497,6 +497,8 @@ class Build:
             for key in ("configNodes", "configAttrs", "configChanged"):
                 declared.setdefault(key, [])
                 declared[key] += [item for item in extra.get(key, []) if item not in declared[key]]
+            # Scripts other deliveries added beside this chain (radio and the like): listed, never pinned here.
+            self.extra_added = dict(extra.get("addedScripts", {}))
         manifest = common.classic_manifest()
         for path in sorted(scripts_after):
             data, klass, _, changed = scripts_after[path]
@@ -510,6 +512,8 @@ class Build:
                 declared["addedScripts"][path] = {"class": klass, "_unpinned": "changed by %s" % self.folder}
             else:
                 declared["addedScripts"][path] = dict(pin, **{"class": klass})
+        for path, klass in getattr(self, "extra_added", {}).items():
+            declared["addedScripts"].setdefault(path, {"class": klass})
         return declared
 
     def test_manifest(self, scripts_after):

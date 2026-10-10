@@ -1,6 +1,15 @@
 {
- "_note": "Config.UI changes made on purpose after Phase 1; merged into every unit's declared.json by assemble.py. 2026-10-09: PulseSunset01 loading artwork replaces NeoTokyoStreet01 (disabled, kept).",
- "configNodes": ["UI.LoadingSystem.Artworks.PulseSunset01"],
+ "_note": "Config.UI changes made on purpose after Phase 1; merged into every unit's declared.json by assemble.py. 2026-10-09: PulseSunset01 loading artwork replaces NeoTokyoStreet01 (disabled, kept). 2026-10-10: radio delivery (scripts/ui_restyle/radio) added two scripts outside this chain.",
+ "configNodes": [
+  "UI.LoadingSystem.Artworks.PulseSunset01"
+ ],
  "configAttrs": [],
- "configChanged": ["UI.LoadingSystem@DefaultArtworkId", "UI.LoadingSystem.Artworks.NeoTokyoStreet01@Enabled"]
+ "configChanged": [
+  "UI.LoadingSystem@DefaultArtworkId",
+  "UI.LoadingSystem.Artworks.NeoTokyoStreet01@Enabled"
+ ],
+ "addedScripts": {
+  "ReplicatedStorage.Modules.Game.Audio.RadioClient": "ModuleScript",
+  "ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.RadioStripView": "ModuleScript"
+ }
 }
