@@ -1,0 +1,21 @@
+{
+ "_note": "Start-screen motion (Oscar, 2026-10-10): slow one-way artwork push-in and logo grow that ease to a stop. Standalone delivery outside the phase2 chain, built for PR98. Pulse start screen only; no Classic script or config is touched.",
+ "phase": "start_motion",
+ "placeId": 103397770260610,
+ "classicVerify": false,
+ "installable": true,
+ "ops": [
+  {
+   "id": "start_screen",
+   "kind": "source",
+   "class": "ModuleScript",
+   "path": [
+    "ReplicatedFirst",
+    "Loading",
+    "StartScreenPulse"
+   ],
+   "before": "before/StartScreenPulse.lua",
+   "after": "after/StartScreenPulse.lua"
+  }
+ ]
+}

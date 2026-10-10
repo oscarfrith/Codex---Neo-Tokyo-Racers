@@ -113,10 +113,13 @@ end
 -- -> {Menu = stage root, Play = Component, Shop = Component, SetBusy = (busy, playText, shopText) -> ()}
 local LOGO_DEFAULT = "rbxassetid://86895264649881" -- scripts/ui_restyle/assets/out/logo_pulse_racers.png, 1024x519
 local LOGO_ASPECT = 1024 / 519
-local LOGO_DRIFT = 0.012 -- of the logo height, each way
-local LOGO_DRIFT_SECONDS = 4.5
-local LOGO_BREATHE = 1.012
-local LOGO_BREATHE_SECONDS = 3.2
+-- Start-screen motion (Oscar, 2026-10-10): one slow move that eases to a stop and then holds, never a loop. The
+-- artwork pushes in and slides right; the logo grows a little and slides the other way, so the two read as layers.
+local MOTION_SECONDS = 75
+local ART_ZOOM = 0.09 -- added to the artwork frame's scale over the move
+local ART_TRAVEL = 0.03 -- of the screen width, to the right; the zoom keeps the edges covered
+local LOGO_GROW = 1.05
+local LOGO_TRAVEL = 0.02 -- of the logo width, to the left
 
 local function logoAsset()
 	local node = game:GetService("ReplicatedStorage")
@@ -175,7 +178,7 @@ function StartScreen._buildMenu(kit, safeRoot, ctx, scope, texts)
 	local logo = Instance.new("ImageLabel")
 	logo.Name = "Logo"
 	logo.AnchorPoint = Vector2.new(0.5, 0.5)
-	logo.Position = UDim2.fromScale(0.5, 0.5 - LOGO_DRIFT)
+	logo.Position = UDim2.fromScale(0.5, 0.5)
 	logo.Size = UDim2.fromScale(1, 1)
 	logo.BackgroundTransparency = 1
 	logo.BorderSizePixel = 0
@@ -186,17 +189,28 @@ function StartScreen._buildMenu(kit, safeRoot, ctx, scope, texts)
 	logo.Parent = logoHolder
 	logoHolder.Visible = logo.Image ~= ""
 	logoHolder.Parent = stage.Root
-	if logoHolder.Visible then
+	do
 		local TweenService = game:GetService("TweenService")
-		local drift = TweenService:Create(logo, TweenInfo.new(LOGO_DRIFT_SECONDS, Enum.EasingStyle.Sine,
-			Enum.EasingDirection.InOut, -1, true), { Position = UDim2.fromScale(0.5, 0.5 + LOGO_DRIFT) })
-		local breathe = TweenService:Create(logoScale, TweenInfo.new(LOGO_BREATHE_SECONDS, Enum.EasingStyle.Sine,
-			Enum.EasingDirection.InOut, -1, true), { Scale = LOGO_BREATHE })
-		drift:Play()
-		breathe:Play()
+		local info = TweenInfo.new(MOTION_SECONDS, Enum.EasingStyle.Sine, Enum.EasingDirection.Out)
+		local moves = {}
+		if logoHolder.Visible then
+			table.insert(moves, TweenService:Create(logo, info, { Position = UDim2.fromScale(0.5 - LOGO_TRAVEL, 0.5) }))
+			table.insert(moves, TweenService:Create(logoScale, info, { Scale = LOGO_GROW }))
+		end
+		-- The artwork frame belongs to the loading view, which holds it still on the start screen and resets it on its
+		-- next Show. It is found by name beside this gui; a stage with no loading view (the gallery) has none.
+		local gui = safeRoot:FindFirstAncestorOfClass("ScreenGui")
+		local scrim = gui and gui.Parent and gui.Parent:FindFirstChild(gui.Name .. "Scrim")
+		local art = scrim and scrim:FindFirstChild("ArtworkMotion", true)
+		if art and art:IsA("GuiObject") then
+			local scale = art.Size.X.Scale + ART_ZOOM
+			table.insert(moves, TweenService:Create(art, info, { Position = UDim2.fromScale(0.5 + ART_TRAVEL, 0.5),
+				Size = UDim2.fromScale(scale, scale) }))
+		end
+		for _, move in ipairs(moves) do move:Play() end
+		-- Cancelled when the menu ends, so nothing is still writing the frame when the loading view next shows it.
 		scope:add(function()
-			drift:Cancel()
-			breathe:Cancel()
+			for _, move in ipairs(moves) do move:Cancel() end
 		end)
 	end
 

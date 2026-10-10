@@ -2,6 +2,15 @@
 
 Recent deliveries, newest first. Entries before September 2026 live in [the archive](history/patch-history-2026-05-to-2026-08.md).
 
+## 2026-10-10 - Start screen: slow one-way artwork and logo motion (PR98)
+
+Fast lane, one Pulse script, in **PR98**. Installer: `scripts/ui_restyle/start_motion/` (engine AUDIT, APPLY, ROLLBACK).
+
+- **Changed:** `ReplicatedFirst.Loading.StartScreenPulse`, in `_buildMenu`. When the menu appears the artwork frame pushes in (scale +0.09) and slides right (3% of the screen) while the logo grows to 1.05 and slides left (2% of its width). One 75-second move with a Sine Out ease, so it slows to a stop and holds; nothing loops. It replaces the logo's looping bob. Constants at the top of the menu builder: `MOTION_SECONDS`, `ART_ZOOM`, `ART_TRAVEL`, `LOGO_GROW`, `LOGO_TRAVEL`.
+- **Owners:** the artwork frame (`ArtworkMotion`) still belongs to the loading view, which holds it still on the start screen. The start screen finds it by name, tweens it only while its menu is up, and cancels on release; the loading view resets the frame on its next Show. The Classic start screen and `LoadingTransitionRuntime` are unchanged.
+- **Phase 2 chain:** mirrored into `phase2/families/shell/after/` and `forks/StartScreenPulse.01_header.lua`; `phase2/install/07_shell` has not been reassembled.
+- **Checked (agent, Studio Play, desktop):** values moving at the expected slow rate over 16 seconds, no uncovered edge in a capture, tweens stopped after Play, HUD and clients ready. **Not checked:** the full 75 seconds to the hold, phone, how it looks in motion to a person. The reference video was not viewed; the motion follows the general GTA IV loading-screen style from memory. Not user-confirmed.
+
 ## 2026-10-10 - Music v2: in-car free roam, race and start-screen stations, shuffle, crossfade (PR98)
 
 Standard lane, client presentation only, in **PR98**. Same installer folder, `scripts/ui_restyle/radio/`, plus `tuned_values_v2.lua` for values on instances the first install created (the engine reports changed attributes on its own instances as tuned and does not rewrite them).
