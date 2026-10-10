@@ -2,6 +2,13 @@
 
 Recent deliveries, newest first. Entries before September 2026 live in [the archive](history/patch-history-2026-05-to-2026-08.md).
 
+## 2026-10-10 - Mix: vehicle sound 1.5x, radio 0.7x (PR98)
+
+Fast lane, config only, in **PR98**. Script: `scripts/audio/pr98_vehicle_radio_mix.lua` (guarded; `MODE = "ROLLBACK"` restores).
+
+- **Changed:** `Config.Audio.Global@LocalDriverGain` 0.7 to 1.05 and `@ExternalVehicleGain` 0.6 to 0.9 (your own car and other cars, both 1.5x); `Config.Audio.Radio@Volume` 0.5 to 0.35.
+- **Checked:** values read back in Edit. Not played or heard; not user-confirmed.
+
 ## 2026-10-10 - Radio: free-roam music with skip and back (PR98)
 
 Standard lane, client presentation only, in **PR98**. Installer: `scripts/ui_restyle/radio/` (engine AUDIT, APPLY, ROLLBACK; `py -3 scripts/ui_restyle/tools/serve.py` first). Pulse only: Classic has no radio and no Classic script, payload or config that Classic reads changed.
