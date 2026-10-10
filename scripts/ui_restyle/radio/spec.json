@@ -1,0 +1,187 @@
+{
+ "_note": "Free-roam radio (Oscar, 2026-10-10). Standalone delivery outside the phase2 chain, built for PR98. No Classic script, payload or config that Classic reads is touched, so no Classic verify.",
+ "phase": "radio",
+ "placeId": 103397770260610,
+ "classicVerify": false,
+ "installable": true,
+ "ops": [
+  {
+   "id": "config",
+   "kind": "tree",
+   "path": [
+    "ReplicatedStorage",
+    "Config",
+    "Audio",
+    "Radio"
+   ],
+   "tree": {
+    "class": "Folder",
+    "attributes": {
+     "Enabled": true,
+     "Volume": 0.5
+    },
+    "children": [
+     {
+      "name": "Tracks",
+      "class": "Folder",
+      "children": [
+       {
+        "name": "Track01",
+        "class": "StringValue",
+        "properties": {
+         "Value": "9044545570"
+        },
+        "attributes": {
+         "Title": "Night Run",
+         "Order": 1,
+         "Gain": 1
+        }
+       },
+       {
+        "name": "Track02",
+        "class": "StringValue",
+        "properties": {
+         "Value": "1844770115"
+        },
+        "attributes": {
+         "Title": "Trance Machine",
+         "Order": 2,
+         "Gain": 1
+        }
+       },
+       {
+        "name": "Track03",
+        "class": "StringValue",
+        "properties": {
+         "Value": "9044545921"
+        },
+        "attributes": {
+         "Title": "Starter",
+         "Order": 3,
+         "Gain": 1
+        }
+       },
+       {
+        "name": "Track04",
+        "class": "StringValue",
+        "properties": {
+         "Value": "9044545912"
+        },
+        "attributes": {
+         "Title": "Dream Chaser",
+         "Order": 4,
+         "Gain": 1
+        }
+       },
+       {
+        "name": "Track05",
+        "class": "StringValue",
+        "properties": {
+         "Value": "84634152220728"
+        },
+        "attributes": {
+         "Title": "Nebula Whisper",
+         "Order": 5,
+         "Gain": 1
+        }
+       },
+       {
+        "name": "Track06",
+        "class": "StringValue",
+        "properties": {
+         "Value": "100971882795527"
+        },
+        "attributes": {
+         "Title": "Oceanic Liquid Beat",
+         "Order": 6,
+         "Gain": 1
+        }
+       },
+       {
+        "name": "Track07",
+        "class": "StringValue",
+        "properties": {
+         "Value": "93859787547313"
+        },
+        "attributes": {
+         "Title": "Soft Resonance",
+         "Order": 7,
+         "Gain": 1
+        }
+       },
+       {
+        "name": "Track08",
+        "class": "StringValue",
+        "properties": {
+         "Value": "126898781444053"
+        },
+        "attributes": {
+         "Title": "Ghosts in the Reverb",
+         "Order": 8,
+         "Gain": 1
+        }
+       }
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "radio_client",
+   "kind": "create",
+   "class": "ModuleScript",
+   "path": [
+    "ReplicatedStorage",
+    "Modules",
+    "Game",
+    "Audio",
+    "RadioClient"
+   ],
+   "after": "after/RadioClient.lua"
+  },
+  {
+   "id": "radio_strip",
+   "kind": "create",
+   "class": "ModuleScript",
+   "path": [
+    "ReplicatedStorage",
+    "Modules",
+    "Game",
+    "UIPulse",
+    "FreeRoam",
+    "RadioStripView"
+   ],
+   "after": "after/RadioStripView.lua"
+  },
+  {
+   "id": "hud_view",
+   "kind": "source",
+   "class": "ModuleScript",
+   "path": [
+    "ReplicatedStorage",
+    "Modules",
+    "Game",
+    "UIPulse",
+    "FreeRoam",
+    "HudView"
+   ],
+   "before": "before/HudView.lua",
+   "after": "after/HudView.lua"
+  },
+  {
+   "id": "hud_client",
+   "kind": "source",
+   "class": "ModuleScript",
+   "path": [
+    "ReplicatedStorage",
+    "Modules",
+    "Game",
+    "UIPulse",
+    "FreeRoam",
+    "HudClient"
+   ],
+   "before": "before/HudClient.lua",
+   "after": "after/HudClient.lua"
+  }
+ ]
+}

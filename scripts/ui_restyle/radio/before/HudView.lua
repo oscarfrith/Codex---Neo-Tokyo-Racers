@@ -1,5 +1,5 @@
 -- Owns the free-roam HUD composition for Regular, Compact and TouchDrive (status, action bar, bottom buttons, gauge, minimap host, car panel and modal hosts) and the HUD's frame step; no remote, attribute or bindable.
--- Pulse UI (phase2). ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.HudView. Requires: Kit.Tokens, Kit.Controls, Kit.Data, Kit.Gauge, FreeRoam.HudMinimap, FreeRoam.CarPanelView, FreeRoam.HudModals, FreeRoam.RadioStripView (resolved on the first mount).
+-- Pulse UI (phase2). ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.HudView. Requires: Kit.Tokens, Kit.Controls, Kit.Data, Kit.Gauge, FreeRoam.HudMinimap, FreeRoam.CarPanelView, FreeRoam.HudModals (resolved on the first mount).
 --
 -- Static layer (DesktopFreeRoamHud): action bar, bottom buttons, car panel, ModalLayer, the Minimap marker frame.
 -- Live layer (DesktopFreeRoamHudLive): status cluster (its cash chip counts), gauge, minimap.
@@ -23,7 +23,6 @@ local function modules()
 			HudMinimap = require(family.HudMinimap),
 			CarPanelView = require(family.CarPanelView),
 			HudModals = require(family.HudModals),
-			RadioStripView = require(family.RadioStripView),
 		}
 	end
 	return modulesCache
@@ -120,7 +119,6 @@ end
 --   MinimapDeps: table?     HudMinimap deps; nil in the gallery
 --   DriveState: table?      the shared MobileDriveInputState table (SpeedMph, BoostPercent, IsDriving)
 --   Subject: table?         { Part, VehiclePart }, kept current by the client's listeners
---   Radio: table?           Audio.RadioClient when the radio is on; nil (and no strip) in the gallery
 --   SpeedGaugeMaxMph, BoostBarSmoothing: number?    cached config (D1288, D1279)
 --   Sample: { Speed, Boost }?    gallery: a fixed gauge reading }
 function HudView.Mount(layer, model, scope, extra)
@@ -210,15 +208,6 @@ function HudView.Mount(layer, model, scope, extra)
 		marker.Parent = layer.Slot("Minimap")
 	end
 
-	-- Radio strip: bottom centre, lifted clear of the HUD buttons (or of the gauge, which TouchDrive centres there).
-	local radio
-	if extra.Radio then
-		local below = touchDrive and HudView._gaugeSize(space, ctx.Class, ctx.Arrangement)
-			or (compact and space.CompactHudButton or space.HudButtonHeight)
-		radio = m.RadioStripView.Mount(layer.Slot("BottomCentre"), extra.Radio, scope, { Px = px, Gap = px(space.Gap),
-			Lift = px(below) + px(space.Gap), Compact = compact, Touch = touchDrive })
-	end
-
 	local carPanel = m.CarPanelView.Mount(layer.Slot("SidePanel"), model, scope)
 	local modals = m.HudModals.Mount(layer.Root, model, scope, { Player = extra.Player, SampleCash = extra.SampleCash })
 
@@ -263,7 +252,6 @@ function HudView.Mount(layer, model, scope, extra)
 		show("Status", status, state.ShowStatus)
 		local covered = HudView._liveCovered(state, compact)
 		show("Gauge", gauge, state.ShowGauge and not covered)
-		if radio then show("Radio", radio, state.ShowActionBar and not covered) end
 
 		local rank = model.GetRank()
 		if not compact then
@@ -350,7 +338,6 @@ function HudView.Mount(layer, model, scope, extra)
 		settings.Destroy()
 		bar:Destroy()
 		buttons:Destroy()
-		if radio then radio.Destroy() end
 		if marker then marker:Destroy() end
 	end
 

@@ -22,6 +22,7 @@ import vectors  # noqa: E402
 
 REPO = os.path.abspath(os.path.join(HERE, "..", "..", ".."))
 PLACE_ID = 93959280828322
+PR98_PLACE_ID = 103397770260610  # the working place since 2026-10-09; a spec opts in with "placeId"
 ORIGIN = "http://127.0.0.1:8796/"
 MARK_ATTRIBUTE = "UIRestyleInstall"
 CLASSIC_VERIFY = "scripts/ui_restyle/classic/out_verify_classic.lua"
@@ -168,8 +169,8 @@ def validate(spec, phase_dir):
         fail("phase must be a short name (letters, digits, dash, underscore)")
     if phase != os.path.basename(os.path.normpath(phase_dir)):
         fail("phase %r must equal its folder name %r" % (phase, os.path.basename(os.path.normpath(phase_dir))))
-    if spec.get("placeId", PLACE_ID) != PLACE_ID:
-        fail("placeId must be %d (Space Racers v3)" % PLACE_ID)
+    if spec.get("placeId", PLACE_ID) not in (PLACE_ID, PR98_PLACE_ID):
+        fail("placeId must be %d (Space Racers v3) or %d (PR98)" % (PLACE_ID, PR98_PLACE_ID))
     for key in ("classicVerify", "installable"):
         if key in spec and not isinstance(spec[key], bool) and not (key == "classicVerify" and isinstance(spec[key], str)):
             fail(key + " must be true or false")
@@ -414,7 +415,7 @@ def emit(phase_dir, inline=False, base=None, record=True, write=True, max_part_c
     add_prior(ops, history)
     lines = dry_run(ops)
     base = base or phase_base(phase_dir)
-    data = {"engine": 1, "phase": spec["phase"], "placeId": PLACE_ID, "base": base, "origin": ORIGIN,
+    data = {"engine": 1, "phase": spec["phase"], "placeId": spec.get("placeId", PLACE_ID), "base": base, "origin": ORIGIN,
             "markAttribute": MARK_ATTRIBUTE, "installable": spec.get("installable", True), "inline": inline,
             "ops": ops}
     if spec.get("classicVerify"):

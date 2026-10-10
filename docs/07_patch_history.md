@@ -2,6 +2,18 @@
 
 Recent deliveries, newest first. Entries before September 2026 live in [the archive](history/patch-history-2026-05-to-2026-08.md).
 
+## 2026-10-10 - Radio: free-roam music with skip and back (PR98)
+
+Standard lane, client presentation only, in **PR98**. Installer: `scripts/ui_restyle/radio/` (engine AUDIT, APPLY, ROLLBACK; `py -3 scripts/ui_restyle/tools/serve.py` first). Pulse only: Classic has no radio and no Classic script, payload or config that Classic reads changed.
+
+- **Contract:** one music owner, `ReplicatedStorage.Modules.Game.Audio.RadioClient` (one local Sound in the existing `GameplayMusic` group, so the loading mixer ducks it). It plays `Config.Audio.Radio.Tracks` in `Order`, advances at the end of a track and exposes `Next`, `Previous`, `State` and `Changed`. The Pulse free-roam HUD starts it and draws `UIPulse.FreeRoam.RadioStripView` (previous, track name, next) on its `BottomCentre` slot, lifted above the HUD buttons (above the gauge on touch). The strip follows the HUD: hidden in races, menus, the full map and under modals. No remote, saved data or server change.
+- **Context audio stays off.** `ContextAudioClient` also has a Music channel; `ContextAudioEnabled` is still false and its track lists are blank. Do not give it music tracks while the radio is on, or two owners will play music. Its Ambience channel is unaffected.
+- **Changed:** created `Config.Audio.Radio` (`Enabled`, `Volume`, eight tracks Oscar sorted into his Free Roam folder), `Audio.RadioClient` and `FreeRoam.RadioStripView`; edited Pulse `FreeRoam.HudClient` and `FreeRoam.HudView`. `engine/build.py` now accepts a spec with `placeId` 103397770260610 (PR98); the default is still v3.
+- **Phase 2 chain:** the two edited HUD sources are mirrored into `phase2/families/free_roam/after/`, but `phase2/install/02_free_roam` has not been reassembled and does not know `RadioStripView`. Reassemble from the family folder (and add the module's create op) before the next free-roam family delivery.
+- **Tuning:** `Config.Audio.Radio@Volume`, `@Enabled`; per track `Title`, `Order`, `Gain` and the asset id in `Value`. Add a track by duplicating a `TrackNN` value.
+- **Checked (agent, Studio Play in PR98, desktop, Oscar's real profile, on foot only):** silent at 0:00 behind the start screen; starts on Play; next, next, previous through the real buttons; automatic advance at the end of a track; one Sound at a time; all clients ready; no errors. **Not checked:** by ear, phone or tablet layout, gamepad focus, while driving or in a race, a track that fails to load. Not user-confirmed.
+- **Also in the place:** Oscar's audition folders under `SoundService` (`Free Roam`, `Race`, `Not sure`, `Free Roam - new candidates`) hold unwired Sound objects; the Race tracks are not on the radio.
+
 ## 2026-10-09 - PR98 (published place): Exotic and Muscle classes always on
 
 Fast lane, config only, in **PR98** (103397770260610), now the working place. Script: `scripts/release/pr98_vehicle_classes_always_on.lua`.
