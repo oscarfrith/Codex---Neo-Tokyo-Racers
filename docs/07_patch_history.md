@@ -2,6 +2,13 @@
 
 Recent deliveries, newest first. Entries before September 2026 live in [the archive](history/patch-history-2026-05-to-2026-08.md).
 
+## 2026-10-10 - Vehicle start-up (ignition) sound muted (PR98)
+
+Fast lane, config only, in **PR98**. Script: `scripts/audio/pr98_mute_vehicle_ignition.lua` (guarded; `MODE = "ROLLBACK"` restores 0.85).
+
+- **Changed:** `IgnitionGain` 0.85 to 0 on both vehicle audio profiles (`GENERIC_STANDARD_AUDIO`, `EXOTIC_V10_AUDIO`). The asset id is kept, so the cue still plays silently and the start sequence that waits for it before fading in the engine loops is unchanged. The catalogue reads 0 as 0 (`VehicleAudioCatalog` line 274). Boost ignition is a different cue and is untouched.
+- **Checked:** values read back in Edit. Not played or heard; not user-confirmed.
+
 ## 2026-10-10 - Start screen: slow one-way artwork and logo motion (PR98)
 
 Fast lane, one Pulse script, in **PR98**. Installer: `scripts/ui_restyle/start_motion/` (engine AUDIT, APPLY, ROLLBACK).
