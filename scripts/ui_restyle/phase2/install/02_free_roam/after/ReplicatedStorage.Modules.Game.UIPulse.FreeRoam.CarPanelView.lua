@@ -71,7 +71,11 @@ function CarPanelView._listItems(rows, buyMoreKey, onActivated)
 	return CarPanelView._withActivation(items, onActivated)
 end
 
--- Pure: model rows -> tiles (Compact).
+-- Pure: model rows -> tiles (Compact). Every vehicle here is owned, so no OWNED chip: on a phone cell the chip
+-- stood on the tier badge and rating (a 90 dp cell holds about 52 dp of badge and 46 dp of chip). The vehicle
+-- that is out carries the cyan tick corner instead: a CURRENT chip is wider than OWNED and would overlap the same
+-- way. The card picture fills the tile (the Compact picture box is too low to show a car), which also keeps the
+-- selected tile dark with light text.
 function CarPanelView._tileItems(rows, buyMoreKey, onActivated)
 	local items = { { Key = buyMoreKey, Title = "BUY MORE", Icon = "plus" } }
 	for _, row in ipairs(rows) do
@@ -79,13 +83,20 @@ function CarPanelView._tileItems(rows, buyMoreKey, onActivated)
 			Key = row.VehicleId,
 			Title = row.Name,
 			Image = row.Image ~= "" and row.Image or nil,
+			PictureMode = "Full",
 			Tier = TIERS[row.Tier] and row.Tier or nil,
 			Rating = math.floor(row.Rating),
-			Status = "Owned",
+			ChipRightKind = row.Selected and "Tick" or nil,
 			State = row.Selected and "Selected" or "Default",
 		})
 	end
 	return CarPanelView._withActivation(items, onActivated)
+end
+
+-- Pure: the room kept between the Compact grid and the footer. The kit grid's scroller is larger than its box by
+-- the selection glow radius on every side, so with only a gap the last row scrolled under the DESPAWN button.
+function CarPanelView._gridFoot(glow, gap)
+	return math.max(glow, gap)
 end
 
 -- Pure: the line above the footer. An empty garage says so instead of asking for a selection.
@@ -174,6 +185,11 @@ function CarPanelView.Mount(parent, model, scope)
 			bottom += hintHeight + gap
 		end
 
+		if compact then
+			-- The glow radius in Compact units, as Collections.Rail computes it.
+			local glow = px(space.GlowTileRadius * space.TouchGap / space.Pad)
+			bottom = buttonHeight + CarPanelView._gridFoot(glow, gap)
+		end
 		local holder = frame("Vehicles", content)
 		holder.Position = UDim2.fromOffset(0, top)
 		holder.Size = UDim2.new(1, 0, 1, -(top + bottom))

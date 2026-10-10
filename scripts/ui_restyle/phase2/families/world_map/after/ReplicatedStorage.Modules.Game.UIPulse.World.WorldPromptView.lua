@@ -165,6 +165,25 @@ local function run()
 		setStyle(prompt, Enum.ProximityPromptStyle.Default)
 	end
 
+	-- The onboarding objective cards hang from the same top-left corner on a higher gui (objective 3 is "enter an
+	-- event", so they show exactly when this card does). Returns their bottom edge in screen pixels, or nil. Event
+	-- time only; read, never written.
+	local function objectivesBottom(): number?
+		local playerGui = player:FindFirstChildOfClass("PlayerGui")
+		local gui = playerGui and playerGui:FindFirstChild("Onboarding")
+		local root = gui and gui:FindFirstChild("Root")
+		local objectives = root and root:FindFirstChild("Objectives")
+		local slot = objectives and objectives:FindFirstChild("SlotTopLeftHud")
+		local cards = slot and slot:FindFirstChild("Cards")
+		if not (cards and cards:IsA("GuiObject") and gui:IsA("ScreenGui") and gui.Enabled) then
+			return nil
+		end
+		if not (root.Visible and objectives.Visible) or cards.AbsoluteSize.Y <= 1 then
+			return nil
+		end
+		return cards.AbsolutePosition.Y + cards.AbsoluteSize.Y
+	end
+
 	local function showCard(prompt)
 		local zone = prompt.Parent
 		if not zone then
@@ -179,6 +198,8 @@ local function run()
 		local tier = vehicle and vehicle:GetAttribute("PerformanceTier")
 		tier = type(tier) == "string" and string.upper(tier) or ""
 		cardPrompt = prompt
+		local found, bottom = pcall(objectivesBottom)
+		card.SetOccupiedTop(found and bottom or nil)
 		card.Show({
 			EventId = eventId,
 			Mode = mode,

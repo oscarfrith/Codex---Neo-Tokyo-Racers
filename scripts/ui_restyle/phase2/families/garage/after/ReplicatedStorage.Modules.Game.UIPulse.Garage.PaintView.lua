@@ -110,10 +110,12 @@ local function listLayout(parent: Instance, horizontal: boolean, gap: number, wr
 end
 
 --[[ PaintView.New(controlsParent, paletteParent, props, scope, ctx)
-	controlsParent  a frame at the top-left of the stage (the screen positions it under the header)
-	paletteParent   the stage's BottomRail slot (anchor 0,1): the presets sit where the tile row is
+	controlsParent  the stage's TopLeft slot. Regular: the controls panel is built in it and Place(top) puts it
+	                under the header. Compact: only its position is read (Place measures from it).
+	paletteParent   the stage's BottomRail slot (anchor 0,1): the presets sit where the tile row is. Compact: the
+	                controls are docked in it too, on the presets, so the middle of the screen stays clear.
 	props           { OnChannel = (channel) -> (), OnColour = (channel, colour, commit) -> () }
-	Returns { Controls: Frame, Palette: Frame, Show(paint, token), Hide(), Destroy() }.
+	Returns { Controls: Frame, Palette: Frame, Place(top), ButtonLine(), Show(paint, token), Hide(), Destroy() }.
 	paint = { Target, Channels = {string}, Selected = string, Colours = {[channel] = Color3} } from the model.
 ]]
 function PaintView.New(controlsParent: GuiObject, paletteParent: GuiObject, props: any, scope: any, ctx: any)
@@ -128,13 +130,17 @@ function PaintView.New(controlsParent: GuiObject, paletteParent: GuiObject, prop
 	local settingUp = false
 	local wanted = false -- Show was called and Hide was not
 	local fitHeight: any = nil
+	local syncPalette: any = nil
+	local limitTop = 0 -- Compact: how far down from controlsParent the docked block must stay (Place)
 
-	-- Controls: a slate panel on Regular (tabs over three sliders); a bare row on Compact (preview c14).
-	local controls = plainFrame("PaintControls", controlsParent)
+	-- Controls: a slate panel on Regular (tabs over three sliders); a bare row on Compact (preview c14), docked
+	-- at the foot of the screen on the presets instead of standing under the header.
+	local controls = plainFrame("PaintControls", compact and paletteParent or controlsParent)
 	controls.Visible = false
 	local content: GuiObject = controls
 	local sliderWidth = ctx.Px(compact and Space.CompactStatPanelWidth or Space.ListWidth)
 	if compact then
+		controls.AnchorPoint = Vector2.new(0, 1)
 		controls.Size = UDim2.fromOffset(sliderWidth * 3 + gap * 2, ctx.Px(Space.CompactStatusHeight + Space.TouchMin + Space.TouchMin))
 		listLayout(controls, false, gap)
 	else
@@ -237,9 +243,29 @@ function PaintView.New(controlsParent: GuiObject, paletteParent: GuiObject, prop
 
 	-- Regular: the panel is as tall as what it holds. A labelled slider is taller than SliderHeight, and with
 	-- the start height alone the third slider ended below the panel's lower hairline.
+	-- Compact: the docked row is as tall as the channel switch and the tallest slider with the gap between them
+	-- (a touch tab row and a labelled touch slider are both taller than their drawn tokens), so the presets under
+	-- it and the button row beside it are measured from its real box.
 	local startHeight = controls.Size.Y.Offset
 	fitHeight = function()
-		if destroyed or compact then
+		if destroyed then
+			return
+		end
+		if compact then
+			local tallest = 0
+			for _, holder in ipairs(sliderHolders) do
+				tallest = math.max(tallest, holder.Size.Y.Offset)
+			end
+			local size = UDim2.fromOffset(
+				math.max(sliderWidth * 3 + gap * 2, tabs.Instance.Size.X.Offset),
+				tabs.Instance.Size.Y.Offset + gap + tallest
+			)
+			if controls.Size ~= size then
+				controls.Size = size
+			end
+			if syncPalette then
+				syncPalette()
+			end
 			return
 		end
 		local heights = {}
@@ -305,19 +331,25 @@ function PaintView.New(controlsParent: GuiObject, paletteParent: GuiObject, prop
 		end
 	end
 
-	-- Compact: on the shortest phones the slider row reaches down into the preset row (568x320: the sliders end
-	-- on the screen edge, the presets start 55 px above it). The presets are then left out; the three sliders
-	-- reach every colour. Positions are the stage offsets of the two slots and of the frames in them.
-	local function syncPalette()
+	-- Compact: the controls stand on the presets, and the two together must stay under what Place was given (the
+	-- header, and the stat panel when one shows). On the shortest phones they do not (568x320 with a stat panel):
+	-- the presets are then left out and the controls stand on the foot of the screen; the three sliders reach
+	-- every colour. Positions are stage offsets: the two slots, and the frames in them.
+	syncPalette = function()
 		if destroyed then
 			return
 		end
-		local visible = wanted
-		if visible and compact then
-			local bottom = controlsParent.Position.Y.Offset + controls.Position.Y.Offset + controls.Size.Y.Offset
-			local top = paletteParent.Position.Y.Offset - palette.Size.Y.Offset
-			visible = PaintView._presetsClear(bottom, top, gap)
+		local clear = true
+		if compact then
+			local lift = palette.Size.Y.Offset + gap
+			local blockTop = paletteParent.Position.Y.Offset - lift - controls.Size.Y.Offset
+			clear = PaintView._presetsClear(controlsParent.Position.Y.Offset + limitTop, blockTop, gap)
+			local position = UDim2.fromOffset(0, clear and -lift or 0)
+			if controls.Position ~= position then
+				controls.Position = position
+			end
 		end
+		local visible = wanted and clear
 		if palette.Visible ~= visible then
 			palette.Visible = visible
 		end
@@ -339,12 +371,40 @@ function PaintView.New(controlsParent: GuiObject, paletteParent: GuiObject, prop
 		syncPalette()
 	end
 	layoutPalette()
-	table.insert(bag, scope:connect(controls:GetPropertyChangedSignal("Position"), syncPalette))
 	table.insert(bag, scope:connect(controlsParent:GetPropertyChangedSignal("Position"), syncPalette))
 	table.insert(bag, scope:connect(swatches[1].Component.Instance:GetPropertyChangedSignal("Size"), layoutPalette))
 	table.insert(bag, scope:connect(paletteParent:GetPropertyChangedSignal("Position"), layoutPalette))
 
 	local self = { Controls = controls, Palette = palette }
+
+	-- top: screen px down from the top of controlsParent to the first free line under the header (and, on
+	-- Compact, under anything else the docked block must not reach). Regular: the panel goes there. Compact: the
+	-- block stays docked at the foot and only the presets depend on it. Call it before Show.
+	function self.Place(top: number)
+		if destroyed then
+			return
+		end
+		if compact then
+			if limitTop ~= top then
+				limitTop = top
+				syncPalette()
+			end
+			return
+		end
+		local position = UDim2.fromOffset(0, top)
+		if controls.Position ~= position then
+			controls.Position = position
+		end
+	end
+
+	-- Compact: screen px from paletteParent's line (the foot of the stage) up to the middle of the channel
+	-- switch, as a negative offset, so the screen can stand its button row on that line. nil on Regular.
+	function self.ButtonLine(): number?
+		if not compact then
+			return nil
+		end
+		return controls.Position.Y.Offset - controls.Size.Y.Offset + math.floor(tabs.Instance.Size.Y.Offset / 2)
+	end
 
 	-- token is the model's page token: a new page (or a channel change, which is a new page) re-seeds the sliders;
 	-- a message or a Cash change on the same page leaves a drag in progress alone.

@@ -34,6 +34,17 @@ local VEHICLES = {
 	{ Key = "seraph", Title = "Seraph", Sub = "Exotic", Tier = "S", Rating = 936, Price = "$9.80M", Icon = "car", Status = "Unaffordable" },
 }
 
+-- Mobile pass (A7): the longest names, a full price beside a tier badge and rating, and a locked tile. On Compact
+-- every tile is one width, the name ends in an ellipsis and the top row drops the rating before anything overlaps.
+local LONG_NAMES = {
+	{ Key = "standard", Title = "Exotic Stinger standard", Tier = "E", Rating = 220, Status = "Owned", Icon = "car" },
+	{ Key = "evo", Title = "Exotic Stinger evo", Tier = "D", Rating = 390, Price = "$150,000", Icon = "car" },
+	{ Key = "meridian", Title = "Meridian grand tourer evoluzione GT", Tier = "S", Rating = 936, Price = "$12,000,000", Icon = "car", Status = "Unaffordable" },
+	{ Key = "locked", Title = "Exotic Zephyr standard", Price = "$42,000", Icon = "upgrade", Status = "Locked" },
+	{ Key = "fitted", Title = "Injectors level 2", Status = "Fitted", Icon = "upgrade" },
+	{ Key = "tick", Title = "Front engine", ChipRightKind = "Tick", Icon = "gauge" },
+}
+
 -- The race-entry rail shows locked cars; they cannot be chosen (Locked, Selectable left unset).
 local OWNED = {
 	{ Key = "seraph", Title = "Seraph", Sub = "Tier C only", Tier = "S", Rating = 939, Icon = "car", Status = "Locked" },
@@ -171,6 +182,8 @@ local railItem = {
 		{ Id = "ModuleShop", Props = { Heading = "Wing", Count = "2/4", Items = WING_SHOP, Select = "bridge_gt", Segment = { Style = "Segment", Triggers = true, Selected = "Shop", OnSelected = nothing, Tabs = SEGMENT.Tabs }, OnSelected = nothing } },
 		{ Id = "FixedWidth", Props = { Heading = "Exotic", Count = "2/6", Width = 1000, Items = VEHICLES, Select = "zephyr", OnSelected = nothing } },
 		{ Id = "SelectOnActivate", Props = { Heading = "Parts", Count = "3/7", CellWidth = 236, SelectOn = "Activate", Items = SLOTS, Select = "front_engine", OnSelected = nothing } },
+		{ Id = "LongNames", Props = { Heading = "Spoiler", Count = "2/6", Items = LONG_NAMES, Select = "evo", OnSelected = nothing } },
+		{ Id = "LongNamesSelectedLong", Props = { Heading = "Spoiler", Count = "3/6", Items = LONG_NAMES, Select = "meridian", OnSelected = nothing } },
 		{ Id = "NothingSelected", Props = { Heading = "Exotic", Count = "0/6", Items = VEHICLES, OnSelected = nothing } },
 		{ Id = "NoHeading", Props = { Items = VEHICLES, Select = "aurora", OnSelected = nothing } },
 		{ Id = "Empty", Props = { Heading = "Owned", Count = "0/0", Items = {}, OnSelected = nothing } },

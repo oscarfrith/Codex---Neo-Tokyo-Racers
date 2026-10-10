@@ -136,7 +136,9 @@ function Model.TimeText(seconds: any): string
 end
 
 -- The event card's texts. facts: { EventId, Mode, RouteId }; summary: the GetEntryDetails Summary or nil. Pure.
-function Model.CardText(facts: any, summary: any): any
+-- compact (optional): the format line drops the mode when it has laps or checkpoints to show; a phone's banner
+-- already names it ("START TIME TRIAL") and the line must fit a narrow card.
+function Model.CardText(facts: any, summary: any, compact: boolean?): any
 	local mode = facts.Mode == "Race" and "RACE" or "TIME TRIAL"
 	if type(summary) ~= "table" then
 		local name = tostring(facts.RouteId or "")
@@ -150,6 +152,9 @@ function Model.CardText(facts: any, summary: any): any
 	local checkpoints = tonumber(summary.CheckpointCount)
 	if checkpoints and checkpoints > 0 then
 		table.insert(parts, tostring(checkpoints) .. (checkpoints == 1 and " CHECKPOINT" or " CHECKPOINTS"))
+	end
+	if compact and #parts > 1 then
+		table.remove(parts, 1)
 	end
 	local prize = tonumber(summary.BaseReward)
 	return {

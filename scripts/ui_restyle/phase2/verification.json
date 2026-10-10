@@ -1,7 +1,7 @@
 {
  "wave": "phase2 (programme phases 2 to 8)",
  "date": "2026-10-09",
- "place": "Space Racers v3 (93959280828322)",
+ "place": "PR98 (103397770260610) since 2026-10-10; earlier passes were in Space Racers v3",
  "status": "installed; default UIStyle = Pulse; agent-verified in Studio on desktop only (three sandbox test passes, 2026-10-09); not user-confirmed",
  "installed_units": [
   "00_kit",
@@ -140,5 +140,47 @@
    "kit harness not re-run after the one-row Layers change"
   ],
   "seen": "CameraUtils:103 error again, after a scripted character teleport; cause still unknown"
+ },
+ "mobile_pass": {
+  "date": "2026-10-10",
+  "place": "PR98 (103397770260610)",
+  "request": "test and fix all the mobile UI, check the PC UI, clean up",
+  "method": "Studio's device emulator cannot be driven through MCP. Every screen was previewed in the dev gallery at 844x390 (C844) after fixing the gallery so a preview uses ONE context (Kit.Metrics._setPreviewDefault); before that fix a phone preview on a desktop window mixed Regular and Compact sizes. Six agents fixed families from the captures; two kit rounds.",
+  "installed": [
+   "kit: Compact tile redesign (fixed width, two-line name, one top row, picture-filled when it has an image, no white selected block), slim touch prompts on phone (max two stacked), slider handle, stat delta chips, drop-down placement, modal fit and close button, button-row collapse, FactList truncation, tier tab fill, Compact selected list row, opt-in Header MaxWidth/SubMaxWidth, Tabs MaxWidth, List Dense, context bind at root creation",
+   "free roam: radio strip under the cash chip on phone, chip and bottom buttons hidden under panels/modals, My Vehicles grid (picture tiles, tick on current, no OWNED), activity strip placement and width cap, tilt status, thumbstick pad",
+   "garage: fixed dealership cell, picker docked on the tab row, drop-down rows that fit, SHOP/OWNED on the heading line, paint block docked at the foot",
+   "player garage: browser head line and one detail panel, desk buttons on the heading line, phone colour page, interior HUD drop-downs",
+   "race: menu hint line and event page, setup/records/vehicles Compact compositions, HUD board as text lines and RESET/EXIT top right, results row count, queue banner",
+   "world: event card width/height and placement, card below onboarding objectives, legend closed on phone, CLEAR WAYPOINT only with a waypoint, onboarding bubble padding and keep-out",
+   "radio strip touch layout (guarded direct write, scripts/ui_restyle/radio/mobile_fix)",
+   "tooling: installers target PR98; Classic verify accepts scripts added by other deliveries"
+  ],
+  "agent_verified": [
+   "Edit harness: kit 983 of 985 (Input action-count case and the known Minimap opacity case); world_map 150 of 150; garage 315 of 342 (all instance-ceiling cases); free_roam 231 of 266 (34 need the radio module the harness does not load; one bottom-buttons expectation untraced); shell run inconclusive (request limit)",
+   "Play, gallery: every screen item mounts its first state at C844 and R1080 with no error; no error in the client log",
+   "Play, gallery C844 captures after install: Garage.Dealership, FreeRoam.CarPanel, World.PromptBanners, RaceEntry.Setup, RaceEntry.Vehicles, OwnedGarage.Browser, RaceSession.RaceHud, WorldMap.FullMap",
+   "Play, desktop: start screen, Get Cash panel (before install), race menu (after install), gallery R1080 dealership; no errors or Pulse warnings",
+   "final audit: 07_shell all after; Classic verify same=213 failures=0 cfgDiffs=0; sandbox closed; UIStyle Pulse"
+  ],
+  "not_verified": [
+   "a real phone or Studio's device emulator: the gallery shows one screen at a time with fixture data, so the live composite (HUD + touch controls + radio + prompts + activity strip together), touch input, safe-area insets and real car pictures in tiles were not seen",
+   "568x320: arithmetic only, no captures",
+   "states not captured after the fix: garage paint/upgrades/parts, desk pages, records, results, countdown, queue banner, onboarding, event card, activity HUD, settings/controls/cash modals, touch controls",
+   "interior garage HUD on phone (no fixture)",
+   "desktop: only start screen, race menu and gallery dealership were looked at after install; paint page moved up one tab row (intended) not seen",
+   "an all-states sweep was started but its error list was unusable (two sweeps overlapped)"
+  ],
+  "desktop_visible_changes": [
+   "post-purchase paint page starts one tab row higher (hidden tabs no longer reserve space)",
+   "a drop-down that would run off-screen is shortened or flipped",
+   "event card sits below the onboarding objective cards when both show",
+   "long fact rows end in an ellipsis instead of overlapping"
+  ],
+  "known": [
+   "garage screens exceed the instance ceilings set in the tests (240/320) on both classes",
+   "Tabs MaxWidth/Header MaxWidth/List Dense have no caller yet",
+   "radio installer's recorded hash for RadioStripView is stale after the direct write"
+  ]
  }
 }

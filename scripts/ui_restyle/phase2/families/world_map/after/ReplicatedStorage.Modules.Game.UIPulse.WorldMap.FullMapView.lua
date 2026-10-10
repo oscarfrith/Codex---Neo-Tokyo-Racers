@@ -103,7 +103,19 @@ function View.Mount(layer: any, model: any, scope: any, extra: any?): any
 
 	-- The map surface. It lives in the full-screen scrim gui, under the static chrome gui, so a pan re-renders
 	-- only the map and the chrome never. A stage (gallery, tests) has no scrim root and uses the root.
-	local mapParent = layer.ScrimRoot or layer.Root
+	local mapParent = layer.ScrimRoot
+	local stageHost
+	if not mapParent then
+		-- A stage: the map is drawn UNDER the chrome and over the whole stage, as the scrim gui does in the game.
+		-- Parented straight into the root it drew over the slots (the title, the legend and every button were
+		-- hidden behind the map) and only as wide as the Menu root (dark bars at the sides of a phone preview).
+		local stageParent = layer.Root.Parent
+		local full = stageParent ~= nil and stageParent:IsA("GuiObject")
+		stageHost = plain("MapStage", full and stageParent or layer.Root)
+		stageHost.Size = UDim2.fromScale(1, 1)
+		stageHost.ZIndex = (full and layer.Root.ZIndex or 1) - 1 -- under the root (or, inside it, under the slots)
+		mapParent = stageHost
+	end
 	local background = Surface.Scrim(mapParent, { Name = "MapBackground", Kind = "Menu" }, scope)
 	local mapView = plain("MapView", mapParent)
 	mapView.Size = UDim2.fromScale(1, 1)
@@ -234,7 +246,9 @@ function View.Mount(layer: any, model: any, scope: any, extra: any?): any
 		parts.Compact = compact
 
 		local district = model:District()
-		local header = keep(Controls.Header(layer.Slot("TopLeft"), { Name = "Header", Title = "MAP", Sub = district ~= "" and district or nil }, scope))
+		-- Compact: the title has no panel behind it and sits on the map itself, so it carries the text shadow.
+		local header = keep(Controls.Header(layer.Slot("TopLeft"), { Name = "Header", Title = "MAP", Sub = district ~= "" and district or nil,
+			Shadow = compact or nil }, scope))
 		parts.Header = header
 		table.insert(rects, header.Instance)
 
@@ -373,7 +387,13 @@ function View.Mount(layer: any, model: any, scope: any, extra: any?): any
 		local open = model:LegendOpen()
 		parts.Legend.Set({ Visible = open })
 		parts.LegendButton.Set({ Selected = open })
-		parts.Clear.Set({ Disabled = not model:HasWaypoint() })
+		local waypoint = model:HasWaypoint()
+		if parts.Compact then
+			-- A phone shows the button only while there is a waypoint to clear: more of the map, less chrome.
+			parts.Clear.Set({ Visible = waypoint, Disabled = not waypoint })
+		else
+			parts.Clear.Set({ Disabled = not waypoint })
+		end
 		if not open then
 			return
 		end
@@ -556,6 +576,9 @@ function View.Mount(layer: any, model: any, scope: any, extra: any?): any
 		crosshair.Destroy()
 		background.Destroy()
 		mapView:Destroy()
+		if stageHost then
+			stageHost:Destroy()
+		end
 	end
 
 	scope:connect(mapView:GetPropertyChangedSignal("AbsoluteSize"), onMapSize)

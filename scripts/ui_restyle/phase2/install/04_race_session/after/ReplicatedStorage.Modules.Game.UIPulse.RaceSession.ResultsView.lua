@@ -132,6 +132,7 @@ function View.Mount(layer, model, scope, options)
 	local destroyed = false
 	local shown = nil
 	local releasePresence = nil
+	local render -- assigned below; build's title listener calls it
 
 	local function destroyParts()
 		local old = parts
@@ -289,6 +290,7 @@ function View.Mount(layer, model, scope, options)
 			local list = keep(Collections.List(listBox, { Name = "List", RowHeight = rowHeight, Width = tableWidth,
 				Header = header }, scope))
 			p.ListBox = listBox
+			p.Board = board
 			p.HeaderKey = table.concat(header, "\31")
 			p.TableHeading, p.Message, p.Table = heading, message, list
 		end)
@@ -308,6 +310,32 @@ function View.Mount(layer, model, scope, options)
 				-- A list row is never lower than a touch target (Collections.List), so the box follows that height:
 				-- one row for the column header, then the rows.
 				local rowPx = math.max(ctx.Px(rowHeight), ctx.Touch(1))
+				if compact then
+					-- Compact: as many rows as stand between the top edge and the buttons (five at 844 x 390, three
+					-- at 568 x 320, where five ran under the buttons). A title long enough to reach the table (a
+					-- server message) sends the table under the title row.
+					local gapPx = ctx.Px(Space.Gap)
+					local topRight = layer.Slot("TopRight").Position
+					local drop = 0
+					local title = p.Header and p.Header.Instance:FindFirstChild("Title")
+					if title then
+						local titleRight = layer.Slot("TopLeft").Position.X.Offset + title.Position.X.Offset + title.Size.X.Offset
+						if titleRight + gapPx > topRight.X.Offset - ctx.Px(tableWidth) then
+							drop = title.Position.Y.Offset + title.Size.Y.Offset + ctx.Px(Space.CompactKeepOutGap)
+						end
+					end
+					if p.Board then
+						put(p.Board, "Position", UDim2.fromOffset(0, drop))
+					end
+					local buttons = p.Buttons.Instance.Size.Y.Offset
+					if buttons <= 0 then
+						buttons = ctx.Touch(Space.CompactButtonDrawn)
+					end
+					local heading = Text.SizeFor("Label", ctx)
+					local free = layer.Slot("BottomRight").Position.Y.Offset - buttons - gapPx
+						- (topRight.Y.Offset + drop) - heading - gapPx
+					p.Rows = math.clamp(math.floor(free / rowPx) - 1, 1, View.TABLE_ROWS_COMPACT)
+				end
 				put(p.ListBox, "Size", UDim2.fromOffset(ctx.Px(tableWidth), rowPx * (p.Rows + 1)))
 			end
 			if p.FactsFrame then
@@ -318,6 +346,22 @@ function View.Mount(layer, model, scope, options)
 			end
 		end
 		p.ApplyLayout()
+
+		-- Compact: the title's width decides where the table starts and how many rows it has; the width arrives
+		-- after the text is set, so the layout follows it and the table is drawn again when the row count changed.
+		local titleLabel = compact and p.Header and p.Header.Instance:FindFirstChild("Title") or nil
+		if titleLabel then
+			scope:connect(titleLabel:GetPropertyChangedSignal("Size"), function()
+				if destroyed or parts ~= p then
+					return
+				end
+				local before = p.Rows
+				guard("layout", p.ApplyLayout)
+				if p.Rows ~= before then
+					render()
+				end
+			end)
+		end
 	end
 
 	local function buttonInstance(id)
@@ -353,7 +397,7 @@ function View.Mount(layer, model, scope, options)
 		end
 	end
 
-	local function render()
+	render = function()
 		if destroyed then
 			return
 		end
@@ -385,6 +429,9 @@ function View.Mount(layer, model, scope, options)
 				p.Sub.Set({ Text = model.SubTitle() })
 			end
 		end)
+		if p.Header then
+			guard("layout", p.ApplyLayout) -- before the table: it sets the Compact row count
+		end
 
 		if p.Primary then
 			guard("hero numbers", function()
@@ -467,7 +514,9 @@ function View.Mount(layer, model, scope, options)
 						local mine = row.You == true and not you
 						you = you or mine
 						items[index] = { Key = mine and View.YOU_KEY or row.Key, Columns = View._columns(row.Columns, p.Columns),
-							Accent = row.You == true, State = mine and "Selected" or "Default" }
+							-- Compact: the Pink bar alone marks the player's row; the White selected block is far
+							-- brighter than anything else on a phone screen and nothing here is selectable.
+							Accent = row.You == true, State = (mine and not p.Compact) and "Selected" or "Default" }
 					end
 					p.Table.SetItems(items)
 					p.RowsKey = rowsKey

@@ -667,6 +667,7 @@ function Overlay.Confirm(root, options)
 	shade.BackgroundTransparency = 1
 	shade.BorderSizePixel = 0
 	shade.Size = UDim2.fromScale(1, 1)
+	Metrics.Bind(shade, ctx) -- the parts are built before the shade is parented and must take this context
 
 	local parts
 	local built, buildError = xpcall(function()
@@ -972,10 +973,21 @@ function Overlay.Modal(parent, props, scope)
 	root.Visible = false
 	root.Parent = parent
 
+	-- Compact: a centred modal never leaves the screen. A Width or Height (design) larger than the safe area inside
+	-- its margins is cut to it; the body then ends above the footer as usual, so tall content needs to scroll.
+	local function fitted(design, axis)
+		if design == nil or ctx.Class ~= "Compact" then return design end
+		local room = ctx.Size[axis] - ctx.Px(Space.CompactMargin) * 2
+		if room <= 0 or ctx.Px(design) <= room then return design end
+		return room / ctx.Scale
+	end
+
 	local function place()
 		if destroyed or not built or sidePanel then return end
 		centre(built.Panel.Instance, root, ctx.Size)
 	end
+
+	local placeClose
 
 	local function relayout()
 		if destroyed or not built then return end
@@ -990,6 +1002,7 @@ function Overlay.Modal(parent, props, scope)
 		end
 		local footer = if built.Footer then footerHeight(ctx) + pad else 0
 		local offset = top + rowHeight + pad
+		if not sidePanel then built.Panel.Set({ Width = fitted(state.Width, "X"), Height = fitted(state.Height, "Y") }) end
 		built.Mark.Set({ Height = markDesignHeight(ctx, rowHeight) })
 		built.TitleRow.Position = UDim2.fromOffset(left, top)
 		built.TitleRow.Size = UDim2.new(1, -left, 0, rowHeight)
@@ -1002,16 +1015,32 @@ function Overlay.Modal(parent, props, scope)
 			built.Body.AutomaticSize = Enum.AutomaticSize.Y
 			built.Body.Size = UDim2.new(1, -left, 0, 0)
 		end
+		placeClose()
 		place()
+	end
+
+	-- Regular: the X in the title row's top-right corner. Compact: its 48 dp hit box is larger than the drawn tile
+	-- and than the title row, so the box is centred on the row and let out past the right padding by its own
+	-- margin: the drawn X then stands on the title's centre line, against the panel's right padding.
+	placeClose = function()
+		if not built or not built.Close then return end
+		local instance = built.Close.Instance
+		if ctx.Class == "Compact" then
+			local drawn = ctx.Px((Controls._iconButtonSize(true, "Small")))
+			instance.AnchorPoint = Vector2.new(1, 0.5)
+			instance.Position = UDim2.new(1, math.max(0, math.floor((instance.Size.X.Offset - drawn) / 2)), 0.5, 0)
+		else
+			instance.AnchorPoint = Vector2.new(1, 0)
+			instance.Position = UDim2.new(1, 0, 0, 0)
+		end
 	end
 
 	local function buildClose()
 		local close = Controls.IconButton(built.TitleRow, { Name = "CloseButton", Icon = "close", Size = "Small",
 			OnActivated = function() closeModal(false) end }, own)
-		close.Instance.AnchorPoint = Vector2.new(1, 0)
-		close.Instance.Position = UDim2.new(1, 0, 0, 0)
 		close.Instance.ZIndex = 2
 		built.Close = close
+		placeClose()
 	end
 
 	-- The footer row sits on the bottom-right of the panel content; the body ends above it.
@@ -1040,8 +1069,8 @@ function Overlay.Modal(parent, props, scope)
 		if state.Scrim ~= "None" then Surface.Scrim(root, { Kind = state.Scrim }, own) end
 		local panelProps = { Name = "Panel" }
 		if not sidePanel then
-			panelProps.Width = state.Width
-			panelProps.Height = state.Height
+			panelProps.Width = fitted(state.Width, "X")
+			panelProps.Height = fitted(state.Height, "Y")
 		end
 		local panel = Surface.Panel(root, panelProps, own)
 		panel.Instance.AnchorPoint = Vector2.zero
@@ -1113,13 +1142,13 @@ function Overlay.Modal(parent, props, scope)
 		end,
 		Width = function(value)
 			if built and not sidePanel then
-				built.Panel.Set({ Width = value })
+				built.Panel.Set({ Width = fitted(value, "X") })
 				relayout()
 			end
 		end,
 		Height = function(value)
 			if built and not sidePanel then
-				built.Panel.Set({ Height = value })
+				built.Panel.Set({ Height = fitted(value, "Y") })
 				relayout()
 			end
 		end,
@@ -1255,7 +1284,10 @@ function Overlay.PromptBanner(parent, props, scope)
 		OnPress = props.OnPress or false,
 		OnRelease = props.OnRelease or false,
 	}
-	local size = { Width = 0, Height = 0, Pad = 0, Gap = 0, Cap = 0 }
+	local size = { Width = 0, Max = 0, Height = 0, Pad = 0, Gap = 0, Cap = 0, Slim = false }
+	local hugged = nil -- the slim banner's fitted width, kept between renders so the root's size does not flip
+	local plate, edge = nil, nil -- the slim banner's drawn plate and its Cyan tap edge, built on first use
+	local renderProgress
 	local cap, capKind, capValue = nil, "None", nil
 	local progress = 0
 	local pressed = false
@@ -1263,6 +1295,7 @@ function Overlay.PromptBanner(parent, props, scope)
 
 	-- Always a TextButton, because the input class changes live and a class cannot; it is Active only on touch.
 	local root = Instance.new("TextButton")
+	Metrics.Bind(root, ctx) -- parts built before the root is parented take this context, not the screen's
 	root.Name = state.Name
 	root.Active = false
 	root.AutoButtonColor = false
@@ -1320,7 +1353,9 @@ function Overlay.PromptBanner(parent, props, scope)
 	end
 
 	-- Action and object sit side by side: from the left pad (key or pad input), or centred as a pair (touch). The
-	-- action's width is read back; an ancestor UIScale (the gallery stage only) is divided out.
+	-- action's width is read back; an ancestor UIScale (the gallery stage only) is divided out. The slim banner
+	-- (touch on Compact) is fitted to the pair here: its texts size themselves, so their width does not depend on
+	-- the banner's and the fit cannot feed back.
 	local function placeText()
 		if destroyed then return end
 		local ratio = 1
@@ -1334,6 +1369,17 @@ function Overlay.PromptBanner(parent, props, scope)
 		if ctx.Input == "Touch" then
 			local objectWidth = if hasObject then math.ceil(object.AbsoluteSize.X / ratio) else 0
 			local total = actionWidth + (if hasObject then size.Gap + objectWidth else 0)
+			if size.Slim then
+				local wanted = evenUp(size.Pad * 2 + ctx.Px(Space.TabUnderline) + total)
+				local least = math.min(size.Max, evenUp(ctx.Px(Space.CompactTileMinWidth) * 2))
+				local fittedWidth = math.clamp(wanted, least, size.Max)
+				if fittedWidth ~= size.Width then
+					hugged = fittedWidth
+					size.Width = fittedWidth
+					write(root, "Size", UDim2.fromOffset(fittedWidth, size.Height))
+					renderProgress()
+				end
+			end
 			local x = math.max(size.Pad, math.floor((size.Width - total) / 2))
 			write(action, "Position", UDim2.fromOffset(x, 0))
 			write(object, "Position", UDim2.fromOffset(x + actionWidth + size.Gap, 0))
@@ -1368,7 +1414,7 @@ function Overlay.PromptBanner(parent, props, scope)
 		end
 	end
 
-	local function renderProgress()
+	renderProgress = function()
 		local width = if state.Hold then math.floor(size.Width * progress + 0.5) else 0
 		write(bar, "Size", UDim2.fromOffset(width, ctx.Px(Space.TabUnderline)))
 		write(bar, "Visible", width > 0)
@@ -1379,29 +1425,64 @@ function Overlay.PromptBanner(parent, props, scope)
 		local compact = ctx.Class == "Compact"
 		local touch = ctx.Input == "Touch"
 		local width, height = promptSize(ctx, state.Main)
-		size.Width, size.Height = width, height
+		-- Touch on a tablet (Regular): the whole banner is a solid White button. Touch on a phone (Compact): slim,
+		-- a dark plate CompactButtonDrawn high in the 48 dp hit box, as wide as its text, with a Cyan edge that says
+		-- "tap" (owner: phone UI small and clear of the centre).
+		local slim = touch and compact
+		local solid = touch and not compact
+		if not slim then hugged = nil end
+		size.Max = width
+		size.Slim = slim
+		size.Width, size.Height = hugged or width, height
 		size.Pad = ctx.Px(if compact then Space.CompactMargin else Space.Pad)
 		size.Gap = ctx.Px(if compact then Space.TouchGap else Space.Gap)
 		size.Cap = ctx.Px(Space.KeyCapSize)
 
-		-- Key or pad: a slate strip with hairlines. Touch: the whole banner is the button, White with Ink text.
-		write(root, "Size", UDim2.fromOffset(width, height))
+		-- Key or pad: a slate strip with hairlines. The root is always the hit box.
+		write(root, "Size", UDim2.fromOffset(size.Width, height))
 		write(root, "Active", touch)
-		write(root, "BackgroundColor3", if touch then Tokens.Colour.White else Tokens.Colour.Slate)
-		write(root, "BackgroundTransparency", if touch then 0 else 1 - Tokens.Opacity.Panel)
-		hairTop.Set({ Visible = not touch })
-		hairBottom.Set({ Visible = not touch })
+		write(root, "BackgroundColor3", if solid then Tokens.Colour.White else Tokens.Colour.Slate)
+		write(root, "BackgroundTransparency", if solid then 0 elseif slim then 1 else 1 - Tokens.Opacity.Panel)
+		if slim then
+			local drawn = ctx.Px(Space.CompactButtonDrawn) + (if state.Main then ctx.Px(Space.TouchGap) else 0)
+			if not plate then
+				plate = Instance.new("Frame")
+				plate.Name = "Plate"
+				plate.Active = false
+				plate.BackgroundColor3 = Tokens.Colour.Slate
+				plate.BackgroundTransparency = 1 - Tokens.Opacity.Panel
+				plate.BorderSizePixel = 0
+				plate.Parent = root
+				edge = Instance.new("Frame")
+				edge.Name = "Edge"
+				edge.BackgroundColor3 = Tokens.Colour.Cyan
+				edge.BorderSizePixel = 0
+				edge.ZIndex = 2
+				edge.Parent = plate
+			end
+			write(plate, "Position", UDim2.fromOffset(0, math.floor((height - drawn) / 2)))
+			write(plate, "Size", UDim2.new(1, 0, 0, drawn))
+			write(edge, "Size", UDim2.new(0, ctx.Px(Space.TabUnderline), 1, 0))
+		end
+		if plate then write(plate, "Visible", slim) end
+		-- The hairlines and the hold line belong to the drawn plate: the root, or the slim plate inside it.
+		local holder = if slim then plate else root
+		write(hairTop.Instance, "Parent", holder)
+		write(hairBottom.Instance, "Parent", holder)
+		write(bar, "Parent", holder)
+		hairTop.Set({ Visible = not solid })
+		hairBottom.Set({ Visible = not solid })
 
 		write(action, "FontFace", Text.Font(PROMPT_ACTION_ROLE))
 		write(action, "TextSize", (Text.SizeFor(PROMPT_ACTION_ROLE, ctx)))
 		write(action, "Text", string.upper(state.Action))
-		write(action, "TextColor3", if touch then Tokens.Colour.Ink else Tokens.Colour.White)
+		write(action, "TextColor3", if solid then Tokens.Colour.Ink else Tokens.Colour.White)
 		write(action, "Size", UDim2.fromOffset(0, height))
 
 		write(object, "FontFace", Text.Font(PROMPT_OBJECT_ROLE))
 		write(object, "TextSize", (Text.SizeFor(PROMPT_OBJECT_ROLE, ctx)))
 		write(object, "Text", string.upper(state.Object))
-		write(object, "TextColor3", if touch then Tokens.Colour.Ink else Tokens.Colour.TextSecondary)
+		write(object, "TextColor3", if solid then Tokens.Colour.Ink else Tokens.Colour.TextSecondary)
 		write(object, "Visible", state.Object ~= "")
 		write(object, "AutomaticSize", if touch then Enum.AutomaticSize.X else Enum.AutomaticSize.None)
 		if touch then write(object, "Size", UDim2.fromOffset(0, height)) end
@@ -1491,6 +1572,7 @@ local STACK_KEYS = { Name = true, LayoutOrder = true, Visible = true }
 local STACK_SHOW_KEYS = { Action = true, Object = true, Key = true, PadKey = true, Main = true, Hold = true,
 	OnPress = true, OnRelease = true }
 local STACK_MAX_SHOWN = 3
+local STACK_MAX_SHOWN_COMPACT = 2 -- three banners reach the top third of a 390 px screen
 
 -- Pure. `order` lists the active ids, oldest first. Returns the set of ids shown: the newest `max`.
 local function promptShown(order, max)
@@ -1563,8 +1645,13 @@ function Overlay.PromptStack(parent, props, scope)
 		write(list, "Padding", UDim.new(0, ctx.Px(if ctx.Class == "Compact" then Space.TouchGap else Space.Gap)))
 	end
 
+	local function maxShown()
+		return if ctx.Class == "Compact" then STACK_MAX_SHOWN_COMPACT else STACK_MAX_SHOWN
+	end
+
 	local function refresh()
-		local shown = promptShown(order, STACK_MAX_SHOWN)
+		if destroyed then return end
+		local shown = promptShown(order, maxShown())
 		for id, banner in pairs(active) do
 			banner.Set({ Visible = shown[id] == true })
 		end
@@ -1613,7 +1700,7 @@ function Overlay.PromptStack(parent, props, scope)
 	end
 
 	local function count()
-		return math.min(#order, STACK_MAX_SHOWN)
+		return math.min(#order, maxShown())
 	end
 
 	local apply = {
@@ -1652,7 +1739,10 @@ function Overlay.PromptStack(parent, props, scope)
 
 	if ctx.Changed then
 		own:connect(ctx.Changed, function(change)
-			if layoutChanged(change) then relayout() end
+			if layoutChanged(change) then
+				relayout()
+				refresh() -- the class decides how many show
+			end
 		end)
 	end
 	scope:add(destroy)

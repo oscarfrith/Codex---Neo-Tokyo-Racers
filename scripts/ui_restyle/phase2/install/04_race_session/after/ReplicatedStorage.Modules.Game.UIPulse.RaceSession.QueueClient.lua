@@ -234,6 +234,24 @@ function Client._mountView(layer, scope, handlers)
 			end
 		end }, scope)
 
+	-- Compact only. The event name and the status take the width the two stats and LEAVE leave free and truncate
+	-- there (a long name ran under PLAYERS). The widths are read once the row has been laid out.
+	local playersBlock, startsBlock = players.Instance.Parent, starts.Instance.Parent
+	local function fitTitles()
+		if not compact then
+			return
+		end
+		local taken = playersBlock.AbsoluteSize.X + startsBlock.AbsoluteSize.X + leave.Instance.AbsoluteSize.X
+		local inner = row.AbsoluteSize.X
+		if inner <= 0 or playersBlock.AbsoluteSize.X <= 0 or leave.Instance.AbsoluteSize.X <= 0 then
+			return
+		end
+		local free = math.max(1, inner - taken - 3 * ctx.Px(pad))
+		local design = free / (ctx.Scale > 0 and ctx.Scale or 1)
+		title.Set({ MaxWidth = design })
+		status.Set({ MaxWidth = design })
+	end
+
 	local function layout()
 		local padding = UDim.new(0, ctx.Px(pad))
 		for _, list in ipairs(lists) do
@@ -241,8 +259,30 @@ function Client._mountView(layer, scope, handlers)
 				list.Padding = padding
 			end
 		end
+		if compact then
+			-- Keep-out rule 1: on a narrow phone the centred banner reaches the Roblox buttons (568 wide: its left
+			-- edge is at 82, the buttons end at 120), so it goes under the bar row there.
+			local bannerPx = ctx.Px(Space.CompactPromptWidth + Space.CompactStatPanelWidth)
+			local left = math.floor((ctx.Size.X - bannerPx) / 2)
+			local keepOut = ctx.TopBarKeepOut.X - ctx.Origin.X + ctx.Px(Space.CompactKeepOutGap)
+			local drop = 0
+			if left < keepOut then
+				drop = math.max(0, math.round(ctx.TopBarHeight - ctx.Origin.Y) + ctx.Px(Space.CompactKeepOutGap) - slot.Position.Y.Offset)
+			end
+			local position = UDim2.fromOffset(0, drop)
+			if anchor.Position ~= position then
+				anchor.Position = position
+			end
+			fitTitles()
+		end
 	end
 	layout()
+	if compact then
+		scope:connect(row:GetPropertyChangedSignal("AbsoluteSize"), fitTitles)
+		scope:connect(playersBlock:GetPropertyChangedSignal("AbsoluteSize"), fitTitles)
+		scope:connect(startsBlock:GetPropertyChangedSignal("AbsoluteSize"), fitTitles)
+		scope:connect(leave.Instance:GetPropertyChangedSignal("AbsoluteSize"), fitTitles)
+	end
 	if ctx.Changed then
 		scope:connect(ctx.Changed, function(change)
 			if type(change) == "table" and change.Layout == false then

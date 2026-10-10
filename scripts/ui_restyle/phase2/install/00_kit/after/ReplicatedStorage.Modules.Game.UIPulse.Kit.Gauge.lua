@@ -180,6 +180,7 @@ function Gauge.New(parent, props, scope)
 	local geometry = { Size = 0, Half = 0, ArcRadius = 0 }
 
 	local root = Instance.new("Frame")
+	Metrics.Bind(root, ctx) -- parts built before the root is parented take this context, not the screen's
 	root.Name = state.Name
 	root.BackgroundTransparency = 1
 	root.BorderSizePixel = 0

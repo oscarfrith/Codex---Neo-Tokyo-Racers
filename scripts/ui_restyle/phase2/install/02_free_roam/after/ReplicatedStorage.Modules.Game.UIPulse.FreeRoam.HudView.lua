@@ -1,5 +1,5 @@
 -- Owns the free-roam HUD composition for Regular, Compact and TouchDrive (status, action bar, bottom buttons, gauge, minimap host, car panel and modal hosts) and the HUD's frame step; no remote, attribute or bindable.
--- Pulse UI (phase2). ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.HudView. Requires: Kit.Tokens, Kit.Controls, Kit.Data, Kit.Gauge, FreeRoam.HudMinimap, FreeRoam.CarPanelView, FreeRoam.HudModals (resolved on the first mount).
+-- Pulse UI (phase2). ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.HudView. Requires: Kit.Tokens, Kit.Controls, Kit.Data, Kit.Gauge, FreeRoam.HudMinimap, FreeRoam.CarPanelView, FreeRoam.HudModals, FreeRoam.RadioStripView (resolved on the first mount).
 --
 -- Static layer (DesktopFreeRoamHud): action bar, bottom buttons, car panel, ModalLayer, the Minimap marker frame.
 -- Live layer (DesktopFreeRoamHudLive): status cluster (its cash chip counts), gauge, minimap.
@@ -23,6 +23,7 @@ local function modules()
 			HudMinimap = require(family.HudMinimap),
 			CarPanelView = require(family.CarPanelView),
 			HudModals = require(family.HudModals),
+			RadioStripView = require(family.RadioStripView),
 		}
 	end
 	return modulesCache
@@ -112,6 +113,34 @@ function HudView._liveCovered(state, compact)
 	return compact == true and state.CarPanelOpen == true
 end
 
+-- Pure: is the cash chip covered? Compact only: the vehicles side panel stands on the chip's side of the screen and
+-- a modal dims the screen, and the live layer would draw the chip above either. Regular keeps the chip (the panel
+-- is on the other side and the chip sits clear of the centred modal).
+function HudView._statusCovered(state, compact)
+	return compact == true and HudView._liveCovered(state, true)
+end
+
+-- Pure: are the bottom buttons (EXIT, CONTROLS) under an open modal? Compact only: a phone modal reaches the bottom
+-- row and the buttons showed through its panel.
+function HudView._buttonsCovered(state, compact)
+	return compact == true and state.ActiveModal ~= nil
+end
+
+-- Pure: how far the status column moves up (Compact TouchDrive only): the minimap's box and gap while the model
+-- shows no minimap and the column is not itself covered by the vehicles panel (which also hides the minimap).
+function HudView._columnRaise(state, phone, room)
+	if phone and state.ShowMinimap ~= true and state.CarPanelOpen ~= true then return room end
+	return 0
+end
+
+-- Pure: where the radio strip's seat goes under a right-anchored slot point (Compact TouchDrive). The strip hangs
+-- from its seat by its bottom centre; `width` and `height` are its root box, `right` how far its buttons reach
+-- from the root's left edge (a touch hit box is wider than the drawn tile), `top` the room the cash chip takes
+-- above it. Returns the seat offset that ends the strip at the slot's x and starts it `top` below it.
+function HudView._radioSeat(width, height, right, top)
+	return -(math.max(width, right) - math.floor(width * 0.5)), top + height
+end
+
 -- layer: the static Layer. extra = {
 --   Live: Layer?            the live Layer (the gallery passes none: one stage holds both)
 --   Player: Player?         binds the cash chip; nil in the gallery
@@ -119,6 +148,7 @@ end
 --   MinimapDeps: table?     HudMinimap deps; nil in the gallery
 --   DriveState: table?      the shared MobileDriveInputState table (SpeedMph, BoostPercent, IsDriving)
 --   Subject: table?         { Part, VehiclePart }, kept current by the client's listeners
+--   Radio: table?           Audio.RadioClient when the radio is on; nil (and no strip) in the gallery
 --   SpeedGaugeMaxMph, BoostBarSmoothing: number?    cached config (D1288, D1279)
 --   Sample: { Speed, Boost }?    gallery: a fixed gauge reading }
 function HudView.Mount(layer, model, scope, extra)
@@ -208,6 +238,54 @@ function HudView.Mount(layer, model, scope, extra)
 		marker.Parent = layer.Slot("Minimap")
 	end
 
+	-- Radio strip: bottom centre, lifted clear of the HUD buttons (or of the gauge, which TouchDrive centres there).
+	-- Compact TouchDrive (a phone) has no room there: above the centred gauge the strip stood in the middle of the
+	-- driving view, on the world prompts (PromptStack) and the Duel challenge button. It joins the status column
+	-- instead: top right, under the minimap and the cash chip, above the accelerate button.
+	-- Compact TouchDrive: the status column (cash chip, radio strip) hangs under the minimap. While the minimap is
+	-- not part of the HUD (inside an owned garage) the column moves up into its place instead of floating under a gap.
+	local columnRaise = 0
+	local seatRadio
+	local radio
+	if extra.Radio and compact and touchDrive then
+		local seat = Instance.new("Frame")
+		seat.Name = "RadioSeat"
+		seat.BackgroundTransparency = 1
+		seat.BorderSizePixel = 0
+		seat.Size = UDim2.new()
+		seat.Parent = layer.Slot("HudStatus")
+		radio = m.RadioStripView.Mount(seat, extra.Radio, scope, { Px = px, Gap = px(space.Gap), Lift = 0, Compact = true,
+			Touch = true })
+		local strip = radio.Instance
+		seatRadio = function()
+			local size = strip.Size
+			local right = size.X.Offset
+			for _, child in ipairs(strip:GetChildren()) do
+				if child:IsA("GuiButton") then
+					right = math.max(right, child.Position.X.Offset + child.Size.X.Offset)
+				end
+			end
+			local top = px(space.CompactStatusHeight) + px(space.TouchGap)
+			local x, y = HudView._radioSeat(size.X.Offset, size.Y.Offset, right, top)
+			local position = UDim2.fromOffset(x, y - columnRaise)
+			if seat.Position ~= position then seat.Position = position end
+		end
+		seatRadio()
+		scope:connect(strip:GetPropertyChangedSignal("Size"), seatRadio)
+		if ctx.Changed then
+			scope:connect(ctx.Changed, function(change)
+				if type(change) == "table" and change.Layout == false then return end
+				seatRadio()
+			end)
+		end
+		scope:add(function() seat:Destroy() end)
+	elseif extra.Radio then
+		local below = touchDrive and HudView._gaugeSize(space, ctx.Class, ctx.Arrangement)
+			or (compact and space.CompactHudButton or space.HudButtonHeight)
+		radio = m.RadioStripView.Mount(layer.Slot("BottomCentre"), extra.Radio, scope, { Px = px, Gap = px(space.Gap),
+			Lift = px(below) + px(space.Gap), Compact = compact, Touch = touchDrive })
+	end
+
 	local carPanel = m.CarPanelView.Mount(layer.Slot("SidePanel"), model, scope)
 	local modals = m.HudModals.Mount(layer.Root, model, scope, { Player = extra.Player, SampleCash = extra.SampleCash })
 
@@ -248,10 +326,18 @@ function HudView.Mount(layer, model, scope, extra)
 			settings.Set({ Selected = settingsOpen })
 		end
 
-		if buttons.Visible ~= state.ShowBottomButtons then buttons.Visible = state.ShowBottomButtons end
-		show("Status", status, state.ShowStatus)
+		local buttonsShown = state.ShowBottomButtons and not HudView._buttonsCovered(state, compact)
+		if buttons.Visible ~= buttonsShown then buttons.Visible = buttonsShown end
+		show("Status", status, state.ShowStatus and not HudView._statusCovered(state, compact))
+		local raise = HudView._columnRaise(state, compact and touchDrive, px(space.CompactMinimap) + px(space.TouchGap))
+		if raise ~= columnRaise then
+			columnRaise = raise
+			status.Instance.Position = UDim2.fromOffset(0, -raise)
+			if seatRadio then seatRadio() end
+		end
 		local covered = HudView._liveCovered(state, compact)
 		show("Gauge", gauge, state.ShowGauge and not covered)
+		if radio then show("Radio", radio, state.ShowActionBar and not covered) end
 
 		local rank = model.GetRank()
 		if not compact then
@@ -338,6 +424,7 @@ function HudView.Mount(layer, model, scope, extra)
 		settings.Destroy()
 		bar:Destroy()
 		buttons:Destroy()
+		if radio then radio.Destroy() end
 		if marker then marker:Destroy() end
 	end
 

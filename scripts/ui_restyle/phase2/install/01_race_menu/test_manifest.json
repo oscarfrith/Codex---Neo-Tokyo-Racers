@@ -256,8 +256,8 @@
   },
   {
    "path": "ReplicatedStorage.Modules.Game.UIPulse.Dev.Gallery",
-   "file": "scripts/ui_restyle/phase1/after/ReplicatedStorage.Modules.Game.UIPulse.Dev.Gallery.lua",
-   "unit": "phase1",
+   "file": "scripts/ui_restyle/phase2/install/00_kit/after/ReplicatedStorage.Modules.Game.UIPulse.Dev.Gallery.lua",
+   "unit": "00_kit",
    "class": "ModuleScript",
    "classic": false
   },

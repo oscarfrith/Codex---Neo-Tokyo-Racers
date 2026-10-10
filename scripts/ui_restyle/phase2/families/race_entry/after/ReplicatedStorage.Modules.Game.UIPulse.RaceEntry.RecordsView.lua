@@ -61,6 +61,15 @@ function View.LabelWidth(boxPx, padPx, takenPx, scale)
 	return pixels / (scale > 0 and scale or 1)
 end
 
+-- Pure. The leaderboard columns a class draws. Regular: all four (position, player, vehicle, time). Compact: the
+-- board is half a phone wide, where four columns cut the names and the times short, so the vehicle is dropped.
+function View._boardColumns(columns, compact)
+	if not compact or #columns < 4 then
+		return columns
+	end
+	return { columns[1], columns[2], columns[#columns] }
+end
+
 -- A scope for the bindings that live only while this page shows (Input.Bind* asks only for :add).
 local function newOpenScope()
 	local items = {}
@@ -142,9 +151,11 @@ function View.Mount(layer, model, scope)
 			local half = math.floor((width - gap - gap) * HALF)
 			local quarter = math.floor((width - gap - gap - half) * HALF)
 			local middle = width - gap - gap - half - quarter
+			-- Cards as tall as what is in them: "your record" has the same three lines as the world record, and
+			-- the medal targets end under their last row (both were stretched to the page, mostly empty).
 			place(page.World.Holder, 0, 0, quarter, worldHeight)
-			place(page.Your.Holder, 0, worldHeight + gap, quarter, bodyHeight - worldHeight - gap)
-			place(page.Medals.Holder, quarter + gap, 0, middle, bodyHeight)
+			place(page.Your.Holder, 0, worldHeight + gap, quarter, worldHeight)
+			place(page.Medals.Holder, quarter + gap, 0, middle, medalsHeight)
 			boardX = quarter + gap + middle + gap
 		else
 			local left = math.floor((width - gap) * HALF)
@@ -275,7 +286,9 @@ function View.Mount(layer, model, scope)
 		built.Board = panel("GlobalTop20", built.Body, scope)
 		built.BoardLabel = Text.Label(built.Board.Content, { Name = "BoardLabel", Text = records.BoardLabel, Role = "Label", Colour = "TextSecondary" }, scope)
 		built.ListHolder = holder("LeaderboardRows", built.Board.Content)
-		built.List = Collections.List(built.ListHolder, { Name = "Leaderboard", Header = records.Columns }, scope)
+		built.BoardCompact = ctx.Class == "Compact"
+		built.List = Collections.List(built.ListHolder, { Name = "Leaderboard",
+			Header = View._boardColumns(records.Columns, built.BoardCompact) }, scope)
 		built.Message = Text.Label(built.Board.Content, { Name = "Message", Text = "", Role = "Body", Colour = "TextMuted", Wrap = true, Align = "Centre", Visible = false }, scope)
 
 		built.Panels = { built.World, built.Medals, built.Your, built.Board }
@@ -330,14 +343,22 @@ function View.Mount(layer, model, scope)
 		end
 
 		local board = records.Board
-		local items, boardParts = {}, {}
+		local compact = ctx.Class == "Compact"
+		if page.BoardCompact ~= compact then
+			page.BoardCompact = compact
+			page.List.Set({ Header = View._boardColumns(records.Columns, compact) })
+		end
+		local boardParts = {}
 		for index, row in ipairs(board.Rows) do
-			items[index] = { Key = row.Key, Columns = row.Columns, Accent = row.You }
 			boardParts[index] = table.concat(row.Columns, "=") .. (row.You and "*" or "")
 		end
-		local boardSignature = table.concat(boardParts, "|")
+		local boardSignature = (compact and "C|" or "R|") .. table.concat(boardParts, "|")
 		if signatures.Board ~= boardSignature then
 			signatures.Board = boardSignature
+			local items = {}
+			for index, row in ipairs(board.Rows) do
+				items[index] = { Key = row.Key, Columns = View._boardColumns(row.Columns, compact), Accent = row.You }
+			end
 			page.List.SetItems(items)
 		end
 		page.Message.Set({ Text = board.Message, Visible = board.State ~= "Rows" })

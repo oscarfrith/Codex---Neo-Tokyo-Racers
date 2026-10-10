@@ -23,19 +23,19 @@
     },
     "ReplicatedStorage.Modules.Game.UIPulse.Kit.Data": {
      "file": "00_kit/after/ReplicatedStorage.Modules.Game.UIPulse.Kit.Data.lua",
-     "fp": "3840631725-3282828073-57060",
+     "fp": "3768628322-972769864-59988",
      "class": "ModuleScript",
      "kind": "create"
     },
     "ReplicatedStorage.Modules.Game.UIPulse.Kit.Gauge": {
      "file": "00_kit/after/ReplicatedStorage.Modules.Game.UIPulse.Kit.Gauge.lua",
-     "fp": "4258431485-411862015-14598",
+     "fp": "2502745895-1498110527-14702",
      "class": "ModuleScript",
      "kind": "create"
     },
     "ReplicatedStorage.Modules.Game.UIPulse.Kit.Minimap": {
      "file": "00_kit/after/ReplicatedStorage.Modules.Game.UIPulse.Kit.Minimap.lua",
-     "fp": "3877836414-359801508-19093",
+     "fp": "539211816-927937836-19197",
      "class": "ModuleScript",
      "kind": "create"
     },
@@ -97,7 +97,7 @@
     },
     "ReplicatedStorage.Modules.Game.UIPulse.Kit.Metrics": {
      "file": "00_kit/after/ReplicatedStorage.Modules.Game.UIPulse.Kit.Metrics.lua",
-     "fp": "685872700-1840105876-13502",
+     "fp": "19832263-2712781669-13982",
      "class": "ModuleScript",
      "kind": "source",
      "classic": false
@@ -132,28 +132,28 @@
     },
     "ReplicatedStorage.Modules.Game.UIPulse.Kit.Controls": {
      "file": "00_kit/after/ReplicatedStorage.Modules.Game.UIPulse.Kit.Controls.lua",
-     "fp": "980415541-575136399-78786",
+     "fp": "4142556078-2460103156-85964",
      "class": "ModuleScript",
      "kind": "source",
      "classic": false
     },
     "ReplicatedStorage.Modules.Game.UIPulse.Kit.Collections": {
      "file": "00_kit/after/ReplicatedStorage.Modules.Game.UIPulse.Kit.Collections.lua",
-     "fp": "1647272556-3143147270-84352",
+     "fp": "4134916626-3307548318-93817",
      "class": "ModuleScript",
      "kind": "source",
      "classic": false
     },
     "ReplicatedStorage.Modules.Game.UIPulse.Kit.Overlay": {
      "file": "00_kit/after/ReplicatedStorage.Modules.Game.UIPulse.Kit.Overlay.lua",
-     "fp": "2746146027-2521000165-59243",
+     "fp": "3337174296-1656733012-63546",
      "class": "ModuleScript",
      "kind": "source",
      "classic": false
     },
     "ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Collections": {
      "file": "00_kit/after/ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Collections.lua",
-     "fp": "3960965073-2989794721-19548",
+     "fp": "789782960-1036187774-20743",
      "class": "ModuleScript",
      "kind": "source",
      "classic": false
@@ -182,6 +182,13 @@
     "ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Text": {
      "file": "00_kit/after/ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Text.lua",
      "fp": "4106675855-3600151987-8766",
+     "class": "ModuleScript",
+     "kind": "source",
+     "classic": false
+    },
+    "ReplicatedStorage.Modules.Game.UIPulse.Dev.Gallery": {
+     "file": "00_kit/after/ReplicatedStorage.Modules.Game.UIPulse.Dev.Gallery.lua",
+     "fp": "820445393-3125236245-21439",
      "class": "ModuleScript",
      "kind": "source",
      "classic": false
@@ -224,7 +231,7 @@
     },
     "ReplicatedStorage.Modules.Game.UIPulse.RaceMenu.RaceMenuView": {
      "file": "01_race_menu/after/ReplicatedStorage.Modules.Game.UIPulse.RaceMenu.RaceMenuView.lua",
-     "fp": "1987263441-134120709-22874",
+     "fp": "1072705715-469933691-25441",
      "class": "ModuleScript",
      "kind": "create"
     },
@@ -278,7 +285,7 @@
     },
     "ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.CarPanelView": {
      "file": "02_free_roam/after/ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.CarPanelView.lua",
-     "fp": "1167113449-4211398439-9946",
+     "fp": "1656286294-1489085226-10980",
      "class": "ModuleScript",
      "kind": "create"
     },
@@ -290,13 +297,13 @@
     },
     "ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.HudView": {
      "file": "02_free_roam/after/ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.HudView.lua",
-     "fp": "963326786-2943197160-14537",
+     "fp": "3772154053-3098603401-19189",
      "class": "ModuleScript",
      "kind": "create"
     },
     "ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.HudClient": {
      "file": "02_free_roam/after/ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.HudClient.lua",
-     "fp": "111944268-567848318-11910",
+     "fp": "1681447772-4014982326-12554",
      "class": "ModuleScript",
      "kind": "create"
     },
@@ -308,7 +315,7 @@
     },
     "ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.TouchControlsView": {
      "file": "02_free_roam/after/ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.TouchControlsView.lua",
-     "fp": "6616456-4263596018-13030",
+     "fp": "3314448417-4264587937-15228",
      "class": "ModuleScript",
      "kind": "create"
     },
@@ -320,7 +327,7 @@
     },
     "ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.ActivityHudView": {
      "file": "02_free_roam/after/ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.ActivityHudView.lua",
-     "fp": "4100995586-301997036-23147",
+     "fp": "3710563433-618175877-25864",
      "class": "ModuleScript",
      "kind": "create"
     },
@@ -417,13 +424,13 @@
    "scripts": {
     "ReplicatedStorage.Modules.Game.UIPulse.WorldMap.FullMapModel": {
      "file": "03_world_map/after/ReplicatedStorage.Modules.Game.UIPulse.WorldMap.FullMapModel.lua",
-     "fp": "1295530680-1300119376-18289",
+     "fp": "3080401464-472498518-18557",
      "class": "ModuleScript",
      "kind": "create"
     },
     "ReplicatedStorage.Modules.Game.UIPulse.WorldMap.FullMapView": {
      "file": "03_world_map/after/ReplicatedStorage.Modules.Game.UIPulse.WorldMap.FullMapView.lua",
-     "fp": "774979560-2302174902-22395",
+     "fp": "2794345697-3682463717-23516",
      "class": "ModuleScript",
      "kind": "create"
     },
@@ -435,19 +442,19 @@
     },
     "ReplicatedStorage.Modules.Game.UIPulse.World.WorldPromptModel": {
      "file": "03_world_map/after/ReplicatedStorage.Modules.Game.UIPulse.World.WorldPromptModel.lua",
-     "fp": "775443960-1392915326-10318",
+     "fp": "1599735129-2188891785-10589",
      "class": "ModuleScript",
      "kind": "create"
     },
     "ReplicatedStorage.Modules.Game.UIPulse.World.EventCardView": {
      "file": "03_world_map/after/ReplicatedStorage.Modules.Game.UIPulse.World.EventCardView.lua",
-     "fp": "823154152-3731852164-6177",
+     "fp": "334494822-1885170798-11160",
      "class": "ModuleScript",
      "kind": "create"
     },
     "ReplicatedStorage.Modules.Game.UIPulse.World.WorldPromptView": {
      "file": "03_world_map/after/ReplicatedStorage.Modules.Game.UIPulse.World.WorldPromptView.lua",
-     "fp": "674006802-3310448436-13622",
+     "fp": "1527188889-3530570367-14667",
      "class": "ModuleScript",
      "kind": "create"
     },
@@ -493,7 +500,7 @@
     },
     "ReplicatedStorage.Modules.Game.UIPulse.RaceSession.RaceHudView": {
      "file": "04_race_session/after/ReplicatedStorage.Modules.Game.UIPulse.RaceSession.RaceHudView.lua",
-     "fp": "4123078064-2838482876-15693",
+     "fp": "2716180313-2294028597-19874",
      "class": "ModuleScript",
      "kind": "create"
     },
@@ -511,7 +518,7 @@
     },
     "ReplicatedStorage.Modules.Game.UIPulse.RaceSession.QueueClient": {
      "file": "04_race_session/after/ReplicatedStorage.Modules.Game.UIPulse.RaceSession.QueueClient.lua",
-     "fp": "2261164115-1913682177-12882",
+     "fp": "3393779141-843398301-14782",
      "class": "ModuleScript",
      "kind": "create"
     },
@@ -529,7 +536,7 @@
     },
     "ReplicatedStorage.Modules.Game.UIPulse.RaceSession.ResultsView": {
      "file": "04_race_session/after/ReplicatedStorage.Modules.Game.UIPulse.RaceSession.ResultsView.lua",
-     "fp": "428875408-3470763352-18712",
+     "fp": "212092794-3453813802-20980",
      "class": "ModuleScript",
      "kind": "create"
     },
@@ -589,19 +596,19 @@
     },
     "ReplicatedStorage.Modules.Game.UIPulse.RaceEntry.SetupView": {
      "file": "05_race_entry/after/ReplicatedStorage.Modules.Game.UIPulse.RaceEntry.SetupView.lua",
-     "fp": "2104244460-3937554218-24126",
+     "fp": "2944475624-1347118896-27504",
      "class": "ModuleScript",
      "kind": "create"
     },
     "ReplicatedStorage.Modules.Game.UIPulse.RaceEntry.RecordsView": {
      "file": "05_race_entry/after/ReplicatedStorage.Modules.Game.UIPulse.RaceEntry.RecordsView.lua",
-     "fp": "2318853955-889009041-14836",
+     "fp": "423426878-2544163060-15812",
      "class": "ModuleScript",
      "kind": "create"
     },
     "ReplicatedStorage.Modules.Game.UIPulse.RaceEntry.VehicleView": {
      "file": "05_race_entry/after/ReplicatedStorage.Modules.Game.UIPulse.RaceEntry.VehicleView.lua",
-     "fp": "3937097696-1590636936-13936",
+     "fp": "1290722691-730831953-15431",
      "class": "ModuleScript",
      "kind": "create"
     },
@@ -657,7 +664,7 @@
     },
     "ReplicatedStorage.Modules.Game.UIPulse.Garage.PaintView": {
      "file": "06_garage/after/ReplicatedStorage.Modules.Game.UIPulse.Garage.PaintView.lua",
-     "fp": "1486799690-2140781810-15619",
+     "fp": "3699974149-1154064325-18038",
      "class": "ModuleScript",
      "kind": "create"
     },
@@ -669,7 +676,7 @@
     },
     "ReplicatedStorage.Modules.Game.UIPulse.Garage.GarageScreenView": {
      "file": "06_garage/after/ReplicatedStorage.Modules.Game.UIPulse.Garage.GarageScreenView.lua",
-     "fp": "3417718100-2381438254-30403",
+     "fp": "1520435721-1944766173-38219",
      "class": "ModuleScript",
      "kind": "create"
     },
@@ -681,7 +688,7 @@
     },
     "ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Garage": {
      "file": "06_garage/after/ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Garage.lua",
-     "fp": "3383316643-747967439-19276",
+     "fp": "1933320239-2041318093-19413",
      "class": "ModuleScript",
      "kind": "create"
     },
@@ -699,7 +706,7 @@
     },
     "ReplicatedStorage.Modules.Game.UIPulse.Garage.OwnedGarageBrowserUI": {
      "file": "06_garage/after/ReplicatedStorage.Modules.Game.UIPulse.Garage.OwnedGarageBrowserUI.lua",
-     "fp": "2566078760-2248381302-24248",
+     "fp": "400457809-3849729811-32119",
      "class": "ModuleScript",
      "kind": "create"
     },
@@ -711,7 +718,7 @@
     },
     "ReplicatedStorage.Modules.Game.UIPulse.Garage.OwnedGarageDeskView": {
      "file": "06_garage/after/ReplicatedStorage.Modules.Game.UIPulse.Garage.OwnedGarageDeskView.lua",
-     "fp": "30362445-1328086997-29787",
+     "fp": "2947855813-3429821947-36972",
      "class": "ModuleScript",
      "kind": "create"
     },
@@ -723,7 +730,7 @@
     },
     "ReplicatedStorage.Modules.Game.UIPulse.Garage.GarageInteriorHud": {
      "file": "06_garage/after/ReplicatedStorage.Modules.Game.UIPulse.Garage.GarageInteriorHud.lua",
-     "fp": "1311265875-2345425795-13860",
+     "fp": "3669250500-1917228740-16689",
      "class": "ModuleScript",
      "kind": "create"
     },
@@ -799,7 +806,7 @@
     },
     "ReplicatedStorage.Modules.Game.UIPulse.Shell.OnboardingView": {
      "file": "07_shell/after/ReplicatedStorage.Modules.Game.UIPulse.Shell.OnboardingView.lua",
-     "fp": "1893220971-1508019445-23878",
+     "fp": "3819424074-2296005762-25387",
      "class": "ModuleScript",
      "kind": "create"
     },
@@ -823,7 +830,7 @@
     },
     "ReplicatedFirst.Loading.StartScreenPulse": {
      "file": "07_shell/after/ReplicatedFirst.Loading.StartScreenPulse.lua",
-     "fp": "2267597272-1446616678-19662",
+     "fp": "84015750-1708767208-20775",
      "class": "ModuleScript",
      "kind": "create"
     },

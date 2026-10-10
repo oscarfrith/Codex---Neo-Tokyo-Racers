@@ -55,6 +55,20 @@ return function(M, env)
 		expect(x == 10 and y == 10, "clamped: " .. x .. "," .. y)
 	end)
 
+	case("bubble: a Compact candidate never covers the Roblox top-left buttons", function()
+		-- 844x390, 10 px margin, buttons 120x52 plus the margin. Left of the target would land on them: Below is next.
+		local x, y = M._placeBubble("Left", 430, 30, 500, 110, 300, 60, 10, 10, 10, 834, 380)
+		expect(x == 120 and y == 40, "without the keep-out: " .. x .. "," .. y)
+		x, y = M._placeBubble("Left", 430, 30, 500, 110, 300, 60, 10, 10, 10, 834, 380, 130, 62)
+		expect(x == 315 and y == 120, "with the keep-out: " .. x .. "," .. y)
+		-- a top-centre action button: Below is clear of the buttons and is kept
+		x, y = M._placeBubble("Below", 360, 2, 404, 46, 300, 88, 10, 10, 10, 834, 380, 130, 62)
+		expect(x == 232 and y == 56, "below a top-centre button: " .. x .. "," .. y)
+		-- nothing fits and the clamp lands on the buttons: the bubble goes under them
+		x, y = M._placeBubble("Above", 0, 0, 300, 300, 300, 200, 22, 10, 10, 310, 380, 130, 62)
+		expect(x == 10 and y == 62, "clamped under the buttons: " .. x .. "," .. y)
+	end)
+
 	case("connector: joins the target to the bubble on the side the bubble sits (280-286)", function()
 		local x, y, w, h = M._connector(100, 400, 200, 460, 222, 330, 590, 200, 2)
 		expect(x == 200 and y == 430 and w == 22 and h == 2, "bubble on the right: " .. table.concat({ x, y, w, h }, ","))

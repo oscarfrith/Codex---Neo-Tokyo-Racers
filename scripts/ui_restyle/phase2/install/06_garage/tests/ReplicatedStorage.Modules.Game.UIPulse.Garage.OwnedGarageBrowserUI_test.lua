@@ -64,18 +64,36 @@ return function(M, _env)
 		expect(#M._replacementRows(nil, function() end) == 0, "no slots, no rows")
 	end)
 
-	case("compact detail: the stack ends inside the room beside the list", function()
-		local function total(hero, about, facts, gap)
-			return hero + gap + (about > 0 and about + gap or 0) + facts
+	case("compact detail: one panel that ends inside the room beside the list", function()
+		local function input(patch)
+			local values = {
+				Available = 242, Width = 500, Pad = 8, Gap = 8, Labels = 39, Facts = 63, FactsWidth = 176,
+				TextWidth = 300, Line = 20, Lines = 3, MaxLines = 3, Picture = false,
+			}
+			for key, value in pairs(patch or {}) do
+				values[key] = value
+			end
+			return values
 		end
-		local hero, about = M._compactDetail(400, 60, 94, 10, 36)
-		expect(hero == 60 and about == 60, "room for all: full size")
-		hero, about = M._compactDetail(202, 60, 94, 10, 36)
-		expect(hero == about and hero >= 36 and total(hero, about, 94, 10) <= 202, "844x390: both shrink, " .. hero)
-		hero, about = M._compactDetail(142, 51, 80, 9, 31)
-		expect(about == 0 and hero >= 31 and hero <= 51 and total(hero, about, 80, 9) <= 142, "568x320: no description, picture " .. hero)
-		hero, about = M._compactDetail(60, 51, 80, 9, 31)
-		expect(about == 0 and hero == 31, "no room at all: the picture keeps its minimum")
+		-- 844x390: description and facts side by side under the name band.
+		local plan = M._compactPlan(input())
+		expect(plan.Wide == true and plan.About == 60 and plan.FactsHeight == 63, "wide: three lines beside the facts")
+		expect(plan.AboutWidth == 316 and plan.FactsX == 324 and plan.FactsY == plan.AboutY, "two columns under the band")
+		expect(plan.Band == 39 and plan.Height == 8 + 39 + 8 + 63 + 8, "no picture: the panel is as tall as what it holds, " .. plan.Height)
+		plan = M._compactPlan(input({ Picture = true }))
+		expect(plan.Height == 242 and plan.Band == 242 - 16 - 8 - 63, "a picture takes the height that is left, " .. plan.Band)
+		-- 568x320: stacked, all of it inside the room.
+		plan = M._compactPlan(input({ Available = 175, Width = 330, Pad = 7, Gap = 7, Labels = 32, Facts = 54, FactsWidth = 150, TextWidth = 255, Line = 17 }))
+		expect(plan.Wide == false and plan.About == 51 and plan.FactsHeight == 54, "stacked: three lines, then the facts, " .. plan.About)
+		expect(plan.FactsX == 0 and plan.FactsY == plan.AboutY + 51 + 7 and plan.Height <= 175, "inside the room, " .. plan.Height)
+		-- Less room: the description gives up lines first, then the facts are cut; nothing passes the room.
+		plan = M._compactPlan(input({ Available = 140, Width = 330, Pad = 7, Gap = 7, Labels = 32, Facts = 54, FactsWidth = 150, TextWidth = 255, Line = 17 }))
+		expect(plan.About == 17 and plan.FactsHeight == 54 and plan.Height <= 140, "one line is left, " .. plan.About)
+		plan = M._compactPlan(input({ Available = 90, Width = 330, Pad = 7, Gap = 7, Labels = 32, Facts = 54, FactsWidth = 150, TextWidth = 255, Line = 17 }))
+		expect(plan.About == 0 and plan.FactsY == plan.AboutY and plan.FactsHeight == 37 and plan.Height == 90, "no description, facts cut, " .. plan.FactsHeight)
+		-- No facts and no description (the empty states): the name band alone.
+		plan = M._compactPlan(input({ Facts = 0, Lines = 0 }))
+		expect(plan.Wide == false and plan.About == 0 and plan.FactsHeight == 0 and plan.Height == 8 + 39 + 8, "name only, " .. plan.Height)
 	end)
 
 	return results

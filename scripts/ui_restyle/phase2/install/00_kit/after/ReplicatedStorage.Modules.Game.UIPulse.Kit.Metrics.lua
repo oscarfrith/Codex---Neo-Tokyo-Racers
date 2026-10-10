@@ -437,6 +437,14 @@ function Metrics.Bind(root: GuiObject, ctx: Context)
 	end
 end
 
+-- Dev gallery seam. While a fixture is previewed at a fixed size, parts built under a parent that is not attached to
+-- the bound stage yet must still take the preview's context, not the real screen's (a phone preview in a desktop
+-- window otherwise mixes Compact and Regular sizes). nil restores the screen context. Never set in the live game.
+local previewDefault: Context? = nil
+function Metrics._setPreviewDefault(ctx: Context?)
+	previewDefault = ctx
+end
+
 -- Build time only: walks the ancestors once.
 function Metrics.Of(instance: Instance): Context
 	local node = instance
@@ -447,7 +455,7 @@ function Metrics.Of(instance: Instance): Context
 		end
 		node = node.Parent
 	end
-	return Metrics.Screen()
+	return previewDefault or Metrics.Screen()
 end
 
 return Metrics

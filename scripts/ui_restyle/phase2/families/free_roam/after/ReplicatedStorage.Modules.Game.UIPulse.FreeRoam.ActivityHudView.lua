@@ -108,6 +108,26 @@ function View._stripTop(cards, cardHeight, gap)
 	return cards * (cardHeight + gap)
 end
 
+-- Compact (a phone): how many toast cards the job strip keeps clear, how far its row is raised, and how wide its
+-- plate may be. Three cards put the strip at half the screen height, in the middle of the driving view, so the
+-- strip keeps one card clear (a second and third toast draw over it for their few seconds; the toast gui is
+-- above). The strip's row is as tall as the cancel button's touch box, taller than the drawn plate: `rowHeight` less
+-- `plateHeight`, halved, is empty above the plate and is taken back. `barFoot` is how far under the toast slot the
+-- top-centre action bar ends (plus its gap); the plate never starts above that, whatever the top bar height is.
+-- Returns the offset under the toast slot.
+function View._compactStripTop(cardHeight, gap, rowHeight, plateHeight, barFoot)
+	local raised = math.max(0, math.floor((rowHeight - plateHeight) / 2))
+	return math.max(0, math.max(View._stripTop(1, cardHeight, gap), barFoot or 0) - raised)
+end
+
+-- The widest the Compact strip plate may be so the whole row (plate, hairline, cancel box), centred on the screen,
+-- ends a margin short of the minimap that stands top right. `keepOut` is everything the minimap takes from the
+-- root's right edge (side margin, inset, the minimap itself).
+function View._compactPlateMax(rootWidth, keepOut, margin, hair, cancelWidth)
+	local half = math.floor(rootWidth / 2) - keepOut - margin
+	return math.max(1, half * 2 - hair - cancelWidth)
+end
+
 -- Kit-backed pieces for the shared views ---------------------------------------------------------------------
 
 -- ctx.UI.Button(parent, props) with the Classic call shape (RacingUIComponents.Button). Returns the kit button's
@@ -257,7 +277,9 @@ function View.Mount(layer, model, scope, liveLayer)
 	end
 
 	-- Job strip (static layer): [edge | text] [X].
-	local strip = plain("JobStrip", nil)
+	-- Every holder is parented to its slot before its parts are built: a kit component reads its screen context from
+	-- its ancestors when it is built (Metrics.Of).
+	local strip = plain("JobStrip", layer.Slot("TopCentre"))
 	strip.Visible = false
 	local stripFlow = list(strip, Enum.FillDirection.Horizontal, false)
 	local plate = plain("Plate", strip)
@@ -270,12 +292,16 @@ function View.Mount(layer, model, scope, liveLayer)
 	local platePad = Instance.new("UIPadding")
 	platePad.Name = "Inset"
 	platePad.Parent = plate
+	-- Compact only (set in layout): the plate stops short of the minimap and cuts a longer text.
+	local plateLimit = Instance.new("UISizeConstraint")
+	plateLimit.Name = "Limit"
+	plateLimit.Parent = plate
 	local edge = plain("Edge", plate)
 	edge.LayoutOrder = 1
 	edge.BackgroundTransparency = 0
 	edge.BackgroundColor3 = Colour.Cyan
 	local stripText = keep(Text.Label(plate, { Name = "Text", Text = "", Role = "Status", LayoutOrder = 2 }, scope))
-	keep(Controls.IconButton(strip, {
+	local stripCancel = keep(Controls.IconButton(strip, {
 		Name = "Cancel",
 		Icon = "close",
 		Size = "Small",
@@ -289,7 +315,7 @@ function View.Mount(layer, model, scope, liveLayer)
 	local setStripTop = fitted(strip, stripFlow, layer.Slot("TopCentre"), scope)
 
 	-- Offer card (live layer).
-	local offer = plain("Offer", nil)
+	local offer = plain("Offer", liveLayer.Slot("PromptStack"))
 	offer.Visible = false
 	local offerPanel = keep(Surface.Panel(offer, { Name = "Panel" }, scope))
 	local offerContent = offerPanel.Content
@@ -329,7 +355,7 @@ function View.Mount(layer, model, scope, liveLayer)
 	end
 
 	-- Countdown (live layer): label, image digits, then "GO!".
-	local countdown = plain("Countdown", nil)
+	local countdown = plain("Countdown", liveLayer.Slot("Centre"))
 	countdown.Visible = false
 	local countdownFlow = list(countdown, Enum.FillDirection.Vertical, true)
 	local countdownLabel = keep(Text.Label(countdown, { Name = "Label", Text = "", Role = "SectionHead", Shadow = true, LayoutOrder = 1 }, scope))
@@ -344,7 +370,7 @@ function View.Mount(layer, model, scope, liveLayer)
 	local lastKind, lastWhole = nil, nil
 
 	-- Rank-up card (live layer).
-	local rankUp = plain("RankUp", nil)
+	local rankUp = plain("RankUp", liveLayer.Slot("Centre"))
 	rankUp.Visible = false
 	local rankPanel = keep(Surface.Panel(rankUp, { Name = "Panel" }, scope))
 	local rankContent = rankPanel.Content
@@ -400,7 +426,20 @@ function View.Mount(layer, model, scope, liveLayer)
 		-- which is top centre (API2 2.4).
 		local stripHeight = ctx.Px(compact and Space.CompactStatusHeight or Space.StatusHeight)
 		local toastCard = ctx.Px(compact and Space.CompactButtonDrawn or Space.ButtonHeight)
-		setStripTop(View._stripTop(Space.ToastMaxCards, toastCard, ctx.Px(Space.ToastGap)))
+		local cancelSize = stripCancel.Instance.Size
+		if compact then
+			local barFoot = layer.Slot("ActionBar").Position.Y.Offset + ctx.Touch(Space.CompactActionTile)
+				+ ctx.Px(Space.TouchGap) - layer.Slot("TopCentre").Position.Y.Offset
+			setStripTop(View._compactStripTop(toastCard, ctx.Px(Space.ToastGap), cancelSize.Y.Offset, stripHeight, barFoot))
+			local keepOut = ctx.Px(Space.CompactMargin) + ctx.Px(Space.TouchGap) + ctx.Px(Space.CompactMinimap)
+			put(plateLimit, "MaxSize", Vector2.new(View._compactPlateMax(layer.Root.Size.X.Offset, keepOut,
+				ctx.Px(Space.CompactMargin), hair, cancelSize.X.Offset), math.huge))
+			put(plate, "ClipsDescendants", true)
+		else
+			setStripTop(View._stripTop(Space.ToastMaxCards, toastCard, ctx.Px(Space.ToastGap)))
+			put(plateLimit, "MaxSize", Vector2.new(math.huge, math.huge))
+			put(plate, "ClipsDescendants", false)
+		end
 		put(stripFlow, "Padding", UDim.new(0, hair))
 		put(plate, "Size", UDim2.fromOffset(0, stripHeight))
 		put(plateFlow, "Padding", UDim.new(0, gap))

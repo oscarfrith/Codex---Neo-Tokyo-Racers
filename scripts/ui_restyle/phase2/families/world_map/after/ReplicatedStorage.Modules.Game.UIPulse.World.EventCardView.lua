@@ -36,8 +36,45 @@ function View.Height(rows: number, compact: boolean): number
 	return Space.Pad * 2 + Space.ButtonHeight + Space.BadgeSmall + rows * Space.FactRowHeight
 end
 
+-- Compact card height in design units from what it really holds: the two text lines, the fact rows and the two
+-- paddings, all in real pixels. The row-count formula above budgets far more than a phone row takes (the kit draws
+-- a Compact fact row about 21 px high), which left the card much taller than its content. Pure.
+function View.CompactHeight(textPx: number, factsPx: number, padPx: number, scale: number): number
+	local total = padPx * 2 + textPx + factsPx
+	if scale <= 0 then
+		return total
+	end
+	return total / scale
+end
+
+-- Compact design widths: the panel, the title (clear of the corner chequer) and the format line. Pure.
+function View.CompactWidths(): (number, number, number)
+	local width = Space.CompactSidePanelWidth
+	local inner = width - Space.CompactMargin * 2
+	return width, inner - Space.CompactStatusHeight, inner
+end
+
+-- True when a card of heightPx hanging from slotY ends above floorY (the top of the bottom HUD band). Pure.
+function View.Fits(slotY: number, heightPx: number, floorY: number): boolean
+	return slotY + heightPx <= floorY
+end
+
+-- How far down its slot the card starts so that it clears something else hanging from the same corner (the
+-- onboarding objective cards, on a higher gui). occupiedBottom and slotTop are screen y; 0 when nothing is there. Pure.
+function View.TopOffset(occupiedBottom: number?, slotTop: number, gap: number): number
+	if type(occupiedBottom) ~= "number" or occupiedBottom <= slotTop then
+		return 0
+	end
+	return math.ceil(occupiedBottom - slotTop) + gap
+end
+
 -- "RightColumn" while the chat window shows, else "TopLeftHud" (API2 5.4, keep-out rule 3). Pure.
+-- A touch phone (Compact TouchDrive) always uses "TopLeftHud": its right column is the minimap, the cash chip and
+-- the radio, and the slot already starts under the chat window when one shows.
 function View.SlotFor(ctx: any): string
+	if ctx.Class == "Compact" and ctx.Arrangement == "TouchDrive" then
+		return "TopLeftHud"
+	end
 	local keepOut = ctx.ChatKeepOut
 	if keepOut and keepOut.Y > 0 then
 		return "RightColumn"
@@ -49,12 +86,17 @@ function View.Mount(layer: any, _model: any, scope: any): any
 	local ctx = layer.Metrics
 	local destroyed = false
 	local compact = ctx.Class == "Compact"
+	local touchPhone = compact and ctx.Arrangement == "TouchDrive"
 	local slotName = View.SlotFor(ctx)
+	local compactWidth, compactTitleWidth, compactLineWidth = View.CompactWidths()
 
+	-- Compact: a wider, tighter card (CompactStatPanelWidth less the full panel padding left 132 px, and the format
+	-- line ran out of the card's right edge).
 	local card = Surface.Panel(layer.Slot(slotName), {
 		Name = "EventCard",
-		Width = compact and Space.CompactStatPanelWidth or Space.StatPanelWidth,
+		Width = compact and compactWidth or Space.StatPanelWidth,
 		Height = View.Height(0, compact),
+		Pad = compact and Space.CompactMargin or nil,
 		Visible = false,
 	}, scope)
 	local content = card.Content
@@ -64,8 +106,11 @@ function View.Mount(layer: any, _model: any, scope: any): any
 	layout.SortOrder = Enum.SortOrder.LayoutOrder
 	layout.Parent = content
 
-	local title = Text.Label(content, { Name = "Title", Text = "", Role = "SectionHead", LayoutOrder = 1 }, scope)
-	local sub = Text.Label(content, { Name = "Sub", Text = "", Role = "Label", Colour = "TextSecondary", LayoutOrder = 2 }, scope)
+	-- Compact: both lines have a width, so a long name ends in an ellipsis inside the card.
+	local title = Text.Label(content, { Name = "Title", Text = "", Role = "SectionHead", LayoutOrder = 1,
+		MaxWidth = compact and compactTitleWidth or nil }, scope)
+	local sub = Text.Label(content, { Name = "Sub", Text = "", Role = "Label", Colour = "TextSecondary", LayoutOrder = 2,
+		MaxWidth = compact and compactLineWidth or nil }, scope)
 	local facts = Data.FactList(content, { Name = "Facts", Rows = {}, LayoutOrder = 3 }, scope)
 
 	-- The chequer sits on the card's top-right corner. Two-tone image: never tinted. No asset, no instance.
@@ -104,11 +149,61 @@ function View.Mount(layer: any, _model: any, scope: any): any
 		end
 	end
 
+	local function lineHeight(role)
+		local textSize, holderScale = Text.SizeFor(role, ctx)
+		return math.ceil(textSize * holderScale)
+	end
+
+	local function cardHeight(rowCount)
+		if not compact then
+			return View.Height(rowCount, false)
+		end
+		return View.CompactHeight(lineHeight("SectionHead") + lineHeight("Label"), facts.Instance.Size.Y.Offset,
+			ctx.Px(Space.CompactMargin), ctx.Scale)
+	end
+
+	-- A touch phone: the card hangs under the Roblox buttons (and under the chat window when it shows) and must end
+	-- above the bottom HUD band, whose top is the prompt stack line; with no room it stays hidden (the banner still
+	-- names the event). Everything else always has room.
+	local topOffset = 0
+	local function hasRoom()
+		if not touchPhone then
+			return true
+		end
+		return View.Fits(layer.Slot(slotName).Position.Y.Offset + topOffset, card.Instance.Size.Y.Offset,
+			layer.Slot("PromptStack").Position.Y.Offset)
+	end
+
+	local function show()
+		card.Set({ Visible = shown and hasRoom() })
+	end
+
+	-- The card starts under whatever else hangs from the top-left corner; the right column has nothing above it.
+	local occupiedBottom = nil
+	local function seat()
+		local offset = 0
+		if slotName == "TopLeftHud" then
+			offset = View.TopOffset(occupiedBottom, layer.Slot(slotName).AbsolutePosition.Y, ctx.Px(Space.Gap))
+		end
+		topOffset = offset
+		-- The Compact card is wider than the Compact right column (a small window with the chat showing): it
+		-- hangs from the column's right edge so that it grows inward, never past the screen margin.
+		local hangRight = compact and slotName == "RightColumn"
+		local anchor = hangRight and Vector2.new(1, 0) or Vector2.zero
+		local position = hangRight and UDim2.new(1, 0, 0, 0) or UDim2.fromOffset(0, offset)
+		if card.Instance.AnchorPoint ~= anchor then
+			card.Instance.AnchorPoint = anchor
+		end
+		if card.Instance.Position ~= position then
+			card.Instance.Position = position
+		end
+	end
+
 	local function render()
 		if destroyed or not current then
 			return
 		end
-		local text = Rules.CardText(current, entry and entry.Summary)
+		local text = Rules.CardText(current, entry and entry.Summary, compact)
 		local best = entry and entry.Best and current.Tier and entry.Best[current.Tier] or nil
 		local prizeText = nil
 		if text.Prize then
@@ -129,7 +224,10 @@ function View.Mount(layer: any, _model: any, scope: any): any
 		title.Set({ Text = text.Title })
 		sub.Set({ Text = text.Sub })
 		facts.SetRows(rows)
-		card.Set({ Height = View.Height(#rows, compact) })
+		card.Set({ Height = cardHeight(#rows) })
+		if shown then
+			show()
+		end
 	end
 
 	local self = { Instance = card.Instance }
@@ -142,10 +240,19 @@ function View.Mount(layer: any, _model: any, scope: any): any
 		current = factsOfPrompt
 		entry = nil
 		place()
+		seat()
 		render()
-		if not shown then
-			shown = true
-			card.Set({ Visible = true })
+		shown = true
+		show()
+	end
+
+	-- screenY: the bottom edge (screen y) of anything else showing in the top-left corner, or nil. Call before Show.
+	function self.SetOccupiedTop(screenY: number?)
+		occupiedBottom = screenY
+		if shown and not destroyed then
+			place()
+			seat()
+			show()
 		end
 	end
 
@@ -192,8 +299,22 @@ function View.Mount(layer: any, _model: any, scope: any): any
 		measure()
 		if shown then
 			place()
+			seat()
+			-- The text sizes follow the scale: lay the showing card out again.
+			signature = nil
+			render()
 		end
 	end)
+	if touchPhone then
+		-- The slots move with the chat window and the screen; whether the card has room follows them.
+		for _, name in { "TopLeftHud", "PromptStack" } do
+			scope:connect(layer.Slot(name):GetPropertyChangedSignal("Position"), function()
+				if not destroyed and shown then
+					show()
+				end
+			end)
+		end
+	end
 	return self
 end
 

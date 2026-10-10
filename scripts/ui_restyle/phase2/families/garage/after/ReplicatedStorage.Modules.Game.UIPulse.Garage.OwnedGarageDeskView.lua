@@ -16,6 +16,14 @@ local PAGE_IDS = { "GarageHome", "DisplayCars", "GarageAssetFamilies", "BuildStr
 local TIERS = { E = true, D = true, C = true, B = true, A = true, S = true }
 -- Classic UI.GarageWorkspaceUI 282-283: the preset hues of the colour page, and the saturation and value of its two rows.
 local PALETTE_HUES = { 0, 0.07, 0.14, 0.31, 0.43, 0.51, 0.60, 0.68, 0.76, 0.86, 0.93 }
+local HALF = 0.5
+local SLIDERS = 3 -- hue, saturation, brightness
+
+local function put(instance, property, value)
+	if instance[property] ~= value then
+		instance[property] = value
+	end
+end
 
 local DeskView = {}
 DeskView.__index = DeskView
@@ -251,14 +259,30 @@ function DeskView:_build()
 	local layer = Layers.Stage(stageHolder, ctx, "Scene")
 	self._layer = layer
 
+	-- The title, the instruction line and the tab row stand in `head`, a zero-size frame that _layout() keeps on
+	-- slot TopLeft on Regular. On Compact it goes under the Roblox buttons: the title then starts on the left
+	-- margin, in line with the instruction, the tabs and the rail (the kit header put it beside the buttons,
+	-- 150 px in: capture OwnedGarage.Desk | Home).
+	local function seat(name)
+		local frame = Instance.new("Frame")
+		frame.Name = name
+		frame.BackgroundTransparency = 1
+		frame.BorderSizePixel = 0
+		frame.Parent = layer.Root
+		return frame
+	end
 	local topLeft = layer.Slot("TopLeft")
-	self._header = self:_track(Controls.Header(topLeft, { Title = "GARAGE MANAGEMENT", Sub = "", Shadow = true }, scope))
+	local head = seat("Head")
+	head.Position = topLeft.Position
+	self._topLeft = topLeft
+	self._head = head
+	self._header = self:_track(Controls.Header(head, { Title = "GARAGE MANAGEMENT", Sub = "", Shadow = true }, scope))
 	local tabsHolder = Instance.new("Frame")
 	tabsHolder.Name = "TabsHolder"
 	tabsHolder.BackgroundTransparency = 1
 	tabsHolder.BorderSizePixel = 0
 	tabsHolder.AutomaticSize = Enum.AutomaticSize.XY
-	tabsHolder.Parent = topLeft
+	tabsHolder.Parent = head
 	self._tabsHolder = tabsHolder
 
 	-- A component in a zero-size slot stands on the slot's anchor (Garage.GarageScreenView seat): without it the
@@ -295,7 +319,12 @@ function DeskView:_build()
 	}, scope))
 	Input.Mark(self._rail.Instance, "TutorialCardScroller")
 
-	self._buttons = self:_track(Controls.ButtonRow(layer.Slot("RailButtons"), { Align = "Right", Buttons = {} }, scope))
+	-- The button row ends (bottom-right corner) on `buttonSeat`, which _layout() keeps on slot RailButtons on
+	-- Regular. On Compact it stands on the rail's heading line, or on the channel line of the colour block.
+	local buttonSeat = seat("ButtonSeat")
+	buttonSeat.Position = layer.Slot("RailButtons").Position
+	self._buttonSeat = buttonSeat
+	self._buttons = self:_track(Controls.ButtonRow(buttonSeat, { Align = "Right", Buttons = {} }, scope))
 	self._shown = {}
 	self._buttonsKey = ""
 	self._buttonCalls = {
@@ -325,19 +354,92 @@ function DeskView:_build()
 		end,
 	}
 
+	-- Deferred on a context change: the slots and the kit parts answer the same signal, and _layout reads them.
 	scope:connect(ctx.Changed, function(change)
 		if type(change) == "table" and change.Layout then
 			self:_layout()
+			task.defer(function()
+				if self._scope == scope then
+					self:_layout()
+				end
+			end)
 		end
 	end)
+	for _, part in ipairs({ self._header, self._rail, self._buttons }) do
+		scope:connect(part.Instance:GetPropertyChangedSignal("Size"), function()
+			self:_layout()
+		end)
+	end
 	self:_layout()
 	self._built = true
+end
+
+-- Pure. Compact: the y (in the stage) of the bottom edge of the button row, so that its drawn buttons stand on
+-- the rail's heading line and end a hairline above the tile row. All values are real px. `railBottom` is the foot
+-- of the rail and `railHeight` its whole height (heading, gap, tile row); `tileRow` is the height of the tile row
+-- alone (a tile and the room its selected state grows into); `rowHeight` is the button row's touch height and
+-- `drawn` the height of a drawn button, which is centred in it.
+function DeskView._buttonLine(railBottom, railHeight, tileRow, rowHeight, drawn, hair)
+	local slack = math.max(0, math.floor((rowHeight - drawn) * HALF))
+	return railBottom - math.min(railHeight, tileRow) + slack - hair
+end
+
+-- The height of a rail's tile row (a tile and the room its selected state grows into), real px. The rail's own
+-- numbers are used when they can be read: its Scroller is that row with a glow margin on every side, and the
+-- rail ends at the foot of the row, so the margin is what the scroller reaches below the rail. `fallback` is the
+-- same height from the tokens, for a rail that is not laid out yet.
+function DeskView._tileRow(railHeight, scroller, fallback)
+	if scroller then
+		local height = scroller.Size.Y.Offset
+		local glow = scroller.Position.Y.Offset + height - railHeight
+		if glow >= 0 and height - 2 * glow > 0 then
+			return height - 2 * glow
+		end
+	end
+	return fallback
 end
 
 function DeskView:_layout()
 	local ctx = self._ctx
 	local space = self._kit.Tokens.Space
-	self._tabsHolder.Position = UDim2.fromOffset(0, self._header.Height() + ctx.Px(space.HeaderTabsGap))
+	local layer = self._layer
+	local compact = ctx.Class == "Compact"
+
+	local slot = self._topLeft.Position
+	local headY = slot.Y.Offset
+	local tabsGap = ctx.Px(space.HeaderTabsGap)
+	if compact then
+		local barBottom = math.max(0, math.floor(ctx.TopBarHeight - ctx.Origin.Y + HALF))
+		headY = math.max(headY, barBottom + ctx.Px(space.CompactKeepOutGap))
+		tabsGap = 0 -- a Compact tab is a touch size high with its text centred: that room is the gap
+	end
+	put(self._head, "Position", UDim2.fromOffset(slot.X.Offset, headY))
+	put(self._tabsHolder, "Position", UDim2.fromOffset(0, self._header.Height() + tabsGap))
+
+	local at = layer.Slot("RailButtons").Position
+	local y = at.Y.Offset
+	if compact then
+		local rowHeight = self._buttons.Instance.Size.Y.Offset
+		local paint = self._paint
+		local channels = self._channelsPaint
+		if paint and paint.shown and channels then
+			-- The colour block: level with its channel switch (the first line of the block).
+			local blockTop = layer.Slot("BottomLeft").Position.Y.Offset - paint.panel.Instance.Size.Y.Offset
+			local line = blockTop + ctx.Px(space.CompactKeepOutGap) + math.floor(channels.Instance.Size.Y.Offset * HALF)
+			y = line + math.ceil(rowHeight * HALF)
+		else
+			local railHeight = self._rail.Instance.Size.Y.Offset
+			y = DeskView._buttonLine(
+				layer.Slot("BottomRail").Position.Y.Offset,
+				railHeight,
+				DeskView._tileRow(railHeight, self._rail.Instance:FindFirstChild("Scroller"), ctx.Px(space.CompactTileHeight) + ctx.Px(space.TileBaseLine)),
+				rowHeight,
+				ctx.Px(space.CompactButtonDrawn),
+				ctx.Px(space.Hairline)
+			)
+		end
+	end
+	put(self._buttonSeat, "Position", UDim2.fromOffset(at.X.Offset, y))
 end
 
 -- Pure. Must the rail be emptied before it takes this card list? The kit rail keeps its own selection while the
@@ -494,6 +596,7 @@ function DeskView:_renderCards(context)
 	local rail = self._rail
 	if self._paint then
 		self._paint.panel.Set({ Visible = false })
+		self._paint.shown = false
 	end
 	rail.Set({ Visible = true })
 
@@ -557,23 +660,32 @@ function DeskView:_renderPaint(context)
 	if not selected then
 		if paint then
 			paint.panel.Set({ Visible = false })
+			paint.shown = false
 		end
 		return
 	end
 	if not paint then
 		paint = { hsv = { 0, 0, 1 }, sliders = {}, swatches = {}, rows = {} }
 		self._paint = paint
+		-- Regular: channel switch, three sliders and two preset rows, stacked in a panel. Compact (as the vehicle
+		-- paint screen, Garage.PaintView): the three sliders side by side and one preset row, as many presets as
+		-- its width takes; stacked, the block was taller than a phone and its 14 presets wider (each is a touch
+		-- size). The class is read here, when the colour page first opens.
+		local ctx = self._ctx
+		local compact = ctx.Class == "Compact"
+		local padDesign = compact and space.CompactKeepOutGap or space.Pad
+		local gapPx = ctx.Px(compact and space.CompactKeepOutGap or space.Gap)
 		-- A start size only: fitPanel() below sizes the panel from what it holds once that is laid out.
 		local width = space.ModalMaxWidth
-		local height = 3 * space.SliderHeight + 3 * space.ButtonHeight + 6 * space.Gap + 2 * space.Pad
-		paint.panel = self:_track(parts.Surface.Panel(self._layer.Slot("BottomLeft"), { Name = "PaintControls", Width = width, Height = height }, self._scope))
+		local height = SLIDERS * space.SliderHeight + SLIDERS * space.ButtonHeight + 6 * space.Gap + 2 * space.Pad
+		paint.panel = self:_track(parts.Surface.Panel(self._layer.Slot("BottomLeft"), { Name = "PaintControls", Width = width, Height = height, Pad = padDesign }, self._scope))
 		paint.panel.Instance.AnchorPoint = Vector2.new(0, 1)
 		local content = paint.panel.Content
 		local column = Instance.new("UIListLayout")
 		column.Name = "Layout"
 		column.FillDirection = Enum.FillDirection.Vertical
 		column.SortOrder = Enum.SortOrder.LayoutOrder
-		column.Padding = UDim.new(0, self._ctx.Px(space.Gap))
+		column.Padding = UDim.new(0, gapPx)
 		column.Parent = content
 		local function row(name, order)
 			local frame = Instance.new("Frame")
@@ -587,9 +699,17 @@ function DeskView:_renderPaint(context)
 			layout.Name = "Layout"
 			layout.FillDirection = Enum.FillDirection.Horizontal
 			layout.SortOrder = Enum.SortOrder.LayoutOrder
-			layout.Padding = UDim.new(0, self._ctx.Px(space.Gap))
+			layout.Padding = UDim.new(0, gapPx)
 			layout.Parent = frame
 			return frame
+		end
+		-- Compact: one slider's width, so that the three and their gaps fit the screen between the margins.
+		local sliderWidth = 0
+		if compact then
+			local margin = self._layer.Slot("BottomLeft").Position.X.Offset
+			local room = ctx.Size.X - 2 * margin - 2 * ctx.Px(padDesign) - (SLIDERS - 1) * gapPx
+			sliderWidth = math.max(1, math.min(ctx.Px(space.CompactStatPanelWidth), math.floor(room / SLIDERS)))
+			paint.sliderRow = row("Sliders", 2)
 		end
 		paint.channelRow = row("Channels", 1)
 
@@ -614,8 +734,20 @@ function DeskView:_renderPaint(context)
 			hueKeys[index] = ColorSequenceKeypoint.new(stop, Color3.fromHSV(stop, 1, 1))
 		end
 		local labels = { "HUE", "SATURATION", "BRIGHTNESS" }
-		for index = 1, 3 do
-			paint.sliders[index] = parts.Controls.Slider(content, {
+		for index = 1, SLIDERS do
+			local sliderParent = content
+			if compact then
+				-- A slider fills the width of a parent that has one.
+				sliderParent = Instance.new("Frame")
+				sliderParent.Name = "Slider" .. index
+				sliderParent.BackgroundTransparency = 1
+				sliderParent.BorderSizePixel = 0
+				sliderParent.Size = UDim2.fromOffset(sliderWidth, 0)
+				sliderParent.AutomaticSize = Enum.AutomaticSize.Y
+				sliderParent.LayoutOrder = index
+				sliderParent.Parent = paint.sliderRow
+			end
+			paint.sliders[index] = parts.Controls.Slider(sliderParent, {
 				Name = labels[index],
 				Label = labels[index],
 				Value = paint.hsv[index],
@@ -638,7 +770,7 @@ function DeskView:_renderPaint(context)
 			}, self._scope)
 		end
 		-- Two preset rows as Classic 283: white and grey, dark grey and black, then a light and a deep tone per hue.
-		for rowIndex = 1, 2 do
+		for rowIndex = 1, compact and 1 or 2 do
 			local frame = row("Palette" .. rowIndex, 4 + rowIndex)
 			paint.rows[rowIndex] = frame
 			if rowIndex == 1 then
@@ -669,21 +801,41 @@ function DeskView:_renderPaint(context)
 				table.insert(paint.swatches, swatch)
 			end
 		end
+		if compact then
+			-- The preset row is as wide as the slider row: the current colour, then the presets that fit.
+			local rowWidth = SLIDERS * sliderWidth + (SLIDERS - 1) * gapPx
+			local side = paint.current.Instance.Size.X.Offset
+			local fits = math.max(1, math.floor((rowWidth + gapPx) / (side + gapPx)))
+			for index, swatch in ipairs(paint.swatches) do
+				swatch.Set({ Visible = index < fits })
+			end
+		end
 		-- The start size counted a slider without its label line and the presets as one button row each, so the
 		-- second preset row hung below the panel and the first ran past its right edge.
 		local function fitPanel()
 			local size = column.AbsoluteContentSize
-			local wide = math.max(paint.channelRow.AbsoluteSize.X, paint.rows[1].AbsoluteSize.X, paint.rows[2].AbsoluteSize.X)
+			local wide = math.max(paint.channelRow.AbsoluteSize.X, paint.rows[1].AbsoluteSize.X)
+			if paint.rows[2] then
+				wide = math.max(wide, paint.rows[2].AbsoluteSize.X)
+			end
+			if paint.sliderRow then
+				wide = math.max(wide, paint.sliderRow.AbsoluteSize.X)
+			end
 			if size.Y <= 0 or wide <= 0 then
 				return -- not laid out yet: the start size stays
 			end
-			local pad, scale = self._ctx.Px(space.Pad), self._ctx.Scale
+			local pad, scale = ctx.Px(padDesign), ctx.Scale
 			paint.panel.Set({ Width = math.ceil((wide + 2 * pad) / scale), Height = math.ceil((size.Y + 2 * pad) / scale) })
 		end
 		self._scope:connect(column:GetPropertyChangedSignal("AbsoluteContentSize"), fitPanel)
+		-- Compact: the button row stands on the block's first line, so it follows the block's height.
+		self._scope:connect(paint.panel.Instance:GetPropertyChangedSignal("Size"), function()
+			self:_layout()
+		end)
 		fitPanel()
 	end
 	paint.panel.Set({ Visible = true })
+	paint.shown = true
 	paint.channel = selected
 	local current = (context.Colors and context.Colors[selected]) or Color3.fromHSV(0, 0, 1)
 	local h, s, v = Color3.toHSV(current)
@@ -713,6 +865,10 @@ function DeskView:_apply(context, full)
 			shown.Exit = context.ExitVisible == true and tostring(context.ExitText or "EXIT") or nil
 			self:_renderTabs(context)
 			self._cluster.Set({ Spaces = DeskView._spaces(context.CapacityText) })
+			-- Gallery only: the chip is not bound to a player there, so it shows the fixture's own amount.
+			if self._fixture and self._cluster.Cash and type(context.Cash) == "number" then
+				self._cluster.Cash.SetAmount(context.Cash)
+			end
 		end
 		if full and context.ColorChannels then
 			self:_renderPaint(context)

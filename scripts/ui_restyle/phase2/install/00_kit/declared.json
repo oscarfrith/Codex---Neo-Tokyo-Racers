@@ -64,10 +64,8 @@
    "class": "ModuleScript"
   },
   "ReplicatedStorage.Modules.Game.UIPulse.Dev.Gallery": {
-   "length": 21243,
-   "djb2": 4102633886,
-   "fnv1a32": 2988313662,
-   "class": "ModuleScript"
+   "class": "ModuleScript",
+   "_unpinned": "changed by 00_kit"
   },
   "ReplicatedStorage.Modules.Game.UIPulse.Kit.BigNumber": {
    "length": 13453,
@@ -88,15 +86,15 @@
    "_unpinned": "changed by 00_kit"
   },
   "ReplicatedStorage.Modules.Game.UIPulse.Kit.Data": {
-   "length": 57060,
-   "djb2": 3840631725,
-   "fnv1a32": 3282828073,
+   "length": 59988,
+   "djb2": 3768628322,
+   "fnv1a32": 972769864,
    "class": "ModuleScript"
   },
   "ReplicatedStorage.Modules.Game.UIPulse.Kit.Gauge": {
-   "length": 14598,
-   "djb2": 4258431485,
-   "fnv1a32": 411862015,
+   "length": 14702,
+   "djb2": 2502745895,
+   "fnv1a32": 1498110527,
    "class": "ModuleScript"
   },
   "ReplicatedStorage.Modules.Game.UIPulse.Kit.Input": {
@@ -112,9 +110,9 @@
    "_unpinned": "changed by 00_kit"
   },
   "ReplicatedStorage.Modules.Game.UIPulse.Kit.Minimap": {
-   "length": 19093,
-   "djb2": 3877836414,
-   "fnv1a32": 359801508,
+   "length": 19197,
+   "djb2": 539211816,
+   "fnv1a32": 927937836,
    "class": "ModuleScript"
   },
   "ReplicatedStorage.Modules.Game.UIPulse.Kit.Overlay": {
@@ -173,6 +171,12 @@
    "length": 3239,
    "djb2": 733354054,
    "fnv1a32": 398291088,
+   "class": "ModuleScript"
+  },
+  "ReplicatedStorage.Modules.Game.Audio.RadioClient": {
+   "class": "ModuleScript"
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.RadioStripView": {
    "class": "ModuleScript"
   }
  },

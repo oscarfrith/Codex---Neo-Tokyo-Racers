@@ -179,15 +179,48 @@ function View.Mount(layer, model, scope)
 		local chipHeight = math.max(page.PrizeChip.Instance.Size.Y.Offset, label)
 		local prizeHeight = pad + label + gap + chipHeight + gap + label + pad
 		local bestHeight = pad + label + gap + head + pad
+		local stepper = page.Stepper.Instance.Size
+		local stepWidth = stepper.X.Offset > 0 and stepper.X.Offset or ctx.Px(Space.StepperWidth)
+		local stepHeight = stepper.Y.Offset > 0 and stepper.Y.Offset or ctx.Px(Space.ButtonHeight)
+		-- The lap selector lives in the map panel on Regular and stands under the prize card on Compact.
+		local lapParent = compact and page.Body or page.Map.Content
+		if page.LapRow.Parent ~= lapParent then
+			page.LapRow.Parent = lapParent
+		end
 		local mapWidth
 		if compact then
-			mapWidth = math.floor((width - gap - gap) * HALF)
-			local middle = math.floor((width - gap - gap - mapWidth) * HALF)
-			local right = width - gap - gap - mapWidth - middle
-			local middleX = mapWidth + gap
-			place(page.Best.Holder, middleX, 0, middle, bestHeight)
-			place(page.Medals.Holder, middleX, bestHeight + gap, middle, bodyHeight - bestHeight - gap)
-			place(page.Prize.Holder, middleX + middle + gap, 0, right, bodyHeight)
+			-- Every card is as tall as what is in it (no empty boxes), and the lap selector stands under the prize
+			-- card, above CHOOSE VEHICLE. With a track map and room for the two middle cards one over the other:
+			-- map (half) | best over medal targets | prize. Otherwise three equal columns: the info line over the
+			-- personal best | medal targets | prize.
+			local medalsHeight = pad + listHeight(page.MedalList, page.MedalCount or 0, true) + pad
+			local showMap = page.MapImage ~= nil and page.MapImage ~= "" and bestHeight + gap + medalsHeight <= bodyHeight
+			local lapX, lapColumn
+			if showMap then
+				mapWidth = math.floor((width - gap - gap) * HALF)
+				local middle = math.floor((width - gap - gap - mapWidth) * HALF)
+				local right = width - gap - gap - mapWidth - middle
+				local middleX = mapWidth + gap
+				place(page.Map.Holder, 0, 0, mapWidth, bodyHeight)
+				place(page.Best.Holder, middleX, 0, middle, bestHeight)
+				place(page.Medals.Holder, middleX, bestHeight + gap, middle, medalsHeight)
+				place(page.Prize.Holder, middleX + middle + gap, 0, right, prizeHeight)
+				lapX, lapColumn = middleX + middle + gap, right
+			else
+				local column = math.floor((width - gap - gap) / 3)
+				local last = width - gap - gap - column - column
+				local infoHeight = pad + label + pad
+				mapWidth = column
+				place(page.Map.Holder, 0, 0, column, infoHeight)
+				place(page.Best.Holder, 0, infoHeight + gap, column, bestHeight)
+				place(page.Medals.Holder, column + gap, 0, column, medalsHeight)
+				place(page.Prize.Holder, column + gap + column + gap, 0, last, prizeHeight)
+				lapX, lapColumn = column + gap + column + gap, last
+			end
+			put(page.Picture, "Visible", showMap)
+			put(page.LapRow, "AnchorPoint", Vector2.zero)
+			put(page.LapRow, "Position", UDim2.fromOffset(lapX + math.max(0, math.floor((lapColumn - stepWidth) * HALF)), prizeHeight + gap))
+			page.Info.Set({ MaxWidth = View.LabelWidth(mapWidth, pad, 0, ctx.Scale) })
 		else
 			mapWidth = math.floor((width - gap) * HALF)
 			local rightX = mapWidth + gap
@@ -195,24 +228,20 @@ function View.Mount(layer, model, scope)
 			place(page.Prize.Holder, rightX, 0, right, prizeHeight)
 			place(page.Best.Holder, rightX, prizeHeight + gap, right, bestHeight)
 			place(page.Medals.Holder, rightX, prizeHeight + gap + bestHeight + gap, right, bodyHeight - prizeHeight - bestHeight - gap - gap)
+			place(page.Map.Holder, 0, 0, mapWidth, bodyHeight)
+			-- Inside the map panel (its Content frame is already inset by the pad).
+			put(page.LapRow, "AnchorPoint", Vector2.new(0, 1))
+			put(page.LapRow, "Position", UDim2.new(0, math.max(0, math.floor((mapWidth - pad - pad - stepWidth) * HALF)), 1, 0))
 		end
-		place(page.Map.Holder, 0, 0, mapWidth, bodyHeight)
-
-		-- Inside the panels (their Content frames are already inset by the pad).
-		local stepper = page.Stepper.Instance.Size
-		local stepWidth = stepper.X.Offset > 0 and stepper.X.Offset or ctx.Px(Space.StepperWidth)
-		local stepHeight = stepper.Y.Offset > 0 and stepper.Y.Offset or ctx.Px(Space.ButtonHeight)
-		put(page.LapRow, "AnchorPoint", Vector2.new(0, 1))
-		put(page.LapRow, "Position", UDim2.new(0, math.max(0, math.floor((mapWidth - pad - pad - stepWidth) * HALF)), 1, 0))
 		put(page.LapRow, "Size", UDim2.fromOffset(stepWidth, stepHeight))
 
 		moveTo(page.PrizeChip.Instance, 0, label + gap)
 		moveTo(page.Bonus.Instance, 0, label + gap + chipHeight + gap)
-		-- Regular: the tier badge sits on the label line, at the right. Compact (c07): the column is narrow, so
-		-- the badge goes to the bottom-right corner and the label keeps the whole line.
+		-- Regular: the tier badge sits on the label line, at the right. Compact: no badge (drawTrial hides it); the
+		-- tier is in the label and on the tier row, and the label keeps the whole line.
 		local badgeWidth = page.Badge.Instance.Size.X.Offset
-		put(page.Badge.Instance, "AnchorPoint", Vector2.new(1, compact and 1 or 0))
-		put(page.Badge.Instance, "Position", UDim2.new(1, 0, compact and 1 or 0, 0))
+		put(page.Badge.Instance, "AnchorPoint", Vector2.new(1, 0))
+		put(page.Badge.Instance, "Position", UDim2.new(1, 0, 0, 0))
 		-- One-line labels stop at their panel (they truncate) instead of running into the next column.
 		local prizeBox = page.Prize.Holder.Size.X.Offset
 		local bestBox = page.Best.Holder.Size.X.Offset
@@ -246,13 +275,30 @@ function View.Mount(layer, model, scope)
 		local formatHeight = pad + label + gap + head + pad
 		local mapWidth
 		if compact then
-			mapWidth = math.floor((width - gap - gap) * HALF)
-			local middle = math.floor((width - gap - gap - mapWidth) * HALF)
-			local right = width - gap - gap - mapWidth - middle
-			local middleX = mapWidth + gap
-			place(page.Format.Holder, middleX, 0, middle, formatHeight)
-			place(page.Stats.Holder, middleX, formatHeight + gap, middle, bodyHeight - formatHeight - gap)
-			place(page.Prizes.Holder, middleX + middle + gap, 0, right, bodyHeight)
+			-- As the time-trial page: cards as tall as their content. With a track map: map (half) | format over
+			-- stats | prizes. Without: three equal columns, the first being the event card (label and name).
+			local statsHeight = pad + listHeight(page.StatList, page.StatCount or 0, true) + pad
+			local showMap = page.MapImage ~= nil and page.MapImage ~= "" and formatHeight + gap + statsHeight <= bodyHeight
+			if showMap then
+				mapWidth = math.floor((width - gap - gap) * HALF)
+				local middle = math.floor((width - gap - gap - mapWidth) * HALF)
+				local right = width - gap - gap - mapWidth - middle
+				local middleX = mapWidth + gap
+				place(page.Map.Holder, 0, 0, mapWidth, bodyHeight)
+				place(page.Format.Holder, middleX, 0, middle, formatHeight)
+				place(page.Stats.Holder, middleX, formatHeight + gap, middle, statsHeight)
+				place(page.Prizes.Holder, middleX + middle + gap, 0, right, prizesHeight)
+			else
+				local column = math.floor((width - gap - gap) / 3)
+				local last = width - gap - gap - column - column
+				mapWidth = column
+				place(page.Map.Holder, 0, 0, column, formatHeight)
+				place(page.Format.Holder, column + gap, 0, column, formatHeight)
+				place(page.Stats.Holder, column + gap, formatHeight + gap, column, statsHeight)
+				place(page.Prizes.Holder, column + gap + column + gap, 0, last, prizesHeight)
+			end
+			put(page.Picture, "Visible", showMap)
+			page.Name.Set({ MaxWidth = View.LabelWidth(mapWidth, pad, 0, ctx.Scale) })
 		else
 			mapWidth = math.floor((width - gap) * HALF)
 			local rightX = mapWidth + gap
@@ -260,8 +306,8 @@ function View.Mount(layer, model, scope)
 			place(page.Format.Holder, rightX, 0, right, formatHeight)
 			place(page.Prizes.Holder, rightX, formatHeight + gap, right, prizesHeight)
 			place(page.Stats.Holder, rightX, formatHeight + gap + prizesHeight + gap, right, bodyHeight - formatHeight - prizesHeight - gap - gap)
+			place(page.Map.Holder, 0, 0, mapWidth, bodyHeight)
 		end
-		place(page.Map.Holder, 0, 0, mapWidth, bodyHeight)
 
 		moveTo(page.Name.Instance, 0, label + gap)
 		moveTo(page.FormatText.Instance, 0, label + gap)
@@ -407,7 +453,8 @@ function View.Mount(layer, model, scope)
 		page.Map = panel("TrackMap", page.Body, nil, scope)
 		page.Picture = picture(page.Map.Content)
 		page.Info = Text.Label(page.Map.Content, { Name = "Info", Text = "", Role = "Label", Colour = "TextSecondary" }, scope)
-		page.LapRow = holder("LapRow", page.Map.Content)
+		-- Regular: in the map panel. Compact: under the prize card (layoutTrial moves it if the class changes).
+		page.LapRow = holder("LapRow", ctx.Class == "Compact" and page.Body or page.Map.Content)
 		page.Stepper = Controls.Stepper(page.LapRow, {
 			Value = setup.Lap,
 			Min = setup.MinLap,
@@ -435,6 +482,7 @@ function View.Mount(layer, model, scope)
 
 		page.Medals = panel("MedalPanel", page.Body, "MedalTargets", scope)
 		page.MedalList = Data.FactList(page.Medals.Content, { Name = "MedalRows", Rows = {} }, scope)
+		watch(page.MedalList.Instance)
 
 		page.Panels = { page.Map, page.Prize, page.Best, page.Medals }
 		page.Row = footer({
@@ -483,6 +531,7 @@ function View.Mount(layer, model, scope)
 
 		page.Stats = panel("RaceStats", page.Body, nil, scope)
 		page.StatList = Data.FactList(page.Stats.Content, { Name = "StatList", Rows = {} }, scope)
+		watch(page.StatList.Instance)
 
 		page.Panels = { page.Strip, page.Map, page.Format, page.Prizes, page.Stats }
 		page.Row = footer({
@@ -513,12 +562,17 @@ function View.Mount(layer, model, scope)
 		end
 		page.Tiers.Select(snap.Tier)
 		page.Info.Set({ Text = compact and setup.InfoShort or setup.Info })
-		setImage(page.Picture, setup.MapImage)
+		page.MapImage = setup.MapImage
+		if compact then
+			put(page.Picture, "Image", setup.MapImage) -- layoutTrial decides whether the map shows
+		else
+			setImage(page.Picture, setup.MapImage)
+		end
 		page.Stepper.Set({ Value = setup.Lap, Min = setup.MinLap, Max = setup.MaxLap })
 		page.PrizeLabel.Set({ Text = setup.PrizeLabel })
 		page.PrizeChip.Set({ Text = setup.PrizeText })
 		page.Bonus.Set({ Text = setup.BonusText })
-		page.Badge.Set({ Tier = snap.Tier })
+		page.Badge.Set({ Tier = snap.Tier, Visible = not compact })
 		page.BestCaption.Set({ Text = setup.BestCaption })
 		page.BestTime.Set({ Text = setup.Best.TimeText })
 		page.BestMedal.Set({ Text = setup.Best.MedalText })
@@ -526,6 +580,7 @@ function View.Mount(layer, model, scope)
 		for index, medal in ipairs(setup.Medals) do
 			rows[index] = { Id = medal.Id, Icon = "medal", Label = medal.Label, Value = medal.Time, Kind = "Text" }
 		end
+		page.MedalCount = #rows
 		setRows("Medals", page.MedalList, rows)
 		page.Row.Button("Records").Set({ Text = compact and setup.RecordsShort or setup.RecordsText, Disabled = not setup.Enabled })
 		page.Row.Button("Choose").Set({ Text = setup.ChooseText, Disabled = not setup.Enabled })
@@ -535,7 +590,12 @@ function View.Mount(layer, model, scope)
 		for index, fact in ipairs(page.Facts) do
 			fact.Set({ Text = data.Facts[index] or "" })
 		end
-		setImage(page.Picture, data.MapImage)
+		page.MapImage = data.MapImage
+		if ctx.Class == "Compact" then
+			put(page.Picture, "Image", data.MapImage) -- layoutRace decides whether the map shows
+		else
+			setImage(page.Picture, data.MapImage)
+		end
 		page.Name.Set({ Text = data.Name })
 		page.FormatText.Set({ Text = data.FormatText })
 		local prizes = {}
@@ -548,6 +608,7 @@ function View.Mount(layer, model, scope)
 		for index, stat in ipairs(data.Stats) do
 			stats[index] = { Id = stat.Id, Icon = stat.Id == "Players" and "players" or "checkpoints", Label = stat.Label, Value = stat.Text, Kind = "Text" }
 		end
+		page.StatCount = #stats
 		setRows("Stats", page.StatList, stats)
 		page.Row.Button("Choose").Set({ Text = data.ChooseText, Disabled = not data.Enabled })
 	end

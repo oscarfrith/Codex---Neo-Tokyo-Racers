@@ -1,5 +1,5 @@
 -- Owns the Pulse free-roam HUD surface on every form factor: the DesktopFreeRoamHud layers, the HUD model and view, their listeners and the HUD frame step; not the touch drive controls, the activity HUD, the full map or any Classic HUD.
--- Pulse UI (phase2). ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.HudClient. Requires: Kit.Layers, Kit.Overlay, Kit.Perf, Routes, FreeRoam.HudModel, FreeRoam.HudView, Core.ConnectionScope and the shared modules RouteGuide, GarageCatalogClient, MobileDriveInputState, GameplayInputGate, FreeRoamMapPlayerMarkers (all resolved inside start).
+-- Pulse UI (phase2). ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.HudClient. Requires: Kit.Layers, Kit.Overlay, Kit.Perf, Routes, FreeRoam.HudModel, FreeRoam.HudView, Core.ConnectionScope and the shared modules RouteGuide, GarageCatalogClient, MobileDriveInputState, GameplayInputGate, FreeRoamMapPlayerMarkers, Audio.RadioClient (all resolved inside start).
 --
 -- Classic line references: D = DesktopFreeRoamHudUI, M = MobileFreeRoamHudUI.
 
@@ -78,6 +78,21 @@ local function run()
 	local HudView = require(script.Parent.HudView)
 	local scope = Scope.new()
 	local read = Client._read
+
+	-- The radio (Audio.RadioClient) owns music playback; the HUD starts it and draws its strip. A radio fault never
+	-- fails the HUD. The strip is drawn only when Config.Audio.Radio@ShowStrip is true (off: it was a test control).
+	local radio = nil
+	local radioModule = gameModules:WaitForChild("Audio"):FindFirstChild("RadioClient")
+	if radioModule then
+		local okRadio, result = pcall(function()
+			return require(radioModule).Start()
+		end)
+		if not okRadio then
+			warn("[Pulse.HudClient] radio failed to start: " .. tostring(result))
+		elseif result.State().ShowStrip then
+			radio = result
+		end
+	end
 
 	-- 4. Config, read once (PC 5.1 rule 4). The two readers are Classic's own: _readValue is D121-124, read is M41.
 	local modelConfig = {
@@ -201,6 +216,7 @@ local function run()
 			MinimapDeps = { Markers = Markers, MarkersConfig = markersConfig, RouteGuide = RouteGuide, Player = player, Layout = minimapLayout },
 			DriveState = DriveState,
 			Subject = subject,
+			Radio = radio,
 			SpeedGaugeMaxMph = speedGaugeMaxMph,
 			BoostBarSmoothing = boostBarSmoothing,
 		})

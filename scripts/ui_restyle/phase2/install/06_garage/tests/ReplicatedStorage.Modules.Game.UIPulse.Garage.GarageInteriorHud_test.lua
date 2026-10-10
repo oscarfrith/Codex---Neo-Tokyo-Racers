@@ -50,5 +50,14 @@ return function(M, _env)
 		expect(M._visible(false, false, false, nil) == false and M._visible(true, false, false, true) == false, "outside, or a visitor")
 	end)
 
+	case("compact: the controls stack when the two do not fit, and an open list ends on the screen", function()
+		expect(M._sideBySide(176, 96, 8, 820) == true, "844 px phone: side by side")
+		expect(M._sideBySide(300, 250, 7, 548) == false, "568 px phone, long texts: one under the other")
+		expect(M._sideBySide(270, 270, 8, 548) == true, "exactly the room: side by side")
+		expect(M._listRows(390, 142, 48) == 5, "844x390: five rows under the controls")
+		expect(M._listRows(320, 135, 48) == 3, "568x320: three rows")
+		expect(M._listRows(320, 310, 48) == 1 and M._listRows(320, 100, 0) == 1, "never fewer than one row")
+	end)
+
 	return results
 end

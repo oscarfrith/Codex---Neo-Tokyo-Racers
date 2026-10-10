@@ -100,7 +100,7 @@ return function(M: any, env: any): { { name: string, ok: boolean, detail: string
 
 	case("ladder additions of API2 2.4", function()
 		local added = {
-			PulseWorldPrompts = 80, PulseEventCard = 81, DesktopFreeRoamHudLive = 86, ActivityHudLive = 87,
+			SharedInRaceHUDScrim = 57, PulseWorldPrompts = 80, PulseEventCard = 81, DesktopFreeRoamHudLive = 86, ActivityHudLive = 87,
 			FullMapScrim = 89, FullMapLive = 91, SharedInRaceHUDLive = 156, OwnedGarageBrowserScrim = 168,
 			RaceBrowserScrim = 169, RaceEntryPresentationScrim = 179, UnifiedRaceResultsScrim = 219,
 			CanonicalGarageGuiScrim = 39, CanonicalGarageGuiLive = 41, OwnedGarageInteriorHUDLive = 59,

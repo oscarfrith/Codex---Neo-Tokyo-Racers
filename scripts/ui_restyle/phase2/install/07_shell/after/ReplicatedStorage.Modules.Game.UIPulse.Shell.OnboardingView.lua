@@ -67,7 +67,13 @@ function View._mode(fixed, y, bottom, safeTop, safeBottom)
 end
 
 -- Pure. 304-308: first candidate that fits the safe rectangle, else the first candidate clamped into it.
-function View._placeBubble(mode, x, y, right, bottom, bubbleWidth, bubbleHeight, offset, safeLeft, safeTop, safeRight, safeBottom)
+-- keepOutRight, keepOutBottom (optional, Compact): the corner of the Roblox top-left buttons. A candidate that would
+-- cover them does not fit, and a clamped bubble is moved under them.
+function View._placeBubble(mode, x, y, right, bottom, bubbleWidth, bubbleHeight, offset, safeLeft, safeTop, safeRight, safeBottom,
+	keepOutRight, keepOutBottom)
+	local function onButtons(candidateX, candidateY)
+		return keepOutRight ~= nil and keepOutBottom ~= nil and candidateX < keepOutRight and candidateY < keepOutBottom
+	end
 	local targetWidth, targetHeight = right - x, bottom - y
 	local above = { x + (targetWidth - bubbleWidth) * HALF, y - bubbleHeight - offset }
 	local below = { x + (targetWidth - bubbleWidth) * HALF, bottom + offset }
@@ -86,13 +92,16 @@ function View._placeBubble(mode, x, y, right, bottom, bubbleWidth, bubbleHeight,
 	local bubbleX, bubbleY = nil, nil
 	for _, candidate in ipairs(candidates) do
 		if candidate[1] >= safeLeft and candidate[2] >= safeTop and candidate[1] + bubbleWidth <= safeRight
-			and candidate[2] + bubbleHeight <= safeBottom then
+			and candidate[2] + bubbleHeight <= safeBottom and not onButtons(candidate[1], candidate[2]) then
 			bubbleX, bubbleY = candidate[1], candidate[2]
 			break
 		end
 	end
 	bubbleX = math.clamp(bubbleX or candidates[1][1], safeLeft, math.max(safeLeft, safeRight - bubbleWidth))
 	bubbleY = math.clamp(bubbleY or candidates[1][2], safeTop, math.max(safeTop, safeBottom - bubbleHeight))
+	if onButtons(bubbleX, bubbleY) then
+		bubbleY = math.min(keepOutBottom, math.max(safeTop, safeBottom - bubbleHeight))
+	end
 	return math.floor(bubbleX), math.floor(bubbleY)
 end
 
@@ -318,7 +327,12 @@ function View.Mount(layer, model, scope)
 	bubble.Active = true
 	bubble.Visible = false
 	bubble.ZIndex = 3
-	local panel = keep(Surface.Panel(bubble, { Name = "Panel" }, scope))
+	-- Compact: the bubble takes the phone margin as its padding (the full panel padding made it 44 px taller and
+	-- left the copy a narrow column).
+	local function bubblePad()
+		return isCompact() and Space.CompactMargin or Space.Pad
+	end
+	local panel = keep(Surface.Panel(bubble, { Name = "Panel", Pad = bubblePad() }, scope))
 	local content = panel.Content
 	local tip = keep(Text.Label(content, { Name = "Tip", Text = string.format(TIP_FORMAT, 1, 1), Role = "Label", Colour = "Pink" }, scope))
 	local copy = keep(Text.Label(content, { Name = "Copy", Text = "", Role = "Body", Wrap = true,
@@ -450,15 +464,20 @@ function View.Mount(layer, model, scope)
 		nextButton.Set({ Visible = not action })
 
 		-- Sizes the kit has laid out; before the first layout pass, the token sizes.
-		local pad = ctx.Px(Space.Pad)
+		local pad = ctx.Px(bubblePad())
 		local gap = ctx.Px(Space.Gap)
 		local margin = ctx.Px(Space.Gap)
 		local hair = ctx.Hair(Space.Hairline)
 		local safeLeft, safeRight, safeBottom = margin, canvas.X - margin, canvas.Y - margin
 		local safeTop = margin
+		local keepOutRight, keepOutBottom = nil, nil
 		if not compact then
 			-- 289: the top bar is reserved on desktop only.
 			safeTop = math.max(margin, math.round(ctx.TopBarHeight - ctx.Origin.Y) + margin)
+		elseif typeof(ctx.TopBarKeepOut) == "Vector2" and ctx.TopBarKeepOut.X > 0 and ctx.TopBarHeight > 0 then
+			-- A phone keeps the whole top row for the game, less the corner the Roblox buttons stand on.
+			keepOutRight = math.ceil(ctx.TopBarKeepOut.X - ctx.Origin.X) + margin
+			keepOutBottom = math.ceil(ctx.TopBarHeight - ctx.Origin.Y) + margin
 		end
 		local safeWidth = math.max(1, safeRight - safeLeft)
 		local buttonSize = nextButton.Instance.AbsoluteSize
@@ -497,8 +516,10 @@ function View.Mount(layer, model, scope)
 		layoutKey = key
 		calloutShown = true
 
+		-- The dimmer runs a margin past the screen edge in the game (the scrim gui covers the whole screen). On a
+		-- stage there is no screen edge to pass: the overscan showed as a dark band around the preview.
 		local rects = View._shadeRects(x + shadeOffset.X, y + shadeOffset.Y, right + shadeOffset.X, bottom + shadeOffset.Y,
-			shadeCanvas.X, shadeCanvas.Y, margin)
+			shadeCanvas.X, shadeCanvas.Y, layer.ScrimRoot and margin or 0)
 		for index, shade in ipairs(shades) do
 			local rect = rects[index]
 			write(shade, "Position", UDim2.fromOffset(math.floor(rect[1]), math.floor(rect[2])))
@@ -520,7 +541,7 @@ function View.Mount(layer, model, scope)
 		local offset = shortcut and gap or pad
 		local mode = View._mode(Model.Placement[id], y, bottom, safeTop, safeBottom)
 		local bubbleX, bubbleY = View._placeBubble(mode, x, y, right, bottom, bubbleWidth, bubbleHeight, offset,
-			safeLeft, safeTop, safeRight, safeBottom)
+			safeLeft, safeTop, safeRight, safeBottom, keepOutRight, keepOutBottom)
 		write(bubble, "Position", UDim2.fromOffset(bubbleX, bubbleY))
 		write(bubble, "Size", UDim2.fromOffset(bubbleWidth, bubbleHeight))
 		write(tip.Instance, "Position", UDim2.fromOffset(0, 0))
@@ -580,6 +601,7 @@ function View.Mount(layer, model, scope)
 				return
 			end
 			relayoutCards()
+			panel.Set({ Pad = bubblePad() })
 			copy.Set({ MaxWidth = isCompact() and Space.CompactPromptWidth or Space.PromptWidth })
 			nextButton.Set({ MinWidth = isCompact() and Space.CompactTileMinWidth or Space.StepperWidth })
 			layoutKey = nil

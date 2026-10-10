@@ -59,6 +59,20 @@ function View._focusTarget(tileUsable, startUsable)
 	return "Back"
 end
 
+-- Pure. The label and value of an event fact as a class draws them. Compact: the fact panel is narrow and a fact
+-- row has one line, so the two texts that met in the middle of it are shortened (the prize row's label, and the
+-- checkpoint count of the laps row, as the Setup page's own short info line does).
+function View._factText(fact, compact)
+	local label, value = fact.Label, fact.Value
+	if compact then
+		if fact.Kind == "Prize" then
+			label = "PRIZE"
+		end
+		value = string.gsub(value, " CHECKPOINTS$", " CP")
+	end
+	return label, value
+end
+
 -- A scope for the bindings that live only while this page shows (Input.Bind* asks only for :add).
 local function newOpenScope()
 	local items = {}
@@ -108,13 +122,25 @@ function View.Mount(layer, model, scope)
 		if factsWidth <= 0 then
 			factsWidth = ctx.Px(compact and Space.CompactStatPanelWidth or Space.StatPanelWidth)
 		end
+		if compact then
+			-- The Compact column slot is too narrow for a label and a value on one line ("YOUR BEST 1:03.275" met in
+			-- the middle at 568 wide); the panel takes the side-panel width and keeps the slot's right edge.
+			factsWidth = math.max(factsWidth, ctx.Px(Space.CompactSidePanelWidth))
+		end
 		local factsHeight = page.Facts.Instance.Size.Y.Offset
 		if factsHeight <= 0 then
 			factsHeight = page.FactCount * ctx.Px(compact and Space.StatRowHeight or Space.FactRowHeight)
 		end
 		-- RightColumn is a sized slot (API2 2.4): a child fills it from its top-left. Only in a zero-size slot does
 		-- the holder stand on the slot's anchor (capture race_entry_vehicle: anchored, it hung left of the column).
-		put(page.FactsHolder, "AnchorPoint", rightColumn.Size.X.Offset > 0 and Vector2.zero or rightColumn.AnchorPoint)
+		if compact then
+			-- Right edge on the slot's right edge, whatever the slot's own width (a sized slot or a zero-size one).
+			put(page.FactsHolder, "AnchorPoint", Vector2.new(1, 0))
+			put(page.FactsHolder, "Position", UDim2.new(1, 0, 0, 0))
+		else
+			put(page.FactsHolder, "AnchorPoint", rightColumn.Size.X.Offset > 0 and Vector2.zero or rightColumn.AnchorPoint)
+			put(page.FactsHolder, "Position", UDim2.new())
+		end
 		put(page.FactsHolder, "Size", UDim2.fromOffset(factsWidth, pad + factsHeight + pad))
 
 		-- The selected vehicle, under the header: badge, name, category.
@@ -127,16 +153,18 @@ function View.Mount(layer, model, scope)
 		local nameWidth = page.Name.Instance.Size.X.Offset
 		local columnLeft = rightColumn.Position.X.Offset - factsWidth - topLeft.Position.X.Offset
 		place(page.Line, 0, lineTop, math.max(0, columnLeft - gap), head)
+		-- Compact: a long name stops at the fact panel instead of running under it.
+		put(page.Line, "ClipsDescendants", compact)
 		moveTo(page.Name.Instance, nameX, 0)
 		moveTo(page.Category.Instance, nameX + nameWidth + gap, math.max(0, head - label))
 
-		-- The large picture of the selected vehicle fills what is left above the button row (Regular only).
+		-- The large picture of the selected vehicle fills what is left above the button row, left of the facts. On
+		-- Compact too: the middle of the page was empty and the rail tiles are too small to show the car.
 		local buttonsTop = railButtons.Position.Y.Offset - page.Row.Instance.Size.Y.Offset - topLeft.Position.Y.Offset
 		local pictureTop = lineTop + head + gap
-		put(page.Picture, "Visible", not compact and page.PictureId ~= "")
-		if not compact then
-			place(page.Picture, 0, pictureTop, columnLeft - gap, buttonsTop - gap - pictureTop)
-		end
+		local pictureHeight = buttonsTop - gap - pictureTop
+		put(page.Picture, "Visible", page.PictureId ~= "" and pictureHeight > head)
+		place(page.Picture, 0, pictureTop, columnLeft - gap, pictureHeight)
 	end
 
 	local function watch(instance)
@@ -325,9 +353,11 @@ function View.Mount(layer, model, scope)
 		put(page.Picture, "Image", page.PictureId)
 
 		local rows, factParts = {}, {}
+		local compact = ctx.Class == "Compact"
 		for index, fact in ipairs(vehicles.Facts) do
-			rows[index] = { Id = fact.Id, Icon = fact.Icon, Label = fact.Label, Value = fact.Value, Kind = fact.Kind }
-			factParts[index] = fact.Id .. "=" .. fact.Label .. "=" .. fact.Value .. "=" .. fact.Kind
+			local label, value = View._factText(fact, compact)
+			rows[index] = { Id = fact.Id, Icon = fact.Icon, Label = label, Value = value, Kind = fact.Kind }
+			factParts[index] = fact.Id .. "=" .. label .. "=" .. value .. "=" .. fact.Kind
 		end
 		local factSignature = table.concat(factParts, "|")
 		if signatures.Facts ~= factSignature then

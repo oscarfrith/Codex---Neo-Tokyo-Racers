@@ -26,6 +26,7 @@ local STRINGS = table.freeze({
 	Events = "EVENTS",
 	Of = "OF",
 	Laps = "LAPS",
+	Hint = "SELECT AN EVENT TO TELEPORT",
 })
 
 local TAB_TEXT = table.freeze({ All = "ALL EVENTS", TimeTrials = "TIME TRIALS", Races = "RACES" })
@@ -86,6 +87,9 @@ function View.Mount(layer, model, scope)
 
 	-- The scrim covers the whole screen on the live layer; a stage (gallery, tests) has no scrim gui.
 	local scrim = Surface.Scrim(layer.ScrimRoot or root, { Kind = "Menu" }, scope)
+	-- On a stage the tint shares the root with the slots (which were built first) and must draw under them, or the
+	-- header, the cash chip and the buttons are dimmed while the body is not.
+	scrim.Instance.ZIndex = 0
 
 	-- A kit size prop is a design value; this turns a real-pixel target back into one (Px(design) == pixels).
 	local function design(pixels)
@@ -273,6 +277,19 @@ function View.Mount(layer, model, scope)
 			Visible = false,
 		}, scope))
 		place(tree.StatusLine, "BottomLeft")
+		if compact then
+			-- Compact list page: a row opens the event's page, which holds SET ROUTE and TELEPORT. Said in words on
+			-- the button line, because nothing else on the list shows it.
+			tree.Hint = keep(Text.Label(layer.Slot("BottomLeft"), {
+				Name = "ListHint",
+				Text = STRINGS.Hint,
+				Role = "Label",
+				Colour = "TextMuted",
+				Align = "Left",
+				Visible = false,
+			}, scope))
+			place(tree.Hint, "BottomLeft")
+		end
 
 		local function onTeleport()
 			task.spawn(model.Teleport) -- yields (fade wait and the server call)
@@ -359,18 +376,28 @@ function View.Mount(layer, model, scope)
 		local listWidth, detailX, heroWidth, heroHeight, pad
 		local mapY, mapWidth, factsX, factsY, factsWidth, factsHeight
 		if tree.Compact then
-			-- c05: the list fills the page. c06: hero strip over the map on the left, facts on the right.
+			-- c05: the list fills the page. c06: hero strip over the map on the left, facts on the right. An event
+			-- with no map image has no map panel (it was an empty box): its track picture takes the whole column.
+			local item = model.Detail()
+			local hasMap = item ~= nil and item.MapImage ~= ""
+			local hasTrack = item ~= nil and item.TrackImage ~= ""
+			tree.LayoutMedia = (hasMap and "M" or "-") .. (hasTrack and "T" or "-")
 			pad = gap
 			listWidth = width
 			detailX = 0
 			factsWidth = math.min(ctx.Px(Tokens.Space.CompactSidePanelWidth), width)
 			heroWidth = math.max(0, width - factsWidth - gap)
 			heroHeight = math.min(ctx.Px(Tokens.Space.CompactTileHeight), height)
+			if hasTrack and not hasMap then
+				heroHeight = height
+			end
 			mapY = heroHeight + gap
 			mapWidth = heroWidth
 			factsX = heroWidth + gap
 			factsY = 0
-			factsHeight = height
+			-- The facts panel is as tall as its rows (set after the rows are, in fitFacts).
+			factsHeight = tree.FactsHeight or height
+			patch(tree, "FactsPad", tree.Facts, { Pad = Tokens.Space.TouchGap })
 		else
 			-- Mockup 02: list on the left; hero over map and facts on the right.
 			pad = ctx.Px(Tokens.Space.Pad)
@@ -402,6 +429,26 @@ function View.Mount(layer, model, scope)
 		setProperty(tree.MapPlaceholder.Instance, "Position", UDim2.fromOffset(pad, pad))
 		patch(tree, "HeroTitleWidth", tree.HeroTitle, { MaxWidth = design(math.max(1, heroWidth - pad - pad)) })
 		patch(tree, "StatusWidth", tree.StatusLine, { MaxWidth = design(math.max(1, if tree.Compact then math.floor(width / 3) else listWidth)) })
+		if tree.Hint then
+			-- On the middle of the button line (the slot is the line's bottom edge).
+			local line = Text.SizeFor("Label", ctx)
+			setProperty(tree.Hint.Instance, "Position", UDim2.fromOffset(0, -math.max(0, math.floor((buttonHeight - line) / 2))))
+		end
+	end
+
+	-- Compact: the facts panel ends under its last row instead of running down the page as a half-empty box.
+	local function fitFacts(tree)
+		if not tree.Compact then
+			return
+		end
+		local rows = tree.FactList.Instance.Size.Y.Offset
+		local pad = ctx.Px(Tokens.Space.TouchGap)
+		local bodyHeight = tree.Body.Size.Y.Offset
+		local height = if rows > 0 then math.min(bodyHeight, rows + pad + pad) else bodyHeight
+		if tree.FactsHeight ~= height then
+			tree.FactsHeight = height
+			patch(tree, "FactsRect", tree.Facts, { Height = design(height) })
+		end
 	end
 
 	-- Render: patches only -----------------------------------------------------------------------------------------
@@ -511,8 +558,9 @@ function View.Mount(layer, model, scope)
 		local item, index, count = model.Detail()
 		local hasDetail = item ~= nil
 		local detailPage = compact and model.Page() == "Detail" and hasDetail
-		if tree.LayoutPage ~= detailPage then
-			layout(tree) -- the Compact pages have different headers
+		local media = if compact and hasDetail then (if item.MapImage ~= "" then "M" else "-") .. (if item.TrackImage ~= "" then "T" else "-") else tree.LayoutMedia
+		if tree.LayoutPage ~= detailPage or tree.LayoutMedia ~= media then
+			layout(tree) -- the Compact pages have different headers, and the detail column follows the event's images
 		end
 
 		-- Header and filter tabs.
@@ -551,7 +599,8 @@ function View.Mount(layer, model, scope)
 		-- Detail.
 		local showDetail = hasDetail and (detailPage or not compact)
 		patch(tree, "Hero", tree.Hero, { Visible = showDetail })
-		patch(tree, "Map", tree.Map, { Visible = showDetail })
+		-- Compact draws the map panel only for an event that has a map image.
+		patch(tree, "Map", tree.Map, { Visible = showDetail and (not compact or item.MapImage ~= "") })
 		patch(tree, "Facts", tree.Facts, { Visible = showDetail })
 		patch(tree, "Empty", tree.Empty, { Visible = not hasDetail })
 		if hasDetail then
@@ -566,6 +615,7 @@ function View.Mount(layer, model, scope)
 				tree.FactsItem = item
 				tree.FactList.SetRows(factRows(item))
 			end
+			fitFacts(tree)
 		end
 
 		-- Actions (230-239): both disabled without a selection.
@@ -583,6 +633,9 @@ function View.Mount(layer, model, scope)
 			Text = status or "",
 			Visible = status ~= nil and (detailPage or not compact),
 		})
+		if compact then
+			patch(tree, "Hint", tree.Hint, { Visible = not detailPage and hasDetail })
+		end
 
 		if compact and tree.FocusPage ~= detailPage then
 			local moved = tree.FocusPage ~= nil and shown == true and model.IsOpen() == true

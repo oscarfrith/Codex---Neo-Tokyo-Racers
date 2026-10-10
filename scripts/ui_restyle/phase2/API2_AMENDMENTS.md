@@ -101,3 +101,172 @@ exactly what it had. `PictureMode` only changes a tile or row that has an `Image
   gradient), made on first use and then reused. Nothing is created on a selection change.
 - Users: `garage` dealership rail (`RAIL_PICTURE` in `GarageScreenView`), `free_roam` car panel list.
 - Reason: owner feedback 2026-10-09: dealership pictures too small; the free-roam list cut the cars' noses off.
+
+## A7. The Compact (phone) tile: one design for every `Collections.Tile` (extends 2.9 and A6; mobile pass; 2026-10-10)
+
+On `ctx.Class == "Compact"` a tile, alone or in a `Rail` (one row or a grid), is laid out by one rule. Regular is
+unchanged. Views can rely on every line below.
+
+- **Size.** Height `CompactTileHeight` (60 dp). Width, in order: the grid cell (`Rows > 1`), `Rail.CellWidth` (dp), else
+  `CompactTileMinWidth x 1.25` (110 dp). **The width never follows the name**, so every tile of a rail is the same
+  width (it was `max(CompactTileMinWidth, name width)`: 80 to 255 px in one rail).
+- **Name.** Bottom-left, `TileNameSmall`, in a fixed two-line box: it wraps to a second line and ends in an ellipsis
+  (`TextTruncate.AtEnd`). No `Sub` line and no `ChipLeft` on Compact (as before).
+- **Top row**, flush with the top edge, one row high (the `Value` text size, 18 px at scale 1), left to right: tier
+  letter, rating, icon; and **exactly one chip against the right edge**: what `Collections._corner` returns (`OWNED` /
+  `FITTED` or `ChipRight` for an owned or fitted item, else `Price`, else `ChipRight`; `ChipRightKind = "Tick"` is the
+  cyan tick). Nothing in the row overlaps: `Collections._compactTop(width, chip, letter, rating, icon, gap)` (pure)
+  keeps the chip and drops **the rating first, then the icon, then the tier letter**. In 110 dp a tier letter and
+  rating fit beside `OWNED`; beside a full price (`$150,000`) the rating goes. In a 90 dp grid cell a tier letter
+  fits beside one short text chip (`Tier = "S", ChipRight = "Current", ChipRightKind = "Cyan"`) or the tick.
+- **Icon.** A tile with no `Image` shows its `Icon` glyph in the top row (row height), not in the middle of the tile.
+  A **locked** tile shows the lock glyph there instead (with or without a picture); there is no separate `Lock` part.
+- **Picture.** A tile with an `Image` always shows it over the whole tile under the Slate scrim (the `"Full"` look of
+  A6), whatever `PictureMode` says: a boxed picture would be 18 px high.
+- **Selected** (and controller focus). Never the White fill. With a picture: the A6 `"Full"` look (undimmed picture,
+  others dimmed). Without: an opaque Slate plate, light text. Both keep the Pink to Violet base line (4 dp), the
+  6 dp growth and the glow. `Collections._compactTile(look, flags, hasPicture)` (pure) is the look.
+- Budget unchanged (13; a picture adds the 4 of A6). Source: `Kit.Collections` `renderCompact` in `buildTile`; tests
+  `compactTile`, `compactTop`, `Tile C844` in `Kit.Collections_test.lua`; gallery `Collections.Rail` / `LongNames`,
+  `LongNamesSelectedLong`, and every `Collections.Tile` state at C844 and C568.
+
+## A8. `Controls.Header`: hidden `Tabs`, and prop `SubMaxWidth` (extends 3.6; mobile pass; 2026-10-10)
+
+```lua
+Controls.Header(parent, { ..., SubMaxWidth: number? }, scope)   -- design px; default nil = as before
+```
+
+- A `Tabs` whose root is not visible (`Tabs = { Visible = false, ... }`) takes no room: neither its gap nor its
+  height counts in `Height()` or the root size. **This changes Regular too** where a header hides its tabs (the
+  post-purchase paint page started one tab row low). A visible `Tabs` is laid out exactly as before.
+- `SubMaxWidth`: the sub-line is exactly that wide and ends in an ellipsis, for a long status or error line that
+  would run under a right-hand column. Without it the line is as wide as its text (unchanged).
+- Not changed, by design (API2 2.4 rule 2): on Compact the title row stands beside the Roblox top-left buttons
+  (`TopBarKeepOut.X + CompactKeepOutGap`) while the sub-line and tabs start at the slot's left edge under the bar.
+  The gap between the title mark and the title is `Space.Gap` in both classes.
+
+## A9. `Controls.Tabs` prop `MaxWidth`, and the Compact wrap limit (extends 2.8 and A2; mobile pass; 2026-10-10)
+
+```lua
+Controls.Tabs(parent, { ..., MaxWidth: number? }, scope)   -- design px; default nil
+```
+
+- `MaxWidth` wraps the row at that width in any class and input (for tabs inside a panel). Not a number above 0: error.
+- Compact without `MaxWidth`: the row wraps at `ctx.Size.X - 2 x CompactMargin` (it was the whole `ctx.Size.X`, so a
+  row that started at the margin could pass the right edge by a margin). Regular with touch still wraps at
+  `ctx.Size.X`; Regular with a mouse or gamepad never wraps unless `MaxWidth` is given.
+
+## A10. `Controls.ButtonRow` collapses on Compact; `Controls.Dropdown` list placement; `Controls.Slider` on Compact (extends 2.8, 3.6; mobile pass; 2026-10-10)
+
+- **ButtonRow.** On Compact a row wider than `ctx.Size.X - 2 x CompactMargin` shows every secondary button that has
+  an `Icon` as icon-only (`Controls._rowCollapses(patch)`, pure: never `Main`, `Buy` or `Icon` variants, never a
+  button with no icon). It opens again when the button ids or the screen change. Give secondary buttons an `Icon`
+  if a row can be long. Regular never collapses.
+- **Dropdown.** `Controls._dropdownPlace(left, top, bottom, width, rows, rowHeight, hostWidth, hostHeight)` (pure):
+  under the control; above when it only fits there; when it fits on neither side, on the roomier side with as many
+  whole rows as fit (the list scrolls); never past the host's right edge. The first two cases are the old
+  behaviour; the last two replace a list that ran off the screen (**both classes**, only where it overflowed).
+- **Slider.** Compact: track 4 dp, handle 10 x 26 dp (was 2 px and 4 x 12 px). The hit band was and is 48 dp.
+
+## A11. `Data.DeltaChip` on Compact; `Overlay.Modal` on Compact (extends 3.5, 3.7; mobile pass; 2026-10-10)
+
+- **DeltaChip**, Compact: no arrow (the sign and the colour carry the meaning), role `Label`, and a hairline shorter
+  than its text line above and below. In a 176 dp `StatPanel` the chip column is about 23 px (was 32), the bar keeps
+  6 segments beside it (was 4) and stacked chips no longer join into one block. Regular unchanged.
+- **Modal**, Compact, centred form: a `Width` or `Height` larger than the safe area less `CompactMargin` on each side
+  is cut to it, so the panel never leaves the screen (give tall bodies a scroller). The close button's 48 dp hit box
+  is centred on the title row and let out past the right padding, so the drawn X is on the title's centre line
+  against the panel's right padding (it hung about 11 dp low and inset). Regular unchanged.
+
+## A12. Components bind their root to their context (extends 2.3; mobile pass; 2026-10-10)
+
+`Gauge`, `Minimap`, `PromptBanner`, `Confirm` (its shade), `Button`, `Tabs`, `Header`, `IconButton`, `Stepper`,
+`Dropdown`, `Tile`, `Rail`, `ListRow`, `List`, `DeltaChip`, `CashChip` and `FactList` now call
+`Metrics.Bind(root, ctx)` when the root is made (as `ButtonRow` and `StatusCluster` did), so kit parts they build
+before the root is parented (`BigNumber`, `Surface.Icon`, `Surface.Glow`, `Text.Label`) resolve the component's
+context and not the screen's. No visible change where the stage and the screen are the same context (the live game).
+
+## A13. `Overlay.PromptBanner` and `PromptStack` on a touch phone (extends 3.7; mobile pass; 2026-10-10)
+
+Touch on **Compact** is now the *slim* banner; touch on Regular (a tablet) keeps the solid White button, and key or
+pad banners are unchanged in both classes.
+
+- The root is still the button and the hit box (48 dp high, 56 for `Main`) but is clear. A child Frame `Plate`
+  (Slate at `Opacity.Panel`, `CompactButtonDrawn` 36 dp high, 44 for `Main`, centred in the hit box) is the drawn
+  banner; `HairTop`, `HairBottom` and the hold line `Progress` are parented to it. `Plate.Edge` is a Cyan bar
+  `TabUnderline` wide down its left side: the tap affordance (the icon sheet has no tap glyph). Text is White
+  (action) and TextSecondary (object).
+- Width hugs the text: `pad + edge + action + gap + object + pad`, at least `2 x CompactTileMinWidth` (176 dp) and at
+  most `Overlay._promptSize` (`CompactPromptWidth`, 300 dp, less on a narrow screen). `_promptSize` itself is
+  unchanged and is now the maximum. The `PromptStack` root stays that maximum wide and centres its banners.
+- `PromptStack` shows the newest **2** banners on Compact (3 on Regular); `Count()` follows.
+- Budget: the slim banner is 8 instances (limit 9). `Plate` and `Edge` are built the first time a banner is slim and
+  kept. Tests: `prompt banner, touch` in `Kit.Overlay_test.lua`.
+
+## A14. `Controls.Tabs`: the selected tier's fill is the drawn box (extends 2.8 and A2; mobile pass round 2; 2026-10-10)
+
+- Where a tab's hit box is taller than its drawn box (touch: the hit box is 48 dp, the drawn box `BadgeLarge`), the
+  selected tier is no longer the button's whole background. The tabs root has one child Frame **`Fill`** (ZIndex 0,
+  under the buttons, not Active) on the selected tier's drawn box: from the top of the drawn box to the bottom of
+  its base line, as wide as the tab. It is made with the row when the row has a tier tab, moved on `Select`, hidden
+  when no tier is selected, and never created on a selection change. The selected button's background is clear.
+- Where the hit box is the drawn box (Regular with a mouse or gamepad) nothing changes: the button's own background
+  is the fill and there is no `Fill` child. A Regular touch screen (tablet) with a drawn box under 48 px gets the
+  `Fill` too.
+- The controller-focus look (`look.Fill`, White over the hit box) is unchanged.
+- Views must not assume every child of a tabs root is a tab: tabs are named `Tab<Id>`.
+- Tests: `Tabs: on touch the selected tier's fill is the drawn box`. Gallery: `Controls.Tabs | TierButtons` at C844.
+
+## A15. `Collections.ListRow` selected on Compact (extends 2.9 and A7; mobile pass round 2; 2026-10-10)
+
+On `ctx.Class == "Compact"` a `ListRow` (alone or in a `List`) takes `Collections._compactTile(look, flags, false)`:
+the selected (or controller-focused) row is an **opaque Slate plate with light text** (title, sub-line and right-hand
+text White; a neutral chip keeps its White at `ChipNeutral` plate), never the White fill with Ink text. It keeps the
+Pink to Violet base line, now `2 x Hairline` (4 dp, the Compact tile's line; it was `TileBaseLine x 8/22`, about
+2 px), the list's glow, and the Pink left bar of an `Accent` row. A `Columns` row follows the same look. Regular is
+unchanged. Tests: `ListRow C844: Selected is an opaque Slate plate`. Gallery: `Collections.ListRow | Selected`,
+`LiveOrderYou`, `VehicleSpawnedSelected`, `TierRightChipSelected`, and `Collections.List | Results` at C844.
+
+## A16. `Collections.List` prop `Dense` (extends 2.9; mobile pass round 2; 2026-10-10)
+
+```lua
+Collections.List(parent, { ..., Dense: boolean? }, scope)   -- default nil = as before
+```
+
+`Dense = true` drops the touch-size floor (`ctx.Touch(1)`, 48 px on touch) from the height of the list's rows, for a
+display-only list nobody presses (a leaderboard, a results table). Give it a `RowHeight` as well: the default row
+height on Compact is `TouchMin` itself. An item's own `Height` is honoured without the floor too. It can be set and
+cleared with `Set`. Without `Dense`, and on Regular with a mouse (which has no floor), nothing changes. A standalone
+`ListRow` always keeps the floor. Tests: `List: Dense drops the touch-size floor`. No gallery state uses it yet.
+
+## A17. `Data.FactList`: label and value share the row (extends 3.5; mobile pass round 2; 2026-10-10)
+
+- **Both classes.** The value has priority: a text value keeps its box (the row less the icon inset, right aligned)
+  and a `Prize` chip its text width plus two gaps, never wider than the row less the icon inset. The label is as
+  wide as what is left less one `Gap` (`Size = UDim2.new(1, -(inset + value + gap), 0, rowHeight)`) and both have
+  `TextTruncate = AtEnd`, so a long pair no longer overlaps: the label ends in an ellipsis first, the value only
+  when it alone is wider than the row. A label with no room at all is hidden. With strings that fit, a row draws
+  exactly as before.
+- `Data._factSplit(rowWidth, labelX, valueBox, gap)` (pure) returns the value box, the label's inset and whether a
+  label fits; `rowWidth` 0 (a parent-wide list not laid out yet) cuts nothing. The list now also redraws when its
+  root's `AbsoluteSize` changes.
+- Budget unchanged (6 a row). Tests: `factSplit`, `FactList: the label ends before the value`. Gallery:
+  `Data.FactList | LongestStrings` (and `RaceEntry`, `NoIcons` for the unchanged case) at C844 and R1080.
+
+## A18. `Controls.Header` prop `MaxWidth` (extends 3.6 and A8; mobile pass round 2; 2026-10-10)
+
+```lua
+Controls.Header(parent, { ..., MaxWidth: number? }, scope)   -- design px; default nil = as before
+```
+
+The title is cut to that width and ends in an ellipsis (a long event name that would run under the cash chip or a
+right-hand column). The title's `Text.Label` is then exactly `MaxWidth` wide, but the count and the header's own
+width follow the drawn text, so a title that fits is laid out as it is without `MaxWidth`. Not a number above 0:
+error. It can be given or changed with `Set`, not removed (a patch cannot carry nil). Tests: `Header: MaxWidth cuts
+the title`. No gallery state uses it yet (`Controls.Header | LongestTitle` is the state to give it to).
+
+## A19. Test note: `Tabs.MaxWidth` (A9) was right; its test was not (mobile pass round 2; 2026-10-10)
+
+`Tabs.Set({ MaxWidth = n })` did re-wrap. The test staged twelve tabs detached, where text does not measure, so the
+row was only its gaps (11 x `TabGap` = 374 px) and never reached the 400 px it asked for. The test now wraps at half
+the measured one-line row. No code change.

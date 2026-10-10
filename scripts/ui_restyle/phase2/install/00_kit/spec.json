@@ -1821,6 +1821,21 @@
    ],
    "before": "before/ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Text.lua",
    "after": "after/ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Text.lua"
+  },
+  {
+   "id": "Dev.Gallery",
+   "kind": "source",
+   "class": "ModuleScript",
+   "path": [
+    "ReplicatedStorage",
+    "Modules",
+    "Game",
+    "UIPulse",
+    "Dev",
+    "Gallery"
+   ],
+   "before": "before/ReplicatedStorage.Modules.Game.UIPulse.Dev.Gallery.lua",
+   "after": "after/ReplicatedStorage.Modules.Game.UIPulse.Dev.Gallery.lua"
   }
  ]
 }

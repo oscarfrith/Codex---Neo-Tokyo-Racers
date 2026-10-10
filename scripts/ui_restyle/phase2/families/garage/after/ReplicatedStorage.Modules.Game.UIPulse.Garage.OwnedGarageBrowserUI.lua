@@ -10,6 +10,8 @@ local LAYER_NAME = "OwnedGarageBrowser"
 local PRESENCE_SURFACE = "OwnedGarageBrowser"
 local TAB_MINE = "Mine"
 local TAB_VISIT = "Visit"
+local HALF = 0.5
+local DESCRIPTION_LINES = 3 -- the most lines of description the Compact detail panel shows
 
 local Controller = {}
 local started = false
@@ -44,20 +46,51 @@ function Controller._footerButtons(enter, onExit, onEnter)
 	return list
 end
 
--- Pure. Compact detail column: the heights of the picture panel and of the description panel, so that the two
--- and the facts panel (with a gap between each) end inside `available` px, above the button row. The picture and
--- the description shrink together down to `minimum`; under that the description is left out (height 0) and the
--- picture takes what is left. All values are real px. Returns pictureHeight, descriptionHeight.
-function Controller._compactDetail(available, tile, facts, gap, minimum)
-	local spare = available - facts - gap - gap
-	if tile + tile <= spare then
-		return tile, tile
+-- Pure. The Compact detail: ONE panel holding the name band (district and name, over the picture when there is
+-- one), the description and the facts. All values are real px. `input`:
+--   Available  height the panel may take (the height of the list beside it)
+--   Width      content width of the panel (inside its padding)
+--   Pad, Gap   panel padding and the gap between the parts
+--   Labels     height of the district and name lines
+--   Facts      height of the fact rows (0 when there are none)
+--   FactsWidth, TextWidth  the width of a facts column and the least width of a description column beside it
+--   Line, Lines, MaxLines  the description's line pitch, the lines it needs and the most that are shown
+--   Picture    true when the band shows a picture: the band then takes the height that is left
+-- Wide (both columns fit): description left, facts right, under the band. Else the three are stacked. The
+-- description gives up lines, then the facts are cut, before anything passes Available.
+-- Returns { Wide, Band, About, AboutWidth, AboutY, FactsX, FactsY, FactsWidth, FactsHeight, Height }.
+function Controller._compactPlan(input)
+	local gap, labels, facts = input.Gap, input.Labels, input.Facts
+	local line = math.max(1, input.Line)
+	local inside = math.max(0, input.Available - 2 * input.Pad)
+	local wanted = math.max(0, math.min(input.Lines, input.MaxLines))
+	local wide = facts > 0 and input.Width >= input.TextWidth + gap + input.FactsWidth
+	local plan = { Wide = wide }
+	local lower
+	if wide then
+		local room = math.max(0, inside - labels - gap)
+		plan.About = math.ceil(math.min(wanted, math.floor(room / line)) * line)
+		plan.AboutWidth = input.Width - gap - input.FactsWidth
+		plan.FactsWidth = input.FactsWidth
+		plan.FactsHeight = math.min(facts, room)
+		lower = math.max(plan.About, plan.FactsHeight)
+	else
+		local factsBlock = facts > 0 and facts + gap or 0
+		local room = math.max(0, inside - labels - gap - factsBlock)
+		plan.About = math.ceil(math.min(wanted, math.floor(room / line)) * line)
+		plan.AboutWidth = input.Width
+		plan.FactsWidth = input.Width
+		local aboutBlock = plan.About > 0 and plan.About + gap or 0
+		plan.FactsHeight = math.min(facts, math.max(0, inside - labels - gap - aboutBlock))
+		lower = plan.About + ((plan.About > 0 and plan.FactsHeight > 0) and gap or 0) + plan.FactsHeight
 	end
-	local each = math.floor(spare / 2)
-	if each >= minimum then
-		return each, each
-	end
-	return math.clamp(available - facts - gap, minimum, math.max(minimum, tile)), 0
+	local under = lower > 0 and gap + lower or 0
+	plan.Band = input.Picture and math.max(labels, inside - under) or labels
+	plan.AboutY = plan.Band + gap
+	plan.FactsX = wide and input.Width - input.FactsWidth or 0
+	plan.FactsY = (wide or plan.About == 0) and plan.AboutY or plan.AboutY + plan.About + gap
+	plan.Height = 2 * input.Pad + plan.Band + under
+	return plan
 end
 
 -- Pure. The rows of the "garage full" choice. The replacement is each row's OnActivated (click, tap, gamepad A),
@@ -121,30 +154,37 @@ function Controller._mount(layer, model, scope, kit, cashPlayer)
 		Surface.Scrim(layer.ScrimRoot, { Kind = "Menu" }, scope)
 	end
 
-	-- Title and the MY GARAGES / VISIT tabs (Classic 20, 47, 69-72).
+	-- Title and the MY GARAGES / VISIT tabs (Classic 20, 47, 69-72). Both stand in `head`, a zero-size frame that
+	-- layout() keeps on slot TopLeft on Regular. On Compact it goes under the Roblox buttons, so the title starts on
+	-- the left edge of the list and not beside the buttons, and the tabs stand on the title line, right of it
+	-- (the kit header put the title 150 px in and the tabs a row lower: capture OwnedGarage.Browser | Mine).
 	local topLeft = layer.Slot("TopLeft")
-	local header
-	header = Controls.Header(topLeft, {
-		Title = "GARAGES",
+	local head = Instance.new("Frame")
+	head.Name = "Head"
+	head.BackgroundTransparency = 1
+	head.BorderSizePixel = 0
+	head.Position = topLeft.Position
+	head.Parent = layer.Root
+	local header = Controls.Header(head, { Title = "GARAGES" }, scope)
+	local tabs
+	tabs = Controls.Tabs(head, {
 		Tabs = {
-			Tabs = {
-				{ Id = TAB_MINE, Text = "MY GARAGES", Icon = "garage" },
-				{ Id = TAB_VISIT, Text = "VISIT", Icon = "players" },
-			},
-			Selected = TAB_MINE,
-			OnSelected = function(id)
-				if rendering then
-					return
-				end
-				model:SetMode(id)
-				-- The kit tab has switched already; the model ignores the press while it is busy and then draws
-				-- nothing, so the tab is put back on the model's mode here. Select reports nothing.
-				local mode = model:Snapshot().Mode == "Visit" and TAB_VISIT or TAB_MINE
-				if mode ~= id then
-					header.Tabs.Select(mode)
-				end
-			end,
+			{ Id = TAB_MINE, Text = "MY GARAGES", Icon = "garage" },
+			{ Id = TAB_VISIT, Text = "VISIT", Icon = "players" },
 		},
+		Selected = TAB_MINE,
+		OnSelected = function(id)
+			if rendering then
+				return
+			end
+			model:SetMode(id)
+			-- The kit tab has switched already; the model ignores the press while it is busy and then draws
+			-- nothing, so the tab is put back on the model's mode here. Select reports nothing.
+			local mode = model:Snapshot().Mode == "Visit" and TAB_VISIT or TAB_MINE
+			if mode ~= id then
+				tabs.Select(mode)
+			end
+		end,
 	}, scope)
 
 	-- The status strip of every menu: display spaces of the selected garage, and Cash from leaderstats (API2 3.5).
@@ -161,7 +201,7 @@ function Controller._mount(layer, model, scope, kit, cashPlayer)
 	listHolder.Name = "ListHolder"
 	listHolder.BackgroundTransparency = 1
 	listHolder.BorderSizePixel = 0
-	listHolder.Parent = topLeft
+	listHolder.Parent = head
 	local list = Collections.List(listHolder, {
 		Width = listWidth(),
 		OnSelected = function(key)
@@ -173,9 +213,11 @@ function Controller._mount(layer, model, scope, kit, cashPlayer)
 	}, scope)
 	Input.Mark(list.Instance, "GarageList")
 
-	-- The detail (preview r05): picture and name across the top, description and facts side by side under it; on
-	-- Compact the three are stacked. The holder and its three panels are sized and placed in code by layout():
-	-- the holder ends at the right margin (the right edge of slot RightColumn) and starts level with the list.
+	-- The detail. Regular (preview r05): picture and name across the top, description and facts side by side under
+	-- it, three panels. Compact: ONE panel (the picture panel) that holds all three; layout() moves the description
+	-- and facts boxes into it and hides the other two panels. The holder and its panels are sized and placed in
+	-- code by layout(): the holder ends at the right margin (the right edge of slot RightColumn) and starts level
+	-- with the list.
 	local rightColumn = layer.Slot("RightColumn")
 	local detailHolder = Instance.new("Frame")
 	detailHolder.Name = "DetailHolder"
@@ -184,6 +226,16 @@ function Controller._mount(layer, model, scope, kit, cashPlayer)
 	detailHolder.AnchorPoint = Vector2.new(1, 0)
 	detailHolder.Position = UDim2.fromScale(1, 0)
 	detailHolder.Parent = rightColumn
+
+	local function plainBox(name, parent)
+		local frame = Instance.new("Frame")
+		frame.Name = name
+		frame.BackgroundTransparency = 1
+		frame.BorderSizePixel = 0
+		frame.Size = UDim2.fromScale(1, 1)
+		frame.Parent = parent
+		return frame
+	end
 
 	local hero = Surface.Panel(detailHolder, { Name = "GarageImage", Width = space.ListWidth, Height = space.TileHeight }, scope)
 	local heroImage = Instance.new("ImageLabel")
@@ -194,12 +246,7 @@ function Controller._mount(layer, model, scope, kit, cashPlayer)
 	heroImage.ScaleType = Enum.ScaleType.Crop
 	heroImage.Visible = false
 	heroImage.Parent = hero.Content
-	local heroLabels = Instance.new("Frame")
-	heroLabels.Name = "Labels"
-	heroLabels.BackgroundTransparency = 1
-	heroLabels.BorderSizePixel = 0
-	heroLabels.Size = UDim2.fromScale(1, 1)
-	heroLabels.Parent = hero.Content
+	local heroLabels = plainBox("Labels", hero.Content)
 	local heroLayout = Instance.new("UIListLayout")
 	heroLayout.Name = "Layout"
 	heroLayout.FillDirection = Enum.FillDirection.Vertical
@@ -210,8 +257,10 @@ function Controller._mount(layer, model, scope, kit, cashPlayer)
 	local title = Text.Label(heroLabels, { Name = "GarageTitle", Text = "", Role = "SectionHead", Align = "Left", Shadow = true, LayoutOrder = 2 }, scope)
 
 	local about = Surface.Panel(detailHolder, { Name = "About", Width = space.ListWidth, Height = space.TileHeight }, scope)
-	-- Wrap with no MaxWidth: the text fills the panel content width, whatever layout() makes it.
-	local description = Text.Label(about.Content, {
+	-- Wrap with no MaxWidth: the text fills the width of its box, whatever layout() makes it. The box is the About
+	-- panel's content on Regular; on Compact it is a clipped box of whole lines in the one panel.
+	local aboutBox = plainBox("AboutBox", about.Content)
+	local description = Text.Label(aboutBox, {
 		Name = "Description",
 		Text = "",
 		Role = "Body",
@@ -222,7 +271,10 @@ function Controller._mount(layer, model, scope, kit, cashPlayer)
 	}, scope)
 
 	local factsPanel = Surface.Panel(detailHolder, { Name = "Facts", Width = space.ListWidth, Height = space.TileHeight }, scope)
-	local facts = Data.FactList(factsPanel.Content, { Rows = {} }, scope)
+	local factsBox = plainBox("FactsBox", factsPanel.Content)
+	local facts = Data.FactList(factsBox, { Rows = {} }, scope)
+	-- What the detail last drew; layout() reads it (set by Render).
+	local shown = { District = "", Title = "", Description = "", Picture = false }
 
 	-- Footer: EXIT, then the main action (Classic 44-45; reserved names Exit and Enter).
 	-- Only the buttons that show are in the row; the Enter mark is the row entry's MarkKey.
@@ -344,18 +396,73 @@ function Controller._mount(layer, model, scope, kit, cashPlayer)
 		put(panel.Instance, "Position", UDim2.fromOffset(x, y))
 	end
 
-	local function layout()
+	-- Puts a box of the detail in `parent`, at a place and size in real px, or filling it (width nil).
+	local function seat(frame, parent, x, y, width, height)
+		put(frame, "Parent", parent)
+		put(frame, "ClipsDescendants", width ~= nil)
+		put(frame, "Position", UDim2.fromOffset(x or 0, y or 0))
+		put(frame, "Size", width and UDim2.fromOffset(math.max(1, width), math.max(0, height)) or UDim2.fromScale(1, 1))
+	end
+
+	-- Compact: the lines the description needs at its present width and its line pitch, both from the label's own
+	-- laid-out height (a UIScale above the stage is divided out through the holder's known width).
+	local function descriptionLines()
+		local textSize = Text.SizeFor("Body", ctx)
+		if shown.Description == "" then
+			return 0, textSize
+		end
+		local scale = 1
+		local known = detailHolder.Size.X.Offset
+		if known > 0 and detailHolder.AbsoluteSize.X > 0 then
+			scale = detailHolder.AbsoluteSize.X / known
+		end
+		local needed = description.Instance.AbsoluteSize.Y / scale
+		local lines = math.max(1, math.floor(needed / textSize + 0.01))
+		return lines, math.max(textSize, needed / lines)
+	end
+
+	local function place()
 		local compact = isCompact()
-		local headerHeight = header.Height()
 		local gap = ctx.Px(space.Gap)
 		local pad = ctx.Px(space.Pad)
-		local top = headerHeight + gap
+		local keepGap = ctx.Px(space.CompactKeepOutGap)
+		local slotX, slotY = topLeft.Position.X.Offset, topLeft.Position.Y.Offset
 		local rootHeight = layer.Root.AbsoluteSize.Y
 		if rootHeight <= 0 then
 			rootHeight = ctx.Size.Y
 		end
-		local reserve = compact and (ctx.Px(space.CompactBottom) + ctx.Px(space.CompactButtonDrawn)) or (ctx.Px(space.MenuBottom) + ctx.Px(space.ButtonHeight))
-		local height = math.max(0, math.floor(rootHeight - topLeft.Position.Y.Offset - top - reserve - 2 * gap))
+
+		-- The head: where it stands, and `top`, the distance from it to the list.
+		local titleHeight = header.Height()
+		local tabsSize = tabs.Instance.Size
+		local headY, top, height = slotY, 0, 0
+		if compact then
+			-- Under the Roblox buttons. The tabs are a touch size high and their text is centred in that, so they
+			-- are centred on the title line; they start clear of the Roblox buttons, because their box rises
+			-- above the title.
+			local barBottom = math.max(0, math.floor(ctx.TopBarHeight - ctx.Origin.Y + HALF))
+			headY = math.max(slotY, barBottom + keepGap)
+			local clearX = math.ceil(ctx.TopBarKeepOut.X - ctx.Origin.X) + keepGap - layer.Root.Position.X.Offset - slotX
+			local tabsY = math.floor((titleHeight - tabsSize.Y.Offset) * HALF)
+			put(tabs.Instance, "Position", UDim2.fromOffset(math.max(header.Instance.Size.X.Offset + pad, clearX), tabsY))
+			top = titleHeight + keepGap
+			if tabs.Instance.Visible then
+				top = math.max(top, tabsY + tabsSize.Y.Offset)
+			end
+			-- The list ends at the top of the button row (a touch size high, the drawn button centred in it).
+			local rowHeight = buttons.Instance.Size.Y.Offset
+			height = math.max(0, math.floor(rootHeight - ctx.Px(space.CompactBottom) - rowHeight - headY - top))
+			put(status.Instance, "Position", UDim2.fromOffset(0, -math.max(0, math.floor((rowHeight - status.Instance.Size.Y.Offset) * HALF))))
+		else
+			-- As the kit header stacks them: the title row, HeaderTabsGap, the tab row (counted when hidden too).
+			local tabsY = titleHeight + ctx.Px(space.HeaderTabsGap)
+			put(tabs.Instance, "Position", UDim2.fromOffset(0, tabsY))
+			top = tabsY + tabsSize.Y.Offset + gap
+			local reserve = ctx.Px(space.MenuBottom) + ctx.Px(space.ButtonHeight)
+			height = math.max(0, math.floor(rootHeight - slotY - top - reserve - 2 * gap))
+			put(status.Instance, "Position", UDim2.fromOffset(0, 0))
+		end
+		put(head, "Position", UDim2.fromOffset(slotX, headY))
 
 		-- The list column: about a third of the content width on Regular (r05).
 		local listPx = ctx.Px(listWidth())
@@ -365,30 +472,51 @@ function Controller._mount(layer, model, scope, kit, cashPlayer)
 
 		-- The detail takes what is left of the content width, right of the list; it starts level with the list
 		-- and never above the right column's top, which keeps it clear of the status strip.
-		local contentWidth = rightColumn.Position.X.Offset - topLeft.Position.X.Offset
-		local columnGap = compact and ctx.Px(space.CompactKeepOutGap) or (pad + pad)
+		local contentWidth = rightColumn.Position.X.Offset - slotX
+		local columnGap = compact and keepGap or (pad + pad)
 		local detailWidth = math.max(0, contentWidth - listPx - columnGap)
-		if compact then
-			detailWidth = math.min(detailWidth, ctx.Px(space.CompactPromptWidth))
-		end
-		local listTop = topLeft.Position.Y.Offset + top
+		local listTop = headY + top
 		local detailTop = math.max(0, listTop - rightColumn.Position.Y.Offset)
 		local available = math.max(0, height - (rightColumn.Position.Y.Offset + detailTop - listTop))
 		local rows = math.max(MIN_FACT_ROWS, factCount)
 		local detailHeight
 		if compact then
-			-- The stack is kept inside `available`, the height of the list beside it, which ends above the button
-			-- row: at full size the facts panel lay on the buttons (844x390) and ran off the screen (568x320).
-			local factsHeight = rows * ctx.Px(space.CompactStatusHeight) + 2 * ctx.Px(space.CompactKeepOutGap)
-			local heroHeight, aboutHeight = Controller._compactDetail(available, ctx.Px(space.CompactTileHeight), factsHeight, gap, ctx.Px(space.CompactButtonDrawn))
-			local factsTop = heroHeight + gap + (aboutHeight > 0 and aboutHeight + gap or 0)
-			about.Set({ Visible = aboutHeight > 0 })
-			box(hero, 0, 0, detailWidth, heroHeight)
-			box(about, 0, heroHeight + gap, detailWidth, aboutHeight)
-			box(factsPanel, 0, factsTop, detailWidth, factsHeight)
-			detailHeight = factsTop + factsHeight
+			-- One panel, never taller than the list beside it, which ends above the button row.
+			local inner = math.max(1, detailWidth - 2 * keepGap)
+			local lines, line = descriptionLines()
+			local plan = Controller._compactPlan({
+				Available = available,
+				Width = inner,
+				Pad = keepGap,
+				Gap = keepGap,
+				Labels = title.Instance.Size.Y.Offset + (shown.District ~= "" and district.Instance.Size.Y.Offset or 0),
+				Facts = factCount > 0 and facts.Instance.Size.Y.Offset or 0,
+				FactsWidth = ctx.Px(space.CompactStatPanelWidth),
+				TextWidth = ctx.Px(space.CompactPromptWidth),
+				Line = line,
+				Lines = lines,
+				MaxLines = DESCRIPTION_LINES,
+				Picture = shown.Picture,
+			})
+			hero.Set({ Pad = space.CompactKeepOutGap, Visible = shown.Title ~= "" or shown.Description ~= "" or factCount > 0 })
+			about.Set({ Visible = false })
+			factsPanel.Set({ Visible = false })
+			box(hero, 0, 0, detailWidth, plan.Height)
+			put(heroImage, "Size", UDim2.new(1, 0, 0, plan.Band))
+			put(heroLabels, "Size", UDim2.new(1, 0, 0, plan.Band))
+			put(heroLabels, "ClipsDescendants", true) -- a long name ends at the panel edge
+			seat(aboutBox, hero.Content, 0, plan.AboutY, plan.AboutWidth, plan.About)
+			seat(factsBox, hero.Content, plan.FactsX, plan.FactsY, plan.FactsWidth, plan.FactsHeight)
+			detailHeight = plan.Height
 		else
+			hero.Set({ Pad = space.Pad, Visible = true })
 			about.Set({ Visible = true })
+			factsPanel.Set({ Visible = true })
+			put(heroImage, "Size", UDim2.fromScale(1, 1))
+			put(heroLabels, "Size", UDim2.fromScale(1, 1))
+			put(heroLabels, "ClipsDescendants", false)
+			seat(aboutBox, about.Content)
+			seat(factsBox, factsPanel.Content)
 			-- Facts take half the width, so a long value (a district name) has room beside its label.
 			local lowerHeight = rows * ctx.Px(space.FactRowHeight) + pad + pad
 			local factsWidth = math.floor((detailWidth - gap) / 2)
@@ -404,6 +532,30 @@ function Controller._mount(layer, model, scope, kit, cashPlayer)
 		modal.Set({ Width = modalWidth() })
 		fitModal()
 	end
+
+	-- place() moves things whose size signals call layout() again; such a call is taken up after the pass that is
+	-- running, a few times at most (every write is skipped when the value is already there, so it settles).
+	local MAX_PASSES = 4
+	local laying, again = false, false
+	local function layout()
+		if laying then
+			again = true
+			return
+		end
+		laying = true
+		local ok, problem = true, nil
+		for _ = 1, MAX_PASSES do
+			again = false
+			ok, problem = xpcall(place, debug.traceback)
+			if not ok or not again then
+				break
+			end
+		end
+		laying = false
+		if not ok then
+			error(problem, 0)
+		end
+	end
 	layout()
 
 	local lastImage = nil
@@ -412,9 +564,9 @@ function Controller._mount(layer, model, scope, kit, cashPlayer)
 		local ok, problem = xpcall(function()
 			local snapshot = model:Snapshot()
 
-			header.Tabs.Set({ Visible = snapshot.TabsVisible })
+			tabs.Set({ Visible = snapshot.TabsVisible })
 			if snapshot.TabsVisible then
-				header.Tabs.Select(snapshot.Mode == "Visit" and TAB_VISIT or TAB_MINE)
+				tabs.Select(snapshot.Mode == "Visit" and TAB_VISIT or TAB_MINE)
 			end
 
 			local items = {}
@@ -455,6 +607,10 @@ function Controller._mount(layer, model, scope, kit, cashPlayer)
 			end
 			facts.SetRows(rows)
 			factCount = #rows
+			shown.District = tostring(detail.District or "")
+			shown.Title = tostring(detail.Title or "")
+			shown.Description = tostring(detail.Description or "")
+			shown.Picture = image ~= ""
 			layout()
 
 			buttons.Set({ Buttons = Controller._footerButtons(snapshot.Enter, onExit, onEnter) })
@@ -511,7 +667,15 @@ function Controller._mount(layer, model, scope, kit, cashPlayer)
 		end
 	end)
 	scope:connect(header.Instance:GetPropertyChangedSignal("Size"), layout)
+	scope:connect(tabs.Instance:GetPropertyChangedSignal("Size"), layout)
+	scope:connect(buttons.Instance:GetPropertyChangedSignal("Size"), layout)
 	scope:connect(rightColumn:GetPropertyChangedSignal("Position"), layout)
+	-- Compact: the description's height says how many lines it needs; it changes when the text or its width does.
+	scope:connect(description.Instance:GetPropertyChangedSignal("AbsoluteSize"), function()
+		if isCompact() then
+			layout()
+		end
+	end)
 
 	function view.Destroy()
 		scope:destroy()

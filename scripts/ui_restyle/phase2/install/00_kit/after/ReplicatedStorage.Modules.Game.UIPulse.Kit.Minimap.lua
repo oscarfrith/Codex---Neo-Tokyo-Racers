@@ -191,6 +191,7 @@ function Minimap.New(parent, props, scope)
 	local geometry = { Diameter = 0, Half = 0, Start = RANK.StartDeg, Sweep = RANK.SweepRegular }
 
 	local root = Instance.new("TextButton")
+	Metrics.Bind(root, ctx) -- parts built before the root is parented take this context, not the screen's
 	root.Name = state.Name
 	root.AutoButtonColor = false
 	root.BackgroundTransparency = 1

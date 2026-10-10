@@ -406,7 +406,8 @@ local function mount(parent, props, scope, ctx)
 
 	local layer = Layers.Stage(host, ctx, "Scene")
 	local model = fakeModel(props)
-	local view = View.Mount(layer, model, scope, { ConfirmHost = host })
+	-- No player is bound in the gallery: the Cash chip shows the page's example amount instead of an empty chip.
+	local view = View.Mount(layer, model, scope, { ConfirmHost = host, Cash = model.Page().Cash })
 	local connection = model.Changed:Connect(function(reason)
 		view.Render(reason)
 	end)

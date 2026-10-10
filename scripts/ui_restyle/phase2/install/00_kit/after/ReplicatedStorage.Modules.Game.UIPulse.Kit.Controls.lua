@@ -417,6 +417,7 @@ function Controls.Button(parent, props, scope)
 	local marked = nil
 
 	local root = Instance.new("TextButton")
+	Metrics.Bind(root, ctx) -- parts built before the root is parented take this context, not the screen's
 	root.Name = state.Name or "Button"
 	root.AutoButtonColor = false
 	root.BackgroundTransparency = 1
@@ -695,6 +696,13 @@ function Controls._rowPatch(spec, size)
 	}
 end
 
+-- Pure. Does this button give up its text when a Compact row is too wide? Only a secondary button that has an
+-- icon to stand for it: never Main or Buy, never one that is icon-only already.
+function Controls._rowCollapses(patch)
+	return patch.Variant ~= "Main" and patch.Variant ~= "Buy" and patch.Variant ~= "Icon"
+		and patch.IconOnly ~= true and textOf(patch.Icon) ~= nil
+end
+
 -- Pure. Where a row sits in its parent: the anchor fractions on each axis. In a Layers slot (a Frame named
 -- Slot<Name>) the row copies the slot's anchor; in any other parent Align decides, as in Phase 1 (Right: the
 -- bottom-right corner; Centre: bottom centre).
@@ -718,6 +726,7 @@ function Controls.ButtonRow(parent, props, scope)
 	local byId = {}
 	local group = nil
 	local destroyed = false
+	local collapsed = false -- Compact only: the row was wider than the safe area, so its secondary buttons show their icon alone
 
 	local root = Instance.new("Frame")
 	root.Name = state.Name or "ButtonRow"
@@ -725,6 +734,16 @@ function Controls.ButtonRow(parent, props, scope)
 	root.BorderSizePixel = 0
 	-- The buttons are built before the row is parented, so they must resolve the row's context, not the screen's.
 	Metrics.Bind(root, ctx)
+
+	-- The patch a button is given: its own, or, in a collapsed row, the icon-only form of a secondary button.
+	local function shownPatch(patch)
+		if collapsed and Controls._rowCollapses(patch) then
+			local copy = table.clone(patch)
+			copy.IconOnly = true
+			return copy
+		end
+		return patch
+	end
 
 	local function layout()
 		if destroyed then
@@ -754,6 +773,25 @@ function Controls.ButtonRow(parent, props, scope)
 			end
 			put(instance, "Position", UDim2.fromOffset(x, height - size.Y.Offset))
 			x = x + size.X.Offset
+		end
+		-- Compact: a row wider than the safe area inside its margins collapses once (it opens again when the
+		-- buttons or the screen change). The main button always keeps its text.
+		if isCompact(ctx) and not collapsed and ctx.Size ~= nil and ctx.Size.X > 0 then
+			local margin = ctx.Px(Space.CompactMargin)
+			if x > ctx.Size.X - margin - margin then
+				local any = false
+				for _, entry in ipairs(entries) do
+					any = any or Controls._rowCollapses(entry.Patch)
+				end
+				if any then
+					collapsed = true
+					for _, entry in ipairs(entries) do
+						entry.Button.Set(shownPatch(entry.Patch))
+					end
+					layout()
+					return
+				end
+			end
 		end
 		put(root, "Size", UDim2.fromOffset(x, height))
 		if place == "None" then
@@ -804,14 +842,16 @@ function Controls.ButtonRow(parent, props, scope)
 		end
 		if same then
 			for index, patch in ipairs(patches) do
-				entries[index].Button.Set(patch)
+				entries[index].Patch = patch
+				entries[index].Button.Set(shownPatch(patch))
 			end
 		else
 			clear()
+			collapsed = false
 			group = Input.FocusGroup(scope, nil)
 			for index, spec in ipairs(list) do
 				local button = Controls.Button(root, patches[index], scope)
-				local entry = { Id = spec.Id, Button = button }
+				local entry = { Id = spec.Id, Button = button, Patch = patches[index] }
 				entry.Connection = scope:connect(button.Instance:GetPropertyChangedSignal("Size"), layout)
 				entries[index] = entry
 				byId[spec.Id] = button
@@ -822,7 +862,16 @@ function Controls.ButtonRow(parent, props, scope)
 	end
 
 	if ctx.Changed ~= nil then
-		listen(scope, bag, ctx.Changed, layout)
+		listen(scope, bag, ctx.Changed, function()
+			if collapsed then
+				-- A new screen size or class: open the row and let layout decide again.
+				collapsed = false
+				for _, entry in ipairs(entries) do
+					entry.Button.Set(entry.Patch)
+				end
+			end
+			layout()
+		end)
 	end
 
 	applyCommon(root, state)
@@ -870,7 +919,7 @@ end
 -- Tabs
 ---------------------------------------------------------------------------------------------------
 
-local TABS_KEYS = keySet({ "Tabs", "Selected", "Bumpers", "Triggers", "Style", "OnSelected" })
+local TABS_KEYS = keySet({ "Tabs", "Selected", "Bumpers", "Triggers", "Style", "OnSelected", "MaxWidth" })
 local TAB_KEYS = { Id = true, Text = true, Icon = true, Locked = true, MarkKey = true, Tier = true, Count = true }
 
 -- Pure. flags: Selected, Locked, Hover, Focused, Tier (a tier button). TierInk: the letter is drawn in the
@@ -976,8 +1025,10 @@ function Controls.Tabs(parent, props, scope)
 	local destroyed = false
 	local bumpersBound = false
 	local triggersBound = false
+	local tierFill = nil -- the selected tier's fill where the hit box is taller than the drawn box
 
 	local root = Instance.new("Frame")
+	Metrics.Bind(root, ctx) -- parts built before the root is parented take this context, not the screen's
 	root.Name = state.Name or "Tabs"
 	root.BackgroundTransparency = 1
 	root.BorderSizePixel = 0
@@ -1008,6 +1059,35 @@ function Controls.Tabs(parent, props, scope)
 		local touchy = isTouchy(ctx)
 		local minWidth = touchy and ctx.Touch(1) or 0
 		local limit = (touchy and ctx.Size ~= nil and ctx.Size.X > 0) and ctx.Size.X or math.huge
+		if limit ~= math.huge and isCompact(ctx) then
+			-- A Compact row starts at the screen margin, so it must wrap a margin short of each edge.
+			limit = math.max(minWidth, limit - ctx.Px(Space.CompactMargin) * 2)
+		end
+		-- MaxWidth (design px, opt-in, any class): the row wraps at that width, for tabs inside a panel.
+		if state.MaxWidth ~= nil then
+			if type(state.MaxWidth) ~= "number" or state.MaxWidth <= 0 then
+				error("[Pulse.Controls] Tabs: MaxWidth must be a positive design number", 2)
+			end
+			limit = math.min(limit, ctx.Px(state.MaxWidth))
+		end
+
+		-- The selected tier's fill covers the drawn box only. Where the hit box is taller (touch), it is one
+		-- Frame `Fill` of the root, drawn under the buttons, so it lines up with the other tiers' base lines;
+		-- where they are the same box (mouse and gamepad) the button's own background is the fill. It is made
+		-- with the row, never on a selection change.
+		local inset = top > 0
+		if inset and tierFill == nil then
+			for _, entry in ipairs(entries) do
+				if textOf(entry.Spec.Tier) then
+					tierFill = newFrame(root, "Fill")
+					tierFill.Active = false
+					tierFill.ZIndex = 0
+					tierFill.Visible = false
+					break
+				end
+			end
+		end
+		local filled = false
 
 		local x, y, widest = 0, 0, 0
 		for _, entry in ipairs(entries) do
@@ -1054,7 +1134,14 @@ function Controls.Tabs(parent, props, scope)
 			put(button, "Size", UDim2.fromOffset(width, hit))
 			put(button, "TextColor3", look.TierInk and tint or colourOf(look.Ink))
 			put(button, "TextTransparency", 1 - look.Opacity)
-			if look.TierFill then
+			if look.TierFill and inset and tierFill ~= nil then
+				filled = true
+				put(tierFill, "BackgroundColor3", tint)
+				put(tierFill, "BackgroundTransparency", 1 - look.Opacity)
+				put(tierFill, "Position", UDim2.fromOffset(x, y + top))
+				put(tierFill, "Size", UDim2.fromOffset(width, drawn))
+				put(button, "BackgroundTransparency", 1)
+			elseif look.TierFill then
 				put(button, "BackgroundColor3", tint)
 				put(button, "BackgroundTransparency", 1 - look.Opacity)
 			else
@@ -1071,6 +1158,9 @@ function Controls.Tabs(parent, props, scope)
 
 			widest = math.max(widest, x + width)
 			x = x + width + between
+		end
+		if tierFill ~= nil then
+			put(tierFill, "Visible", filled)
 		end
 		put(root, "Size", UDim2.fromOffset(widest, y + hit))
 	end
@@ -1273,8 +1363,15 @@ end
 -- Header
 ---------------------------------------------------------------------------------------------------
 
-local HEADER_KEYS = keySet({ "Title", "Sub", "Count", "Tabs", "MarkKey", "Shadow" })
+local HEADER_KEYS = keySet({ "Title", "Sub", "Count", "Tabs", "MarkKey", "Shadow", "SubMaxWidth", "MaxWidth" })
 local HEADER_DEFAULTS = { Title = "" }
+
+-- MaxWidth (design px, opt-in): the title is cut to that width with an ellipsis.
+local function checkHeader(values)
+	if values.MaxWidth ~= nil and (type(values.MaxWidth) ~= "number" or values.MaxWidth <= 0) then
+		error("[Pulse.Controls] Header: MaxWidth must be a positive design number", 3)
+	end
+end
 
 -- Pure, real px in the slot's own space. Keep-out rule 2 (API2 2.4): on Compact, when the slot starts above
 -- the bottom of the Roblox bar, the title row sits beside the Roblox buttons, centred on the bar row, and what
@@ -1292,6 +1389,7 @@ end
 
 function Controls.Header(parent, props, scope)
 	local state = readProps("Header", HEADER_KEYS, HEADER_DEFAULTS, props)
+	checkHeader(state)
 	local ctx = Metrics.Of(parent)
 	local bag = {}
 	local destroyed = false
@@ -1300,6 +1398,7 @@ function Controls.Header(parent, props, scope)
 	local busy = false
 
 	local root = Instance.new("Frame")
+	Metrics.Bind(root, ctx) -- parts built before the root is parented take this context, not the screen's
 	root.Name = state.Name or "Header"
 	root.BackgroundTransparency = 1
 	root.BorderSizePixel = 0
@@ -1318,6 +1417,7 @@ function Controls.Header(parent, props, scope)
 		Text = tostring(state.Title),
 		Role = "ScreenTitle",
 		Shadow = state.Shadow == true,
+		MaxWidth = state.MaxWidth,
 	}, scope)
 	table.insert(bag, title)
 	local sub, count = nil, nil
@@ -1357,6 +1457,16 @@ function Controls.Header(parent, props, scope)
 		-- The capital letters stand on the bottom edge of the mark.
 		local floorY = y + markHeight
 		local titleWidth, titleLine = labelBox(title, "ScreenTitle")
+		if state.MaxWidth ~= nil then
+			-- The title box is then exactly MaxWidth wide (Text.Label); the count and the root follow the drawn
+			-- text, so a short title is laid out as it is without MaxWidth. Unmeasured text keeps the whole box.
+			local inner = title.Instance:FindFirstChild("Label")
+			local bounds = inner and inner.TextBounds.X or 0
+			if bounds > 0 then
+				local _, holderScale = Text.SizeFor("ScreenTitle", ctx)
+				titleWidth = math.min(titleWidth, math.ceil(bounds * holderScale) + italicPad(ctx, "ScreenTitle"))
+			end
+		end
 		local capPx = ctx.Px(capOf(ctx, "ScreenTitle"))
 		local titleX = x + markWidth + gap
 		put(titleMark.Instance, "Position", UDim2.fromOffset(x, y))
@@ -1383,10 +1493,12 @@ function Controls.Header(parent, props, scope)
 		local subText = textOf(state.Sub)
 		if subText then
 			if sub == nil then
-				sub = Text.Label(root, { Name = "Sub", Text = subText, Role = "Tab", Shadow = state.Shadow == true }, scope)
+				-- SubMaxWidth (design px, opt-in): the line is exactly that wide and ends in an ellipsis.
+				sub = Text.Label(root, { Name = "Sub", Text = subText, Role = "Tab", Shadow = state.Shadow == true,
+					MaxWidth = state.SubMaxWidth }, scope)
 				watch(sub)
 			else
-				sub.Set({ Text = subText, Shadow = state.Shadow == true, Visible = true })
+				sub.Set({ Text = subText, Shadow = state.Shadow == true, Visible = true, MaxWidth = state.SubMaxWidth })
 			end
 			local subWidth, subLine = labelBox(sub, "Tab")
 			cursor = cursor + (compact and keepOutGap or gap)
@@ -1397,8 +1509,9 @@ function Controls.Header(parent, props, scope)
 			sub.Set({ Visible = false })
 		end
 
+		-- A hidden Tabs (Tabs = { Visible = false }) takes no room: neither its gap nor its height.
 		local tabs = self.Tabs
-		if tabs ~= nil then
+		if tabs ~= nil and tabs.Instance.Visible then
 			local size = tabs.Instance.Size
 			cursor = cursor + (compact and keepOutGap or ctx.Px(Space.HeaderTabsGap))
 			put(tabs.Instance, "Position", UDim2.fromOffset(0, cursor))
@@ -1419,6 +1532,9 @@ function Controls.Header(parent, props, scope)
 		if self.Tabs == nil then
 			self.Tabs = Controls.Tabs(root, tabsProps, scope)
 			watch(self.Tabs)
+			listen(scope, bag, self.Tabs.Instance:GetPropertyChangedSignal("Visible"), function()
+				layout()
+			end)
 		else
 			self.Tabs.Set(tabsProps)
 		end
@@ -1438,6 +1554,17 @@ function Controls.Header(parent, props, scope)
 	listen(scope, bag, title.Instance:GetPropertyChangedSignal("Size"), function()
 		layout()
 	end)
+	do
+		-- With MaxWidth the title box does not change with its text; the drawn text does.
+		local inner = title.Instance:FindFirstChild("Label")
+		if inner ~= nil then
+			listen(scope, bag, inner:GetPropertyChangedSignal("TextBounds"), function()
+				if state.MaxWidth ~= nil then
+					layout()
+				end
+			end)
+		end
+	end
 	listen(scope, bag, parent:GetPropertyChangedSignal("Position"), function()
 		layout()
 	end)
@@ -1462,6 +1589,9 @@ function Controls.Header(parent, props, scope)
 	end
 
 	function self.Set(patch)
+		if type(patch) == "table" then
+			checkHeader(patch)
+		end
 		if destroyed or not mergePatch("Header", HEADER_KEYS, state, patch) then
 			return
 		end
@@ -1469,7 +1599,7 @@ function Controls.Header(parent, props, scope)
 			put(root, "Name", patch.Name)
 		end
 		applyCommon(root, state)
-		title.Set({ Text = tostring(state.Title), Shadow = state.Shadow == true })
+		title.Set({ Text = tostring(state.Title), Shadow = state.Shadow == true, MaxWidth = state.MaxWidth })
 		if patch.Tabs ~= nil then
 			syncTabs()
 		end
@@ -1524,6 +1654,7 @@ function Controls.IconButton(parent, props, scope)
 	local marked = nil
 
 	local root = newButton(state.Name or "IconButton")
+	Metrics.Bind(root, ctx) -- parts built before the root is parented take this context, not the screen's
 	local fill = newFrame(root, "Fill")
 	local hairBottom = newFrame(fill, "HairBottom")
 	hairBottom.AnchorPoint = Vector2.new(0, 1)
@@ -1746,6 +1877,7 @@ function Controls.Stepper(parent, props, scope)
 	local marked = nil
 
 	local root = Instance.new("Frame")
+	Metrics.Bind(root, ctx) -- parts built before the root is parented take this context, not the screen's
 	root.Name = state.Name or "Stepper"
 	root.BackgroundTransparency = 1
 	root.BorderSizePixel = 0
@@ -1960,6 +2092,10 @@ function Controls.Slider(parent, props, scope)
 		local gap = ctx.Px(unit(ctx, Space.Gap))
 		local band = ctx.Touch(compact and Space.TouchMin or Space.SliderHeight)
 		local thickness = ctx.Hair(unit(ctx, Space.TileBaseLine))
+		if compact then
+			-- dp, not the scaled-down Regular sizes: a 2 px line with a 4 by 12 handle cannot be seen under a thumb.
+			thickness = ctx.Px(Space.Hairline + Space.Hairline)
+		end
 
 		local caption = textOf(state.Label)
 		local shown = textOf(state.ValueText)
@@ -2009,6 +2145,10 @@ function Controls.Slider(parent, props, scope)
 
 		local handleHeight = math.min(band, ctx.Px(unit(ctx, Space.BadgeSmall)))
 		handleWidth = ctx.Px(unit(ctx, Space.Gap))
+		if compact then
+			handleHeight = math.min(band, ctx.Px(Space.CompactStatusHeight))
+			handleWidth = ctx.Px(Space.Gap)
+		end
 		handleTop = textBand + math.floor((band - handleHeight) * HALF)
 		put(handle, "Size", UDim2.fromOffset(handleWidth, handleHeight))
 		renderValue()
@@ -2268,6 +2408,30 @@ local DROPDOWN_KEYS = keySet({ "Label", "Options", "Selected", "OnSelected", "Ma
 local DROPDOWN_DEFAULTS = { Label = "", Selected = "" }
 local DROPDOWN_ROWS = 6 -- rows shown before the list scrolls, when MaxRows is not given
 
+-- Pure, real px in the host. Where the open list goes and how tall it is: under the control; above it when it
+-- does not fit under and does fit above; and when it fits on neither side (a phone), on the roomier side with as
+-- many whole rows as fit there (the list scrolls). The list never leaves the host's right edge.
+function Controls._dropdownPlace(left, top, bottom, width, rows, rowHeight, hostWidth, hostHeight)
+	local listHeight = rows * rowHeight
+	local x, y = left, bottom
+	if hostHeight > 0 and bottom + listHeight > hostHeight then
+		local below, above = hostHeight - bottom, top
+		if above >= listHeight then
+			y = top - listHeight
+		else
+			local fit = math.max(1, math.floor(math.max(below, above) / rowHeight))
+			listHeight = math.min(rows, fit) * rowHeight
+			if above > below then
+				y = top - listHeight
+			end
+		end
+	end
+	if hostWidth > 0 and x + width > hostWidth then
+		x = math.max(0, math.floor(hostWidth - width))
+	end
+	return x, y, listHeight
+end
+
 -- The frame the open list is built in: the top GuiObject above the control (the layer's Root).
 local function layerRootOf(instance)
 	local top = nil
@@ -2304,6 +2468,7 @@ function Controls.Dropdown(parent, props, scope)
 	local session = nil -- the scope of one opening: focus trap and back binding
 
 	local root = newButton(state.Name or "Dropdown")
+	Metrics.Bind(root, ctx) -- parts built before the root is parented take this context, not the screen's
 	local fill = newFrame(root, "Fill")
 	local label = newText("TextLabel", fill, "Label")
 	local value = newText("TextLabel", fill, "Value")
@@ -2460,14 +2625,12 @@ function Controls.Dropdown(parent, props, scope)
 			scale = host.AbsoluteSize.X / hostSize.X.Offset
 		end
 		local origin = (fill.AbsolutePosition - host.AbsolutePosition) / scale
+		local hostWidth = host.AbsoluteSize.X / scale
 		local hostHeight = host.AbsoluteSize.Y / scale
 		local width = math.max(fill.Size.X.Offset, ctx.Px(unit(ctx, Space.StepperWidth)))
-		local listHeight = shown * height
-		local x = math.floor(origin.X + HALF)
-		local y = math.floor(origin.Y + HALF) + fill.Size.Y.Offset
-		if y + listHeight > hostHeight and origin.Y - listHeight >= 0 then
-			y = math.floor(origin.Y + HALF) - listHeight
-		end
+		local top = math.floor(origin.Y + HALF)
+		local x, y, listHeight = Controls._dropdownPlace(math.floor(origin.X + HALF), top, top + fill.Size.Y.Offset,
+			width, shown, height, hostWidth, hostHeight)
 		put(built.List, "Position", UDim2.fromOffset(x, y))
 		put(built.List, "Size", UDim2.fromOffset(width, listHeight))
 		put(built.List, "CanvasSize", UDim2.fromOffset(0, rows * height))

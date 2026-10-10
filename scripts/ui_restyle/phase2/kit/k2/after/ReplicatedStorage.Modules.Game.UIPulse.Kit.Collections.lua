@@ -19,7 +19,6 @@ local TILE_INSET = 0.8 -- tile inner margin against the panel padding (18 of 22)
 local SEVEN_WIDTH = 0.75 -- a rail-of-seven cell against the standard tile width (236 of 315)
 local VISUAL_TOP = 0.22 -- top of the picture box against the tile height (54 of 242)
 local VISUAL_HEIGHT = 0.4 -- picture box against the tile height (96 of 242)
-local VISUAL_HEIGHT_COMPACT = 0.3 -- the same on a Compact tile (18 of 60)
 local BADGE_LETTER = 0.9 -- tier letter cell width against the badge height (42 of 46)
 local TWO_LINES = 1.5 -- text taller than this many lines' worth is laid out as two lines
 local GRID_ROWS = 3 -- cell rows a grid rail shows when its parent gives it no height
@@ -28,6 +27,7 @@ local PICTURE_ASPECT = 1.5 -- a vehicle card picture is 3 wide to 2 high (the 15
 local PICTURE_FOCUS_X = 0.54 -- the car's centre across a card picture (it sits a little right of the middle)
 local PICTURE_FOCUS_Y = 0.52 -- and down it (a little below the middle, on the floor)
 local SCRIM_START = 0.35 -- how far down a full-frame picture its text scrim starts to darken
+local COMPACT_TILE_WIDTH = 1.25 -- a Compact tile against the token minimum width (110 of 88); every tile of a rail is this wide
 local QUARTER_TURN = 90 -- UIGradient rotation of a top to bottom gradient
 
 ---------------------------------------------------------------------------------------------------
@@ -442,6 +442,56 @@ function Collections._overPicture(look, flags)
 	return look
 end
 
+-- Pure. Changes a resolved look for a Compact (phone) tile and returns it. A Compact tile never takes the White
+-- fill: with a picture it is the full-frame look (_overPicture); without one the selected tile is an opaque Slate
+-- plate with light text, and keeps the thick Pink to Violet line, the growth and the glow.
+function Collections._compactTile(look, flags, hasPicture)
+	if hasPicture then
+		return Collections._overPicture(look, flags)
+	end
+	if look.Selected then
+		look.Fill = "Slate"
+		look.FillOpacity = 1
+		look.Ink = "White"
+		look.Sub = "White"
+		look.ChipFill = "White"
+		look.ChipFillOpacity = Opacity.ChipNeutral
+		look.ChipInk = "White"
+	end
+	look.OnLight = false
+	return look
+end
+
+-- Pure. What the top row of a Compact tile shows left of its corner chip, so that nothing overlaps: returns
+-- showTier, showRating, showIcon. Lengths are real px: the tile width, the corner chip (0 = none), the tier letter
+-- cell (0 = no tier), the rating cell (0 = none), the icon (0 = none) and the gap between parts. The corner chip
+-- always stays. When the row is too long the rating goes first, then the icon, then the tier letter.
+function Collections._compactTop(width, chip, letter, rating, icon, gap)
+	local room = width - (chip > 0 and chip + gap or 0)
+	local hasTier, hasRating, hasIcon = letter > 0, letter > 0 and rating > 0, icon > 0
+	local function fits(withTier, withRating, withIcon)
+		local total = 0
+		if withTier then
+			total = total + letter
+		end
+		if withRating then
+			total = total + rating
+		end
+		if withIcon then
+			total = total + gap + icon
+		end
+		return total <= room
+	end
+	if fits(hasTier, hasRating, hasIcon) then
+		return hasTier, hasRating, hasIcon
+	elseif fits(hasTier, false, hasIcon) then
+		return hasTier, false, hasIcon
+	elseif fits(hasTier, false, false) then
+		return hasTier, false, false
+	end
+	return false, false, false
+end
+
 -- Pure. Where a picture `aspect` wide for one high sits so that it covers a box: x, y, width, height in whole px
 -- against the box. The point (focusX, focusY) of the picture is held as near the box centre as its edges allow.
 function Collections._cover(boxWidth, boxHeight, aspect, focusX, focusY)
@@ -757,6 +807,7 @@ local function buildTile(parent, props, scope, host)
 	local marked = nil
 
 	local root = newButton(state.Name or "Tile")
+	Metrics.Bind(root, ctx) -- parts built before the root is parented take this context, not the screen's
 	local fill = newFrame(root, "Fill")
 	local line = newFrame(fill, "HairBottom")
 	line.ZIndex = 2
@@ -794,15 +845,204 @@ local function buildTile(parent, props, scope, host)
 		put(label, "TextTransparency", 1 - opacity)
 	end
 
+	local function paintCorner(kind, look, opacity)
+		if kind == "Price" then
+			paintBox(corner, "Ink", 1, look.PriceInk, opacity)
+		elseif kind == "Pink" then
+			paintBox(corner, "Pink", 1, "White", opacity)
+		elseif kind == "Cyan" then
+			paintBox(corner, "Cyan", 1, "Ink", opacity)
+		else
+			paintBox(corner, look.ChipFill, look.ChipFillOpacity, look.ChipInk, opacity)
+		end
+	end
+
+	-- The cyan tick corner: an Ink tick on a Cyan cell, against the tile's top-right corner. Returns its side.
+	local function placeTick(width, opacity)
+		local tickDesign = unit(ctx, Space.BadgeSmall)
+		local tickPx = ctx.Px(tickDesign)
+		if tick == nil then
+			tick = Surface.Icon(fill, { Name = "Tick", Icon = "tick", Colour = "Ink", Size = tickDesign }, scope)
+			table.insert(bag, tick)
+			tick.Instance.BackgroundColor3 = colourOf("Cyan")
+		else
+			tick.Set({ Size = tickDesign, Visible = true })
+		end
+		tick.Set({ Opacity = opacity })
+		put(tick.Instance, "BackgroundTransparency", 1 - opacity)
+		put(tick.Instance, "Position", UDim2.fromOffset(width - tickPx, 0))
+		return tickPx
+	end
+
+	local function hidePart(object)
+		if object ~= nil then
+			put(object, "Visible", false)
+		end
+	end
+
+	-- The Compact (phone) tile, one design for every tile (API2 amendment A7). Every tile of a rail is the same
+	-- width whatever its name. Top row, flush with the top edge: tier letter and rating, then the icon (the lock on
+	-- a locked tile), and exactly one chip against the right edge (Collections._corner); Collections._compactTop
+	-- drops the rating, then the icon, then the letter before anything overlaps. The name stands at the foot on one
+	-- or two lines and ends in an ellipsis. A picture always covers the whole tile under a scrim, whatever
+	-- PictureMode says. No sub-line and no left chip. look comes from Collections._compactTile: never a White fill.
+	local function renderCompact(look, image)
+		local pad = ctx.Px(unit(ctx, Space.Gap))
+		local hair = ctx.Hair(unit(ctx, Space.Hairline))
+		local opacity = look.Opacity
+
+		local cellDesign = host and host.CellWidth and host.CellWidth() or nil
+		local cellPx = host and host.CellPx and host.CellPx() or nil
+		local height = ctx.Px(Space.CompactTileHeight)
+		local width = cellPx or ctx.Px(cellDesign or Space.CompactTileMinWidth * COMPACT_TILE_WIDTH)
+		local grow = look.Grow and ctx.Px(Space.TileBaseLine) or 0
+		local fillHeight = height + grow
+		put(root, "Size", UDim2.fromOffset(width, height))
+		put(fill, "Position", UDim2.fromOffset(0, -grow))
+		put(fill, "Size", UDim2.fromOffset(width, fillHeight))
+		put(fill, "BackgroundColor3", colourOf(look.Fill))
+		put(fill, "BackgroundTransparency", 1 - look.FillOpacity)
+		if glow ~= nil then
+			put(glow, "Position", UDim2.fromOffset(0, -grow))
+			put(glow, "Size", UDim2.fromOffset(width, fillHeight))
+			put(glow, "Visible", look.Glow)
+		end
+
+		local lineHeight = look.Selected and ctx.Px(Space.Hairline + Space.Hairline) or hair
+		put(line, "Position", UDim2.fromOffset(0, fillHeight - lineHeight))
+		put(line, "Size", UDim2.fromOffset(width, lineHeight))
+		paintLine(line, lineGradient, look)
+
+		-- Name: a fixed two-line box at the foot, the text on its bottom edge. The box never follows the text, so
+		-- wrapping and the ellipsis cannot feed back into the tile's size.
+		put(title, "Text", string.upper(tostring(state.Title)))
+		local titleSize = face(title, "TileNameSmall", ctx)
+		local titleBox = titleSize * 2
+		put(title, "TextWrapped", true)
+		put(title, "TextTruncate", Enum.TextTruncate.AtEnd)
+		put(title, "TextXAlignment", Enum.TextXAlignment.Left)
+		put(title, "Position", UDim2.fromOffset(pad, fillHeight - pad - titleBox))
+		put(title, "Size", UDim2.fromOffset(math.max(0, width - pad - pad), titleBox))
+		put(title, "TextColor3", colourOf(look.Ink))
+		put(title, "TextTransparency", 1 - opacity)
+
+		-- Top row. Every part is one row high (the tier letter's text size) and is measured whole: none is truncated.
+		local rowRole = "Value"
+		local rowHeight = Text.SizeFor(rowRole, ctx)
+		local tier = textOf(state.Tier)
+		local badgeOpacity = look.BadgeDim and math.min(Opacity.Locked, opacity) or opacity
+		local letterWidth, ratingWidth = 0, 0
+		if tier then
+			tierLetter = tierLetter or textPart("TierLetter")
+			put(tierLetter, "Text", tier)
+			face(tierLetter, rowRole, ctx)
+			letterWidth = math.max(math.floor(rowHeight * BADGE_LETTER + HALF), textWidth(tierLetter) + hair + hair)
+			if type(state.Rating) == "number" then
+				tierRating = tierRating or textPart("TierRating")
+				ratingWidth = boxText(tierRating, ratingText(state.Rating), rowRole, ctx, Space.BadgeSmall, Space.Gap)
+			end
+		end
+
+		local cornerText, cornerKind = Collections._corner(state.Status, state.Price, state.ChipRight, state.ChipRightKind)
+		local showTick = cornerKind == "Tick"
+		local chipWidth = 0
+		if showTick then
+			chipWidth = placeTick(width, opacity)
+			hidePart(corner)
+		else
+			if tick ~= nil then
+				tick.Set({ Visible = false })
+			end
+			if cornerText then
+				corner = corner or textPart("Corner")
+				chipWidth = boxText(corner, string.upper(cornerText), cornerKind == "Price" and "Value" or "Label", ctx, Space.BadgeMedium, Space.Gap)
+				chipWidth = math.min(chipWidth, width)
+				put(corner, "Position", UDim2.fromOffset(width - chipWidth, 0))
+				put(corner, "Size", UDim2.fromOffset(chipWidth, rowHeight))
+				paintCorner(cornerKind, look, opacity)
+				put(corner, "Visible", true)
+			else
+				hidePart(corner)
+			end
+		end
+
+		-- The icon: the lock on a locked tile, else the glyph of a tile that has no picture.
+		local glyph = look.Lock and "lock" or (image == nil and textOf(state.Icon) or nil)
+		local cell = nil
+		if glyph then
+			cell = Tokens.Icons.Glyphs[glyph]
+			if cell == nil then
+				error("[Pulse.Collections] Tile: unknown icon " .. glyph, 2)
+			end
+		end
+		local iconSize = glyph and math.max(1, rowHeight - hair - hair) or 0
+
+		local showTier, showRating, showIcon = Collections._compactTop(width, chipWidth, letterWidth, ratingWidth, iconSize, pad)
+		local x = 0
+		if showTier then
+			put(tierLetter, "TextXAlignment", Enum.TextXAlignment.Center)
+			put(tierLetter, "Position", UDim2.fromOffset(0, 0))
+			put(tierLetter, "Size", UDim2.fromOffset(letterWidth, rowHeight))
+			put(tierLetter, "BackgroundColor3", tierColour(tier))
+			put(tierLetter, "BackgroundTransparency", 1 - badgeOpacity)
+			put(tierLetter, "TextColor3", colourOf("Ink"))
+			put(tierLetter, "TextTransparency", 1 - badgeOpacity)
+			put(tierLetter, "Visible", true)
+			x = letterWidth
+		else
+			hidePart(tierLetter)
+		end
+		if showRating then
+			put(tierRating, "Position", UDim2.fromOffset(x, 0))
+			put(tierRating, "Size", UDim2.fromOffset(ratingWidth, rowHeight))
+			paintBox(tierRating, "White", 1, "Ink", badgeOpacity)
+			put(tierRating, "Visible", true)
+			x = x + ratingWidth
+		else
+			hidePart(tierRating)
+		end
+		if showIcon then
+			local cellSize = Tokens.Icons.Cell
+			put(visual, "Image", Tokens.Asset("IconSheet") or "")
+			put(visual, "ImageRectOffset", Vector2.new(cell[1] * cellSize, cell[2] * cellSize))
+			put(visual, "ImageRectSize", Vector2.new(cellSize, cellSize))
+			put(visual, "ImageColor3", colourOf(look.Ink))
+			put(visual, "ImageTransparency", 1 - opacity)
+			put(visual, "Position", UDim2.fromOffset(x + pad, hair))
+			put(visual, "Size", UDim2.fromOffset(iconSize, iconSize))
+		end
+		put(visual, "Visible", showIcon)
+
+		if image then
+			cover = cover or newCover(fill)
+			placeCover(cover, image, width, fillHeight, opacity, false)
+			shadeCover(cover, look.Dim)
+		else
+			hideCover(cover)
+		end
+
+		-- Parts only the Regular tile has (the class can change while a tile lives).
+		hidePart(sub)
+		hidePart(chipLeft)
+		if lock ~= nil then
+			lock.Set({ Visible = false })
+		end
+		put(root, "Active", look.Active)
+	end
+
 	render = function()
 		if destroyed then
 			return
 		end
 		flags.Selectable = state.Selectable
 		local look = Collections._resolveTile(state.State, state.Status, flags)
+		local image = textOf(state.Image)
+		if isCompact(ctx) then
+			renderCompact(Collections._compactTile(look, flags, image ~= nil), image)
+			return
+		end
 		-- PictureMode changes a tile that has a picture, and nothing else: "Full" lays the picture over the whole
 		-- tile under the text, "Wide" over its full width down to the text.
-		local image = textOf(state.Image)
 		local pictureMode = image and state.PictureMode or "Box"
 		local full = pictureMode == "Full"
 		local framed = full or pictureMode == "Wide"
@@ -812,37 +1052,23 @@ local function buildTile(parent, props, scope, host)
 			look.ChipFill = "Ink" -- the chips stand on the picture
 			look.ChipFillOpacity = Opacity.Panel
 		end
-		local compact = isCompact(ctx)
 		local seven = state.Compact7 == true
-		local inset = ctx.Px(unit(ctx, Space.Pad * TILE_INSET))
-		local hair = ctx.Hair(unit(ctx, Space.Hairline))
-		local gap = ctx.Px(unit(ctx, Space.Gap))
+		local inset = ctx.Px(Space.Pad * TILE_INSET)
+		local hair = ctx.Hair(Space.Hairline)
+		local gap = ctx.Px(Space.Gap)
 		local opacity = look.Opacity
 
-		-- Title text first: a Compact tile sizes to its name.
 		put(title, "Text", string.upper(tostring(state.Title)))
-		local titleSize = face(title, (compact or seven) and "TileNameSmall" or "TileName", ctx)
+		local titleSize = face(title, seven and "TileNameSmall" or "TileName", ctx)
 
 		local cellDesign = host and host.CellWidth and host.CellWidth() or nil
 		local cellPx = host and host.CellPx and host.CellPx() or nil
-		local width, height
-		if compact then
-			height = ctx.Px(Space.CompactTileHeight)
-			if cellPx then
-				width = cellPx
-			elseif cellDesign then
-				width = ctx.Px(cellDesign)
-			else
-				width = math.max(ctx.Px(Space.CompactTileMinWidth), textWidth(title) + inset + inset)
-			end
-		else
-			height = ctx.Px(Space.TileHeight)
-			width = cellPx or ctx.Px(cellDesign or (seven and Space.TileWidth * SEVEN_WIDTH or Space.TileWidth))
-		end
+		local height = ctx.Px(Space.TileHeight)
+		local width = cellPx or ctx.Px(cellDesign or (seven and Space.TileWidth * SEVEN_WIDTH or Space.TileWidth))
 
 		local grow = 0
 		if look.Grow then
-			grow = ctx.Px(compact and Space.TileBaseLine or (Space.Gap + Space.TileBaseLine))
+			grow = ctx.Px(Space.Gap + Space.TileBaseLine)
 		end
 		local fillHeight = height + grow
 		put(root, "Size", UDim2.fromOffset(width, height))
@@ -855,39 +1081,29 @@ local function buildTile(parent, props, scope, host)
 			put(glow, "Size", UDim2.fromOffset(width, fillHeight))
 		end
 
-		local lineHeight = look.Selected and ctx.Hair(unit(ctx, Space.TileBaseLine)) or hair
+		local lineHeight = look.Selected and ctx.Hair(Space.TileBaseLine) or hair
 		put(line, "Position", UDim2.fromOffset(0, fillHeight - lineHeight))
 		put(line, "Size", UDim2.fromOffset(width, lineHeight))
 		paintLine(line, lineGradient, look)
 
-		-- Title, bottom of the tile.
-		local titleTop
-		local twoLine = false
-		if compact then
-			titleTop = fillHeight - inset - titleSize
-			put(title, "TextWrapped", false)
-			put(title, "TextXAlignment", Enum.TextXAlignment.Center)
-			put(title, "Position", UDim2.fromOffset(0, titleTop))
-			put(title, "Size", UDim2.fromOffset(width, titleSize))
-		else
-			-- The box is always two lines tall and the text sits on its bottom edge: measured in a one-line box,
-			-- a wrapped name never reported its second line, so a two-word name showed its first word only
-			-- (capture module_shop). It is wrapped and sized before it is measured.
-			local boxHeight = titleSize * 2
-			put(title, "TextWrapped", true)
-			put(title, "TextXAlignment", Enum.TextXAlignment.Left)
-			put(title, "Position", UDim2.fromOffset(inset, fillHeight - inset - boxHeight))
-			put(title, "Size", UDim2.fromOffset(math.max(0, width - inset - inset), boxHeight))
-			local lines = title.TextBounds.Y > titleSize * TWO_LINES and 2 or 1
-			titleTop = fillHeight - inset - titleSize * lines
-			twoLine = lines == 2
-		end
+		-- Title, bottom of the tile. The box is always two lines tall and the text sits on its bottom edge:
+		-- measured in a one-line box, a wrapped name never reported its second line, so a two-word name showed
+		-- its first word only (capture module_shop). It is wrapped and sized before it is measured.
+		local titleBox = titleSize * 2
+		put(title, "TextWrapped", true)
+		put(title, "TextTruncate", Enum.TextTruncate.None)
+		put(title, "TextXAlignment", Enum.TextXAlignment.Left)
+		put(title, "Position", UDim2.fromOffset(inset, fillHeight - inset - titleBox))
+		put(title, "Size", UDim2.fromOffset(math.max(0, width - inset - inset), titleBox))
+		local lines = title.TextBounds.Y > titleSize * TWO_LINES and 2 or 1
+		local titleTop = fillHeight - inset - titleSize * lines
+		local twoLine = lines == 2
 		local textTop = titleTop -- top of the text block (name, plus the sub-line when there is one)
 		put(title, "TextColor3", colourOf(look.Ink))
 		put(title, "TextTransparency", 1 - opacity)
 
-		-- Sub-line above the title (Regular only).
-		local subText = (not compact) and textOf(state.Sub) or nil
+		-- Sub-line above the title.
+		local subText = textOf(state.Sub)
 		if subText then
 			sub = sub or textPart("Sub")
 			put(sub, "Text", string.upper(subText))
@@ -904,13 +1120,13 @@ local function buildTile(parent, props, scope, host)
 		end
 
 		-- Top-left: tier badge, then the variant or index chip.
-		local edge = compact and 0 or inset
+		local edge = inset
 		local x = edge
 		local tier = textOf(state.Tier)
 		local badgeOpacity = look.BadgeDim and math.min(Opacity.Locked, opacity) or opacity
 		if tier then
 			tierLetter = tierLetter or textPart("TierLetter")
-			local badgeDesign, badgeRole = Collections._badgeSize(compact and "Small" or "Large")
+			local badgeDesign, badgeRole = Collections._badgeSize("Large")
 			put(tierLetter, "Text", tier)
 			local badgeSize = face(tierLetter, badgeRole, ctx)
 			local badgeHeight = badgePx(ctx, badgeDesign, badgeSize)
@@ -945,7 +1161,7 @@ local function buildTile(parent, props, scope, host)
 			end
 		end
 
-		local leftText = (not compact) and textOf(state.ChipLeft) or nil
+		local leftText = textOf(state.ChipLeft)
 		if leftText then
 			chipLeft = chipLeft or textPart("ChipLeft")
 			local chipWidth, chipHeight = boxText(chipLeft, string.upper(leftText), "Label", ctx, Space.BadgeMedium, Space.Gap)
@@ -966,46 +1182,21 @@ local function buildTile(parent, props, scope, host)
 			local chipWidth, chipHeight = boxText(corner, string.upper(cornerText), price and "Value" or "Label", ctx, Space.BadgeMedium, Space.Gap)
 			put(corner, "Position", UDim2.fromOffset(width - chipWidth, 0))
 			put(corner, "Size", UDim2.fromOffset(chipWidth, chipHeight))
-			if price then
-				paintBox(corner, "Ink", 1, look.PriceInk, opacity)
-			elseif cornerKind == "Pink" then
-				paintBox(corner, "Pink", 1, "White", opacity)
-			elseif cornerKind == "Cyan" then
-				paintBox(corner, "Cyan", 1, "Ink", opacity)
-			else
-				paintBox(corner, look.ChipFill, look.ChipFillOpacity, look.ChipInk, opacity)
-			end
+			paintCorner(cornerKind, look, opacity)
 			put(corner, "Visible", true)
 		elseif corner ~= nil then
 			put(corner, "Visible", false)
 		end
 
-		-- The cyan tick corner: an Ink tick on a Cyan cell.
 		if showTick then
-			local tickDesign = unit(ctx, Space.BadgeSmall)
-			local tickPx = ctx.Px(tickDesign)
-			if tick == nil then
-				tick = Surface.Icon(fill, { Name = "Tick", Icon = "tick", Colour = "Ink", Size = tickDesign }, scope)
-				table.insert(bag, tick)
-				tick.Instance.BackgroundColor3 = colourOf("Cyan")
-			else
-				tick.Set({ Size = tickDesign, Visible = true })
-			end
-			tick.Set({ Opacity = opacity })
-			put(tick.Instance, "BackgroundTransparency", 1 - opacity)
-			put(tick.Instance, "Position", UDim2.fromOffset(width - tickPx, 0))
+			placeTick(width, opacity)
 		elseif tick ~= nil then
 			tick.Set({ Visible = false })
 		end
 
 		-- Picture: the card image, else a glyph from the icon sheet, else nothing (plain slate).
-		local boxHeight = math.floor(height * (compact and VISUAL_HEIGHT_COMPACT or VISUAL_HEIGHT))
-		local boxTop
-		if compact then
-			boxTop = math.floor((titleTop - grow - boxHeight) * HALF)
-		else
-			boxTop = math.floor(height * VISUAL_TOP)
-		end
+		local boxHeight = math.floor(height * VISUAL_HEIGHT)
+		local boxTop = math.floor(height * VISUAL_TOP)
 		-- A two-line name raises the text block into the picture box (capture module_shop_v2): the box then
 		-- keeps its top and shrinks until the drawn picture, selected growth included, ends a gap above the
 		-- text. One-line tiles are not touched.
@@ -1246,6 +1437,7 @@ function Collections.Rail(parent, props, scope)
 	local group = Input.FocusGroup(scope, nil)
 
 	local root = Instance.new("Frame")
+	Metrics.Bind(root, ctx) -- parts built before the root is parented take this context, not the screen's
 	root.Name = state.Name or "Rail"
 	root.BackgroundTransparency = 1
 	root.BorderSizePixel = 0
@@ -1719,7 +1911,8 @@ function Collections._columnBox(index, count, pad, gap, first)
 	return x, width, count > 1 and index == count
 end
 
--- host (a List only): NoGlow, WidthInset() -> real px taken off the row width, Activated(), Focused().
+-- host (a List only): NoGlow, WidthInset() -> real px taken off the row width, Activated(), Focused(),
+-- Dense() -> true when the row height has no touch-size floor (a display-only list).
 -- Returns the component, a whole-props replace function and a re-render function.
 local function buildRow(parent, props, scope, host)
 	local state = readProps("ListRow", ROW_KEYS, ROW_DEFAULTS, props)
@@ -1732,6 +1925,7 @@ local function buildRow(parent, props, scope, host)
 	local marked = nil
 
 	local root = newButton(state.Name or "ListRow")
+	Metrics.Bind(root, ctx) -- parts built before the root is parented take this context, not the screen's
 	local fill = newFrame(root, "Fill")
 	fill.Size = UDim2.new(1, 0, 1, 0)
 	local line = newFrame(fill, "HairBottom")
@@ -1821,12 +2015,19 @@ local function buildRow(parent, props, scope, host)
 		flags.Selectable = nil
 		local look = Collections._resolveTile(state.State, state.Locked == true and "Locked" or "None", flags)
 		local compact = isCompact(ctx)
+		if compact then
+			-- The Compact tile's rule: never the White fill. A selected row is an opaque Slate plate with light
+			-- text and keeps the thick Pink to Violet base line (and the Pink left bar of an Accent row).
+			look = Collections._compactTile(look, flags, false)
+		end
 		local opacity = look.Opacity
 		local pad = ctx.Px(unit(ctx, Space.Pad))
 		local gap = ctx.Px(unit(ctx, Space.Gap))
 		local hair = ctx.Hair(unit(ctx, Space.Hairline))
 		local height = ctx.Px(state.Height or (compact and Space.TouchMin or Space.ListRowHeight))
-		height = math.max(height, ctx.Touch(1))
+		if not (host and host.Dense and host.Dense()) then
+			height = math.max(height, ctx.Touch(1))
+		end
 
 		if hasWidth(parent) then
 			local inset = host and host.WidthInset and host.WidthInset() or 0
@@ -1837,7 +2038,11 @@ local function buildRow(parent, props, scope, host)
 		put(fill, "BackgroundColor3", colourOf(look.Fill))
 		put(fill, "BackgroundTransparency", 1 - look.FillOpacity)
 
-		local lineHeight = look.Selected and ctx.Hair(unit(ctx, Space.TileBaseLine)) or hair
+		local lineHeight = hair
+		if look.Selected then
+			-- Compact: the Compact tile's 4 dp line (the plate no longer changes colour, the line carries it).
+			lineHeight = compact and ctx.Px(Space.Hairline + Space.Hairline) or ctx.Hair(unit(ctx, Space.TileBaseLine))
+		end
 		put(line, "Position", UDim2.new(0, 0, 1, -lineHeight))
 		put(line, "Size", UDim2.new(1, 0, 0, lineHeight))
 		paintLine(line, lineGradient, look)
@@ -2196,7 +2401,9 @@ end
 ---------------------------------------------------------------------------------------------------
 
 -- OnSelected(key) and OnActivated(key): the Rail rule (selection change against every activation).
-local LIST_KEYS = keySet({ "RowHeight", "Width", "Header", "OnSelected", "OnActivated" })
+-- Dense = true (opt-in): the rows have no touch-size floor, for a display-only list nobody presses (a
+-- leaderboard, a results table); give it a RowHeight, the default row height is the touch size on Compact.
+local LIST_KEYS = keySet({ "RowHeight", "Width", "Header", "OnSelected", "OnActivated", "Dense" })
 
 function Collections.List(parent, props, scope)
 	local state = readProps("List", LIST_KEYS, {}, props)
@@ -2213,6 +2420,7 @@ function Collections.List(parent, props, scope)
 	local group = Input.FocusGroup(scope, nil)
 
 	local root = Instance.new("Frame")
+	Metrics.Bind(root, ctx) -- parts built before the root is parented take this context, not the screen's
 	root.Name = state.Name or "List"
 	root.BackgroundTransparency = 1
 	root.BorderSizePixel = 0
@@ -2237,10 +2445,14 @@ function Collections.List(parent, props, scope)
 	table.insert(bag, glow)
 
 	local function metrics()
+		local row = ctx.Px(state.RowHeight or (isCompact(ctx) and Space.TouchMin or Space.ListRowHeight))
+		if state.Dense ~= true then
+			row = math.max(row, ctx.Touch(1))
+		end
 		return {
 			Glow = ctx.Px(unit(ctx, Space.GlowTileRadius)),
 			Gap = ctx.Px(unit(ctx, Space.Hairline + Space.Hairline)),
-			Row = math.max(ctx.Px(state.RowHeight or (isCompact(ctx) and Space.TouchMin or Space.ListRowHeight)), ctx.Touch(1)),
+			Row = row,
 		}
 	end
 
@@ -2364,6 +2576,9 @@ function Collections.List(parent, props, scope)
 			WidthInset = function()
 				local radius = ctx.Px(unit(ctx, Space.GlowTileRadius))
 				return radius + radius
+			end,
+			Dense = function()
+				return state.Dense == true
 			end,
 			Activated = function()
 				local key = slot.Key
@@ -2508,6 +2723,11 @@ function Collections.List(parent, props, scope)
 				if slot.Key ~= nil then
 					slot.Replace(rowProps(slot.Key))
 				end
+			end
+		end
+		if patch.Dense ~= nil then
+			for _, slot in ipairs(slots) do
+				slot.Render() -- the rows read Dense through their host
 			end
 		end
 		layout()

@@ -2,6 +2,15 @@
 
 Recent deliveries, newest first. Entries before September 2026 live in [the archive](history/patch-history-2026-05-to-2026-08.md).
 
+## 2026-10-10 - UI restyle: phone layout pass (PR98)
+
+Standard lane; six family agents and two kit rounds; chain refreshed through `scripts/ui_restyle/phase2/install/` (now targeting PR98). Evidence: `phase2/verification.json` (`mobile_pass`), brief `phase2/mobile_pass/BRIEF.md`.
+
+- **Changed (phone only unless said):** compact tiles redesigned (fixed width, two-line names, no overlapping badges, picture-filled, no white selected block); slim touch prompts; My Vehicles grid; radio strip and activity strip moved out of the driving view; cash chip and buttons hidden under panels; garage pickers, sliders and paint controls docked; player-garage browser and desk recomposed; race menu, entry, HUD and results recomposed; event card sized to its content; map legend closed by default.
+- **Desktop-visible:** paint page one tab row higher; off-screen drop-downs clamp; event card sits below onboarding objectives; long fact rows truncate.
+- **Checked:** kit harness 983 of 985; every gallery screen mounts at phone and desktop size with no error; eight phone captures after install; desktop start screen and race menu; AUDIT and Classic verify clean. **Not checked on a real phone or Studio's device emulator** (MCP cannot drive it): the live composite and touch input are unseen.
+- **Lesson:** a fixed-size preview must give ONE context to parts built before they are attached, or it mixes desktop and phone sizes and shows defects that do not exist (`Kit.Metrics._setPreviewDefault`). Component roots now bind their context at creation.
+
 ## 2026-10-10 - Vehicle start-up (ignition) sound muted (PR98)
 
 Fast lane, config only, in **PR98**. Script: `scripts/audio/pr98_mute_vehicle_ignition.lua` (guarded; `MODE = "ROLLBACK"` restores 0.85).

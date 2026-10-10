@@ -568,6 +568,7 @@ function Data.DeltaChip(parent, props, scope)
 	local destroyed = false
 
 	local root = Instance.new("Frame")
+	Metrics.Bind(root, ctx) -- parts built before the root is parented take this context, not the screen's
 	root.BorderSizePixel = 0
 	local arrow = Surface.Icon(root, { Name = "Arrow", Icon = "chevron_up", Colour = "Ink", Size = Space.BadgeSmall * HALF }, scope)
 	table.insert(bag, arrow)
@@ -579,10 +580,16 @@ function Data.DeltaChip(parent, props, scope)
 		end
 		local delta = state.Delta
 		local up = delta >= 0
+		local compact = isCompact(ctx)
 		local iconDesign = unit(ctx, Space.BadgeSmall) * HALF
 		local iconPx = ctx.Px(iconDesign)
 		local pad = ctx.Px(unit(ctx, Space.Gap))
 		local gap = ctx.Px(unit(ctx, Space.ToastGap))
+		if compact then
+			-- No arrow on Compact (the sign and the colour carry it): the chip column of a 176 dp stat panel must
+			-- leave room for the bar.
+			iconPx, gap = 0, 0
+		end
 
 		applyName(root, state, "DeltaChip", false)
 		put(root, "LayoutOrder", state.LayoutOrder or 0)
@@ -592,11 +599,16 @@ function Data.DeltaChip(parent, props, scope)
 		put(root, "BackgroundTransparency", 0)
 
 		put(label, "Text", Data._deltaText(delta, state.Suffix))
-		local textSize = face(label, "Value", ctx)
+		local textSize = face(label, compact and "Label" or "Value", ctx)
 		local height = math.max(ctx.Px(unit(ctx, Space.BadgeSmall)), textSize)
+		if compact then
+			-- A hairline shorter than its text line each side, so the chips of stacked stat rows do not join up.
+			local hair = ctx.Hair(unit(ctx, Space.Hairline))
+			height = math.max(1, textSize - hair - hair)
+		end
 		local textPx = textWidth(label)
 
-		arrow.Set({ Icon = up and "chevron_up" or "chevron_down", Size = iconDesign })
+		arrow.Set({ Icon = up and "chevron_up" or "chevron_down", Size = iconDesign, Visible = not compact })
 		put(arrow.Instance, "Position", UDim2.fromOffset(pad, centred(height, iconPx)))
 		put(label, "TextColor3", colourOf("Ink"))
 		put(label, "Position", UDim2.fromOffset(pad + iconPx + gap, -baselineShift(textSize)))
@@ -661,6 +673,7 @@ function Data.CashChip(parent, props, scope)
 	local marked = false
 
 	local root = Instance.new("Frame")
+	Metrics.Bind(root, ctx) -- parts built before the root is parented take this context, not the screen's
 	root.BorderSizePixel = 0
 	root.BackgroundColor3 = GRADIENT_BASE
 	root.BackgroundTransparency = 0
@@ -1251,6 +1264,19 @@ local function checkFacts(values)
 	end
 end
 
+-- Pure, real px. The value has priority in a fact row: it takes `valueBox` at the right (never more than the
+-- row less the icon inset `labelX`), and the label gets what is left less `gap`, ending in an ellipsis.
+-- Returns the value box, what to take off the row width for the label, and false when no label fits.
+-- rowWidth 0 means the row is not measured yet: nothing is cut and the label shows.
+function Data._factSplit(rowWidth, labelX, valueBox, gap)
+	local box = valueBox
+	if rowWidth > 0 then
+		box = math.max(0, math.min(box, rowWidth - labelX))
+	end
+	local inset = labelX + box + gap
+	return box, inset, rowWidth <= 0 or rowWidth - inset > 0
+end
+
 function Data.FactList(parent, props, scope)
 	local state = readProps("FactList", FACT_KEYS, {}, props)
 	if state.Rows == nil then
@@ -1263,6 +1289,7 @@ function Data.FactList(parent, props, scope)
 	local pool = {}
 
 	local root = Instance.new("Frame")
+	Metrics.Bind(root, ctx) -- parts built before the root is parented take this context, not the screen's
 	root.BackgroundTransparency = 1
 	root.BorderSizePixel = 0
 
@@ -1278,6 +1305,8 @@ function Data.FactList(parent, props, scope)
 			Icon = nil,
 		}
 		item.Value.AnchorPoint = Vector2.new(1, 0)
+		item.Value.TextTruncate = Enum.TextTruncate.AtEnd
+		item.Label.TextTruncate = Enum.TextTruncate.AtEnd
 		item.Divider.AnchorPoint = Vector2.new(0, 1)
 		item.Divider.BackgroundColor3 = colourOf("White")
 		item.Divider.BackgroundTransparency = 1 - Opacity.HairBottom
@@ -1307,6 +1336,8 @@ function Data.FactList(parent, props, scope)
 			width = UDim.new(0, ctx.Px(compact and Space.CompactStatPanelWidth or Space.ListWidth))
 		end
 		put(root, "Size", UDim2.new(width, UDim.new(0, #rows * rowHeight)))
+		-- Real px of a row, 0 while a parent-wide list is not laid out yet.
+		local rowWidth = width.Scale == 0 and width.Offset or math.floor(root.AbsoluteSize.X)
 
 		for index, row in ipairs(rows) do
 			local item = pool[index] or grow(index)
@@ -1332,27 +1363,48 @@ function Data.FactList(parent, props, scope)
 			local labelSize = face(item.Label, "Label", ctx)
 			put(item.Label, "TextColor3", colourOf("TextSecondary"))
 			put(item.Label, "Position", UDim2.fromOffset(labelX, -baselineShift(labelSize)))
-			put(item.Label, "Size", UDim2.new(1, -labelX, 0, rowHeight))
 
+			-- The value keeps its width (cut with an ellipsis only when it is wider than the row); the label
+			-- has the rest of the row less a gap and ends in an ellipsis, so the two never overlap.
 			local value = item.Value
 			put(value, "Text", string.upper(row.Value))
 			local valueSize = face(value, "TileNameSmall", ctx)
+			local labelInset, labelShown
 			if row.Kind == "Prize" then
 				-- The value is a Yellow chip with Ink text.
 				local chipHeight = math.max(ctx.Px(unit(ctx, Space.BadgeMedium)), valueSize)
+				local natural = textWidth(value) + gap + gap
+				local chipWidth
+				chipWidth, labelInset, labelShown = Data._factSplit(rowWidth, labelX, natural, gap)
+				-- A chip cut to the row stays cut for that text and width: its text is then measured cut, and
+				-- following that measure would shrink the chip a little more on every pass.
+				local cutKey = row.Value .. "|" .. rowWidth .. "|" .. labelX
+				if chipWidth < natural then
+					item.Cut = cutKey
+					item.CutWidth = chipWidth
+				elseif item.Cut == cutKey then
+					chipWidth, labelInset, labelShown = Data._factSplit(rowWidth, labelX, item.CutWidth, gap)
+				else
+					item.Cut = nil
+				end
 				put(value, "BackgroundColor3", colourOf("Yellow"))
 				put(value, "BackgroundTransparency", 0)
 				put(value, "TextColor3", colourOf("Ink"))
 				put(value, "TextXAlignment", Enum.TextXAlignment.Center)
 				put(value, "Position", UDim2.new(1, 0, 0, centred(rowHeight, chipHeight)))
-				put(value, "Size", UDim2.fromOffset(textWidth(value) + gap + gap, chipHeight))
+				put(value, "Size", UDim2.fromOffset(chipWidth, chipHeight))
 			else
+				item.Cut = nil
+				local _
+				_, labelInset, labelShown = Data._factSplit(rowWidth, labelX, textWidth(value), gap)
 				put(value, "BackgroundTransparency", 1)
 				put(value, "TextColor3", colourOf("White"))
 				put(value, "TextXAlignment", Enum.TextXAlignment.Right)
 				put(value, "Position", UDim2.new(1, 0, 0, -baselineShift(valueSize)))
 				put(value, "Size", UDim2.new(1, -labelX, 0, rowHeight))
 			end
+			put(item.Label, "Size", UDim2.new(1, -labelInset, 0, rowHeight))
+			put(item.Label, "Visible", labelShown)
 
 			put(item.Divider, "Visible", index < #rows)
 			put(item.Divider, "Position", UDim2.new(0, 0, 1, 0))
@@ -1365,6 +1417,8 @@ function Data.FactList(parent, props, scope)
 
 	listen(scope, bag, Text.ReadyChanged, render)
 	onLayout(scope, bag, ctx, render)
+	-- A list as wide as its parent is measured once it is laid out, and again when the parent resizes.
+	listen(scope, bag, root:GetPropertyChangedSignal("AbsoluteSize"), render)
 	applyCommon(root, state, "FactList", false)
 	render()
 	root.Parent = parent

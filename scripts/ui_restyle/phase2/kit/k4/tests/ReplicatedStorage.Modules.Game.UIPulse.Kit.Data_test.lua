@@ -789,6 +789,46 @@ return function(Data, env)
 		scope:destroy()
 	end)
 
+	-- Mobile pass round 2 (API2 amendment A17).
+	case("factSplit: the value keeps its width, the label has the rest less a gap, nothing passes the row", function()
+		local box, inset, shown = Data._factSplit(300, 0, 80, 10)
+		expect(box, 80, "a value that fits keeps its width")
+		expect(inset, 90, "the label gives up the value and a gap")
+		expect(shown, true, "the label shows")
+		box, inset, shown = Data._factSplit(300, 40, 80, 10)
+		expect(inset, 130, "the icon inset counts")
+		box, inset, shown = Data._factSplit(200, 40, 500, 10)
+		expect(box, 160, "a value wider than the row is cut to the row less the icon")
+		expect(shown, false, "no room is left for the label")
+		box, inset, shown = Data._factSplit(0, 40, 500, 10)
+		expect(box, 500, "an unmeasured row cuts nothing")
+		expect(shown, true, "an unmeasured row shows the label")
+	end)
+
+	case("FactList: the label ends before the value and both end in an ellipsis", function()
+		local rows = {
+			{ Id = "Laps", Icon = "loop", Label = "Laps and checkpoints", Value = "3 / 17 checkpoints" },
+			{ Id = "Prize", Label = "Platinum prize", Value = "$1,250,000", Kind = "Prize" },
+		}
+		local list, _, scope = build(Data.FactList, c844, { Rows = rows, Width = 176 })
+		local root = list.Instance
+		local gap = c844.Px(Tokens.Space.Gap * Tokens.Space.TouchGap / Tokens.Space.Pad)
+		for index = 1, #rows do
+			local frame = root:FindFirstChild("Row" .. index)
+			local label, value = frame.Label, frame.Value
+			expect(label.TextTruncate, Enum.TextTruncate.AtEnd, "label truncation " .. index)
+			expect(value.TextTruncate, Enum.TextTruncate.AtEnd, "value truncation " .. index)
+			expect(label.Size.X.Scale, 1, "the label follows the row width " .. index)
+			local drawn = index == 2 and value.Size.X.Offset or math.ceil(value.TextBounds.X)
+			expect(label.Size.X.Offset, -(label.Position.X.Offset + drawn + gap), "the label ends a gap before the value " .. index)
+			if value.Size.X.Scale == 0 and value.Size.X.Offset > c844.Px(176) then
+				error("the prize chip is wider than the row")
+			end
+		end
+		list.Destroy()
+		scope:destroy()
+	end)
+
 	case("FactList.SetRows: pooled; the same rows write nothing", function()
 		local list, _, scope = build(Data.FactList, r1080, { Rows = FACTS, Width = 560 })
 		local root = list.Instance

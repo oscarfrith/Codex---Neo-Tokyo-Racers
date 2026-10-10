@@ -37,6 +37,10 @@ local ROW = "\31"
 -- "Full": the picture fills the tile, the name and badges over it. "Wide": the picture fills the tile's width
 -- above the name. "Box": the small picture box every other rail has.
 local RAIL_PICTURE = "Full"
+-- Compact: every vehicle tile of that rail is one cell this wide (dp), whatever its name: a little over two tile
+-- heights, so the card picture is wide enough to tell the car by and the tier badge with its rating clears the
+-- price or OWNED chip in the other corner. Without it a Compact tile is as wide as its name (the kit default).
+local COMPACT_VEHICLE_CELL = Space.CompactTileHeight * 2.2
 
 -- Pure. The mark key of a tutorial card: Card.<slot id> when the generated contract has one, else Card.
 function View._cardMark(item: any): string
@@ -176,6 +180,17 @@ local function put(instance: any, property: string, value: any)
 	end
 end
 
+-- A zero-size frame at its parent's origin: something the screen places itself stands in it.
+local function seatFrame(name: string, parent: Instance): Frame
+	local frame = Instance.new("Frame")
+	frame.Name = name
+	frame.BackgroundTransparency = 1
+	frame.BorderSizePixel = 0
+	frame.Active = false
+	frame.Parent = parent
+	return frame
+end
+
 local function pageFrame(name: string, parent: Instance): Frame
 	local frame = Instance.new("Frame")
 	frame.Name = name
@@ -199,7 +214,8 @@ end
 --[[ View.Mount(layer, model, scope, opts)
 	layer  the static garage layer (Layers.Create("CanonicalGarageGui", {RootName = "CanonicalCanvas", ...})) or a stage
 	model  Garage.GarageModel, or a fake with the same getters and intents (gallery, tests)
-	opts   { Live: Layer?, ConfirmHost: GuiObject? }  Live: the layer the status strip (Cash) sits on; default layer
+	opts   { Live: Layer?, ConfirmHost: GuiObject?, Cash: number? }  Live: the layer the status strip (Cash) sits
+	       on; default layer. Cash: gallery and tests only, the amount the chip shows while no player is bound.
 	Returns { Render(reason?), Destroy(), BindCash(player) }.
 ]]
 function View.Mount(layer: any, model: any, scope: any, opts: any)
@@ -310,6 +326,8 @@ function View.Mount(layer: any, model: any, scope: any, opts: any)
 		seat(b.Cluster.Instance, statusSlot)
 		if cashPlayer ~= nil then
 			b.Cluster.Cash.Bind(cashPlayer)
+		elseif type(opts.Cash) == "number" then
+			b.Cluster.Cash.SetAmount(opts.Cash)
 		end
 	end
 
@@ -317,6 +335,18 @@ function View.Mount(layer: any, model: any, scope: any, opts: any)
 	local function keep(page: any, item: any): any
 		table.insert(page.Bag, item)
 		return item
+	end
+
+	local placeWorkspace: any = nil
+
+	-- The customise page is placed again when a part it is measured from changes size (a face arriving, a new
+	-- caption), not only on the next render.
+	local function replaceOn(b: any, instance: Instance, property: string)
+		keep(b.WorkspacePage, scope:connect(instance:GetPropertyChangedSignal(property), function()
+			if not destroyed and built == b then
+				placeWorkspace(b)
+			end
+		end))
 	end
 
 	-- Dealership page.
@@ -357,6 +387,7 @@ function View.Mount(layer: any, model: any, scope: any, opts: any)
 		Input.Mark(b.CapacityProxy, "Capacity")
 		b.BrowserRail = keep(page, Collections.Rail(browserStage.Slot("BottomRail"), {
 			Heading = "",
+			CellWidth = b.Compact and COMPACT_VEHICLE_CELL or nil,
 			SelectOn = "Activate", -- a tile here previews a purchase or navigates: gamepad focus only highlights
 			OnSelected = function(key)
 				page.RailMem.Selected = key
@@ -390,7 +421,17 @@ function View.Mount(layer: any, model: any, scope: any, opts: any)
 			Tabs = { Tabs = tabSpecs, Selected = Routes.HubTab, Bumpers = true, OnSelected = b.OnTab },
 		}, scope))
 		Input.Mark(b.Header.Tabs.Instance, Routes.HomeMark)
-		b.Buttons = keep(page, Controls.ButtonRow(b.Shell.Slot("RailButtons"), { Buttons = {} }, scope))
+		-- Compact: the row stands in a seat of its own inside the slot (same corner, same anchor), which the
+		-- colour page moves down to the line of the docked channel switch. Regular: in the slot, as it was.
+		local buttonParent: GuiObject = b.Shell.Slot("RailButtons")
+		if b.Compact then
+			b.ButtonSeat = keep(page, seatFrame("ButtonSeat", buttonParent))
+			buttonParent = b.ButtonSeat
+		end
+		b.Buttons = keep(page, Controls.ButtonRow(buttonParent, { Buttons = {} }, scope))
+		replaceOn(b, b.Header.Instance, "Size")
+		replaceOn(b, b.Header.Tabs.Instance, "Size")
+		replaceOn(b, b.Buttons.Instance, "Size")
 		b.Rail = keep(page, Collections.Rail(b.BodyStage.Slot("BottomRail"), {
 			Heading = "",
 			SelectOn = "Activate", -- a tile here previews a purchase or navigates: gamepad focus only highlights
@@ -410,7 +451,7 @@ function View.Mount(layer: any, model: any, scope: any, opts: any)
 	local PAGE_FIELDS = {
 		BrowserPage = { "Browser", "BrowserHeader", "BrowserStats", "CapacityProxy", "BrowserRail", "BrowserButtons" },
 		WorkspacePage = { "Workspace", "Body", "BodyStage", "Shell", "Header", "Stats", "Buttons", "Rail", "Empty", "Segment",
-			"Picker", "BudgetText", "BudgetBar", "Paint" },
+			"Picker", "BudgetText", "BudgetBar", "Paint", "ButtonSeat", "SegmentSeat" },
 	}
 	local function releasePage(b: any, name: string)
 		local page = b[name]
@@ -432,6 +473,7 @@ function View.Mount(layer: any, model: any, scope: any, opts: any)
 		local column = b.Shell.Slot("RightColumn")
 		b.Stats = keep(b.WorkspacePage, Data.StatPanel(column, { Title = "", Rows = {} }, scope))
 		seat(b.Stats.Instance, column)
+		replaceOn(b, b.Stats.Instance, "Size")
 	end
 
 	-- The Shop / Owned switch, on the rail's heading line (preview r03). Triggers switch it.
@@ -439,7 +481,16 @@ function View.Mount(layer: any, model: any, scope: any, opts: any)
 		if b.Segment then
 			return
 		end
-		b.Segment = keep(b.WorkspacePage, Controls.Tabs(b.Rail.HeadingRight, {
+		-- Compact: a touch switch is a touch target high and the heading line stands children on their bottom
+		-- edge, which left SHOP / OWNED well above the heading it belongs to. There it sits in a seat as tall as
+		-- the line, and placeWorkspace centres it on the heading's capitals.
+		local parent: GuiObject = b.Rail.HeadingRight
+		if b.Compact then
+			b.SegmentSeat = keep(b.WorkspacePage, seatFrame("SourceSeat", parent))
+			b.SegmentSeat.LayoutOrder = 1
+			parent = b.SegmentSeat
+		end
+		b.Segment = keep(b.WorkspacePage, Controls.Tabs(parent, {
 			Name = "Source",
 			Style = "Segment",
 			Triggers = true,
@@ -450,6 +501,10 @@ function View.Mount(layer: any, model: any, scope: any, opts: any)
 				model.SelectSource(id)
 			end,
 		}, scope))
+		if b.SegmentSeat then
+			replaceOn(b, b.Segment.Instance, "Size")
+			replaceOn(b, b.Rail.HeadingRight, "Size")
+		end
 	end
 
 	-- The slot picker (Upgrades) and area picker (Paint): the Classic left rail of cards as one dropdown.
@@ -467,6 +522,7 @@ function View.Mount(layer: any, model: any, scope: any, opts: any)
 			end,
 		}, scope))
 		Input.Mark(b.Picker.Instance, "Categories")
+		replaceOn(b, b.Picker.Instance, "Size")
 	end
 
 	-- Upgrade points, on the rail's heading line (preview r02).
@@ -493,6 +549,109 @@ function View.Mount(layer: any, model: any, scope: any, opts: any)
 				model.PaintColour(channel, colour, commit)
 			end,
 		}, scope, ctx))
+		if b.Compact then
+			replaceOn(b, b.Paint.Controls, "Size")
+			replaceOn(b, b.Paint.Controls, "Position")
+		end
+	end
+
+	----------------------------------------------------------------------------------------------------------------
+	-- Placement of the customise page: what stands under the header (picker, paint controls) and, on Compact, the
+	-- parts the screen docks itself. It reads b.WorkspacePage.Layout, which the last render wrote, and writes only
+	-- what moved, so a render and a size change of a part both end in the same place.
+	--
+	-- Compact (844x390, and 568x320 by the same rules):
+	--   [Roblox] // TITLE                                   [spaces +] [cash +]
+	--   instruction or message line                          +- stat panel ---+
+	--   PARTS  UPGRADES  PAINT   [MODULE FRONT ENGINE v]     |                |
+	--                                                        +----------------+
+	--                         (the car)
+	--   HEADING 2/4  [SHOP|OWNED]  POINTS 4/10 ....            [BACK] [DRIVE] [BUY]
+	--   [tile] [tile] [tile] [tile] ...
+	-- The picker is docked on the tab row when it ends before the stat panel (else under the tabs, as on Regular),
+	-- and its list is as many rows as fit under it. The colour page docks the channel switch and the sliders on
+	-- the presets (PaintView) and its buttons on the channel line.
+	----------------------------------------------------------------------------------------------------------------
+	placeWorkspace = function(b: any)
+		local page = b.WorkspacePage
+		local want = page and page.Layout
+		if destroyed or want == nil or b.Header == nil then
+			return
+		end
+		local compact = b.Compact
+		local gap = ctx.Px(Space.Gap)
+		local slot = b.Shell.Slot("TopLeft")
+		local column = b.Shell.Slot("RightColumn")
+		local tabs = b.Header.Tabs.Instance
+		local statsShown = want.Stats and b.Stats ~= nil
+
+		local top = b.Header.Height()
+		if compact and not want.Tabs then
+			-- The kit header keeps the room of its hidden tab bar (post-purchase paint); nothing is measured
+			-- from that empty row.
+			top = top - tabs.Size.Y.Offset - ctx.Px(Space.CompactKeepOutGap)
+		end
+		top = top + gap
+
+		if want.Picker and b.Picker then
+			local picker = b.Picker.Instance
+			local x, y = 0, top
+			local docked = false
+			if compact and want.Tabs then
+				local dockX = tabs.Position.X.Offset + tabs.Size.X.Offset + gap
+				local limit = math.floor(ctx.Size.X) - slot.Position.X.Offset
+				if statsShown then
+					limit = column.Position.X.Offset - column.Size.X.Offset - gap
+				end
+				if slot.Position.X.Offset + dockX + picker.Size.X.Offset <= limit then
+					docked = true
+					x = dockX
+					y = tabs.Position.Y.Offset + math.floor((tabs.Size.Y.Offset - picker.Size.Y.Offset) / 2)
+				end
+			end
+			put(picker, "Position", UDim2.fromOffset(x, y))
+			if not docked then
+				top = top + picker.Size.Y.Offset + gap
+			end
+			if compact then
+				-- The kit list opens downwards at its default row count, which is taller than a phone: it gets
+				-- the rows that fit between the picker and the foot of the screen, and scrolls for the rest.
+				local below = math.floor(ctx.Size.Y) - (slot.Position.Y.Offset + y + picker.Size.Y.Offset)
+				local rows = math.max(1, math.floor(below / math.max(1, picker.Size.Y.Offset)))
+				if page.Mem.PickerRows ~= rows then
+					page.Mem.PickerRows = rows
+					b.Picker.Set({ MaxRows = rows })
+				end
+			end
+		end
+
+		if want.Colour and b.Paint then
+			local limit = top
+			if compact and statsShown then
+				-- The docked block also stays under the stat panel: the button row beside it runs under that panel.
+				limit = math.max(limit, column.Position.Y.Offset + b.Stats.Instance.Size.Y.Offset - slot.Position.Y.Offset + gap)
+			end
+			b.Paint.Place(limit)
+		end
+
+		if b.ButtonSeat then
+			local y = 0
+			local line = (want.Colour and b.Paint) and b.Paint.ButtonLine() or nil
+			if line ~= nil then
+				local foot = b.Shell.Slot("BottomRail").Position.Y.Offset
+				local half = math.floor(b.Buttons.Instance.Size.Y.Offset / 2)
+				y = foot + line + half - b.Shell.Slot("RailButtons").Position.Y.Offset
+			end
+			put(b.ButtonSeat, "Position", UDim2.fromOffset(0, y))
+		end
+
+		if b.SegmentSeat and b.Segment then
+			local segment = b.Segment.Instance
+			local foot = b.Rail.HeadingRight.Size.Y.Offset
+			local cap = ctx.Px(Tokens.Cap.Compact.SectionHead)
+			put(b.SegmentSeat, "Size", UDim2.fromOffset(segment.Size.X.Offset, foot))
+			put(segment, "Position", UDim2.fromOffset(0, foot - math.floor(cap / 2) - math.floor(segment.Size.Y.Offset / 2)))
+		end
 	end
 
 	----------------------------------------------------------------------------------------------------------------
@@ -619,7 +778,6 @@ function View.Mount(layer: any, model: any, scope: any, opts: any)
 		local compact = b.Compact
 		local tabPage = page.Tab ~= nil
 		local colour = page.Paint ~= nil
-		local gap = ctx.Px(Space.Gap)
 
 		syncHeader(b.Header, mem, "Header", tostring(page.Title), tostring(page.Message or page.Sub or ""))
 		b.Header.Tabs.Set({ Visible = tabPage })
@@ -648,7 +806,12 @@ function View.Mount(layer: any, model: any, scope: any, opts: any)
 		b.Rail.Set({ Visible = railShown })
 		if railShown then
 			syncRail(b.Rail, b.WorkspacePage.RailMem, page.Items, page.Selected, compact)
-			b.Rail.SetHeading(tostring(page.Heading or ""), View._count(page.Items, page.Selected))
+			-- Compact: a page with a picker names its slot or area there already, so the heading line keeps the
+			-- count only and has room for the upgrade points beside the buttons on the narrowest phones.
+			-- An empty rail has no count, so it keeps the name: the line needs something to stand on.
+			local count = View._count(page.Items, page.Selected)
+			local heading = (compact and page.Picker ~= nil and count ~= nil) and "" or tostring(page.Heading or "")
+			b.Rail.SetHeading(heading, count)
 		end
 		local emptyText = (railShown and #page.Items == 0 and page.EmptyMessage) or ""
 		b.Empty.Set({ Text = emptyText, Visible = emptyText ~= "" })
@@ -666,8 +829,14 @@ function View.Mount(layer: any, model: any, scope: any, opts: any)
 				b.Segment.Set({ Tabs = specs, Selected = page.Source.Selected })
 			end
 			b.Segment.Set({ Selected = page.Source.Selected, Visible = true })
+			if b.SegmentSeat then
+				put(b.SegmentSeat, "Visible", true)
+			end
 		elseif b.Segment then
 			b.Segment.Set({ Visible = false })
+			if b.SegmentSeat then
+				put(b.SegmentSeat, "Visible", false)
+			end
 		end
 
 		-- Upgrade points.
@@ -687,7 +856,6 @@ function View.Mount(layer: any, model: any, scope: any, opts: any)
 		end
 
 		-- Slot or area picker.
-		local top = b.Header.Height() + gap
 		if tabPage and page.Picker ~= nil then
 			ensurePicker(b)
 			local options, parts = {}, {}
@@ -702,17 +870,26 @@ function View.Mount(layer: any, model: any, scope: any, opts: any)
 				b.Picker.Set({ Label = tostring(page.Picker.Label), Options = options, Selected = page.Picker.Selected })
 			end
 			b.Picker.Set({ Selected = page.Picker.Selected, Visible = true })
-			put(b.Picker.Instance, "Position", UDim2.fromOffset(0, top))
-			top = top + b.Picker.Instance.Size.Y.Offset + gap
 		elseif b.Picker then
 			b.Picker.Set({ Visible = false })
 		end
 
-		-- Paint controls and presets.
+		-- Paint controls and presets. Placed before Show: on Compact the view leaves the presets out when the
+		-- docked block would reach what stands above it.
 		if colour then
 			ensurePaint(b)
-			-- Placed before Show: on Compact the view leaves the presets out when the controls reach them.
-			put(b.Paint.Controls, "Position", UDim2.fromOffset(0, top))
+		end
+		local layout = b.WorkspacePage.Layout
+		if layout == nil then
+			layout = {}
+			b.WorkspacePage.Layout = layout
+		end
+		layout.Tabs = tabPage
+		layout.Picker = tabPage and page.Picker ~= nil
+		layout.Colour = colour
+		layout.Stats = page.Stats ~= nil
+		placeWorkspace(b)
+		if colour then
 			b.Paint.Show(page.Paint, page.Token)
 		elseif b.Paint then
 			b.Paint.Hide()

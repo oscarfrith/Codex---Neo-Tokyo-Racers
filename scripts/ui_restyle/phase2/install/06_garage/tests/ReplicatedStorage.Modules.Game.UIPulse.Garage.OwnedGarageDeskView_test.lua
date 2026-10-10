@@ -74,5 +74,23 @@ return function(M, env)
 		expect(M._railNeedsClear(nil, nil, false) == false and M._railNeedsClear(nil, "Floor", false) == false, "nothing held, nothing to drop")
 	end)
 
+	case("compact buttons: on the rail's heading line, ending a hairline above the tile row", function()
+		-- 844x390: the rail ends at 382 and is 92 high (heading 22, gap 4, tile row 66); a button row is 48 high
+		-- with a 36 px button drawn in its middle.
+		local bottom = M._buttonLine(382, 92, 66, 48, 36, 2)
+		expect(bottom == 320, "row bottom, " .. bottom)
+		local drawnTop, drawnBottom = bottom - 6 - 36, bottom - 6
+		expect(drawnBottom == 382 - 66 - 2, "the drawn button ends a hairline above the tile row")
+		expect(drawnTop < 382 - 92 + 22 and drawnBottom > 382 - 92, "and overlaps the heading's line")
+		expect(M._buttonLine(382, 66, 66, 48, 36, 2) == 320, "no heading: still just above the tiles")
+		expect(M._buttonLine(382, 0, 66, 48, 36, 2) == 386, "a rail that is not laid out yet takes no room")
+		-- The tile row is read from the rail's scroller (the row plus a glow margin all round) when there is one.
+		local function scroller(y, height)
+			return { Position = { Y = { Offset = y } }, Size = { Y = { Offset = height } } }
+		end
+		expect(M._tileRow(92, scroller(9, 100), 50) == 66, "from the rail: 100 less a 17 px margin above and below")
+		expect(M._tileRow(92, nil, 66) == 66 and M._tileRow(92, scroller(0, 0), 66) == 66, "no scroller, or not laid out: the tokens")
+	end)
+
 	return results
 end

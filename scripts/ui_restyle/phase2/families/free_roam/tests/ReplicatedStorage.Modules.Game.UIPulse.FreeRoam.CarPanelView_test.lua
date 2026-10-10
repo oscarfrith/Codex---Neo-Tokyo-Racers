@@ -28,7 +28,7 @@ return function(M, env)
 	case("tile items (Compact): tier and rating on the tile", function()
 		local items = M._tileItems(rows, "BuyMore")
 		expect(#items == 3 and items[1].Icon == "plus", "buy more tile")
-		expect(items[2].Rating == 939 and items[2].Status == "Owned" and items[2].State == "Selected", "owned tile")
+		expect(items[2].Rating == 939 and items[2].Status == nil and items[2].ChipRightKind == "Tick" and items[2].PictureMode == "Full" and items[2].State == "Selected", "owned tile")
 		expect(items[3].Tier == nil, "unknown tier")
 	end)
 

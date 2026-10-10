@@ -28,6 +28,9 @@ View.BOARD_ROWS_REGULAR = 4 -- r13a: four rows round the player
 View.BOARD_ROWS_COMPACT = 3 -- c08
 View.MAX_PIPS = 32
 View.MAX_BIG_NUMBER = 99 -- the position number has two cells
+View.BOARD_FIRST_COMPACT = Space.CompactStatusHeight -- dp: the position column of a Compact board line
+View.RESET_IDLE = "RESET" -- RaceHudModel's resting button texts (S166, S167); anything else is feedback
+View.EXIT_IDLE = "EXIT"
 
 local function put(instance, property, value)
 	if instance[property] ~= value then
@@ -129,7 +132,10 @@ function View.Mount(layer, model, scope, options)
 
 		-- The vignette goes in the layer's scrim gui, which is ordered behind every other HUD gui; a stage layer
 		-- (tests, gallery) has none and keeps it in its root.
-		keep(Surface.Scrim(layer.ScrimRoot or layer.Root, { Name = "HudScrim", Kind = "Hud" }, scope))
+		local scrim = keep(Surface.Scrim(layer.ScrimRoot or layer.Root, { Name = "HudScrim", Kind = "Hud" }, scope))
+		-- On a stage the vignette shares the root with the slots (built first) and must draw under them, or the
+		-- timer and the board are dimmed by it.
+		scrim.Instance.ZIndex = 0
 
 		-- Top left: position (race) or lap (time trial), with the lap or tier line under it.
 		local block = frame("LapProgress", layer.Slot("TopLeftHud"), Enum.FillDirection.Vertical, true)
@@ -183,10 +189,42 @@ function View.Mount(layer, model, scope, options)
 		board.AnchorPoint = layer.Slot("TopRight").AnchorPoint
 		board.Parent = layer.Slot("TopRight")
 		table.insert(p.Frames, board)
-		p.Board = keep(Collections.List(board, { Name = "Rows", RowHeight = rowHeight, Width = boardWidth }, scope))
+		local boardList = nil
+		if compact then
+			-- Compact: plain shadowed text lines, not kit list rows. A list row is never lower than a touch target, so
+			-- three rows were 150 px of a 390 px screen (and the third was cut off by the 78 px box); nothing here
+			-- is pressed. Two labels per line, built once: position and name (race) or label and time (time trial).
+			boardList = Instance.new("UIListLayout")
+			boardList.Name = "Layout"
+			boardList.FillDirection = Enum.FillDirection.Vertical
+			boardList.SortOrder = Enum.SortOrder.LayoutOrder
+			boardList.Parent = board
+			p.BoardLines = {}
+			for index = 1, p.BoardRows do
+				local line = frame("Row" .. tostring(index), board, Enum.FillDirection.Horizontal, false)
+				line.LayoutOrder = index
+				line.Visible = false
+				local first = keep(Text.Label(line, { Name = "First", Text = "", Role = "Value", Colour = "TextSecondary",
+					Align = "Left", Shadow = true, MaxWidth = View.BOARD_FIRST_COMPACT, LayoutOrder = 1 }, scope))
+				local second = keep(Text.Label(line, { Name = "Second", Text = "", Role = "Value", Colour = "TextSecondary",
+					Align = "Left", Shadow = true, MaxWidth = boardWidth - View.BOARD_FIRST_COMPACT, LayoutOrder = 2 }, scope))
+				p.BoardLines[index] = { Frame = line, First = first, Second = second }
+			end
+		else
+			p.Board = keep(Collections.List(board, { Name = "Rows", RowHeight = rowHeight, Width = boardWidth }, scope))
+		end
 
-		-- Reset and exit. Icon-only on Compact (c08).
-		local controls, controlsList = frame("SessionControls", layer.Slot("HudButtons"), Enum.FillDirection.Horizontal, true)
+		-- Reset and exit. Compact (c08): icon-only, top right under the order board, where neither the touch driving
+		-- clusters (bottom corners), the speed gauge (bottom centre) nor the prompts (above the gauge) ever are; the
+		-- free-roam minimap and cash chip that share that corner are hidden during a race. Regular: slot HudButtons.
+		local controls, controlsList = frame("SessionControls", layer.Slot(compact and "TopRight" or "HudButtons"),
+			Enum.FillDirection.Horizontal, true)
+		if compact then
+			controlsList.VerticalAlignment = Enum.VerticalAlignment.Center
+			-- The icon-only buttons cannot show RESET DONE, RESET FAILED or EXIT FAILED; this line beside them does.
+			p.Feedback = keep(Text.Label(controls, { Name = "Feedback", Text = "", Role = "Label", Align = "Right",
+				Shadow = true, Visible = false, LayoutOrder = 0 }, scope))
+		end
 		p.Reset = keep(Controls.Button(controls, { Name = "Reset", Variant = "Default", Size = "Hud", Text = "RESET",
 			Icon = "back", IconOnly = compact, LayoutOrder = 1, OnActivated = function()
 				model.RequestReset()
@@ -237,9 +275,20 @@ function View.Mount(layer, model, scope, options)
 			local gap = UDim.new(0, ctx.Px(Space.Gap))
 			put(numberList, "Padding", gap)
 			put(stripList, "Padding", gap)
-			put(metricList, "Padding", gap)
+			-- Compact: the timer stack is tighter, so it stays a small block at the top edge.
+			put(metricList, "Padding", compact and UDim.new(0, ctx.Px(Space.StatusPad)) or gap)
 			put(controlsList, "Padding", gap)
-			put(board, "Size", UDim2.fromOffset(ctx.Px(boardWidth), ctx.Px(rowHeight) * p.BoardRows))
+			if boardList then
+				local line = Text.SizeFor("Value", ctx)
+				local between = ctx.Px(Space.Hairline)
+				local height = p.BoardRows * line + (p.BoardRows - 1) * between
+				put(boardList, "Padding", UDim.new(0, between))
+				put(board, "Size", UDim2.fromOffset(ctx.Px(boardWidth), height))
+				-- Under the board's full height, so the buttons do not move as rows come and go.
+				put(controls, "Position", UDim2.fromOffset(0, height + gap.Offset))
+			else
+				put(board, "Size", UDim2.fromOffset(ctx.Px(boardWidth), ctx.Px(rowHeight) * p.BoardRows))
+			end
 			if p.MapFrame then
 				put(p.MapFrame, "Size", UDim2.fromOffset(ctx.Px(Space.TileWidth), ctx.Px(Space.TileHeight)))
 			end
@@ -357,16 +406,42 @@ function View.Mount(layer, model, scope, options)
 		local boardKey = View._signature(rows)
 		if boardKey ~= p.BoardKey then
 			p.BoardKey = boardKey
-			local items = {}
-			for index, row in ipairs(rows) do
-				items[index] = { Key = row.Key, Columns = row.Columns, Accent = row.You == true,
-					State = row.You and "Selected" or "Default" }
+			if p.BoardLines then
+				local width = p.Compact and Space.CompactStatPanelWidth or Space.ListWidth
+				for index, line in ipairs(p.BoardLines) do
+					local row = rows[index]
+					if row then
+						-- Race: position, name. Time trial: label, time (its first column repeats the label).
+						local columns = row.Columns
+						local wide = #columns >= 3
+						local you = row.You == true
+						line.First.Set({ Text = (wide and columns[2] or columns[1]) or "",
+							MaxWidth = wide and width / 2 or View.BOARD_FIRST_COMPACT,
+							Colour = you and "Pink" or "TextSecondary" })
+						line.Second.Set({ Text = columns[#columns] or "",
+							MaxWidth = wide and width / 2 or (width - View.BOARD_FIRST_COMPACT),
+							Align = wide and "Right" or "Left",
+							Colour = (you or wide) and "White" or "TextSecondary" })
+					end
+					put(line.Frame, "Visible", row ~= nil)
+				end
+			else
+				local items = {}
+				for index, row in ipairs(rows) do
+					items[index] = { Key = row.Key, Columns = row.Columns, Accent = row.You == true,
+						State = row.You and "Selected" or "Default" }
+				end
+				p.Board.SetItems(items)
 			end
-			p.Board.SetItems(items)
 		end
 
-		p.Reset.Set({ Text = model.ResetText() })
-		p.Exit.Set({ Text = model.ExitText() })
+		local resetText, exitText = model.ResetText(), model.ExitText()
+		p.Reset.Set({ Text = resetText })
+		p.Exit.Set({ Text = exitText })
+		if p.Feedback then
+			local note = (resetText ~= View.RESET_IDLE and resetText) or (exitText ~= View.EXIT_IDLE and exitText) or ""
+			p.Feedback.Set({ Text = note, Visible = note ~= "" })
+		end
 
 		if p.MapArt then
 			local image = model.MapImage()

@@ -328,7 +328,10 @@ function Model:Open(): boolean
 	self.IsOpenNow = true
 	self.Cal = deps.Calibration()
 	self.VisibleStuds = (c.RememberZoom and self.RememberedStuds) or c.OpenVisibleStuds
-	self.LegendOpenNow = c.LegendOpen and not (deps.IsCompact() and self.View.W < c.MobileLegendMinViewport)
+	-- A Compact screen (a phone) always opens with the legend closed, so the map is never covered until the player
+	-- asks for the key (mobile pass 2026-10-10). Classic closed it only under MobileLegendMinViewport (760 px), which
+	-- an 844-wide phone passes; that attribute no longer changes anything under Pulse.
+	self.LegendOpenNow = c.LegendOpen and not deps.IsCompact()
 	self.Bounds = self:ReadBounds()
 	self:ClampView()
 	self.Pan = self:PlayerUnit() or Vector2.new(0.5, 0.5)

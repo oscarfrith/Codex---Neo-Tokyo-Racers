@@ -444,7 +444,7 @@ return function(Model, env)
 		expect(view.Calibration, model.Cal, "Calibration")
 	end)
 
-	case("the legend starts closed on a narrow Compact screen only", function()
+	case("the legend starts closed on every Compact screen and open on Regular", function()
 		local deps = world(env)
 		local model = Model.new(deps)
 		deps.Compact = true
@@ -454,9 +454,14 @@ return function(Model, env)
 		model:Close()
 		model:SetViewSize(844, 390)
 		model:Open()
-		expect(model:LegendOpen(), true, "wide compact")
+		expect(model:LegendOpen(), false, "wide compact")
 		model:ToggleLegend()
-		expect(model:LegendOpen(), false, "toggle")
+		expect(model:LegendOpen(), true, "toggle opens it")
+		model:Close()
+		deps.Compact = false
+		model:SetViewSize(1920, 1080)
+		model:Open()
+		expect(model:LegendOpen(), true, "regular")
 	end)
 
 	return results

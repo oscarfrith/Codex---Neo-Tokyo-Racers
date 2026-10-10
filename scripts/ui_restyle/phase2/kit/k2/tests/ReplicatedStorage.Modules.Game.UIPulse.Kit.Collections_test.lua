@@ -392,7 +392,9 @@ return function(M, env)
 			tile.Set({ State = "Selected" })
 			expect(root.Size == size, preset .. ": selection changed the hit box")
 			expect(root.Fill.Size.Y.Offset > fillHeight, preset .. ": the fill did not grow")
-			expect(root.Fill.Visual.Size.Y.Offset > visual.Y.Offset, preset .. ": the visual did not grow")
+			if ctx.Class == "Regular" then -- the Compact icon is a top-row part and keeps its size (A7)
+				expect(root.Fill.Visual.Size.Y.Offset > visual.Y.Offset, preset .. ": the visual did not grow")
+			end
 			expect(#root:GetDescendants() == count, preset .. ": selection created or destroyed instances")
 			tile.Set({ State = "Default" })
 			expect(root.Fill.Size.Y.Offset == fillHeight and root.Fill.Visual.Size == visual, preset .. ": deselect did not restore")
@@ -715,13 +717,76 @@ return function(M, env)
 			tile.Set({ State = "Selected" })
 			expect(gradient.Enabled == true and line.BackgroundTransparency == 0, preset .. ": selected base line")
 			expect(line.Size.Y.Offset >= thin and line.Position.Y.Offset + line.Size.Y.Offset == fill.Size.Y.Offset, preset .. ": base line box")
-			expect(fill.BackgroundColor3 == Tokens.Colour.White and fill.BackgroundTransparency == 0, preset .. ": selected fill")
 			if ctx.Class == "Compact" then
+				-- A7: a Compact tile never takes the White fill.
+				expect(fill.BackgroundColor3 == Tokens.Colour.Slate and fill.BackgroundTransparency == 0, preset .. ": selected fill")
+				expect(fill.Title.TextColor3 == Tokens.Colour.White, preset .. ": selected name is not light")
 				expect(tile.Instance.Size.Y.Offset == ctx.Px(Tokens.Space.CompactTileHeight), preset .. ": compact tile height")
+			else
+				expect(fill.BackgroundColor3 == Tokens.Colour.White and fill.BackgroundTransparency == 0, preset .. ": selected fill")
 			end
 			tile.Destroy()
 			scope:destroy()
 		end
+	end)
+	-- A7 (mobile pass): the phone tile.
+	case("compactTile: never a White fill; a picture gives the full-frame look", function()
+		local selected = M._compactTile(M._resolveTile("Selected", "None", {}), {}, false)
+		expect(selected.Fill == "Slate" and selected.FillOpacity == 1 and selected.Ink == "White", "selected fill or ink")
+		expect(selected.OnLight == false and selected.ChipFill == "White" and selected.ChipInk == "White", "selected chips")
+		expect(selected.Glow == true and selected.Grow == true and selected.Line == "Pink" and selected.LineOpacity == 1, "selected marks lost")
+		local plain = M._compactTile(M._resolveTile("Default", "None", {}), {}, false)
+		expect(plain.Fill == "Slate" and plain.FillOpacity == Tokens.Opacity.Panel and plain.Ink == "White", "default look changed")
+		local picture = M._compactTile(M._resolveTile("Selected", "None", {}), {}, true)
+		expect(picture.Fill == "Slate" and picture.Dim == 0 and picture.ChipFill == "Ink", "picture look")
+		local locked = M._compactTile(M._resolveTile("Default", "Locked", {}), {}, false)
+		expect(locked.Lock == true and locked.Active == false and locked.Opacity == Tokens.Opacity.Locked, "locked look changed")
+	end)
+	case("compactTop: the chip stays; the rating goes first, then the icon, then the tier letter", function()
+		local function row(...)
+			local tier, rating, icon = M._compactTop(...)
+			return (tier and "T" or "") .. (rating and "R" or "") .. (icon and "I" or "")
+		end
+		expect(row(110, 48, 20, 32, 0, 4) == "TR", "badge and chip fit: " .. row(110, 48, 20, 32, 0, 4))
+		expect(row(110, 48, 20, 32, 16, 4) == "TI", "the rating goes before the icon")
+		expect(row(110, 83, 20, 32, 16, 4) == "T", "then the icon")
+		expect(row(110, 100, 20, 32, 16, 4) == "", "then the letter")
+		expect(row(110, 0, 20, 32, 16, 4) == "TRI", "no chip: everything")
+		expect(row(110, 48, 0, 32, 16, 4) == "I", "a rating without a tier is never shown")
+		expect(row(110, 0, 0, 0, 0, 4) == "", "nothing to show")
+	end)
+	case("Tile C844: one width for every name; the top row never overlaps; the name is clipped to two lines", function()
+		local parent, ctx = stage("C844")
+		local scope = newScope()
+		local short = M.Tile(parent, { Title = "Rosso", Tier = "A", Rating = 800, Status = "Owned" }, scope)
+		local long = M.Tile(parent, { Title = "Meridian grand tourer evoluzione GT", Tier = "S", Rating = 936, Price = "$12,000,000", Icon = "car", State = "Selected" }, scope)
+		expect(short.Instance.Size == long.Instance.Size, "the name changed the tile's size")
+		expect(short.Instance.Size.X.Offset >= ctx.Px(Tokens.Space.CompactTileMinWidth), "under the minimum width")
+		for _, tile in ipairs({ short, long }) do
+			local fill = tile.Instance.Fill
+			local width = fill.Size.X.Offset
+			local corner = fill.Corner
+			expect(corner.Visible == true and corner.Position.X.Offset + corner.Size.X.Offset == width, "the chip is not in the corner")
+			local reach = 0
+			for _, name in ipairs({ "TierLetter", "TierRating", "Visual" }) do
+				local part = fill:FindFirstChild(name)
+				if part ~= nil and part.Visible then
+					reach = math.max(reach, part.Position.X.Offset + part.Size.X.Offset)
+				end
+			end
+			expect(reach <= corner.Position.X.Offset, "a top-row part reaches under the chip")
+			local title = fill.Title
+			expect(title.TextTruncate == Enum.TextTruncate.AtEnd and title.TextWrapped == true, "the name is not clipped")
+			expect(title.Position.X.Offset >= 0 and title.Position.X.Offset + title.Size.X.Offset <= width, "the name box leaves the tile")
+			expect(title.Position.Y.Offset >= corner.Position.Y.Offset + corner.Size.Y.Offset, "the name box reaches the top row")
+			expect(fill:FindFirstChild("Sub") == nil and fill:FindFirstChild("ChipLeft") == nil, "a Compact tile has no sub-line or left chip")
+		end
+		local locked = M.Tile(parent, { Title = "Seraph", Status = "Locked", Price = "$9.80M" }, scope)
+		expect(locked.Instance.Fill.Visual.Visible == true and locked.Instance.Fill:FindFirstChild("Lock") == nil, "the lock is the top-row icon")
+		for _, child in ipairs(parent:GetChildren()) do
+			child:Destroy()
+		end
+		scope:destroy()
 	end)
 	case("Tile: the glow is a sibling under Fill on the grown plate, shown only when selected", function()
 		local parent = stage("R1080")
@@ -976,6 +1041,65 @@ return function(M, env)
 		expect(you.Instance:FindFirstChild("Glow") == nil, "a pooled row carries its own glow")
 		expect(root.Size.Y.Offset > 4 * ctx.Px(56), "the list is shorter than its rows")
 		list.Destroy()
+		scope:destroy()
+	end)
+	-- Mobile pass round 2 (API2 amendments A15 and A16).
+	case("ListRow C844: Selected is an opaque Slate plate with light text and the Pink to Violet line, never White", function()
+		local parent, ctx = stage("C844")
+		local scope = newScope()
+		local row = M.ListRow(parent, { Title = "Showroom loop", Sub = "Circuit", Right = "$25,000", Chip = "New", Accent = true }, scope)
+		local root = row.Instance
+		local fill = root.Fill
+		local line = fill.HairBottom
+		local count = #root:GetDescendants()
+		row.Set({ State = "Selected" })
+		expect(fill.BackgroundColor3 == Tokens.Colour.Slate and fill.BackgroundTransparency == 0, "the selected plate is not opaque Slate")
+		expect(fill.Title.TextColor3 == Tokens.Colour.White and fill.Sub.TextColor3 == Tokens.Colour.White, "the selected text is not light")
+		expect(fill.Right.TextColor3 == Tokens.Colour.White, "the right-hand text is not light")
+		expect(fill.Chip.BackgroundColor3 == Tokens.Colour.White and fill.Chip.TextColor3 == Tokens.Colour.White, "the neutral chip took the on-white look")
+		expect(line:FindFirstChildOfClass("UIGradient").Enabled == true, "no Pink to Violet line")
+		expect(line.Size.Y.Offset == ctx.Px(Tokens.Space.Hairline + Tokens.Space.Hairline), "the selected line is not the 4 dp one")
+		expect(fill.Accent.Visible == true and fill.Accent.BackgroundColor3 == Tokens.Colour.Pink, "the Pink left bar went")
+		expect(#root:GetDescendants() == count, "selection created or destroyed instances")
+		row.Set({ State = "Default" })
+		expect(about(fill.BackgroundTransparency, 1 - Tokens.Opacity.Panel) and fill.Title.TextColor3 == Tokens.Colour.White, "the default row changed")
+		row.Destroy()
+		-- Regular keeps the White plate with Ink text.
+		local desk = stage("R1080")
+		local deskRow = M.ListRow(desk, { Title = "Showroom loop", State = "Selected" }, scope)
+		expect(deskRow.Instance.Fill.BackgroundColor3 == Tokens.Colour.White and deskRow.Instance.Fill.BackgroundTransparency == 0, "Regular selected fill changed")
+		expect(deskRow.Instance.Fill.Title.TextColor3 == Tokens.Colour.Ink, "Regular selected text changed")
+		deskRow.Destroy()
+		scope:destroy()
+	end)
+	case("List: Dense drops the touch-size floor of the rows; the default keeps it; Set switches it", function()
+		local parent, ctx = stage("C844")
+		local scope = newScope()
+		local list = M.List(parent, { RowHeight = 28, Header = { "#", "Driver", "Gap" } }, scope)
+		list.SetItems(standings())
+		local you = list.Row("you").Instance
+		expect(you.Size.Y.Offset == ctx.Touch(1) and ctx.Touch(1) > ctx.Px(28), "the default list lost its touch-size rows")
+		local tall = list.Instance.Size.Y.Offset
+		list.Set({ Dense = true })
+		expect(you.Size.Y.Offset == ctx.Px(28), "Dense did not drop the floor: " .. you.Size.Y.Offset)
+		expect(list.Instance.Size.Y.Offset < tall, "the dense list is not shorter")
+		local neon = list.Row("neon").Instance
+		expect(you.Position.Y.Offset >= neon.Position.Y.Offset + neon.Size.Y.Offset, "dense rows overlap")
+		list.Set({ Dense = false })
+		expect(you.Size.Y.Offset == ctx.Touch(1), "Dense = false did not restore the floor")
+		list.Destroy()
+		local dense = M.List(parent, { RowHeight = 28, Dense = true }, scope)
+		dense.SetItems(standings())
+		expect(dense.Row("you").Instance.Size.Y.Offset == ctx.Px(28), "Dense in props")
+		dense.Destroy()
+		-- Regular with a mouse has no floor either way.
+		local desk, deskCtx = stage("R1080")
+		local plain = M.List(desk, { RowHeight = 56 }, scope)
+		plain.SetItems(standings())
+		local before = plain.Row("you").Instance.Size
+		plain.Set({ Dense = true })
+		expect(plain.Row("you").Instance.Size == before and before.Y.Offset == deskCtx.Px(56), "Dense changed a Regular row")
+		plain.Destroy()
 		scope:destroy()
 	end)
 	for _, preset in ipairs({ "R1080", "C844" }) do

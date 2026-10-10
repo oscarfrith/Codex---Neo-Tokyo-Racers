@@ -8,6 +8,7 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local LAYER_NAME = "OwnedGarageInteriorHUD"
 local ROOT_NAME = "AccessControls"
 local NO_PLAYERS = "__none"
+local DEFAULT_LIST_ROWS = 6 -- the rows a kit dropdown shows before it scrolls, when it is given no MaxRows
 
 local Hud = {}
 local started = false
@@ -86,6 +87,20 @@ function Hud._title(state)
 	return ""
 end
 
+-- Pure. Compact: are the two controls side by side? Only when both and the gap fit the width between the margins.
+function Hud._sideBySide(accessWidth, inviteWidth, gap, room)
+	return accessWidth + gap + inviteWidth <= room
+end
+
+-- Pure. Compact: the rows an open list may show so that it ends on the screen. `listTop` is where the list starts
+-- (the foot of the lower control), `rowHeight` one list row; all real px. At least one row.
+function Hud._listRows(screenHeight, listTop, rowHeight)
+	if rowHeight <= 0 then
+		return 1
+	end
+	return math.max(1, math.floor((screenHeight - listTop) / rowHeight))
+end
+
 function Hud.Start()
 	if started then
 		return true, "AlreadyStarted"
@@ -127,6 +142,7 @@ function Hud.Start()
 	local wasVisible = false
 	local accessRows, inviteRows = {}, {}
 	local title, access, invite = nil, nil, nil
+	local fit = function() end -- lays the two controls out for the screen class; set when they are built
 	local syncing = false
 	local accessKey, inviteKey = nil, nil -- the option lists the two dropdowns were last given (Hud._optionsKey)
 
@@ -179,6 +195,7 @@ function Hud.Start()
 			if title then
 				title.Set({ Text = Hud._title(state), Visible = Hud._title(state) ~= "" })
 			end
+			fit()
 		end)
 		syncing = false
 		if not ok then
@@ -269,11 +286,13 @@ function Hud.Start()
 		local Text = require(kit.Text)
 		local Controls = require(kit.Controls)
 		local ctx = layer.Metrics
+		local space = Tokens.Space
+		local slot = layer.Slot("TopLeftHud")
 		local column = Instance.new("UIListLayout")
 		column.Name = "Layout"
 		column.FillDirection = Enum.FillDirection.Vertical
 		column.SortOrder = Enum.SortOrder.LayoutOrder
-		column.Padding = UDim.new(0, ctx.Px(Tokens.Space.Gap))
+		column.Padding = UDim.new(0, ctx.Px(space.Gap))
 		column.Parent = root
 		title = Text.Label(root, { Name = "GarageTitle", Text = "", Role = "SectionHead", Align = "Left", Shadow = true, LayoutOrder = 1, Visible = false }, scope)
 		local row = Instance.new("Frame")
@@ -287,7 +306,7 @@ function Hud.Start()
 		rowLayout.Name = "Layout"
 		rowLayout.FillDirection = Enum.FillDirection.Horizontal
 		rowLayout.SortOrder = Enum.SortOrder.LayoutOrder
-		rowLayout.Padding = UDim.new(0, ctx.Px(Tokens.Space.Gap))
+		rowLayout.Padding = UDim.new(0, ctx.Px(space.Gap))
 		rowLayout.Parent = row
 		access = Controls.Dropdown(row, {
 			Name = "Access",
@@ -337,9 +356,48 @@ function Hud.Start()
 				task.spawn(refresh, state == nil)
 			end)
 		end
+
+		-- Regular: as built (the two controls side by side, the kit's own list length). Compact: the small gap;
+		-- the controls go one under the other when the two do not fit the width between the margins (a long
+		-- access mode on a 568 px phone); and an open list is kept on the screen (the kit list opens downward
+		-- with up to six touch-size rows, which is taller than what is left under the controls on a phone).
+		local limited = false
+		fit = function()
+			local compact = ctx.Class == "Compact"
+			local gap = ctx.Px(compact and space.CompactKeepOutGap or space.Gap)
+			column.Padding = UDim.new(0, gap)
+			rowLayout.Padding = UDim.new(0, gap)
+			local accessSize, inviteSize = access.Instance.Size, invite.Instance.Size
+			local room = ctx.Size.X - 2 * slot.Position.X.Offset
+			local stacked = compact and not Hud._sideBySide(accessSize.X.Offset, inviteSize.X.Offset, gap, room)
+			rowLayout.FillDirection = stacked and Enum.FillDirection.Vertical or Enum.FillDirection.Horizontal
+			if compact then
+				local rowHeight = accessSize.Y.Offset
+				local titleHeight = title.Instance.Visible and title.Instance.Size.Y.Offset + gap or 0
+				local controls = stacked and (rowHeight + gap + inviteSize.Y.Offset) or rowHeight
+				local rows = Hud._listRows(ctx.Size.Y, slot.Position.Y.Offset + titleHeight + controls, rowHeight)
+				access.Set({ MaxRows = rows })
+				invite.Set({ MaxRows = rows })
+				limited = true
+			elseif limited then
+				access.Set({ MaxRows = DEFAULT_LIST_ROWS })
+				invite.Set({ MaxRows = DEFAULT_LIST_ROWS })
+				limited = false
+			end
+		end
+		scope:connect(access.Instance:GetPropertyChangedSignal("Size"), fit)
+		scope:connect(invite.Instance:GetPropertyChangedSignal("Size"), fit)
+		scope:connect(slot:GetPropertyChangedSignal("Position"), fit)
+		scope:connect(ctx.Changed, function(change)
+			if type(change) == "table" and change.Layout then
+				task.defer(fit)
+			end
+		end)
+		fit()
 	end, debug.traceback)
 	if not built then
 		access, invite = nil, nil
+		fit = function() end
 		warn("[Pulse.GarageInteriorHud] view build failed; AccessControls has no controls: " .. tostring(problem))
 	end
 

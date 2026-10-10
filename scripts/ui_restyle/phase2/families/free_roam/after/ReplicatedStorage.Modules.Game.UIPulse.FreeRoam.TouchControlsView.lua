@@ -60,6 +60,14 @@ function View._place(width, height, s)
 	}
 end
 
+-- Pure. The top-left of the tilt status line: `corner` is the tilt group's bottom-left corner, the drift button
+-- (driftHeight) stands on it, RECENTER (recenterWidth by recenterHeight) one gap above, and the line (lineHeight)
+-- sits one gap right of RECENTER, on the middle of its row.
+function View._tiltStatusPlace(corner, driftHeight, recenterWidth, recenterHeight, gap, lineHeight)
+	local rowTop = corner.Y - driftHeight - gap - recenterHeight
+	return corner.X + recenterWidth + gap, rowTop + math.floor((recenterHeight - lineHeight) / 2)
+end
+
 -- Pure. The real-pixel sizes _place needs, from tokens and the generated sprite data.
 function View._sizes(ctx)
 	local compact = ctx.Class == "Compact"
@@ -118,7 +126,9 @@ function View.Mount(layer, _model, scope)
 	local bag = {}
 	local destroyed = false
 
-	local root = plain("DriveRoot", nil)
+	-- Parented first: a kit component reads its screen context from its ancestors when it is built (Metrics.Of), so
+	-- everything below must already hang from the layer root.
+	local root = plain("DriveRoot", layer.Root)
 	root.Size = UDim2.fromScale(1, 1)
 	root.Visible = false
 
@@ -173,6 +183,16 @@ function View.Mount(layer, _model, scope)
 	hairBottom.BackgroundColor3 = Colour.Pink
 	hairBottom.AnchorPoint = Vector2.new(0, 1)
 	hairBottom.Position = UDim2.new(0, 0, 1, 0)
+	-- The two side lines close the pad into the outlined square the arrow buttons have: with a top and a bottom line
+	-- only, the pad read as two stray lines over the road.
+	local hairLeft = plain("HairLeft", thumbOuter)
+	hairLeft.BackgroundTransparency = 0
+	hairLeft.BackgroundColor3 = Colour.Pink
+	local hairRight = plain("HairRight", thumbOuter)
+	hairRight.BackgroundTransparency = 0
+	hairRight.BackgroundColor3 = Colour.Pink
+	hairRight.AnchorPoint = Vector2.new(1, 0)
+	hairRight.Position = UDim2.new(1, 0, 0, 0)
 
 	local thumbKnob = plain("Knob", thumbOuter)
 	thumbKnob.AnchorPoint = KNOB_ANCHOR
@@ -186,7 +206,7 @@ function View.Mount(layer, _model, scope)
 	table.insert(bag, driftLabel)
 
 	-- The kept thumbstick code writes outerStroke.Color (Classic 136, 139). Pulse has no stroke: the write recolours
-	-- the two hairlines, and only when the colour changes.
+	-- the pad's four hairlines, and only when the colour changes.
 	local strokeColour = Colour.Pink
 	local outerStroke = setmetatable({}, {
 		__index = function(_, key)
@@ -203,11 +223,15 @@ function View.Mount(layer, _model, scope)
 				strokeColour = value
 				hairTop.BackgroundColor3 = value
 				hairBottom.BackgroundColor3 = value
+				hairLeft.BackgroundColor3 = value
+				hairRight.BackgroundColor3 = value
 			end
 		end,
 	})
 
-	-- Tilt group: status line, RECENTER, the tilt drift button, stacked upward from the bottom-left corner. The box
+	-- Tilt group: RECENTER above the tilt drift button, stacked upward from the bottom-left corner (the Classic
+	-- arrangement). The status line is not in the stack: with it the stack was taller than the arrow cluster it
+	-- replaces and its top line stood on the Boost button, so it sits beside RECENTER, on that button's row. The box
 	-- is sized in layout() (the thumbstick pad's square), not by AutomaticSize: an automatic box with a bottom anchor
 	-- is not relied on to stay on its corner (the HUD action bar did not). The stack is bottom-left aligned, so its
 	-- place does not depend on the box being as large as its content.
@@ -223,8 +247,9 @@ function View.Mount(layer, _model, scope)
 
 	local statusText = "TILT STEERING"
 	local statusVisible = true
-	local status = Text.Label(tiltGroup, {
-		Name = "TiltStatus", Text = statusText, Role = "Label", Colour = "TextMuted", Shadow = true, LayoutOrder = 1,
+	local statusAnchor = plain("AnchorTiltStatus", root)
+	local status = Text.Label(statusAnchor, {
+		Name = "TiltStatus", Text = statusText, Role = "Label", Colour = "TextMuted", Shadow = true,
 	}, scope)
 	table.insert(bag, status)
 	-- The kept mode and calibration code writes tiltStatus.Text and tiltStatus.Visible (Classic 149, 169).
@@ -251,19 +276,17 @@ function View.Mount(layer, _model, scope)
 	})
 
 	local recenter = Controls.Button(tiltGroup, {
-		Name = "TiltRecenter", Variant = "Default", Text = "RECENTER", Size = "Hud", LayoutOrder = 2,
+		Name = "TiltRecenter", Variant = "Default", Text = "RECENTER", Size = "Hud", LayoutOrder = 1,
 		OnActivated = function() end,
 	}, scope)
 	table.insert(bag, recenter)
 	buttons.TiltRecenter = recenter.Instance
 
-	local tiltDrift = Touch.Button(tiltGroup, { Name = "TiltDrift", Control = "Drift", LayoutOrder = 3 }, scope)
+	local tiltDrift = Touch.Button(tiltGroup, { Name = "TiltDrift", Control = "Drift", LayoutOrder = 2 }, scope)
 	table.insert(bag, tiltDrift)
 	components.TiltDrift = tiltDrift
 	byInstance[tiltDrift.Instance] = tiltDrift
 	buttons.TiltDrift = tiltDrift.Instance
-
-	root.Parent = layer.Root
 
 	-- Layout. The kept render step calls this every frame (Classic 197); it returns after three comparisons unless
 	-- the root size or the metrics changed.
@@ -295,11 +318,23 @@ function View.Mount(layer, _model, scope)
 		put(thumbKnob, "Size", UDim2.fromOffset(sizes.Knob, sizes.Knob))
 		put(hairTop, "Size", UDim2.new(1, 0, 0, hair))
 		put(hairBottom, "Size", UDim2.new(1, 0, 0, hair))
+		put(hairLeft, "Size", UDim2.new(0, hair, 1, 0))
+		put(hairRight, "Size", UDim2.new(0, hair, 1, 0))
 		local line = Text.SizeFor("Label", ctx)
 		put(driftLabelAnchor, "Position", UDim2.new(0, gap, 1, -(gap + line)))
 		put(tiltList, "Padding", UDim.new(0, gap))
+		-- The status line: right of RECENTER, on the middle of its row.
+		local recenterSize = recenter.Instance.Size
+		local statusX, statusY = View._tiltStatusPlace(places.TiltGroup, tiltDrift.Instance.Size.Y.Offset,
+			recenterSize.X.Offset, recenterSize.Y.Offset, gap, line)
+		put(statusAnchor, "Position", UDim2.fromOffset(statusX, statusY))
 	end
 	layout()
+	-- RECENTER is as wide as its text, whose bounds can arrive after the build.
+	scope:connect(recenter.Instance:GetPropertyChangedSignal("Size"), function()
+		lastSize = nil
+		layout()
+	end)
 
 	if ctx.Changed then
 		scope:connect(ctx.Changed, function(change)
