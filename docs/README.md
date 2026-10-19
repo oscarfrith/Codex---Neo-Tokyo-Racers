@@ -368,6 +368,10 @@ Point-in-time delivery notes. Read only when investigating a regression or recov
 - [world-phaseF-city-hierarchy-lod-migration-2026-05-29.md](world-phaseF-city-hierarchy-lod-migration-2026-05-29.md)
 - [world-phaseJ-far-lod5-assets-migration-2026-05-29.md](world-phaseJ-far-lod5-assets-migration-2026-05-29.md)
 
+## Game identity
+
+- [design/pulse-racers-pitch-deck.md](design/pulse-racers-pitch-deck.md) - Pulse Racers 2098: name, logo, look, design pillars and the internal pitch deck (reference). Read before writing player-facing or pitch copy.
+
 ## Design proposals (not approved)
 
 - [design/pulse-racers-ui-style-sheet.md](design/pulse-racers-ui-style-sheet.md) - Pulse Racers UI style sheet: five colour roles, one typeface, components, screens, build order (Design - not approved; mockups in assets/ui/mockups/pulse_restyle)

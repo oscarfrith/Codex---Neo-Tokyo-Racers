@@ -4,6 +4,8 @@ Target: **Space Racers v3, place 93959280828322** (since 2026-10-04; made from B
 
 ## Current task and next action
 
+**Game identity and pitch deck recorded (2026-10-19).** The player-facing name is **Pulse Racers 2098**; the logo is the neon start-screen wordmark (`scripts/ui_restyle/assets/out/logo_pulse_racers.png`, `rbxassetid://86895264649881`). Name, logo, look, design pillars and the 11-page internal pitch deck for the Cinnamon directors are in [design/pulse-racers-pitch-deck.md](design/pulse-racers-pitch-deck.md). Docs only; no game change. Next: none for the deck; Oscar sends it.
+
 **Game music installed in PR98 (2026-10-10, agent-verified on desktop, not user-confirmed).** One owner, `Audio.RadioClient`: shuffled free-roam tracks only while driving, a race playlist while racing, Mellow on the start screen, crossfades, levels matched by measurement. The HUD strip is hidden (`Config.Audio.Radio@ShowStrip`). Next: Oscar listens; a real race and phone are unchecked. Details: [patch history](07_patch_history.md). Save the place in Studio to keep it.
 
 **UI restyle (Pulse Racers): the whole Pulse UI is installed in v3 and is the default (2026-10-09, `Config.UI@UIStyle` = `Pulse`, at Oscar's request so he can test). Agent-verified in Studio on desktop in the no-save sandbox; not user-confirmed. Next: Oscar plays it and reports; then a fix pass on his notes and the untested items below. Save the place in Studio to keep this.**

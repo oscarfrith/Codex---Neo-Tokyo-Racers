@@ -2,6 +2,13 @@
 
 Recent deliveries, newest first. Entries before September 2026 live in [the archive](history/patch-history-2026-05-to-2026-08.md).
 
+## 2026-10-19 - Pitch deck and game identity recorded (docs only)
+
+- **What:** the June Gamefam application deck was rebuilt as an 11-page internal pitch for the Cinnamon directors in the Pulse look (Slides artifact, private to Oscar), with funding content removed, current prototype facts, new in-game captures, a recoloured city map with district labels and Oscar's own screenshots and references. Name, logo, look and design pillars are now recorded in [design/pulse-racers-pitch-deck.md](design/pulse-racers-pitch-deck.md).
+- **Studio:** one Play session in Space Racers v3 on 2026-10-09 for screenshots (a car spawned and despawned, a teleport, the dealership and customisation screens opened; nothing bought, no values changed) and read-only Edit queries. No game change; no capture policy applies.
+- **Files:** captures `roblox/captures/pitch-deck-2026-10-09/`, map `assets/ui/map/pulse-city-map-neon-crop.jpg`.
+- **Not verified:** the deck pages were never seen rendered by the assistant (the artifact needs Oscar's sign-in); Oscar reviewed them page by page. Tier score ranges and district label positions in the deck are partly inferred (see the doc).
+
 ## 2026-10-10 - UI restyle: phone layout pass (PR98)
 
 Standard lane; six family agents and two kit rounds; chain refreshed through `scripts/ui_restyle/phase2/install/` (now targeting PR98). Evidence: `phase2/verification.json` (`mobile_pass`), brief `phase2/mobile_pass/BRIEF.md`.
