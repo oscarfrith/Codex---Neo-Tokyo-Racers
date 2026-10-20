@@ -688,6 +688,11 @@ local EXPECT_SERVICES = { ScreenOrientation = "Enum.ScreenOrientation.LandscapeS
 -- Declared changes from later phases (build_verify.py --declared). Listed separately, never counted as failures.
 local DECLARED = {
 	scripts = {
+		["ReplicatedStorage.Modules.Game.Audio.VehicleAudioCatalog"] = {"ReplicatedStorage.Modules.Game.Audio.VehicleAudioCatalog","ModuleScript",16022,1261607600,376995432,false},
+		["ReplicatedStorage.Modules.Game.Audio.VehicleAudioClient"] = {"ReplicatedStorage.Modules.Game.Audio.VehicleAudioClient","ModuleScript",92919,2937444626,1895507206,false},
+		["ReplicatedStorage.Modules.Game.Vehicles.DriveSessionClient"] = {"ReplicatedStorage.Modules.Game.Vehicles.DriveSessionClient","ModuleScript",3099,2542873564,843433840,false},
+		["ReplicatedStorage.Modules.Game.Vehicles.DrivingCameraClient"] = {"ReplicatedStorage.Modules.Game.Vehicles.DrivingCameraClient","ModuleScript",46782,2821889795,2565907089,false},
+		["ReplicatedStorage.Modules.Game.Vehicles.VehicleVFXClient"] = {"ReplicatedStorage.Modules.Game.Vehicles.VehicleVFXClient","ModuleScript",48963,3057451405,2870130039,false},
 		["StarterPlayer.StarterPlayerScripts.ClientBase"] = {"StarterPlayer.StarterPlayerScripts.ClientBase","LocalScript",8326,564541363,3766695237,false},
 	},
 	addedScripts = {
@@ -697,7 +702,7 @@ local DECLARED = {
 		["ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Collections"] = true,
 		["ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Controls"] = true,
 		["ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Data"] = {"ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Data","ModuleScript",8209,2451726006,2796756588,false},
-		["ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Gauge"] = {"ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Gauge","ModuleScript",5423,2664637028,3852216940,false},
+		["ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Gauge"] = {"ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Gauge","ModuleScript",9309,1734057305,3955494879,false},
 		["ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Minimap"] = {"ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Minimap","ModuleScript",4676,3102471882,3391241064,false},
 		["ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Overlay"] = true,
 		["ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Surface"] = true,
@@ -710,7 +715,7 @@ local DECLARED = {
 		["ReplicatedStorage.Modules.Game.UIPulse.Kit.Contracts"] = true,
 		["ReplicatedStorage.Modules.Game.UIPulse.Kit.Controls"] = true,
 		["ReplicatedStorage.Modules.Game.UIPulse.Kit.Data"] = {"ReplicatedStorage.Modules.Game.UIPulse.Kit.Data","ModuleScript",59988,3768628322,972769864,false},
-		["ReplicatedStorage.Modules.Game.UIPulse.Kit.Gauge"] = {"ReplicatedStorage.Modules.Game.UIPulse.Kit.Gauge","ModuleScript",14702,2502745895,1498110527,false},
+		["ReplicatedStorage.Modules.Game.UIPulse.Kit.Gauge"] = {"ReplicatedStorage.Modules.Game.UIPulse.Kit.Gauge","ModuleScript",24023,3194700109,4098534631,false},
 		["ReplicatedStorage.Modules.Game.UIPulse.Kit.Input"] = true,
 		["ReplicatedStorage.Modules.Game.UIPulse.Kit.Layers"] = true,
 		["ReplicatedStorage.Modules.Game.UIPulse.Kit.Metrics"] = true,

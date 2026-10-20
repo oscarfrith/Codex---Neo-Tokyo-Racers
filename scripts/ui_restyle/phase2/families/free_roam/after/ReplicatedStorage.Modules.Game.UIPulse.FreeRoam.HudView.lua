@@ -8,6 +8,13 @@
 
 local TIERS = { E = true, D = true, C = true, B = true, A = true, S = true }
 
+-- Drivetrain telemetry (drivetrain_feel contract 3.2 and 7): the rpm needle's spring and the start-up sweep.
+local NEEDLE_OMEGA = 25 -- rad/s
+local NEEDLE_ZETA = 0.5 -- under 1: a slight overshoot, so the needle slams and settles
+local SWEEP_UP, SWEEP_HOLD, SWEEP_DOWN = 0.2, 0.06, 0.24 -- seconds: the cluster self-test on the first telemetry
+local SHIFT_LIGHT, LIMITER_LIGHT = 2, 3 -- Kit.Gauge.Light.Shift and .Limiter
+local SPIN_LIGHT, OVERDRIVE_LIGHT = 4, 5 -- Kit.Gauge.Light.Spin and .Overdrive
+
 local HudView = {}
 
 local modulesCache
@@ -141,12 +148,117 @@ function HudView._radioSeat(width, height, right, top)
 	return -(math.max(width, right) - math.floor(width * 0.5)), top + height
 end
 
+-- Pure: one exact step of a damped spring whose target holds still over dt, so the needle moves the same at any frame
+-- rate. zeta is kept under 1 (the closed form is the underdamped one). Returns the new position and velocity.
+function HudView._needleStep(position, velocity, target, dt, omega, zeta)
+	if dt <= 0 then return position, velocity end
+	zeta = math.clamp(zeta, 0.05, 0.95)
+	local offset = position - target
+	local decay = math.exp(-zeta * omega * dt)
+	local damped = omega * math.sqrt(1 - zeta * zeta)
+	local cosine, sine = math.cos(damped * dt), math.sin(damped * dt)
+	local nextOffset = decay * (offset * cosine + (velocity + zeta * omega * offset) / damped * sine)
+	local nextVelocity = decay * (velocity * cosine - (zeta * omega * velocity + omega * omega * offset) / damped * sine)
+	return target + nextOffset, nextVelocity
+end
+
+local function ease(x)
+	return x * x * (3 - 2 * x)
+end
+
+-- Pure: the needle during the start-up sweep, `elapsed` seconds in: up to full, a short hold, down to `live`.
+-- Returns the fraction and whether the sweep is still running.
+function HudView._startSweep(elapsed, live)
+	if elapsed < SWEEP_UP then return ease(math.max(elapsed, 0) / SWEEP_UP), true end
+	elapsed -= SWEEP_UP
+	if elapsed < SWEEP_HOLD then return 1, true end
+	elapsed -= SWEEP_HOLD
+	if elapsed < SWEEP_DOWN then return 1 + (live - 1) * ease(elapsed / SWEEP_DOWN), true end
+	return live, false
+end
+
+-- Pure: the Kit.Gauge light level for the drive state's ShiftLight (0 off, 1 warm, 2 shift, 3 limiter, 4 spin
+-- warning), Overdrive and Gear. Overdrive shows unless the spin warning does. In N the limiter is a steady shift light:
+-- neutral revs on the countdown hold it for as long as W is held, and neutral gets no bounce effect (critique 17).
+function HudView._lightLevel(shiftLight, overdrive, gear)
+	local level = if type(shiftLight) == "number" and shiftLight == shiftLight then math.floor(shiftLight) else 0
+	if level < 0 or level > SPIN_LIGHT then level = 0 end
+	if overdrive == true and level ~= SPIN_LIGHT then return OVERDRIVE_LIGHT end
+	if level == LIMITER_LIGHT and gear == "N" then return SHIFT_LIGHT end
+	return level
+end
+
+-- The drivetrain part of the gauge (contract 3.2 and 7) for a car whose drive state carries RpmFraction: the rpm
+-- needle, the gear readout and the shift light. Step returns this frame's arc fraction, or nil when the drive state has
+-- no telemetry (the caller then draws the speed arc exactly as before). Clear hides the gear and the light, once.
+-- No lookup and no creation; the gauge setters write on change only.
+function HudView._telemetry(gauge)
+	local on = false
+	local needle, velocity, elapsed, sweeping = 0, 0, 0, false
+	local gear, revision, light = nil, nil, 0
+	local telemetry = {}
+
+	function telemetry.Clear()
+		if not on then return end
+		on = false
+		gear, revision, light = nil, nil, 0
+		gauge.SetShiftLight(0)
+		gauge.SetGear(nil)
+	end
+
+	function telemetry.Step(dt, drive)
+		local target = drive.RpmFraction
+		if type(target) ~= "number" or target ~= target then
+			telemetry.Clear()
+			return nil
+		end
+		target = math.clamp(target, 0, 1)
+		if type(dt) ~= "number" or dt ~= dt or dt < 0 then dt = 0 end
+		local first = not on
+		if first then
+			on = true
+			needle, velocity, elapsed, sweeping = 0, 0, 0, true
+		end
+
+		if drive.Gear ~= gear then
+			gear = drive.Gear
+			gauge.SetGear(gear)
+		end
+		-- The first revision seen is a baseline, not a shift.
+		local seen = drive.GearRevision
+		if first then
+			revision = seen
+		elseif seen ~= revision then
+			revision = seen
+			gauge.PunchGear()
+		end
+		local level = HudView._lightLevel(drive.ShiftLight, drive.Overdrive, drive.Gear)
+		if level ~= light then
+			light = level
+			gauge.SetShiftLight(level)
+		end
+
+		if sweeping then
+			elapsed += dt
+			needle, sweeping = HudView._startSweep(elapsed, target)
+			velocity = 0
+		else
+			needle, velocity = HudView._needleStep(needle, velocity, target, dt, NEEDLE_OMEGA, NEEDLE_ZETA)
+			if needle ~= needle or velocity ~= velocity then needle, velocity = target, 0 end
+		end
+		return needle
+	end
+
+	return telemetry
+end
+
 -- layer: the static Layer. extra = {
 --   Live: Layer?            the live Layer (the gallery passes none: one stage holds both)
 --   Player: Player?         binds the cash chip; nil in the gallery
 --   SampleCash: number?     gallery
 --   MinimapDeps: table?     HudMinimap deps; nil in the gallery
---   DriveState: table?      the shared MobileDriveInputState table (SpeedMph, BoostPercent, IsDriving)
+--   DriveState: table?      the shared MobileDriveInputState table (SpeedMph, BoostPercent, IsDriving; from a car with
+--                           a drivetrain also RpmFraction, Gear, GearRevision, ShiftLight, Overdrive)
 --   Subject: table?         { Part, VehiclePart }, kept current by the client's listeners
 --   Radio: table?           Audio.RadioClient when the radio is on; nil (and no strip) in the gallery
 --   SpeedGaugeMaxMph, BoostBarSmoothing: number?    cached config (D1288, D1279)
@@ -373,6 +485,7 @@ function HudView.Mount(layer, model, scope, extra)
 	local boostAlpha = 1 -- D85
 	local defer = task.defer
 	local setDriving = model.SetDriving
+	local telemetry = HudView._telemetry(gauge)
 
 	if drive and subject then
 		function self.Step(dt)
@@ -395,16 +508,20 @@ function HudView.Mount(layer, model, scope, extra)
 				minimap.Idle()
 			end
 
-			-- D1275-1293 and M493.
+			-- D1275-1293 and M493. A car that sends drivetrain telemetry shows rpm on the arc with its gear and shift
+			-- light (drivetrain_feel contract 7); every other car shows speed exactly as before.
 			if driving then
 				local speed = math.max(0, tonumber(drive.SpeedMph) or 0)
-				gauge.SetSpeed(math.floor(speed + 0.5), math.clamp(speed / maxMph, 0, 1))
+				gauge.Step(dt) -- first, so a punch or light change below is drawn at its full value this frame
+				local rpm = telemetry.Step(dt, drive)
+				gauge.SetSpeed(math.floor(speed + 0.5), rpm or math.clamp(speed / maxMph, 0, 1))
 				local target = math.clamp((tonumber(drive.BoostPercent) or 100) / 100, 0, 1)
 				local amount = smoothing <= 0 and 1 or math.clamp(dt * smoothing, 0, 1)
 				boostAlpha += (target - boostAlpha) * amount
 				gauge.SetBoost(math.clamp(boostAlpha, 0, 1))
 			else
 				boostAlpha = 1
+				telemetry.Clear() -- no stale gear or light on the next car
 			end
 		end
 	else

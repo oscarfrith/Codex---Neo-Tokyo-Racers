@@ -2,6 +2,15 @@
 
 Recent deliveries, newest first. Entries before September 2026 live in [the archive](history/patch-history-2026-05-to-2026-08.md).
 
+## 2026-10-20 - Exotic drivetrain feel: gearbox, weight, spins, engine voice, rpm HUD (PR98)
+
+- **What:** Exotic cars get a 7-speed automatic (rpm, torque curve, shift cuts, limiter, keyboard cruise short-shift, Overdrive while boosting), weight (keyboard steering build-up, yaw inertia, saturating grip, pitch and roll from real acceleration, engine braking), deliberate low-speed spins (power-brake launch, or lift then steering flick plus full throttle; holds and lifted U-turns only wiggle), a gear-aware voice with an engine sub-bus and reactor whine, a camera spin mode and shift nod, VFX cues, and an rpm arc, gear readout and shift light on the Pulse gauge. All tuning is in `Config.Vehicles.Drivetrain.exotic` (six feel dials); `Enabled` 0 is today's driving. Model-proposed defaults (generated) installed.
+- **Scripts:** DrivingClient, VehicleDynamics, VehicleAudioClient, VehicleAudioCatalog, DriveSessionClient, DrivingCameraClient, VehicleVFXClient, UIPulse FreeRoam.HudView, Kit.Gauge, Dev.Fixtures.Gauge. Config: new `Config.Vehicles.Drivetrain` (marked `DrivetrainFeelInstalled`), new attributes on `EXOTIC_V10_AUDIO`, `Config.Vehicles.Camera` and `StabiliserVFX`.
+- **Studio:** AUDIT, APPLY_CONFIG, APPLY, ROLLBACK, APPLY in PR98 Edit; Classic verify before and after; one Play session in the no-save sandbox window (opened and restored). Not saved by the agent.
+- **ui_restyle:** canonical Kit.Gauge, Fixtures.Gauge and HudView updated with tests; API amendment A20; 02_free_roam now carries the drivetrain DrivingClient with VehicleDynamics (`b_drivetrain_dynamics`); five drivetrain scripts pinned in `declared_config.json`; chain reassembled.
+- **Evidence:** [verification.json](../scripts/drivetrain_feel/verification.json). **Not verified:** Oscar's feel and sound judgement, phone, gamepad, touch, two clients, drift and Overdrive in Play, save and reopen.
+- **Recovery:** `Drivetrain.exotic@Enabled` 0 (instant) or `out_rollback.lua` (sources, then attributes, then the marked folder).
+
 ## 2026-10-19 - Pitch deck and game identity recorded (docs only)
 
 - **What:** the June Gamefam application deck was rebuilt as an 11-page internal pitch for the Cinnamon directors in the Pulse look (Slides artifact, private to Oscar), with funding content removed, current prototype facts, new in-game captures, a recoloured city map with district labels and Oscar's own screenshots and references. Name, logo, look and design pillars are now recorded in [design/pulse-racers-pitch-deck.md](design/pulse-racers-pitch-deck.md).

@@ -4,6 +4,31 @@
    "length": 8326,
    "djb2": 564541363,
    "fnv1a32": 3766695237
+  },
+  "ReplicatedStorage.Modules.Game.Audio.VehicleAudioCatalog": {
+   "length": 16022,
+   "djb2": 1261607600,
+   "fnv1a32": 376995432
+  },
+  "ReplicatedStorage.Modules.Game.Audio.VehicleAudioClient": {
+   "length": 92919,
+   "djb2": 2937444626,
+   "fnv1a32": 1895507206
+  },
+  "ReplicatedStorage.Modules.Game.Vehicles.DriveSessionClient": {
+   "length": 3099,
+   "djb2": 2542873564,
+   "fnv1a32": 843433840
+  },
+  "ReplicatedStorage.Modules.Game.Vehicles.DrivingCameraClient": {
+   "length": 46782,
+   "djb2": 2821889795,
+   "fnv1a32": 2565907089
+  },
+  "ReplicatedStorage.Modules.Game.Vehicles.VehicleVFXClient": {
+   "length": 48963,
+   "djb2": 3057451405,
+   "fnv1a32": 2870130039
   }
  },
  "addedScripts": {
@@ -38,9 +63,9 @@
    "class": "ModuleScript"
   },
   "ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Gauge": {
-   "length": 5423,
-   "djb2": 2664637028,
-   "fnv1a32": 3852216940,
+   "length": 9309,
+   "djb2": 1734057305,
+   "fnv1a32": 3955494879,
    "class": "ModuleScript"
   },
   "ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Minimap": {
@@ -116,9 +141,9 @@
    "class": "ModuleScript"
   },
   "ReplicatedStorage.Modules.Game.UIPulse.Kit.Gauge": {
-   "length": 14702,
-   "djb2": 2502745895,
-   "fnv1a32": 1498110527,
+   "length": 24023,
+   "djb2": 3194700109,
+   "fnv1a32": 4098534631,
    "class": "ModuleScript"
   },
   "ReplicatedStorage.Modules.Game.UIPulse.Kit.Input": {

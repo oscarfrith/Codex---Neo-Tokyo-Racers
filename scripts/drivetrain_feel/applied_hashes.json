@@ -1,0 +1,33 @@
+{
+ "DriveSessionClient": [
+  2542873564
+ ],
+ "DrivingCameraClient": [
+  2821889795
+ ],
+ "DrivingClient": [
+  3548229192
+ ],
+ "Fixtures.Gauge": [
+  1734057305
+ ],
+ "HudView": [
+  2735155409
+ ],
+ "Kit.Gauge": [
+  3194700109
+ ],
+ "VehicleAudioCatalog": [
+  1261607600
+ ],
+ "VehicleAudioClient": [
+  2937444626
+ ],
+ "VehicleDynamics": [
+  2049991369,
+  1236311824
+ ],
+ "VehicleVFXClient": [
+  3057451405
+ ]
+}

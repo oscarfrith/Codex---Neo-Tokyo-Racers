@@ -521,6 +521,13 @@
    "classic": true
   },
   {
+   "path": "ReplicatedStorage.Modules.Game.Vehicles.VehicleDynamics",
+   "file": "scripts/ui_restyle/phase2/install/02_free_roam/after/ReplicatedStorage.Modules.Game.Vehicles.VehicleDynamics.lua",
+   "unit": "02_free_roam",
+   "class": "ModuleScript",
+   "classic": true
+  },
+  {
    "path": "StarterPlayer.StarterPlayerScripts.ClientBase",
    "file": "scripts/ui_restyle/phase1/after/StarterPlayer.StarterPlayerScripts.ClientBase.lua",
    "unit": "phase1",

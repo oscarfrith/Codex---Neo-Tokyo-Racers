@@ -745,6 +745,13 @@
    "classic": true
   },
   {
+   "path": "ReplicatedStorage.Modules.Game.Vehicles.VehicleDynamics",
+   "file": "scripts/ui_restyle/phase2/install/02_free_roam/after/ReplicatedStorage.Modules.Game.Vehicles.VehicleDynamics.lua",
+   "unit": "02_free_roam",
+   "class": "ModuleScript",
+   "classic": true
+  },
+  {
    "path": "ServerStorage.Modules.Game.Garage.VehicleBuildService",
    "file": "scripts/ui_restyle/phase2/install/06_garage/after/ServerStorage.Modules.Game.Garage.VehicleBuildService.lua",
    "unit": "06_garage",

@@ -321,6 +321,20 @@
    ],
    "before": "before/ReplicatedStorage.Modules.Game.Vehicles.DrivingClient.lua",
    "after": "after/ReplicatedStorage.Modules.Game.Vehicles.DrivingClient.lua"
+  },
+  {
+   "id": "b_drivetrain_dynamics",
+   "kind": "source",
+   "class": "ModuleScript",
+   "path": [
+    "ReplicatedStorage",
+    "Modules",
+    "Game",
+    "Vehicles",
+    "VehicleDynamics"
+   ],
+   "before": "before/ReplicatedStorage.Modules.Game.Vehicles.VehicleDynamics.lua",
+   "after": "after/ReplicatedStorage.Modules.Game.Vehicles.VehicleDynamics.lua"
   }
  ]
 }

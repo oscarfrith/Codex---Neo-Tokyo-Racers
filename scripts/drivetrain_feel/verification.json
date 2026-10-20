@@ -1,0 +1,68 @@
+{
+ "_note": "drivetrain_feel evidence, 2026-10-20. Categories: generated (offline model), installed, agent-verified (Studio Edit or Play, driven by the agent). Nothing here is user-confirmed; the feel and the sound are Oscar's to judge.",
+ "place": "PR98 103397770260610 (studio 'PR98'), Edit, Studio not saved by the agent",
+ "install": {
+  "category": "installed + agent-verified",
+  "live_before_matched_capture": "all 10 scripts byte-identical to before/ (djb2 and length) before any write",
+  "classic_verify_before": "07_shell out_verify_classic_07_shell.lua ok=true, config 1122 same",
+  "sequence": "AUDIT (all before, blockers 0) -> APPLY_CONFIG (228 attributes, 1 folder) -> APPLY (10 scripts) -> AUDIT (all after) -> classic/out_verify_classic_after.lua ok=true -> ROLLBACK (10 scripts, 228 attributes, folder removed) -> AUDIT (all before, Drivetrain absent) -> APPLY -> rebuild with tuned defaults -> ROLLBACK (VehicleDynamics read as prior) -> APPLY -> AUDIT (all after) -> classic verify after ok=true, config 1122 same",
+  "compile": "every after-source compiles in Edit (loadstring); DrivingClient 109659 bytes, VehicleDynamics 74763",
+  "final_config": "Drivetrain@Enabled 1, exotic@Enabled 1, YawOmega 20, SpinYawAccel 25 (model defaults)",
+  "not_done": "save and reopen, then AUDIT (needs Oscar to save the place)",
+  "recovery_check": "ROLLBACK then explicit check: 0 of 226 new attributes left, both changed values (ProfileRevision, TurboWhistleAssetId) restored, Drivetrain folder absent; APPLY then a repeat APPLY wrote 0 scripts, 0 attributes, 0 instances; final AUDIT all after; Classic verify after ok=true, config 1122 same",
+  "installer_guard_added": "installer_engine.lua refuses every write mode while the sandbox test window marker (Onboarding@UIRestyleTestWindow) exists",
+  "ui_restyle_units": "reassembled chain; 00_kit and 02_free_roam AUDIT: every op this delivery touched reports after (their remaining blockers are chain-wide: a unit's own Classic verify flags later units' scripts, and Routes is edited by units 03-07)"
+ },
+ "hud_tests": {
+  "category": "agent-verified (Edit harness, no writes)",
+  "kit_gauge_and_fixtures": "147 rows, 0 failed (baseline 136, 0 failed)",
+  "freeroam_hudview": "158 rows, 1 failed; the same row-placement test fails on the baseline (151 rows, 1 failed), so it is not new",
+  "manifests": "hud/tests/manifest_07_shell_hud.json and manifest_07_shell_base_radio.json (07_shell test manifest plus the live RadioStripView)"
+ },
+ "model": {
+  "category": "generated",
+  "result": "every CONTRACT 9 and fix-spec section D target passes on the six stock Exotic cars and the as-spawned Seraph (model/RESULTS.md); parity audit of model against Lua run, mismatches fixed on both sides"
+ },
+ "play": {
+  "category": "agent-verified, desktop Studio, keyboard, one Play session, no-save sandbox window (opened and closed with sandbox_window.lua; StudioVehicleSandboxCash raised to 20,000,000 and restored to 1,000,000)",
+  "car": "exotic_06 Seraph bought in memory, PI 945 (as spawned)",
+  "startup": "Pulse start screen passed through the visible Play button; drivetrain active on spawn (FeelGear 1, FeelRpm 1100, FeelGearCount 7)",
+  "full_throttle_contract_values": "upshifts 1-2 44 mph, 2-3 63, 3-4 83, 4-5 104, 5-6 125 at 7400-7870 rpm; 0-60 about 2.0 s, 0-100 about 4.3 s from first movement (model as-spawned Seraph 4.22 s); run ended in a wall at 137 mph",
+  "spin_tests_with_model_values_set_live": {
+   "power_brake_D_W_S_release_S": "SPIN: FeelSpin 1.0, slip 92 deg, yaw rate 3.6 rad/s (the cap), heading turned 179 deg",
+   "hold_D_then_W": "no spin: FeelSpin capped at 0.35 (hold cap), slip 10 deg",
+   "flick_stab_W_lift_0.2s_then_D_and_W_together": "SPIN: FeelSpin 0.95, slip 108 deg, yaw 3.47 rad/s, at 20 mph",
+   "lifted_u_turn_D_held_W_lift_0.2s_W_again": "no spin window: FeelSpin capped at 0.35; the run ended against the plaza wall, which is where its large slip reading came from"
+  },
+  "parity_enabled_0": "exotic@Enabled 0 during Play: every drivetrain Feel attribute cleared within 1 s, power-brake did not spin (FeelSpin 0), HUD showed the speed arc with no gear readout",
+  "hud": "gear readout 1 in the ring gap at idle; at 38 mph in 1st the rpm arc is in the red zone and the gear text turns pink (shift light)",
+  "audio": "38 AudioPlayer (budget 46), 9 playing at idle; engine sub-bus AudioFilter, AudioEqualizer and AudioTremolo present",
+  "enter_exit": "4 respawns through GarageInvoke SpawnVehicle with no errors; HUD showed gear 1 and idle each time",
+  "console": "no errors from the changed scripts (only the agent's own rejected client HTTP call and Roblox core UIBlox warnings)",
+  "classic_smoke": "UIStyle Classic for one sandbox Play session (restored to Pulse after): Classic start screen Play button, Seraph spawned with the drivetrain active (FeelGear 1), Classic speed-only gauge read 45 mph while accelerating, no errors in the console",
+  "camera_spin": "installed defaults, power-brake with A: FeelSpin 1.0, CameraSpinWeight 1.0, CameraChaseCuts 0 before, during and after (zero resetChase)"
+ },
+ "not_verified": [
+  "HUD on phone emulation and on a non-Exotic car (Enabled 0 exercised the same no-telemetry path)",
+  "drift radius and exit speed in Play (model only)",
+  "Overdrive at the boosted top speed, the limiter and neutral revs on a countdown (races out of scope)",
+  "gamepad and touch input",
+  "remote Exotic cars' gears (needs two clients)",
+  "save and reopen",
+  "anchored to unanchored path (StepNeutral, teleport or countdown)",
+  "live Enabled 1 to 0 toggle mid-spin or on the limiter (tested only at rest)",
+  "respawn while driving and stream-out of a remote car"
+ ],
+ "review": {
+  "category": "delivery-reviewer (independent, read-only), run in parallel with the install because Oscar asked to hurry; its snapshot predates the final install",
+  "blocker": "installed before review: recorded here; the stale install it saw was replaced by the tuned build and recovery files are committed",
+  "accepted_risks": [
+   "APPLY never refreshes an existing Drivetrain folder and AUDIT does not diff it: new defaults land only through ROLLBACK then APPLY, which also drops Edit-time tuning",
+   "audio inactive path for a local Exotic with exotic@Enabled 0: the bypassed EngineBus chain and a TurboWhistle player at gain 0 still exist (inaudible); full audio recovery is ROLLBACK, or EngineBusEnabled / ReactorEnabled 0",
+   "DrivingClient calls new VehicleDynamics functions without a typeof guard; mitigated by the ui_restyle 02_free_roam op b_drivetrain_dynamics that keeps both halves together",
+   "build.py writes no 'allowed' rows: the planned asset-id follow-up must add them (or rebuild) before APPLY/ROLLBACK",
+   "instance and attribute writes after the source writes are outside the installer pcall (undo is the recovery)",
+   "Dynamics@DebugAttributes is true in PR98, so about 17 drivetrain debug attributes are written on change; switch it off before publishing"
+  ]
+ }
+}

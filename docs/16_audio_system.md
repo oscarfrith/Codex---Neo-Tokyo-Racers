@@ -1,5 +1,10 @@
 # Audio System
 
+
+## Exotic engine voice follows the gearbox (2026-10-20, DRIVE-03)
+
+With the drivetrain active, the local Exotic's rev comes from `FeelRpm` (load from `FeelLoad`), upshifts drop the rev with a volume dip, downshifts blip, and the limiter adds an `AudioTremolo` on a new engine sub-bus (EngineBus fader, filter, equalizer, tremolo). A reactor whine follows road speed in the `TurboWhistle` slot (stand-in asset 126900976760387). Remote Exotic cars derive gear and rpm from replicated speed with `VehicleDynamics.GearForSpeed` (no new network traffic). New switches are number attributes on `EXOTIC_V10_AUDIO`. Shift thunk and vent slots stay blank until Oscar approves and uploads the synthesised sounds (`scripts/drivetrain_feel/synth/README.md`). Details and voice counts: [audio NOTES](../scripts/drivetrain_feel/audio/NOTES.md).
+
 ## First-drive Controls presentation gate V1 installed; V1.1 sequencing correction generated (2026-07-27)
 
 Phase 2 reuses the existing vehicle and context audio owners. While the local `NTR_FirstDrivePresentationPending` attribute is true, reliable local ignition remains prepared but cannot play, local engine/acceleration/drift/boost/wind targets remain silent, and context music/ambience fades out. No SoundGroup, asset ID, profile, semantic vehicle state or remote changes.

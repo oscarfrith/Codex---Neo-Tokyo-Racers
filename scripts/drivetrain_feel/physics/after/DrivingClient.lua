@@ -91,19 +91,23 @@ local state = {
 -- VehicleDynamics.StepDrivetrain reads Tuning, Profile, Gearbox, Result and the per-frame inputs below.
 local G_STUDS = 35.1 -- 1 g in studs/s^2
 local SPIN_YAW_GATE, SPIN_YAW_GATE_WIDTH = 0.15, 0.35 -- rad/s: a spin needs the car to be turning already
+local STAB_NONE = math.huge -- stab event clocks: time since the event, this large when there was none
 local DRIVETRAIN_FEEL_ATTRIBUTES = {"FeelRpm", "FeelIdleRpm", "FeelRedlineRpm", "FeelLimiterRpm", "FeelGearCount", "FeelGear", "FeelLoad", "FeelShiftRevision", "FeelShiftKind", "FeelShiftStrength", "FeelCut", "FeelLimiterRevision", "FeelThrustSlip", "FeelSpin", "FeelSpinDirection", "FeelOverdrive"}
 local GEAR_TEXT = {[-1] = "R", [0] = "N", "1", "2", "3", "4", "5", "6", "7", "8", "9"}
 local Drivetrain = {
 	Active = false, Tuning = nil, Profile = nil, Category = nil, RefreshTimer = 0, Debug = false, DriveReady = false,
-	WasAnchored = false, ResetPending = false, TelemetryReady = false,
+	WasAnchored = false, ResetPending = false, TelemetryReady = false, GateLocked = false,
 	SteerKeyboard = 0, SteerTouch = 0, PowerBrakeInput = false, AnalogThrottle = false, TouchInput = false,
 	BoostAccel = 0, ImpactKick = 0, RpmRate = 0, LastRpm = 0,
 	-- inputs to VehicleDynamics.StepDrivetrain, set each frame
-	SpinAmount = 0, DriftBlend = 0, HorizontalSpeed = 0, SteeringIntent = 1, ExtraSlip = 0, PowerBrakeHeld = false, BoostApplied = false,
-	Gearbox = { Gear = 1, Rpm = 0, SinceShift = 10, ShiftKind = "None", LimiterState = 0, LimiterClock = 0, LiftClock = 10, KickClock = 0, ShiftRevision = 0, LimiterRevision = 0, LastKind = "Up", LastStrength = 0 },
+	SpinAmount = 0, DriftBlend = 0, HorizontalSpeed = 0, SteeringIntent = 1, ExtraSlip = 0, PowerBrakeHeld = false, BoostApplied = false, AnalogInput = false,
+	Gearbox = { Gear = 1, Rpm = 0, SinceShift = 10, ShiftKind = "None", LimiterState = 0, LimiterClock = 0, LiftClock = 10, KickClock = 0, ShiftRevision = 0, LimiterRevision = 0, LastKind = "Up", LastStrength = 0, Overdrive = false, Duty = 0, SteadyMph = 0 },
 	Result = {},
-	Chassis = { YawRate = 0, YawAccel = 0, YawCommand = 0, Authority = 1, SpinBlend = 0, SpinAccel = 0, LateralAccel = 0, LateralApplied = 0, LateralCap = 0, Pitch = 0, PitchVelocity = 0, Roll = 0, RollVelocity = 0 },
-	Spin = { L = 0, Dir = 0, Target = 0, Window = 0, Warn = false, Armed = false, RiseClock = 0, PowerBrakeClock = 0, DumpSlip = 0, DumpClock = 0, GraceClock = 0, GraceSpeedReached = false },
+	-- YawRate = SteerYawRate (the steering spring) + SpinYawRate (the spin's own yaw), clamped to YawRateMax.
+	Chassis = { YawRate = 0, SteerYawRate = 0, SpinYawRate = 0, YawAccel = 0, YawCommand = 0, Authority = 1, SpinAccel = 0, LateralAccel = 0, LateralApplied = 0, LateralCap = 0, Pitch = 0, PitchVelocity = 0, Roll = 0, RollVelocity = 0 },
+	Spin = { L = 0, Dir = 0, Target = 0, Window = 0, Warn = false, Caught = false, Settling = false,
+		WasOn = false, Armed = false, LiftClock = 0, RiseClock = 0, ThrottleClock = STAB_NONE, FlickClock = STAB_NONE, SteerLow = false, LastSteer = 0,
+		PowerBrakeClock = 0, DumpSlip = 0, DumpClock = 0, GraceClock = 0, GraceSpeedReached = false, GraceNeedsSpeed = false },
 	FeelCache = {},
 	DebugCache = {},
 	Telemetry = { Gear = "N", GearRevision = 0, RpmFraction = 0, ShiftLight = 0, Spin = 0, Overdrive = false },
@@ -391,9 +395,13 @@ local function refreshInput(dt)
 			state.Vehicle:SetAttribute("DriftingLeft", false)
 			state.Vehicle:SetAttribute("DriftingRight", false)
 		end
-		if Drivetrain.Active then Drivetrain.ResetPending = true end
+		-- Drivetrain: no stale gesture inputs while locked, and one reset on the lock edge (not every locked frame).
+		Drivetrain.PowerBrakeInput, Drivetrain.AnalogThrottle, Drivetrain.TouchInput = false, false, false
+		if Drivetrain.Active and not Drivetrain.GateLocked then Drivetrain.ResetPending = true end
+		Drivetrain.GateLocked = true
 		return 0, 0, 0
 	end
+	Drivetrain.GateLocked = false
 	readGamepad()
 	local throttle = 0
 	if UserInputService:IsKeyDown(Enum.KeyCode.W) or UserInputService:IsKeyDown(Enum.KeyCode.Up) then throttle += 1 end
@@ -412,15 +420,33 @@ local function refreshInput(dt)
 		-- Weight: keyboard steering builds to full lock in SteerRiseSeconds x FeelWeight; touch moves at TouchSteerRate.
 		-- Below FeelWeight 1 the return and touch rates sharpen, so FeelWeight 0 is today's instant steering.
 		local tuning = Drivetrain.Tuning
-		local step = math.clamp(dt or 0, 0, 0.1)
-		local soften = math.max(math.min(tuning.FeelWeight, 1), 0.05)
-		Drivetrain.SteerKeyboard = approachSteer(Drivetrain.SteerKeyboard, steer, 1 / math.max(tuning.SteerRiseSeconds * tuning.FeelWeight, 0.001), tuning.SteerReturnRate / soften, step)
-		Drivetrain.SteerTouch = approachSteer(Drivetrain.SteerTouch, mobileSteer, tuning.TouchSteerRate / soften, tuning.TouchSteerRate / soften, step)
-		steer = math.clamp(Drivetrain.SteerKeyboard + state.GamepadSteer + Drivetrain.SteerTouch, -1, 1)
+		if tuning.FeelWeight <= 0 then
+			-- FeelWeight 0: today's instant steering exactly (no limiter, no frame average).
+			Drivetrain.SteerKeyboard, Drivetrain.SteerTouch = steer, mobileSteer
+			steer = rawSteer
+		else
+			local step = math.clamp(dt or 0, 0, 0.1)
+			local soften = math.max(math.min(tuning.FeelWeight, 1), 0.05)
+			local keyboard, touch = Drivetrain.SteerKeyboard, Drivetrain.SteerTouch
+			if keyboard ~= keyboard then keyboard = 0 end
+			if touch ~= touch then touch = 0 end
+			Drivetrain.SteerKeyboard = approachSteer(keyboard, steer, 1 / math.max(tuning.SteerRiseSeconds * tuning.FeelWeight, 0.001), tuning.SteerReturnRate / soften, step)
+			Drivetrain.SteerTouch = approachSteer(touch, mobileSteer, tuning.TouchSteerRate / soften, tuning.TouchSteerRate / soften, step)
+			-- The frame's steer is the average of each limiter's start and end values (trapezoid), so the build-up and the
+			-- run-on after a release do not depend on the frame rate.
+			steer = math.clamp((keyboard + Drivetrain.SteerKeyboard) * 0.5 + state.GamepadSteer + (touch + Drivetrain.SteerTouch) * 0.5, -1, 1)
+		end
 		-- Spin gestures: W and S (or R2 and L2) held together cancel to 0 as before; the gesture is only recorded.
 		Drivetrain.PowerBrakeInput = bothKeys or (state.GamepadAccel > 0.5 and state.GamepadBrake > 0.5)
 		Drivetrain.AnalogThrottle = state.GamepadAccel > 0.05 and not forwardKey
 		Drivetrain.TouchInput = mobileThrottle ~= 0 or mobileSteer ~= 0
+		-- The last throttle device (kept while no throttle is held): a gamepad trigger is analog; keyboard and touch are
+		-- 0/1, which the digital cruise upshift reads.
+		if forwardKey or mobileThrottle > 0 then
+			Drivetrain.AnalogInput = false
+		elseif state.GamepadAccel > 0.05 then
+			Drivetrain.AnalogInput = true
+		end
 	else
 		steer = rawSteer
 	end
@@ -1054,16 +1080,20 @@ local function clearDrivetrainFeel(vehicle)
 	for _, name in ipairs(DRIVETRAIN_FEEL_ATTRIBUTES) do vehicle:SetAttribute(name, nil) end
 end
 
--- Clears the yaw rate, spin, gesture windows, steer limiter, lateral filter and the pitch and roll springs, and
--- restarts the spin start grace. The gearbox is reset by the caller (it needs the speed).
+-- Clears the yaw rate (steering and spin parts), spin, gesture clocks and windows, steer limiter, lateral filter and
+-- the pitch and roll springs, and restarts the spin start grace without its speed clause (the anchored resume and the
+-- DriveReady edge turn that on). The flick latch starts clear and LastSteer at 0, so a wheel held through Start or R is
+-- not a flick until it has passed back under min(0.5, SpinStabSteer). The gearbox is reset by the caller (it needs the
+-- speed).
 local function resetDrivetrainChassis()
 	local chassis, spin = Drivetrain.Chassis, Drivetrain.Spin
-	chassis.YawRate, chassis.YawAccel, chassis.YawCommand, chassis.Authority, chassis.SpinBlend, chassis.SpinAccel = 0, 0, 0, 1, 0, 0
+	chassis.YawRate, chassis.SteerYawRate, chassis.SpinYawRate, chassis.YawAccel, chassis.YawCommand, chassis.Authority, chassis.SpinAccel = 0, 0, 0, 0, 0, 1, 0
 	chassis.LateralAccel, chassis.LateralApplied = 0, 0
 	chassis.Pitch, chassis.PitchVelocity, chassis.Roll, chassis.RollVelocity = 0, 0, 0, 0
-	spin.L, spin.Dir, spin.Target, spin.Window, spin.Warn = 0, 0, 0, 0, false
-	spin.Armed, spin.RiseClock, spin.PowerBrakeClock, spin.DumpSlip, spin.DumpClock = false, 0, 0, 0, 0
-	spin.GraceClock, spin.GraceSpeedReached = 0, false
+	spin.L, spin.Dir, spin.Target, spin.Window, spin.Warn, spin.Caught, spin.Settling = 0, 0, 0, 0, false, false, false
+	spin.WasOn, spin.Armed, spin.LiftClock, spin.RiseClock, spin.ThrottleClock, spin.FlickClock = false, false, 0, 0, STAB_NONE, STAB_NONE
+	spin.SteerLow, spin.LastSteer, spin.PowerBrakeClock, spin.DumpSlip, spin.DumpClock = false, 0, 0, 0, 0
+	spin.GraceClock, spin.GraceSpeedReached, spin.GraceNeedsSpeed = 0, false, false
 	Drivetrain.SteerKeyboard, Drivetrain.SteerTouch = 0, 0
 	Drivetrain.ImpactKick, Drivetrain.ExtraSlip, Drivetrain.PowerBrakeHeld = 0, 0, false
 	Drivetrain.BoostApplied, Drivetrain.BoostAccel = false, 0
@@ -1080,6 +1110,8 @@ local function refreshDrivetrain(vehicle, force)
 		resetDrivetrainChassis()
 		Drivetrain.ResetPending = active
 		Drivetrain.WasAnchored = false
+		-- Switching on is not a DriveReady restart: the current value is the baseline.
+		if active then Drivetrain.DriveReady = vehicle:GetAttribute("DriveReady") == true end
 	end
 	Drivetrain.Active = active
 	Drivetrain.Tuning = active and tuning or nil
@@ -1088,8 +1120,9 @@ local function refreshDrivetrain(vehicle, force)
 	Drivetrain.Debug = configBool("Dynamics", "DebugAttributes", true)
 	local ready = vehicle:GetAttribute("DriveReady") == true
 	if ready and not Drivetrain.DriveReady then
-		-- DriveReady coming back (after a staging spell) also starts the spin grace.
-		Drivetrain.Spin.GraceClock, Drivetrain.Spin.GraceSpeedReached = 0, false
+		-- DriveReady coming back (after a staging spell) restarts the spin grace, with its speed clause.
+		local spin = Drivetrain.Spin
+		spin.GraceClock, spin.GraceSpeedReached, spin.GraceNeedsSpeed = 0, false, true
 	end
 	Drivetrain.DriveReady = ready
 end
@@ -1098,16 +1131,22 @@ end
 local function drivetrainResume(throttle, forwardMph)
 	if Drivetrain.WasAnchored then
 		-- Unanchored (race, duel or teleport start): first gear at the revved rpm, a launch slip from those revs, and the
-		-- spin start grace begins. This is also the reset, so a pending one is dropped.
+		-- spin start grace begins, with its speed clause. This is also the reset, so a pending one is dropped. With no
+		-- throttle (a teleport) there is no Launch event: the gearbox just resets to the road speed.
 		Drivetrain.WasAnchored = false
 		Drivetrain.ResetPending = false
 		local tuning, box = Drivetrain.Tuning, Drivetrain.Gearbox
 		local revved = math.clamp((box.Rpm / tuning.RedlineRpm - 0.5) / 0.4, 0, 1)
 		resetDrivetrainChassis()
-		VehicleDynamicsModel.LaunchGearbox(box, math.max(throttle, 0))
-		if tuning.PowerBrakeEnabled then
-			Drivetrain.Spin.DumpSlip = tuning.PowerBrakeDumpSlip * revved * revved * (3 - 2 * revved)
-			Drivetrain.Spin.DumpClock = 0
+		Drivetrain.Spin.GraceNeedsSpeed = true
+		if throttle > 0.05 then
+			VehicleDynamicsModel.LaunchGearbox(box, math.max(throttle, 0))
+			if tuning.PowerBrakeEnabled then
+				Drivetrain.Spin.DumpSlip = tuning.PowerBrakeDumpSlip * revved * revved * (3 - 2 * revved)
+				Drivetrain.Spin.DumpClock = 0
+			end
+		else
+			VehicleDynamicsModel.ResetGearbox(box, tuning, Drivetrain.Profile, forwardMph, false)
 		end
 	elseif Drivetrain.ResetPending then
 		Drivetrain.ResetPending = false
@@ -1124,20 +1163,57 @@ local function drivetrainGestures(dt, throttle, rawSteer, speedMph)
 	if speedMph > tuning.SpinStartGraceMph then spin.GraceSpeedReached = true end
 	spin.Window = math.max(spin.Window - step, 0)
 	spin.DumpClock += step
-	-- Stab: throttle from below 0.3 to 0.9 or more within SpinStabSeconds (gamepad: faster than SpinAnalogRate per
-	-- second) with the raw steering held past SpinStabSteer, below SpinBelowMph.
+	spin.ThrottleClock += step
+	spin.FlickClock += step
+	-- Stab: a lift, then a throttle stab and a steering flick together. A held wheel plus W (pull-outs, U-turns, a lifted
+	-- U-turn) is never a stab.
+	-- Throttle event: armed only by a lift (throttle from 0.3 or more to under 0.3). Keyboard and touch: back to 0.9 or
+	-- more within SpinStabSeconds of the lift. Gamepad: the rise from under 0.3 to 0.9 or more faster than
+	-- SpinAnalogRate per second.
 	local forwardThrottle = math.max(throttle, 0)
 	if forwardThrottle < 0.3 then
-		spin.Armed, spin.RiseClock = true, 0
-	elseif spin.Armed then
-		spin.RiseClock += step
-		if forwardThrottle >= 0.9 then
-			spin.Armed = false
-			local limit = Drivetrain.AnalogThrottle and 0.6 / tuning.SpinAnalogRate or tuning.SpinStabSeconds
-			if spin.RiseClock <= limit + step and math.abs(rawSteer) >= tuning.SpinStabSteer and speedMph < tuning.SpinBelowMph then
-				spin.Window = tuning.SpinWindowSeconds
+		if spin.WasOn then
+			spin.Armed, spin.LiftClock = true, 0
+		elseif spin.Armed then
+			spin.LiftClock += step
+		end
+		spin.WasOn, spin.RiseClock = false, 0
+	else
+		spin.WasOn = true
+		if spin.Armed then
+			spin.LiftClock += step
+			spin.RiseClock += step
+			if forwardThrottle >= 0.9 then
+				spin.Armed = false
+				local quick
+				if Drivetrain.AnalogThrottle then
+					quick = spin.RiseClock <= 0.6 / tuning.SpinAnalogRate + step
+				else
+					quick = spin.LiftClock <= tuning.SpinStabSeconds + step
+				end
+				if quick then spin.ThrottleClock = 0 end
 			end
 		end
+	end
+	-- Flick event: |raw steer| rises from under 0.5 (or under SpinStabSteer when that is lower) to SpinStabSteer or more,
+	-- or the raw steer reverses sign at SpinStabSteer or more.
+	local steerSize = math.abs(rawSteer)
+	if steerSize >= tuning.SpinStabSteer and (spin.SteerLow or rawSteer * spin.LastSteer < 0) then spin.FlickClock = 0 end
+	if steerSize < math.min(0.5, tuning.SpinStabSteer) then
+		spin.SteerLow = true
+	elseif steerSize >= tuning.SpinStabSteer then
+		spin.SteerLow = false
+	end
+	spin.LastSteer = rawSteer
+	-- The stab fires when both events are within SpinFlickSeconds of now (either order) with the throttle and the lock
+	-- still on, below SpinBelowMph (SpinStabNeedsFlick 0: the throttle event alone). It opens the spin window and dumps
+	-- SpinStabDumpSlip of thrust slip, fading over the window like the power-brake.
+	if spin.ThrottleClock <= tuning.SpinFlickSeconds and (not tuning.SpinStabNeedsFlick or spin.FlickClock <= tuning.SpinFlickSeconds)
+		and forwardThrottle >= 0.9 and steerSize >= tuning.SpinStabSteer and speedMph < tuning.SpinBelowMph then
+		local current = spin.DumpSlip * math.max(1 - spin.DumpClock / math.max(tuning.SpinWindowSeconds, 0.05), 0)
+		spin.Window = tuning.SpinWindowSeconds
+		spin.DumpSlip, spin.DumpClock = math.max(current, tuning.SpinStabDumpSlip), 0
+		spin.ThrottleClock, spin.FlickClock = STAB_NONE, STAB_NONE
 	end
 	-- Power-brake: forward and brake held together at a standstill for PowerBrakeMinHold, then the brake released with
 	-- the throttle still held. The force stays cancelled while both are held; the release dumps the revs as thrust slip.
@@ -1167,9 +1243,17 @@ local function springStep(position, velocity, target, omega, zeta, dt)
 	return position, velocity
 end
 
+-- Drift exemption weight (DriftCapExempt 1): clamp(DriftBlend x DriftExemptGain, 0, 1). It hands the lateral grip,
+-- the yaw cap and (by DriftYawExempt) the yaw inertia back to today's drift, reaching full before the blend does so a
+-- drift entry does not run into the grip cap. 0 when DriftCapExempt is 0.
+local function driftExemptWeight(tuning)
+	if not tuning.DriftCapExempt then return 0 end
+	return math.clamp(state.DriftBlend * tuning.DriftExemptGain, 0, 1)
+end
+
 -- Lateral grip (replaces the linear damper while active): the normal grip saturates on a peaked curve
 -- sin(C atan(u / C)) that peaks at the grip cap, builds over GripRelaxStuds x FeelWeight of travel, and loses
--- SpinGripLoss x spin. The drift share stays today's uncapped damper (DriftCapExempt). Returns the acceleration
+-- SpinGripLoss x spin. The drift share (driftExemptWeight) is today's uncapped damper. Returns the acceleration
 -- along the car's right vector.
 local function drivetrainLateral(dt, sideSpeed, handlingStep, lateralGrip, horizontalSpeed, balance)
 	local tuning, profile, chassis = Drivetrain.Tuning, Drivetrain.Profile, Drivetrain.Chassis
@@ -1193,24 +1277,28 @@ local function drivetrainLateral(dt, sideSpeed, handlingStep, lateralGrip, horiz
 	end
 	if chassis.LateralAccel ~= chassis.LateralAccel then chassis.LateralAccel = 0 end
 	local applied = chassis.LateralAccel
-	if exempt and state.DriftBlend > 0 then applied += (-sideSpeed * lateralGrip - applied) * state.DriftBlend end
+	local weight = driftExemptWeight(tuning)
+	if weight > 0 then applied += (-sideSpeed * lateralGrip - applied) * weight end
 	chassis.LateralApplied = applied
 	return applied
 end
 
--- Spin amount L (0..1): built from thrust slip, steering, low speed and an existing yaw rate; capped at SpinHoldCap
--- outside a gesture window; caught by lifting or counter-steering. The direction latches at onset.
+-- Spin amount L (0..1): built from thrust slip, steering, low speed and an existing yaw rate; capped at
+-- SpinHoldCap x FeelSpin outside a gesture window; caught by lifting or counter-steering. The direction latches at onset.
 local function updateSpin(step, throttle, steer, rawSteer, speedMph, slip, command)
 	local tuning, profile, chassis, spin = Drivetrain.Tuning, Drivetrain.Profile, Drivetrain.Chassis, Drivetrain.Spin
 	local target = 0
-	local graceOver = spin.GraceClock >= tuning.SpinStartGraceSeconds and (tuning.SpinStartGraceMph <= 0 or spin.GraceSpeedReached)
+	-- Start grace: SpinStartGraceSeconds; after an anchored start or a DriveReady restart also SpinStartGraceMph.
+	local graceOver = spin.GraceClock >= tuning.SpinStartGraceSeconds and (tuning.SpinStartGraceMph <= 0 or not spin.GraceNeedsSpeed or spin.GraceSpeedReached)
+	-- FeelSpin also scales the no-gesture cap, so the dial's upper half lets held locks wiggle harder (or spin).
+	local holdCap = math.min(tuning.SpinHoldCap * tuning.FeelSpin, 1)
 	if tuning.SpinEnabled and graceOver and state.DriftBlend <= 0.12 and tuning.FeelSpin > 0 then
 		target = poseSmoothstep((slip - tuning.SpinSlipStart) / tuning.SpinSlipWidth)
 			* poseSmoothstep((math.abs(steer) - tuning.SpinSteerStart) / tuning.SpinSteerWidth)
 			* (1 - poseSmoothstep((speedMph - tuning.SpinBelowMph) / tuning.SpinFadeMph))
 			* poseSmoothstep((math.abs(chassis.YawRate) - SPIN_YAW_GATE) / SPIN_YAW_GATE_WIDTH)
 			* tuning.FeelSpin * profile.SpinTierScale * (Drivetrain.TouchInput and tuning.SpinTouchScale or 1)
-		if spin.Window <= 0 then target = math.min(target, tuning.SpinHoldCap) end
+		if spin.Window <= 0 then target = math.min(target, holdCap) end
 		target = math.clamp(target, 0, 1)
 		if target ~= target then target = 0 end
 	end
@@ -1225,7 +1313,16 @@ local function updateSpin(step, throttle, steer, rawSteer, speedMph, slip, comma
 	spin.L = math.clamp(spin.L + (target - spin.L) * (1 - math.exp(-rate * step)), 0, 1)
 	if spin.L ~= spin.L then spin.L = 0 end
 	spin.Target = target
-	spin.Warn = spin.L > tuning.SpinWarnLevel and spin.L > previous + 1e-4
+	local rising = spin.L > previous + 1e-4
+	-- The warning stays above the hold cap, so a capped wiggle never lights it.
+	spin.Warn = spin.L > math.max(tuning.SpinWarnLevel, holdCap + 0.05) and rising
+	-- After a catch (until the spin builds again) the spin's own yaw settles fast while L falls (drivetrainYaw).
+	if catching then
+		spin.Caught = true
+	elseif rising then
+		spin.Caught = false
+	end
+	spin.Settling = spin.Caught and spin.L < previous
 	if spin.L > 0.05 and spin.Dir == 0 then
 		local source = chassis.YawRate ~= 0 and chassis.YawRate or command
 		spin.Dir = source > 0 and 1 or (source < 0 and -1 or 0)
@@ -1235,22 +1332,26 @@ local function updateSpin(step, throttle, steer, rawSteer, speedMph, slip, comma
 	chassis.SpinAccel = spin.Dir * tuning.SpinYawAccel * tuning.FeelSpin * spin.L * (0.6 + 0.4 * math.min(slip / 0.5, 1))
 end
 
--- Yaw-rate state (replaces the direct heading integration while active). command is today's full turn rate; the
--- result is the yaw rate to integrate into YawHeading. Second order (YawOmega / FeelWeight, YawDamping), faster
--- when unwinding, kinematic below YawKinematicBelowMph (parking and standstill steering exactly as today) except in a
--- spin, grip-limited on forward intent, and pushed by the latched spin.
+-- Yaw rate (replaces the direct heading integration while active): two additive states, r = r_steer + r_spin.
+-- r_steer: second-order spring toward command (YawOmega / FeelWeight, YawDamping), faster when unwinding, weakened by
+-- the spin authority, kinematic below YawKinematicBelowMph (parking and standstill steering exactly as today) and,
+-- by DriftYawExempt, in a drift. r_spin: the latched spin's own yaw, pushed while it turns the spin's way below
+-- SpinMaxYawRate and settling at a rate that ignores FeelWeight, so spins do not depend on the weight dial.
+-- command is today's full turn rate, grip-limited on forward intent. Returns the frame-average yaw rate, so the
+-- heading run-on does not depend on the frame rate.
 local function drivetrainYaw(dt, command, throttle, steer, rawSteer, speedMph, forwardSpeed, slip)
 	local tuning, profile, chassis, spin = Drivetrain.Tuning, Drivetrain.Profile, Drivetrain.Chassis, Drivetrain.Spin
 	local step = math.clamp(dt, 0, 0.1)
 	if command ~= command then command = 0 end
+	local exempt = driftExemptWeight(tuning)
 	if state.SteeringProfileIntent == 1 and forwardSpeed > 8 and chassis.LateralCap > 0 then
 		local limit = tuning.YawCapMargin * chassis.LateralCap * (1 + 1.5 * state.DriftBlend) / forwardSpeed
 		local capped = math.clamp(command, -limit, limit)
-		command = tuning.DriftCapExempt and capped + (command - capped) * state.DriftBlend or capped
+		command = capped + (command - capped) * exempt
 	end
 	chassis.YawCommand = command
 	updateSpin(step, throttle, steer, rawSteer, speedMph, slip, command)
-	local rate, rateVelocity = chassis.YawRate + Drivetrain.ImpactKick, chassis.YawAccel
+	local rate, rateVelocity, spinRate = chassis.SteerYawRate + Drivetrain.ImpactKick, chassis.YawAccel, chassis.SpinYawRate
 	Drivetrain.ImpactKick = 0
 	local weight = tuning.FeelWeight
 	local omega = profile.YawOmega / math.max(weight, 0.05)
@@ -1262,33 +1363,46 @@ local function drivetrainYaw(dt, command, throttle, steer, rawSteer, speedMph, f
 	else
 		chassis.Authority += (authority - chassis.Authority) * (1 - math.exp(-step / math.max(tuning.SpinSettleSeconds, 0.01)))
 	end
-	omega = math.max(omega * chassis.Authority, 1)
+	-- At most 60 rad/s: effectively kinematic above, and the sub-steps stay stable through frame hitches.
+	omega = math.min(math.max(omega * chassis.Authority, 1), 60)
 	local zeta = tuning.YawDamping
+	-- r_spin settles at the car's own yaw rate (no FeelWeight, no unwind scale); after a catch, while L falls, at least
+	-- 3 / SpinSettleSeconds.
+	local settle = math.max(profile.YawOmega * (1 - tuning.SpinYawAuthorityLoss * spin.L), 1) / (2 * zeta)
+	if spin.Settling then settle = math.max(settle, 3 / math.max(tuning.SpinSettleSeconds, 0.01)) end
 	local push = chassis.SpinAccel
 	local spinCap = math.min(tuning.SpinMaxYawRate, tuning.YawRateMax)
-	local steps = math.clamp(math.ceil(step * omega * 4), 1, 16)
+	local steps = math.clamp(math.ceil(step * math.max(omega, settle) * 4), 1, 16)
 	local h = step / steps
+	local decay = math.min(settle * h, 1)
+	local steerSum, spinSum = 0, 0
 	for _ = 1, steps do
-		rateVelocity += (omega * omega * (command - rate) - 2 * zeta * omega * rateVelocity) * h
+		-- The push gate reads the sub-step's start values.
+		local total = rate + spinRate
 		local extra = 0
-		if push ~= 0 and rate * spin.Dir > 0 and math.abs(rate) < spinCap then extra = push end
-		rate += (rateVelocity + extra) * h
+		if push ~= 0 and total * spin.Dir > 0 and math.abs(total) < spinCap then extra = push end
+		rateVelocity += (omega * omega * (command - rate) - 2 * zeta * omega * rateVelocity) * h
+		rate += rateVelocity * h
+		spinRate += extra * h - spinRate * decay
+		steerSum += rate * h
+		spinSum += spinRate * h
 	end
-	local spinBlend = poseSmoothstep(spin.L / 0.25)
-	if spinBlend >= chassis.SpinBlend then
-		chassis.SpinBlend = spinBlend
-	else
-		chassis.SpinBlend += (spinBlend - chassis.SpinBlend) * (1 - math.exp(-step / math.max(tuning.SpinSettleSeconds, 0.01)))
-	end
+	-- Kinematic blend, on r_steer only: below YawKinematicBelowMph and at FeelWeight 0 it is today's command; a drift
+	-- takes DriftYawExempt of its exemption weight off the inertia too (the drift owns the yaw as it owns the grip).
 	local dynamic = tuning.YawKinematicBelowMph > 0 and poseSmoothstep(speedMph / tuning.YawKinematicBelowMph) or 1
 	if weight <= 0 then dynamic = 0 end
-	dynamic = math.max(dynamic, chassis.SpinBlend)
+	dynamic *= 1 - exempt * tuning.DriftYawExempt
 	rate = command + (rate - command) * dynamic
 	rateVelocity *= dynamic
 	rate = math.clamp(rate, -tuning.YawRateMax, tuning.YawRateMax)
 	if rate ~= rate or rateVelocity ~= rateVelocity then rate, rateVelocity = command, 0 end
-	chassis.YawRate, chassis.YawAccel = rate, rateVelocity
-	return rate
+	if spinRate ~= spinRate then spinRate = 0 end
+	local total = math.clamp(rate + spinRate, -tuning.YawRateMax, tuning.YawRateMax)
+	chassis.SteerYawRate, chassis.YawAccel, chassis.SpinYawRate, chassis.YawRate = rate, rateVelocity, spinRate, total
+	if step <= 0 then return total end
+	local average = math.clamp(command + (steerSum / step - command) * dynamic + spinSum / step, -tuning.YawRateMax, tuning.YawRateMax)
+	if average ~= average then return total end
+	return average
 end
 
 -- Pitch from the real longitudinal acceleration (boost and mini-boost included) through a spring; replaces the
@@ -1381,6 +1495,9 @@ local function publishDrivetrain(dt, out)
 		setDebug(vehicle, "DynamicsDrivetrainClass", Drivetrain.Category or "")
 		setDebug(vehicle, "DynamicsYawRate", quantise(chassis.YawRate, 0.01))
 		setDebug(vehicle, "DynamicsYawRateCommand", quantise(chassis.YawCommand, 0.01))
+		setDebug(vehicle, "DynamicsSpinYawRate", quantise(chassis.SpinYawRate, 0.01))
+		setDebug(vehicle, "DynamicsSpinGraceNeedsSpeed", spin.GraceNeedsSpeed)
+		setDebug(vehicle, "DynamicsThrottleDuty", quantise(tonumber(box.Duty) or 0, 0.01))
 		setDebug(vehicle, "DynamicsSpin", quantise(spin.L, 0.01))
 		setDebug(vehicle, "DynamicsSpinTarget", quantise(spin.Target, 0.01))
 		setDebug(vehicle, "DynamicsSpinWindow", quantise(spin.Window, 0.05))
@@ -1430,6 +1547,7 @@ function Controller.Stop()
 	-- Drivetrain session state (its Feel attributes were cleared with the rest above).
 	Drivetrain.Active, Drivetrain.Tuning, Drivetrain.Profile, Drivetrain.Category = false, nil, nil, nil
 	Drivetrain.WasAnchored, Drivetrain.ResetPending, Drivetrain.TelemetryReady, Drivetrain.DriveReady = false, false, false, false
+	Drivetrain.GateLocked, Drivetrain.AnalogInput = false, false
 	table.clear(Drivetrain.FeelCache)
 	table.clear(Drivetrain.DebugCache)
 	resetDrivetrainChassis()
@@ -1806,9 +1924,13 @@ function Controller.Start(context)
 			if driftThrottleAlpha > 0 then
 				local engineAssist = handlingStep.Enabled and handlingStep.DriftEngineAssist or 0.20
 				if driveActive then
-					-- Drivetrain: the assist follows gross engine thrust, so the lower drag does not weaken drifts.
+					-- Drivetrain: the assist follows the engine's thrust, mostly its first-gear plateau (A1 x throttle, by
+					-- DriftAssistPlateauShare), so a drift held in a high gear keeps today's push. Gated on DriveThrust > 0
+					-- before the blend, as before: a frame with no drive thrust (a full limiter cut) adds no assist.
 					if dynamicsStep.DriveThrust > 0 then
-						driveForce += forward * mass * dynamicsStep.DriveThrust * engineAssist * state.DriftBlend * driftThrottleAlpha
+						local assistThrust = dynamicsStep.DriveThrust
+						assistThrust += (Drivetrain.Profile.A1 * math.clamp(throttle, 0, 1) - assistThrust) * Drivetrain.Tuning.DriftAssistPlateauShare
+						driveForce += forward * mass * assistThrust * engineAssist * state.DriftBlend * driftThrottleAlpha
 					end
 				elseif dynamicsStep.Enabled and dynamicsStep.LongitudinalAcceleration > 0 then
 					driveForce += forward * mass * dynamicsStep.LongitudinalAcceleration * engineAssist * state.DriftBlend * driftThrottleAlpha

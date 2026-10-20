@@ -175,6 +175,9 @@ class Today:
         e_min, e_max = n("EngineOutputMinMultiplier", 0.72, 0.2, 2), n("EngineOutputMaxMultiplier", 1.48, 0.2, 3)
         self.engine_factor = curve(stats["EngineOutput"], n("EngineOutputReference", 60, 1, 300), n("EngineOutputExponent", 0.55, 0.05, 2), e_min, e_max)
         w_ref = n("WeightReference", 118, 1, 400)
+        self.w_ref = w_ref                                                       # also read by the drivetrain profile
+        self.brake_ref = n("BrakingForceReference", 60, 1, 200)
+        self.brake_weight_exp = n("BrakeWeightExponent", 0.2, 0, 1)
         weight = stats["Weight"]
         self.weight_factor = curve(w_ref / max(weight, 1), 1, n("WeightAccelerationExponent", 0.22, 0, 1.5),
                                    n("WeightAccelerationMinMultiplier", 0.82, 0.2, 2), n("WeightAccelerationMaxMultiplier", 1.18, 0.2, 3))
@@ -187,8 +190,8 @@ class Today:
         self.high_floor = n("HighSpeedAccelerationFloor", 0.06, 0, 0.5)
         self.high_exp = n("HighSpeedAccelerationExponent", 0.80, 0.1, 3)
         self.base_forward = n("BaseForwardAcceleration", 32, 5, 80)
-        braking_factor = curve(stats["BrakingForce"], n("BrakingForceReference", 60, 1, 200), n("BrakingForceExponent", 0.7, 0.1, 2), 0.65, 1.65)
-        self.brake_weight = clamp((w_ref / max(weight, 1)) ** n("BrakeWeightExponent", 0.2, 0, 1), 0.8, 1.2)
+        braking_factor = curve(stats["BrakingForce"], self.brake_ref, n("BrakingForceExponent", 0.7, 0.1, 2), 0.65, 1.65)
+        self.brake_weight = clamp((w_ref / max(weight, 1)) ** self.brake_weight_exp, 0.8, 1.2)
         self.brake = n("BaseBrakeDeceleration", 30, 8, 90) * braking_factor * self.brake_weight * bal["Braking"]
         self.drag_factor = curve(stats["Drag"], n("DragReference", 50, 1, 100), n("AerodynamicDragStatExponent", 0.35, 0, 1), 0.65, 1.45)
         self.aero_k = n("AerodynamicDragPerMphSquared", 0.00012, 0, 0.002) * self.drag_factor * bal["Drag"]

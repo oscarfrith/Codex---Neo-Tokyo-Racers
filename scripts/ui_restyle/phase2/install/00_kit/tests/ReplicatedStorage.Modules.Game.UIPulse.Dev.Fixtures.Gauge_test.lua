@@ -1,5 +1,6 @@
 -- Pure tests for Dev.Fixtures.Gauge: the registration shape of API.md section 10 and the animation's fixture data.
--- Nothing is mounted here; the gallery mounts every state at every preset.
+-- Nothing is mounted here; the gallery mounts every state at every preset. drivetrain_feel (API2 amendment A20) adds the
+-- gear, shift light, punch and gear-run states.
 return function(M, _env)
 	local results = {}
 
@@ -64,6 +65,55 @@ return function(M, _env)
 			last = value
 		end
 		expect(sweepAt(1, 0) >= 0, "a zero period does not divide by zero")
+	end)
+
+	case("drivetrain states: gears N, 1, 7 and R, the shift light, the limiter, the spin warning and Overdrive", function()
+		local byId = {}
+		for _, state in ipairs(M[1].States) do byId[state.Id] = state.Props end
+		expect(byId.GearN.Gear == "N" and byId.Gear1.Gear == "1" and byId.Gear7.Gear == "7" and byId.Reverse.Gear == "R",
+			"the gears")
+		expect(byId.ShiftWarm.Light == 1 and byId.ShiftLight.Light == 2, "warm and shift")
+		expect(byId.Limiter.Light == 3 and byId.SpinWarning.Light == 4 and byId.Overdrive.Light == 5,
+			"limiter, spin warning, Overdrive")
+		expect(byId.Limiter.Gear ~= "N" and byId.Limiter.Gear ~= nil, "the flashing limiter is in a gear")
+		expect(byId.NeutralLimiter.Gear == "N" and byId.NeutralLimiter.Light == 2,
+			"the limiter in N is the steady shift light HudView maps it to")
+		expect(byId.GearPunch.Punch == true and byId.GearPunch.Gear ~= nil, "a repeating punch on a shown gear")
+		expect(byId.GearRun.Animate == true and byId.GearRun.Rpm == true, "the animated gear run")
+		expect(byId.GearTouchSize.SizeKey == "GaugeTouchSize" and byId.GearTouchSize.Gear ~= nil, "the gear at the touch size")
+		for id, props in pairs(byId) do
+			if props.Light ~= nil then
+				expect(props.Light % 1 == 0 and props.Light >= 0 and props.Light <= 5, id .. ": a Kit.Gauge.Light level")
+			end
+			if props.Gear ~= nil then
+				expect(type(props.Gear) == "string" and #props.Gear <= 2, id .. ": a short gear string")
+			end
+			if props.Fraction ~= nil then
+				expect(props.Fraction >= 0 and props.Fraction <= 1, id .. ": a fraction")
+			end
+		end
+	end)
+
+	case("gear run: each gear climbs from the land point to the redline; the light only before an upshift", function()
+		local runAt = M[1]._runAt
+		local index, fraction, light, speed = runAt(0, 1)
+		expect(index == 1 and math.abs(fraction - 0.45) < 1e-9 and light == 0 and speed == 0, "starts in first, landed")
+		index, fraction, light = runAt(0.9, 1)
+		expect(index == 1 and fraction > 0.8 and light == 2, "lit near the redline")
+		index, fraction, light = runAt(0.7, 1)
+		expect(index == 1 and light == 1, "warm before that")
+		index = runAt(1.01, 1)
+		expect(index == 2, "then second")
+		index, fraction, light = runAt(6.95, 1)
+		expect(index == 7 and light == 0, "top gear never lights")
+		expect(runAt(7.2, 1) == 1, "and round again")
+		local last = 0
+		for step = 1, 99 do
+			local _, _, _, value = runAt(step / 100 * 7, 1)
+			expect(value >= last and value <= 1, "speed rises through the run")
+			last = value
+		end
+		expect(runAt(1, 0) >= 1, "a zero period does not divide by zero")
 	end)
 
 	return results

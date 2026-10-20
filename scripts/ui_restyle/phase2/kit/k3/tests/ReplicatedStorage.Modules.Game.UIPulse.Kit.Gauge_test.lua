@@ -1,4 +1,5 @@
 -- Pure tests for Kit.Gauge. No yield, nothing parented into the game tree, every component destroyed before return.
+-- drivetrain_feel (API2 amendment A20): budget 28, the gear readout, the shift light, the punch and Step.
 return function(M, env)
 	local results = {}
 	local cleanups = {}
@@ -82,6 +83,9 @@ return function(M, env)
 		end
 		return total
 	end
+
+	-- A20: at most 28 by the API2 count (27 with the gear; the BoostText and Gear size locks make 29 raw).
+	local BUDGET = 28
 
 	-- The model the reveal relies on: a mask at `rotation` shows the angles (rotation + 90, rotation + 270), that is
 	-- the points whose direction has a negative component along the gradient.
@@ -212,7 +216,7 @@ return function(M, env)
 		local side = Tokens.Space.GaugeSize - Tokens.Space.GaugeSize % 2
 		expect(root.Size == UDim2.fromOffset(side, side), "an even square of GaugeSize at 1080")
 		for _, name in ipairs({ "Track", "Ticks", "ArcLeft", "ArcRight", "BoostLeft", "BoostRight", "Tip", "Speed",
-			"Unit", "BoostText" }) do
+			"Unit", "BoostText", "Gear" }) do
 			expect(root:FindFirstChild(name) ~= nil, name .. " exists")
 		end
 		for _, name in ipairs({ "ArcLeft", "ArcRight", "BoostLeft", "BoostRight" }) do
@@ -236,7 +240,10 @@ return function(M, env)
 		expect(root.Unit.Text == "MPH" and root.BoostText.Text == "BOOST 0%", "unit and boost text")
 		expect(root.BoostText.Visible == true, "boost text shown on Regular")
 		expect(root.Tip.Visible == false, "no tip on an empty arc")
-		expect(budgetOf(root) <= 26, "budget 26, got " .. budgetOf(root))
+		expect(budgetOf(root) <= BUDGET, "budget 28, got " .. budgetOf(root))
+		expect(root.Gear.Visible == false and root.Unit.Visible == true, "no gear until a car sends one")
+		expect(root.Gear:FindFirstChild("SizeLock") ~= nil, "the gear's roles are Fixed: it carries a SizeLock")
+		expect(root.Gear.AutomaticSize == Enum.AutomaticSize.None, "live text: no AutomaticSize on the gear")
 		local left, right = M.Angles(0)
 		expect(maskOf(root, "ArcLeft", "Arc").Rotation == left and maskOf(root, "ArcRight", "Arc").Rotation == right,
 			"masks start empty")
@@ -247,7 +254,7 @@ return function(M, env)
 		local root = gauge.Instance
 		expect(root.Size == UDim2.fromOffset(Tokens.Space.CompactGauge, Tokens.Space.CompactGauge), "92 at 844x390")
 		expect(root.BoostText.Visible == false, "no boost line on Compact")
-		expect(budgetOf(root) <= 26, "budget 26")
+		expect(budgetOf(root) <= BUDGET, "budget 28")
 		gauge.Set({ ShowBoostText = true })
 		expect(root.BoostText.Visible == true, "ShowBoostText turns it on")
 	end)
@@ -422,6 +429,224 @@ return function(M, env)
 		expect(root.Size.X.Offset == Tokens.Space.GaugeSize - Tokens.Space.GaugeSize % 2, "the size does not change")
 		gauge.SetSpeed(88, 0.3)
 		gauge.SetBoost(0.5)
+	end)
+
+	------------------------------------------------------------------------------------------------------------------
+	-- Gear readout, shift light, punch and Step (drivetrain_feel, API2 amendment A20)
+	------------------------------------------------------------------------------------------------------------------
+
+	local Light = M.Light
+	local Colour = Tokens.Colour
+
+	-- Every image but the tip (the baked rings and the speed digits), with its colour now.
+	local function imageColours(root)
+		local list = {}
+		for _, item in ipairs(root:GetDescendants()) do
+			if item:IsA("ImageLabel") and item ~= root.Tip then list[item] = item.ImageColor3 end
+		end
+		return list
+	end
+
+	case("gear pure helpers: text, light level, flash, punch", function()
+		expect(M._gearText("N") == "N" and M._gearText("R") == "R" and M._gearText("7") == "7", "letters and digits")
+		expect(M._gearText(3) == "3", "a number shows its digits")
+		expect(M._gearText(nil) == nil and M._gearText("") == nil and M._gearText(0 / 0) == nil, "none")
+		expect(M._gearText("12345") == "12", "at most two characters")
+		expect(M._lightLevel(2) == Light.Shift and M._lightLevel(5) == Light.Overdrive, "levels pass")
+		expect(M._lightLevel(-1) == Light.Off and M._lightLevel(6) == Light.Off and M._lightLevel(0 / 0) == Light.Off
+			and M._lightLevel("2") == Light.Off, "anything else is off")
+		expect(M._flashOn(0) == true, "the flash is lit on its first frame")
+		-- At most 3 Hz: count the lit edges over two seconds at 240 samples a second.
+		local edges, last = 0, M._flashOn(0)
+		for sample = 1, 480 do
+			local lit = M._flashOn(sample / 240)
+			if lit and not last then edges += 1 end
+			last = lit
+		end
+		expect(edges <= 6, "at most 3 flashes a second, got " .. edges .. " in 2 s")
+		expect(M._punchLevel(0) == 3, "a punch starts at its top step")
+		expect(M._punchLevel(0.5) == 0, "and has settled after half a second")
+		local previous = 3
+		for sample = 1, 60 do
+			local level = M._punchLevel(sample / 120)
+			expect(level <= previous, "the punch only settles")
+			previous = level
+		end
+		expect(M._punchSize(40, 0) == 40 and M._punchSize(40, 3) == 46, "15% at the top step")
+		expect(M._punchSize(95, 3) == 100, "never above TextSize 100")
+	end)
+
+	case("gear pure helpers: light colours", function()
+		expect(M._lightColour(Light.Off, 0) == Colour.White, "off is white")
+		expect(M._lightColour(Light.Warm, 0) == Colour.Cyan, "warm is cyan")
+		expect(M._lightColour(Light.Shift, 0) == Colour.Pink, "shift is pink")
+		expect(M._lightColour(Light.Limiter, 0) == Colour.Pink and M._lightColour(Light.Limiter, 0.2) == Colour.White,
+			"the limiter flashes pink and white")
+		local amber = M._lightColour(Light.Spin, 0)
+		expect(amber ~= Colour.Yellow and amber ~= Colour.Pink and amber ~= Colour.White, "spin warning is its own amber")
+		expect(amber.R > amber.G and amber.G > amber.B, "amber: red over green over blue")
+		expect(M._lightColour(Light.Overdrive, 0) == Colour.Cyan, "Overdrive starts at cyan")
+		expect(M._lightColour(Light.Overdrive, 1 / 3) ~= Colour.Cyan, "and brightens")
+	end)
+
+	case("gear: SetGear shows, writes on change only, hides; Regular keeps the unit", function()
+		local gauge = gaugeOn(REGULAR, false)
+		local root = gauge.Instance
+		gauge.SetGear("N")
+		local first = gauge._writes()
+		expect(root.Gear.Visible == true and root.Gear.Text == "N", "gear shown")
+		expect(root.Unit.Visible == true, "Regular keeps the unit line")
+		expect(first == 2, "text and visibility, got " .. first)
+		gauge.SetGear("N")
+		expect(gauge._writes() == first, "the same gear writes nothing")
+		gauge.SetGear("1")
+		expect(gauge._writes() == first + 1 and root.Gear.Text == "1", "a new gear is one write")
+		expect(root.Gear.Position.Y.Offset > root.BoostText.Position.Y.Offset, "the gear sits under the boost line")
+		expect(root.Gear.Position.Y.Offset + root.Gear.Size.Y.Offset <= root.Size.Y.Offset, "inside the frame")
+		expect(root.Gear.Size.X.Offset == root.Size.X.Offset, "the gear box spans the frame, text centred")
+		expect(root.Gear.FontFace.Weight == Enum.FontWeight.ExtraBold, "the display face, not the Label face")
+		gauge.SetGear(nil)
+		expect(root.Gear.Visible == false and root.Unit.Visible == true, "hidden again")
+	end)
+
+	case("gear: on Compact the gear replaces the unit line while it shows", function()
+		local gauge = gaugeOn(COMPACT, true, { Size = Tokens.Space.CompactGauge })
+		local root = gauge.Instance
+		expect(root.Unit.Visible == true and root.Gear.Visible == false, "unit line until a gear shows")
+		gauge.SetGear("3")
+		expect(root.Unit.Visible == false and root.Gear.Visible == true, "gear in place of the unit")
+		local gearMid = root.Gear.Position.Y.Offset + root.Gear.Size.Y.Offset / 2
+		local unitMid = root.Unit.Position.Y.Offset + root.Unit.Size.Y.Offset / 2
+		expect(math.abs(gearMid - unitMid) <= 4, "on the unit line, within 4 dp")
+		expect(root.Gear.TextSize > root.Unit.TextSize, "larger than the unit text it replaces")
+		gauge.SetGear(nil)
+		expect(root.Unit.Visible == true and root.Gear.Visible == false, "unit line back")
+		expect(budgetOf(root) <= BUDGET, "budget 28 on Compact")
+		expect(root.Gear.SizeLock.MaxTextSize == M._punchSize(root.Gear.TextSize, 3),
+			"the 92 dp gear grows with the player's Text Size no further than its box")
+	end)
+
+	case("shift light: gear text and tip only, never a baked image or the digits", function()
+		local gauge = gaugeOn(REGULAR, false)
+		local root = gauge.Instance
+		gauge.SetSpeed(120, 0.6)
+		gauge.SetGear("3")
+		local images = imageColours(root)
+		local before = gauge._writes()
+		gauge.SetShiftLight(Light.Warm)
+		expect(root.Gear.TextColor3 == Colour.Cyan and root.Tip.ImageColor3 == Colour.Cyan, "warm: cyan text and tip")
+		expect(gauge._writes() - before == 2, "two writes for a light change")
+		gauge.SetShiftLight(Light.Warm)
+		expect(gauge._writes() - before == 2, "the same level writes nothing")
+		gauge.SetShiftLight(Light.Shift)
+		expect(root.Gear.TextColor3 == Colour.Pink and root.Tip.ImageColor3 == Colour.Pink, "shift: pink")
+		gauge.SetShiftLight(Light.Spin)
+		expect(root.Gear.TextColor3 == M._lightColour(Light.Spin, 0), "spin warning: amber")
+		gauge.SetShiftLight(Light.Overdrive)
+		expect(root.Gear.TextColor3 == Colour.Cyan, "Overdrive: the boost colour")
+		gauge.SetShiftLight(Light.Off)
+		expect(root.Gear.TextColor3 == Colour.White and root.Tip.ImageColor3 == Colour.White, "off: white again")
+		for image, colour in pairs(imageColours(root)) do
+			expect(images[image] == colour, "an image other than the tip changed colour: " .. image:GetFullName())
+		end
+	end)
+
+	case("Step: the limiter flashes at most 3 Hz at any frame rate; steady lights and an idle gauge write nothing", function()
+		local gauge = gaugeOn(REGULAR, false)
+		local root = gauge.Instance
+		gauge.SetGear("N")
+		local before = gauge._writes()
+		for _ = 1, 120 do gauge.Step(1 / 60) end
+		expect(gauge._writes() == before, "nothing to animate writes nothing")
+		gauge.SetShiftLight(Light.Shift)
+		before = gauge._writes()
+		for _ = 1, 120 do gauge.Step(1 / 60) end
+		expect(gauge._writes() == before, "a steady light writes nothing")
+		local function countChanges(rate, frames)
+			gauge.SetShiftLight(Light.Off)
+			gauge.SetShiftLight(Light.Limiter)
+			expect(root.Gear.TextColor3 == Colour.Pink, "lit on the first frame")
+			local changes, last = 0, root.Gear.TextColor3
+			for _ = 1, frames do
+				gauge.Step(1 / rate)
+				if root.Gear.TextColor3 ~= last then
+					changes += 1
+					last = root.Gear.TextColor3
+				end
+			end
+			return changes
+		end
+		local changes = countChanges(60, 120)
+		expect(changes >= 10 and changes <= 12, "3 Hz is 12 colour changes in 2 s at 60 fps, got " .. changes)
+		changes = countChanges(20, 40)
+		expect(changes >= 10 and changes <= 12, "and at 20 fps, got " .. changes)
+		gauge.Step(0)
+		gauge.Step(-1)
+		gauge.Step(0 / 0)
+		gauge.Step(nil)
+	end)
+
+	case("punch: TextSize steps up on a shift and settles, no UIScale", function()
+		local gauge = gaugeOn(REGULAR, false)
+		local root = gauge.Instance
+		gauge.PunchGear()
+		expect(gauge._writes() == 0, "no gear, no punch")
+		gauge.SetGear("2")
+		local base = root.Gear.TextSize
+		gauge.PunchGear()
+		expect(root.Gear.TextSize > base, "bigger on the shift frame")
+		local sizes = { [root.Gear.TextSize] = true }
+		local distinct = 1
+		for _ = 1, 60 do
+			gauge.Step(1 / 60)
+			if not sizes[root.Gear.TextSize] then
+				sizes[root.Gear.TextSize] = true
+				distinct += 1
+			end
+		end
+		expect(root.Gear.TextSize == base, "settled after a second")
+		expect(distinct <= 4, "at most three punch sizes plus the base, got " .. distinct)
+		expect(root.Gear.Size.Y.Offset >= M._punchSize(base, 3), "the box holds the top step, so nothing relayouts")
+		expect(root.Gear.SizeLock.MaxTextSize == M._punchSize(base, 3), "the size lock stops at the top step too")
+		for _, item in ipairs(root:GetDescendants()) do
+			expect(not item:IsA("UIScale"), "no UIScale in the gauge")
+		end
+		gauge.PunchGear()
+		gauge.SetGear(nil)
+		expect(root.Gear.TextSize == base, "hiding the gear ends its punch")
+	end)
+
+	case("gear: a size change re-places the gear; the new setters are quiet after Destroy", function()
+		local gauge = gaugeOn(REGULAR, false)
+		local root = gauge.Instance
+		gauge.SetGear("5")
+		local fullSize = root.Gear.TextSize
+		gauge.Set({ Size = Tokens.Space.GaugeTouchSize })
+		expect(root.Gear.TextSize < fullSize, "the touch-size gauge takes the smaller role")
+		expect(root.Gear.Size.X.Offset == root.Size.X.Offset, "the gear box follows the frame")
+		expect(root.Gear.SizeLock.MaxTextSize == M._punchSize(root.Gear.TextSize, 3), "and the size lock follows the role")
+		gauge.Destroy()
+		gauge.SetGear("6")
+		gauge.PunchGear()
+		gauge.SetShiftLight(Light.Limiter)
+		gauge.Step(1 / 60)
+	end)
+
+	case("steady drive with telemetry: at most 4 counted gauge writes a frame", function()
+		local gauge = gaugeOn(REGULAR, false)
+		gauge.SetGear("4")
+		gauge.SetShiftLight(Light.Warm)
+		local fraction = 0.52
+		gauge.SetSpeed(100, fraction) -- the jump there is not measured
+		local worst, last = 0, gauge._writes()
+		for frame = 1, 120 do
+			fraction += 0.002
+			gauge.SetSpeed(100 + frame / 6, fraction)
+			gauge.Step(1 / 60)
+			worst = math.max(worst, gauge._writes() - last)
+			last = gauge._writes()
+		end
+		expect(worst <= 4, "at most 4 counted writes a frame, got " .. worst)
 	end)
 
 	return results

@@ -9,6 +9,13 @@
 local Http = game:GetService("HttpService")
 assert(game.PlaceId == DATA.placeId, DATA.base .. ": wrong place " .. tostring(game.PlaceId))
 assert(not game:GetService("RunService"):IsRunning(), DATA.base .. ": stop Play first")
+-- The agent test window (scripts/ui_restyle/probes/sandbox_window.lua) must be closed before any write.
+do
+	local onboarding = game:GetService("ReplicatedStorage"):FindFirstChild("Config")
+	onboarding = onboarding and onboarding:FindFirstChild("Player")
+	onboarding = onboarding and onboarding:FindFirstChild("Onboarding")
+	assert(MODE == "AUDIT" or not (onboarding and onboarding:GetAttribute("UIRestyleTestWindow") ~= nil), DATA.base .. ": the sandbox test window is open; close it first")
+end
 local BASE = "http://127.0.0.1:8797/" .. DATA.base
 local MARK = "DrivetrainFeelInstalled"
 local function djb2(s)

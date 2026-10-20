@@ -317,13 +317,15 @@ local DRIVETRAIN_NUMBERS = table.freeze({
 	{"FeelWeight", 1, 0, 2.5}, {"FeelGearing", 1, 0, 2}, {"FeelAcceleration", 1, 0.5, 1.5}, {"FeelGrip", 1, 0.6, 1.6},
 	{"FeelSpin", 1, 0, 2.5}, {"FeelEngineBrake", 1, 0, 2},
 	{"GearCount", 7, 1, 9}, {"IdleRpm", 1100, 300, 4000}, {"RedlineRpm", 8500, 2000, 20000}, {"LimiterRpm", 8600, 2000, 24000},
-	{"GearTorqueExponent", 0.8, 0, 2}, {"TopGearOverspeed", 1.06, 1, 1.5}, {"LaunchRpmFraction", 0.5, 0, 1},
+	{"GearTorqueExponent", 0.8, 0, 2}, {"TopGearOverspeed", 1.06, 1.02, 1.5}, {"LaunchRpmFraction", 0.5, 0, 1},
 	{"EngineRiseSeconds", 0.06, 0.01, 1}, {"EngineFallScale", 1.5, 0.2, 5}, {"ShiftRpmSeconds", 0.05, 0.005, 1},
 	{"ThrustSlipFlare", 0.6, 0, 2}, {"ShiftCutSeconds", 0.06, 0, 0.5}, {"ShiftCutTorque", 0.45, 0, 1},
 	{"ShiftBlendSeconds", 0.06, 0, 0.5}, {"DownshiftBlendSeconds", 0.08, 0.01, 0.5}, {"ShiftMinIntervalSeconds", 0.25, 0.05, 2},
 	{"UpshiftFlat", 0.97, 0.5, 1}, {"UpshiftPartLow", 0.62, 0.3, 1}, {"UpshiftPartHigh", 0.85, 0.3, 1},
 	{"UpshiftCruise", 0.45, 0.2, 1}, {"CruiseThrottleMin", 0.05, 0, 0.3}, {"UpshiftMinLand", 0.33, 0, 0.9},
-	{"LiftHoldSeconds", 0.8, 0, 3}, {"DownshiftBrakeLand", 0.82, 0.3, 1}, {"DownshiftCoastFraction", 0.3, 0, 0.9},
+	{"LiftHoldSeconds", 0.8, 0, 3}, {"DigitalDutySeconds", 1.5, 0.05, 10}, {"DigitalCruiseDutyMax", 0.7, 0, 1},
+	{"DigitalCruiseSteadyMph", 3, 0, 50}, {"DigitalCruiseUpshift", 0.6, 0.2, 1}, {"DigitalCruiseLand", 0.5, 0, 0.95},
+	{"DownshiftBrakeLand", 0.82, 0.3, 1}, {"DownshiftCoastFraction", 0.3, 0, 0.9},
 	{"DownshiftCoastLand", 0.65, 0.3, 1}, {"KickdownThrottle", 0.95, 0.5, 1}, {"KickdownBelowFraction", 0.45, 0, 1},
 	{"KickdownLand", 0.88, 0.3, 1}, {"KickdownHoldSeconds", 0.12, 0, 1}, {"StopGearMph", 3, 0, 20},
 	{"LimiterOnSeconds", 0.03, 0.005, 0.5}, {"LimiterCutSeconds", 0.045, 0, 0.5}, {"LimiterHysteresisRpm", 150, 0, 2000},
@@ -333,25 +335,27 @@ local DRIVETRAIN_NUMBERS = table.freeze({
 	{"RollingDecel", 0.8, 0, 10}, {"RollingDecelPerStud", 0.004, 0, 0.1}, {"EngineBrakeDecel", 1.5, 0, 20},
 	{"BrakeDecel", 70, 5, 200}, {"BrakeForceExponent", 0.35, 0, 2}, {"BrakeFactorMin", 0.75, 0.1, 3}, {"BrakeFactorMax", 1.4, 0.1, 3},
 	{"BoostShareMin", 0.15, 0, 1}, {"SpeedGuardStrength", 2, 0, 20}, {"SpeedGuardOverBoostTop", 1.03, 1, 1.5},
-	{"SteerRiseSeconds", 0.2, 0, 1}, {"SteerReturnRate", 14, 1, 100}, {"TouchSteerRate", 10, 1, 100},
-	{"YawOmega", 9, 1, 60}, {"YawDamping", 0.75, 0.1, 2}, {"YawWeightExponent", 0.5, 0, 2}, {"YawWeightMin", 0.75, 0.2, 2},
+	{"SteerRiseSeconds", 0.12, 0, 1}, {"SteerReturnRate", 25, 1, 100}, {"TouchSteerRate", 10, 1, 100},
+	{"YawOmega", 20, 1, 60}, {"YawDamping", 0.75, 0.1, 2}, {"YawWeightExponent", 0.5, 0, 2}, {"YawWeightMin", 0.75, 0.2, 2},
 	{"YawWeightMax", 1.3, 0.2, 3}, {"YawKinematicBelowMph", 15, 0, 80}, {"YawUnwindScale", 2, 0.5, 5}, {"YawRateMax", 5, 0.5, 5},
 	{"LateralCapG", 3.4, 0.5, 20}, {"LateralCapGripExponent", 0.25, 0, 1}, {"LateralCurveShape", 1.4, 1, 1.9},
 	{"YawCapMargin", 0.9, 0.3, 3}, {"GripRelaxStuds", 2, 0, 20},
+	{"DriftExemptGain", 4, 0, 10}, {"DriftYawExempt", 1, 0, 1}, {"DriftAssistPlateauShare", 0.9, 0, 1},
 	{"PitchDegreesPerG", 2.4, 0, 10}, {"PitchMaxDegrees", 5, 0, 15}, {"PitchOmega", 9, 1, 40}, {"PitchDamping", 0.6, 0.1, 2},
 	{"RollDegreesPerG", 0.9, -5, 5}, {"RollMaxDegrees", 3, 0, 10}, {"ImpactYawKick", 0.6, 0, 5},
-	{"SpinStabSeconds", 0.4, 0, 2}, {"SpinStabSteer", 0.8, 0, 1}, {"SpinAnalogRate", 4, 0.5, 50}, {"SpinWindowSeconds", 0.7, 0, 5},
-	{"PowerBrakeMinHold", 0.3, 0, 5}, {"PowerBrakeDumpSlip", 0.5, 0, 2},
-	{"SpinBelowMph", 25, 0, 100}, {"SpinFadeMph", 12, 0.5, 100}, {"SpinSteerStart", 0.6, 0, 1}, {"SpinSteerWidth", 0.35, 0.01, 1},
-	{"SpinSlipStart", 0.12, 0, 2}, {"SpinSlipWidth", 0.25, 0.01, 2},
-	{"SpinBuildRate", 3.5, 0, 30}, {"SpinDecayRate", 2.5, 0, 30}, {"SpinCatchRate", 8, 0, 60}, {"SpinSettleSeconds", 0.3, 0, 3},
-	{"SpinYawAccel", 7, 0, 40}, {"SpinMaxYawRate", 3.6, 0, 5}, {"SpinGripLoss", 0.7, 0, 1}, {"SpinThrustLoss", 0.35, 0, 1},
-	{"SpinYawAuthorityLoss", 0.85, 0, 1}, {"SpinHoldCap", 0.35, 0, 1}, {"SpinTierFloor", 0.5, 0, 1}, {"SpinTouchScale", 0.5, 0, 2},
+	{"SpinStabSeconds", 0.4, 0, 2}, {"SpinStabSteer", 0.8, 0, 1}, {"SpinAnalogRate", 4, 0.5, 50}, {"SpinWindowSeconds", 0.9, 0, 5},
+	{"PowerBrakeMinHold", 0.3, 0, 5}, {"PowerBrakeDumpSlip", 0.5, 0, 2}, {"SpinFlickSeconds", 0.15, 0, 2}, {"SpinStabDumpSlip", 0.3, 0, 2},
+	{"SpinBelowMph", 30, 0, 100}, {"SpinFadeMph", 12, 0.5, 100}, {"SpinSteerStart", 0.6, 0, 1}, {"SpinSteerWidth", 0.35, 0.01, 1},
+	{"SpinSlipStart", 0.04, 0, 2}, {"SpinSlipWidth", 0.08, 0.01, 2},
+	{"SpinBuildRate", 6, 0, 30}, {"SpinDecayRate", 2.5, 0, 30}, {"SpinCatchRate", 8, 0, 60}, {"SpinSettleSeconds", 0.3, 0, 3},
+	{"SpinYawAccel", 25, 0, 40}, {"SpinMaxYawRate", 3.6, 0, 5}, {"SpinGripLoss", 0.85, 0, 1}, {"SpinThrustLoss", 0.35, 0, 1},
+	{"SpinYawAuthorityLoss", 0.85, 0, 1}, {"SpinHoldCap", 0.35, 0, 1}, {"SpinTierFloor", 0.8, 0, 1}, {"SpinTouchScale", 0.5, 0, 2},
 	{"SpinStartGraceSeconds", 3, 0, 30}, {"SpinStartGraceMph", 38, 0, 200}, {"SpinWarnLevel", 0.25, 0, 1},
 	{"HudRedlineSweep", 0.87, 0.5, 1}, {"HudShiftLeadSeconds", 0.25, 0, 2}, {"HudShiftMinFraction", 0.85, 0, 1}, {"HudWarmBandFraction", 0.12, 0, 0.5},
 })
 -- 0/1 number switches (a boolean is accepted too); a missing switch counts as 1.
-local DRIVETRAIN_SWITCHES = table.freeze({"NeutralRevEnabled", "BoostShapeEnabled", "OverdriveEnabled", "DriftCapExempt", "SpinEnabled", "PowerBrakeEnabled"})
+local DRIVETRAIN_SWITCHES = table.freeze({"NeutralRevEnabled", "BoostShapeEnabled", "OverdriveEnabled", "DriftCapExempt", "SpinEnabled", "PowerBrakeEnabled",
+	"SpinStabNeedsFlick", "DriftHoldDownshift", "DigitalCruiseEnabled"})
 local drivetrainTunings = {} -- [categoryId] = tuning table, changed in place
 local drivetrainProfiles = setmetatable({}, {__mode = "k"}) -- [vehicle] = {CheckedAt, Tuning, PI, Profile}
 local quietProfiles = setmetatable({}, {__mode = "k"}) -- the same for remote (quiet) callers, kept apart
@@ -423,6 +427,39 @@ end
 local function profileTorque(profile, x)
 	local tuning = profile.Tuning
 	return 1 + (curveAt(tuning.CurveX, tuning.CurveY, x) - 1) * profile.CurveDepth
+end
+
+-- Gear thrust multiplier at a road speed. MultBase[g] = (r_g / r_1) ^ GearTorqueExponent; env(v) is MultBase
+-- interpolated linearly over speed between the gears' mid-band speeds (MidMph, clamped at the ends). FeelGearing scales
+-- only the step around that fixed envelope (0 = the smooth envelope, CVT; 1 = the plain steps; 2 = double steps), so
+-- the dial changes how the gears feel, not the car's pace.
+local function profileMult(profile, gear, mph)
+	local mids, base, count = profile.MidMph, profile.MultBase, profile.GearCount
+	local env = base[count]
+	if mph <= mids[1] then
+		env = base[1]
+	else
+		for index = 2, count do
+			if mph <= mids[index] then
+				local m0, m1 = mids[index - 1], mids[index]
+				env = base[index - 1] + (base[index] - base[index - 1]) * (m1 > m0 and (mph - m0) / (m1 - m0) or 1)
+				break
+			end
+		end
+	end
+	local mult = env + (base[gear] - env) * profile.Tuning.FeelGearing
+	if mult ~= mult or mult < 0 then mult = 0 end
+	return mult
+end
+
+-- The thrust the step delivers from a raw engine thrust with no extra slip: traction-limited, with the slide loss when
+-- the thrust slips (the same terms as StepDrivetrain).
+local function deliveredThrust(profile, tuning, raw)
+	local traction = profile.Traction
+	local thrust = math.min(raw, traction)
+	local slip = math.max(raw / traction - 1, 0) * (1 - tuning.TractionAssist)
+	if slip > 0 then thrust *= 1 - (1 - tuning.SlideGripFraction) * smoothstep(slip / 0.6) end
+	return thrust
 end
 
 local function rebuildTuning(tuning)
@@ -564,15 +601,18 @@ local function buildProfile(profile, tuning, stats, balance, maxMph, index, vehi
 	local vb = boostToday > 0 and math.max(solveTop(boostToday), vt) or vt
 	profile.Vt, profile.Vb, profile.BoostToday = vt, vb, boostToday
 	-- Gear redline speeds from this car's own top speed: top gear runs out TopGearOverspeed above Vt, so the top
-	-- speed stays drag-limited. Thrust per gear falls as (ratio / first ratio) ^ (GearTorqueExponent x FeelGearing).
+	-- speed stays drag-limited. Thrust per gear steps as (ratio / first ratio) ^ GearTorqueExponent around a fixed
+	-- envelope through the gears' mid-band speeds (profileMult); FeelGearing scales only the step.
 	local ratios, count = tuning.Ratios, tuning.Gears
 	local gearing = tuning.FeelGearing
-	local exponent = tuning.GearTorqueExponent * gearing
 	table.clear(profile.Speeds)
-	table.clear(profile.Mult)
+	table.clear(profile.MultBase)
+	table.clear(profile.MidMph)
 	for gear = 1, count do
 		profile.Speeds[gear] = vt * tuning.TopGearOverspeed * ratios[count] / ratios[gear]
-		profile.Mult[gear] = (ratios[gear] / ratios[1]) ^ exponent
+		profile.MultBase[gear] = (ratios[gear] / ratios[1]) ^ tuning.GearTorqueExponent
+		-- Mid-band speed: halfway between the previous gear's redline speed (0 for first) and this gear's.
+		profile.MidMph[gear] = ((gear > 1 and profile.Speeds[gear - 1] or 0) + profile.Speeds[gear]) * 0.5
 	end
 	profile.GearCount = count
 	profile.CurveDepth = math.min(gearing, 1)
@@ -580,16 +620,16 @@ local function buildProfile(profile, tuning, stats, balance, maxMph, index, vehi
 	profile.TierAlpha = smoothstep(((index or numberAttribute(config, "BalanceFallbackPerformanceIndex", 525, 0, 2000)) - tuning.TierStartPI) / (tuning.TierFullPI - tuning.TierStartPI))
 	local gripRatio = math.max(tonumber(stats.LateralGrip) or 50, 0.001) / 50
 	profile.Traction = (tuning.TractionG + tuning.TractionTierBonusG * profile.TierAlpha) * G_STUDS * math.clamp(gripRatio ^ tuning.TractionGripExponent, 0.9, 1.15) * tuning.FeelGrip
-	-- Drag derived so that top-gear thrust at Vt balances resistance at Vt: the real top speed is today's.
-	local topDrive = math.min(profile.A1 * profile.Mult[count] * profileTorque(profile, 1 / tuning.TopGearOverspeed), profile.Traction)
+	-- Drag derived so that the top-gear thrust delivered at Vt (traction and slide loss included) balances resistance
+	-- at Vt: the real top speed is today's at every FeelGearing.
+	local topDrive = deliveredThrust(profile, tuning, profile.A1 * profileMult(profile, count, vt) * profileTorque(profile, 1 / tuning.TopGearOverspeed))
 	profile.Kd = math.max(topDrive - tuning.RollingDecel - tuning.RollingDecelPerStud * vt / MPH_PER_STUD, 0.5) / (vt * vt)
 	-- Boost fades with speed so the boosted top stays at today's Vb (Overdrive holds top-gear thrust at redline).
 	local share = 1
 	if tuning.BoostShapeEnabled and boostToday > 0 then
 		local x = vb / profile.Speeds[count]
-		local engine = profile.A1 * profile.Mult[count] * profileTorque(profile, math.min(x, 1))
+		local engine = deliveredThrust(profile, tuning, profile.A1 * profileMult(profile, count, vb) * profileTorque(profile, math.min(x, 1)))
 		if x >= 1 and not tuning.OverdriveEnabled then engine *= tuning.LimiterOnSeconds / math.max(tuning.LimiterOnSeconds + tuning.LimiterCutSeconds, 0.001) end
-		engine = math.min(engine, profile.Traction)
 		local resistance = profile.Kd * vb * vb + tuning.RollingDecel + tuning.RollingDecelPerStud * vb / MPH_PER_STUD
 		share = math.clamp((resistance - engine) / boostToday, tuning.BoostShareMin, 1)
 	end
@@ -622,7 +662,7 @@ function Model.DrivetrainProfile(vehicle, stats, balance, maxMph, quiet)
 	local entry = cache[vehicle]
 	local now = os.clock()
 	if not entry then
-		entry = {CheckedAt = -math.huge, Tuning = nil, PI = nil, Profile = {Speeds = {}, Mult = {}}}
+		entry = {CheckedAt = -math.huge, Tuning = nil, PI = nil, Profile = {Speeds = {}, MultBase = {}, MidMph = {}}}
 		cache[vehicle] = entry
 	end
 	if now - entry.CheckedAt >= 0.25 then
@@ -666,6 +706,7 @@ function Model.ResetGearbox(box, tuning, profile, forwardMph, neutral)
 	if gear >= 1 and profile and tuning and profile.Speeds[gear] then rpm = math.clamp(forwardMph / profile.Speeds[gear] * tuning.RedlineRpm, idle, tuning.LimiterRpm) end
 	box.Gear, box.Rpm, box.SinceShift, box.ShiftKind = gear, rpm, 10, "None"
 	box.LimiterState, box.LimiterClock, box.LiftClock, box.KickClock, box.Overdrive = 0, 0, 10, 0, false
+	box.Duty, box.SteadyMph = 0, forwardMph
 	box.ShiftRevision, box.LimiterRevision = box.ShiftRevision or 0, box.LimiterRevision or 0
 	box.LastKind, box.LastStrength = box.LastKind or "Up", box.LastStrength or 0
 end
@@ -733,7 +774,8 @@ end
 
 -- One frame of the gearbox and longitudinal forces (CONTRACT 5.2). drive is DrivingClient's drivetrain table: its
 -- Gearbox and Result tables are changed in place (no allocation). Inputs it reads from drive: SpinAmount, DriftBlend,
--- HorizontalSpeed (studs/s), SteeringIntent, ExtraSlip, PowerBrakeHeld, BoostApplied (last frame).
+-- HorizontalSpeed (studs/s), SteeringIntent, ExtraSlip, PowerBrakeHeld, BoostApplied (last frame), AnalogInput (the
+-- last throttle device was a gamepad trigger).
 function Model.StepDrivetrain(params, drive, dt, throttle, forwardSpeed, forwardMph, absoluteMph, maxMph, reverseMaxMph, deadzone, stopThresholdMph, autoHoldMph, reverseDelay, reverseHoldTimer, brakeAcceleration, reverseAcceleration, reverseCurve, aeroAcceleration, config)
 	local tuning, profile, box, out = drive.Tuning, drive.Profile, drive.Gearbox, drive.Result
 	local redline, idle, limiterRpm = tuning.RedlineRpm, tuning.IdleRpm, tuning.LimiterRpm
@@ -786,12 +828,22 @@ function Model.StepDrivetrain(params, drive, dt, throttle, forwardSpeed, forward
 	local positive = math.max(throttle, 0)
 	if positive < tuning.CruiseThrottleMin then box.LiftClock = 0 else box.LiftClock += dt end
 	if positive >= tuning.KickdownThrottle then box.KickClock += dt else box.KickClock = 0 end
+	-- Throttle duty and steady speed: averages over DigitalDutySeconds (reset with the gearbox) for the digital cruise.
+	local dutyAlpha = 1 - math.exp(-dt / tuning.DigitalDutySeconds)
+	local duty, steadyMph = tonumber(box.Duty) or 0, tonumber(box.SteadyMph) or forwardMph
+	if duty ~= duty then duty = 0 end
+	if steadyMph ~= steadyMph then steadyMph = forwardMph end
+	box.Duty = duty + (positive - duty) * dutyAlpha
+	box.SteadyMph = steadyMph + (forwardMph - steadyMph) * dutyAlpha
 	if gear >= 1 and forwardMph >= tuning.StopGearMph and box.SinceShift >= tuning.ShiftMinIntervalSeconds then
-		-- No shifting mid-drift or mid-spin, except an upshift off the limiter.
-		local hold = driftBlend > 0.3 or spin > 0.1
+		-- No shifting mid-drift or mid-spin, except an upshift off the limiter (and, with DriftHoldDownshift, one
+		-- downshift at a time inside the drift hold, so a drift does not bog in a high gear).
+		local driftHold, spinHold = driftBlend > 0.3, spin > 0.1
+		local hold = driftHold or spinHold
 		local shifted = false
 		if gear < count then
 			local up = ratio >= 1
+			local strength = driven >= 0.9 and 1 or 0.3 + 0.7 * driven
 			if not up and not hold and driven > 0 then
 				if driven >= 0.9 then
 					up = ratio >= tuning.UpshiftFlat
@@ -803,8 +855,17 @@ function Model.StepDrivetrain(params, drive, dt, throttle, forwardSpeed, forward
 					end
 				end
 			end
+			-- Digital cruise (keyboard and touch give 0/1 throttle): a steady speed held with an averaged throttle duty in
+			-- the cruise band short-shifts at DigitalCruiseUpshift, so tapping W does not drone near redline. Not blocked
+			-- by LiftHoldSeconds; a held W (duty above DigitalCruiseDutyMax) keeps the full-throttle shift points.
+			if not up and not hold and tuning.DigitalCruiseEnabled and drive.AnalogInput ~= true
+				and box.Duty > tuning.CruiseThrottleMin and box.Duty <= tuning.DigitalCruiseDutyMax
+				and math.abs(forwardMph - box.SteadyMph) <= tuning.DigitalCruiseSteadyMph and ratio >= tuning.DigitalCruiseUpshift
+				and ratio * ratios[gear + 1] / ratios[gear] >= math.max(tuning.DigitalCruiseLand, tuning.UpshiftMinLand) then
+				up, strength = true, 0.3 + 0.7 * box.Duty
+			end
 			if up then
-				beginShift(box, tuning, gear + 1, "Up", driven >= 0.9 and 1 or 0.3 + 0.7 * driven)
+				beginShift(box, tuning, gear + 1, "Up", strength)
 				shifted = true
 			end
 		end
@@ -824,14 +885,23 @@ function Model.StepDrivetrain(params, drive, dt, throttle, forwardSpeed, forward
 			end
 			-- Downshifts never cut torque: a rev-matched blend only (the audio adds the blip).
 			if target < gear then beginShift(box, tuning, target, "Down", 0.5) end
+		elseif not shifted and gear > 1 and driftHold and not spinHold and tuning.DriftHoldDownshift then
+			-- Drift hold: one gear down when the lower gear's rpm from the whole horizontal speed lands at or below
+			-- DownshiftBrakeLand (ShiftMinIntervalSeconds between steps, no cut).
+			if horizontal * MPH_PER_STUD / speeds[gear - 1] <= tuning.DownshiftBrakeLand then beginShift(box, tuning, gear - 1, "Down", 0.5) end
 		end
 		gear = box.Gear
 		ratio = roadMph / speeds[gear]
 	end
 	local rpmRoad = ratio * redline
-	-- Overdrive: boosting past top-gear redline pins the engine at redline with no limiter (small hysteresis).
-	local overdrive = tuning.OverdriveEnabled and drive.BoostApplied == true and gear >= 1 and gear == count and ratio >= (box.Overdrive and 0.98 or 1)
+	-- Overdrive: boosting past top-gear redline pins the engine at redline with no limiter. Once on, it holds after
+	-- the boost ends while the car is still above 0.98 of top-gear redline, so the limiter does not bounce on the way
+	-- back down (fix spec F9).
+	local overdrive = tuning.OverdriveEnabled and gear >= 1 and gear == count and (drive.BoostApplied == true or box.Overdrive == true)
+		and ratio >= (box.Overdrive and 0.98 or 1)
 	box.Overdrive = overdrive
+	-- This gear's thrust multiplier at this road speed (FeelGearing steps around the fixed envelope).
+	local mult = gear >= 1 and profileMult(profile, gear, roadMph) or 0
 
 	-- Engine rpm target: road rpm, a clutch-slip launch in first, a free rev while spinning.
 	local rpmBase = rpmRoad
@@ -846,7 +916,7 @@ function Model.StepDrivetrain(params, drive, dt, throttle, forwardSpeed, forward
 
 	-- Thrust (throttle applied once, linear), traction-limited, with the slide loss when the thrust slips.
 	local raw = 0
-	if driven > 0 and gear >= 1 then raw = profile.A1 * profile.Mult[gear] * profileTorque(profile, (overdrive and redline or box.Rpm) / redline) * driven end
+	if driven > 0 and gear >= 1 then raw = profile.A1 * mult * profileTorque(profile, (overdrive and redline or box.Rpm) / redline) * driven end
 	local traction = profile.Traction
 	local slip = 0
 	if mode == "Forward" and forwardMph >= -1 and drive.SteeringIntent == 1 then
@@ -899,7 +969,7 @@ function Model.StepDrivetrain(params, drive, dt, throttle, forwardSpeed, forward
 		local resistance = profile.Kd * forwardMph * forwardMph + tuning.RollingDecel + tuning.RollingDecelPerStud * math.abs(forwardSpeed)
 		local engineBrake = 0
 		if mode ~= "Forward" and gear >= 1 and forwardMph > 0 then
-			engineBrake = tuning.EngineBrakeDecel * tuning.FeelEngineBrake * profile.Mult[gear] / profile.Mult[count] * (0.35 + 0.65 * math.min(box.Rpm / redline, 1)) * (1 - shiftCut)
+			engineBrake = tuning.EngineBrakeDecel * tuning.FeelEngineBrake * mult / profile.MultBase[count] * (0.35 + 0.65 * math.min(box.Rpm / redline, 1)) * (1 - shiftCut)
 		end
 		acceleration = -motion * resistance - engineBrake
 		if mode == "Forward" then
@@ -964,6 +1034,14 @@ function Model.StepNeutral(drive, dt, throttle)
 	if thr ~= thr then thr = 0 end
 	if box.Rpm ~= box.Rpm or box.Rpm == nil then box.Rpm = idle end
 	box.Gear = 0
+	-- The digital-cruise averages run on every active frame (standing still here).
+	local dutyAlpha = 1 - math.exp(-dt / tuning.DigitalDutySeconds)
+	local duty, steadyMph, input = tonumber(box.Duty) or 0, tonumber(box.SteadyMph) or 0, math.clamp(tonumber(throttle) or 0, 0, 1)
+	if duty ~= duty then duty = 0 end
+	if steadyMph ~= steadyMph then steadyMph = 0 end
+	if input ~= input then input = 0 end
+	box.Duty = duty + (input - duty) * dutyAlpha
+	box.SteadyMph = steadyMph - steadyMph * dutyAlpha
 	local hysteresis = tuning.LimiterHysteresisRpm
 	local over = thr > 0 and box.Rpm >= (box.LimiterState ~= 0 and redline - hysteresis or redline)
 	local cut = stepLimiter(box, over, dt, tuning.LimiterOnSeconds, tuning.LimiterCutSeconds)

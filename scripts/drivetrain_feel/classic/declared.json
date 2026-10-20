@@ -1,0 +1,694 @@
+{
+ "addedScripts": {
+  "ReplicatedFirst.Loading.LoadingScreenViewPulse": {
+   "class": "ModuleScript",
+   "djb2": 475378004,
+   "fnv1a32": 3518500580,
+   "length": 23292
+  },
+  "ReplicatedFirst.Loading.StartScreenPulse": {
+   "class": "ModuleScript",
+   "djb2": 84015750,
+   "fnv1a32": 1708767208,
+   "length": 20775
+  },
+  "ReplicatedFirst.UIStyleSwitch": {
+   "class": "ModuleScript",
+   "djb2": 1672133424,
+   "fnv1a32": 2187953912,
+   "length": 4512
+  },
+  "ReplicatedStorage.Modules.Game.Audio.RadioClient": {
+   "class": "ModuleScript"
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.BigNumber": {
+   "class": "ModuleScript",
+   "djb2": 3765722420,
+   "fnv1a32": 2845179858,
+   "length": 3015
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Collections": {
+   "class": "ModuleScript",
+   "djb2": 789782960,
+   "fnv1a32": 1036187774,
+   "length": 20743
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Controls": {
+   "class": "ModuleScript",
+   "djb2": 4174119552,
+   "fnv1a32": 1246915250,
+   "length": 18290
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Data": {
+   "class": "ModuleScript",
+   "djb2": 2451726006,
+   "fnv1a32": 2796756588,
+   "length": 8209
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.FreeRoam": {
+   "class": "ModuleScript",
+   "djb2": 2660781893,
+   "fnv1a32": 2108765327,
+   "length": 9734
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.FreeRoamActivity": {
+   "class": "ModuleScript",
+   "djb2": 682041023,
+   "fnv1a32": 473743171,
+   "length": 7701
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Garage": {
+   "class": "ModuleScript",
+   "djb2": 1933320239,
+   "fnv1a32": 2041318093,
+   "length": 19413
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.GarageOwned": {
+   "class": "ModuleScript",
+   "djb2": 2394096495,
+   "fnv1a32": 4224330045,
+   "length": 12160
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Gauge": {
+   "class": "ModuleScript",
+   "djb2": 1734057305,
+   "fnv1a32": 3955494879,
+   "length": 9309
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Minimap": {
+   "class": "ModuleScript",
+   "djb2": 3102471882,
+   "fnv1a32": 3391241064,
+   "length": 4676
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Overlay": {
+   "class": "ModuleScript",
+   "djb2": 3144432066,
+   "fnv1a32": 4054004808,
+   "length": 20761
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.RaceEntry": {
+   "class": "ModuleScript",
+   "djb2": 1019909944,
+   "fnv1a32": 3218970760,
+   "length": 16611
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.RaceMenu": {
+   "class": "ModuleScript",
+   "djb2": 3873893541,
+   "fnv1a32": 95878411,
+   "length": 8460
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.RaceSession": {
+   "class": "ModuleScript",
+   "djb2": 4260321949,
+   "fnv1a32": 1808919667,
+   "length": 20672
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Shell": {
+   "class": "ModuleScript",
+   "djb2": 1991206574,
+   "fnv1a32": 2748233934,
+   "length": 10273
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Surface": {
+   "class": "ModuleScript",
+   "djb2": 706645927,
+   "fnv1a32": 2662877963,
+   "length": 10738
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Text": {
+   "class": "ModuleScript",
+   "djb2": 4106675855,
+   "fnv1a32": 3600151987,
+   "length": 8766
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Touch": {
+   "class": "ModuleScript",
+   "djb2": 3353222574,
+   "fnv1a32": 2542141774,
+   "length": 2758
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.WorldMap": {
+   "class": "ModuleScript",
+   "djb2": 2437570393,
+   "fnv1a32": 2017521289,
+   "length": 10263
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.Dev.Gallery": {
+   "class": "ModuleScript",
+   "djb2": 820445393,
+   "fnv1a32": 3125236245,
+   "length": 21439
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.ActivityHudClient": {
+   "class": "ModuleScript",
+   "djb2": 1261674520,
+   "fnv1a32": 2738025412,
+   "length": 20335
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.ActivityHudView": {
+   "class": "ModuleScript",
+   "djb2": 3710563433,
+   "fnv1a32": 618175877,
+   "length": 25864
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.CarPanelView": {
+   "class": "ModuleScript",
+   "djb2": 1656286294,
+   "fnv1a32": 1489085226,
+   "length": 10980
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.HudClient": {
+   "class": "ModuleScript",
+   "djb2": 1681447772,
+   "fnv1a32": 4014982326,
+   "length": 12554
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.HudMinimap": {
+   "class": "ModuleScript",
+   "djb2": 2334085733,
+   "fnv1a32": 3555329025,
+   "length": 10134
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.HudModals": {
+   "class": "ModuleScript",
+   "djb2": 3362244644,
+   "fnv1a32": 4280416464,
+   "length": 18155
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.HudModel": {
+   "class": "ModuleScript",
+   "djb2": 383365086,
+   "fnv1a32": 2001965462,
+   "length": 29562
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.HudView": {
+   "class": "ModuleScript",
+   "djb2": 2735155409,
+   "fnv1a32": 3541343987,
+   "length": 24334
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.RadioStripView": {
+   "class": "ModuleScript"
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.TouchControlsClient": {
+   "class": "ModuleScript",
+   "djb2": 2028199314,
+   "fnv1a32": 2937671232,
+   "length": 10581
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.TouchControlsView": {
+   "class": "ModuleScript",
+   "djb2": 3314448417,
+   "fnv1a32": 4264587937,
+   "length": 15228
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.Garage.GarageClient": {
+   "class": "ModuleScript",
+   "djb2": 2485735288,
+   "fnv1a32": 2610226376,
+   "length": 11712
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.Garage.GarageCompat": {
+   "class": "ModuleScript",
+   "djb2": 1893322381,
+   "fnv1a32": 4057575857,
+   "length": 2879
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.Garage.GarageEntranceClient": {
+   "class": "ModuleScript",
+   "djb2": 505618832,
+   "fnv1a32": 3738743008,
+   "length": 8078
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.Garage.GarageInteriorHud": {
+   "class": "ModuleScript",
+   "djb2": 3669250500,
+   "fnv1a32": 1917228740,
+   "length": 16689
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.Garage.GarageInteriorTransitionUI": {
+   "class": "ModuleScript",
+   "djb2": 3817409909,
+   "fnv1a32": 3674440229,
+   "length": 1476
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.Garage.GarageModals": {
+   "class": "ModuleScript",
+   "djb2": 941336611,
+   "fnv1a32": 2706700225,
+   "length": 8272
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.Garage.GarageModel": {
+   "class": "ModuleScript",
+   "djb2": 1328702204,
+   "fnv1a32": 2270070100,
+   "length": 88788
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.Garage.GarageRoutes": {
+   "class": "ModuleScript",
+   "djb2": 3402117266,
+   "fnv1a32": 514497510,
+   "length": 14834
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.Garage.GarageScreenView": {
+   "class": "ModuleScript",
+   "djb2": 1520435721,
+   "fnv1a32": 1944766173,
+   "length": 38219
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.Garage.OwnedGarageBrowserModel": {
+   "class": "ModuleScript",
+   "djb2": 3155096163,
+   "fnv1a32": 4045359433,
+   "length": 23429
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.Garage.OwnedGarageBrowserUI": {
+   "class": "ModuleScript",
+   "djb2": 400457809,
+   "fnv1a32": 3849729811,
+   "length": 32119
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.Garage.OwnedGarageClient": {
+   "class": "ModuleScript",
+   "djb2": 1764268112,
+   "fnv1a32": 2794804240,
+   "length": 5359
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.Garage.OwnedGarageDeskView": {
+   "class": "ModuleScript",
+   "djb2": 2947855813,
+   "fnv1a32": 3429821947,
+   "length": 36972
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.Garage.OwnedGarageWorkspaceUI": {
+   "class": "ModuleScript",
+   "djb2": 1211440583,
+   "fnv1a32": 1649215793,
+   "length": 45117
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.Garage.PaintView": {
+   "class": "ModuleScript",
+   "djb2": 3699974149,
+   "fnv1a32": 1154064325,
+   "length": 18038
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.Garage.TouchCameraGuard": {
+   "class": "ModuleScript",
+   "djb2": 2697359570,
+   "fnv1a32": 3002823490,
+   "length": 12880
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.Kit.BigNumber": {
+   "class": "ModuleScript",
+   "djb2": 1111708803,
+   "fnv1a32": 947825977,
+   "length": 13453
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.Kit.Collections": {
+   "class": "ModuleScript",
+   "djb2": 4134916626,
+   "fnv1a32": 3307548318,
+   "length": 93817
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.Kit.Contracts": {
+   "class": "ModuleScript",
+   "djb2": 1718602022,
+   "fnv1a32": 4226520730,
+   "length": 38861
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.Kit.Controls": {
+   "class": "ModuleScript",
+   "djb2": 4142556078,
+   "fnv1a32": 2460103156,
+   "length": 85964
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.Kit.Data": {
+   "class": "ModuleScript",
+   "djb2": 3768628322,
+   "fnv1a32": 972769864,
+   "length": 59988
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.Kit.Gauge": {
+   "class": "ModuleScript",
+   "djb2": 3194700109,
+   "fnv1a32": 4098534631,
+   "length": 24023
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.Kit.Input": {
+   "class": "ModuleScript",
+   "djb2": 2694737324,
+   "fnv1a32": 1908707770,
+   "length": 13498
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.Kit.Layers": {
+   "class": "ModuleScript",
+   "djb2": 2288092487,
+   "fnv1a32": 2149580299,
+   "length": 15686
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.Kit.Metrics": {
+   "class": "ModuleScript",
+   "djb2": 19832263,
+   "fnv1a32": 2712781669,
+   "length": 13982
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.Kit.Minimap": {
+   "class": "ModuleScript",
+   "djb2": 539211816,
+   "fnv1a32": 927937836,
+   "length": 19197
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.Kit.Overlay": {
+   "class": "ModuleScript",
+   "djb2": 3337174296,
+   "fnv1a32": 1656733012,
+   "length": 63546
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.Kit.Perf": {
+   "class": "ModuleScript",
+   "djb2": 2497918401,
+   "fnv1a32": 3863359297,
+   "length": 4144
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.Kit.Presence": {
+   "class": "ModuleScript",
+   "djb2": 3697653828,
+   "fnv1a32": 1742439006,
+   "length": 4189
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.Kit.Sprites": {
+   "class": "ModuleScript",
+   "djb2": 2790620180,
+   "fnv1a32": 1814382376,
+   "length": 9471
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.Kit.Surface": {
+   "class": "ModuleScript",
+   "djb2": 1968655930,
+   "fnv1a32": 3092837744,
+   "length": 25057
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.Kit.Text": {
+   "class": "ModuleScript",
+   "djb2": 2230192600,
+   "fnv1a32": 2719451094,
+   "length": 19414
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.Kit.Tokens": {
+   "class": "ModuleScript",
+   "djb2": 1046315732,
+   "fnv1a32": 2680875912,
+   "length": 11642
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.Kit.Touch": {
+   "class": "ModuleScript",
+   "djb2": 1821150973,
+   "fnv1a32": 3277238551,
+   "length": 10374
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.Map.MapCanvas": {
+   "class": "ModuleScript",
+   "djb2": 1370841177,
+   "fnv1a32": 1507353831,
+   "length": 8064
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.Map.MapIcons": {
+   "class": "ModuleScript",
+   "djb2": 2849893803,
+   "fnv1a32": 3901674061,
+   "length": 9896
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.Map.MapRoute": {
+   "class": "ModuleScript",
+   "djb2": 3267996957,
+   "fnv1a32": 3064001795,
+   "length": 11326
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.NoOp": {
+   "class": "ModuleScript",
+   "djb2": 167653259,
+   "fnv1a32": 85221519,
+   "length": 234
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.RaceEntry.RaceEntryClient": {
+   "class": "ModuleScript",
+   "djb2": 4201803031,
+   "fnv1a32": 432974165,
+   "length": 7463
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.RaceEntry.RaceEntryModel": {
+   "class": "ModuleScript",
+   "djb2": 172438746,
+   "fnv1a32": 1491013878,
+   "length": 36608
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.RaceEntry.RecordsView": {
+   "class": "ModuleScript",
+   "djb2": 423426878,
+   "fnv1a32": 2544163060,
+   "length": 15812
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.RaceEntry.SetupView": {
+   "class": "ModuleScript",
+   "djb2": 2944475624,
+   "fnv1a32": 1347118896,
+   "length": 27504
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.RaceEntry.VehicleView": {
+   "class": "ModuleScript",
+   "djb2": 1290722691,
+   "fnv1a32": 730831953,
+   "length": 15431
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.RaceMenu.RaceMenuClient": {
+   "class": "ModuleScript",
+   "djb2": 1050655728,
+   "fnv1a32": 2960839894,
+   "length": 6947
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.RaceMenu.RaceMenuModel": {
+   "class": "ModuleScript",
+   "djb2": 2757659207,
+   "fnv1a32": 2985201443,
+   "length": 18785
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.RaceMenu.RaceMenuView": {
+   "class": "ModuleScript",
+   "djb2": 1072705715,
+   "fnv1a32": 469933691,
+   "length": 25441
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.RaceSession.CountdownClient": {
+   "class": "ModuleScript",
+   "djb2": 573832707,
+   "fnv1a32": 4727149,
+   "length": 8987
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.RaceSession.QueueClient": {
+   "class": "ModuleScript",
+   "djb2": 3393779141,
+   "fnv1a32": 843398301,
+   "length": 14782
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.RaceSession.RaceHudClient": {
+   "class": "ModuleScript",
+   "djb2": 502039903,
+   "fnv1a32": 588542965,
+   "length": 9871
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.RaceSession.RaceHudModel": {
+   "class": "ModuleScript",
+   "djb2": 3836686833,
+   "fnv1a32": 3468817109,
+   "length": 21366
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.RaceSession.RaceHudView": {
+   "class": "ModuleScript",
+   "djb2": 2716180313,
+   "fnv1a32": 2294028597,
+   "length": 19874
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.RaceSession.ResultsClient": {
+   "class": "ModuleScript",
+   "djb2": 4214567257,
+   "fnv1a32": 871500921,
+   "length": 3755
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.RaceSession.ResultsModel": {
+   "class": "ModuleScript",
+   "djb2": 2302503368,
+   "fnv1a32": 2679673914,
+   "length": 17918
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.RaceSession.ResultsView": {
+   "class": "ModuleScript",
+   "djb2": 212092794,
+   "fnv1a32": 3453813802,
+   "length": 20980
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.RaceSession.RouteGuideClient": {
+   "class": "ModuleScript",
+   "djb2": 2788885834,
+   "fnv1a32": 335078846,
+   "length": 17208
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.Routes": {
+   "_unpinned": "changed by 07_shell",
+   "class": "ModuleScript"
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.Shell.CoreUiPolicy": {
+   "class": "ModuleScript",
+   "djb2": 1081851677,
+   "fnv1a32": 1124463485,
+   "length": 5557
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.Shell.OnboardingClient": {
+   "class": "ModuleScript",
+   "djb2": 645455380,
+   "fnv1a32": 3893492004,
+   "length": 21713
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.Shell.OnboardingModel": {
+   "class": "ModuleScript",
+   "djb2": 869900173,
+   "fnv1a32": 1351134121,
+   "length": 32077
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.Shell.OnboardingView": {
+   "class": "ModuleScript",
+   "djb2": 3819424074,
+   "fnv1a32": 2296005762,
+   "length": 25387
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.Toasts.ToastClient": {
+   "class": "ModuleScript",
+   "djb2": 733354054,
+   "fnv1a32": 398291088,
+   "length": 3239
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.World.EventCardView": {
+   "class": "ModuleScript",
+   "djb2": 334494822,
+   "fnv1a32": 1885170798,
+   "length": 11160
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.World.WorldPromptModel": {
+   "class": "ModuleScript",
+   "djb2": 1599735129,
+   "fnv1a32": 2188891785,
+   "length": 10589
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.World.WorldPromptView": {
+   "class": "ModuleScript",
+   "djb2": 1527188889,
+   "fnv1a32": 3530570367,
+   "length": 14667
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.WorldMap.FullMapClient": {
+   "class": "ModuleScript",
+   "djb2": 2687739149,
+   "fnv1a32": 1661268707,
+   "length": 18073
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.WorldMap.FullMapModel": {
+   "class": "ModuleScript",
+   "djb2": 3080401464,
+   "fnv1a32": 472498518,
+   "length": 18557
+  },
+  "ReplicatedStorage.Modules.Game.UIPulse.WorldMap.FullMapView": {
+   "class": "ModuleScript",
+   "djb2": 2794345697,
+   "fnv1a32": 3682463717,
+   "length": 23516
+  }
+ },
+ "configAttrs": [
+  "UI@UIStyle",
+  "UI@UIStyleDevFamilies",
+  "Development.ClientTools@PulseGalleryEnabled"
+ ],
+ "configChanged": [
+  "UI.LoadingSystem@DefaultArtworkId",
+  "UI.LoadingSystem.Artworks.NeoTokyoStreet01@Enabled"
+ ],
+ "configNodes": [
+  "UI.Pulse",
+  "UI.Pulse.Assets",
+  "UI.LoadingSystem.Artworks.PulseSunset01"
+ ],
+ "scripts": {
+  "ReplicatedFirst.Loading.InitialLoadingAndStartScreenClient": {
+   "djb2": 4149816873,
+   "fnv1a32": 1061083493,
+   "length": 14351
+  },
+  "ReplicatedFirst.Loading.LoadingTransitionRuntime": {
+   "djb2": 3849886005,
+   "fnv1a32": 154855063,
+   "length": 8708
+  },
+  "ReplicatedStorage.Modules.Game.Audio.VehicleAudioCatalog": {
+   "djb2": 1261607600,
+   "fnv1a32": 376995432,
+   "length": 16022
+  },
+  "ReplicatedStorage.Modules.Game.Audio.VehicleAudioClient": {
+   "djb2": 2937444626,
+   "fnv1a32": 1895507206,
+   "length": 92919
+  },
+  "ReplicatedStorage.Modules.Game.Racing.RaceTransitionClient": {
+   "djb2": 2599529806,
+   "fnv1a32": 3806632348,
+   "length": 16018
+  },
+  "ReplicatedStorage.Modules.Game.UI.DesktopFreeRoamHudUI": {
+   "djb2": 1917299327,
+   "fnv1a32": 648451391,
+   "length": 75271
+  },
+  "ReplicatedStorage.Modules.Game.UI.RouteGuide": {
+   "djb2": 3447005970,
+   "fnv1a32": 3064301258,
+   "length": 15849
+  },
+  "ReplicatedStorage.Modules.Game.Vehicles.DriveSessionClient": {
+   "djb2": 2542873564,
+   "fnv1a32": 843433840,
+   "length": 3099
+  },
+  "ReplicatedStorage.Modules.Game.Vehicles.DrivingCameraClient": {
+   "djb2": 2821889795,
+   "fnv1a32": 2565907089,
+   "length": 46782
+  },
+  "ReplicatedStorage.Modules.Game.Vehicles.DrivingClient": {
+   "djb2": 3548229192,
+   "fnv1a32": 3239670182,
+   "length": 109659
+  },
+  "ReplicatedStorage.Modules.Game.Vehicles.VehicleDynamics": {
+   "djb2": 1236311824,
+   "fnv1a32": 3233169818,
+   "length": 74763
+  },
+  "ReplicatedStorage.Modules.Game.Vehicles.VehicleVFXClient": {
+   "djb2": 3057451405,
+   "fnv1a32": 2870130039,
+   "length": 48963
+  },
+  "ServerStorage.Modules.Game.Garage.VehicleBuildService": {
+   "djb2": 1303633379,
+   "fnv1a32": 3670977357,
+   "length": 14023
+  },
+  "StarterPlayer.StarterPlayerScripts.ClientBase": {
+   "djb2": 564541363,
+   "fnv1a32": 3766695237,
+   "length": 8326
+  }
+ }
+}

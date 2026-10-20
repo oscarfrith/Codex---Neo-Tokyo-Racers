@@ -7,3 +7,7 @@ DrivingClient, DrivingCameraClient, VehicleDynamics and DriveSessionClient retai
 Since 2026-10-06 ([driving tune](../scripts/driving_tune/CONTRACT.md)): `VehicleDynamics.Balance(vehicle)` scales forces by the car's `PerformanceIndex` (config `Dynamics.08_Balance`); DrivingClient owns a dynamic ride height (`HOVER_HEIGHT` x settle + bank lift + bob, config `HoverPose` and `HoverWobble`) and publishes the HUD speed through its display curve; FreeRoamParkedHoverClient animates the owner's anchored parked car locally. The real speed is still `FeelSpeedMph`.
 
 See architecture/cleanup-phase4-finalisation.md. Detailed historical behaviour/tuning notes remain in history/cleanup-phase4-prior-docs/03_driving_mechanics.md; old installation instructions are historical, not pending tasks.
+
+## Exotic drivetrain (2026-10-20, DRIVE-03)
+
+An Exotic car (`CategoryId` `exotic`) with `Config.Vehicles.Drivetrain.exotic@Enabled` 1 runs the drivetrain path: `VehicleDynamics.DrivetrainProfile` and `StepDrivetrain` (gearbox, traction, engine braking, Overdrive) and, in `DrivingClient`, the steering build-up, yaw-rate state (`r_steer + r_spin`), saturating lateral grip, pitch and roll, and spin gestures. Any other class, or `Enabled` 0, runs the old lines unchanged. Dial mapping and every value: [physics NOTES](../scripts/drivetrain_feel/physics/NOTES.md); model numbers: [RESULTS](../scripts/drivetrain_feel/model/RESULTS.md). A new class gets the same behaviour by copying the `exotic` folder under its CategoryId and retuning.

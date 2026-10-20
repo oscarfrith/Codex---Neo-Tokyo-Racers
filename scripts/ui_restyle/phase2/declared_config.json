@@ -1,5 +1,5 @@
 {
- "_note": "Config.UI changes made on purpose after Phase 1; merged into every unit's declared.json by assemble.py. 2026-10-09: PulseSunset01 loading artwork replaces NeoTokyoStreet01 (disabled, kept). 2026-10-10: radio delivery (scripts/ui_restyle/radio) added two scripts outside this chain.",
+ "_note": "Config.UI changes made on purpose after Phase 1; merged into every unit's declared.json by assemble.py. 2026-10-09: PulseSunset01 loading artwork replaces NeoTokyoStreet01 (disabled, kept). 2026-10-10: radio delivery (scripts/ui_restyle/radio) added two scripts outside this chain. 2026-10-20: drivetrain_feel delivery (scripts/drivetrain_feel) changed five Classic-recorded scripts outside this chain; \"scripts\" pins them to their after fingerprints wherever no unit pins the path (VehicleDynamics and DrivingClient are pinned by 02_free_roam, ops b_drivetrain_dynamics and b_driving_keys).",
  "configNodes": [
   "UI.LoadingSystem.Artworks.PulseSunset01"
  ],
@@ -11,5 +11,32 @@
  "addedScripts": {
   "ReplicatedStorage.Modules.Game.Audio.RadioClient": "ModuleScript",
   "ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.RadioStripView": "ModuleScript"
+ },
+ "scripts": {
+  "ReplicatedStorage.Modules.Game.Audio.VehicleAudioCatalog": {
+   "length": 16022,
+   "djb2": 1261607600,
+   "fnv1a32": 376995432
+  },
+  "ReplicatedStorage.Modules.Game.Audio.VehicleAudioClient": {
+   "length": 92919,
+   "djb2": 2937444626,
+   "fnv1a32": 1895507206
+  },
+  "ReplicatedStorage.Modules.Game.Vehicles.DriveSessionClient": {
+   "length": 3099,
+   "djb2": 2542873564,
+   "fnv1a32": 843433840
+  },
+  "ReplicatedStorage.Modules.Game.Vehicles.DrivingCameraClient": {
+   "length": 46782,
+   "djb2": 2821889795,
+   "fnv1a32": 2565907089
+  },
+  "ReplicatedStorage.Modules.Game.Vehicles.VehicleVFXClient": {
+   "length": 48963,
+   "djb2": 3057451405,
+   "fnv1a32": 2870130039
+  }
  }
 }

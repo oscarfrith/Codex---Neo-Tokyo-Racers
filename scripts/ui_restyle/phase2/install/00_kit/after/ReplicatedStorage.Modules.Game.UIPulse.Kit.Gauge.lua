@@ -1,4 +1,4 @@
--- Owns the Pulse speed gauge: ring images, the rotating-gradient reveal, the tip, the speed number, unit and boost line; not the vehicle read, the frame step or the slot.
+-- Owns the Pulse speed gauge: ring images, the rotating-gradient reveal, the tip, the speed number, unit and boost line, and the gear readout with its shift light and punch clocks; not the vehicle read, the frame binding or the slot.
 -- Pulse UI (phase2). ReplicatedStorage.Modules.Game.UIPulse.Kit.Gauge. Requires: Tokens, Sprites, Metrics, Text, BigNumber, Perf.
 local Tokens = require(script.Parent.Tokens)
 local Sprites = require(script.Parent.Sprites)
@@ -38,6 +38,36 @@ local SPEED_MAX = 999
 local SPEED_CELLS = 3
 local UNIT_ROLE = "Label"
 local BOOST_ROLE = "Value"
+
+-- Gear readout (API2 amendment A20): one label in the empty bottom gap of the ring on Regular; on Compact it takes the
+-- unit line's place while a gear shows, a little lower so its larger cap clears the speed digits. Fractions of the frame.
+local GEAR_Y = 0.41
+local GEAR_Y_COMPACT = 0.205
+local GEAR_ROLE = "Status" -- the full Regular gauge; leaves the punch headroom under TextSize 100 up to 4K
+local GEAR_ROLE_SMALL = "Value" -- the smaller Regular gauge (touch), as the speed number steps down to Timer there
+local GEAR_ROLE_COMPACT = "SectionHead" -- 92 dp: a larger cap than the 9.7 dp unit line it replaces
+local GEAR_MAX_CHARS = 2
+-- Punch on a shift: TextSize steps up and settles back in whole steps (no UIScale; A20 records the exception to
+-- "TextSize is never tweened"). A punch adds at most PUNCH_STEPS text sizes for about a fifth of a second.
+local PUNCH_SCALE = 0.15
+local PUNCH_SECONDS = 0.12 -- decay time constant
+local PUNCH_STEPS = 3
+-- Shift light: the gear text colour and the tip only; the baked images and the BigNumber are never tinted.
+local FLASH_HZ = 3 -- limiter flash, the programme's flashing ceiling; phase-locked so its first frame is lit
+local FLASH_DUTY = 0.5
+local PULSE_HZ = 1.5 -- Overdrive: a brightness pulse, Cyan toward White and back, in PULSE_STEPS whole steps
+local PULSE_STEPS = 4
+local PULSE_REACH = 0.6 -- how far toward White the pulse goes
+local LIGHT_WRAP = 2 -- seconds; a whole number of flash and pulse periods, so the light clock never grows
+local WARN_WARM = 0.3 -- spin warning amber: Yellow taken this far toward Pink (the cash chip's warm-yellow method)
+
+local LIGHT = table.freeze({ Off = 0, Warm = 1, Shift = 2, Limiter = 3, Spin = 4, Overdrive = 5 })
+local COLOUR = Tokens.Colour
+local AMBER = COLOUR.Yellow:Lerp(COLOUR.Pink, WARN_WARM)
+local PULSE_COLOURS = {}
+for index = 1, PULSE_STEPS do
+	PULSE_COLOURS[index] = COLOUR.Cyan:Lerp(COLOUR.White, PULSE_REACH * (index - 1) / (PULSE_STEPS - 1))
+end
 
 local GAUGE_KEYS = { Name = true, LayoutOrder = true, Visible = true, Size = true, Unit = true, ShowBoostText = true }
 local UNITS = { MPH = true, ["KM/H"] = true }
@@ -105,15 +135,72 @@ local function tipOffset(degrees, radius)
 	return round(math.cos(angle) * radius), round(math.sin(angle) * radius)
 end
 
+-- Pure. The text the gear readout shows: a short string ("N", "R", "1".."7"), a number as its digits, nil for none.
+local function gearText(value)
+	if type(value) == "number" and value == value then value = tostring(math.floor(value)) end
+	if type(value) ~= "string" or value == "" then return nil end
+	return string.sub(value, 1, GEAR_MAX_CHARS)
+end
+
+-- Pure. A shift light level 0..5 (Gauge.Light); anything else is Off.
+local function lightLevel(level)
+	if type(level) ~= "number" or level ~= level then return LIGHT.Off end
+	level = math.floor(level)
+	if level < LIGHT.Off or level > LIGHT.Overdrive then return LIGHT.Off end
+	return level
+end
+
+-- Pure. Is the limiter flash lit `elapsed` seconds after it began? Lit on its first frame.
+local function flashOn(elapsed)
+	return (elapsed * FLASH_HZ) % 1 < FLASH_DUTY
+end
+
+-- Pure. The Overdrive pulse step (1 = Cyan .. PULSE_STEPS = brightest) `elapsed` seconds in: a triangle wave.
+local function pulseStep(elapsed)
+	local phase = (elapsed * PULSE_HZ) % 1
+	local wave = 1 - math.abs(2 * phase - 1)
+	return math.floor(wave * (PULSE_STEPS - 1) + 0.5) + 1
+end
+
+-- Pure. The colour of the gear text and the tip for a light level, `elapsed` seconds after the level began.
+local function lightColour(level, elapsed)
+	if level == LIGHT.Warm then return COLOUR.Cyan end
+	if level == LIGHT.Shift then return COLOUR.Pink end
+	if level == LIGHT.Limiter then return if flashOn(elapsed) then COLOUR.Pink else COLOUR.White end
+	if level == LIGHT.Spin then return AMBER end
+	if level == LIGHT.Overdrive then return PULSE_COLOURS[pulseStep(elapsed)] end
+	return COLOUR.White
+end
+
+-- Pure. The punch step (PUNCH_STEPS at the shift, 0 when settled) `elapsed` seconds after a shift.
+local function punchLevel(elapsed)
+	local amount = math.exp(-math.max(elapsed, 0) / PUNCH_SECONDS)
+	return math.clamp(math.floor(amount * PUNCH_STEPS + 0.5), 0, PUNCH_STEPS)
+end
+
+-- Pure. TextSize of the gear at a punch step over its base size.
+local function punchSize(base, level)
+	return math.min(Tokens.Type.MaxTextSize, round(base * (1 + PUNCH_SCALE * level / PUNCH_STEPS)))
+end
+
 function Gauge.Angles(fraction)
 	local left, right = sweep(GAUGE.StartDeg, GAUGE.SweepDeg, fraction)
 	return left, right
 end
 
+-- Shift light levels for SetShiftLight (A20). HudView maps the drive state's ShiftLight 0..4 and Overdrive onto these.
+Gauge.Light = LIGHT
+
 Gauge._sweep = sweep
 Gauge._percent = percent
 Gauge._wholeSpeed = wholeSpeed
 Gauge._tipOffset = tipOffset
+Gauge._gearText = gearText
+Gauge._lightLevel = lightLevel
+Gauge._flashOn = flashOn
+Gauge._lightColour = lightColour
+Gauge._punchLevel = punchLevel
+Gauge._punchSize = punchSize
 
 local function ringImage(name, assetKey, zIndex, parent)
 	local image = Instance.new("ImageLabel")
@@ -173,11 +260,21 @@ function Gauge.New(parent, props, scope)
 		return "Speed"
 	end
 
+	-- The gear follows the same steps down: Compact, then the smaller Regular gauge, then the full one.
+	local function gearRole()
+		if ctx.Class == "Compact" then return GEAR_ROLE_COMPACT end
+		if state.Size < (Space.GaugeSize + Space.GaugeTouchSize) / 2 then return GEAR_ROLE_SMALL end
+		return GEAR_ROLE
+	end
+
 	local emptyLeft, emptyRight = sweep(GAUGE.StartDeg, GAUGE.SweepDeg, 0)
 	-- What is on screen now. A setter compares with these and writes only a difference.
 	local shown = { Speed = 0, Left = emptyLeft, Right = emptyRight, Degrees = 0, BoostPercent = 0,
-		BoostLeft = emptyLeft, BoostRight = emptyRight, BoostVisible = true, TipX = 0, TipY = 0, TipOn = false }
-	local geometry = { Size = 0, Half = 0, ArcRadius = 0 }
+		BoostLeft = emptyLeft, BoostRight = emptyRight, BoostVisible = true, TipX = 0, TipY = 0, TipOn = false,
+		Gear = nil, GearText = "", GearTextSize = 0, Punch = 0, Light = LIGHT.Off, Colour = COLOUR.White }
+	local geometry = { Size = 0, Half = 0, ArcRadius = 0, GearSize = 0 }
+	-- The two clocks Step advances: seconds since the last punch, and since the current light level began.
+	local clocks = { Punch = 0, Light = 0 }
 
 	local root = Instance.new("Frame")
 	Metrics.Bind(root, ctx) -- parts built before the root is parented take this context, not the screen's
@@ -240,6 +337,19 @@ function Gauge.New(parent, props, scope)
 	boostText.Visible = state.ShowBoostText
 	boostText.ZIndex = 6
 
+	-- One TextLabel for every gear state (N, R and digits alike). Hidden until a car sends a gear. Its roles are Fixed
+	-- (API2 2.6), so it carries a SizeLock; placeGear caps it at the top punch step, the height of its box.
+	local gear = Text.RawLabel(root, gearRole(), ctx)
+	gear.Name = "Gear"
+	gear.Text = ""
+	gear.TextColor3 = COLOUR.White
+	gear.TextXAlignment = Enum.TextXAlignment.Center
+	gear.TextYAlignment = Enum.TextYAlignment.Center
+	gear.AutomaticSize = Enum.AutomaticSize.None -- live text: placeGear sets the box
+	gear.Visible = false
+	gear.ZIndex = 6
+	local gearLock = gear:FindFirstChild("SizeLock") -- build time only
+
 	local function tally(count)
 		writes += count
 		if Perf.Enabled then Perf.Count("Gauge.Writes", count) end
@@ -273,6 +383,28 @@ function Gauge.New(parent, props, scope)
 		write(label, "TextSize", textSize)
 		write(label, "Position", UDim2.fromOffset(0, top))
 		write(label, "Size", UDim2.fromOffset(geometry.Size, textSize))
+	end
+
+	-- The gear box is as tall as the largest punch step and centred on its line, so a punch writes only TextSize. The
+	-- SizeLock stops there too: the player's Text Size setting grows the gear no further than its box.
+	local function placeGear()
+		local role = gearRole()
+		local base = (Text.SizeFor(role, ctx))
+		local peak = punchSize(base, PUNCH_STEPS)
+		local ratio = if ctx.Class == "Compact" then GEAR_Y_COMPACT else GEAR_Y
+		local top = geometry.Half + round(geometry.Size * ratio) - math.floor(peak / 2)
+		geometry.GearSize = base
+		if gearLock then write(gearLock, "MaxTextSize", peak) end
+		write(gear, "FontFace", Text.Font(role))
+		write(gear, "Position", UDim2.fromOffset(0, top))
+		write(gear, "Size", UDim2.fromOffset(geometry.Size, peak))
+		shown.GearTextSize = punchSize(base, shown.Punch)
+		write(gear, "TextSize", shown.GearTextSize)
+	end
+
+	-- Compact: the gear takes the unit line's place while it shows. Regular keeps the unit.
+	local function unitShown()
+		return not (ctx.Class == "Compact" and shown.Gear ~= nil)
 	end
 
 	local function layout()
@@ -311,6 +443,8 @@ function Gauge.New(parent, props, scope)
 		write(speed.Instance, "Position", UDim2.fromOffset(half, half + round(size * SPEED_Y)))
 		placeLine(unit, UNIT_ROLE, UNIT_Y)
 		placeLine(boostText, BOOST_ROLE, BOOST_Y)
+		placeGear()
+		write(unit, "Visible", unitShown())
 
 		shown.TipX, shown.TipY = -1, -1
 		placeTip()
@@ -380,6 +514,87 @@ function Gauge.New(parent, props, scope)
 		applyBoostVisible()
 	end
 
+	-- Gear readout, shift light and punch (A20). Safe in a frame step: every write is behind a comparison and Step
+	-- does nothing while no punch runs and the light is steady.
+
+	-- Returns the number of properties written.
+	local function applyPunch(level)
+		shown.Punch = level
+		local size = punchSize(geometry.GearSize, level)
+		if size == shown.GearTextSize then return 0 end
+		shown.GearTextSize = size
+		gear.TextSize = size
+		return 1
+	end
+
+	-- Returns the number of properties written: the gear text colour and the tip's tint, never a baked image.
+	local function paint()
+		local colour = lightColour(shown.Light, clocks.Light)
+		if colour == shown.Colour then return 0 end
+		shown.Colour = colour
+		gear.TextColor3 = colour
+		tip.ImageColor3 = colour
+		return 2
+	end
+
+	local function setGear(value)
+		if destroyed then return end
+		local text = gearText(value)
+		if text == shown.Gear then return end
+		local was = shown.Gear
+		shown.Gear = text
+		local count = 0
+		if text and text ~= shown.GearText then
+			shown.GearText = text
+			gear.Text = text
+			count += 1
+		end
+		if (was == nil) ~= (text == nil) then
+			gear.Visible = text ~= nil
+			count += 1
+			local showUnit = unitShown()
+			if unit.Visible ~= showUnit then
+				unit.Visible = showUnit
+				count += 1
+			end
+		end
+		if text == nil and shown.Punch ~= 0 then count += applyPunch(0) end
+		if count > 0 then tally(count) end
+	end
+
+	local function punchGear()
+		if destroyed or shown.Gear == nil then return end
+		clocks.Punch = 0
+		local count = applyPunch(PUNCH_STEPS)
+		if count > 0 then tally(count) end
+	end
+
+	local function setShiftLight(value)
+		if destroyed then return end
+		local level = lightLevel(value)
+		if level == shown.Light then return end
+		shown.Light = level
+		clocks.Light = 0
+		local count = paint()
+		if count > 0 then tally(count) end
+	end
+
+	-- The owner calls this first in its frame step, so a punch or light change made later in that frame is drawn at its
+	-- full value before the clock moves it on.
+	local function step(dt)
+		if destroyed or type(dt) ~= "number" or dt ~= dt or dt <= 0 then return end
+		local count = 0
+		if shown.Punch > 0 then
+			clocks.Punch += dt
+			count += applyPunch(punchLevel(clocks.Punch))
+		end
+		if shown.Light == LIGHT.Limiter or shown.Light == LIGHT.Overdrive then
+			clocks.Light = (clocks.Light + dt) % LIGHT_WRAP
+			count += paint()
+		end
+		if count > 0 then tally(count) end
+	end
+
 	local apply = {
 		Name = function(value) root.Name = value end,
 		LayoutOrder = function(value) root.LayoutOrder = value end,
@@ -439,7 +654,12 @@ function Gauge.New(parent, props, scope)
 		SetBoost = setBoost,
 		SetUnit = setUnit,
 		SetVisibleBoost = setVisibleBoost,
-		-- Test and probe seam: properties written by SetSpeed and SetBoost since the build.
+		SetGear = setGear,
+		PunchGear = punchGear,
+		SetShiftLight = setShiftLight,
+		Step = step,
+		-- Test and probe seam: properties written by the frame setters (SetSpeed, SetBoost, SetGear, PunchGear,
+		-- SetShiftLight, Step) since the build.
 		_writes = function() return writes end,
 	}
 end

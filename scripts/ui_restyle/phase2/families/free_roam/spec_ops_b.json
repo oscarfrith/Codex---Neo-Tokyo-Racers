@@ -140,7 +140,22 @@
   ],
   "before": "before/ReplicatedStorage.Modules.Game.Vehicles.DrivingClient.lua",
   "after": "after/ReplicatedStorage.Modules.Game.Vehicles.DrivingClient.lua",
-  "_note": "2026-10-09 Oscar: Space is drift/handbrake, Shift is boost (two lines); gamepad and touch unchanged"
+  "_note": "2026-10-09 Oscar: Space is drift/handbrake, Shift is boost (two lines); gamepad and touch unchanged. drivetrain_feel 2026-10-20: after is now the drivetrain DrivingClient (physics part); pairs with b_drivetrain_dynamics; to undo only the drivetrain use drivetrain_feel's ROLLBACK"
+ },
+ {
+  "id": "b_drivetrain_dynamics",
+  "kind": "source",
+  "class": "ModuleScript",
+  "path": [
+   "ReplicatedStorage",
+   "Modules",
+   "Game",
+   "Vehicles",
+   "VehicleDynamics"
+  ],
+  "before": "before/ReplicatedStorage.Modules.Game.Vehicles.VehicleDynamics.lua",
+  "after": "after/ReplicatedStorage.Modules.Game.Vehicles.VehicleDynamics.lua",
+  "_note": "drivetrain_feel 2026-10-20: b_driving_keys now installs the drivetrain DrivingClient, which calls VehicleDynamics.DrivetrainCategory, ResetGearbox, StepNeutral and more with no guard; this op keeps the two halves together so no APPLY or refit installs one without the other"
  },
  {
   "id": "b_classic_controls_text",

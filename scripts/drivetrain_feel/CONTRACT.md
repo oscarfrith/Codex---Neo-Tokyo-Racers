@@ -8,6 +8,8 @@
   - Ignore races and time trials.
   - Everything must be easily tunable later: weight, gearing feel, spin and so on.
   - Auto mode: run autonomously.
+- **Amended 2026-10-20** by `reviews/15_fix_spec.md` (integrator decisions F1-F9 and new attributes); installed defaults
+  are in `physics/config.py`, as proposed by `model/RESULTS.md`.
 - **Background:**
   - Survey reports: `design/survey_*.md`.
   - Design draft: `design/design_draft.md`.

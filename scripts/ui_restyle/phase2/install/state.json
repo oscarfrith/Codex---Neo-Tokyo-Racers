@@ -29,7 +29,7 @@
     },
     "ReplicatedStorage.Modules.Game.UIPulse.Kit.Gauge": {
      "file": "00_kit/after/ReplicatedStorage.Modules.Game.UIPulse.Kit.Gauge.lua",
-     "fp": "2502745895-1498110527-14702",
+     "fp": "3194700109-4098534631-24023",
      "class": "ModuleScript",
      "kind": "create"
     },
@@ -59,7 +59,7 @@
     },
     "ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Gauge": {
      "file": "00_kit/after/ReplicatedStorage.Modules.Game.UIPulse.Dev.Fixtures.Gauge.lua",
-     "fp": "2664637028-3852216940-5423",
+     "fp": "1734057305-3955494879-9309",
      "class": "ModuleScript",
      "kind": "create"
     },
@@ -297,7 +297,7 @@
     },
     "ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.HudView": {
      "file": "02_free_roam/after/ReplicatedStorage.Modules.Game.UIPulse.FreeRoam.HudView.lua",
-     "fp": "3772154053-3098603401-19189",
+     "fp": "2735155409-3541343987-24334",
      "class": "ModuleScript",
      "kind": "create"
     },
@@ -376,7 +376,14 @@
     },
     "ReplicatedStorage.Modules.Game.Vehicles.DrivingClient": {
      "file": "02_free_roam/after/ReplicatedStorage.Modules.Game.Vehicles.DrivingClient.lua",
-     "fp": "1261491730-2693108196-72479",
+     "fp": "3548229192-3239670182-109659",
+     "class": "ModuleScript",
+     "kind": "source",
+     "classic": true
+    },
+    "ReplicatedStorage.Modules.Game.Vehicles.VehicleDynamics": {
+     "file": "02_free_roam/after/ReplicatedStorage.Modules.Game.Vehicles.VehicleDynamics.lua",
+     "fp": "1236311824-3233169818-74763",
      "class": "ModuleScript",
      "kind": "source",
      "classic": true

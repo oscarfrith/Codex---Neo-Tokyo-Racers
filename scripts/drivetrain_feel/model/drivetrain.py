@@ -1,12 +1,16 @@
-"""drivetrain_feel model part: the contract's drivetrain (CONTRACT sections 4, 5.1, 5.2).
+"""drivetrain_feel model part: the contract's drivetrain (CONTRACT sections 4, 5.1, 5.2) as amended by the fix spec
+(reviews/15_fix_spec.md, sections B and C).
 
-CONTRACT_DEFAULTS is section 4 verbatim (Config.Vehicles.Drivetrain.exotic). Profile is Model.DrivetrainProfile
-(section 5.1) and Gearbox.step is Model.StepDrivetrain (section 5.2, all nine mandatory fixes).
+CONTRACT_DEFAULTS is section 4 verbatim (Config.Vehicles.Drivetrain.exotic). SPEC_DEFAULTS are the fix spec's section B
+attributes, and PHYSICS_DEFAULTS the attributes physics/config.py adds beyond section 4. Profile is
+Model.DrivetrainProfile and Gearbox.step is Model.StepDrivetrain, following physics/after/VehicleDynamics.lua for the
+existing semantics and the fix spec for the new mechanisms (C5 drift hold, C6 FeelGearing envelope, C7 Overdrive exit and
+TopGearOverspeed minimum, C9 digital cruise upshift).
 
-Where the contract is silent the model uses the design draft as corrected by the critiques; those constants are in
-MODEL_CONSTANTS and listed in RESULTS.md so the physics part can match or override them.
+Constants the code holds (not attributes) are in MODEL_CONSTANTS and listed in RESULTS.md.
 """
 import math
+import re
 
 from today import G, MPH, clamp, lerp, smoothstep
 
@@ -49,47 +53,146 @@ CONTRACT_DEFAULTS = dict(
     HudRedlineSweep=0.87, HudShiftLeadSeconds=0.25, HudShiftMinFraction=0.85, HudWarmBandFraction=0.12,
 )
 
-# Constants the contract does not name (draft / critique values). The model treats them as code constants.
+# Fix spec section B: new attributes on Drivetrain.exotic (switches are numbers 0/1).
+SPEC_DEFAULTS = dict(
+    SpinStabNeedsFlick=1, SpinFlickSeconds=0.15, SpinStabDumpSlip=0.3,
+    DriftExemptGain=2, DriftYawExempt=1, DriftHoldDownshift=1, DriftAssistPlateauShare=0.9,
+    DigitalCruiseEnabled=1, DigitalDutySeconds=1.5, DigitalCruiseDutyMax=0.7, DigitalCruiseSteadyMph=3,
+    DigitalCruiseUpshift=0.6, DigitalCruiseLand=0.5,
+)
+
+# Attributes physics/config.py has beyond CONTRACT section 4.
+PHYSICS_DEFAULTS = dict(SpinYawAuthorityLoss=0.85)
+
+SWITCHES = ("Enabled", "NeutralRevEnabled", "BoostShapeEnabled", "OverdriveEnabled", "DriftCapExempt", "SpinEnabled",
+            "PowerBrakeEnabled", "SpinStabNeedsFlick", "DriftHoldDownshift", "DigitalCruiseEnabled")
+
+# Code constants (not attributes), as in the physics after-source.
 MODEL_CONSTANTS = dict(
-    SlideSmoothWidth=0.6,       # a_drive slide factor reaches SlideGripFraction at ws_eff 0.6 (draft 3.2)
-    BrakeDownshiftGap=0.2,      # seconds between braking downshifts (draft 3.2)
-    YawCapDriftExtra=1.5,       # yaw cap x (1 + 1.5 DriftBlend) (draft 3.4.2) - see DriftCapExempt handling
-    SpinYawGate=0.15, SpinYawGateWidth=0.35,   # ss((|r| - 0.15)/0.35) in L_t (draft 3.5)
-    SpinYawAuthorityLoss=0.85,  # yaw spring w x (1 - 0.85 L), floored at 1/s (draft 3.4.2 + critique 4)
-    SpinDynamicBlendL=0.2,      # spin forces the yaw state dynamic below YawKinematicBelowMph: w = max(ss(mph/K), ss(L/0.2))
-    DriftYawExempt=False,       # contract: yaw spring always on. True = variant: yaw blends to kinematic with DriftBlend
-    DriftHoldDownshift=False,   # contract: gear held in a drift. True = variant that downshifts by |v_h| in a drift
-    DriftAssistPlateauShare=0.0,  # contract fix 7: drift assist from gross DriveThrust (0). >0 = variant blending toward A1 x thr
-    StabNeedsLift=True,         # a stab is a lift-and-stab; False = literal "any rise from < 0.3" (every W press is a stab)
-    UnwindMaxSpin=0.1,
-    SpinYawModel="soften",      # "soften": one yaw state, spin softens the spring (draft). "additive": r = r_steer + r_spin
-    SpinSoftensToBase=True,     # yaw spring softens with L toward YawOmega x weight x (1 - 0.85), not toward the FeelWeight-scaled omega
-    ReturnScalesWithWeight=True,  # keyboard steer return = SteerReturnRate / FeelWeight (FeelWeight 0 = today's instant return)          # YawUnwindScale applies only while L < 0.1 (otherwise the unwind spring fights the spin)
-    LateralCurveB=None,         # None = 1/C: the peaked curve has today's slope at small slip (identity for small requests)
-    LowRpmFloorIdle=True,
+    SlideSmoothWidth=0.6,       # the slide factor reaches SlideGripFraction at slip 0.6 (smoothstep(slip / 0.6))
+    LugFraction=0.2,            # VehicleDynamics LUG_FRACTION: below this ratio with throttle held, step down one gear
+    SpinYawGate=0.15, SpinYawGateWidth=0.35,   # DrivingClient SPIN_YAW_GATE: ss((|r| - 0.15) / 0.35) in the spin target
+    YawOmegaCap=60,             # R13 #6: the steer spring omega is capped (effectively kinematic above it)
+    SelectGearFraction=0.9,     # DrivetrainSelectGear: lowest gear that puts the speed at or under 0.9 of its redline
 )
 
 
-def parse_list(text):
-    return [float(part) for part in str(text).replace(" ", "").split(",") if part]
+# VehicleDynamics DRIVETRAIN_NUMBERS, copied as physics/after has it (read 2026-10-20): (attribute, default, minimum,
+# maximum). rebuildTuning clamps every number to its range; a missing or non-number value takes the default first. The
+# defaults are physics' fallbacks (the shipped Drivetrain.exotic values, so the proposal where it differs from section
+# 4); the model always has a value from the defaults above, so here they only replace a non-number override.
+DRIVETRAIN_NUMBERS = (
+    ("FeelWeight", 1, 0, 2.5), ("FeelGearing", 1, 0, 2), ("FeelAcceleration", 1, 0.5, 1.5), ("FeelGrip", 1, 0.6, 1.6),
+    ("FeelSpin", 1, 0, 2.5), ("FeelEngineBrake", 1, 0, 2),
+    ("GearCount", 7, 1, 9), ("IdleRpm", 1100, 300, 4000), ("RedlineRpm", 8500, 2000, 20000), ("LimiterRpm", 8600, 2000, 24000),
+    ("GearTorqueExponent", 0.8, 0, 2), ("TopGearOverspeed", 1.06, 1.02, 1.5), ("LaunchRpmFraction", 0.5, 0, 1),
+    ("EngineRiseSeconds", 0.06, 0.01, 1), ("EngineFallScale", 1.5, 0.2, 5), ("ShiftRpmSeconds", 0.05, 0.005, 1),
+    ("ThrustSlipFlare", 0.6, 0, 2), ("ShiftCutSeconds", 0.06, 0, 0.5), ("ShiftCutTorque", 0.45, 0, 1),
+    ("ShiftBlendSeconds", 0.06, 0, 0.5), ("DownshiftBlendSeconds", 0.08, 0.01, 0.5), ("ShiftMinIntervalSeconds", 0.25, 0.05, 2),
+    ("UpshiftFlat", 0.97, 0.5, 1), ("UpshiftPartLow", 0.62, 0.3, 1), ("UpshiftPartHigh", 0.85, 0.3, 1),
+    ("UpshiftCruise", 0.45, 0.2, 1), ("CruiseThrottleMin", 0.05, 0, 0.3), ("UpshiftMinLand", 0.33, 0, 0.9),
+    ("LiftHoldSeconds", 0.8, 0, 3), ("DigitalDutySeconds", 1.5, 0.05, 10), ("DigitalCruiseDutyMax", 0.7, 0, 1),
+    ("DigitalCruiseSteadyMph", 3, 0, 50), ("DigitalCruiseUpshift", 0.6, 0.2, 1), ("DigitalCruiseLand", 0.5, 0, 0.95),
+    ("DownshiftBrakeLand", 0.82, 0.3, 1), ("DownshiftCoastFraction", 0.3, 0, 0.9),
+    ("DownshiftCoastLand", 0.65, 0.3, 1), ("KickdownThrottle", 0.95, 0.5, 1), ("KickdownBelowFraction", 0.45, 0, 1),
+    ("KickdownLand", 0.88, 0.3, 1), ("KickdownHoldSeconds", 0.12, 0, 1), ("StopGearMph", 3, 0, 20),
+    ("LimiterOnSeconds", 0.03, 0.005, 0.5), ("LimiterCutSeconds", 0.045, 0, 0.5), ("LimiterHysteresisRpm", 150, 0, 2000),
+    ("NeutralRevTarget", 1.02, 0, 1.2),
+    ("TractionG", 1.15, 0.3, 4), ("TractionGripExponent", 0.15, 0, 1), ("TractionTierBonusG", 0.25, 0, 2),
+    ("TierStartPI", 250, 0, 2000), ("TierFullPI", 750, 0, 2000), ("TractionAssist", 0.35, 0, 1), ("SlideGripFraction", 0.88, 0.3, 1),
+    ("RollingDecel", 0.8, 0, 10), ("RollingDecelPerStud", 0.004, 0, 0.1), ("EngineBrakeDecel", 1.5, 0, 20),
+    ("BrakeDecel", 70, 5, 200), ("BrakeForceExponent", 0.35, 0, 2), ("BrakeFactorMin", 0.75, 0.1, 3), ("BrakeFactorMax", 1.4, 0.1, 3),
+    ("BoostShareMin", 0.15, 0, 1), ("SpeedGuardStrength", 2, 0, 20), ("SpeedGuardOverBoostTop", 1.03, 1, 1.5),
+    ("SteerRiseSeconds", 0.12, 0, 1), ("SteerReturnRate", 25, 1, 100), ("TouchSteerRate", 10, 1, 100),
+    ("YawOmega", 20, 1, 60), ("YawDamping", 0.75, 0.1, 2), ("YawWeightExponent", 0.5, 0, 2), ("YawWeightMin", 0.75, 0.2, 2),
+    ("YawWeightMax", 1.3, 0.2, 3), ("YawKinematicBelowMph", 15, 0, 80), ("YawUnwindScale", 2, 0.5, 5), ("YawRateMax", 5, 0.5, 5),
+    ("LateralCapG", 3.4, 0.5, 20), ("LateralCapGripExponent", 0.25, 0, 1), ("LateralCurveShape", 1.4, 1, 1.9),
+    ("YawCapMargin", 0.9, 0.3, 3), ("GripRelaxStuds", 2, 0, 20),
+    ("DriftExemptGain", 4, 0, 10), ("DriftYawExempt", 1, 0, 1), ("DriftAssistPlateauShare", 0.9, 0, 1),
+    ("PitchDegreesPerG", 2.4, 0, 10), ("PitchMaxDegrees", 5, 0, 15), ("PitchOmega", 9, 1, 40), ("PitchDamping", 0.6, 0.1, 2),
+    ("RollDegreesPerG", 0.9, -5, 5), ("RollMaxDegrees", 3, 0, 10), ("ImpactYawKick", 0.6, 0, 5),
+    ("SpinStabSeconds", 0.4, 0, 2), ("SpinStabSteer", 0.8, 0, 1), ("SpinAnalogRate", 4, 0.5, 50), ("SpinWindowSeconds", 0.9, 0, 5),
+    ("PowerBrakeMinHold", 0.3, 0, 5), ("PowerBrakeDumpSlip", 0.5, 0, 2), ("SpinFlickSeconds", 0.15, 0, 2), ("SpinStabDumpSlip", 0.3, 0, 2),
+    ("SpinBelowMph", 30, 0, 100), ("SpinFadeMph", 12, 0.5, 100), ("SpinSteerStart", 0.6, 0, 1), ("SpinSteerWidth", 0.35, 0.01, 1),
+    ("SpinSlipStart", 0.04, 0, 2), ("SpinSlipWidth", 0.08, 0.01, 2),
+    ("SpinBuildRate", 6, 0, 30), ("SpinDecayRate", 2.5, 0, 30), ("SpinCatchRate", 8, 0, 60), ("SpinSettleSeconds", 0.3, 0, 3),
+    ("SpinYawAccel", 25, 0, 40), ("SpinMaxYawRate", 3.6, 0, 5), ("SpinGripLoss", 0.85, 0, 1), ("SpinThrustLoss", 0.35, 0, 1),
+    ("SpinYawAuthorityLoss", 0.85, 0, 1), ("SpinHoldCap", 0.35, 0, 1), ("SpinTierFloor", 0.8, 0, 1), ("SpinTouchScale", 0.5, 0, 2),
+    ("SpinStartGraceSeconds", 3, 0, 30), ("SpinStartGraceMph", 38, 0, 200), ("SpinWarnLevel", 0.25, 0, 1),
+    ("HudRedlineSweep", 0.87, 0.5, 1), ("HudShiftLeadSeconds", 0.25, 0, 2), ("HudShiftMinFraction", 0.85, 0, 1), ("HudWarmBandFraction", 0.12, 0, 0.5),
+)
+DEFAULT_RATIOS = "3.15,2.18,1.66,1.33,1.10,0.93,0.80"                        # DRIVETRAIN_DEFAULT_RATIOS
+DEFAULT_CURVE = "0:0.55,0.3:0.80,0.5:0.93,0.7:1,0.85:0.98,1:0.86"          # DRIVETRAIN_DEFAULT_CURVE
+
+_LUA_DECIMAL = re.compile(r"^[+-]?(\d+\.?\d*|\.\d+)([eE][+-]?\d+)?$")
+_LUA_HEX = re.compile(r"^[+-]?0[xX][0-9a-fA-F]+$")
+
+
+def is_number(value):
+    """typeof(value) == "number" and value == value (a bool is not a number in Luau)."""
+    return isinstance(value, (int, float)) and not isinstance(value, bool) and value == value
+
+
+def lua_tonumber(token):
+    """tonumber() on one parser token: decimal or hex text, else None (Python-only forms such as '1_0' or 'inf' are
+    rejected as Luau rejects them)."""
+    if _LUA_DECIMAL.match(token):
+        return float(token)
+    if _LUA_HEX.match(token):
+        return float(int(token, 16))
+    return None
+
+
+def switch_on(value, fallback=True):
+    """switchOn: a number is on at >= 0.5 (NaN is off), a boolean as is, anything else (missing) the fallback."""
+    if isinstance(value, bool):
+        return value
+    if isinstance(value, (int, float)):
+        return value == value and value >= 0.5
+    return fallback
+
+
+def parse_ratios(text):
+    """parseRatios: tokens split on commas and whitespace; keeps the first 9 numbers in (0, 100), sorts them descending
+    and drops any ratio within 0.5% of the one kept before it."""
+    out = []
+    for token in re.findall(r"[^,\s]+", text):
+        value = lua_tonumber(token)
+        if value is not None and value == value and 0 < value < 100 and len(out) < 9:
+            out.append(value)
+    out.sort(reverse=True)
+    kept = []
+    for value in out:
+        if not kept or value < kept[-1] * 0.995:
+            kept.append(value)
+    return kept
 
 
 def parse_curve(text):
+    """parseCurve: 'x:y' pairs (characters -, digits and .), at most 32, x clamped to [0, 1.5] and y to [0, 2],
+    insertion-sorted by x (stable, so equal x keep their order)."""
     points = []
-    for part in str(text).replace(" ", "").split(","):
-        if ":" in part:
-            x, y = part.split(":")
-            points.append((float(x), float(y)))
-    points.sort()
+    for a, b in re.findall(r"([-0-9.]+)\s*:\s*([-0-9.]+)", text):
+        x, y = lua_tonumber(a), lua_tonumber(b)
+        if x is not None and y is not None and len(points) < 32:
+            x, y = clamp(x, 0, 1.5), clamp(y, 0, 2)
+            at = len(points)
+            while at > 0 and points[at - 1][0] > x:
+                at -= 1
+            points.insert(at, (x, y))
     return points
 
 
 def torque_at(points, x):
+    """curveAt."""
+    if not points:
+        return 1.0
     if x <= points[0][0]:
         return points[0][1]
     for (x0, y0), (x1, y1) in zip(points, points[1:]):
         if x <= x1:
-            return y0 + (y1 - y0) * (x - x0) / max(x1 - x0, 1e-9)
+            alpha = (x - x0) / (x1 - x0) if x1 > x0 else 1.0
+            return y0 + (y1 - y0) * alpha
     return points[-1][1]
 
 
@@ -97,24 +200,58 @@ class Settings:
     """The class folder attributes plus the dial mappings (effective values). One object per tuning variant."""
 
     def __init__(self, overrides=None, constants=None):
-        self.a = dict(CONTRACT_DEFAULTS)
-        self.a.update(overrides or {})
+        raw = dict(CONTRACT_DEFAULTS)
+        raw.update(SPEC_DEFAULTS)
+        raw.update(PHYSICS_DEFAULTS)
+        raw.update(overrides or {})
+        self.raw = raw
+        a = dict(raw)
+        # rebuildTuning: every number clamped to its DRIVETRAIN_NUMBERS range, the switches through switchOn, then the
+        # cross-clamps, the strings parsed (default text when the parse leaves too little) and the gear count
+        for name, default, lo, hi in DRIVETRAIN_NUMBERS:
+            value = raw.get(name)
+            a[name] = clamp(value if is_number(value) else default, lo, hi)
+        self.switches = {name: switch_on(raw.get(name), True) for name in SWITCHES}
+        a["LimiterRpm"] = clamp(a["LimiterRpm"], a["RedlineRpm"], a["RedlineRpm"] * 1.2)
+        a["IdleRpm"] = min(a["IdleRpm"], a["RedlineRpm"] * 0.5)
+        a["UpshiftPartHigh"] = max(a["UpshiftPartHigh"], a["UpshiftPartLow"])
+        a["TierFullPI"] = max(a["TierFullPI"], a["TierStartPI"] + 1)
+        a["BrakeFactorMax"] = max(a["BrakeFactorMax"], a["BrakeFactorMin"])
+        a["YawWeightMax"] = max(a["YawWeightMax"], a["YawWeightMin"])
+        a["SpinMaxYawRate"] = min(a["SpinMaxYawRate"], a["YawRateMax"])
+        self.a = a
         self.k = dict(MODEL_CONSTANTS)
         self.k.update(constants or {})
-        a = self.a
-        self.ratios = parse_list(a["GearRatios"])[:int(a["GearCount"])]
-        self.curve = parse_curve(a["TorqueCurve"])
+        ratio_text = raw["GearRatios"] if isinstance(raw.get("GearRatios"), str) else DEFAULT_RATIOS
+        ratios = parse_ratios(ratio_text) or parse_ratios(DEFAULT_RATIOS)
+        curve_text = raw["TorqueCurve"] if isinstance(raw.get("TorqueCurve"), str) else DEFAULT_CURVE
+        self.curve = parse_curve(curve_text)
+        if len(self.curve) < 2:
+            self.curve = parse_curve(DEFAULT_CURVE)
+        self.gears = int(clamp(math.floor(a["GearCount"] + 0.5), 1, len(ratios)))   # tuning.Gears
+        self.ratios = ratios[:self.gears]
         fw, fg = a["FeelWeight"], a["FeelGearing"]
-        # dial mappings (the model's reading of CONTRACT 4.1; the physics NOTES are authoritative)
-        self.p = a["GearTorqueExponent"] * fg                                    # amount-like
+        # dial mappings (physics NOTES are authoritative; these mirror the after-source and the fix spec)
+        self.gearing = fg
+        self.curve_depth = min(fg, 1.0)                                          # torque curve flattens toward 1 below 1
         self.cut_seconds = a["ShiftCutSeconds"] * fg                             # time-like
         self.blend_seconds = a["ShiftBlendSeconds"] * fg
         self.cut_torque = clamp(1 - (1 - a["ShiftCutTorque"]) * fg, 0, 1)       # depth scaled by the dial
-        self.shift_rpm_seconds = a["ShiftRpmSeconds"] * fg                       # rev drop: 0 = instant
-        self.steer_rise = a["SteerRiseSeconds"] * fw                             # 0 = instant (today)
+        self.rev_drop = clamp(a["ShiftRpmSeconds"] / max(fg, 0.05), 0.005, 1)   # rev-drop time: faster at higher gearing
+        soften = max(min(fw, 1.0), 0.05)
+        self.steer_build = 1 / max(a["SteerRiseSeconds"] * fw, 0.001)           # keyboard build rate (lock per second)
+        self.steer_return = a["SteerReturnRate"] / soften                        # below 1 the return sharpens
+        self.touch_rate = a["TouchSteerRate"] / soften
         self.grip_relax = a["GripRelaxStuds"] * fw                               # 0 = no lag (today)
-        self.yaw_kinematic = fw < 0.05                                           # 0 = kinematic yaw (today)
-        self.weight_dial = fw                                                    # brake lerp today -> V2, omega / fw
+        self.yaw_kinematic = fw <= 0                                             # 0 = kinematic yaw (today)
+        self.weight_dial = fw
+        self.hold_cap = min(a["SpinHoldCap"] * a["FeelSpin"], 1.0)              # C4 (F7)
+        self.warn_level = max(a["SpinWarnLevel"], self.hold_cap + 0.05)          # C4 (R14 #14)
+
+    def on(self, name):
+        if name in self.switches:
+            return self.switches[name]
+        return self.a[name] >= 0.5
 
 
 class Profile:
@@ -122,93 +259,101 @@ class Profile:
 
     def __init__(self, today, settings, pi):
         T, a, s = today, settings.a, settings
-        self.R, self.I, self.limiter_rpm = a["RedlineRpm"], a["IdleRpm"], a["LimiterRpm"]
+        self.s = s
+        self.R, self.I, self.limiter_rpm = a["RedlineRpm"], a["IdleRpm"], a["LimiterRpm"]   # IdleRpm <= 0.5 R (Settings)
         self.ratios = s.ratios
         self.n = len(self.ratios)
-        self.Vt = T.solve_top()                                                 # today's drag-limited top
-        self.Vb = T.solve_top(extra=T.boost_accel) if T.boost_power > 0 else self.Vt   # today's endless-boost top
+        self.Vt = max(T.solve_top(), 5)                                          # today's drag-limited top
+        self.Vb = max(T.solve_top(extra=T.boost_accel), self.Vt) if T.boost_power > 0 else self.Vt
         over = a["TopGearOverspeed"]
+        self.over = over
         r1, rtop = self.ratios[0], self.ratios[-1]
         self.Vg = [self.Vt * over * rtop / r for r in self.ratios]               # gear redline speeds (mph)
-        self.mult = [(r / r1) ** s.p for r in self.ratios]
+        # C6: MultBase from GearTorqueExponent only; FeelGearing scales the step around a fixed speed envelope
+        self.mult_base = [(r / r1) ** a["GearTorqueExponent"] for r in self.ratios]
+        self.mid = self.mid_speeds(a)
+        self.gearing = s.gearing
         self.A1 = T.base_forward * T.engine_factor * T.weight_factor * T.bal["Acceleration"] * a["FeelAcceleration"]
         self.Rb, self.Rs = a["RollingDecel"], a["RollingDecelPerStud"]
-        tier = smoothstep((pi - a["TierStartPI"]) / max(a["TierFullPI"] - a["TierStartPI"], 1))
+        tier = smoothstep((pi - a["TierStartPI"]) / (a["TierFullPI"] - a["TierStartPI"]))   # TierFullPI >= start + 1
         self.tier = tier
-        grip_term = clamp((T.stats["LateralGrip"] / 50) ** a["TractionGripExponent"], 0.9, 1.15)
-        self.a_trac = (a["TractionG"] * G * grip_term + a["TractionTierBonusG"] * G * tier) * a["FeelGrip"]
+        grip_ratio = max(T.stats["LateralGrip"], 0.001) / 50
+        grip_term = clamp(grip_ratio ** a["TractionGripExponent"], 0.9, 1.15)
+        # R14 #13: the grip term scales the tier bonus too, as physics does
+        self.a_trac = (a["TractionG"] + a["TractionTierBonusG"] * tier) * G * grip_term * a["FeelGrip"]
         self.slide_fraction, self.assist = a["SlideGripFraction"], a["TractionAssist"]
         self.slide_width = settings.k["SlideSmoothWidth"]
-        # Kd from the thrust top gear actually delivers at Vt (traction-limited when FeelGearing is near 0)
-        top_thrust_at_vt = self.delivered(self.A1 * self.mult[-1] * torque_at(s.curve, 1 / over))
+        # C6: Kd from the thrust top gear delivers at Vt (traction limit and slide factor), so top speed holds at any dial
+        top_thrust_at_vt = self.delivered(self.A1 * self.mult(self.n, self.Vt) * self.torque(1 / over))
         self.Kd = max(top_thrust_at_vt - self.Rb - self.Rs * self.Vt / MPH, 0.5) / (self.Vt ** 2)
-        self.boost_today = T.boost_accel
-        x_vb = self.Vb / self.Vg[-1]
-        # Overdrive is in the Vb solve: past top-gear redline while boosting, thrust holds at tau(1) x mult_top
-        a_top_vb = self.delivered(self.A1 * self.mult[-1] * torque_at(s.curve, min(x_vb, 1.0)))
-        if x_vb > 1 and a["OverdriveEnabled"] < 0.5:
-            a_top_vb *= 0.4   # limiter duty without Overdrive (on 30 ms / cut 45 ms)
-        need = self.Kd * self.Vb ** 2 + self.Rb + self.Rs * self.Vb / MPH - a_top_vb
-        self.share_hi = clamp(need / max(self.boost_today, 1e-6), a["BoostShareMin"], 1) if self.boost_today > 0 else 1
-        brake_v2 = (a["BrakeDecel"] * clamp((T.stats["BrakingForce"] / 60) ** a["BrakeForceExponent"], a["BrakeFactorMin"], a["BrakeFactorMax"])
-                    * T.brake_weight * T.bal["Braking"])
+        self.boost_today = T.boost_accel if T.boost_power > 0 else 0.0
+        share = 1.0
+        if s.on("BoostShapeEnabled") and self.boost_today > 0:
+            # Overdrive is in the Vb solve: past top-gear redline while boosting, thrust holds at tau(1) x mult_top
+            x_vb = self.Vb / self.Vg[-1]
+            engine = self.delivered(self.A1 * self.mult(self.n, self.Vb) * self.torque(min(x_vb, 1.0)))
+            if x_vb >= 1 and not s.on("OverdriveEnabled"):
+                engine *= a["LimiterOnSeconds"] / max(a["LimiterOnSeconds"] + a["LimiterCutSeconds"], 0.001)
+            need = self.Kd * self.Vb ** 2 + self.Rb + self.Rs * self.Vb / MPH
+            share = clamp((need - engine) / self.boost_today, a["BoostShareMin"], 1)
+        self.share_hi = share
+        # Dynamics WeightReference, BrakingForceReference and BrakeWeightExponent (config, with physics' fallbacks and clamps)
+        w_ratio = T.w_ref / max(T.stats["Weight"], 1)
+        brake_v2 = (a["BrakeDecel"] * clamp((max(T.stats["BrakingForce"], 0.001) / T.brake_ref) ** a["BrakeForceExponent"], a["BrakeFactorMin"], a["BrakeFactorMax"])
+                    * clamp(w_ratio ** T.brake_weight_exp, 0.8, 1.2) * T.bal["Braking"])
         self.brake_v2 = brake_v2
-        self.brake = max(lerp(T.brake, brake_v2, s.weight_dial), 0.2 * brake_v2)  # FeelWeight 0 = today's brake
-        self.engine_brake = a["EngineBrakeDecel"] * a["FeelEngineBrake"]
+        # R14 #12: physics form, FeelWeight 0 = today's brake, clamped to [0.35 min, max]
+        brake = lerp(T.brake, brake_v2, s.weight_dial)
+        self.brake = clamp(brake, 0.35 * min(T.brake, brake_v2), max(T.brake, brake_v2))
         self.guard_mph = min(T.max_mph, a["SpeedGuardOverBoostTop"] * self.Vb)
         # chassis numbers
-        self.yaw_weight = clamp((118 / T.weight) ** a["YawWeightExponent"], a["YawWeightMin"], a["YawWeightMax"])
-        self.cap_grip = clamp((T.stats["LateralGrip"] / 50) ** a["LateralCapGripExponent"], 0.85, 1.2)
+        self.yaw_omega = a["YawOmega"] * clamp(w_ratio ** a["YawWeightExponent"], a["YawWeightMin"], a["YawWeightMax"])
+        self.cap_base = a["LateralCapG"] * G * clamp(grip_ratio ** a["LateralCapGripExponent"], 0.85, 1.2) * a["FeelGrip"]
         self.spin_tier = a["SpinTierFloor"] + (1 - a["SpinTierFloor"]) * tier
 
+    def mid_speeds(self, a):
+        """Gear mid-band speeds for the C6 envelope (physics MidMph): halfway between the previous gear's redline speed
+        (0 for first) and this gear's."""
+        return [0.5 * ((self.Vg[g - 1] if g > 0 else 0.0) + self.Vg[g]) for g in range(self.n)]
+
+    def envelope(self, mph):
+        mids, base = self.mid, self.mult_base
+        if mph <= mids[0]:
+            return base[0]
+        for i in range(1, self.n):
+            if mph <= mids[i]:
+                return base[i - 1] + (base[i] - base[i - 1]) * (mph - mids[i - 1]) / max(mids[i] - mids[i - 1], 1e-9)
+        return base[-1]
+
+    def mult(self, gear, mph):
+        """C6: mult = env(v) + (MultBase[g] - env(v)) x FeelGearing (gear is 1-based)."""
+        env = self.envelope(mph)
+        return max(env + (self.mult_base[gear - 1] - env) * self.gearing, 0.0)
+
+    def torque(self, x):
+        """profileTorque: FeelGearing below 1 flattens the curve toward 1 (CurveDepth = min(FeelGearing, 1))."""
+        return 1 + (torque_at(self.s.curve, x) - 1) * self.s.curve_depth
+
     def delivered(self, a_raw, dump=0.0):
-        """Thrust after the traction limit and the sliding-grip factor (StepDrivetrain's a_drive before cuts)."""
-        ws_eff = max(0.0, a_raw / self.a_trac - 1) * (1 - self.assist) + dump
-        return min(a_raw, self.a_trac) * (1 - (1 - self.slide_fraction) * smoothstep(ws_eff / self.slide_width))
+        """Thrust after the traction limit and the sliding-grip factor (StepDrivetrain's thrust before cuts)."""
+        slip = max(0.0, a_raw / self.a_trac - 1) * (1 - self.assist) + dump
+        return min(a_raw, self.a_trac) * (1 - (1 - self.slide_fraction) * smoothstep(slip / self.slide_width))
 
     def share(self, mph, settings):
-        if settings.a["BoostShapeEnabled"] < 0.5:
+        if not settings.on("BoostShapeEnabled") or self.Vb <= 1:
             return 1.0
         return 1 - (1 - self.share_hi) * smoothstep(max(mph, 0) / self.Vb)
 
-    def a_cap(self, today, speed_mph, settings):
-        return settings.a["LateralCapG"] * G * self.cap_grip * today.downforce(speed_mph) * today.bal["Grip"] * settings.a["FeelGrip"]
+    def a_cap(self, today, speed_mph):
+        """chassis.LateralCap: LateralCapBase x DownforceFactor x Balance.Grip."""
+        return self.cap_base * today.downforce(speed_mph) * today.bal["Grip"]
 
-    def gear_for_speed(self, mph, settings):
-        """The gear the full-throttle auto box would hold at this speed (used to start runs mid-speed)."""
-        up = settings.a["UpshiftFlat"]
+    def select_gear(self, mph, fraction=0.9):
+        """Model.DrivetrainSelectGear: the lowest gear that puts this speed at or under 0.9 of its redline."""
         for g in range(self.n):
-            if mph < up * self.Vg[g]:
+            if mph <= self.Vg[g] * fraction:
                 return g + 1
         return self.n
-
-
-def frame_average_square(phase, dt, on, off):
-    """Mean of a periodic on/off gate (1 for `on` seconds, then 0 for `off`) over [phase, phase + dt]."""
-    period = on + off
-    if period <= 0:
-        return 1.0
-
-    def integral(t):
-        cycles, rem = divmod(t, period)
-        return cycles * on + min(rem, on)
-    return (integral(phase + dt) - integral(phase)) / dt if dt > 0 else 1.0
-
-
-def frame_average_cut(t0, dt, cut, blend, depth):
-    """Mean of the shift torque factor over [t0, t0 + dt] after the shift started at 0:
-    depth for `cut` seconds, then a linear ramp to 1 over `blend`, then 1."""
-    def integral(t):
-        if t <= 0:
-            return t
-        total = min(t, cut) * depth
-        if t > cut:
-            u = min(t - cut, blend)
-            total += depth * u + (1 - depth) * (u * u) / (2 * blend) if blend > 0 else 0
-        if t > cut + blend:
-            total += t - cut - blend
-        return total
-    return (integral(t0 + dt) - integral(t0)) / dt if dt > 0 else 1.0
 
 
 class Gearbox:
@@ -216,239 +361,358 @@ class Gearbox:
 
     def __init__(self, profile, settings, today):
         self.P, self.s, self.T = profile, settings, today
-        self.reset(gear=1)
-
-    def reset(self, gear=1, rpm=None):
-        self.gear = gear
-        self.rpm = rpm if rpm is not None else self.P.I
+        # (t, kind, from, to, mph). kind: Up, Down and Launch are beginShift / LaunchGearbox events (ShiftRevision, the
+        # cues); Force is a gear the step sets without one (R, 1st below StopGearMph, the select from N) and is never a
+        # shift in any count
+        self.shifts = []
         self.t = 0.0
-        self.last_shift = -10.0
-        self.shift_kind = None
-        self.cut_start = None
-        self.lift_time = -10.0
-        self.thr_prev = 0.0
-        self.kick_hold = 0.0
-        self.lim_active = False
-        self.lim_phase = 0.0
         self.lim_bounces = 0
-        self.shifts = []          # (t, kind, from, to, mph)
-        self.ws_eff = 0.0
-        self.k_shift = 1.0
-        self.k_lim = 1.0
+        self.cruise_ups = 0
+        self.strength = 0.0       # box.LastStrength (kept across resets)
+        self.boost_share = 1.0    # out.BoostShare
+        self.reset(0.0)
+
+    def reset(self, forward_mph=0.0, neutral=False):
+        """Model.ResetGearbox: N (neutral), first gear, or the gear that matches the speed when moving; idle or road rpm,
+        no cut, no limiter, LiftClock 10, Duty 0 and SteadyMph at the speed."""
+        P, a = self.P, self.s.a
+        gear = 1
+        if neutral:
+            gear = 0
+        elif forward_mph > a["StopGearMph"]:
+            gear = P.select_gear(forward_mph, self.s.k["SelectGearFraction"])
+        self.gear = gear
+        self.rpm = P.I
+        if gear >= 1:
+            self.rpm = clamp(forward_mph / P.Vg[gear - 1] * P.R, P.I, P.limiter_rpm)
+        self.since_shift = 10.0
+        self.shift_kind = None
+        self.lim_state, self.lim_clock = 0, 0.0
+        self.lift_clock, self.kick_clock = 10.0, 0.0
         self.overdrive = False
-        self.rpm_road = 0.0
+        self.duty, self.steady_mph = 0.0, forward_mph                           # C9: reset with the gearbox
+        self.ws_eff = 0.0
+        self.k_shift = self.k_lim = 1.0
+        self.ratio = 0.0
         self.load = 0.0
+        self.drive_thrust = 0.0
         self.dt = 1 / 60
-        self.drive_thrust = self.a_res = self.a_eb = 0.0
 
     def place(self, mph):
-        """Start mid-speed in the gear the auto box would hold, at road rpm."""
-        g = self.P.gear_for_speed(mph, self.s)
-        self.reset(gear=g, rpm=max(self.P.I, mph / self.P.Vg[g - 1] * self.P.R))
+        """Start mid-speed: exactly Model.ResetGearbox at that speed (the ResetPending path)."""
+        self.reset(mph)
 
-    def step(self, car, throttle, forward_speed, hspeed_mph, drift_blend, boost_applied, dt):
-        """Returns (acc, mode, snap, accelerating, braking, drive_thrust). Mirrors StepLongitudinal's modes."""
-        P, s, a, T = self.P, self.s, self.s.a, self.T
+    def launch(self, strength=1.0):
+        """Model.LaunchGearbox: first gear from N or a power-brake hold, keeping the revved rpm, Duty and the limiter."""
+        self._log("Launch", 1, 0.0)
+        self.gear, self.since_shift, self.shift_kind = 1, 0.0, "Launch"
+        self.strength = clamp(strength, 0.0, 1.0)
+
+    def _log(self, kind, to, mph):
+        self.shifts.append((self.t, kind, self.gear, to, mph))
+
+    def _begin(self, gear, kind, mph, strength):
+        """beginShift: the gearing dial scales how hard an Up or Down shift is felt (0 = CVT-smooth)."""
+        self._log(kind, gear, mph)
+        self.gear, self.since_shift, self.shift_kind = gear, 0.0, kind
+        self.strength = clamp(strength * min(self.s.gearing, 1.0), 0.0, 1.0)
+
+    def _step_limiter(self, over, dt):
+        """stepLimiter: drive for LimiterOnSeconds, then cut for LimiterCutSeconds; returns the share of the frame cut."""
+        a = self.s.a
+        on, cut_s = a["LimiterOnSeconds"], a["LimiterCutSeconds"]
+        if not over:
+            self.lim_state, self.lim_clock = 0, 0.0
+            return 0.0
+        if self.lim_state == 0:
+            self.lim_state, self.lim_clock = 1, 0.0
+        remaining, cut = dt, 0.0
+        for _ in range(16):
+            if remaining <= 0:
+                break
+            if self.lim_state == 1:
+                use = min(remaining, max(on - self.lim_clock, 0.0))
+                self.lim_clock += use
+                remaining -= use
+                if self.lim_clock >= on:
+                    if cut_s <= 0:
+                        break
+                    self.lim_state, self.lim_clock = 2, 0.0
+                    self.lim_bounces += 1
+            else:
+                use = min(remaining, max(cut_s - self.lim_clock, 0.0))
+                self.lim_clock += use
+                remaining -= use
+                cut += use
+                if self.lim_clock >= cut_s:
+                    self.lim_state, self.lim_clock = 1, 0.0
+        if dt > 0:
+            return clamp(cut / dt, 0, 1)
+        return 1.0 if self.lim_state == 2 else 0.0
+
+    @staticmethod
+    def _cut_integral(t, cut, blend, c):
+        if t <= cut:
+            return c * t
+        u = t - cut
+        if u < blend:
+            return c * cut + c * u + (1 - c) * u * u / (2 * blend)
+        return c * cut + c * blend + (1 - c) * blend * 0.5 + (u - blend)
+
+    def upshift_point(self, thr):
+        a = self.s.a
+        if thr >= 0.9:
+            return a["UpshiftFlat"]
+        if thr >= 0.3:
+            return a["UpshiftPartLow"] + (a["UpshiftPartHigh"] - a["UpshiftPartLow"]) * (thr - 0.3) / 0.6
+        return a["UpshiftCruise"]
+
+    def step(self, car, throttle, forward_speed, horizontal, drift_blend, spin, extra_slip, power_brake_held, intent,
+             boost_applied, analog, dt):
+        """Returns (acc, mode, snap, accelerating, braking, drive_thrust). Mirrors Model.StepDrivetrain line by line.
+        horizontal is |v_h| in studs/s; boost_applied is last frame's (Drivetrain.BoostApplied); dt is the frame already
+        clamped to [0, 0.1] (StepLongitudinal clamps it before StepDrivetrain). Also sets boost_share (out.BoostShare)."""
+        P, s, a, T, k = self.P, self.s, self.s.a, self.T, self.s.k
         self.t += dt
         self.dt = dt
-        t = self.t
         fwd_mph = forward_speed * MPH
         abs_mph = abs(fwd_mph)
         dz = T.deadzone
-        L = car.spin_L
-        thr = throttle
-        # throttle history: lift hold and kickdown hold
-        if thr < a["CruiseThrottleMin"] <= self.thr_prev:
-            self.lift_time = t
-        self.kick_hold = self.kick_hold + dt if thr >= a["KickdownThrottle"] else 0.0
-        self.thr_prev = thr
-        # ---- mode (today's StepLongitudinal branches)
-        mode, snap, accelerating, braking = "Coasting", False, False, False
-        if thr > dz:
-            car.hold = 0
+        spin = clamp(spin, 0.0, 1.0)
+        db = clamp(drift_blend, 0.0, 1.0)
+        n, Vg, ratios, R, I = P.n, P.Vg, P.ratios, P.R, P.I
+        if self.gear > n:
+            self.gear = n
+        # ---- mode: today's rules; auto-hold never snaps while the car spins or slides sideways
+        acc = -T.aero(fwd_mph)
+        mode, braking, accelerating, snap = "Coasting", False, False, False
+        driven = 0.0
+        if throttle > dz:
+            car.hold = 0.0
             if fwd_mph < -T.stop_mph:
                 mode, braking = "Braking", True
             else:
-                mode, accelerating = "Forward", True
-        elif thr < -dz:
+                mode, accelerating, driven = "Forward", True, throttle
+        elif throttle < -dz:
             if fwd_mph > T.stop_mph:
-                car.hold = 0
+                car.hold = 0.0
                 mode, braking = "Braking", True
             elif abs_mph <= T.stop_mph:
                 car.hold += dt
                 if car.hold >= T.reverse_delay:
                     mode, accelerating = "Reverse", True
+                    acc -= T.reverse * abs(throttle)
                 else:
                     mode, snap = "Stopped", True
             else:
                 mode, accelerating = "Reverse", True
+                ratio_r = clamp(abs(min(fwd_mph, 0)) / T.reverse_max_mph, 0, 1)
+                acc -= T.reverse * abs(throttle) * (1 - ratio_r) ** T.reverse_curve_exp
         else:
-            car.hold = 0
-            if abs_mph <= T.auto_hold_mph:
-                mode = "Stopped"
-                # fix 2: no auto-hold snap mid-spin or while still sliding sideways
-                snap = L <= 0.05 and hspeed_mph / MPH <= 4
-        # ---- gear selection
-        v_eff = lerp(max(fwd_mph, 0), hspeed_mph, drift_blend)                  # fix 3: |v_h| blended by DriftBlend
-        if mode == "Reverse" or (mode == "Stopped" and thr < -dz):
-            if self.gear != -1:
-                self._event("Down", -1, fwd_mph)
-            self.gear = -1
-        elif self.gear < 1:
-            self.gear = 1
-        if self.gear >= 1 and v_eff < a["StopGearMph"] and self.gear > 1:
-            self._event("Down", 1, fwd_mph)
-            self.gear = 1
-        overdrive = False
-        rpm_road = 0.0
-        if self.gear >= 1:
-            g = self.gear
-            x = v_eff / P.Vg[g - 1]
-            rpm_road = x * P.R
-            since = t - self.last_shift
-            hold = drift_blend > 0.3 or L > 0.1                                   # fix 3
+            car.hold = 0.0
+            if abs_mph <= T.auto_hold_mph and spin <= 0.05 and horizontal <= 4:
+                mode, snap = "Stopped", True
+        # ---- gear: R while reversing, 1st below StopGearMph, else the auto brain
+        gear = self.gear
+        if mode == "Reverse":
+            gear = -1
+        elif gear == -1 and fwd_mph < -T.stop_mph and mode != "Braking":
+            gear = -1
+        elif fwd_mph < a["StopGearMph"]:
+            gear = 1
+        elif gear < 1:
+            gear = P.select_gear(fwd_mph, k["SelectGearFraction"])
+        if gear != self.gear:
+            self._log("Force", gear, fwd_mph)                                   # no beginShift: no event, no cue
+        self.gear = gear
+        road = max(fwd_mph, 0.0)
+        h_mph = horizontal * MPH
+        road += (h_mph - road) * db                                             # rpm from |v_h| blended by DriftBlend
+        ratio = road / Vg[gear - 1] if gear >= 1 else 0.0
+        positive = max(throttle, 0.0)
+        self.lift_clock = 0.0 if positive < a["CruiseThrottleMin"] else self.lift_clock + dt
+        self.kick_clock = self.kick_clock + dt if positive >= a["KickdownThrottle"] else 0.0
+        # C9: throttle duty and steady-speed averages (every frame while active)
+        f = 1 - math.exp(-dt / a["DigitalDutySeconds"])                         # >= 0.05 (Settings)
+        self.duty += (positive - self.duty) * f
+        self.steady_mph += (fwd_mph - self.steady_mph) * f
+        if gear >= 1 and fwd_mph >= a["StopGearMph"] and self.since_shift >= a["ShiftMinIntervalSeconds"]:
+            # no shifting mid-drift or mid-spin, except an upshift off the limiter (and the C5 drift downshift)
+            drift_hold = db > 0.3
+            hold = drift_hold or spin > 0.1
             shifted = False
-            if g < P.n and since >= a["ShiftMinIntervalSeconds"]:
-                up = False
-                if rpm_road >= P.R and not (boost_applied and a["OverdriveEnabled"] >= 0.5 and g == P.n):
-                    up = mode in ("Forward", "Coasting")                           # an upshift on the limiter is always allowed
-                elif not hold and mode == "Forward" and t - self.lift_time >= a["LiftHoldSeconds"]:
-                    U = None
-                    if thr >= 0.9:
-                        U = a["UpshiftFlat"]
-                    elif thr >= 0.3:
-                        U = lerp(a["UpshiftPartLow"], a["UpshiftPartHigh"], (thr - 0.3) / 0.6)
-                    elif thr >= a["CruiseThrottleMin"]:                            # fix 4: no cruise upshift at a lift
-                        U = a["UpshiftCruise"]
-                    if U is not None and rpm_road >= U * P.R:
-                        land = rpm_road * P.ratios[g] / P.ratios[g - 1]
-                        up = thr >= 0.3 or land >= a["UpshiftMinLand"] * P.R
+            if gear < n:
+                up = ratio >= 1
+                if not up and not hold and driven > 0:
+                    if driven >= 0.9:
+                        up = ratio >= a["UpshiftFlat"]                           # full throttle: never held by LiftHold
+                    elif self.lift_clock >= a["LiftHoldSeconds"]:
+                        if driven >= 0.3:
+                            up = ratio >= self.upshift_point(driven)
+                        elif driven > a["CruiseThrottleMin"]:
+                            up = ratio >= a["UpshiftCruise"] and ratio * ratios[gear] / ratios[gear - 1] >= a["UpshiftMinLand"]
+                strength = 1.0 if driven >= 0.9 else 0.3 + 0.7 * driven
+                if not up and not hold and s.on("DigitalCruiseEnabled") and not analog:
+                    # C9: keyboard/touch cruise short-shift (LiftHoldSeconds does not block it). analog is the latched
+                    # last throttle device (Drivetrain.AnalogInput)
+                    land = ratio * ratios[gear] / ratios[gear - 1]
+                    if (a["CruiseThrottleMin"] < self.duty <= a["DigitalCruiseDutyMax"]
+                            and abs(fwd_mph - self.steady_mph) <= a["DigitalCruiseSteadyMph"]
+                            and ratio >= a["DigitalCruiseUpshift"]
+                            and land >= max(a["DigitalCruiseLand"], a["UpshiftMinLand"])):
+                        up, strength = True, 0.3 + 0.7 * self.duty
+                        self.cruise_ups += 1
                 if up:
-                    self._shift_up(thr, fwd_mph)
+                    self._begin(gear + 1, "Up", fwd_mph, strength)
                     shifted = True
-            drift_down = hold and L <= 0.1 and self.s.k["DriftHoldDownshift"] and mode == "Forward"
-            if not shifted and self.gear > 1 and drift_down:
-                # variant (not the contract): in a drift, step down by |v_h| like a braking downshift
-                g = self.gear
-                if since >= a["ShiftMinIntervalSeconds"] and rpm_road * P.ratios[g - 2] / P.ratios[g - 1] <= a["DownshiftBrakeLand"] * P.R:
-                    self._shift_down(g - 1, fwd_mph)
-            elif not shifted and self.gear > 1 and not hold:
-                g = self.gear
-                land_down = rpm_road * P.ratios[g - 2] / P.ratios[g - 1]
-                if mode == "Braking" and fwd_mph > 0:
-                    if since >= self.s.k["BrakeDownshiftGap"] and land_down <= a["DownshiftBrakeLand"] * P.R:
-                        self._shift_down(g - 1, fwd_mph)
-                elif mode == "Coasting":
-                    if since >= a["ShiftMinIntervalSeconds"] and x < a["DownshiftCoastFraction"] and land_down <= a["DownshiftCoastLand"] * P.R:
-                        self._shift_down(g - 1, fwd_mph)
-                elif mode == "Forward" and thr >= a["KickdownThrottle"] and self.kick_hold >= a["KickdownHoldSeconds"] \
-                        and x < a["KickdownBelowFraction"] and since >= a["ShiftMinIntervalSeconds"]:
-                    target = g
-                    while target > 1 and rpm_road * P.ratios[target - 2] / P.ratios[g - 1] <= a["KickdownLand"] * P.R:
-                        target -= 1
-                    if target < g:
-                        self._shift_down(target, fwd_mph)
-            g = self.gear
-            x = v_eff / P.Vg[g - 1]
-            rpm_road = x * P.R
-            overdrive = a["OverdriveEnabled"] >= 0.5 and boost_applied and g == P.n and rpm_road >= P.R
-        self.rpm_road = rpm_road
+            if not shifted and gear > 1:
+                target = gear
+                if not hold:
+                    land = ratio * ratios[gear - 2] / ratios[gear - 1]
+                    if braking and fwd_mph > 0:
+                        if land <= a["DownshiftBrakeLand"]:
+                            target = gear - 1
+                    elif driven <= a["CruiseThrottleMin"]:
+                        if ratio < a["DownshiftCoastFraction"] and land <= a["DownshiftCoastLand"]:
+                            target = gear - 1
+                    elif driven >= a["KickdownThrottle"] and self.kick_clock >= a["KickdownHoldSeconds"] and ratio < a["KickdownBelowFraction"]:
+                        for lower in range(1, gear):
+                            if ratio * ratios[lower - 1] / ratios[gear - 1] <= a["KickdownLand"]:
+                                target = lower
+                                break
+                    elif ratio < k["LugFraction"] and land <= a["DownshiftCoastLand"]:
+                        target = gear - 1
+                elif drift_hold and spin <= 0.1 and s.on("DriftHoldDownshift"):
+                    # C5: one downshift at a time inside the drift hold, by |v_h|, when the lower gear lands at or below
+                    # DownshiftBrakeLand (no cut; upshifts stay blocked)
+                    if h_mph / Vg[gear - 2] <= a["DownshiftBrakeLand"]:
+                        target = gear - 1
+                if target < gear:
+                    self._begin(target, "Down", fwd_mph, 0.5)
+            gear = self.gear
+            ratio = road / Vg[gear - 1]
+        rpm_road = ratio * R
+        # Overdrive (F9): boosting past top-gear redline pins rpm at redline with no limiter; held while still above
+        # top-gear redline after the boost ends (0.98 hysteresis)
+        overdrive = (s.on("OverdriveEnabled") and gear >= 1 and gear == n and (boost_applied or self.overdrive)
+                     and ratio >= (0.98 if self.overdrive else 1.0))
         self.overdrive = overdrive
-        # ---- thrust (fix 1: throttle enters once)
-        a_drive = 0.0
-        ws_eff = 0.0
-        dump = car.spin_dump
-        k_shift = k_lim = 1.0
-        if mode == "Forward" and self.gear >= 1:
-            g = self.gear
-            x_eng = 1.0 if overdrive else min(self.rpm / P.R, 1.0)
-            a_raw = P.A1 * P.mult[g - 1] * torque_at(s.curve, x_eng) * clamp(thr, 0, 1)
-            ws = max(0.0, a_raw / P.a_trac - 1)
-            gate = fwd_mph >= -1 and car.intent == 1                              # fix 2
-            ws_eff = (ws * (1 - a["TractionAssist"]) + dump) if gate else 0.0
-            a_drive = min(a_raw, P.a_trac) * (1 - (1 - a["SlideGripFraction"]) * smoothstep(ws_eff / self.s.k["SlideSmoothWidth"]))
-            # fix 5: cuts are time-weighted over the frame
-            if self.cut_start is not None:
-                since_cut = t - dt - self.cut_start
-                if since_cut < s.cut_seconds + s.blend_seconds:
-                    k_shift = frame_average_cut(max(since_cut, 0.0), dt, s.cut_seconds, s.blend_seconds, s.cut_torque)
-                else:
-                    self.cut_start = None
-            lim_cond = rpm_road >= P.R and not overdrive
-            if not self.lim_active and lim_cond:
-                self.lim_active, self.lim_phase = True, 0.0
-            elif self.lim_active and rpm_road < P.R - a["LimiterHysteresisRpm"]:
-                self.lim_active = False
-            if self.lim_active:
-                on, off = a["LimiterOnSeconds"], a["LimiterCutSeconds"]
-                k_lim = frame_average_square(self.lim_phase, dt, on, off)
-                before = int(self.lim_phase // (on + off))
-                self.lim_phase += dt
-                self.lim_bounces += int(self.lim_phase // (on + off)) - before
-            a_drive *= k_shift * k_lim * (1 - a["SpinThrustLoss"] * L)
+        # ---- engine rpm target: road rpm, a clutch-slip launch in first, a free rev while spinning
+        rpm_base = rpm_road
+        if gear == -1:
+            rpm_base = I + (0.55 * R - I) * clamp(abs_mph / 40, 0, 1)
+        elif gear >= 1:
+            launch = 1.0 if power_brake_held else driven
+            if gear == 1 and launch > 0:
+                rpm_base = max(rpm_base, I + launch * (a["LaunchRpmFraction"] * R - I))
+            if spin > 0:
+                rpm_base += (max(0.85 * R * driven, I) - rpm_base) * smoothstep(spin / 0.3)
+        rpm_base = max(rpm_base, I)
+        # ---- thrust (throttle applied once, linear), traction-limited, slide loss when the thrust slips
+        raw = 0.0
+        if driven > 0 and gear >= 1:
+            raw = P.A1 * P.mult(gear, road) * P.torque((R if overdrive else self.rpm) / R) * driven
+        trac = P.a_trac
+        slip = 0.0
+        if mode == "Forward" and fwd_mph >= -1 and intent == 1:
+            slip = max(raw / trac - 1, 0.0) * (1 - a["TractionAssist"]) + max(extra_slip, 0.0)
+        thrust = min(raw, trac)
+        if slip > 0:
+            thrust *= 1 - (1 - a["SlideGripFraction"]) * smoothstep(slip / k["SlideSmoothWidth"])
+        # ---- limiter (never in Overdrive) and the upshift cut, both time-weighted across the frame
+        hyst = a["LimiterHysteresisRpm"]
+        over = (not overdrive) and gear >= 1 and driven > 0 and rpm_road >= ((R - hyst) if self.lim_state != 0 else R)
+        lim_cut = self._step_limiter(over, dt)
+        cut_s, blend_s, c = s.cut_seconds, s.blend_seconds, s.cut_torque
+        shift_factor, load_factor, shift_cut = 1.0, 1.0, 0.0
+        if self.shift_kind == "Up" and self.since_shift < cut_s + blend_s:
+            frm = self.since_shift
+            if dt > 0:
+                shift_factor = (self._cut_integral(frm + dt, cut_s, blend_s, c) - self._cut_integral(frm, cut_s, blend_s, c)) / dt
+                load_factor = (self._cut_integral(frm + dt, cut_s, blend_s, 0) - self._cut_integral(frm, cut_s, blend_s, 0)) / dt
+                shift_cut = max(min(frm + dt, cut_s) - frm, 0.0) / dt
+            elif frm < cut_s:
+                shift_factor, load_factor, shift_cut = c, 0.0, 1.0
+        thrust *=shift_factor * (1 - lim_cut) * (1 - a["SpinThrustLoss"] * spin)
+        if mode != "Forward":
+            thrust = 0.0
+        # ---- engine rpm: lag toward the target (rev drop after an upshift, rev-matched rise after a downshift)
+        target = min(rpm_base * (1 + a["ThrustSlipFlare"] * min(slip, 0.5)), P.limiter_rpm)
+        if overdrive:
+            target = R
+        elif self.lim_state == 2:
+            target = min(target, R - 2 * hyst)
+        rev_drop = s.rev_drop
+        if target < self.rpm:
+            tau = rev_drop if (self.shift_kind == "Up" and self.since_shift < cut_s + blend_s + 3 * rev_drop) else a["EngineRiseSeconds"] * a["EngineFallScale"]
         else:
-            self.lim_active = False
-        self.ws_eff = ws_eff
-        self.k_shift, self.k_lim = k_shift, k_lim
-        self.load = clamp(thr, 0, 1) * k_shift * k_lim
-        # ---- engine rpm
-        if self.gear == -1:
-            rpm_t = P.I + (0.55 * P.R - P.I) * min(abs_mph / 40, 1)
-        else:
-            rpm_base = rpm_road
-            if self.gear == 1 and thr > dz and mode == "Forward":
-                rpm_base = max(rpm_road, P.I + thr * (a["LaunchRpmFraction"] * P.R - P.I))
-            rpm_base = max(rpm_base, P.I)
-            rpm_t = min(rpm_base * (1 + a["ThrustSlipFlare"] * min(ws_eff, 0.5)), 1.01 * P.R)
-            if L > 0.1:
-                rpm_t = max(rpm_t, 0.85 * P.R * clamp(thr, 0, 1))                # fix 3: free-rev in a spin
-            if overdrive:
-                rpm_t = P.R                                                      # fix 6: pinned, no cut
-        since = t - self.last_shift
-        if self.shift_kind == "Up" and since < s.cut_seconds + s.blend_seconds + 0.05:
-            tau = s.shift_rpm_seconds
-        elif self.shift_kind == "Down" and since < a["DownshiftBlendSeconds"] + 0.05:
-            tau = a["DownshiftBlendSeconds"]
-        else:
-            tau = a["EngineRiseSeconds"] * (1 if rpm_t > self.rpm else a["EngineFallScale"])
-        self.rpm += (rpm_t - self.rpm) * (1 - math.exp(-dt / max(tau, 1e-4)))
-        # ---- resistance (fix 2: signed against velocity)
-        sgn = forward_speed / max(abs(forward_speed), 0.8)
-        a_res = -sgn * (P.Kd * fwd_mph * fwd_mph + P.Rb + P.Rs * abs(forward_speed))
-        a_eb = 0.0
-        if thr <= dz and self.gear >= 1 and fwd_mph > 0 and self.cut_start is None:
-            a_eb = -sgn * P.engine_brake * (P.mult[self.gear - 1] / P.mult[-1]) * (0.35 + 0.65 * min(self.rpm / P.R, 1))
-        if mode == "Forward":
-            acc = a_drive + a_res
-        elif mode == "Coasting":
-            acc = a_res + a_eb
-        elif mode == "Braking":
-            acc = (P.brake * thr if fwd_mph < 0 else -P.brake * abs(thr)) + a_res + (a_eb if fwd_mph > 0 else 0.0)
-        elif mode == "Reverse":
-            ratio = clamp(abs(min(fwd_mph, 0)) / T.reverse_max_mph, 0, 1)
-            curve_term = (1 - ratio) ** T.reverse_curve_exp if abs_mph > T.stop_mph else 1.0
-            acc = -T.reverse * abs(thr) * curve_term + a_res
-        else:  # Stopped
-            acc = a_res
-        acc += T.limiter(fwd_mph)
-        if fwd_mph > P.guard_mph:                                                 # fix 6: speed guard
+            tau = a["DownshiftBlendSeconds"] if (self.shift_kind == "Down" and self.since_shift < 3 * a["DownshiftBlendSeconds"]) else a["EngineRiseSeconds"]
+        self.rpm += (target - self.rpm) * (1 - math.exp(-dt / max(tau, 0.001)))
+        self.rpm = clamp(self.rpm, I, P.limiter_rpm)
+        # ---- resistances, signed against the motion; engine braking only in gear and rolling forward
+        if mode in ("Forward", "Braking", "Coasting"):
+            motion = forward_speed / max(abs(forward_speed), 0.8)
+            resistance = P.Kd * fwd_mph * fwd_mph + P.Rb + P.Rs * abs(forward_speed)
+            eb = 0.0
+            if mode != "Forward" and gear >= 1 and fwd_mph > 0:
+                eb = (a["EngineBrakeDecel"] * a["FeelEngineBrake"] * P.mult(gear, road) / P.mult_base[-1]
+                      * (0.35 + 0.65 * min(self.rpm / R, 1.0)) * (1 - shift_cut))
+            acc = -motion * resistance - eb
+            if mode == "Forward":
+                acc += thrust
+            elif mode == "Braking":
+                acc -= motion * P.brake * abs(throttle)
+        # speed guard holds the boosted top at SpeedGuardOverBoostTop x Vb; the reverse limiter is today's
+        if fwd_mph > P.guard_mph:
             acc -= (fwd_mph - P.guard_mph) / MPH * a["SpeedGuardStrength"]
-        self.drive_thrust = a_drive
-        self.a_res, self.a_eb = a_res, a_eb
-        return acc, mode, snap, accelerating, braking, a_drive
+        elif fwd_mph < -T.reverse_max_mph:
+            acc += (abs(fwd_mph) - T.reverse_max_mph) / MPH * T.soft_limiter
+        self.boost_share = P.share(fwd_mph, s)                                  # out.BoostShare, from this frame's speed
+        load = 0.0
+        if mode == "Forward":
+            load = driven if overdrive else driven * load_factor * (1 - lim_cut)
+        elif mode == "Reverse":
+            load = abs(throttle)
+        elif power_brake_held:
+            load = 1.0
+        self.since_shift += dt
+        self.ws_eff = slip
+        self.k_shift, self.k_lim = shift_factor, 1 - lim_cut
+        self.load = clamp(load, 0, 1)
+        self.ratio = ratio
+        self.rpm_road = rpm_road
+        self.drive_thrust = thrust
+        return acc, mode, snap, accelerating, braking, thrust
 
-    def _event(self, kind, to, mph):
-        self.shifts.append((self.t, kind, self.gear, to, mph))
-
-    def _shift_up(self, thr, mph):
-        self._event("Up", self.gear + 1, mph)
-        self.gear += 1
-        self.last_shift = self.t
-        self.shift_kind = "Up"
-        self.cut_start = self.t - self.dt   # the cut starts with this frame's force interval
-
-    def _shift_down(self, to, mph):
-        self._event("Down", to, mph)
-        self.gear = to
-        self.last_shift = self.t
-        self.shift_kind = "Down"                                                   # fix 4: no torque cut on downshifts
+    def step_neutral(self, throttle, dt):
+        """Model.StepNeutral, line by line: an anchored frame (race countdown, teleport). No forces, gear N, rpm follows
+        the throttle up to NeutralRevTarget x redline and bounces off the limiter; the duty and steady-speed averages run
+        (standing still). Returns the share of the frame the limiter cut."""
+        P, s, a = self.P, self.s, self.s.a
+        dt = clamp(dt, 0.0, 0.1)
+        self.t += dt
+        self.dt = dt
+        R, I, limiter_rpm = P.R, P.I, P.limiter_rpm
+        thr = clamp(throttle, 0.0, 1.0) if s.on("NeutralRevEnabled") else 0.0
+        self.gear = 0
+        f = 1 - math.exp(-dt / a["DigitalDutySeconds"])
+        self.duty += (clamp(throttle, 0.0, 1.0) - self.duty) * f
+        self.steady_mph -= self.steady_mph * f
+        hyst = a["LimiterHysteresisRpm"]
+        over = thr > 0 and self.rpm >= ((R - hyst) if self.lim_state != 0 else R)
+        cut = self._step_limiter(over, dt)
+        target = I + thr * (a["NeutralRevTarget"] * R - I)
+        if self.lim_state == 2:
+            target = min(target, R - 2 * hyst)
+        target = clamp(target, I, limiter_rpm)
+        tau = a["EngineRiseSeconds"] if target > self.rpm else a["EngineRiseSeconds"] * a["EngineFallScale"]
+        self.rpm += (target - self.rpm) * (1 - math.exp(-dt / max(tau, 0.001)))
+        self.rpm = clamp(self.rpm, I, limiter_rpm)
+        self.since_shift += dt
+        self.ws_eff = 0.0
+        self.k_shift, self.k_lim = 1.0, 1 - cut
+        self.load = thr * (1 - cut)
+        self.ratio = self.rpm_road = 0.0
+        self.drive_thrust = 0.0
+        self.boost_share = 1.0
+        return cut
